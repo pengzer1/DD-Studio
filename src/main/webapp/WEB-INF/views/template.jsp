@@ -1,30 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
+<link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-   
+
 </style>
 </head>
 <body>
-   <!-- template.jsp -->
-   <%@ include file="/WEB-INF/views/inc/header.jsp" %>
+	<!-- Template.jsp -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp" %> <!-- Header -->
    <main id="main">
-      <h1>콘텐츠 제목 <small>부제</small></h1>
-      콘텐츠 내용
-   </main>
    
-   <script>
-      
-   </script>
+   
+   
+   </main>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp" %> <!-- Footer -->
+    </div>
+
+	<script>
+		
+	</script>
 </body>
 </html>
-
-
-
 
 
