@@ -128,7 +128,6 @@
         <a href="" class="btn btn-primary py-3 px-5">어트랙션 예약</a>
     </div>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp" %> <!-- Footer -->
-    </div>
 
 	<script>
 		
