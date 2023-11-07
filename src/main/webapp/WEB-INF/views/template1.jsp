@@ -30,12 +30,11 @@
 
 			<div class="munti-content-container">
 				<div class="item">
-					<div>아이템 1</div>
+					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
 					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
-					<div
-						style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
+					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
 					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
