@@ -1,5 +1,6 @@
 package com.ddstudio.pb;
 
-public class Price {
 
+public class Price {
+	
 }
