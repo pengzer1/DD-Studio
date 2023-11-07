@@ -9,28 +9,9 @@ public class DBUtil {
 
 	public static Connection open() {
 
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String id = "ddstudio";
-		String pw = "java1234";
-
-		try {
-
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			conn = DriverManager.getConnection(url, id, pw);
-
-			return conn;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	public static Connection open(String server, String id, String pw) {
-
-		String url = "jdbc:oracle:thin:@" + server + ":1521:xe";
+		String url = "jdbc:oracle:thin:@43.200.182.211:1521:xe";
+		String id = "JspProject";
+		String pw = "pass";
 
 		try {
 

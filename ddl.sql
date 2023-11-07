@@ -1,6 +1,6 @@
 -- system
-create user ddstudio identified by java1234;
-grant connect, resource, dba to ddstudio;
+create user JspProject identified by pass;
+grant connect, resource, dba to JspProject;
 
 /* DELETE문_51개 */
 DELETE FROM tblUserBuy;

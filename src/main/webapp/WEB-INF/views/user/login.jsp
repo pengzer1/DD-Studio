@@ -33,7 +33,7 @@
 				<table class="vertical">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="id" id="id" required class="middle"></td>
+						<td><input type="text" name="email" id="email" required class="middle"></td>
 					</tr>
 					<tr>
 						<th>암호</th>
@@ -50,17 +50,22 @@
 			<h2>자동 로그인 (관리자용)</h2>
 			<div id="form-list">
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="id" value="isaac"> <input
+					<input type="hidden" name="email" value="park@example.com"> <input
 						type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">아이작</button>
+					<button type="submit" class="login">박나래</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="id" value="sopia"> <input
+					<input type="hidden" name="email" value="hwang@example.com"> <input
 						type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">소피아</button>
+					<button type="submit" class="login">황주원</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="id" value="admin"> <input
+					<input type="hidden" name="email" value="cha@example.com"> <input
+						type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">차민재</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="admin@example.com"> <input
 						type="hidden" name="pw" value="1111">
 					<button type="submit" class="login">관리자</button>
 				</form>
