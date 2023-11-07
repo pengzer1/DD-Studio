@@ -8,10 +8,8 @@
 	style="margin-top: 20px; margin-bottom: 20px;">
 	<div class="row gx-0">
 		<div class="col-lg-3 d-none d-lg-block">
-			<a href="/ddstudio/index.do"
-				class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-				<h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD
-					Studio</h1>
+			<a href="/ddstudio/index.do" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+				<h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD Studio</h1>
 			</a>
 		</div>
 		<div class="col-lg-9">
@@ -67,16 +65,19 @@
 >>>>>>> b7e0f54fd55abb3f2f50f53f734f1ba1441a12ef
 					</div>
 				</div>
-				<c:if test="${empty id}">
+				<c:if test="${empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/login.do">로그인</a>
 						<a href="/ddstudio/user/register.do">회원가입</a>
 					</div>
 				</c:if>
-				<c:if test="${not empty id}">
+				<c:if test="${not empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<a href="/ddstudio/member/mypage.do">마이페이지</a>
+					</div>
+					<div>
+						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>
 					</div>
 				</c:if>
 			</nav>
