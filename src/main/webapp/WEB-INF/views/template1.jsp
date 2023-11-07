@@ -17,19 +17,18 @@
 
 	<main id="main">
 
-		<div
-			style="text-align: center; background-color: tomato; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<div id="title">
 			<h2>제목</h2>
 			<br>
 			<p>내용을ㅇㅇ 입력하세요</p>
 		</div>
 
 		<div id="content">
-			<div id="condition" style="">
+			<div id="condition">
 				<h3>조건검색(임시-롯데월드에 있던거 참고)</h3>
 			</div>
 
-			<div class="container">
+			<div class="content-container">
 				<div class="item">
 					<div>아이템 1</div>
 					<div>아이템 1</div>

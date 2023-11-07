@@ -17,18 +17,20 @@
 
 	<main id="main">
 
-		<div
-			style="text-align: center; background-color: tomato; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<div id="title">
 			<h2>제목</h2>
 			<br>
 			<p>내용을ㅇㅇ 입력하세요</p>
 		</div>
+		
+		<div id="sub-title">
+			<h3>제목</h3>
+		</div>
 
 		<div id="content">
-
-			<div class="container"
-				style="margin-top: 70px; padding: 0 !important">
-				<div class="item">
+			
+			<div class="content-container">
+				<div class="wide-item">
 					<div>아이템 1</div>
 					<div>아이템 1</div>
 				</div>
