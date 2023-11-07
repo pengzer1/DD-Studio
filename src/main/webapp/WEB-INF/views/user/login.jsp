@@ -22,22 +22,48 @@
 			<br>
 			<p>내용을 입력하세요</p>
 		</div>
-		
+
 		<div id="sub-title">
 			<h3>제목</h3>
 		</div>
 
 		<div id="content">
 
-			<div class="wide-multi-content-container">
-				<div class="wide-item">
-					<div>아이템 2</div>
-					<div>아이템 2 설명</div>
+			<form method="POST" action="/ddstidio/user/login.do">
+				<table class="vertical">
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" name="id" id="id" required class="middle"></td>
+					</tr>
+					<tr>
+						<th>암호</th>
+						<td><input type="password" name="pw" id="pw" required class="middle"></td>
+					</tr>
+				</table>
+				<div>
+					<button type="button" class="back" onclick="location.href='/ddstudio/index.do';">돌아가기</button>
+					<button type="submit" class="login">로그인</button>
 				</div>
-				<div class="wide-item">
-					<div>아이템 2</div>
-					<div>아이템 2 설명</div>
-				</div>
+			</form>
+
+			<hr>
+			<h2>자동 로그인 (관리자용)</h2>
+			<div id="form-list">
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="id" value="isaac"> <input
+						type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">아이작</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="id" value="sopia"> <input
+						type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">소피아</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="id" value="admin"> <input
+						type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">관리자</button>
+				</form>
 			</div>
 		</div>
 	</main>
