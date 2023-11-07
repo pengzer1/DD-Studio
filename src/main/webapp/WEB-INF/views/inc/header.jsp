@@ -22,7 +22,7 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="font-size: 1.2rem; font-family: 'JalnanGothic';">
 						<div class="navbar-nav mr-auto py-0">
-							<a href="index.html" class="nav-item nav-link active">
+							<a href="fee/price.do" class="nav-item nav-link active">
 								<span class="material-symbols-outlined" style="margin-left: 30px;">Local_Activity</span>
 								<div>요금/혜택</div>
 							</a>
