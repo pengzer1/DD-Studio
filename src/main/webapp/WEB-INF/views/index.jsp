@@ -5,9 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
-<link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-
+		.nav-icon {
+		font-size: 50px;
+	}
+	
+	.nav-menu-name {
+		font-size: 15px;
+	}
+	
+	.header-login {
+		position: absolute;
+		top: -15%;
+		right: 5%;
+	}
+	
+	.header-login a {
+		padding: 0 5px;
+	}
 </style>
 </head>
 <body>

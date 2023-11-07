@@ -17,66 +17,67 @@
 
 	<main id="main">
 
-		<div
-			style="text-align: center; background-color: tomato; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<div id="title">
 			<h2>제목</h2>
 			<br>
-			<p>내용을ㅇㅇ 입력하세요</p>
+			<p>내용을 입력하세요</p>
 		</div>
 
 		<div id="content">
-			<div id="condition" style="">
-				<h3>조건검색(임시-롯데월드에 있던거 참고)</h3>
+			<div id="condition">
+				<h3>기능 (예시 조건검색-롯데월드에 있던거 참고)</h3>
 			</div>
 
-			<div class="container">
+			<div class="munti-content-container">
 				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
-					<div
-						style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 1</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
+				</div>
+				<div class="item">
 					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
+				</div>
+				<div class="item">
+					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<!-- 추가 아이템들 -->
 			</div>
-
-
+			
 		</div>
-
+		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

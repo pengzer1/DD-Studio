@@ -28,37 +28,14 @@
 		</div>
 
 		<div id="content">
-			
-			<div class="wide-content-container">
+		
+			<div class="wide-multi-content-container">
 				<div class="wide-item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="wide-item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
-			</div>
-			<div class="single-content-container">
-				<div class="wide-item">
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
-			</div>
-			
-			<div class="wide-content-container">
-				<div class="wide-item">
-					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
+					<div>아이템 2</div>
 					<div>아이템 2 설명</div>
 				</div>
 				<div class="wide-item">
-					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 2 설명</div>
-				</div>
-			</div>
-			<div class="single-content-container">
-				<div class="wide-item">
+					<div>아이템 2</div>
 					<div>아이템 2 설명</div>
 				</div>
 			</div>
