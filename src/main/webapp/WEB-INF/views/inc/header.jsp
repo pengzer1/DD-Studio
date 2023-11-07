@@ -54,15 +54,26 @@
 							<div class="material-symbols-outlined nav-icon">book_online</div>
 							<div class="nav-menu-name">예매</div>
 						</a>
+<<<<<<< HEAD
+						<c:if test="${empty eamil}">
+							<a href="/ddstudio/user/login.do">로그인</a>
+							<a href="/ddstudio/user/register.do">회원가입</a>
+						</c:if>
+						<c:if test="${not empty eamil}">
+							<a href="/ddstudio/user/logout.do">로그아웃</a>
+							<a href="/ddstudio/member/mypage.do">마이페이지</a>
+						</c:if>
+=======
+>>>>>>> b7e0f54fd55abb3f2f50f53f734f1ba1441a12ef
 					</div>
 				</div>
-				<c:if test="${empty id}">
+				<c:if test="${empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/login.do">로그인</a>
 						<a href="/ddstudio/user/register.do">회원가입</a>
 					</div>
 				</c:if>
-				<c:if test="${not empty id}">
+				<c:if test="${not empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<a href="/ddstudio/member/mypage.do">마이페이지</a>
