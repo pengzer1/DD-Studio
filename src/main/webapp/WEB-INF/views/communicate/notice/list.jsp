@@ -39,12 +39,12 @@
 			}
 			#list th, #list td {
 				height: 60px;
-				font-color: #555;
+				color: #555;
 				padding: 10px;
 				border-bottom: 1px solid #E1E1E1;
 			}
 			#list th, #list td:nth-child(2) {
-				font-color: #000;
+				color: #000;
 				font-weight: bold;
 			}
 			#list th:nth-child(1) {
@@ -89,12 +89,14 @@
 				<tbody>
 					<tr>
 						<td>1</td>
-						<td>공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항</td>
+						<td>공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항</td>
 						<td>2023.11.07</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		
+		<div id="page-bar">${pageBar}</div>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
