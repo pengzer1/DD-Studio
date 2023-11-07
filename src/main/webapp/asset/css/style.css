@@ -22,6 +22,15 @@
 	align-items: center;
 }
 
+#main > #sub-title {
+	text-align: center;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 #content {
 	margin: 0 200px;
 	margin-top: -50px;
@@ -40,7 +49,7 @@
 	align-items: center;
 }
 
-#content .container {
+#content .munti-content-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -48,24 +57,46 @@
 	padding: 0 !important;
 }
 
+#content .wide-content-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	padding: 0 !important;
+}
+
+#content .wide-multi-content-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	flex-wrap: wrap;
+	padding: 0 !important;
+}
+
+#content .single-content-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: -30px;
+	padding: 0 !important;
+}
+
 .item {
-	width: 23%; /* 4개씩 배치하므로 각 아이템의 너비를 조정합니다. */
+	width: 23%;
 	aspect-ratio: 0.75;
 	min-width: 200px;
-	margin-bottom: 30px; /* 아이템 간의 간격을 조절합니다. */
+	margin-bottom: 30px;
 	background-color: tomato;
 	text-align: center;
 	padding: 0;
 	box-sizing: border-box;
-	min-width: 200px; /* padding을 포함한 너비로 설정합니다. */
+	min-width: 200px;
 }
 
 .item>div:nth-child(1) {
 	height: 70%;
-	background-color: blue;
-	background-size: cover; /* 이미지를 커버하도록 설정 */
-	background-position: center; /* 이미지를 가운데 정렬 */
-	background-repeat: no-repeat; /* 이미지 반복 없음 */
+	background-color: #CCC;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .item>div:nth-child(2) {
@@ -74,6 +105,38 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.wide-item {
+	width: 100%;
+	margin-bottom: 30px;
+	background-color: transparent;
+	text-align: center;
+	padding: 0;
+	box-sizing: border-box;
+	min-width: 200px;
+}
+
+.wide-item>div:nth-child(1) {
+	height: 80px;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+}
+
+.wide-item>div:nth-child(2) {
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 h1, h2, .font-weight-bold {

@@ -8,6 +8,7 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="/ddstudio/asset/css/style.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/main.css"> <!-- index.jsp -->
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">

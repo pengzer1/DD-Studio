@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
-<link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
 
 </style>
