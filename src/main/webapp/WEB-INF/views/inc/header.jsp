@@ -56,13 +56,13 @@
 						</a>
 					</div>
 				</div>
-				<c:if test="${empty id}">
+				<c:if test="${empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/login.do">로그인</a>
 						<a href="/ddstudio/user/register.do">회원가입</a>
 					</div>
 				</c:if>
-				<c:if test="${not empty id}">
+				<c:if test="${not empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<a href="/ddstudio/member/mypage.do">마이페이지</a>
