@@ -12,8 +12,14 @@
 	margin-left: 0;
 }
 
-#main {
-	
+#main > #title {
+	text-align: center;
+	background-color: tomato;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 #content {
