@@ -23,7 +23,7 @@ public class UserDAO {
 
 		try {
 
-			String sql = "select * from tblUser where id = ? and pw = ? and ing = 'y'";
+			String sql = "select * from tblUser where email = ? and pw = ? and ing = 'Y'";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getEmail());
