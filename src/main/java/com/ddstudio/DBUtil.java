@@ -28,23 +28,4 @@ public class DBUtil {
 		return null;
 	}
 
-	public static Connection open(String server, String id, String pw) {
-
-		String url = "jdbc:oracle:thin:@" + server + ":1521:xe";
-
-		try {
-
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			conn = DriverManager.getConnection(url, id, pw);
-
-			return conn;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
 }

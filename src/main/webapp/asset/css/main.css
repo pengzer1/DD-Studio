@@ -1,4 +1,5 @@
 /* 임시 메인 썸네일용 CSS */
+
 .main-thumbnail {
     width: 300px;
     height: 300px;
@@ -22,4 +23,41 @@ font-variation-settings:
 'wght' 400,
 'GRAD' 0,
 'opsz' 24
+}
+
+/* header용 CSS */
+.index-navi {
+	display: block;
+	color: #444;
+	text-align: center;
+	width: 110px;
+}
+
+#ddstudio-logo {
+	color: #444;
+}
+
+#ddstudio-logo:hover {
+	font-size: 60px;
+    background: linear-gradient(to right top, #F49097, #CCC);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+.nav-icon {
+	font-size: 50px;
+}
+
+.nav-menu-name {
+	font-size: 15px;
+}
+
+.header-login {
+	position: absolute;
+	top: -15%;
+	right: 5%;
+}
+
+.header-login a {
+	padding: 0 5px;
 }
