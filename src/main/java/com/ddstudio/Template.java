@@ -14,7 +14,10 @@ public class Template extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/template.jsp");
+		
+		String no = req.getParameter("no");
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/template" + no + ".jsp");
 		dispatcher.forward(req, resp);
 	}
 

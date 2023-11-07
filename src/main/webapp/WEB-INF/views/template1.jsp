@@ -29,8 +29,7 @@
 				<h3>조건검색(임시-롯데월드에 있던거 참고)</h3>
 			</div>
 
-			<div class="container"
-				style="margin-top: 70px; padding: 0 !important">
+			<div class="container">
 				<div class="item">
 					<div>아이템 1</div>
 					<div>아이템 1</div>
