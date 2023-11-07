@@ -8,6 +8,7 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	
 </style>
 </head>
 <body>
@@ -29,22 +30,24 @@
 
 		<div id="content">
 
-			<form method="POST" action="/ddstidio/user/login.do">
-				<table class="vertical">
-					<tr>
-						<th>아이디</th>
-						<td><input type="text" name="email" id="email" required class="middle"></td>
-					</tr>
-					<tr>
-						<th>암호</th>
-						<td><input type="password" name="pw" id="pw" required class="middle"></td>
-					</tr>
-				</table>
-				<div>
-					<button type="button" class="back" onclick="location.href='/ddstudio/index.do';">돌아가기</button>
-					<button type="submit" class="login">로그인</button>
-				</div>
-			</form>
+			<div class="single-content-container">
+				<form method="POST" action="/ddstudio/user/login.do">
+					<table class="vertical">
+						<tr>
+							<th>아이디</th>
+							<td><input type="text" name="email" id="email" required class="middle"></td>
+						</tr>
+						<tr>
+							<th>암호</th>
+							<td><input type="password" name="pw" id="pw" required class="middle"></td>
+						</tr>
+					</table>
+					<div>
+						<button type="button" class="back" onclick="location.href='/ddstudio/index.do';">돌아가기</button>
+						<button type="submit" class="login">로그인</button>
+					</div>
+				</form>
+			</div>
 
 			<hr>
 			<h2>자동 로그인 (관리자용)</h2>
