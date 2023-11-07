@@ -130,6 +130,19 @@
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
+.wide-item>div:nth-child(1) {
+	height: 80px;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+}
+
 .wide-item>div:nth-child(2) {
 	height: 200px;
 	display: flex;
