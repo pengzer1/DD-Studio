@@ -49,18 +49,33 @@
 	align-items: center;
 }
 
-#content .wide-container {
+#content .munti-content-container {
+	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-top: 70px;
 	padding: 0 !important;
 }
 
-#content .content-container {
+#content .wide-content-container {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
-	margin-top: 70px;
+	margin-top: 50px;
+	padding: 0 !important;
+}
+
+#content .wide-multi-content-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	flex-wrap: wrap;
+	padding: 0 !important;
+}
+
+#content .single-content-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: -30px;
 	padding: 0 !important;
 }
 
@@ -78,7 +93,7 @@
 
 .item>div:nth-child(1) {
 	height: 70%;
-	background-color: blue;
+	background-color: #CCC;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -90,6 +105,38 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.wide-item {
+	width: 100%;
+	margin-bottom: 30px;
+	background-color: transparent;
+	text-align: center;
+	padding: 0;
+	box-sizing: border-box;
+	min-width: 200px;
+}
+
+.wide-item>div:nth-child(1) {
+	height: 80px;
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+}
+
+.wide-item>div:nth-child(2) {
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 h1, h2, .font-weight-bold {
