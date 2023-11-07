@@ -30,7 +30,7 @@
         <div class="container">
             <h3>개인</h3>
             <div id="btn1">
-                <button type="button" class="add" onclick="location.href='/ddstudio/pb/prieceadd.do';">추가</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceadd.do';">추가</button>
                 <button type="button" class="add" onclick="location.href='';">삭제</button>
                 <button type="button" class="add" onclick="location.href='';">수정</button>
             </div>
