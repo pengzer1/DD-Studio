@@ -42,7 +42,7 @@
 								<span class="material-symbols-outlined" style="margin-left: 15px;">notification_important</span>
 								<div>가이드</div>
 							</a>
-							<a href="team.html" class="nav-item nav-link">
+							<a href="/ddstudio/communicate/notice/list.do" class="nav-item nav-link">
 								<span class="material-symbols-outlined" style="margin-left: 7px;">sms</span>
 								<div>소통</div>
 							</a>
