@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-th input#email.middle, th input#pw.middle {
+th input#email.middle-high, th input#pw.middle-high {
 	color: #000;
 	margin-top: 50px;
 	width: 400px;
@@ -21,23 +21,23 @@ th input#email.middle, th input#pw.middle {
 	align-items: center;
 }
 
-th input#email.middle {
+th input#email.middle-high {
 	margin-top: 30px;
 }
 
-th input#pw.middle {
+th input#pw.middle-high {
 	margin-bottom: 30px;
 }
 
-th input#email.middle:focus, th input#pw.middle:focus {
+th input#email.middle-high:focus, th input#pw.middle-high:focus {
 	border-color: #000;
 }
 
-th input#pw.middle {
+th input#pw.middle-high {
 	border-top: 0;
 }
 
-th input#email.middle+th input#pw.middle {
+th input#email.middle-high+th input#pw.middle-high {
 	margin-top: 0;
 }
 
@@ -52,6 +52,10 @@ th input#email.middle+th input#pw.middle {
 	font-size: 16px;
 	background-color: transparent;
 	border: 1px solid #ccc;
+}
+
+#check {
+	background-color: cornflowerblue;
 }
 
 table.vertical {
@@ -76,8 +80,7 @@ table.vertical {
 </head>
 <body>
 	<!-- login.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<!-- Header -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
 
@@ -95,25 +98,19 @@ table.vertical {
 				<form method="POST" action="/ddstudio/user/login.do">
 					<table class="vertical">
 						<tr>
-							<th><input type="text" name="email" id="email" required
-								class="middle"></th>
+							<th><input type="text" name="email" id="email" required class="middle-high" placeholder="이메일"></th>
 							<td rowspan="2">
-								<div class="button login round-button" id="login"
-									onclick="location.href='/ddstudio/user/login.do';">로그인</div>
+								<div class="button login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</div>
 							</td>
 						</tr>
 						<tr>
-							<th><input type="text" name="pw" id="pw" required
-								class="middle"></th>
+							<th><input type="text" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
 						</tr>
 						<tr>
 							<td>
 								<div class="button-container">
-									<button type="button" class="button"
-										onclick="location.href='/ddstudio/index.do';">아이디 찾기</button>
-									<button type="button" class="button"
-										onclick="location.href='/ddstudio/index.do';">비밀번호
-										찾기</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/find-id.do';">아이디 찾기</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/change-pw.do';">비밀번호 변경</button>
 								</div>
 							</td>
 						</tr>
@@ -154,45 +151,7 @@ table.vertical {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
-		window.addEventListener('load', function() {
-			// 이메일과 비밀번호 입력란
-			const emailInput = document.getElementById('email');
-			const passwordInput = document.getElementById('pw');
-
-			// 초기값
-			const emailPlaceholder = '이메일';
-			const passwordPlaceholder = '비밀번호';
-			emailInput.value = emailPlaceholder;
-			passwordInput.value = passwordPlaceholder;
-
-			// 입력란에 포커스를 주면 초기값을 지우고 내용을 입력
-			emailInput.addEventListener('focus', function() {
-				if (emailInput.value === emailPlaceholder) {
-					emailInput.value = '';
-				}
-			});
-
-			passwordInput.addEventListener('focus', function() {
-				if (passwordInput.value === passwordPlaceholder) {
-					passwordInput.value = '';
-					passwordInput.type = 'password';
-				}
-			});
-
-			// 입력란에서 포커스를 잃으면 초기값 표시
-			emailInput.addEventListener('blur', function() {
-				if (emailInput.value === '') {
-					emailInput.value = emailPlaceholder;
-				}
-			});
-
-			passwordInput.addEventListener('blur', function() {
-				if (passwordInput.value === '') {
-					passwordInput.value = passwordPlaceholder;
-					passwordInput.type = 'text';
-				}
-			});
-		});
+		
 	</script>
 </body>
 </html>
