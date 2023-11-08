@@ -2,7 +2,7 @@ package com.ddstudio.pb;
 
 
 import com.ddstudio.pb.model.PriceDTO;
-import com.ddstudio.pb.repository.PBDAO;
+import com.ddstudio.pb.repository.PriceDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 @WebServlet("/pb/priceadd.do")
 public class PriceAdd extends HttpServlet {
 
@@ -26,7 +25,7 @@ public class PriceAdd extends HttpServlet {
 
     }
 
-  /*  @Override
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //AddOk.java
 
@@ -36,29 +35,32 @@ public class PriceAdd extends HttpServlet {
 
 //        HttpSession session = req.getSession();
 
-       *//* //1.
+        //1.
         req.setCharacterEncoding("utf-8");
-        String subject = req.getParameter("subject");
-        String content = req.getParameter("content");
+        String ticketType = req.getParameter("ticketType");
+        String age = req.getParameter("age");
+        String price = req.getParameter("price");
 
         //2.
-        PBDAO dao = new PBDAO();
-
+        PriceDAO dao = new PriceDAO();
 
         PriceDTO dto = new PriceDTO();
 
-        dto.setSubject(subject);
+        dto.setTicketType(ticketType);
+        dto.setAge(age);
+        dto.setPrice(Integer.parseInt(price));
+
+
+        /*dto.setSubject(subject);
         dto.setContent(content);
-        dto.setId(session.getAttribute("id").toString());
+        dto.setId(session.getAttribute("id").toString());*/
 
         int result = dao.add(dto);
 
         //3.
         if (result == 1) {
 
-
-
-            resp.sendRedirect("/board/list.do");
+            resp.sendRedirect("/ddstudio/pb/price.do");
         }else {
             PrintWriter writer = resp.getWriter();
 
@@ -66,6 +68,6 @@ public class PriceAdd extends HttpServlet {
             writer.close();
 
         }
-*//*
-    }*/
+
+    }
 }

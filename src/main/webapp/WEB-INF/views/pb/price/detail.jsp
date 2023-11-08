@@ -8,10 +8,21 @@
     <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
     <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
     <style>
-        #btn1{
+        .btn{
             display: flex;
             align-items: center;
             justify-content: right;
+        }
+
+
+        .wide-item div {
+            display: flex;
+            justify-content: space-between;
+        }
+        .wide-item div > div {
+            display: flex;
+            align-items: center;
+            margin: 0 10px; /* 가로 방향으로 좌우에 10px의 마진을 추가합니다. */
         }
 
     </style>
@@ -29,10 +40,10 @@
     <div id="sub-title">
         <div class="container">
             <h3>개인</h3>
-            <div id="btn1">
+            <div id="btn1" class="btn">
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceadd.do';">추가</button>
-                <button type="button" class="add" onclick="location.href='';">삭제</button>
-                <button type="button" class="add" onclick="location.href='';">수정</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/pricedel.do';">삭제</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceedit.do';">수정</button>
             </div>
         </div>
     </div>
@@ -43,10 +54,16 @@
             <div class="wide-item">
                 <div>1Day</div>
                 <div>
-                    <div>62,000</div>
-                    <div>54,000</div>
-                    <div>47,000</div>
-                    <div>15,000</div>
+                    <c:forEach items="${personTypeList}" var="dto">
+                        <c:choose>
+                            <c:when test="${dto.personType eq '개인'}">
+                        <div>
+                            <div>${dto.age}</div>
+                            <div>${dto.price}</div>
+                        </div>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
                 </div>
             </div>
 
@@ -60,6 +77,11 @@
 
         <div id="sub-title1" align="center">
             <h3>단체</h3>
+            <div id="btn2" class="btn">
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">추가</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">삭제</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">수정</button>
+            </div>
         </div>
 
 

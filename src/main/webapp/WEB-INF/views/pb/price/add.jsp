@@ -8,6 +8,24 @@
     <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
     <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
     <style>
+
+
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+
+        .vertical {
+            text-align: left;
+        }
+
+        .vertical th {
+            text-align: right;
+            padding-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -18,66 +36,31 @@
 <main id="main">
 
     <div id="title">
-        <h2>제목</h2>
-        <br>
-        <p>내용을 입력하세요</p>
+        <h2>개인 요금 추가</h2>
     </div>
 
-    <div id="content">
-        <div id="condition">
-            <h3>기능 (예시 조건검색-롯데월드에 있던거 참고)</h3>
+    <div class="form-container">
+    <form method="post" action="/ddstudio/pb/priceadd.do">
+        <table class="vertical">
+            <tr>
+                <th>종류</th>
+                <td><input type="text" name="ticketType" required></td>
+            </tr>
+            <tr>
+                <th>구분</th>
+                <td><input type="text" name="age" required></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td><input type="text" name="price" required></td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="추가">
+            <input type="button" value="취소"onclick="location.href='/ddstudio/pb/price.do'">
         </div>
 
-        <div class="munti-content-container">
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div
-                        style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <div class="item">
-                <div>아이템 1</div>
-                <div>아이템 1 설명</div>
-            </div>
-            <!-- 추가 아이템들 -->
-        </div>
-
-    </div>
+    </form>
 
 </main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>

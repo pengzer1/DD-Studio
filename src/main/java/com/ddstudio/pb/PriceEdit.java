@@ -1,5 +1,41 @@
 package com.ddstudio.pb;
 
-public class PriceEdit {
 
+import com.ddstudio.pb.model.PriceDTO;
+import com.ddstudio.pb.repository.PriceDAO;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+
+@WebServlet("/pb/priceedit.do")
+public class PriceEdit extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        PriceDAO dao = new PriceDAO();
+
+        ArrayList<PriceDTO> list = dao.list();
+        ArrayList<PriceDTO> ticketTypeList = dao.ticketTypeList();
+
+        req.setAttribute("list", list);
+        req.setAttribute("ticketTypeList", ticketTypeList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pb/price/edit.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
+
+    }
 }
