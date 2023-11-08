@@ -21,7 +21,6 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-
 		// 권한 체크(일부)
 		// System.out.println("권한 체크 필터");
 

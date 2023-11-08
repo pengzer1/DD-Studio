@@ -16,7 +16,7 @@
 				<div class="collapse navbar-collapse justify-content-between"
 					id="navbarCollapse" style="font-size: 1.2rem;">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="index.html" class="nav-item nav-link active index-navi">
+						<a href="/ddstudio/pb/price.do" class="nav-item nav-link active index-navi">
 							<div class="material-symbols-outlined nav-icon">Local_Activity</div>
 							<div class="nav-menu-name">요금/혜택</div>
 						</a> <a href="/ddstudio/activity/attraction.do"
