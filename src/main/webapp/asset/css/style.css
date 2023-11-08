@@ -152,6 +152,15 @@
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
+#ddstudio-header {
+	margin: 0px;
+	position: fixed;
+	top:0;
+	z-index:999;
+	background-color: #FFF;
+	padding-bottom: 10px;
+}
+
 h1, h2, .font-weight-bold {
 	font-weight: 700 !important;
 }
