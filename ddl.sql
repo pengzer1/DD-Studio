@@ -168,11 +168,11 @@ DROP SEQUENCE seqtblUserBuy;
 /* 유저 */
 CREATE TABLE tblUser (
 	user_seq NUMBER PRIMARY KEY, /* 유저번호 */
-    name VARCHAR2(50) NOT NULL, /* 이름 */
-	email VARCHAR2(50) NOT NULL UNIQUE, /* 이메일 */
-	pw VARCHAR2(50) NOT NULL, /* 비밀번호 */
-	tel VARCHAR2(50) NOT NULL UNIQUE, /* 전화번호 */
-	address VARCHAR2(100) NOT NULL, /* 주소 */
+    name VARCHAR2(500) NOT NULL, /* 이름 */
+	email VARCHAR2(500) NOT NULL UNIQUE, /* 이메일 */
+	pw VARCHAR2(500) NOT NULL, /* 비밀번호 */
+	tel VARCHAR2(500) NOT NULL UNIQUE, /* 전화번호 */
+	address VARCHAR2(500) NOT NULL, /* 주소 */
 	birth DATE NOT NULL, /* 생년월일 */
 	lv CHAR(1) NOT NULL, /* 등급 */
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
@@ -181,35 +181,35 @@ CREATE TABLE tblUser (
 /* 테마 */
 CREATE TABLE tblTheme (
 	theme_seq NUMBER PRIMARY KEY, /* 테마번호 */
-	name VARCHAR2(50) NOT NULL UNIQUE /* 테마명 */
+	name VARCHAR2(500) NOT NULL UNIQUE /* 테마명 */
 );
 
 /* 해시태그 */
 CREATE TABLE tblHashtag (
    hashtag_seq NUMBER PRIMARY KEY, /* 해시태그번호 */
-   name VARCHAR2(50) NOT NULL UNIQUE /* 해시태그명 */
+   name VARCHAR2(500) NOT NULL UNIQUE /* 해시태그명 */
 );
 
 /* 위치정보 */
 CREATE TABLE tblLocation (
    location_seq NUMBER PRIMARY KEY, /* 위치정보번호 */
-   info VARCHAR2(100) NOT NULL UNIQUE /* 위치정보내용 */
+   info VARCHAR2(500) NOT NULL UNIQUE /* 위치정보내용 */
 );
 
 /* 카테고리 */
 CREATE TABLE tblCategory (
    category_seq NUMBER PRIMARY KEY, /* 카테고리번호 */
-   name VARCHAR2(50) NOT NULL UNIQUE /* 카테고리명 */
+   name VARCHAR2(500) NOT NULL UNIQUE /* 카테고리명 */
 );
 
 /* 식당 */
 CREATE TABLE tblRestaurant (
    restaurant_seq NUMBER PRIMARY KEY, /* 식당번호 */
-   name VARCHAR2(50) NOT NULL, /* 식당명 */
-   menu VARCHAR2(50) NOT NULL, /* 대표메뉴 */
-   time VARCHAR2(30) NOT NULL, /* 운영시간 */
+   name VARCHAR2(500) NOT NULL, /* 식당명 */
+   menu VARCHAR2(500) NOT NULL, /* 대표메뉴 */
+   time VARCHAR2(500) NOT NULL, /* 운영시간 */
    capacity NUMBER NOT NULL, /* 수용인원 */
-   tel VARCHAR2(30) NOT NULL, /* 식당전화번호 */
+   tel VARCHAR2(500) NOT NULL, /* 식당전화번호 */
    location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* 위치정보번호 */
    category_seq NUMBER REFERENCES tblCategory(category_seq) NOT NULL /* 카테고리번호 */
 );
@@ -217,7 +217,7 @@ CREATE TABLE tblRestaurant (
 /* 식당이미지 */
 CREATE TABLE tblRestaurantImg (
    restaurant_img_seq NUMBER PRIMARY KEY, /* 식당이미지번호 */
-   img VARCHAR2(50) DEFAULT 'restaurant.png' NOT NULL, /* 식당이미지 */
+   img VARCHAR2(500) DEFAULT 'restaurant.png' NOT NULL, /* 식당이미지 */
    restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* 식당번호 */
 );
 
@@ -232,20 +232,20 @@ CREATE TABLE tblRestaurantClose (
 /* 편의시설 */
 CREATE TABLE tblConvenient (
 	convenient_seq NUMBER PRIMARY KEY, /* 편의시설번호 */
-	name VARCHAR2(50) NOT NULL UNIQUE, /* 편의시설이름 */
-	time VARCHAR2(50) NOT NULL, /* 운영시간 */
-	tel VARCHAR2(50) NOT NULL, /* 편의시설전화번호 */
-	img VARCHAR2(50) DEFAULT 'convenient.png' NOT NULL, /* 편의시설 이미지 */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* 편의시설이름 */
+	time VARCHAR2(500) NOT NULL, /* 운영시간 */
+	tel VARCHAR2(500) NOT NULL, /* 편의시설전화번호 */
+	img VARCHAR2(500) DEFAULT 'convenient.png' NOT NULL, /* 편의시설 이미지 */
 	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
 );
 
 /* 기프트샵 */
 CREATE TABLE tblShop (
    shop_seq NUMBER PRIMARY KEY, /* 기프트샵번호 */
-   name VARCHAR2(50) NOT NULL, /* 기프트샵명 */
-   time VARCHAR2(30) NOT NULL, /* 운영시간 */
+   name VARCHAR2(500) NOT NULL, /* 기프트샵명 */
+   time VARCHAR2(500) NOT NULL, /* 운영시간 */
    info VARCHAR2(2000) NOT NULL, /* 기프트샵설명 */
-   tel VARCHAR2(30) NOT NULL, /* 기프트샵전화번호 */
+   tel VARCHAR2(500) NOT NULL, /* 기프트샵전화번호 */
    location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
 );
 
@@ -260,14 +260,14 @@ CREATE TABLE tblShopClose (
 /* 기프트샵이미지 */
 CREATE TABLE tblShopImg (
    shop_img_seq NUMBER PRIMARY KEY, /* 기프트샵이미지번호 */
-   img VARCHAR2(50) DEFAULT 'shop.png' NOT NULL, /* 기프트샵이미지 */
+   img VARCHAR2(500) DEFAULT 'shop.png' NOT NULL, /* 기프트샵이미지 */
    shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* 기프트샵번호 */
 );
 
 /* 영화관 */
 CREATE TABLE tblTheater (
    theater_seq NUMBER PRIMARY KEY, /* 영화관번호 */
-   name VARCHAR2(50) NOT NULL, /* 영화관명 */
+   name VARCHAR2(500) NOT NULL, /* 영화관명 */
    location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
 );
 
@@ -282,17 +282,17 @@ CREATE TABLE tblTheaterClose (
 /* 영화 */
 CREATE TABLE tblMovie (
    movie_seq NUMBER PRIMARY KEY, /* 영화번호 */
-   name VARCHAR2(50) NOT NULL, /* 영화명 */
-   period VARCHAR2(50) NOT NULL, /* 영화상영기간 */
+   name VARCHAR2(500) NOT NULL, /* 영화명 */
+   period VARCHAR2(500) NOT NULL, /* 영화상영기간 */
    runningtime NUMBER NOT NULL, /* 러닝타임 */
-   img VARCHAR2(50) DEFAULT 'movie.png' NOT NULL, /* 포스터이미지 */
-   preview VARCHAR2(50) /* 영화예고편영상 */
+   img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* 포스터이미지 */
+   preview VARCHAR2(500) /* 영화예고편영상 */
 );
 
 /* 영화상영 */
 CREATE TABLE tblMoviePlay (
    movie_play_seq NUMBER PRIMARY KEY, /* 영화상영번호 */
-   start_time VARCHAR2(50) NOT NULL, /* 영화상영시작시간 */
+   start_time VARCHAR2(500) NOT NULL, /* 영화상영시작시간 */
    theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL, /* 영화관번호 */
    movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL /* 영화번호 */
 );
@@ -307,8 +307,8 @@ CREATE TABLE tblMovieHashtag (
 /* 포토존 */
 CREATE TABLE tblPhotoZone (
    photozone_seq NUMBER PRIMARY KEY, /* 포토존번호 */
-   name VARCHAR2(50) NOT NULL, /* 포토존명 */
-   time VARCHAR2(30) NOT NULL, /* 운영시간 */
+   name VARCHAR2(500) NOT NULL, /* 포토존명 */
+   time VARCHAR2(500) NOT NULL, /* 운영시간 */
    info VARCHAR2(2000) NOT NULL, /* 포토존설명 */
    location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
 );
@@ -316,24 +316,24 @@ CREATE TABLE tblPhotoZone (
 /* 포토존이미지 */
 CREATE TABLE tblPhotoZoneImg (
    photozone_img_seq NUMBER PRIMARY KEY, /* 포토존이미지번호 */
-   img VARCHAR2(50) DEFAULT 'photozone.png' NOT NULL, /* 포토존이미지 */
+   img VARCHAR2(500) DEFAULT 'photozone.png' NOT NULL, /* 포토존이미지 */
    photozone_seq NUMBER REFERENCES tblPhotoZone(photozone_seq) NOT NULL /* 포토존번호 */
 );
 
 /* 페스티벌 */
 CREATE TABLE tblFestival (
    festival_seq NUMBER PRIMARY KEY, /* 페스티벌번호 */
-   name VARCHAR2(50) NOT NULL, /* 페스티벌명 */
-   time VARCHAR2(50) NOT NULL, /* 페스티벌시간 */
+   name VARCHAR2(500) NOT NULL, /* 페스티벌명 */
+   time VARCHAR2(500) NOT NULL, /* 페스티벌시간 */
    info VARCHAR2(2000) NOT NULL, /* 페스티벌설명 */
-   period VARCHAR2(50) NOT NULL, /* 페스티벌기간 */
+   period VARCHAR2(500) NOT NULL, /* 페스티벌기간 */
    location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
 );
 
 /* 페스티벌이미지 */
 CREATE TABLE tblFestivalImg (
    festival_img_seq NUMBER PRIMARY KEY, /* 페스티벌이미지번호 */
-   img VARCHAR2(50) DEFAULT 'festival.png' NOT NULL, /* 페스티벌이미지 */
+   img VARCHAR2(500) DEFAULT 'festival.png' NOT NULL, /* 페스티벌이미지 */
    festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL /* 페스티벌번호 */
 );
 
@@ -347,10 +347,10 @@ CREATE TABLE tblFestivalHashtag (
 /* 어트랙션 */
 CREATE TABLE tblAttraction (
 	attraction_seq NUMBER PRIMARY KEY, /* 어트랙션번호 */
-	name VARCHAR2(50) NOT NULL UNIQUE, /* 어트랙션명 */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* 어트랙션명 */
 	capacity NUMBER NOT NULL, /* 수용인원 */
 	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* 위치정보 */
-	time VARCHAR2(50) NOT NULL, /* 운영시간 */
+	time VARCHAR2(500) NOT NULL, /* 운영시간 */
 	restriction NUMBER, /* 키 크기 제약사항 */
 	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* 테마번호 */
     is_test CHAR(1) NOT NULL /* 테스트채택 */
@@ -367,14 +367,14 @@ CREATE TABLE tblAttractionClose (
 /* 어트랙션 예약 */
 CREATE TABLE tblAttractionBook (
 	attraction_book_seq NUMBER PRIMARY KEY, /* 예약번호 */
-	book_time VARCHAR2(50) NOT NULL, /* 예약시간 */
+	book_time VARCHAR2(500) NOT NULL, /* 예약시간 */
 	capacity NUMBER NOT NULL /* 예약가능인원 */
 );
 
 /* 어트랙션이미지 */
 CREATE TABLE tblAttractionImg (
 	attraction_img_seq NUMBER PRIMARY KEY, /* 어트이미지번호 */
-	img VARCHAR2(50) DEFAULT 'attraction.png' NOT NULL, /* 이미지 */
+	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* 이미지 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
@@ -398,7 +398,7 @@ CREATE TABLE tblBookUser (
 /* 셔틀버스 */
 CREATE TABLE tblBus (
    bus_seq NUMBER PRIMARY KEY, /* 셔틀버스번호 */
-   start_time VARCHAR2(50) NOT NULL, /* 시작시간 */
+   start_time VARCHAR2(500) NOT NULL, /* 시작시간 */
    interval NUMBER NOT NULL, /* 배차시간 */
    capacity NUMBER NOT NULL /* 버스수용인원 */
 );
@@ -415,15 +415,15 @@ CREATE TABLE tblRoute (
 /* 코스 */
 CREATE TABLE tblCourse (
 	course_seq NUMBER PRIMARY KEY, /* 코스번호 */
-	name VARCHAR2(50) NOT NULL UNIQUE, /* 코스명 */
-	img VARCHAR2(50) DEFAULT 'course.png' NOT NULL /* 코스이미지 */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* 코스명 */
+	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스이미지 */
 );
 
 /* MBTI */
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
-	result VARCHAR2(50) NOT NULL, /* 결과명 */
-	mbti VARCHAR2(50) NOT NULL, /* MBTI명 */
+	result VARCHAR2(500) NOT NULL, /* 결과명 */
+	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
@@ -434,7 +434,7 @@ CREATE TABLE tblTest (
 	question VARCHAR2(500) NOT NULL, /* 문제내용 */
 	answer1 VARCHAR2(500) NOT NULL, /* 선택1번 */
 	answer2 VARCHAR2(500) NOT NULL, /* 선택2번 */
-	img VARCHAR2(50) DEFAULT 'test.png' NOT NULL /* 문제이미지 */
+	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* 문제이미지 */
 );
 
 /* 취향테스트 문제 점수 */
@@ -442,18 +442,18 @@ CREATE TABLE tblTestScore (
 	test_score_seq NUMBER PRIMARY KEY, /* 취향테스트 문제 점수 */
 	point1 NUMBER NOT NULL, /* 1 */
 	point2 NUMBER NOT NULL, /* 2 */
-	type VARCHAR2(10) NOT NULL, /* type(E/I, N/S, F/T, J/P) */
+	type VARCHAR2(500) NOT NULL, /* type(E/I, N/S, F/T, J/P) */
 	test_seq NUMBER REFERENCES tblTest(test_seq) NOT NULL /* 문제번호 */
 );
 
 /* 칭찬/불편/건의 */
 CREATE TABLE tblVOC (
 	voc_seq NUMBER PRIMARY KEY, /* 건의번호 */
-	type VARCHAR2(50) NOT NULL, /* 구분 */
-	service_type VARCHAR2(50) NOT NULL, /* 서비스유형 */
-	subject VARCHAR2(50) NOT NULL, /* 건의제목 */
+	type VARCHAR2(500) NOT NULL, /* 구분 */
+	service_type VARCHAR2(500) NOT NULL, /* 서비스유형 */
+	subject VARCHAR2(500) NOT NULL, /* 건의제목 */
 	content VARCHAR2(2000) NOT NULL, /* 건의내용 */
-	attach VARCHAR2(50), /* 첨부파일 */
+	attach VARCHAR2(500), /* 첨부파일 */
 	visit_date DATE NOT NULL, /* 방문일 */
 	answer VARCHAR2(2000) NOT NULL, /* 답변내용 */
 	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* 유저번호 */
@@ -462,10 +462,10 @@ CREATE TABLE tblVOC (
 /* 이용문의 */
 CREATE TABLE tblInquiry (
 	COL NUMBER PRIMARY KEY, /* 이용문의번호 */
-	COL2 VARCHAR2(50) NOT NULL, /* 문의유형 */
-	subject VARCHAR2(50) NOT NULL, /* 문의제목 */
+	COL2 VARCHAR2(500) NOT NULL, /* 문의유형 */
+	subject VARCHAR2(500) NOT NULL, /* 문의제목 */
 	content VARCHAR2(2000) NOT NULL, /* 문의내용 */
-	attach VARCHAR2(50), /* 첨부파일 */
+	attach VARCHAR2(500), /* 첨부파일 */
 	answer VARCHAR2(2000) NOT NULL, /* 답변내용 */
 	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* 유저번호 */
 );
@@ -473,7 +473,7 @@ CREATE TABLE tblInquiry (
 /* FAQ */
 CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQ번호 */
-   type VARCHAR2(50) NOT NULL, /* 카테고리 */
+   type VARCHAR2(500) NOT NULL, /* 카테고리 */
    question VARCHAR2(300) NOT NULL, /* 질문 */
    answer VARCHAR2(2000) NOT NULL, /* 답변 */
    faq_order NUMBER NOT NULL /* 순서번호 */
@@ -482,41 +482,41 @@ CREATE TABLE tblFAQ (
 /* 공지사항 */
 CREATE TABLE tblNotice (
    notice_seq NUMBER primary key, /* 공지사항번호 */
-   subject VARCHAR2(100) NOT NULL, /* 공지사항제목 */
+   subject VARCHAR2(500) NOT NULL, /* 공지사항제목 */
    content VARCHAR2(2000) NOT NULL, /* 공지사항내용 */
    regdate DATE DEFAULT sysdate NOT NULL, /* 공지사항등록일 */
-   attach VARCHAR2(50), /* 공지사항첨부파일 */
-   fix NUMBER NOT NULL /* 고정유무 */
+   attach VARCHAR2(500), /* 공지사항첨부파일 */
+   fix CHAR(1) NOT NULL /* 고정유무 */
 );
 
 /* 분실물센터 */
 CREATE TABLE tblLostCenter (
    lost_center_seq NUMBER PRIMARY KEY, /* 분실물번호 */
-   type VARCHAR2(50) NOT NULL, /* 분류 */
-   name VARCHAR2(50) NOT NULL, /* 습득물명 */
-   location VARCHAR2(50) NOT NULL, /* 습득장소 */
+   type VARCHAR2(500) NOT NULL, /* 분류 */
+   name VARCHAR2(500) NOT NULL, /* 습득물명 */
+   location VARCHAR2(500) NOT NULL, /* 습득장소 */
    lost_center_date DATE NOT NULL, /* 습득일 */
-   img VARCHAR2(50) DEFAULT 'lostcenter.png' NOT NULL, /* 분실물이미지 */
-   result VARCHAR2(50) NOT NULL /* 처리결과 */
+   img VARCHAR2(500) DEFAULT 'lostcenter.png' NOT NULL, /* 분실물이미지 */
+   result VARCHAR2(500) NOT NULL /* 처리결과 */
 );
 
 /* 티켓 */
 CREATE TABLE tblTicket (
    ticket_seq NUMBER primary key, /* 티켓번호 */
-   ticket_type VARCHAR2(50) NOT NULL, /* 티켓종류 */
-   person_type VARCHAR2(50) NOT NULL, /* 개인/단체구분 */
-   age VARCHAR2(50) NOT NULL, /* 나이구분 */
+   ticket_type VARCHAR2(500) NOT NULL, /* 티켓종류 */
+   person_type VARCHAR2(500) NOT NULL, /* 개인/단체구분 */
+   age VARCHAR2(500) NOT NULL, /* 나이구분 */
    price NUMBER NOT NULL /* 요금 */
 );
 
 /* 혜택 */
 CREATE TABLE tblBenefit (
    benefit_seq NUMBER primary key, /* 혜택번호 */
-   name VARCHAR2(100) NOT NULL, /* 혜택명 */
-   type VARCHAR2(50) NOT NULL, /* 혜택종류 */
-   benefit_date VARCHAR2(50) NOT NULL, /* 혜택기간 */
+   name VARCHAR2(500) NOT NULL, /* 혜택명 */
+   type VARCHAR2(500) NOT NULL, /* 혜택종류 */
+   benefit_date VARCHAR2(500) NOT NULL, /* 혜택기간 */
    discount_rate NUMBER NOT NULL, /* 할인율 */
-   img VARCHAR2(50) DEFAULT 'benefit.png' NOT NULL /* 혜택 이미지 */
+   img VARCHAR2(500) DEFAULT 'benefit.png' NOT NULL /* 혜택 이미지 */
 );
 
 /* 예매내역 */
@@ -539,7 +539,7 @@ CREATE TABLE tblUserBook (
 /* 리뷰 */
 CREATE TABLE tblReview (
    review_seq NUMBER primary key, /* 리뷰번호 */
-   subject VARCHAR2(50) NOT NULL, /* 리뷰제목 */
+   subject VARCHAR2(500) NOT NULL, /* 리뷰제목 */
    content VARCHAR2(2000) NOT NULL, /* 리뷰내용 */
    regdate DATE DEFAULT sysdate NOT NULL, /* 등록일 */
    readcount NUMBER NOT NULL, /* 조회수 */
@@ -549,14 +549,14 @@ CREATE TABLE tblReview (
 /* 리뷰이미지 */
 CREATE TABLE tblReviewImg (
    review_img_seq NUMBER primary key, /* 리뷰이미지번호 */
-   img VARCHAR2(50) DEFAULT 'reviewimg.png' NOT NULL, /* 리뷰이미지 */
+   img VARCHAR2(500) DEFAULT 'reviewimg.png' NOT NULL, /* 리뷰이미지 */
    review_seq NUMBER references tblreview(review_seq) NOT NULL /* 리뷰번호 */
 );
 
 /* 아이템 */
 CREATE TABLE tblItem (
    item_seq NUMBER PRIMARY KEY, /* 아이템번호 */
-   name VARCHAR2(50) NOT NULL, /* 아이템명 */
+   name VARCHAR2(500) NOT NULL, /* 아이템명 */
    info VARCHAR2(2000) NOT NULL, /* 아이템정보 */
    price NUMBER NOT NULL, /* 아이템가격 */
    shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* 기프트샵번호 */
@@ -565,7 +565,7 @@ CREATE TABLE tblItem (
 /* 아이템이미지 */
 CREATE TABLE tblItemImg (
    item_img_seq NUMBER PRIMARY KEY, /* 아이템이미지번호 */
-   img VARCHAR2(50) DEFAULT 'itemimg.png' NOT NULL, /* 아이템이미지 */
+   img VARCHAR2(500) DEFAULT 'itemimg.png' NOT NULL, /* 아이템이미지 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 
@@ -573,7 +573,7 @@ CREATE TABLE tblItemImg (
 CREATE TABLE tblCart (
    cart_seq NUMBER PRIMARY KEY, /* 장바구니번호 */
    ea NUMBER NOT NULL, /* 수량 */
-   cart_option varchar2(100) NOT NULL, /* 옵션 */
+   cart_option varchar2(500) NOT NULL, /* 옵션 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 
@@ -589,7 +589,7 @@ CREATE TABLE tblBuy (
    buy_seq NUMBER PRIMARY KEY, /* 구매내역번호 */
    buy_date DATE DEFAULT sysdate NOT NULL, /* 결제일 */
    ea NUMBER NOT NULL, /* 구매수량 */
-   buy_option VARCHAR2(100) NOT NULL, /* 구매옵션 */
+   buy_option VARCHAR2(500) NOT NULL, /* 구매옵션 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 

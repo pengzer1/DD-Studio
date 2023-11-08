@@ -175,15 +175,6 @@ INSERT INTO tblMovieHashtag (movie_hashtag_seq, movie_seq, hashtag_seq)
 VALUES (seqtblMovieHashtag.NEXTVAL, 3, 3);
 
 /* 포토존 */
-CREATE TABLE tblPhotoZone (
-   photozone_seq NUMBER PRIMARY KEY, /* 포토존번호 */
-   name VARCHAR2(50) NOT NULL, /* 포토존명 */
-   time VARCHAR2(30) NOT NULL, /* 운영시간 */
-   info VARCHAR2(2000) NOT NULL, /* 포토존설명 */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
-);
-
-/* 포토존이미지 */
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
 VALUES (seqtblPhotoZone.NEXTVAL, '포토존 X', '09:00 - 20:00', '아름다운 풍경을 담아보세요.', 1);
 
@@ -193,7 +184,8 @@ VALUES (seqtblPhotoZone.NEXTVAL, '포토존 Y', '10:00 - 18:30', '자연의 아�
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
 VALUES (seqtblPhotoZone.NEXTVAL, '포토존 Z', '08:30 - 19:00', '추억을 남기는 곳.', 3);
 
-/* 페스티벌 */
+
+/* 포토존이미지 */
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
 VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone1.png', 1);
 
@@ -202,6 +194,11 @@ VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone2.png', 2);
 
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
 VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone3.png', 3);
+
+/* 페스티벌 */
+INSERT INTO tblFestival (festival_seq, name, time, info, period, location_seq) VALUES (seqtblFestival.NEXTVAL, '지브리 페스티벌', '11:00', '지브리의 모든 캐릭터들을 만나보세요!','2023.10.01 - 2024.10.31', 1);
+INSERT INTO tblFestival (festival_seq, name, time, info, period, location_seq) VALUES (seqtblFestival.NEXTVAL, '토토로의 밤 나들이', '20:00', '토토로와 함께하는 밤 나들이 시간!', '2023.10.01 - 2024.10.31', 2);
+INSERT INTO tblFestival (festival_seq, name, time, info, period, location_seq) VALUES (seqtblFestival.NEXTVAL, '포뇨와 함께하는 바다 구경', '13:00', '포뇨와 함께 바닷속을 구경해봐요!', '2023.10.01 - 2024.10.31', 3);
 
 /* 페스티벌이미지 */
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
@@ -395,13 +392,13 @@ VALUES (seqtblLostCenter.NEXTVAL, '분류1', '습득물 3', '1층 대문 앞', T
 
 /* 티켓 */
 INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, '일반', '개인', '성인', 10000);
+VALUES (seqtblTicket.NEXTVAL, '1Day', '개인', '성인', 10000);
 
 INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, '우대', '단체', '청소년', 8000);
+VALUES (seqtblTicket.NEXTVAL, 'After4', '단체', '청소년', 8000);
 
 INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, '일반', '개인', '어린이', 5000);
+VALUES (seqtblTicket.NEXTVAL, '뿅뿅', '개인', '어린이', 5000);
 
 /* 혜택 */
 INSERT INTO tblBenefit (benefit_seq, name, type, benefit_date, discount_rate, img)
