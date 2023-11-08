@@ -84,6 +84,11 @@ table.vertical {
 	font-size: 14px;
 	padding: 5px;
 }
+
+th.required::before {
+	content: "* ";
+	color: cornflowerblue;
+}
 </style>
 </head>
 <body>
@@ -106,7 +111,7 @@ table.vertical {
 				<form method="POST" action="/ddstudio/user/login.do">
 					<table class="vertical">
 						<tr>
-							<th>이메일 (아이디)</th>
+							<th class="required">이메일 (아이디)</th>
 							<td>
 								<div class="id">
 									<input type="text" name="email" id="email" required class="middle-flat">
@@ -121,7 +126,7 @@ table.vertical {
 						    </td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
+							<th class="required">비밀번호</th>
 							<td>
 								<div>
 									<input type="password" name="pw" id="pw" required class="middle-flat">
@@ -135,7 +140,7 @@ table.vertical {
 						    </td>
 						</tr>
 						<tr>
-							<th>비밀번호 확인</th>
+							<th class="required">비밀번호 확인</th>
 							<td>
 								<div>
 									<input type="password" name="pwok" id="pwok" required class="middle-flat">
@@ -149,7 +154,7 @@ table.vertical {
 						    </td>
 						</tr>
 						<tr>
-							<th>이름</th>
+							<th class="required">이름</th>
 							<td>
 								<div>
 									<input type="text" name="name" id="name" required class="middle-flat">
@@ -157,7 +162,13 @@ table.vertical {
 							</td>
 						</tr>
 						<tr>
-							<th>생년월일</th>
+						    <th></th>
+						    <td>
+						        <div id="name-error" class="error-message" style="display:none;"></div>
+						    </td>
+						</tr>
+						<tr>
+							<th class="required">생년월일</th>
 							<td>
 								<div>
 									<input type="text" name="birth" id="birth" required class="middle-flat">
@@ -165,12 +176,24 @@ table.vertical {
 							</td>
 						</tr>
 						<tr>
-							<th>연락처</th>
+						    <th></th>
+						    <td>
+						        <div id="birth-error" class="error-message" style="display:none;"></div>
+						    </td>
+						</tr>
+						<tr>
+							<th class="required">연락처</th>
 							<td>
 								<div>
 									<input type="text" name="tel" id="tel" required class="middle-flat">
 								</div>
 							</td>
+						</tr>
+						<tr>
+						    <th></th>
+						    <td>
+						        <div id="tel-error" class="error-message" style="display:none;"></div>
+						    </td>
 						</tr>
 						<tr>
 							<th>주소</th>
@@ -281,6 +304,54 @@ table.vertical {
 	            passwordConfirmErrorDiv.style.display = "none";
 	        }
 	    });
+	    
+	    const nameField = document.getElementById("name");
+	    const nameErrorDiv = document.getElementById("name-error");
+
+	    nameField.addEventListener("input", function () {
+	        const nameRegex = /^[가-힣]{1,8}$/; // 1글자에서 8글자의 한글 이름만 허용
+	        const isValidName = nameRegex.test(nameField.value);
+
+	        nameErrorDiv.textContent = isValidName ? "" : "1-8글자의 한글 이름을 입력하세요.";
+	        nameErrorDiv.style.display = isValidName ? "none" : "block";
+
+	        if (nameField.value.length === 0) {
+	            nameErrorDiv.textContent = "";
+	            nameErrorDiv.style.display = "none";
+	        }
+	    });
+	    
+	    const birthField = document.getElementById("birth");
+	    const birthErrorDiv = document.getElementById("birth-error");
+
+	    birthField.addEventListener("input", function () {
+	        const birthRegex = /^[0-9]{8}$/; // 8자리 숫자 형식 (예: 19960814)
+	        const isValidBirth = birthRegex.test(birthField.value);
+
+	        birthErrorDiv.textContent = isValidBirth ? "" : "올바른 생년월일 형식을 입력하세요 (예: 19960814).";
+	        birthErrorDiv.style.display = isValidBirth ? "none" : "block";
+
+	        if (birthField.value.length === 0) {
+	            birthErrorDiv.textContent = "";
+	            birthErrorDiv.style.display = "none";
+	        }
+	    });
+	    
+	    const telField = document.getElementById("tel");
+	    const telErrorDiv = document.getElementById("tel-error");
+
+	    telField.addEventListener("input", function () {
+	        const telRegex = /^010-[0-9]{4}-[0-9]{4}$/; // 010-XXXX-XXXX 형식의 전화번호
+	        const isValidTel = telRegex.test(telField.value);
+
+	        telErrorDiv.textContent = isValidTel ? "" : "올바른 전화번호 형식을 입력하세요 (010-XXXX-XXXX).";
+	        telErrorDiv.style.display = isValidTel ? "none" : "block";
+
+	        if (telField.value.length === 0) {
+	            telErrorDiv.textContent = "";
+	            telErrorDiv.style.display = "none";
+	        }
+	    });
 
 	    const checkButton = document.querySelector(".button.check");
 	    checkButton.addEventListener("click", function () {
@@ -290,6 +361,12 @@ table.vertical {
 	        passwordErrorDiv.style.display = "none";
 	        passwordConfirmErrorDiv.textContent = "";
 	        passwordConfirmErrorDiv.style.display = "none";
+	        nameErrorDiv.textContent = "";
+	        nameErrorDiv.style.display = "none";
+	        birthErrorDiv.textContent = "";
+	        birthErrorDiv.style.display = "none";
+	        telErrorDiv.textContent = "";
+	        telErrorDiv.style.display = "none";
 	    });
 	});
 
