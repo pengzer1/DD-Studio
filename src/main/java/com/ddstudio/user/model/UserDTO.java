@@ -15,6 +15,14 @@ public class UserDTO {
 	private String lv;
 	private String ing;
 
+	public String getUser_seq() {
+		return user_seq;
+	}
+
+	public void setUser_seq(String user_seq) {
+		this.user_seq = user_seq;
+	}
+
 	public String getName() {
 		return name;
 	}

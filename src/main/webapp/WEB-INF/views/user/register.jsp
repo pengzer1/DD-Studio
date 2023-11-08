@@ -36,8 +36,8 @@ td>div {
 	width: 270px;
 }
 
-#postal-code {
-	width: 230px;
+#post-code {
+	width: 228px;
 }
 
 form {
@@ -73,7 +73,7 @@ td input.middle-flat:focus {
 }
 
 button.check {
-	background-color: cornfrowerblue;
+
 }
 
 table.vertical {
@@ -88,6 +88,10 @@ table.vertical {
 th.required::before {
 	content: "* ";
 	color: cornflowerblue;
+}
+
+.formcontrol {
+	display: !flex;
 }
 </style>
 </head>
@@ -107,8 +111,7 @@ th.required::before {
 
 		<div id="content">
 			<div class="wide-item">
-
-				<form method="POST" action="/ddstudio/user/login.do">
+				<form method="POST" action="/ddstudio/user/register.do">
 					<table class="vertical">
 						<tr>
 							<th class="required">이메일 (아이디)</th>
@@ -195,13 +198,13 @@ th.required::before {
 						        <div id="tel-error" class="error-message" style="display:none;"></div>
 						    </td>
 						</tr>
+					
 						<tr>
 							<th>주소</th>
 							<td>
 								<div class="address">
-									<input type="text" name="postal-code" id="postal-code" required
-									class="middle-flat" placeholder="우편번호">
-									<button type="button" class="button check">우편번호 검색</button>
+									<input type="text" name="post-code" id="post-code" required class="middle-flat" placeholder="우편번호">
+									<button type="button" class="button check" onclick="execDaumPostcode()">우편번호 검색</button>
 								</div>
 							</td>
 						</tr>
@@ -227,10 +230,8 @@ th.required::before {
 						<tr>
 							<td colspan="2">
 								<div class="button-container">
-									<button type="button" id="check" class="button"
-										onclick="location.href='/ddstudio/index';">가입</button>
-									<button type="button" id="cancle" class="button"
-										onclick="location.href='/ddstudio/index';">취소</button>
+									<button type="submit" id="check" class="button" onclick="validateAndSubmit()">가입</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/index.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -239,15 +240,18 @@ th.required::before {
 			</div>
 		</div>
 	</main>
+	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
-
+	
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
 	    const emailField = document.getElementById("email");
 	    const emailErrorDiv = document.getElementById("email-error");
-
+        const emailRegex = /^[a-z0-9]{6,16}$/;
+        
 	    emailField.addEventListener("input", function () {
-	        const emailRegex = /^[a-z0-9]{6,16}$/;
 	        const isValidEmail = emailRegex.test(emailField.value);
 
 	        emailErrorDiv.textContent = isValidEmail ? "" : "6-16자의 영어 소문자와 숫자를 입력하세요.";
@@ -263,25 +267,21 @@ th.required::before {
 	    const passwordErrorDiv = document.getElementById("pw-error");
 	    const passwordConfirmField = document.getElementById("pwok");
 	    const passwordConfirmErrorDiv = document.getElementById("pw-confirm-error");
-
-	    passwordField.addEventListener("input", function () {
-	        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
-	        const isValidPassword = passwordRegex.test(passwordField.value);
+        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/
+        
+	    passwordField.addEventListener("input", function () {;
+			const isValidPassword = passwordRegex.test(passwordField.value);
+	        const isValidPasswordConfirm = passwordConfirmField.value === passwordField.value;
 
 	        passwordErrorDiv.textContent = isValidPassword ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
 	        passwordErrorDiv.style.display = isValidPassword ? "none" : "block";
+	        
+	        passwordConfirmErrorDiv.textContent = isValidPasswordConfirm ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+	        passwordConfirmErrorDiv.style.display = isValidPasswordConfirm ? "none" : "block";
 
 	        if (passwordField.value.length === 0) {
 	            passwordErrorDiv.textContent = "";
 	            passwordErrorDiv.style.display = "none";
-	        }
-
-	        if (passwordConfirmField.value === passwordField.value) {
-	            passwordConfirmErrorDiv.textContent = "";
-	            passwordConfirmErrorDiv.style.display = "none";
-	        } else {
-	            passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-	            passwordConfirmErrorDiv.style.display = "block";
 	        }
 
 	        if (passwordConfirmField.value.length === 0) {
@@ -291,14 +291,11 @@ th.required::before {
 	    });
 
 	    passwordConfirmField.addEventListener("input", function () {
-	        if (passwordConfirmField.value === passwordField.value) {
-	            passwordConfirmErrorDiv.textContent = "";
-	            passwordConfirmErrorDiv.style.display = "none";
-	        } else {
-	            passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-	            passwordConfirmErrorDiv.style.display = "block";
-	        }
-
+	        const isValidPasswordConfirm = passwordConfirmField.value === passwordField.value;
+	        
+	        passwordConfirmErrorDiv.textContent = isValidPasswordConfirm ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+	        passwordConfirmErrorDiv.style.display = isValidPasswordConfirm ? "none" : "block";
+	        
 	        if (passwordConfirmField.value.length === 0) {
 	            passwordConfirmErrorDiv.textContent = "";
 	            passwordConfirmErrorDiv.style.display = "none";
@@ -307,12 +304,12 @@ th.required::before {
 	    
 	    const nameField = document.getElementById("name");
 	    const nameErrorDiv = document.getElementById("name-error");
+        const nameRegex = /^[가-힣]{1,8}$/; // 1글자에서 8글자의 한글 이름만 허용
 
 	    nameField.addEventListener("input", function () {
-	        const nameRegex = /^[가-힣]{1,8}$/; // 1글자에서 8글자의 한글 이름만 허용
 	        const isValidName = nameRegex.test(nameField.value);
-
-	        nameErrorDiv.textContent = isValidName ? "" : "1-8글자의 한글 이름을 입력하세요.";
+	        
+	        nameErrorDiv.textContent = isValidName ? "" : "1-8자의 한글 이름을 입력하세요.";
 	        nameErrorDiv.style.display = isValidName ? "none" : "block";
 
 	        if (nameField.value.length === 0) {
@@ -323,12 +320,12 @@ th.required::before {
 	    
 	    const birthField = document.getElementById("birth");
 	    const birthErrorDiv = document.getElementById("birth-error");
+        const birthRegex = /^[0-9]{8}$/; // 8자리 숫자 형식 (예: 19960814)
 
 	    birthField.addEventListener("input", function () {
-	        const birthRegex = /^[0-9]{8}$/; // 8자리 숫자 형식 (예: 19960814)
 	        const isValidBirth = birthRegex.test(birthField.value);
 
-	        birthErrorDiv.textContent = isValidBirth ? "" : "올바른 생년월일 형식을 입력하세요 (예: 19960814).";
+	        birthErrorDiv.textContent = isValidBirth ? "" : "올바른 생년월일 형식을 입력하세요. (예: 19960814)";
 	        birthErrorDiv.style.display = isValidBirth ? "none" : "block";
 
 	        if (birthField.value.length === 0) {
@@ -339,12 +336,12 @@ th.required::before {
 	    
 	    const telField = document.getElementById("tel");
 	    const telErrorDiv = document.getElementById("tel-error");
+        const telRegex = /^010-[0-9]{4}-[0-9]{4}$/; // 010-XXXX-XXXX 형식의 전화번호
 
 	    telField.addEventListener("input", function () {
-	        const telRegex = /^010-[0-9]{4}-[0-9]{4}$/; // 010-XXXX-XXXX 형식의 전화번호
 	        const isValidTel = telRegex.test(telField.value);
 
-	        telErrorDiv.textContent = isValidTel ? "" : "올바른 전화번호 형식을 입력하세요 (010-XXXX-XXXX).";
+	        telErrorDiv.textContent = isValidTel ? "" : "올바른 전화번호 형식을 입력하세요. (예: 010-XXXX-XXXX)";
 	        telErrorDiv.style.display = isValidTel ? "none" : "block";
 
 	        if (telField.value.length === 0) {
@@ -352,24 +349,45 @@ th.required::before {
 	            telErrorDiv.style.display = "none";
 	        }
 	    });
-
-	    const checkButton = document.querySelector(".button.check");
-	    checkButton.addEventListener("click", function () {
-	        emailErrorDiv.textContent = "";
-	        emailErrorDiv.style.display = "none";
-	        passwordErrorDiv.textContent = "";
-	        passwordErrorDiv.style.display = "none";
-	        passwordConfirmErrorDiv.textContent = "";
-	        passwordConfirmErrorDiv.style.display = "none";
-	        nameErrorDiv.textContent = "";
-	        nameErrorDiv.style.display = "none";
-	        birthErrorDiv.textContent = "";
-	        birthErrorDiv.style.display = "none";
-	        telErrorDiv.textContent = "";
-	        telErrorDiv.style.display = "none";
-	    });
 	});
+	</script>
+	
+	<!-- 주소 입력 폼 -->
+	<script>
+		function execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var addr = '';
+					var extraAddr = '';
 
+					if (data.userSelectedType === 'R') { // 도로명 주소 선택
+						addr = data.roadAddress;
+					} else { // 지번 주소 선택
+						addr = data.jibunAddress;
+					}
+
+					if (data.userSelectedType === 'R') {
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							extraAddr += data.bname;
+						}
+						if (data.buildingName !== '' && data.apartment === 'Y') {
+							extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+						}
+						if (extraAddr !== '') {
+							extraAddr = ' (' + extraAddr + ')';
+						}
+					} else {
+						document.getElementById("address-basis").value = '';
+					}
+
+					// 우편번호와 주소 정보를 input 박스에 삽입
+					document.getElementById('post-code').value = data.zonecode;
+					document.getElementById("address-basis").value = addr;
+					document.getElementById("address-basis").value += extraAddr;
+					document.getElementById("address-detail").focus(); // 상세주소로 포커스 이동
+				}
+			}).open();
+		}
 	</script>
 </body>
 </html>
