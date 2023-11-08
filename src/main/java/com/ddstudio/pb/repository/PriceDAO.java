@@ -3,10 +3,7 @@ package com.ddstudio.pb.repository;
 import com.ddstudio.DBUtil;
 import com.ddstudio.pb.model.PriceDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class PriceDAO {
@@ -35,15 +32,28 @@ public class PriceDAO {
             pstat.setString(2, dto.getAge());
             pstat.setInt(3, dto.getPrice());
 
-            return pstat.executeUpdate();
+            int result = pstat.executeUpdate();
+
+
+
+            return result;
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                pstat.close();
+                conn.close();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
         }
+
 
         return 0;
 
     }
+
     public ArrayList<PriceDTO> list() {  // 티켓 테이블 리스트
 
         ArrayList<PriceDTO> list = new ArrayList<>();
@@ -74,8 +84,10 @@ public class PriceDAO {
                 list.add(dto);
             }
 
+
         } catch (Exception e) {
             e.printStackTrace();
+
         }
 
         return list;
@@ -89,7 +101,7 @@ public class PriceDAO {
 
         try {
 
-            String sql = "select * from TBLTICKET where PERSON_TYPE ='개인'";
+            String sql = "select * from TBLTICKET where PERSON_TYPE ='개인' order by PRICE desc ";
 
             stat = conn.createStatement();
 
@@ -112,6 +124,7 @@ public class PriceDAO {
                 list.add(dto);
             }
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,7 +141,7 @@ public class PriceDAO {
 
         try {
 
-            String sql = "select distinct TICKET_TYPE from TBLTICKET where PERSON_TYPE = '개인'";  // 종일권인지 , 4시이후권인지
+            String sql = "select distinct TICKET_TYPE  from TBLTICKET where PERSON_TYPE = '개인'";  // 종일권인지 , 4시이후권인지
 
             stat = conn.createStatement();
 
@@ -147,12 +160,108 @@ public class PriceDAO {
                 list.add(dto);
             }
 
+
         } catch (Exception e) {
             e.printStackTrace();
+
         }
 
         return list;
 
     }
 
+    public ArrayList<PriceDTO> ageList() { //  나이대 가져오기 (성인,청소년,어린이)
+
+        ArrayList<PriceDTO> list = new ArrayList<>();
+
+
+        try {
+
+            String sql = "select distinct age  from TBLTICKET where PERSON_TYPE = '개인'";  // 종일권인지 , 4시이후권인지
+
+            stat = conn.createStatement();
+
+            rs = stat.executeQuery(sql);
+
+            //rs == 메모 목록
+
+            //rs를  list로 옮기기
+            while (rs.next()) {
+
+                //레코드 1줄 > MemoDTO 1개
+                PriceDTO dto = new PriceDTO();
+                dto.setAge(rs.getString("age"));
+
+
+                list.add(dto);
+            }
+
+            stat.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return list;
+
+    }
+
+    public int edit(PriceDTO dto) {
+
+        try {
+
+            String sql = "update TBLTICKET set PRICE = ? where TICKET_TYPE = ? and AGE = ?";
+
+            pstat = conn.prepareStatement(sql);
+
+            pstat.setInt(1, dto.getPrice());
+            pstat.setString(2, dto.getTicket_type());
+            pstat.setString(3, dto.getAge());
+
+            int result =  pstat.executeUpdate();
+
+
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                pstat.close();
+                conn.close();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
+        }
+        return 0;
+    }
+
+    public int del(PriceDTO dto) {
+        try {
+
+            String sql = "delete from TBLTICKET where TICKET_TYPE = ? and AGE = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, dto.getTicket_type());
+            pstat.setString(2, dto.getAge());
+
+            int result =  pstat.executeUpdate();
+
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pstat.close();
+                conn.close();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
+        }
+
+        return 0;
+    }
 }
