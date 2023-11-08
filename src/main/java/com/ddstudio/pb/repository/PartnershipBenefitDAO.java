@@ -1,5 +1,4 @@
 package com.ddstudio.pb.repository;
 
-public class PBDAO {
-
+public class PartnershipBenefitDAO {
 }

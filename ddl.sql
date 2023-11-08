@@ -536,6 +536,24 @@ CREATE TABLE tblUserBook (
    ticket_book_seq NUMBER references tblTicketBook(ticket_book_seq) NOT NULL /* 예매내역번호 */
 );
 
+CREATE OR REPLACE VIEW vwUserBook AS
+SELECT
+    U.email as email,
+    UB.user_book_seq as user_book_seq,
+    UB.user_seq as user_seq,
+    TB.ticket_book_seq as ticket_book_seq,
+    TB.book_date as book_date,
+    TB.visit_date as visit_date,
+    TB.ea as ea,
+    TB.ticket_seq as ticket_seq,
+    TB.benefit_seq as benefit_seq
+FROM tblUserBook UB
+JOIN tblTicketBook TB ON UB.ticket_book_seq = TB.ticket_book_seq
+JOIN tblUser U ON UB.user_seq = U.user_seq;
+
+select * from vwUserBook;
+select * from vwUserBook where email = 'park@example.com';
+
 /* 리뷰 */
 CREATE TABLE tblReview (
    review_seq NUMBER primary key, /* 리뷰번호 */
