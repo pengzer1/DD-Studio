@@ -353,3 +353,167 @@ h5, h6, .font-weight-medium {
 		background: var(- -primary);
 	}
 }
+
+/* 버튼 스타일 */
+button.add::before {
+    font-family: var(--icon-font);
+    content: '\e746';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.back::before {
+    font-family: var(--icon-font);
+    content: '\e166';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.list::before {
+    font-family: var(--icon-font);
+    content: '\e0ee';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.del::before {
+    font-family: var(--icon-font);
+    content: '\e872';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.edit::before {
+    font-family: var(--icon-font);
+    content: '\e745';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.login::before {
+    font-family: var(--icon-font);
+    content: '\ea77';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.logout::before {
+    font-family: var(--icon-font);
+    content: '\e9ba';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.in::before {
+    font-family: var(--icon-font);
+    content: '\f71a';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.out::before {
+    font-family: var(--icon-font);
+    content: '\f70e';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.reply::before {
+    font-family: var(--icon-font);
+    content: '\e15e';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.comment::before {
+    font-family: var(--icon-font);
+    content: '\e0b9';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.modal::before {
+    font-family: var(--icon-font);
+    content: '\e89e';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.ok::before {
+    font-family: var(--icon-font);
+    content: '\e86c';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.cancel::before {
+    font-family: var(--icon-font);
+    content: '\e5c9';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.sidebar::before {
+    font-family: var(--icon-font);
+    content: '\f7e4';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.sidebar-right::before {
+    font-family: var(--icon-font);
+    content: '\f7e5';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button.setting::before {
+    font-family: var(--icon-font);
+    content: '\e8b8';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+
+button::before {
+    font-family: var(--icon-font);
+    content: '\e323';
+    position: absolute;
+    left: 11px;
+    top: 4px;
+    font-size: 1.25rem
+}
+

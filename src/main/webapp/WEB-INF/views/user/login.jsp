@@ -16,9 +16,7 @@ th input#email.middle, th input#pw.middle {
 	padding: 10px;
 	border: 1px solid #ccc;
 	font-size: 16px;
-	display: block;
-	margin: -1px;
-	display: flex;
+	margin: -1px; /* 이메일과 비밀번호 상자를 연결 */
 	flex-direction: column;
 	align-items: center;
 }
@@ -43,11 +41,15 @@ th input#email.middle+th input#pw.middle {
 	margin-top: 0;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .button {
-	width: 120px;
+	width: 183px;
 	height: 40px;
 	font-size: 16px;
-	margin: 10px;
 	background-color: transparent;
 	border: 1px solid #ccc;
 }
@@ -55,15 +57,14 @@ th input#email.middle+th input#pw.middle {
 table.vertical {
 	margin: 0 auto;
 	text-align: center;
-	border: 3px solid black;
 }
 
 .round-button {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	border-radius: 50%;
 	font-size: 16px;
-	margin: 10px;
+	margin-left: 50px;
 	background-color: transparent;
 	border: 1px solid #ccc;
 	display: flex;
@@ -96,8 +97,8 @@ table.vertical {
 						<tr>
 							<th><input type="text" name="email" id="email" required
 								class="middle"></th>
-							<td colspan="2">
-								<div class="button login round-button"
+							<td rowspan="2">
+								<div class="button login round-button" id="login"
 									onclick="location.href='/ddstudio/user/login.do';">로그인</div>
 							</td>
 						</tr>
@@ -105,20 +106,25 @@ table.vertical {
 							<th><input type="text" name="pw" id="pw" required
 								class="middle"></th>
 						</tr>
+						<tr>
+							<td>
+								<div class="button-container">
+									<button type="button" class="button"
+										onclick="location.href='/ddstudio/index.do';">아이디 찾기</button>
+									<button type="button" class="button"
+										onclick="location.href='/ddstudio/index.do';">비밀번호
+										찾기</button>
+								</div>
+							</td>
+						</tr>
 					</table>
 
-					<div>
-						<button type="button" class="button find"
-							onclick="location.href='/ddstudio/index.do';">아이디 찾기</button>
-						<button type="button" class="button find"
-							onclick="location.href='/ddstudio/index.do';">비밀번호 찾기</button>
-					</div>
-					<div></div>
 				</form>
 			</div>
 
 			<!-- 자동 로그인 시작 (추후 삭제) -->
 			<hr>
+			
 			<h2>자동 로그인 (관리자용)</h2>
 			<div id="form-list">
 				<form method="POST" action="/ddstudio/user/login.do">
@@ -142,53 +148,48 @@ table.vertical {
 					<button type="submit" class="login">관리자</button>
 				</form>
 			</div>
+			<!-- 자동 로그인 끝 (추후 삭제) -->
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
 		window.addEventListener('load', function() {
-			// 이메일과 비밀번호 입력란을 가져옵니다.
+			// 이메일과 비밀번호 입력란
 			const emailInput = document.getElementById('email');
 			const passwordInput = document.getElementById('pw');
 
-			// 초기값을 설정합니다.
+			// 초기값
 			const emailPlaceholder = '이메일';
 			const passwordPlaceholder = '비밀번호';
-
-			// 이메일 입력란에 초기값 설정
 			emailInput.value = emailPlaceholder;
-
-			// 비밀번호 입력란에 초기값 설정
 			passwordInput.value = passwordPlaceholder;
 
-			// 이메일 입력란에 포커스를 주면 초기값을 지우고 내용을 입력할 수 있게 합니다.
+			// 입력란에 포커스를 주면 초기값을 지우고 내용을 입력
 			emailInput.addEventListener('focus', function() {
 				if (emailInput.value === emailPlaceholder) {
 					emailInput.value = '';
 				}
 			});
 
-			// 이메일 입력란에서 포커스를 잃으면 초기값이 표시되도록 합니다.
+			passwordInput.addEventListener('focus', function() {
+				if (passwordInput.value === passwordPlaceholder) {
+					passwordInput.value = '';
+					passwordInput.type = 'password';
+				}
+			});
+
+			// 입력란에서 포커스를 잃으면 초기값 표시
 			emailInput.addEventListener('blur', function() {
 				if (emailInput.value === '') {
 					emailInput.value = emailPlaceholder;
 				}
 			});
 
-			// 비밀번호 입력란에 포커스를 주면 초기값을 지우고 내용을 입력할 수 있게 합니다.
-			passwordInput.addEventListener('focus', function() {
-				if (passwordInput.value === passwordPlaceholder) {
-					passwordInput.value = '';
-					passwordInput.type = 'password'; // 입력 중에 비밀번호를 숨김 문자로 표시
-				}
-			});
-
-			// 비밀번호 입력란에서 포커스를 잃으면 초기값이 표시되고, 다시 일반 텍스트로 표시합니다.
 			passwordInput.addEventListener('blur', function() {
 				if (passwordInput.value === '') {
 					passwordInput.value = passwordPlaceholder;
-					passwordInput.type = 'text'; // 포커스를 잃으면 다시 일반 텍스트로 표시
+					passwordInput.type = 'text';
 				}
 			});
 		});
