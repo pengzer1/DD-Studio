@@ -64,7 +64,7 @@ td input.middle-flat:focus {
 	border: 1px solid #ccc;
 }
 
-.id>.check {
+.email>.check {
 	width: 120px;
 }
 
@@ -113,7 +113,7 @@ th.required::before {
 						<tr>
 							<th class="required">이메일 (아이디)</th>
 							<td>
-								<div class="id">
+								<div class="email">
 									<input type="text" name="email" id="email" required class="middle-flat">
 									<button type="button" class="button check">중복검사</button>
 								</div>
