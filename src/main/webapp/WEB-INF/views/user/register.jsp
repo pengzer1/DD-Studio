@@ -79,6 +79,11 @@ button.check {
 table.vertical {
 	margin: 0 auto;
 }
+
+.error-message {
+	font-size: 14px;
+	padding: 5px;
+}
 </style>
 </head>
 <body>
@@ -112,24 +117,36 @@ table.vertical {
 						<tr>
 						    <th></th>
 						    <td>
-						        <div id="email-error" class="email-error-message" style="display:none;"></div>
+						        <div id="email-error" class="error-message" style="display:none;"></div>
 						    </td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
 							<td>
 								<div>
-									<input type="text" name="pw" id="pw" required class="middle-flat">
+									<input type="password" name="pw" id="pw" required class="middle-flat">
 								</div>
 							</td>
+						</tr>
+						<tr>
+						    <th></th>
+						    <td>
+						        <div id="pw-error" class="error-message" style="display:none;"></div>
+						    </td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
 							<td>
 								<div>
-									<input type="text" name="pwok" id="pwok" required class="middle-flat">
+									<input type="password" name="pwok" id="pwok" required class="middle-flat">
 								</div>
 							</td>
+						</tr>
+						<tr>
+						    <th></th>
+						    <td>
+						        <div id="pw-confirm-error" class="error-message" style="display:none;"></div>
+						    </td>
 						</tr>
 						<tr>
 							<th>이름</th>
@@ -210,14 +227,69 @@ table.vertical {
 	        const emailRegex = /^[a-z0-9]{6,16}$/;
 	        const isValidEmail = emailRegex.test(emailField.value);
 
-	        emailErrorDiv.textContent = isValidEmail ? "" : "아이디는 6-16자의 영어 소문자와 숫자만 허용됩니다.";
+	        emailErrorDiv.textContent = isValidEmail ? "" : "6-16자의 영어 소문자와 숫자를 입력하세요.";
 	        emailErrorDiv.style.display = isValidEmail ? "none" : "block";
+	        
+	        if (emailField.value.length === 0) {
+	        	emailErrorDiv.textContent = "";
+	        	emailErrorDiv.style.display = "none";
+	        }
+	    });
+
+	    const passwordField = document.getElementById("pw");
+	    const passwordErrorDiv = document.getElementById("pw-error");
+	    const passwordConfirmField = document.getElementById("pwok");
+	    const passwordConfirmErrorDiv = document.getElementById("pw-confirm-error");
+
+	    passwordField.addEventListener("input", function () {
+	        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+	        const isValidPassword = passwordRegex.test(passwordField.value);
+
+	        passwordErrorDiv.textContent = isValidPassword ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
+	        passwordErrorDiv.style.display = isValidPassword ? "none" : "block";
+
+	        if (passwordField.value.length === 0) {
+	            passwordErrorDiv.textContent = "";
+	            passwordErrorDiv.style.display = "none";
+	        }
+
+	        if (passwordConfirmField.value === passwordField.value) {
+	            passwordConfirmErrorDiv.textContent = "";
+	            passwordConfirmErrorDiv.style.display = "none";
+	        } else {
+	            passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+	            passwordConfirmErrorDiv.style.display = "block";
+	        }
+
+	        if (passwordConfirmField.value.length === 0) {
+	            passwordConfirmErrorDiv.textContent = "";
+	            passwordConfirmErrorDiv.style.display = "none";
+	        }
+	    });
+
+	    passwordConfirmField.addEventListener("input", function () {
+	        if (passwordConfirmField.value === passwordField.value) {
+	            passwordConfirmErrorDiv.textContent = "";
+	            passwordConfirmErrorDiv.style.display = "none";
+	        } else {
+	            passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+	            passwordConfirmErrorDiv.style.display = "block";
+	        }
+
+	        if (passwordConfirmField.value.length === 0) {
+	            passwordConfirmErrorDiv.textContent = "";
+	            passwordConfirmErrorDiv.style.display = "none";
+	        }
 	    });
 
 	    const checkButton = document.querySelector(".button.check");
 	    checkButton.addEventListener("click", function () {
 	        emailErrorDiv.textContent = "";
 	        emailErrorDiv.style.display = "none";
+	        passwordErrorDiv.textContent = "";
+	        passwordErrorDiv.style.display = "none";
+	        passwordConfirmErrorDiv.textContent = "";
+	        passwordConfirmErrorDiv.style.display = "none";
 	    });
 	});
 
