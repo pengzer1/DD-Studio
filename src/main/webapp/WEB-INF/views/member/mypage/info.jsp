@@ -47,6 +47,8 @@ button:hover {
 			<br>
 		</div>
 		
+		<hr>
+		
 		<div id="sub-title">
 			<h3>${name}님 안녕하세요!</h3>
 		</div>
@@ -73,15 +75,19 @@ button:hover {
 				</div>
 				<div class="item">
 					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
-					<div><button type="button" onclick="location.href='';">구매내역</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/member/purchase/history.do';">구매내역</button></div>
 				</div>
 				<div class="item">
 					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
-					<div><button type="button" onclick="location.href='';">문의내역</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/member/history/inquiry/inquiry.do';">문의내역</button></div>
 				</div>
 				<div class="item">
 					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
-					<div><button type="button" onclick="location.href='';">회원탈퇴</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/member/review/info.do';">리뷰관리</button></div>
+				</div>
+				<div class="item">
+					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<div><button type="button" onclick="location.href='/ddstudio/member/unregister/confirm.do';">회원탈퇴</button></div>
 				</div>
 			</div>
 			

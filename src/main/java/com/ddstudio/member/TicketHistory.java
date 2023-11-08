@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ddstudio.member.model.UserBookDTO;
+import com.ddstudio.member.repository.UserBookDAO;
+
 @WebServlet("/member/history/ticket.do")
 public class TicketHistory extends HttpServlet {
 
@@ -17,6 +20,19 @@ public class TicketHistory extends HttpServlet {
 
 		//TicketHistory.java
 
+		//1.
+		String email = req.getSession().getAttribute("email").toString();
+		
+		//2.
+		UserBookDAO dao = new UserBookDAO();
+		
+		UserBookDTO dto = dao.get(email);
+		
+		/* dto.setIntro(dto.getIntro().replace("\r\n","<br>")); */
+		
+		//3.
+		req.setAttribute("dto", dto);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/ticket.jsp");
 		dispatcher.forward(req, resp);
 	}
