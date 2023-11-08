@@ -11,7 +11,7 @@
 				margin-top: 70px;
 			}
 			#search-form {
-				margin-top: 30px;
+				margin-top: 50px;
 			}
 			#category {
 				width: 100px;
@@ -31,45 +31,62 @@
 				position: relative;
 				top: 13px;
 			}
-			#list {
+			#notice-list {
 				width: 80%;
 				text-align: center;
 				border-top: 2px solid black;
 				margin: 50px auto 0;
 			}
-			#list th, #list td {
+			#notice-list th, #notice-list td {
 				height: 60px;
 				color: #555;
 				padding: 10px;
 				border-bottom: 1px solid #E1E1E1;
 			}
-			#list th, #list td:nth-child(2) {
+			#notice-list th, #notice-list td:nth-child(2) a {
 				color: #000;
 				font-weight: bold;
 			}
-			#list th:nth-child(1) {
+			#notice-list th:nth-child(1) {
 				width: 20%;
 			}
-			#list th:nth-child(2) {
+			#notice-list th:nth-child(2) {
 				width: 60%;
 			}
-			#list th:nth-child(3) {
+			#notice-list th:nth-child(3) {
 				width: 20%;
 			}
-			#list td:nth-child(2) {
+			#notice-list td:nth-child(2) {
 				font-size: 1.1rem;
+			}
+			#page-bar {
+				display: flex;
+				font-size: 1.2rem;
+				justify-content: center;
+				margin-top: 50px;
+			}
+			#previous-button, #current-page, #other-pages, #next-button {
+				color: #000;
+				margin: 0 10px;
+			}
+			#previous-button, #next-button {
+				display: block;
+				margin-top: 1.5px;
+			}
+			#current-page {
+				color: red;
 			}
 		</style>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/views/inc/header.jsp"%>
 		
-		<div id="notice">
+		<main id="notice">
 			<h1>공지사항</h1>
 				
-			<form method="GET" action="/ddstudio/communicate/list.do" id="search-form">
+			<form method="GET" action="/ddstudio/communicate/notice/list.do" id="search-form">
 				<select name="category" id="category">
-					<option value="title">제목</option>
+					<option value="subject">제목</option>
 					<option value="content">내용</option>
 				</select>
 					
@@ -78,7 +95,7 @@
 				<button type="submit" id="search-button"><span class="material-symbols-outlined">search</span></button>
 			</form>
 			
-			<table id="list">
+			<table id="notice-list">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -87,21 +104,39 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항공지사항</td>
-						<td>2023.11.07</td>
-					</tr>
+					<c:forEach items="${list}" var="dto" varStatus="status">
+						<tr>
+							<c:if test="${dto.fix == 'n'}">
+					            <td>${totalPosts - status.count + 1}</td>
+					        </c:if>
+						
+							<c:if test="${dto.fix == 'y'}">
+								<td><span class="material-symbols-outlined">report</span></td>
+							</c:if>
+							
+							<td><a href="/ddstudio/commutnicate/notice/detail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
+							<td>${dto.regdate}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		</main>
 		
 		<div id="page-bar">${pageBar}</div>
+		
+		<%-- <div>
+			<c:if test="${not empty email && lv == 2}">
+				<button type="button" class="add primary" onclick="location.href='/ddstudio/communicate/notice/add.do';">추가</button>
+			</c:if>
+		</div> --%>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
 		<script>
-			
+			<c:if test="${map.searchStatus == 'y'}">
+				$('#category').val('${map.category}');
+				$('#search-field').val('${map.word}');
+			</c:if>
 		</script>
 	</body>
 </html>
