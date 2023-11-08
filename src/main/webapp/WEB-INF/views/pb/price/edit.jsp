@@ -46,7 +46,7 @@
                     <th>종류</th>
                     <td> <select name="type">
                     <c:forEach items="${ticketTypeList}" var="dto">
-                        <option value="${dto.ticketType}">${dto.ticketType}</option>
+                        <option value="${dto.ticket_type}">${dto.ticket_type}</option>
                     </c:forEach>
                     </select>
                     </td>

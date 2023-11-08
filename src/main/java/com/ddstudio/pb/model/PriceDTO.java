@@ -1,41 +1,34 @@
 package com.ddstudio.pb.model;
 
-import com.ddstudio.DBUtil;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class PriceDTO {
-    private String ticketSeq;
-    private String ticketType;
-    private String personType;
+    private String ticket_seq;
+    private String ticket_type;
+    private String person_type;
     private String age;
     private int price;
 
-    public String getTicketSeq() {
-        return ticketSeq;
+    public String getTicket_seq() {
+        return ticket_seq;
     }
 
-    public void setTicketSeq(String ticketSeq) {
-        this.ticketSeq = ticketSeq;
+    public void setTicket_seq(String ticket_seq) {
+        this.ticket_seq = ticket_seq;
     }
 
-    public String getTicketType() {
-        return ticketType;
+    public String getTicket_type() {
+        return ticket_type;
     }
 
-    public void setTicketType(String ticketType) {
-        this.ticketType = ticketType;
+    public void setTicket_type(String ticket_type) {
+        this.ticket_type = ticket_type;
     }
 
-    public String getPersonType() {
-        return personType;
+    public String getPerson_type() {
+        return person_type;
     }
 
-    public void setPersonType(String personType) {
-        this.personType = personType;
+    public void setPerson_type(String person_type) {
+        this.person_type = person_type;
     }
 
     public String getAge() {

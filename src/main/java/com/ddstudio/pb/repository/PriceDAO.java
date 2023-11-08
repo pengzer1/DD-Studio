@@ -31,7 +31,7 @@ public class PriceDAO {
             String sql = "insert into TBLTICKET (ticket_seq, ticket_type, person_type, age, price) values (SEQTBLTICKET.nextval, ?, '개인', ?, ?)";
 
             pstat = conn.prepareStatement(sql);
-            pstat.setString(1, dto.getTicketType());
+            pstat.setString(1, dto.getTicket_type());
             pstat.setString(2, dto.getAge());
             pstat.setInt(3, dto.getPrice());
 
@@ -64,9 +64,9 @@ public class PriceDAO {
 
                 //레코드 1줄 > MemoDTO 1개
                 PriceDTO dto = new PriceDTO();
-                dto.setTicketSeq(rs.getString("ticket_seq"));
-                dto.setTicketType(rs.getString("ticket_type"));
-                dto.setPersonType(rs.getString("person_type"));
+                dto.setTicket_seq(rs.getString("ticket_seq"));
+                dto.setTicket_type(rs.getString("ticket_type"));
+                dto.setPerson_type(rs.getString("person_type"));
                 dto.setAge(rs.getString("age"));
                 dto.setPrice(rs.getInt("price"));
 
@@ -102,9 +102,9 @@ public class PriceDAO {
 
                 //레코드 1줄 > MemoDTO 1개
                 PriceDTO dto = new PriceDTO();
-                dto.setTicketSeq(rs.getString("ticket_seq"));
-                dto.setTicketType(rs.getString("ticket_type"));
-                dto.setPersonType(rs.getString("person_type"));
+                dto.setTicket_seq(rs.getString("ticket_seq"));
+                dto.setTicket_type(rs.getString("ticket_type"));
+                dto.setPerson_type(rs.getString("person_type"));
                 dto.setAge(rs.getString("age"));
                 dto.setPrice(rs.getInt("price"));
 
@@ -141,7 +141,7 @@ public class PriceDAO {
 
                 //레코드 1줄 > MemoDTO 1개
                 PriceDTO dto = new PriceDTO();
-                dto.setTicketType(rs.getString("ticket_type"));
+                dto.setTicket_type(rs.getString("ticket_type"));
 
 
                 list.add(dto);

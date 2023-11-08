@@ -55,14 +55,10 @@
                 <div>1Day</div>
                 <div>
                     <c:forEach items="${personTypeList}" var="dto">
-                        <c:choose>
-                            <c:when test="${dto.personType eq '개인'}">
                         <div>
                             <div>${dto.age}</div>
                             <div>${dto.price}</div>
                         </div>
-                            </c:when>
-                        </c:choose>
                     </c:forEach>
                 </div>
             </div>
