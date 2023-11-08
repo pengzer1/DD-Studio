@@ -11,73 +11,74 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/attraction/list.jsp -->
+	<!-- /activity/attraction/list.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<!-- Header -->
 
 	<main id="main">
 
-		<div
-			style="text-align: center; background-color: tomato; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-			<h2>제목</h2>
+		<div id="title">
+			<h2>어트랙션</h2>
 			<br>
-			<p>내용을ㅇㅇ 입력하세요</p>
+			<p>모험과 환상의 나라 더블디 스튜디오의 어트랙션을 경험해보세요!</p>
 		</div>
 
 		<div id="content">
-			<div id="condition" style="">
-				<h3>조건검색(임시-롯데월드에 있던거 참고)</h3>
+			<div id="condition">
+				<h3>조건검색(테마/운휴일정/위치정보)</h3>
 			</div>
 
-			<div class="container"
-				style="margin-top: 70px; padding: 0 !important">
+			<div class="munti-content-container">
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>파라오의 분노</div>
 				</div>
 				<div class="item">
 					<div
 						style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 1</div>
+					<div>회전목마</div>
+				</div>
+				<div class="item">
+					<div style="background-image: url('/ddstuid')"></div>
+					<div>쌍용열차</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>신밧드의 모험</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>지브리특급</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<div class="item">
 					<div>아이템 1</div>
-					<div>아이템 1</div>
+					<div>아이템 1 설명</div>
 				</div>
 				<!-- 추가 아이템들 -->
 			</div>
-
-
+			
 		</div>
-
+		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
