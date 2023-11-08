@@ -15,6 +15,7 @@ public class PriceDAO {
     public PriceDAO() {
 
         this.conn = DBUtil.open();
+//        System.out.println(this.conn);
 
     }
 
@@ -40,14 +41,8 @@ public class PriceDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            try {
-                pstat.close();
-                conn.close();
-            } catch (Exception e) {
-                throw new RuntimeException();
-            }
         }
+
 
 
         return 0;
@@ -253,13 +248,6 @@ public class PriceDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                pstat.close();
-                conn.close();
-            } catch (Exception e) {
-                throw new RuntimeException();
-            }
         }
 
         return 0;
