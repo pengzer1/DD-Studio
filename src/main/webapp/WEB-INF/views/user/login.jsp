@@ -53,10 +53,24 @@ th input#email.middle+th input#pw.middle {
 }
 
 table.vertical {
-    margin: 0 auto;
-    text-align: center;
+	margin: 0 auto;
+	text-align: center;
+	border: 3px solid black;
 }
 
+.round-button {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	font-size: 16px;
+	margin: 10px;
+	background-color: transparent;
+	border: 1px solid #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -82,6 +96,10 @@ table.vertical {
 						<tr>
 							<th><input type="text" name="email" id="email" required
 								class="middle"></th>
+							<td colspan="2">
+								<div class="button login round-button"
+									onclick="location.href='/ddstudio/user/login.do';">로그인</div>
+							</td>
 						</tr>
 						<tr>
 							<th><input type="text" name="pw" id="pw" required
@@ -90,40 +108,40 @@ table.vertical {
 					</table>
 
 					<div>
-						<button type="button" class="button find" onclick="location.href='/ddstudio/index.do';">아이디 찾기</button>
-						<button type="button" class="button find" onclick="location.href='/ddstudio/index.do';">비밀번호 찾기</button>
+						<button type="button" class="button find"
+							onclick="location.href='/ddstudio/index.do';">아이디 찾기</button>
+						<button type="button" class="button find"
+							onclick="location.href='/ddstudio/index.do';">비밀번호 찾기</button>
 					</div>
-					<div>
-						<button type="submit" class="button login">로그인</button>
-					</div>
+					<div></div>
 				</form>
 			</div>
 
 			<!-- 자동 로그인 시작 (추후 삭제) -->
-				<hr>
-				<h2>자동 로그인 (관리자용)</h2>
-				<div id="form-list">
-					<form method="POST" action="/ddstudio/user/login.do">
-						<input type="hidden" name="email" value="park@example.com">
-						<input type="hidden" name="pw" value="1111">
-						<button type="submit" class="login">박나래</button>
-					</form>
-					<form method="POST" action="/ddstudio/user/login.do">
-						<input type="hidden" name="email" value="hwang@example.com">
-						<input type="hidden" name="pw" value="1111">
-						<button type="submit" class="login">황주원</button>
-					</form>
-					<form method="POST" action="/ddstudio/user/login.do">
-						<input type="hidden" name="email" value="cha@example.com">
-						<input type="hidden" name="pw" value="1111">
-						<button type="submit" class="login">차민재</button>
-					</form>
-					<form method="POST" action="/ddstudio/user/login.do">
-						<input type="hidden" name="email" value="admin@example.com">
-						<input type="hidden" name="pw" value="1111">
-						<button type="submit" class="login">관리자</button>
-					</form>
-				</div>
+			<hr>
+			<h2>자동 로그인 (관리자용)</h2>
+			<div id="form-list">
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="park@example.com">
+					<input type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">박나래</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="hwang@example.com">
+					<input type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">황주원</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="cha@example.com">
+					<input type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">차민재</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="admin@example.com">
+					<input type="hidden" name="pw" value="1111">
+					<button type="submit" class="login">관리자</button>
+				</form>
+			</div>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
