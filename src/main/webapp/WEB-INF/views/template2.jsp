@@ -12,8 +12,7 @@
 </head>
 <body>
 	<!-- Template.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<!-- Header -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
 
@@ -64,8 +63,7 @@
 			</div>
 		</div>
 	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
 		
