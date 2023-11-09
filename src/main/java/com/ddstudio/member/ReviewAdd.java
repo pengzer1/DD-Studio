@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/unregister/reconfirm.do")
-public class GoodBye extends HttpServlet {
+@WebServlet("/member/review/add.do")
+public class ReviewAdd extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//GoodBye.java
+		//ReviewAdd.java
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/unregister/reconfirm.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/review/add.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
