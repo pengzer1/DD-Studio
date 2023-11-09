@@ -207,7 +207,7 @@ public class PriceDAO {
 
         try {
 
-            String sql = "update TBLTICKET set PRICE = ? where TICKET_TYPE = ? and AGE = ?";
+            String sql = "update TBLTICKET set PRICE = ? where TICKET_TYPE = ? and AGE = ? and PERSON_TYPE = '개인'";
 
             pstat = conn.prepareStatement(sql);
 
@@ -222,21 +222,15 @@ public class PriceDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            try {
-                pstat.close();
-                conn.close();
-            } catch (Exception e) {
-                throw new RuntimeException();
-            }
         }
+
         return 0;
     }
 
     public int del(PriceDTO dto) {
         try {
 
-            String sql = "delete from TBLTICKET where TICKET_TYPE = ? and AGE = ?";
+            String sql = "delete from TBLTICKET where TICKET_TYPE = ? and AGE = ? and  PERSON_TYPE = '개인'";
 
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, dto.getTicket_type());

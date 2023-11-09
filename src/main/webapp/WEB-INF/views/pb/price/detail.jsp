@@ -37,11 +37,20 @@
         <h2>티켓 요금</h2>
     </div>
 
+
+    <div class="container">
+        <div id="btn3" class="btn">
+            <button type="button" class="add" onclick="location.href='/ddstudio/pb/benefit.do';">혜택</button>
+        </div>
+    </div>
+
+
+
     <div id="sub-title">
         <div class="container">
             <h3>개인</h3>
             <div id="btn1" class="btn">
-                <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceadd.do';">추가</button>
+                <button type="button" class="add" onclick="location.href='ㅈ/ddstudio/pb/priceadd.do';">추가</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/pricedel.do';">삭제</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceedit.do';">수정</button>
             </div>
@@ -85,9 +94,9 @@
         <div id="sub-title1" align="center">
             <h3>단체</h3>
             <div id="btn2" class="btn">
-                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">추가</button>
-                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">삭제</button>
-                <button type="button" class="add" onclick="location.href='/ddstudio/pb/?.do';">수정</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-priceadd.do';">추가</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-pricedel.do';">삭제</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-priceedit.do';">수정</button>
             </div>
         </div>
 
@@ -100,7 +109,7 @@
             <div class="wide-item">
                 <div>1Day</div>
                 <div>
-                    <c:forEach items="${personTypeList}" var="dto">
+                    <c:forEach items="${groupList}" var="dto">
                         <c:if test="${dto.ticket_type eq '1Day'}">
                             <div>
                                 <div>${dto.age}</div>
@@ -114,8 +123,8 @@
             <div class="wide-item">
                 <div>After4</div>
                 <div>
-                    <c:forEach items="${personTypeList}" var="dto">
-                        <c:if test="${dto.ticket_type eq '1Day'}">
+                    <c:forEach items="${groupList}" var="dto">
+                        <c:if test="${dto.ticket_type eq 'After4'}">
                             <div>
                                 <div>${dto.age}</div>
                                 <div>${dto.price}</div>
