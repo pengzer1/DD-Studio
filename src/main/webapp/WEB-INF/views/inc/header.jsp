@@ -19,26 +19,32 @@
 						<a href="/ddstudio/pb/price.do" class="nav-item nav-link active index-navi">
 							<div class="material-symbols-outlined nav-icon">Local_Activity</div>
 							<div class="nav-menu-name">요금/혜택</div>
-						</a> <a href="/ddstudio/activity/attraction.do"
-							class="nav-item nav-link index-navi">
+						</a>
+						<a href="/ddstudio/activity/attraction.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Attractions</div>
 							<div class="nav-menu-name">액티비티</div>
-						</a> <a href="class.html" class="nav-item nav-link index-navi">
+						</a>
+						<a href="class.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Recommend</div>
 							<div class="nav-menu-name">추천</div>
-						</a> <a href="team.html" class="nav-item nav-link index-navi">
+						</a>
+						<a href="team.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Redeem</div>
 							<div class="nav-menu-name">샵</div>
-						</a> <a href="/ddstudio/guide/convenient.do" class="nav-item nav-link index-navi">
+						</a>
+						<a href="/ddstudio/guide/convenient.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">notification_important</div>
 							<div class="nav-menu-name">가이드</div>
-						</a> <a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
+						</a>
+						<a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">sms</div>
 							<div class="nav-menu-name">소통</div>
-						</a> <a href="team.html" class="nav-item nav-link index-navi">
+						</a>
+						<a href="/ddstudio/user/search.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">search</div>
 							<div class="nav-menu-name">검색</div>
-						</a> <a href="contact.html" class="nav-item nav-link index-navi">
+						</a>
+						<a href="contact.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">book_online</div>
 							<div class="nav-menu-name">예매</div>
 						</a>
