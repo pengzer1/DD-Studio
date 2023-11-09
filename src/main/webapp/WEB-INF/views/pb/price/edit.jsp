@@ -44,7 +44,7 @@
             <table class="vertical">
                 <tr>
                     <th>종류</th>
-                    <td> <select name="type">
+                    <td> <select name="ticket_type">
                     <c:forEach items="${ticketTypeList}" var="dto">
                         <option value="${dto.ticket_type}">${dto.ticket_type}</option>
                     </c:forEach>
@@ -53,7 +53,12 @@
                 </tr>
                 <tr>
                     <th>구분</th>
-                    <td><input type="text" name="age" required></td>
+                    <td><select name="age">
+                        <c:forEach items="${ageList}" var="dto">
+                            <option value="${dto.age}">${dto.age}</option>
+                        </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th>가격</th>
@@ -61,7 +66,7 @@
                 </tr>
             </table>
             <div>
-                <input type="submit" value="추가">
+                <input type="submit" value="수정">
                 <input type="button" value="취소"onclick="location.href='/ddstudio/pb/price.do'">
             </div>
         </form>
