@@ -32,7 +32,7 @@
 						</a> <a href="team.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">notification_important</div>
 							<div class="nav-menu-name">가이드</div>
-						</a> <a href="team.html" class="nav-item nav-link index-navi">
+						</a> <a href="/ddstudio/communicate/notice.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">sms</div>
 							<div class="nav-menu-name">소통</div>
 						</a> <a href="team.html" class="nav-item nav-link index-navi">
