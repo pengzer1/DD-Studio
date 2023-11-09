@@ -10,12 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ddstudio.communicate.model.NoticeDTO;
 import com.ddstudio.communicate.repository.CommuDAO;
 
-@WebServlet("/communicate/notice/list.do")
+@WebServlet("/communicate/notice.do")
 public class Notice extends HttpServlet {
 
 	@Override
@@ -85,19 +84,19 @@ public class Notice extends HttpServlet {
 			
 		}
 
-		int totalPosts = dao.getTotalPosts();
-
-		int totalPages = (int)Math.ceil((double)totalPosts / postsPerPage);
-
-		StringBuilder sb = new StringBuilder();
-
 		int blockSize = 5;
 
 		int pageNumber = ((currentPage - 1) / blockSize) * blockSize + 1;
 		
+		StringBuilder sb = new StringBuilder();
+		
+		int totalPosts = dao.getTotalPosts(map);
+		
+		int totalPages = (int)Math.ceil((double)totalPosts / postsPerPage);
+		
 		if (pageNumber != 1) {
 			
-			sb.append(String.format("<a href='/ddstudio/communicate/notice/list.do?page=%d' id='previous-button'><span class='material-symbols-outlined'>navigate_before</span></a>", pageNumber - 1));
+			sb.append(String.format("<a href='/ddstudio/communicate/notice.do?page=%d' id='previous-button'><span class='material-symbols-outlined'>navigate_before</span></a>", pageNumber - 1));
 			
 		}
 		
@@ -111,7 +110,7 @@ public class Notice extends HttpServlet {
 				
 			} else {
 				
-				sb.append(String.format("<a href='/ddstudio/communicate/notice/list.do?page=%d' id='other-pages'>%d</a>", pageNumber, pageNumber));
+				sb.append(String.format("<a href='/ddstudio/communicate/notice.do?page=%d' id='other-pages'>%d</a>", pageNumber, pageNumber));
 				
 			}
 			
@@ -122,7 +121,7 @@ public class Notice extends HttpServlet {
 		
 		if (pageNumber <= totalPages) {
 			
-			sb.append(String.format("<a href='/ddstudio/communicate/notice/list.do?page=%d' id='next-button'><span class='material-symbols-outlined'>navigate_next</span></a>", pageNumber));
+			sb.append(String.format("<a href='/ddstudio/communicate/notice.do?page=%d' id='next-button'><span class='material-symbols-outlined'>navigate_next</span></a>", pageNumber));
 			
 		}
 

@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/communicate/notice/add.do")
+@WebServlet("/communicate/noticeadd.do")
 public class NoticeAdd extends HttpServlet {
 
 	@Override
@@ -43,17 +43,7 @@ public class NoticeAdd extends HttpServlet {
 
 			dto.setSubject(subject);
 			dto.setContent(content);
-			
-			if (file != null && !file.equals("")) {
-				
-				dto.setAttach(file);
-				
-			} else {
-				
-				dto.setAttach(null);
-				
-			}
-
+			dto.setAttach(file);
 			dto.setFix(fix);
 			
 			CommuDAO dao = new CommuDAO();
@@ -62,7 +52,7 @@ public class NoticeAdd extends HttpServlet {
 			
 			if (result == 1) {
 				
-				resp.sendRedirect("/ddstudio/communicate/notice/list.do");
+				resp.sendRedirect("/ddstudio/communicate/notice.do");
 				
 			}
 			
@@ -75,7 +65,7 @@ public class NoticeAdd extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		
 		writer.println("<script>");
-		writer.println("alert('Failed');");
+		writer.println("alert('failed');");
 		writer.println("history.back();");
 		writer.println("</script>");
 		

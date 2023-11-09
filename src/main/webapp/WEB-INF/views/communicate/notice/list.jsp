@@ -39,12 +39,16 @@
 			}
 			#notice-list th, #notice-list td {
 				height: 60px;
-				color: #555;
+				color: #444;
 				padding: 10px;
 				border-bottom: 1px solid #E1E1E1;
 			}
-			#notice-list th, #notice-list td:nth-child(2) a {
-				color: #000;
+			#notice-list th {
+				font-size: 1.02rem;
+				font-weight: bold;
+			}
+			#notice-list td:nth-child(2) a {
+				color: #333;
 				font-weight: bold;
 			}
 			#notice-list th:nth-child(1) {
@@ -58,6 +62,12 @@
 			}
 			#notice-list td:nth-child(2) {
 				font-size: 1.1rem;
+			}
+			#fixed {
+				background-color: #EDFFFC;
+			}
+			#fix-icon {
+				color: #F00;
 			}
 			#page-bar {
 				display: flex;
@@ -76,6 +86,19 @@
 			#current-page {
 				color: red;
 			}
+			#button-list {
+				display: flex;
+    			justify-content: flex-end;
+			}
+			#add-button {
+				width: 100px;
+				height: 33px;
+				background-color: #FBF2F3;
+				border: 2px solid #F49097;
+				border-radius: 15px;
+				margin-top: 10px;
+			    margin-right: 150px;
+			}
 		</style>
 	</head>
 	<body>
@@ -84,7 +107,7 @@
 		<main id="notice">
 			<h1>공지사항</h1>
 				
-			<form method="GET" action="/ddstudio/communicate/notice/list.do" id="search-form">
+			<form method="GET" action="/ddstudio/communicate/notice.do" id="search-form">
 				<select name="category" id="category">
 					<option value="subject">제목</option>
 					<option value="content">내용</option>
@@ -105,18 +128,21 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="dto" varStatus="status">
-						<tr>
-							<c:if test="${dto.fix == 'n'}">
-					            <td>${totalPosts - status.count + 1}</td>
-					        </c:if>
+						<c:if test="${dto.fix == 'n'}">
+							<tr>
+					            <td>${totalPosts - status.index - map.startIndex + 1}</td>
+					            <td><a href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
+					            <td>${dto.regdate}</td>
+					        </tr>
+					    </c:if>
 						
-							<c:if test="${dto.fix == 'y'}">
-								<td><span class="material-symbols-outlined">report</span></td>
-							</c:if>
-							
-							<td><a href="/ddstudio/commutnicate/notice/detail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
-							<td>${dto.regdate}</td>
-						</tr>
+						<c:if test="${dto.fix == 'y'}">
+							<tr id="fixed">
+								<td><span id="fix-icon" class="material-symbols-outlined">report</span></td>
+								<td><a href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
+								<td>${dto.regdate}</td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -124,11 +150,9 @@
 		
 		<div id="page-bar">${pageBar}</div>
 		
-		<%-- <div>
-			<c:if test="${not empty email && lv == 2}">
-				<button type="button" class="add primary" onclick="location.href='/ddstudio/communicate/notice/add.do';">추가</button>
-			</c:if>
-		</div> --%>
+		<c:if test="${not empty email && lv == 2}">
+			<div id="button-list"><button type="button" id="add-button" onclick="location.href='/ddstudio/communicate/noticeadd.do';">등록</button></div>
+		</c:if>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
@@ -137,6 +161,16 @@
 				$('#category').val('${map.category}');
 				$('#search-field').val('${map.word}');
 			</c:if>
+			
+			document.addEventListener('DOMContentLoaded', function () {
+		        var searchField = document.getElementById('search-field');
+
+		        searchField.addEventListener('keyup', function (event) {
+		            if (event.key === 'Enter') {
+		                document.getElementById('search-form').submit();
+		            }
+		        });
+		    });
 		</script>
 	</body>
 </html>

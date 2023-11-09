@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.communicate.model.NoticeDTO;
 import com.ddstudio.communicate.repository.CommuDAO;
 
-@WebServlet("/communicate/notice/detail.do")
+@WebServlet("/communicate/noticedetail.do")
 public class NoticeDetail extends HttpServlet {
 
 	@Override
@@ -39,6 +39,12 @@ public class NoticeDetail extends HttpServlet {
 		content = content.replace("\n", "<br>");
 		
 		dto.setContent(content);
+
+		String regdate = dto.getRegdate();
+		
+		regdate = regdate.substring(0, 10);
+		
+		dto.setRegdate(regdate);
 		
 		req.setAttribute("dto", dto);
 

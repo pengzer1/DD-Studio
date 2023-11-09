@@ -35,7 +35,7 @@ public class AuthFilter implements Filter {
 		// 익명 사용자 > 배제
 //		System.out.println(httpReq.getRequestURI());
 		
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("email") == null) {
 			if (httpReq.getRequestURI().endsWith("add.do") || httpReq.getRequestURI().endsWith("edit.do") || httpReq.getRequestURI().endsWith("del.do")) {
 				
 				//httpResp.sendRedirect("/toy/index.do");

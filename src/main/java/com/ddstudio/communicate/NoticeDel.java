@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.communicate.repository.CommuDAO;
 
-@WebServlet("/communicate/notice/del.do")
+@WebServlet("/communicate/noticedel.do")
 public class NoticeDel extends HttpServlet {
 
 	@Override
@@ -39,14 +39,14 @@ public class NoticeDel extends HttpServlet {
 		
 		if (result == 1) {
 			
-			resp.sendRedirect("/ddstudio/communicate/notice/list.do");
+			resp.sendRedirect("/ddstudio/communicate/notice.do");
 			
 		} else {
 			
 			PrintWriter writer = resp.getWriter();
 			
 			writer.println("<script>");
-			writer.println("alert('Failed');");
+			writer.println("alert('failed');");
 			writer.println("history.back();");
 			writer.println("</script>");
 			

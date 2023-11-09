@@ -6,7 +6,54 @@
 		<meta charset="UTF-8">
 		<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 		<style>
-			
+			#add-notice {
+				text-align: center;
+				margin-top: 70px;
+			}
+			#add-form {
+				width: 80%;
+				border-top: 2px solid black;
+				margin: 50px auto 0;
+			}
+			#add-form th, #add-form td {
+				height: 80px;
+				color: #555;
+				border-bottom: 1px solid #E1E1E1;
+			}
+			#add-form th {
+				width: 30%;
+				font-size: 1.1rem;
+				border-right: 1px solid #E1E1E1;
+			}
+			#add-form td {
+				width: 70%;
+				text-align: left;
+			}
+			#add-form tr:nth-child(2) td {
+				height: 500px;
+			}
+			#add-form input {
+				padding: 10px;
+				margin-left: 30px;
+				outline: none;
+			}
+			#add-form textarea {
+			    width: 93%;
+			    height: 88%;
+			    box-sizing: border-box;
+			    padding: 10px;
+			    margin: 30px;
+			    resize: none;
+			    outline: none;
+			}
+			#add-form tr:nth-child(3) td input {
+			    margin-left: 20px;
+			}
+			#add-button, #back-button {
+				width: 100px;
+				height: 30px;
+				margin: 50px 10px 0;
+			}
 		</style>
 	</head>
 	<body>
@@ -15,29 +62,32 @@
 		<main id="add-notice">
 			<h1>공지사항 등록</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/notice/add.do" enctype="multipart/form-data">
-				<table>
+			<form method="POST" action="/ddstudio/communicate/noticeadd.do" enctype="multipart/form-data">
+				<table id="add-form">
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="subject" id="subject" required autofocus></td>
+						<td><input type="text" name="subject" size="86" required autofocus></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="content" id="content" required></textarea></td>
+						<td><textarea name="content" required></textarea></td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>
-						<td><input type="file" name="file" id="file"></td>
+						<td><input type="file" name="file"></td>
 					</tr>
 					<tr>
 						<th>고정여부</th>
-						<td><input type="text" name="fix" id="fix" pattern="[yn]" placeholder="y 또는 n을 입력하세요." required></td>
+						<td>
+							<label><input type="radio" name="fix" value="y"> 네</label>
+					        <label><input type="radio" name="fix" value="n" checked> 아니오</label>
+						</td>
 					</tr>
 				</table>
 				
-				<div>
+				<div id="button-list">
 					<button type="submit" id="add-button">등록</button>
-					<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/notice/list.do';">취소</button>
+					<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/notice.do';">취소</button>
 				</div>
 			</form>
 		</main>

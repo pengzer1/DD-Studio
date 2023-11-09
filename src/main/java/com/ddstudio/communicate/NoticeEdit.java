@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/communicate/notice/edit.do")
+@WebServlet("/communicate/noticeedit.do")
 public class NoticeEdit extends HttpServlet {
 
 	@Override
@@ -45,27 +45,17 @@ public class NoticeEdit extends HttpServlet {
 			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 50, "UTF-8", new DefaultFileRenamePolicy());
 			
 			String seq = req.getParameter("seq");
-			String subject = req.getParameter("subject");
-			String content = req.getParameter("content");
+			String subject = multi.getParameter("subject");
+			String content = multi.getParameter("content");
 			String file = multi.getFilesystemName("file");
-			String fix = req.getParameter("fix");
+			String fix = multi.getParameter("fix");
 	
 			NoticeDTO dto = new NoticeDTO();
 			
-			dto.setSeq(seq);
+			dto.setNotice_seq(seq);
 			dto.setSubject(subject);
 			dto.setContent(content);
-			
-			if (file != null && !file.equals("")) {
-				
-				dto.setAttach(file);
-				
-			} else {
-				
-				dto.setAttach(null);
-				
-			}
-	
+			dto.setAttach(file);
 			dto.setFix(fix);
 			
 			CommuDAO dao = new CommuDAO();
@@ -74,7 +64,7 @@ public class NoticeEdit extends HttpServlet {
 	
 			if (result == 1) {
 					
-				resp.sendRedirect("/ddstudio/communicate/notice/detail.do?seq=" + seq);
+				resp.sendRedirect("/ddstudio/communicate/noticedetail.do?seq=" + seq);
 				
 			}
 			
@@ -87,7 +77,7 @@ public class NoticeEdit extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		
 		writer.println("<script>");
-		writer.println("alert('Failed');");
+		writer.println("alert('failed');");
 		writer.println("history.back();");
 		writer.println("</script>");
 		

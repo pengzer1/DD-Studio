@@ -29,7 +29,7 @@ public class CommuDAO {
 		
 		try {
 
-			String sql = "insert into tblNotice (notice_seq, subject, content, regdate, attach, fix) values (seqtblNotice, ?, ?, default, ?, ?)";
+			String sql = "insert into tblNotice (notice_seq, subject, content, regdate, attach, fix) values (seqtblNotice.nextVal, ?, ?, default, ?, ?)";
 
 			pstat = conn.prepareStatement(sql);
 
@@ -61,8 +61,8 @@ public class CommuDAO {
 				condition = String.format("where %s like '%%%s%%'", map.get("category"), map.get("word"));
 				
 			}
-			
-			String sql = String.format("select * from (select n.*, rownum as rnum from tblNotice n %s) where rnum between %s and %s order by fix desc, regdate desc", condition, map.get("startIndex"), map.get("endIndex"));
+
+			String sql = String.format("select * from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc) n %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
 			
 			stat = conn.createStatement();
 			
@@ -97,11 +97,23 @@ public class CommuDAO {
 		
 	}
 	
-	public int getTotalPosts() {
+	public int getTotalPosts(HashMap<String, String> map) {
 
 		try {
-
-			String sql = "select count(*) as cnt from tblNotice";
+			
+			String sql = "";
+			
+			if (map.get("searchStatus").equals("y")) {
+				
+				String condition = String.format("where %s like '%%%s%%'", map.get("category"), map.get("word"));
+				
+				sql = String.format("select count(*) as cnt from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc) n %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
+				
+			} else {
+				
+				sql = "select count(*) as cnt from tblNotice";
+				
+			}
 
 			stat = conn.createStatement();
 
@@ -127,7 +139,7 @@ public class CommuDAO {
 
 		try {
 			
-			String sql = "select * from tblNotice where seq = ?";
+			String sql = "select * from tblNotice where notice_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			
@@ -139,7 +151,7 @@ public class CommuDAO {
 				
 				NoticeDTO dto = new NoticeDTO();
 				
-				dto.setNotice_seq(rs.getString("seq"));
+				dto.setNotice_seq(rs.getString("notice_seq"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
 				dto.setRegdate(rs.getString("regdate"));
@@ -164,7 +176,7 @@ public class CommuDAO {
 
 		try {
 
-			String sql = "update tblNotice set subject = ?, content = ?, attach = ?, fix = ? where seq = ?";
+			String sql = "update tblNotice set subject = ?, content = ?, attach = ?, fix = ? where notice_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 
@@ -190,7 +202,7 @@ public class CommuDAO {
 
 		try {
 
-			String sql = "delete from tblNotice where seq = ?";
+			String sql = "delete from tblNotice where notice_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 
