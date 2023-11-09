@@ -10,9 +10,9 @@ import com.ddstudio.DBUtil;
 import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.AttractionImgDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.guide.model.LocationDTO;
 
 
 public class ActDAO {

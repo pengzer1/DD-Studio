@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.user.repository.UserDAO;
 
-@WebServlet("/user/duplicate-check.do")
+@WebServlet("/user/duplicatecheck.do")
 public class DuplicateCheck extends HttpServlet {
 
 	@Override

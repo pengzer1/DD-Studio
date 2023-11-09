@@ -102,6 +102,9 @@
 			.nav-icon {
 				font-size: 50px;
 			}
+			.nav-icon {
+				font-size: 50px;
+			}
 		</style>
 	</head>
 	<body>

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ddstudio.activity.model.AttractionDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.guide.model.LocationDTO;
 
 @WebServlet("/activity/attraction.do")
 public class Attraction extends HttpServlet {

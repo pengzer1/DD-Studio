@@ -8,11 +8,6 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-table, td, th {
-	/* border: 1px solid #CCC; */
-	
-}
-
 td input.middle-flat {
 	color: #000;
 	margin-top: 50px;
@@ -75,7 +70,8 @@ td input.middle-flat:focus {
 	width: 160px;
 }
 
-table.vertical {
+table {
+	width: 600px;
 	margin: 0 auto;
 }
 
@@ -89,20 +85,32 @@ th.required::before {
 	color: cornflowerblue;
 }
 
-.formcontrol {
-	display: !flex;
+#cancel {
+	margin-right: 15px;
+}
+
+#main {
+	text-align: center;
+	margin-top: 150px;
+}
+
+#sub-title {
+	width: 80%;
+	text-align: center;
+	border-top: 2px solid black;
+	margin: 50px auto 0;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
-	<!-- login.jsp -->
+	<!-- register.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-
-		<div id="title">
-			<h2>회원가입</h2>
-		</div>
+		<h1>회원가입</h1>
 
 		<div id="sub-title">
 			<p>회원정보입력</p>
@@ -111,7 +119,7 @@ th.required::before {
 		<div id="content">
 			<div class="wide-item">
 				<form method="POST" action="/ddstudio/user/register.do">
-					<table class="vertical">
+					<table>
 						<!-- 이메일 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">이메일 (아이디)</th>
@@ -230,9 +238,9 @@ th.required::before {
 								</div>
 							</td>
 						</tr>
-
 						<tr>
-							<td colspan="2">
+							<th></th>
+							<td>
 								<div class="button-container">
 									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
 									<!-- <div id="ok-message"></div> -->
@@ -250,7 +258,6 @@ th.required::before {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 		
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
 		
@@ -258,7 +265,7 @@ th.required::before {
 		$('#duplicate-check').click(function(){
 			$.ajax({
 				type: 'POST',
-				url: '/ddstudio/user/duplicate-check.do',
+				url: '/ddstudio/user/duplicatecheck.do',
 				data: {
 					email: $('#email').val()
 				},

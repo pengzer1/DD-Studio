@@ -58,3 +58,22 @@ join tblUser U on U.user_seq = UB.user_seq
 join tblBuy B on B.buy_seq = UB.buy_seq
 join tblItem I on B.item_seq = I.item_seq
 join tblShop S on I.shop_seq = S.shop_seq;
+
+
+CREATE OR REPLACE VIEW vwInquiry as
+SELECT
+    i.inquiry_seq,
+    v.voc_seq,
+    v.type as vocType,
+    i.type as inquiryType,
+    v.subject as vocSubject,
+    i.subject as inquirySubject,
+    v.answer as vocAnswer,
+    i.answer as inquiryAnswer
+from tblUser U
+join tblInquiry I on U.user_seq = I.user_seq
+join tblVOC V on V.user_seq = U.user_seq;
+
+select * from tblUser;
+select * from tblInquiry;
+select * from tblVOC;
