@@ -30,6 +30,16 @@ public class Register extends HttpServlet {
 	        String name = req.getParameter("name");
 	        String birth = req.getParameter("birth");
 	        String tel = req.getParameter("tel");
+	        String address;
+	        
+	        if (req.getParameter("post-code").trim().isEmpty()) {
+		        address = "미기재"; //주소를 입력하지 않은 경우
+	        } else {
+		        String postCode = req.getParameter("post-code").trim();
+		        String addressBasis = req.getParameter("address-basis").trim();
+		        String addressDetail = req.getParameter("address-detail").trim();
+		        address = postCode + " " + addressBasis + " " + addressDetail;
+	        }
 	        
 			UserDTO dto = new UserDTO();
 
@@ -38,28 +48,23 @@ public class Register extends HttpServlet {
 			dto.setName(name);
 			dto.setBirth(birth);
 			dto.setTel(tel);
-
-			 System.out.println(email); System.out.println(pw); System.out.println(name);
-			 System.out.println(birth); System.out.println(tel);
+	        dto.setAddress(address);
 			
-			// 주소 정보를 입력한 경우 데이터 삽입
-	        if (req.getParameter("post-code") != null) {
-		        String postCode = req.getParameter("post-code");
-		        String addressBasis = req.getParameter("address-basis");
-		        String addressDetail = req.getParameter("address-detail");
-		        String address = postCode + " " + addressBasis + " " + addressDetail;
-				
-		        dto.setAddress(address);
-				
-		        System.out.println(address);
-	        }
+	        /*
+	        System.out.println(email); 
+	        System.out.println(pw);
+	        System.out.println(name);
+			System.out.println(birth);
+			System.out.println(tel);
+	        System.out.println(address);
+	        */
 
 			UserDAO dao = new UserDAO();
 
 			int result = dao.register(dto);
 
 			if (result == 1) {
-				resp.sendRedirect("/ddstudio/user/register-welcome.do");
+				resp.sendRedirect("/ddstudio/user/registerwelcome.do");
 				return;
 			}
 

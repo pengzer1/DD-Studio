@@ -6,5 +6,4 @@ import lombok.Data;
 public class HashTagDTO {
 	private String hashtag_seq;
 	private String name;
-	
 }

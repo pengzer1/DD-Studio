@@ -99,6 +99,9 @@
 				margin-top: 10px;
 			    margin-right: 150px;
 			}
+			.nav-icon {
+				font-size: 50px;
+			}
 		</style>
 	</head>
 	<body>

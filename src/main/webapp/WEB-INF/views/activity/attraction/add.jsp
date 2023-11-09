@@ -36,6 +36,10 @@
 		height: 100%;
 	}
 	
+	table.vertical {
+		margin:0 auto;
+	}
+	
 </style>
 </head>
 <body>
@@ -46,67 +50,94 @@
 
 	<!-- main -->
 	<main id="attraction-add">
-		<h1>어트랙션 <small>추가하기</small></h1>
+	
+		<div>
+			<h2>어트랙션 등록하기</h2>
+		</div>
 		
 		<hr id="add-line"/>
+		
+		<div id="sub-title">
+			<p>신규 어트랙션 등록</p>
+		</div>
+		
 		<div id="add-content">
-			<form method="POST" action="/ddstudio/activity/attractionadd.do">
-				<table id="form-table">
-					<tbody>
-						<tr>
-							<th>어트랙션명</th>
-							<td><input type="text" name="name"/></td>
-						</tr>
-						<tr>
-							<th>운영시간</th>
-							<td><input type="text" name="time"/></td>
-						</tr>
-						<tr>
-							<th>탑승인원</th>
-							<td><input type="text" name="capacity"/></td>
-						</tr>
-						<tr>
-							<th>이용정보</th>
-							<td><input type="text" name="restriction"/></td>
-						</tr>
-						<tr>
-							<th>위치</th>
-							<td>
-								<select name="location" id="location-select" class="selectbox">
-									<c:forEach items="${locationList}" var="dto">
-									<option value="${dto.info}">${dto.info}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>테마</th>
-							<td>
-								<select name="theme" id="theme-select" class="selectbox">
-									<c:forEach items="${themeList}" var="dto">
-									<option value="${dto.name}">${dto.name}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>해시태그</th>
-							<td>
-								<input type="text" name="hashtag" id="hashtag-text"/>
-								<%-- <select name="hashtag" id="hashtag-select" class="selectbox">
-									<c:forEach items="${hashtagList}" var="dto">
-									<option value="${dto.name}">${dto.name}</option>
-									</c:forEach>
-								</select> --%>
-							</td>
-						</tr>
-						<tr>
-							<th>이미지</th>
-							<td><input type="file" name="img1"/></td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
+			<div class="wide-item">
+				<form method="POST" action="/ddstudio/activity/attractionadd.do">
+					<table class="vertical">
+						<tbody>
+							<tr>
+								<th class="required">어트랙션명</th>
+								<td>
+									<div>
+										<input type="text" name="name"/>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th class="required">운영시간</th>
+								<td>
+									<div>
+										<input type="text" name="time"  placeholder="HH:MM - HH:MM 형식으로 작성해주세요."/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="required">탑승인원</th>
+								<td>
+									<div>
+										<input type="text" name="capacity"  placeholder="숫자 형식으로 작성해주세요."/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>이용정보</th>
+								<td>
+									<div>
+										<textarea name="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>위치</th>
+								<td>
+									<select name="location" id="location-select" class="selectbox">
+										<c:forEach items="${locationList}" var="dto">
+										<option value="${dto.info}">${dto.info}</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>테마</th>
+								<td>
+									<select name="theme" id="theme-select" class="selectbox">
+										<c:forEach items="${themeList}" var="dto">
+										<option value="${dto.name}">${dto.name}</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>해시태그</th>
+								<td>
+									<input type="text" name="hashtag" id="hashtag-text"/>
+									<%-- <select name="hashtag" id="hashtag-select" class="selectbox">
+										<c:forEach items="${hashtagList}" var="dto">
+										<option value="${dto.name}">${dto.name}</option>
+										</c:forEach>
+									</select> --%>
+								</td>
+							</tr>
+							<tr>
+								<th>이미지</th>
+								<td><input type="file" name="img1"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>

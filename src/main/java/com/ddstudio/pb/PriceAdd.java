@@ -60,6 +60,7 @@ public class PriceAdd extends HttpServlet {
         if (result == 1) {
 
             resp.sendRedirect("/ddstudio/pb/price.do");
+
         }else {
             PrintWriter writer = resp.getWriter();
 
