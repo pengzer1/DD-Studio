@@ -8,11 +8,6 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-table, td, th {
-	/* border: 1px solid #CCC; */
-	
-}
-
 td input.middle-flat {
 	color: #000;
 	margin-top: 50px;
@@ -89,8 +84,19 @@ th.required::before {
 	color: cornflowerblue;
 }
 
-.formcontrol {
-	display: !flex;
+#main {
+	text-align: center;
+	margin-top: 150px;
+}
+
+#sub-title {
+	width: 80%;
+	text-align: center;
+	border-top: 2px solid black;
+	margin: 50px auto 0;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -99,10 +105,7 @@ th.required::before {
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-
-		<div id="title">
-			<h2>회원가입</h2>
-		</div>
+		<h1>회원가입</h1>
 
 		<div id="sub-title">
 			<p>회원정보입력</p>
