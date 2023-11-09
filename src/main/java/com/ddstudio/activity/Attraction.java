@@ -25,7 +25,7 @@ public class Attraction extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<AttractionDTO> list = dao.list();
+		ArrayList<AttractionDTO> list = dao.attractionList();
 		
 		//System.out.println(list);
 		
