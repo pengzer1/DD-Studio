@@ -41,11 +41,10 @@ public class Register extends HttpServlet {
 			dto.setBirth(birth);
 			dto.setTel(tel);
 
-			System.out.println(email);
-			System.out.println(pw);
-			System.out.println(name);
-			System.out.println(birth);
-			System.out.println(tel);
+			/*
+			 * System.out.println(email); System.out.println(pw); System.out.println(name);
+			 * System.out.println(birth); System.out.println(tel);
+			 */
 			
 			// 주소 정보를 입력한 경우에만 데이터 삽입
 	        if (req.getParameter("post-code") != null) {

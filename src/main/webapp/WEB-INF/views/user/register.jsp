@@ -353,7 +353,7 @@ th.required::before {
 
 	        updateButtonStatus();
 	    });
-	    
+        
         /* 생년월일 유효성 검사 */
 	    const birthField = document.getElementById("birth");
 	    const birthErrorDiv = document.getElementById("birth-error");
@@ -389,6 +389,34 @@ th.required::before {
 	            telErrorDiv.style.display = "none";
 	        }
 	        
+	        updateButtonStatus();
+	    });
+        
+	    const cancelButton = document.getElementById("cancel");
+
+	    const postCodeField = document.getElementById("post-code");
+	    const addressBasisField = document.getElementById("address-basis");
+	    const addressDetailField = document.getElementById("address-detail");
+	    
+	    cancelButton.addEventListener("click", function () {
+	        emailField.value = "";
+	        passwordField.value = "";
+	        passwordConfirmField.value = "";
+	        nameField.value = "";
+	        birthField.value = "";
+	        telField.value = "";
+	        postCodeField.value = "";
+	        addressBasisField.value = "";
+	        addressDetailField.value = "";
+
+	        emailErrorDiv.style.display = "none";
+	        passwordErrorDiv.style.display = "none";
+	        passwordConfirmErrorDiv.style.display = "none";
+	        nameErrorDiv.style.display = "none";
+	        birthErrorDiv.style.display = "none";
+	        telErrorDiv.style.display = "none";
+	        
+	        isValid = [false, false, false, false, false, false, false];
 	        updateButtonStatus();
 	    });
 	});
