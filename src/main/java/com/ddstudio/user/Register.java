@@ -23,47 +23,51 @@ public class Register extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/register.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			MultipartRequest multi = new MultipartRequest(req,
-					req.getRealPath("/asset/pic"), 
-					1024 * 1024 * 10,
-					"UTF-8",
-					new DefaultFileRenamePolicy());
-	
-			String email = multi.getParameter("email");
-			String pw = multi.getParameter("pw");
-			String name = multi.getParameter("name");
-			String birth = multi.getParameter("birth");
-			String tel = multi.getParameter("tel");
-			String address = multi.getParameter("post-code") + " " + multi.getParameter("address-basis") + " " + multi.getParameter("address-detail");
-		
+			String email = req.getParameter("email");
+	        String pw = req.getParameter("pw");
+	        String name = req.getParameter("name");
+	        String birth = req.getParameter("birth");
+	        String tel = req.getParameter("tel");
+	        
 			UserDTO dto = new UserDTO();
-	
+
 			dto.setEmail(email);
 			dto.setPw(pw);
 			dto.setName(name);
 			dto.setBirth(birth);
 			dto.setTel(tel);
-			dto.setAddress(address);
-			
+
 			System.out.println(email);
 			System.out.println(pw);
 			System.out.println(name);
 			System.out.println(birth);
 			System.out.println(tel);
-			System.out.println(address);
 			
+			// 주소 정보를 입력한 경우에만 데이터 삽입
+	        if (req.getParameter("post-code") != null) {
+		        String postCode = req.getParameter("post-code");
+		        String addressBasis = req.getParameter("address-basis");
+		        String addressDetail = req.getParameter("address-detail");
+		        String address = postCode + " " + addressBasis + " " + addressDetail;
+				
+		        dto.setAddress(address);
+				
+		        System.out.println(address);
+	        }
+
 			UserDAO dao = new UserDAO();
-			
+
 			int result = dao.register(dto);
-			
+
 			if (result == 1) {
-				resp.sendRedirect("/ddstudio/index.do");
+				resp.sendRedirect("/ddstudio/user/register-welcome.do");
+				return;
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("Register.doPost()");
 			e.printStackTrace();
