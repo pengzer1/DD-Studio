@@ -104,7 +104,7 @@ table.vertical {
 							</td>
 						</tr>
 						<tr>
-							<th><input type="text" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
+							<th><input type="password" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
 						</tr>
 						<tr>
 							<td>
