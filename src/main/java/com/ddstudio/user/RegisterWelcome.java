@@ -1,4 +1,4 @@
-package com.ddstudio.communicate;
+package com.ddstudio.user;
 
 import java.io.IOException;
 
@@ -9,16 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/communicate/usageinquiryadd.do")
-public class UsageInquiryAdd extends HttpServlet {
+@WebServlet("/user/register-welcome.do")
+public class RegisterWelcome extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/communicate/usage-inquiry/add.jsp");
-
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/register-welcome.jsp");
 		dispatcher.forward(req, resp);
-
 	}
 
 }
