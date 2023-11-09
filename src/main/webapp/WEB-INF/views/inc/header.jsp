@@ -29,7 +29,7 @@
 						</a> <a href="team.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Redeem</div>
 							<div class="nav-menu-name">샵</div>
-						</a> <a href="/ddstudio/guide/convenient.do" class="nav-item nav-link index-navi">
+						</a> <a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">notification_important</div>
 							<div class="nav-menu-name">가이드</div>
 						</a> <a href="team.html" class="nav-item nav-link index-navi">

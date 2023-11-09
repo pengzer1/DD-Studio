@@ -1,102 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/views/inc/asset.jsp"%>
-<link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<title>Insert title here</title>
+<link rel="stylesheet" href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
 <style>
-	h2{
-		font-size: 40px;
-	}
-	#operating-time, #date, #today-close{
-		display: grid;
-		place-items: center;
-	}
-	#date{
-		padding-top: 20px;
-		border: 2px solid black;
-		font-size: 35px;
-	}
-	#operating-time{
-		border: 1px solid black;
-		background-color: black;
-		 width: 50%;
-		 margin: 0 auto;
-		 position: relative;
-	}
-	#operating-time > #timeKorea{
-		font-size: 28px;
-		color: white;
-	}
-	#operating-time > #timeNum{
-		font-size: 50px;
-		color:white;
-	}
-	#today-close{
-		color: black;
-		padding-top: 60px;
-		font-size: 35px;
-		font-weight: bold;
-	}
-	.item>div:nth-child(2) {
-		font-weight: bold;
-    	color: black;
-    	font-size: larger;
-	}
+
 </style>
 </head>
 <body>
-	<!-- Template.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<!-- Header -->
+	
 
-	<main id="main">
-
-		<div id="title" style="margin-top:123px;">
-			<h2>운영 / 운휴</h2>
-		</div>
-		
-		<div id="date">
-			<p>날짜 넣는 칸</p>
-		</div>
-		<br>
-		<div id="operating-time">
-			<div id="timeKorea">운영시간</div>
-			<div id="timeNum">10:00 - 21:00</div>
-		</div>
-		
-		<div id="today-close">&lt; 오늘의 운휴시설 &gt;</div>
-
-		<div id="content">
-			<div class="munti-content-container">
-				<div class="item">
-					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
-			</div>
-			
-		</div>
-		
-	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<!-- Footer -->
-
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="http://pinnpublic.dothome.co.kr/cdn/example-min.js"></script>
 	<script>
-		
+	
 	</script>
+
 </body>
 </html>
-
-

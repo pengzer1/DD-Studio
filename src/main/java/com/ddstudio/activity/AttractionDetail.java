@@ -24,7 +24,7 @@ public class AttractionDetail extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		AttractionDTO dto = dao.get(seq);
+		//AttractionDTO dto = dao.get(seq);
 		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attractiondetail.jsp");
