@@ -18,7 +18,7 @@ public class DBUtil {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			if (conn == null) {
-			conn = DriverManager.getConnection(url, id, pw);
+				conn = DriverManager.getConnection(url, id, pw);
 			}
 
 			return conn;
