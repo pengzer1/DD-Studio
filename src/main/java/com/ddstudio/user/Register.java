@@ -64,7 +64,7 @@ public class Register extends HttpServlet {
 			int result = dao.register(dto);
 
 			if (result == 1) {
-				resp.sendRedirect("/ddstudio/user/register-welcome.do");
+				resp.sendRedirect("/ddstudio/user/registerwelcome.do");
 				return;
 			}
 
