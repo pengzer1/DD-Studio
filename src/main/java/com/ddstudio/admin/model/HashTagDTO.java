@@ -1,5 +1,10 @@
 package com.ddstudio.admin.model;
 
-public class HashTagDTO {
+import lombok.Data;
 
+@Data
+public class HashTagDTO {
+	private String hashtag_seq;
+	private String name;
+	
 }
