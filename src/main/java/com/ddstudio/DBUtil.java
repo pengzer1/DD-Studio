@@ -19,6 +19,9 @@ public class DBUtil {
 
 			if (conn == null) {
 				conn = DriverManager.getConnection(url, id, pw);
+				//System.out.println(conn.isClosed());
+			} else if (conn.isClosed()) {
+				conn = DriverManager.getConnection(url, id, pw);
 			}
 
 			return conn;
