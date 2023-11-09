@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class InquiryDTO {
-
+	
 	private String inquiry_seq;
 	private String type;
 	private String subject;

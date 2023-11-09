@@ -219,5 +219,35 @@ public class CommuDAO {
 		return 0;
 		
 	}
+	
+	/* 이용문의 */
+
+	public String getName(String email) {
+		
+		try {
+
+			String sql = "select name from tblUser where email = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, email);
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+
+				return rs.getString("name");
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return null;
+		
+	}
 
 }
