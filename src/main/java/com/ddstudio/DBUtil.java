@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBUtil {
 
-	private static Connection conn;
+	private static Connection conn; // DAO 객체 생성할떄마다
 
 	public static Connection open() {
 
@@ -17,7 +17,9 @@ public class DBUtil {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			conn = DriverManager.getConnection(url, id, pw);
+			if (conn == null) {
+				conn = DriverManager.getConnection(url, id, pw);
+			}
 
 			return conn;
 

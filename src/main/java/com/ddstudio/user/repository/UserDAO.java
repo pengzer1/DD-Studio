@@ -49,4 +49,27 @@ public class UserDAO {
 		return null;
 	}
 
+	public int register(UserDTO dto) {
+		
+		try {
+			String sql = "insert into tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing) values (seqtblUser.nextVal, '?', '?', '?', '?', '?', TO_DATE('?', 'yyyy-mm-dd'), '1', 'Y')";
+		
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, dto.getPw());
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, dto.getAddress());
+			pstat.setString(6, dto.getBirth());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("UserDAO.register()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
 }
