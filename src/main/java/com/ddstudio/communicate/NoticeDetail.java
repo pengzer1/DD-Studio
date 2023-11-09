@@ -32,13 +32,21 @@ public class NoticeDetail extends HttpServlet {
 		dto.setSubject(subject);
 		
 		String content = dto.getContent();
+		
+		if (content != null) {
+			
+		    content = content.replace("<", "&lt;");
+		    content = content.replace(">", "&gt;");
+		    
+		    content = content.replace("\n", "<br>");
 
-		content = content.replace("<", "&lt;");
-		content = content.replace(">", "&gt;");
-		
-		content = content.replace("\n", "<br>");
-		
-		dto.setContent(content);
+		    dto.setContent(content);
+		    
+		} else {
+			
+		    dto.setContent("");
+		    
+		}
 
 		String regdate = dto.getRegdate();
 		

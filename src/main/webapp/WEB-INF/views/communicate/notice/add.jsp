@@ -8,7 +8,7 @@
 		<style>
 			#add-notice {
 				text-align: center;
-				margin-top: 70px;
+				margin-top: 150px;
 			}
 			#add-form {
 				width: 80%;
@@ -51,7 +51,10 @@
 			}
 			#add-button, #back-button {
 				width: 100px;
-				height: 30px;
+				height: 33px;
+				background-color: #FBF2F3;
+				border: 2px solid #F49097;
+				border-radius: 15px;
 				margin: 50px 10px 0;
 			}
 		</style>
@@ -62,15 +65,15 @@
 		<main id="add-notice">
 			<h1>공지사항 등록</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticeadd.do" enctype="multipart/form-data">
+			<form method="POST" action="/ddstudio/communicate/noticeadd.do" enctype="multipart/form-data" onsubmit="return validateForm()">
 				<table id="add-form">
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="subject" size="86" required autofocus></td>
+						<td><input type="text" name="subject" size="86" autofocus></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="content" required></textarea></td>
+						<td><textarea name="content"></textarea></td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>
@@ -93,5 +96,27 @@
 		</main>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
+		
+		<script>
+			function validateForm() {
+				var subject = document.querySelector('input[type="text"]');
+				var content = document.querySelector('textarea[name="content"]');
+				var file = document.querySelector('input[type="file"]');
+				
+				if (!subject.value.trim()) {
+					alert('제목을 입력하세요.');
+					subject.focus();
+					return false;
+				} else {
+					if (!content.value.trim() && !file.files.length) {
+						alert('내용을 입력하거나 첨부파일을 선택하세요.');
+						content.focus();
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+		</script>
 	</body>
 </html>

@@ -351,7 +351,7 @@ CREATE TABLE tblAttraction (
 	capacity NUMBER NOT NULL, /* 수용인원 */
 	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* 위치정보 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
-	restriction NUMBER, /* 키 크기 제약사항 */
+	restriction VARCHAR2(2000), /* 키 크기 제약사항 */
 	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* 테마번호 */
     is_test CHAR(1) NOT NULL /* 테스트채택 */
 );
@@ -451,11 +451,11 @@ CREATE TABLE tblVOC (
 	voc_seq NUMBER PRIMARY KEY, /* 건의번호 */
 	type VARCHAR2(500) NOT NULL, /* 구분 */
 	service_type VARCHAR2(500) NOT NULL, /* 서비스유형 */
-	subject VARCHAR2(500) NOT NULL, /* 건의제목 */
+	subject VARCHAR2(100) NOT NULL, /* 건의제목 */
 	content VARCHAR2(2000) NOT NULL, /* 건의내용 */
 	attach VARCHAR2(500), /* 첨부파일 */
 	visit_date DATE NOT NULL, /* 방문일 */
-	answer VARCHAR2(2000) NOT NULL, /* 답변내용 */
+	answer VARCHAR2(2000), /* 답변내용 */
 	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* 유저번호 */
 );
 
@@ -463,10 +463,10 @@ CREATE TABLE tblVOC (
 CREATE TABLE tblInquiry (
 	COL NUMBER PRIMARY KEY, /* 이용문의번호 */
 	COL2 VARCHAR2(500) NOT NULL, /* 문의유형 */
-	subject VARCHAR2(500) NOT NULL, /* 문의제목 */
+	subject VARCHAR2(100) NOT NULL, /* 문의제목 */
 	content VARCHAR2(2000) NOT NULL, /* 문의내용 */
 	attach VARCHAR2(500), /* 첨부파일 */
-	answer VARCHAR2(2000) NOT NULL, /* 답변내용 */
+	answer VARCHAR2(2000), /* 답변내용 */
 	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* 유저번호 */
 );
 
@@ -482,8 +482,8 @@ CREATE TABLE tblFAQ (
 /* 공지사항 */
 CREATE TABLE tblNotice (
    notice_seq NUMBER primary key, /* 공지사항번호 */
-   subject VARCHAR2(500) NOT NULL, /* 공지사항제목 */
-   content VARCHAR2(2000) NOT NULL, /* 공지사항내용 */
+   subject VARCHAR2(100) NOT NULL, /* 공지사항제목 */
+   content VARCHAR2(2000), /* 공지사항내용 */
    regdate DATE DEFAULT sysdate NOT NULL, /* 공지사항등록일 */
    attach VARCHAR2(500), /* 공지사항첨부파일 */
    fix CHAR(1) NOT NULL /* 고정유무 */

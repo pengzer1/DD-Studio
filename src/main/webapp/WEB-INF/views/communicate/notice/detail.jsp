@@ -8,7 +8,7 @@
 		<style>
 			#notice-detail {
 				text-align: center;
-				margin-top: 70px;
+				margin-top: 150px;
 			}
 			#regdate {
 				margin-top: 30px;

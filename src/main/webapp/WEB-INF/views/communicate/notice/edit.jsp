@@ -8,7 +8,7 @@
 		<style>
 			#edit-notice {
 				text-align: center;
-				margin-top: 70px;
+				margin-top: 150px;
 			}
 			#edit-form {
 				width: 80%;
@@ -69,17 +69,17 @@
 		<main id="edit-notice">
 			<h1>공지사항 수정</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}" enctype="multipart/form-data">
+			<form method="POST" action="/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}" enctype="multipart/form-data" onsubmit="return validateForm()">
 				<input type="hidden" name="seq" value="${dto.notice_seq}">
 
 				<table id="edit-form">
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="subject" size="86" value="${dto.subject}" required autofocus></td>
+						<td><input type="text" name="subject" size="86" value="${dto.subject}" autofocus></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="content" required>${dto.content}</textarea></td>
+						<td><textarea name="content">${dto.content}</textarea></td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>
@@ -121,6 +121,26 @@
 		            });
 		        }
 		    }
+		    
+		    function validateForm() {
+				var subject = document.querySelector('input[type="text"]');
+				var content = document.querySelector('textarea[name="content"]');
+				var file = document.querySelector('input[type="file"]');
+				
+				if (!subject.value.trim()) {
+					alert('제목을 입력하세요.');
+					subject.focus();
+					return false;
+				} else {
+					if (!content.value.trim() && !file.files.length) {
+						alert('내용을 입력하거나 첨부파일을 선택하세요.');
+						content.focus();
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
 		</script>
 	</body>
 </html>
