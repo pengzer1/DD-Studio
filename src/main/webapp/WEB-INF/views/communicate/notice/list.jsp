@@ -8,7 +8,7 @@
 		<style>
 			#notice {
 				text-align: center;
-				margin-top: 70px;
+				margin-top: 150px;
 			}
 			#search-form {
 				margin-top: 50px;

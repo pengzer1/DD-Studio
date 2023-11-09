@@ -8,7 +8,7 @@
 		<style>
 			#delete-notice {
 				text-align: center;
-				margin-top: 70px;
+				margin-top: 150px;
 			}
 			table {
 				width: 80%;
@@ -31,13 +31,13 @@
 		<main id="delete-notice">
 			<h1>공지사항 삭제</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticedel.do?seq=${seq}">
+			<form method="POST" action="/ddstudio/communicate/noticedel.do?seq=${seq}" name="delete-form">
 				<input type="hidden" name="seq" value="${seq}">
 				
 				<table>
 					<tr>
 						<td>
-							<button type="submit" id="delete-button">삭제</button>
+							<button type="submit" id="delete-button" onclick="confirmDelete()">삭제</button>
 							<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/noticedetail.do?seq=${seq}';">취소</button>
 						</td>
 					</tr>
@@ -46,5 +46,15 @@
 		</main>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
+		
+		<script>
+	        function confirmDelete() {
+	            var result = confirm("정말로 삭제하시겠습니까?");
+	            
+	            if (result) {
+	                document.forms["delete-form"].submit();
+	            }
+	        }
+	    </script>
 	</body>
 </html>

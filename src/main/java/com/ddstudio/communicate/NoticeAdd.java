@@ -32,7 +32,7 @@ public class NoticeAdd extends HttpServlet {
 
 		try {
 			
-			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 50, "UTF-8", new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
 			
 			String subject = multi.getParameter("subject");
 			String content = multi.getParameter("content");
