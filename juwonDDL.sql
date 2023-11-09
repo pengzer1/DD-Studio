@@ -40,3 +40,21 @@ select * from vwBookUser;
 
 
 -- 회원정보 수정
+select * from tblUser;
+
+
+-- 기프트샵 구매 내역
+CREATE OR REPLACE VIEW vwUserBuy as
+SELECT
+    U.email,
+    S.name as shopName,
+    I.name as itemName,
+    B.ea,
+    I.price,
+    B.buy_seq,
+    B.buy_date
+from tblUserBuy UB
+join tblUser U on U.user_seq = UB.user_seq
+join tblBuy B on B.buy_seq = UB.buy_seq
+join tblItem I on B.item_seq = I.item_seq
+join tblShop S on I.shop_seq = S.shop_seq;

@@ -127,17 +127,41 @@
 						<label for="tel">연락처</label> <input type="tel"
 							id="tel" name="tel" required value=${dto.tel}>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="address">주소</label> <input type="text"
 							id="address" name="address" required value=${dto.address}>
 					</div>
-					<!-- <div class="address-group">
-						<input type="text" id="basicAddress" name="basicAddress"
-							placeholder="기본 주소" required> <input type="text"
-							id="detailAddress" name="detailAddress" placeholder="상세 주소"
-							required>
+					<div class="form-group">
+						<input type="text" name="address-basis" id="address-basis" class="middle-flat" placeholder="기본주소"> 
+						<input type="text" name="address-detail" id="address-detail" class="middle-flat" placeholder="상세주소">
 					</div> -->
-					
+					<div class="form-group">
+					<tr>
+							<th>주소</th>
+							<td>
+								<div class="address">
+									<input type="text" name="post-code" id="post-code" class="middle-flat" placeholder="우편번호">
+									<button type="button" class="button check" onclick="execDaumPostcode()">우편번호 검색</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="address">
+									<input type="text" name="address-basis" id="address-basis" class="middle-flat" placeholder="기본주소">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="address">
+									<input type="text" name="address-detail" id="address-detail" class="middle-flat" placeholder="상세주소">
+								</div>
+							</td>
+						</tr>
+					</div>
 					<div class="btn-container">
 						<button type="submit" class="btn" onclick="location.href='/ddstudio/member/mypage/info.do'">수정</button>
 						<button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/mypage/info.do'">취소</button>
@@ -151,8 +175,43 @@
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
 
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 	<script>
-		
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var addr = '';
+				var extraAddr = '';
+
+				if (data.userSelectedType === 'R') { // 도로명 주소 선택
+					addr = data.roadAddress;
+				} else { // 지번 주소 선택
+					addr = data.jibunAddress;
+				}
+
+				if (data.userSelectedType === 'R') {
+					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					if (data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+					if (extraAddr !== '') {
+						extraAddr = ' (' + extraAddr + ')';
+					}
+				} else {
+					document.getElementById("address-basis").value = '';
+				}
+
+				// 우편번호와 주소 정보를 input 박스에 삽입
+				document.getElementById('post-code').value = data.zonecode;
+				document.getElementById("address-basis").value = addr;
+				document.getElementById("address-basis").value += extraAddr;
+				document.getElementById("address-detail").focus(); // 상세주소로 포커스 이동
+			}
+		}).open();
+	}
 	</script>
 </body>
 </html>

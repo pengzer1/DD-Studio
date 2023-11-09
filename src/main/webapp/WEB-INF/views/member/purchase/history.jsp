@@ -92,10 +92,10 @@ tr:nth-child(even) {
 					<tbody>
 						<!-- 첫 번째 품목 -->
 						<tr>
-							<td>샵 A</td>
-							<td>품목 1</td>
-							<td>2</td>
-							<td>$20.00</td>
+							<td>${dto.shopName}</td>
+							<td>${dto.itemName}</td>
+							<td>${dto.ea}</td>
+							<td>${dto.price}</td>
 						</tr>
 						<!-- 두 번째 품목 -->
 						<tr>
