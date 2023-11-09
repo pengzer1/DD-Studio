@@ -1,5 +1,5 @@
 package com.ddstudio.admin.repository;
 
-public class AdminDAO {
+public class HashTagDAO {
 
 }

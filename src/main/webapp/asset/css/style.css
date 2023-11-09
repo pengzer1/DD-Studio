@@ -20,6 +20,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-top: 100px;
 }
 
 #main > #sub-title {
@@ -32,10 +33,16 @@
 }
 
 #content {
-	margin: 0 200px;
-	margin-top: -50px;
-	min-width: 450px;
-	box-sizing: border-box;
+    padding: 0 200px;
+    margin-top: -50px;
+    min-width: 450px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    #content {
+        padding: 0;
+    }
 }
 
 #content > #condition {
@@ -150,6 +157,15 @@
 	justify-content: center;
 	align-items: center;
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+}
+
+#ddstudio-header {
+	margin: 0px;
+	position: fixed;
+	top:0;
+	z-index:999;
+	background-color: #FFF;
+	padding-bottom: 10px;
 }
 
 h1, h2, .font-weight-bold {
@@ -347,3 +363,4 @@ h5, h6, .font-weight-medium {
 		background: var(- -primary);
 	}
 }
+

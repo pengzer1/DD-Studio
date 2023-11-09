@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Header Start -->
-<div id="ddstudio-header" class="container-fluid px-0"
-	style="margin-top: 20px; margin-bottom: 20px;">
+<div id="ddstudio-header" class="container-fluid px-0">
 	<div class="row gx-0">
 		<div class="col-lg-3 d-none d-lg-block">
 			<a href="/ddstudio/index.do" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
@@ -17,7 +16,7 @@
 				<div class="collapse navbar-collapse justify-content-between"
 					id="navbarCollapse" style="font-size: 1.2rem;">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="index.html" class="nav-item nav-link active index-navi">
+						<a href="/ddstudio/pb/price.do" class="nav-item nav-link active index-navi">
 							<div class="material-symbols-outlined nav-icon">Local_Activity</div>
 							<div class="nav-menu-name">요금/혜택</div>
 						</a> <a href="/ddstudio/activity/attraction.do"

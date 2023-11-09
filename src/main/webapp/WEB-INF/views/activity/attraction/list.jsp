@@ -29,54 +29,15 @@
 			</div>
 
 			<div class="munti-content-container">
+				
+				<c:forEach items="${list}" var="dto">
 				<div class="item">
-					<div>아이템 1</div>
-					<div>파라오의 분노</div>
+					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div>${dto.name}</div>
 				</div>
-				<div class="item">
-					<div
-						style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>회전목마</div>
-				</div>
-				<div class="item">
-					<div style="background-image: url('/ddstuid')"></div>
-					<div>쌍용열차</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>신밧드의 모험</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>지브리특급</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
+				</c:forEach>
+				
 			</div>
-			
 		</div>
 		
 	</main>
@@ -84,6 +45,12 @@
 	<!-- Footer -->
 
 	<script>
+	
+		$('.item').click.(function() {
+			
+			alert();
+			location.href= '/ddstudio/activity/attractiondetail.do?seq=${dto.attraction_seq}';
+		});		
 		
 	</script>
 </body>
