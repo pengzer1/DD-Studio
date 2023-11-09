@@ -1,4 +1,4 @@
-package com.ddstudio.guide.model;
+package com.ddstudio.activity.model;
 
 import lombok.Data;
 

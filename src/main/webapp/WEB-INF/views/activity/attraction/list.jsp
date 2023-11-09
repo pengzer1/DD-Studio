@@ -103,7 +103,7 @@
 			<!-- 관리자용 추가 버튼 -->
 			<c:if test="${not empty email && lv == 2}">
 				<div id="admin-btn">
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>추가</button>
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>등록</button>
 				</div>
 			</c:if>
 	
@@ -140,8 +140,17 @@
 		$('#condition').click(function(){
 			//alert();
 			
-			//if ()
+			//if (현재 display 상태를 확인해서 그게 ==block이면)
+			//alert($(this).children().css("display"));
 			
+			if ($('#default-searchbar').children().css("display") == "block") {
+				
+				$('#default-searchbar').css('display', none)
+			} else {
+				$('#default-searchbar').css('display', block)
+			}
+				
+				
 			//$('#hidden-searchbar').css('display', block);
 			//$('#default-searchbar').css('display', none);
 		});

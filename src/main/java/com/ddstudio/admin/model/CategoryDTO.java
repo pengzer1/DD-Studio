@@ -6,8 +6,4 @@ import lombok.Data;
 public class CategoryDTO {
 	private String category_seq;
 	private String name;
-<<<<<<< HEAD
-=======
-	
->>>>>>> main
 }
