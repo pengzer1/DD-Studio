@@ -99,12 +99,30 @@
         <div class="wide-content-container">
             <div class="wide-item">
                 <div>1Day</div>
-                <div>요금</div>
+                <div>
+                    <c:forEach items="${personTypeList}" var="dto">
+                        <c:if test="${dto.ticket_type eq '1Day'}">
+                            <div>
+                                <div>${dto.age}</div>
+                                <div>${dto.price}</div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </div>
 
             <div class="wide-item">
                 <div>After4</div>
-                <div>요금</div>
+                <div>
+                    <c:forEach items="${personTypeList}" var="dto">
+                        <c:if test="${dto.ticket_type eq '1Day'}">
+                            <div>
+                                <div>${dto.age}</div>
+                                <div>${dto.price}</div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </div>
             <!-- 추가 아이템들 -->
         </div>
