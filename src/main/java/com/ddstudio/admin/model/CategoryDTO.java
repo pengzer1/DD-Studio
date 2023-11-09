@@ -1,5 +1,10 @@
 package com.ddstudio.admin.model;
 
-public class CategoryDTO {
+import lombok.Data;
 
+@Data
+public class CategoryDTO {
+	private String category_seq;
+	private String name;
+	
 }

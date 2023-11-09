@@ -17,7 +17,7 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="margin-top:123px;">
 			<h2>제목</h2>
 			<br>
 			<p>내용을 입력하세요</p>
