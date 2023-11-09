@@ -85,6 +85,10 @@ th.required::before {
 	color: cornflowerblue;
 }
 
+#cancel {
+	margin-right: 15px;
+}
+
 #main {
 	text-align: center;
 	margin-top: 150px;
@@ -234,9 +238,9 @@ th.required::before {
 								</div>
 							</td>
 						</tr>
-
 						<tr>
-							<td colspan="2">
+							<th></th>
+							<td>
 								<div class="button-container">
 									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
 									<!-- <div id="ok-message"></div> -->
