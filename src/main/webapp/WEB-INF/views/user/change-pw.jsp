@@ -86,7 +86,7 @@ th.required::before {
 }
 
 #cancel {
-	margin-right: 45px;
+	margin-right: 15px;
 }
 
 #main {
