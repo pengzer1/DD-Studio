@@ -338,7 +338,6 @@ th.required::before {
 		        }
 	            
 		        updateButtonStatus();
-		        console.log(isValid);
 		    });
 	        
 		    /* 비밀번호 유효성 검사 */
@@ -369,7 +368,6 @@ th.required::before {
 		        }
 	
 		        updateButtonStatus();
-		        console.log(isValid);
 		    });
 	
 		    /* 비밀번호 확인 유효성 검사 */
@@ -385,7 +383,6 @@ th.required::before {
 		        }
 	
 		        updateButtonStatus();
-		        console.log(isValid);
 		    });
 		    
 		    /* 이름 유효성 검사 */
