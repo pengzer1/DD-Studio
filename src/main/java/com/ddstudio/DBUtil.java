@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBUtil {
 
-	private static Connection conn; // DAO 객체 생성할떄마다
+	private static Connection conn;
 
 	public static Connection open() {
 

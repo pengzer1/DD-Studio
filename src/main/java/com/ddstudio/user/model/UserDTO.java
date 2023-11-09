@@ -5,6 +5,7 @@ package com.ddstudio.user.model;
 //@Data
 public class UserDTO {
 	
+	private String user_seq;
 	private String name;
 	private String email;
 	private String pw;
@@ -13,6 +14,14 @@ public class UserDTO {
 	private String birth;
 	private String lv;
 	private String ing;
+
+	public String getUser_seq() {
+		return user_seq;
+	}
+
+	public void setUser_seq(String user_seq) {
+		this.user_seq = user_seq;
+	}
 
 	public String getName() {
 		return name;

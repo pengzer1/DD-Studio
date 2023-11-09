@@ -19,6 +19,9 @@ public class UserDAO {
 		this.conn = DBUtil.open();
 	}
 
+	/*
+	 * 로그인
+	 */
 	public UserDTO login(UserDTO dto) {
 
 		try {
@@ -47,6 +50,58 @@ public class UserDAO {
 		}
 
 		return null;
+	}
+
+	/*
+	 * 회원 가입
+	 */
+	public int register(UserDTO dto) {
+
+		try {
+			String sql = "insert into tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing) values (seqtblUser.nextVal, ?, ?, ?, ?, ?, TO_DATE(?, 'yyyy-mm-dd'), '1', 'Y')";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, dto.getPw());
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, dto.getAddress());
+			pstat.setString(6, dto.getBirth());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("UserDAO.register()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	/*
+	 * 이메일 중복 검사
+	 */
+	public int check(String email) {
+
+		try {
+
+	        String sql = "select count(*) as cnt from tblUser where email = ?";
+
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, email);
+
+	        rs = pstat.executeQuery();
+
+	        if (rs.next()) {
+	            return rs.getInt("cnt");
+	        }
+
+	    } catch (Exception e) {
+	        System.out.println("UserDAO.check()");
+	        e.printStackTrace();
+	    }
+
+	    return 0;
 	}
 
 }

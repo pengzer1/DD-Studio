@@ -1,6 +1,5 @@
 package com.ddstudio.pb;
 
-
 import com.ddstudio.pb.model.PriceDTO;
 import com.ddstudio.pb.repository.GroupPriceDAO;
 import com.ddstudio.pb.repository.PriceDAO;
@@ -20,7 +19,6 @@ public class Price extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         PriceDAO dao = new PriceDAO();
 
         GroupPriceDAO groupDao = new GroupPriceDAO();
@@ -37,11 +35,9 @@ public class Price extends HttpServlet {
         req.setAttribute("personTypeList", personTypeList);
         req.setAttribute("groupList",groupList);
 
-
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pb/price/detail.jsp");
         dispatcher.forward(req, resp);
 
-
     }
+
 }

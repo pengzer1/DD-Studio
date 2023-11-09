@@ -12,12 +12,11 @@
 </head>
 <body>
 	<!-- Template.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<!-- Header -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="margin-top:123px;">
 			<h2>제목</h2>
 			<br>
 			<p>내용을 입력하세요</p>
@@ -64,8 +63,7 @@
 			</div>
 		</div>
 	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
 		
