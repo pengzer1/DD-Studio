@@ -23,7 +23,6 @@ td input.middle-flat {
 	font-size: 16px;
 	margin: 0;
 	margin-left: 15px;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
@@ -38,6 +37,10 @@ td>div {
 
 #post-code {
 	width: 228px;
+}
+
+#birth-button {
+	width: 40px;
 }
 
 form {
@@ -70,10 +73,6 @@ td input.middle-flat:focus {
 
 .address>.check {
 	width: 160px;
-}
-
-button.check {
-
 }
 
 table.vertical {
@@ -119,7 +118,7 @@ th.required::before {
 							<td>
 								<div class="email">
 									<input type="text" name="email" id="email" required class="middle-flat">
-									<button type="button" id="duplicate-check" class="button check" disabled>중복검사</button>
+									<input type="button" id="duplicate-check" class="button check" disabled value="중복검사"></input>
 								</div>
 							</td>
 						</tr>
@@ -127,9 +126,7 @@ th.required::before {
 						    <th></th>
 						    <td>
 						        <div id="email-error" class="error-message" style="display:none;"></div>
-						    </td>
-						    <td>
-						        <div id="duplicate-check-message" class="error-message" style="display:none;"></div>
+						        <span id="duplicate-check-message" class="error-message" style="display:none;"></span>
 						    </td>
 						</tr>
 						<!-- 비밀번호 필드와 에러 메시지 -->
@@ -182,7 +179,7 @@ th.required::before {
 							<th class="required">생년월일</th>
 							<td>
 								<div>
-									<input type="text" name="birth" id="birth" required class="middle-flat">
+									<input type="date" name="birth" id="birth" required class="middle-flat">
 								</div>
 							</td>
 						</tr>
@@ -251,29 +248,39 @@ th.required::before {
 	</main>
 	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
-	
+		
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		/* 아이디 중복 검사 */
+		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
+		
+		/* 이메일 (아이디) 중복 검사 */
 		$('#duplicate-check').click(function(){
 			$.ajax({
 				type: 'POST',
-				url: '/user/duplicate-check.do',
+				url: '/ddstudio/user/duplicate-check.do',
 				data: {
 					email: $('#email').val()
 				},
 				dataType: 'json',
 				success: function(result) {
-					alert(result.message); //가능(0), 불가능(1)
+					//alert(result.message); //사용 가능(0) 사용중(1)
 					
 					if (result.message == 0) {
+						//console.log("true");
+					    $('#duplicate-check-message').css('display', 'block');
 						$('#duplicate-check-message').text('사용 가능한 아이디입니다.');
-						$('#duplicate-check').prop('disalbed', false);
+						$('#join').prop('disalbed', false);
+						
+						isValid[1] = true;
 					}
 					else {
+						//console.log("false");
+					    $('#duplicate-check-message').css('display', 'block');
 						$('#duplicate-check-message').text('이미 사용중인 아이디입니다.');
-						$('#duplicate-check').prop('disalbed', true);
+						$('#join').prop('disalbed', true);
+						
+						isValid[1] = false;
 					}
 				},
 				errors: function(a,b,c) {
@@ -282,14 +289,12 @@ th.required::before {
 			});
 		});
 	
-		//아이디를 수정하면 가입 불가능
+		// 이메일(아이디)를 수정하면 가입 불가능
 		$('#email').change(function() {
-			$('#duplicate-check').prop('disabled', true);
+			$('#join').prop('disabled', true);
 		});
 		
 		document.addEventListener("DOMContentLoaded", function () {
-	
-			let isValid = [false, false, false, false, false, false]; // 검사 결과 저장
 			
 			const joinButton = document.getElementById("join");
 	
@@ -308,14 +313,18 @@ th.required::before {
 	        /* 이메일 유효성 검사 */
 		    const emailField = document.getElementById("email");
 		    const emailErrorDiv = document.getElementById("email-error");
-	        const emailRegex = /^[a-z0-9]{6,16}$/;
+		    const emailRegex = /^[a-z0-9._%+-]{1,20}\@[a-z0-9.-]{1,8}\.[a-z]{1,5}$/;
+
 			const duplicateCheck = document.getElementById("duplicate-check");
 	        
 		    emailField.addEventListener("input", function () {
 		    	isValid[0] = emailRegex.test(emailField.value);
-		        
-		        emailErrorDiv.textContent = isValid[0] ? "" : "6-16자의 영어 소문자와 숫자를 입력하세요.";
+		    	isValid[1] = false;
+		    	
+		        emailErrorDiv.textContent = isValid[0] ? "" : "올바른 이메일 형식을 입력하세요. (예: park@email.com)";
 		        emailErrorDiv.style.display = isValid[0] ? "none" : "block";
+
+		        $('#duplicate-check-message').css('display', 'none');
 		        
 		        if (emailField.value.length === 0) {
 		        	emailErrorDiv.textContent = "";
@@ -329,6 +338,7 @@ th.required::before {
 		        }
 	            
 		        updateButtonStatus();
+		        console.log(isValid);
 		    });
 	        
 		    /* 비밀번호 유효성 검사 */
@@ -339,14 +349,14 @@ th.required::before {
 	        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/
 	        
 		    passwordField.addEventListener("input", function () {
-		    	isValid[1] = passwordRegex.test(passwordField.value);
-		    	isValid[2] = passwordConfirmField.value === passwordField.value;
+		    	isValid[2] = passwordRegex.test(passwordField.value);
+		    	isValid[3] = passwordConfirmField.value === passwordField.value;
 	
-		        passwordErrorDiv.textContent = isValid[1] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
-		        passwordErrorDiv.style.display = isValid[1] ? "none" : "block";
+		        passwordErrorDiv.textContent = isValid[2] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
+		        passwordErrorDiv.style.display = isValid[2] ? "none" : "block";
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[2] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-		        passwordConfirmErrorDiv.style.display = isValid[2] ? "none" : "block";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 	
 		        if (passwordField.value.length === 0) {
 		            passwordErrorDiv.textContent = "";
@@ -359,14 +369,15 @@ th.required::before {
 		        }
 	
 		        updateButtonStatus();
+		        console.log(isValid);
 		    });
 	
 		    /* 비밀번호 확인 유효성 검사 */
 		    passwordConfirmField.addEventListener("input", function () {
-		    	isValid[2] = passwordConfirmField.value === passwordField.value;
+		    	isValid[3] = passwordConfirmField.value === passwordField.value;
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[2] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-		        passwordConfirmErrorDiv.style.display = isValid[2] ? "none" : "block";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 		        
 		        if (passwordConfirmField.value.length === 0) {
 		            passwordConfirmErrorDiv.textContent = "";
@@ -374,18 +385,19 @@ th.required::before {
 		        }
 	
 		        updateButtonStatus();
+		        console.log(isValid);
 		    });
 		    
 		    /* 이름 유효성 검사 */
 		    const nameField = document.getElementById("name");
 		    const nameErrorDiv = document.getElementById("name-error");
-	        const nameRegex = /^[가-힣]{1,8}$/; // 1글자에서 8글자의 한글 이름만 허용
+	        const nameRegex = /^[가-힣]{2,6}$/; // 2글자에서 6글자의 한글 이름만 허용
 	
 		    nameField.addEventListener("input", function () {
-		    	isValid[3] = nameRegex.test(nameField.value);
+		    	isValid[4] = nameRegex.test(nameField.value);
 		        
-		        nameErrorDiv.textContent = isValid[3] ? "" : "1-8자의 한글 이름을 입력하세요.";
-		        nameErrorDiv.style.display = isValid[3] ? "none" : "block";
+		        nameErrorDiv.textContent = isValid[4] ? "" : "2-6자의 한글 이름을 입력하세요.";
+		        nameErrorDiv.style.display = isValid[4] ? "none" : "block";
 	
 		        if (nameField.value.length === 0) {
 		            nameErrorDiv.textContent = "";
@@ -398,13 +410,13 @@ th.required::before {
 	        /* 생년월일 유효성 검사 */
 		    const birthField = document.getElementById("birth");
 		    const birthErrorDiv = document.getElementById("birth-error");
-	        const birthRegex = /^[0-9]{8}$/; // 8자리 숫자 형식 (예: 19960814)
+		    const birthRegex = /^(19|20)\d\d-[0-1]\d-[0-3]\d$/; // YYYY-MM-DD 형식
 	
 		    birthField.addEventListener("input", function () {
-		    	isValid[4] = birthRegex.test(birthField.value);
+		    	isValid[5] = birthRegex.test(birthField.value);
 	
-		        birthErrorDiv.textContent = isValid[4] ? "" : "올바른 생년월일 형식을 입력하세요. (예: 19960814)";
-		        birthErrorDiv.style.display = isValid[4] ? "none" : "block";
+		        birthErrorDiv.textContent = isValid[5] ? "" : "올바른 생년월일 형식을 입력하세요. (예: YYYY-MM-DD)";
+		        birthErrorDiv.style.display = isValid[5] ? "none" : "block";
 	
 		        if (birthField.value.length === 0) {
 		            birthErrorDiv.textContent = "";
@@ -420,10 +432,10 @@ th.required::before {
 	        const telRegex = /^010-[0-9]{4}-[0-9]{4}$/; // 010-XXXX-XXXX 형식의 전화번호
 	
 		    telField.addEventListener("input", function () {
-		    	isValid[5] = telRegex.test(telField.value);
+		    	isValid[6] = telRegex.test(telField.value);
 	
-		        telErrorDiv.textContent = isValid[5] ? "" : "올바른 전화번호 형식을 입력하세요. (예: 010-XXXX-XXXX)";
-		        telErrorDiv.style.display = isValid[5] ? "none" : "block";
+		        telErrorDiv.textContent = isValid[6] ? "" : "올바른 전화번호 형식을 입력하세요. (예: 010-XXXX-XXXX)";
+		        telErrorDiv.style.display = isValid[6] ? "none" : "block";
 	
 		        if (telField.value.length === 0) {
 		            telErrorDiv.textContent = "";
@@ -449,6 +461,7 @@ th.required::before {
 		        postCodeField.value = "";
 		        addressBasisField.value = "";
 		        addressDetailField.value = "";
+		        $('#duplicate-check-message').css('display', 'none');
 	
 		        emailErrorDiv.style.display = "none";
 		        passwordErrorDiv.style.display = "none";

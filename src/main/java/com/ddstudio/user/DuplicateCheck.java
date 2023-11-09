@@ -20,7 +20,11 @@ public class DuplicateCheck extends HttpServlet {
 		String email = req.getParameter("email");
 		UserDAO dao = new UserDAO();
 		
+		//System.out.println(email);
+		
 		int message = dao.check(email);
+
+		//System.out.println(message);
 		
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");

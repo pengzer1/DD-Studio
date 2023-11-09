@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @WebServlet("/user/register.do")
 public class Register extends HttpServlet {
@@ -41,12 +39,10 @@ public class Register extends HttpServlet {
 			dto.setBirth(birth);
 			dto.setTel(tel);
 
-			/*
-			 * System.out.println(email); System.out.println(pw); System.out.println(name);
-			 * System.out.println(birth); System.out.println(tel);
-			 */
+			 System.out.println(email); System.out.println(pw); System.out.println(name);
+			 System.out.println(birth); System.out.println(tel);
 			
-			// 주소 정보를 입력한 경우에만 데이터 삽입
+			// 주소 정보를 입력한 경우 데이터 삽입
 	        if (req.getParameter("post-code") != null) {
 		        String postCode = req.getParameter("post-code");
 		        String addressBasis = req.getParameter("address-basis");
