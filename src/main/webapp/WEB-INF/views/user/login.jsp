@@ -109,8 +109,8 @@ table.vertical {
 						<tr>
 							<td>
 								<div class="button-container">
-									<button type="button" class="button" onclick="location.href='/ddstudio/user/find-id.do';">아이디 찾기</button>
-									<button type="button" class="button" onclick="location.href='/ddstudio/user/change-pw.do';">비밀번호 변경</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/findid.do';">아이디 찾기</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/changepw.do';">비밀번호 변경</button>
 								</div>
 							</td>
 						</tr>
