@@ -10,6 +10,9 @@ import com.ddstudio.DBUtil;
 import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.AttractionImgDTO;
+import com.ddstudio.admin.model.HashTagDTO;
+import com.ddstudio.admin.model.ThemeDTO;
+import com.ddstudio.guide.model.LocationDTO;
 
 
 public class ActDAO {
@@ -179,10 +182,109 @@ public class ActDAO {
 		
 		return null;
 	}
-	
-	
+
 	
 	//위치, 테마, 해시태그 가져오기 임시로 작성(나중에 병합 후에 해당 담당자가 구현한 메서드에서 가져와야 함!
+	
+	public ArrayList<LocationDTO> locationList() {
+
+		try {
+					
+					String sql = "select * from tblLocation";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<LocationDTO> list = new ArrayList<LocationDTO>();
+					while (rs.next()) {
+						
+						LocationDTO dto = new LocationDTO();
+						
+						dto.setLocation_seq(rs.getString("location_seq"));
+						dto.setInfo(rs.getString("info"));
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.locationList");
+					e.printStackTrace();
+				}
+		
+		return null;
+	}
+
+	public ArrayList<ThemeDTO> themeList() {
+
+		try {
+					
+					String sql = "select * from tblTheme";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<ThemeDTO> list = new ArrayList<ThemeDTO>();
+					while (rs.next()) {
+						
+						ThemeDTO dto = new ThemeDTO();
+						
+						dto.setTheme_seq(rs.getString("theme_seq"));
+						dto.setName(rs.getString("name"));
+						
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.themeList");
+					e.printStackTrace();
+				}
+		
+		
+		
+		return null;
+	}
+
+	public ArrayList<HashTagDTO> hashtagList() {
+
+		try {
+					
+					String sql = "select * from tblHashtag";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<HashTagDTO> list = new ArrayList<HashTagDTO>();
+					while (rs.next()) {
+						
+						HashTagDTO dto = new HashTagDTO();
+
+						dto.setHashtag_seq(rs.getString("hashtag_seq"));
+						dto.setName(rs.getString("name"));
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.hashtagList");
+					e.printStackTrace();
+				}
+		
+		
+		return null;
+	}
+	
+	
+	
 	
 	
 }

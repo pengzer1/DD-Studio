@@ -100,11 +100,13 @@
 	<main id="attraction">
 		<h1><c:out value="${dto.name}"/></h1>
 
-		<!-- 여기 관리자 로그인시에만 보이도록 lv 별 상이하게 보이게 추가 필요 c:if -->
+		<!-- 관리자용 수정/삭제 버튼 -->
+		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
 			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/attractiondel.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
 			<button type="button" id="edit-btn" onclick="location.href='ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
 		</div>
+		</c:if>
 		
 		<hr id="detail-line"/>
 		

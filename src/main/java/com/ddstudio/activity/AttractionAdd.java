@@ -31,13 +31,18 @@ public class AttractionAdd extends HttpServlet {
 		ActDAO dao = new ActDAO();
 		
 		//1. 위치 가져오기
-		ArrayList<LocationDTO> locationList = new ArrayList<LocationDTO>();
+		ArrayList<LocationDTO> locationList = dao.locationList();
 		
 		//2. 테마 가져오기
-		ArrayList<ThemeDTO> themeList = new ArrayList<ThemeDTO>();
+		ArrayList<ThemeDTO> themeList = dao.themeList();
 		
 		//3. 해시태그 가져오기
-		ArrayList<HashTagDTO> hashtagList = new ArrayList<HashTagDTO>();
+		ArrayList<HashTagDTO> hashtagList = dao.hashtagList();
+		
+		//4. 데이터 전송
+		req.setAttribute("locationList", locationList);
+		req.setAttribute("themeList", themeList);
+		req.setAttribute("hashtagList", hashtagList);
 		
 		
 
