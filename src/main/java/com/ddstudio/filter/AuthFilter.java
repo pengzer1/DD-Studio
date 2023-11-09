@@ -40,13 +40,13 @@ public class AuthFilter implements Filter {
 		// 익명 사용자 > 배제
 //		System.out.println(httpReq.getRequestURI());
 		
-		if (session.getAttribute("id") == null) {
+		if (session.getAttribute("email") == null) {
 			if (httpReq.getRequestURI().endsWith("add.do") || httpReq.getRequestURI().endsWith("edit.do") || httpReq.getRequestURI().endsWith("del.do")) {
 				
-				//httpResp.sendRedirect("/toy/index.do");
+				//httpResp.sendRedirect("/ddstudio/index.do");
 				
 				PrintWriter writer = httpResp.getWriter();
-				writer.write("<script>alert('unauthoized');location.href='/toy/index.do';</script>");
+				writer.write("<script>alert('unauthoized');location.href='/ddstudio/index.do';</script>");
 				writer.close();
 				
 				return;
