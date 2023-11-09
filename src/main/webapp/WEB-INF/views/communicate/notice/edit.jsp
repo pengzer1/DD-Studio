@@ -25,6 +25,14 @@
 				font-size: 1.1rem;
 				border-right: 1px solid #E1E1E1;
 			}
+			#edit-form .required::before {
+				content: "* ";
+				color: red;
+			}
+			#edit-form .option::before {
+				content: "* ";
+				color: cornflowerblue;
+			}
 			#edit-form td {
 				width: 70%;
 				text-align: left;
@@ -53,13 +61,18 @@
 			#edit-form tr:nth-child(3) td .material-symbols-outlined {
     			vertical-align: middle;
 			}
+			#button-list i {
+				margin-right: 10px;
+			}
 			#edit-button, #back-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
+				width: 90px;
+				height: 40px;
+				background-color: transparent;
+				border: 2px solid #CCC;
 				margin: 50px 10px 0;
+			}
+			.nav-icon {
+				font-size: 50px;
 			}
 		</style>
 	</head>
@@ -69,20 +82,20 @@
 		<main id="edit-notice">
 			<h1>공지사항 수정</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}" enctype="multipart/form-data" onsubmit="return validateForm()">
+			<form method="POST" action="/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}" enctype="multipart/form-data">
 				<input type="hidden" name="seq" value="${dto.notice_seq}">
 
 				<table id="edit-form">
 					<tr>
-						<th>제목</th>
+						<th class="required">제목</th>
 						<td><input type="text" name="subject" size="86" value="${dto.subject}" autofocus></td>
 					</tr>
 					<tr>
-						<th>내용</th>
+						<th class="option">내용</th>
 						<td><textarea name="content">${dto.content}</textarea></td>
 					</tr>
 					<tr>
-						<th>첨부파일</th>
+						<th  class="option">첨부파일</th>
 						<td>
 							<input type="file" name="file" onchange="removeFileName()">
 							
@@ -93,17 +106,17 @@
 						</td>
 					</tr>
 					<tr>
-						<th>고정여부</th>
+						<th class="required">고정여부</th>
 						<td>
-							<label><input type="radio" name="fix" value="y" ${dto.fix == 'y' ? 'checked' : ''}> 네</label>
+							<label><input type="radio" name="fix" value="y" ${dto.fix == 'y' ? 'checked' : ''}> 예</label>
 					        <label><input type="radio" name="fix" value="n" ${dto.fix == 'n' ? 'checked' : ''}> 아니오</label>
 						</td>
 					</tr>
 				</table>
 				
-				<div>
-					<button type="submit" id="edit-button">수정</button>
-					<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}';">취소</button>
+				<div id="button-list">
+					<button type="submit" id="edit-button"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+					<button type="button" id="back-button"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
 				</div>
 			</form>
 		</main>
@@ -112,7 +125,7 @@
 		
 		<script>
 		    function removeFileName() {
-		        var file = document.querySelector('input[type="file"]');
+		        var file = document.querySelector('input[name="file"]');
 		        var fileNames = document.querySelectorAll('.file-name');
 		
 		        if (file && fileNames) {
@@ -122,25 +135,29 @@
 		        }
 		    }
 		    
-		    function validateForm() {
-				var subject = document.querySelector('input[type="text"]');
+		    $('#add-button').click(function () {
+				var subject = document.querySelector('input[name="subject"]');
 				var content = document.querySelector('textarea[name="content"]');
-				var file = document.querySelector('input[type="file"]');
+				var file = document.querySelector('input[name="file"]');
 				
 				if (!subject.value.trim()) {
 					alert('제목을 입력하세요.');
 					subject.focus();
 					return false;
-				} else {
-					if (!content.value.trim() && !file.files.length) {
-						alert('내용을 입력하거나 첨부파일을 선택하세요.');
-						content.focus();
-						return false;
-					} else {
-						return true;
-					}
 				}
-			}
+				
+				if (!content.value.trim() && !file.files.length) {
+					alert('내용을 입력하거나 첨부파일을 선택하세요.');
+					content.focus();
+					return false;
+				} else {
+					return true;
+				}
+			});
+			
+			$('#back-button').click(function () {
+				location.href='/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}';
+			});
 		</script>
 	</body>
 </html>

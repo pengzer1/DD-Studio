@@ -461,11 +461,12 @@ CREATE TABLE tblVOC (
 
 /* 이용문의 */
 CREATE TABLE tblInquiry (
-	COL NUMBER PRIMARY KEY, /* 이용문의번호 */
-	COL2 VARCHAR2(500) NOT NULL, /* 문의유형 */
+	inquiry_seq NUMBER PRIMARY KEY, /* 이용문의번호 */
+	type VARCHAR2(500) NOT NULL, /* 문의유형 */
 	subject VARCHAR2(100) NOT NULL, /* 문의제목 */
 	content VARCHAR2(2000) NOT NULL, /* 문의내용 */
 	attach VARCHAR2(500), /* 첨부파일 */
+    regdate DATE DEFAULT sysdate NOT NULL, /* 등록일 */
 	answer VARCHAR2(2000), /* 답변내용 */
 	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* 유저번호 */
 );

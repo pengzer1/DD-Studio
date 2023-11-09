@@ -87,17 +87,20 @@
 				color: red;
 			}
 			#button-list {
-				display: flex;
-    			justify-content: flex-end;
+    			text-align: right;
+			}
+			#button-list i {
+				margin-right: 10px;
 			}
 			#add-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
-				margin-top: 10px;
-			    margin-right: 150px;
+				width: 90px;
+				height: 40px;
+				background-color: transparent;
+				border: 2px solid #CCC;
+				margin: 50px 150px 0;
+			}
+			.nav-icon {
+				font-size: 50px;
 			}
 		</style>
 	</head>
@@ -151,7 +154,7 @@
 		<div id="page-bar">${pageBar}</div>
 		
 		<c:if test="${not empty email && lv == 2}">
-			<div id="button-list"><button type="button" id="add-button" onclick="location.href='/ddstudio/communicate/noticeadd.do';">등록</button></div>
+			<div id="button-list"><button type="button" id="add-button"><i class="fa-solid fa-plus"></i>등록</button></div>
 		</c:if>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
@@ -171,6 +174,10 @@
 		            }
 		        });
 		    });
+			
+			$('#add-button').click(function () {
+				location.href='/ddstudio/communicate/noticeadd.do';
+			});
 		</script>
 	</body>
 </html>

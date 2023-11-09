@@ -16,7 +16,7 @@
 				margin: 50px auto 0;
 			}
 			#add-form th, #add-form td {
-				height: 100px;
+				height: 80px;
 				color: #555;
 				border-bottom: 1px solid #E1E1E1;
 			}
@@ -24,6 +24,10 @@
 				width: 30%;
 				font-size: 1.1rem;
 				border-right: 1px solid #E1E1E1;
+			}
+			#add-form .required::before {
+				content: "* ";
+				color: red;
 			}
 			#add-form td {
 				width: 70%;
@@ -68,12 +72,14 @@
 				font-weight: bold;
 				margin: 10px 10px 0;
 			}
+			#button-list i {
+				margin-right: 10px;
+			}
 			#add-button, #back-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
+				width: 90px;
+				height: 40px;
+				background-color: transparent;
+				border: 2px solid #CCC;
 				margin: 50px 10px 0;
 			}
 			.nav-icon {
@@ -87,38 +93,37 @@
 		<main id="inquiry">
 			<h1>이용문의</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/usageinquiry.do" enctype="multipart/form-data" onsubmit="return validateForm()">
+			<form method="POST" action="/ddstudio/communicate/usageinquiryadd.do?seq=${seq}" enctype="multipart/form-data">
 				<table id="add-form">
 					<tr>
-						<th>문의유형</th>
+						<th class="required">문의유형</th>
 						<td>
-							<select name="type" id="type" onblur="onBlur(type)">
-							    <option value="pb" selected>요금/혜택</option>
-							    <option value="attraction">어트랙션</option>
-							    <option value="festival">페스티벌</option>
-							    <option value="movie">영화</option>
-							    <option value="test">추천 기능</option>
-							    <option value="giftshop">기프트샵</option>
-							    <option value="ticketing">예매</option>
-							    <option value="etc">기타</option>
+							<select name="type" id="type">
+							    <option value="요금/혜택" selected>요금/혜택</option>
+							    <option value="어트랙션">어트랙션</option>
+							    <option value="페스티벌">페스티벌</option>
+							    <option value="영화">영화</option>
+							    <option value="추천 기능">추천 기능</option>
+							    <option value="기프트샵">기프트샵</option>
+							    <option value="예매">예매</option>
+							    <option value="기타">기타</option>
 							 </select>
-							 <div id="message">문의 유형을 선택하세요.</div>
 						</td>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="name" size="40" value="${name}" disabled></td>
+						<td><input type="text" size="40" value="${name}" disabled></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="email" size="40" value="${email}" disabled></td>
+						<td><input type="text" size="40" value="${email}" disabled></td>
 					</tr>
 					<tr>
-						<th>제목</th>
+						<th class="required">제목</th>
 						<td><input type="text" name="subject" id="subject" size="86"></td>
 					</tr>
 					<tr>
-						<th>내용</th>
+						<th class="required">내용</th>
 						<td><textarea name="content" id="content"></textarea></td>
 					</tr>
 					<tr>
@@ -126,7 +131,7 @@
 						<td><input type="file" name="file"></td>
 					</tr>
 					<tr>
-						<th>개인정보수집동의</th>
+						<th class="required">개인정보수집동의</th>
 						<td>
 							<div>
 		                        본인은 DD Studio 홈페이지 이용을 위하여 다음과 같이 회사가 본인의 개인정보를 수집∙이용하는 것에 동의합니다.<br>
@@ -145,8 +150,8 @@
 				</table>
 				
 				<div id="button-list">
-					<button type="submit" id="add-button">등록</button>
-					<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/notice.do';">취소</button>
+					<button type="submit" id="add-button"><i class="fa-solid fa-plus"></i>등록</button>
+					<button type="button" id="back-button"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
 				</div>
 			</form>
 		</main>
@@ -154,25 +159,37 @@
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
 		<script>
-			function onBlur(id) {
-				var value = document.getElementById(id).value;
-
-				if (value === "") {
-					$.ajax({
-						url: "/ddstudio/usageinquiry.do",
-						type: "POST",
-						data: {
-							value: value,
-						},
-						success: function(result) {
-							document.getElementById("message").innerHTML = result;
-							document.getElementById("message").style.display = "block";
-						},
-					});
-				} else {
-					document.getElementById("message").style.display = "none";
+			$('#add-button').click(function () {
+				var subject = document.querySelector('input[name="subject"]');
+				var content = document.querySelector('textarea[name="content"]');
+				var agree = document.querySelector('input[name="agree"]');
+				
+				if (!subject.value.trim()) {
+					alert('제목을 입력하세요.');
+					subject.focus();
+					return false;
 				}
-			}
+				
+				if (!content.value.trim()) {
+					alert('내용을 입력하세요.');
+					content.focus();
+					return false;
+				}
+				
+				if (!agree.checked) {
+					alert('개인정보수집 동의가 필요합니다.');
+					agree.focus();
+					return false;
+				} else {
+					alert('등록되었습니다.');
+					return true;
+				}
+			});
+			
+			$('#back-button').click(function () {
+				alert('취소되었습니다.');
+				location.href='/ddstudio/index.do';
+			});
 		</script>
 	</body>
 </html>
