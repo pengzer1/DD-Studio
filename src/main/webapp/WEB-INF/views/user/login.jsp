@@ -100,7 +100,7 @@ table.vertical {
 						<tr>
 							<th><input type="text" name="email" id="email" required class="middle-high" placeholder="이메일"></th>
 							<td rowspan="2">
-								<div class="button login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</div>
+								<button class="login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</button>
 							</td>
 						</tr>
 						<tr>
