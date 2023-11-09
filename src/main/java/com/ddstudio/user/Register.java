@@ -32,9 +32,8 @@ public class Register extends HttpServlet {
 	        String tel = req.getParameter("tel");
 	        String address;
 	        
-	        //주소를 입력하지 않은 경우 default
 	        if (req.getParameter("post-code").trim().isEmpty()) {
-		        address = "미기재";
+		        address = "미기재"; //주소를 입력하지 않은 경우
 	        } else {
 		        String postCode = req.getParameter("post-code").trim();
 		        String addressBasis = req.getParameter("address-basis").trim();
