@@ -101,42 +101,43 @@
 			</div>
 
 			<div class="container">
-				<form action="/update_profile" method="post">
-					<div class="form-group">
-						<label for="email">이메일</label> <input type="email" id="email"
-							name="email" required>
-					</div>
-					<div class="form-group">
+				<form action="/ddstudio/member/mypage/edit.do" method="post">
+					<!-- <div class="form-group">
 						<label for="password">비밀번호</label> <input type="password"
-							id="password" name="password" required>
-					</div>
-					<div class="form-group">
+							id="password" name="password" required >
+					</div> -->
+					<!-- <div class="form-group">
 						<label for="confirmPassword">비밀번호 확인</label> <input
 							type="password" id="confirmPassword" name="confirmPassword"
 							required>
+					</div> -->
+					<div class="form-group">
+						<label for="email" >이메일</label> <input type="text" id="email" 
+							name="email" value=${dto.email} disabled>
 					</div>
 					<div class="form-group">
-						<label for="name">이름</label> <input type="text" id="name"
-							name="name" required>
+						<label for="name" >이름</label> <input type="text" id="name" 
+							name="name" required value=${dto.name}>
 					</div>
 					<div class="form-group">
-						<label for="birthdate">생년월일</label> <input type="text"
-							id="birthdate" name="birthdate" required>
+						<label for="birth">생년월일</label> <input type="text"
+							id="birth" name="birth" required value=${dto.birth}>
 					</div>
 					<div class="form-group">
-						<label for="phoneNumber">연락처</label> <input type="tel"
-							id="phoneNumber" name="phoneNumber" required>
+						<label for="tel">연락처</label> <input type="tel"
+							id="tel" name="tel" required value=${dto.tel}>
 					</div>
 					<div class="form-group">
-						<label for="postalCode">우편번호</label> <input type="text"
-							id="postalCode" name="postalCode" required>
+						<label for="address">주소</label> <input type="text"
+							id="address" name="address" required value=${dto.address}>
 					</div>
-					<div class="address-group">
+					<!-- <div class="address-group">
 						<input type="text" id="basicAddress" name="basicAddress"
 							placeholder="기본 주소" required> <input type="text"
 							id="detailAddress" name="detailAddress" placeholder="상세 주소"
 							required>
-					</div>
+					</div> -->
+					
 					<div class="btn-container">
 						<button type="submit" class="btn" onclick="location.href='/ddstudio/member/mypage/info.do'">수정</button>
 						<button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/mypage/info.do'">취소</button>

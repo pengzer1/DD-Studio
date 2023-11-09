@@ -22,9 +22,10 @@ public class UserBookDAO {
 
 	public UserBookDTO get(String email) {
 		
+		
 		try {
 			
-			String sql = "select * from vwUserBook where email = '?'";
+			String sql = "select * from vwUserBook where email = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
@@ -43,6 +44,8 @@ public class UserBookDAO {
 				dto.setEa(rs.getString("ea"));
 				dto.setTicket_seq(rs.getString("ticket_seq"));
 				dto.setBenefit_seq(rs.getString("benefit_seq"));
+				dto.setDiscount_rate(rs.getString("discount_rate"));
+				dto.setPrice(rs.getString("price"));
 				
 				return dto;
 			}	

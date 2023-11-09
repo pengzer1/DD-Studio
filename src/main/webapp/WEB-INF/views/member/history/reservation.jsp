@@ -19,16 +19,30 @@
 
 table {
 	border-collapse: collapse;
-	width: 50%; /* 테이블의 너비를 조정합니다. */
+	width: 80%;
+	margin: 20px auto;
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid #333;
 }
 
 th, td {
-	padding: 8px;
+	padding: 10px;
 	text-align: center;
+}
+
+th {
+	background-color: #333;
+	color: #fff;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+	background-color: #fff;
 }
 
 .wide-multi-content-container {
@@ -63,7 +77,7 @@ th, td {
 	<main id="main">
 
 		<div id="title">
-			<h2>어트랙션 예약 확인/취소</h2>
+			<h2>예매 확인/취소</h2>
 			<br>
 			<p></p>
 		</div>
@@ -82,40 +96,67 @@ th, td {
 					<div>
 						<table>
 							<tr>
-								<td>주문번호
-									<div class="cell-content">내용 1-1</div>
-								</td>
-								<td>방문일
-									<div class="cell-content">내용 1-2</div>
-								</td>
+								<th>어트랙션 이름</th>
+								<th>예약번호</th>
+								<th>예약일자</th>
+								<th>예약시간</th>
+								<th>예약인원</th>
 							</tr>
 							<tr>
-								<td>예매일
-									<div class="cell-content">내용 2-1</div>
-								</td>
-								<td>혜택
-									<div class="cell-content">내용 2-2</div>
-								</td>
+								<td>${dto.name}</td>
+								<td>${dto.attraction_book_seq}</td>
+								<td>${dto.regdate}</td>
+								<td>${dto.book_time}</td>
+								<td>${dto.capacity}</td>
 							</tr>
 							<tr>
-								<td>수량
-									<div class="cell-content">내용 3-1</div>
-								</td>
-								<td>결제금액
-									<div class="cell-content">내용 3-2</div>
-								</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
 							</tr>
+							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
 						</table>
 					</div>
 				</div>
 
 				<div class="buttons-container">
-					<button class="button">예매 취소</button>
+					<button class="button">예약 취소</button>
 					<!-- 누르면 팝업으로 취소창 구현해야함..ㅋㅋ -->
 				</div>
 
-
+				<div class="wide-item">
+					<div class="name">이전 예약 내역</div>
+					<div>
+						<table>
+							<tr>
+								<th>어트랙션 이름</th>
+								<th>예약번호</th>
+								<th>예약일자</th>
+								<th>예약시간</th>
+								<th>예약인원</th>
+							</tr>
+							<tr>
+								<td>${dto.name}</td>
+								<td>${dto.attraction_book_seq}</td>
+								<td>${dto.regdate}</td>
+								<td>${dto.book_time}</td>
+								<td>${dto.capacity}</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
+						</table>
+					</div>
+				</div>
 			</div>
+		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

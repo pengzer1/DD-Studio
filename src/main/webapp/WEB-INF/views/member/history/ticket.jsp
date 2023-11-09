@@ -19,41 +19,54 @@
 
 table {
 	border-collapse: collapse;
-	width: 50%; /* 테이블의 너비를 조정합니다. */
+	width: 80%;
+	margin: 20px auto;
 }
 
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid #333;
 }
 
 th, td {
-	padding: 8px;
+	padding: 10px;
 	text-align: center;
 }
 
+th {
+	background-color: #333;
+	color: #fff;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+	background-color: #fff;
+}
+
 .wide-multi-content-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* 테이블 간격을 조정합니다. */
+	display: flex;
+	justify-content: space-between;
+	gap: 20px; /* 테이블 간격을 조정합니다. */
 }
 
 .buttons-container {
-  text-align: center;
+	text-align: center;
 }
 
 .button {
-  background-color: #0074cc;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+	background-color: #0074cc;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .button:hover {
-  background-color: #0056a4;
+	background-color: #0056a4;
 }
-
 </style>
 </head>
 <body>
@@ -79,71 +92,75 @@ th, td {
 
 			<div class="wide-multi-content-container">
 				<div class="wide-item">
-					<div class="name">결제 내역</div>
+					<div class="name">예매 내역</div>
 					<div>
 						<table>
 							<tr>
-								<td>${dto.ticket_book_seq}
-									<div class="cell-content">내용 1-1</div>
-								</td>
-								<td>방문일
-									<div class="cell-content">내용 1-2</div>
-								</td>
+								<th>내용</th>
+								<th>방문일</th>
+								<th>예매일</th>
+								<th>혜택</th>
+								<th>수량</th>
+								<th>결제금액</th>
 							</tr>
 							<tr>
-								<td>예매일
-									<div class="cell-content">내용 2-1</div>
-								</td>
-								<td>혜택
-									<div class="cell-content">내용 2-2</div>
-								</td>
+								<td>${dto.user_book_seq}</td>
+								<td>${dto.visit_date}</td>
+								<td>${dto.book_date}</td>
+								<td>${dto.discount_rate}</td>
+								<td>${dto.ea}</td>
+								<td>${dto.price}</td>
 							</tr>
 							<tr>
-								<td>수량
-									<div class="cell-content">내용 3-1</div>
-								</td>
-								<td>결제금액
-									<div class="cell-content">내용 3-2</div>
-								</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
 							</tr>
+							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
 						</table>
 					</div>
 				</div>
-				
+
 				<div class="buttons-container">
-				<button class="button">예매 취소</button> <!-- 누르면 팝업으로 취소창 구현해야함..ㅋㅋ -->
-				<!-- <button class="button" onclick="location.href='/ddstudio/member/history/ticket.do';">리뷰 작성</button> -->
+					<button class="button">예매 취소</button>
+					<!-- 누르면 팝업으로 취소창 구현해야함..ㅋㅋ -->
+					<!-- <button class="button" onclick="location.href='/ddstudio/member/history/ticket.do';">리뷰 작성</button> -->
 				</div>
-				
+
 				<div class="wide-item">
-					<div class="name">이전 결제 내역</div>
+					<div class="name">이전 예매 내역</div>
 					<div>
 						<table>
 							<tr>
-								<td>주문번호
-									<div class="cell-content">내용 1-1</div>
-								</td>
-								<td>방문일
-									<div class="cell-content">내용 1-2</div>
-								</td>
+								<th>내용</th>
+								<th>방문일</th>
+								<th>예매일</th>
+								<th>혜택</th>
+								<th>수량</th>
+								<th>결제금액</th>
 							</tr>
 							<tr>
-								<td>예매일
-									<div class="cell-content">내용 2-1</div>
-								</td>
-								<td>혜택
-									<div class="cell-content">내용 2-2</div>
-								</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
 							</tr>
 							<tr>
-								<td>수량
-									<div class="cell-content">내용 3-1</div>
-								</td>
-								<td>결제금액
-									<div class="cell-content">내용 3-2</div>
-								</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
 							</tr>
+							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
 						</table>
+					</div>
 				</div>
 			</div>
 		</div>
