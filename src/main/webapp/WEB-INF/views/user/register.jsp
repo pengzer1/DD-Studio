@@ -102,7 +102,7 @@ th.required::before {
 </style>
 </head>
 <body>
-	<!-- login.jsp -->
+	<!-- register.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
@@ -261,7 +261,7 @@ th.required::before {
 		$('#duplicate-check').click(function(){
 			$.ajax({
 				type: 'POST',
-				url: '/ddstudio/user/duplicate-check.do',
+				url: '/ddstudio/user/duplicatecheck.do',
 				data: {
 					email: $('#email').val()
 				},
