@@ -1,4 +1,4 @@
-package com.ddstudio.admin.repository;
+package com.ddstudio.guide.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,13 +7,13 @@ import java.sql.Statement;
 
 import com.ddstudio.DBUtil;
 
-public class HashTagDAO {
+public class ServiceDAO {
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
 	
-	public HashTagDAO() {
+	public ServiceDAO() {
 		this.conn=DBUtil.open();
 	}
 }
