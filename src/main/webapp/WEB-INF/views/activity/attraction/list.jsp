@@ -43,9 +43,9 @@
 		/* 조건검색 누르면 아래로 확장되게 해야함!! */
 	}
 	
-	/* #hidden-searchbar {
+	#hidden-searchbar {
 		display: none;
-	} */
+	}
 	
 </style>
 </head>
@@ -71,7 +71,7 @@
 					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정/위치정보)</h3>
 				</div>
 
-				<%-- <!-- 조건 검색 (click 후) -->
+				<!-- 조건 검색 (click 후) -->
 				<div id="hidden-searchbar">
 					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
 					<div>
@@ -97,7 +97,7 @@
 							</c:forEach>
 						</select>
 					</div>
-				</div> --%>
+				</div>
 			</div>
 			
 			<!-- 관리자용 추가 버튼 -->

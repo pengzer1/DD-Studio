@@ -1,5 +1,9 @@
 package com.ddstudio.admin.model;
 
-public class ThemeDTO {
+import lombok.Data;
 
+@Data
+public class ThemeDTO {
+	private String theme_seq;
+	private String name;
 }
