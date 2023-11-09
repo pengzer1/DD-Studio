@@ -70,7 +70,8 @@ td input.middle-flat:focus {
 	width: 160px;
 }
 
-table.vertical {
+table {
+	width: 600px;
 	margin: 0 auto;
 }
 
@@ -114,7 +115,7 @@ th.required::before {
 		<div id="content">
 			<div class="wide-item">
 				<form method="POST" action="/ddstudio/user/register.do">
-					<table class="vertical">
+					<table>
 						<!-- 이메일 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">이메일 (아이디)</th>
@@ -253,7 +254,6 @@ th.required::before {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 		
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
 		
