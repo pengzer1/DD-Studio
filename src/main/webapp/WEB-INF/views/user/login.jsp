@@ -16,7 +16,7 @@ th input#email.middle-high, th input#pw.middle-high {
 	padding: 10px;
 	border: 1px solid #ccc;
 	font-size: 16px;
-	margin: -1px; /* 이메일과 비밀번호 상자를 연결 */
+	margin: -1px; /* 이메일 비밀번호 상자 연결 */
 	flex-direction: column;
 	align-items: center;
 }
