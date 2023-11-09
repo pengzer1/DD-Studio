@@ -58,7 +58,7 @@ th input#email.middle-high+th input#pw.middle-high {
 	background-color: cornflowerblue;
 }
 
-table.vertical {
+table {
 	margin: 0 auto;
 	text-align: center;
 }
@@ -68,13 +68,16 @@ table.vertical {
 	height: 120px;
 	border-radius: 50%;
 	font-size: 16px;
-	margin-left: 50px;
 	background-color: transparent;
 	border: 1px solid #ccc;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+}
+
+.login {
+    margin: -110px 0 0 50px;
 }
 </style>
 </head>
@@ -96,15 +99,13 @@ table.vertical {
 			<div class="wide-item">
 
 				<form method="POST" action="/ddstudio/user/login.do">
-					<table class="vertical">
+					<table>
 						<tr>
 							<th><input type="text" name="email" id="email" required class="middle-high" placeholder="이메일"></th>
-							<td rowspan="2">
-								<button class="login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</button>
-							</td>
 						</tr>
 						<tr>
 							<th><input type="password" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
+							<td><button class="login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</button></td>
 						</tr>
 						<tr>
 							<td>
