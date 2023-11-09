@@ -29,7 +29,7 @@
 						</a> <a href="team.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Redeem</div>
 							<div class="nav-menu-name">샵</div>
-						</a> <a href="team.html" class="nav-item nav-link index-navi">
+						</a> <a href="/ddstudio/guide/convenient.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">notification_important</div>
 							<div class="nav-menu-name">가이드</div>
 						</a> <a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
@@ -53,7 +53,7 @@
 				<c:if test="${not empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
-						<a href="/ddstudio/member/mypage.do">마이페이지</a>
+						<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
 					</div>
 					<div>
 						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>

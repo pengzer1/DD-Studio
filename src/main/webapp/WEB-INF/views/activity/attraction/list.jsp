@@ -8,6 +8,45 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	#title > h2 {
+		margin-top: 70px;
+	}
+	
+	#condition:hover {
+		cursor: pointer;
+	}
+
+	.item:hover {
+		cursor: pointer;
+	}
+	
+	#admin-btn {
+		/* text-align: right; */
+		margin: 3px 0;
+	}
+	
+	#admin-btn::after {
+		clear: both;
+	}
+	
+	#admin-btn button {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #E6AAAE;
+		float: right;
+	}
+	
+	#condition {
+		/* 조건검색 누르면 아래로 확장되게 해야함!! */
+	}
+	
+	/* #hidden-searchbar {
+		display: none;
+	} */
+	
 </style>
 </head>
 <body>
@@ -23,20 +62,59 @@
 			<p>모험과 환상의 나라 더블디 스튜디오의 어트랙션을 경험해보세요!</p>
 		</div>
 
+		
 		<div id="content">
 			<div id="condition">
-				<h3>조건검색(테마/운휴일정/위치정보)</h3>
-			</div>
+			
+				<!-- 조건 검색 (click 전) -->
+				<div id="default-searchbar">
+					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정/위치정보)</h3>
+				</div>
 
+				<%-- <!-- 조건 검색 (click 후) -->
+				<div id="hidden-searchbar">
+					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
+					<div>
+						<div>테마</div>
+						<select name="theme" id="theme-select" class="selectbox">
+							<c:forEach items="${themeList}" var="dto">
+							<option value="${dto.name}">${dto.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<div>운휴일정</div>
+						<select name="close" id="close-select" class="selectbox">
+							<option value="open">정상운영</option>
+							<option value="close">운휴</option>
+						</select>
+					</div>
+					<div>
+						<div>위치정보</div>
+						<select name="location" id="location-select" class="selectbox">
+							<c:forEach items="${locationList}" var="dto">
+							<option value="${dto.info}">${dto.info}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div> --%>
+			</div>
+			
+			<!-- 관리자용 추가 버튼 -->
+			<c:if test="${not empty email && lv == 2}">
+				<div id="admin-btn">
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>추가</button>
+				</div>
+			</c:if>
+	
+			<!-- 어트랙션 컨텐츠 이미지 -->
 			<div class="munti-content-container">
-				
 				<c:forEach items="${list}" var="dto">
-				<div class="item">
+					<div class="item" onclick="location.href= '/ddstudio/activity/attractiondetail.do?seq=' + ${dto.attraction_seq};">
 					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
 					<div>${dto.name}</div>
-				</div>
+					</div>
 				</c:forEach>
-				
 			</div>
 		</div>
 		
@@ -46,11 +124,27 @@
 
 	<script>
 	
-		$('.item').click.(function() {
+		/* $('.item').click(function() {
 			
 			alert();
-			location.href= '/ddstudio/activity/attractiondetail.do?seq=${dto.attraction_seq}';
-		});		
+			location.href= '/ddstudio/activity/attractiondetail.do?seq='${dto.attraction_seq};
+		});	 */
+		
+		/* function detail(seq) {
+			
+			//alert(seq);
+			location.href= '/ddstudio/activity/attractiondetail.do?seq=' + seq;
+			
+		} */
+		
+		$('#condition').click(function(){
+			//alert();
+			
+			//if ()
+			
+			//$('#hidden-searchbar').css('display', block);
+			//$('#default-searchbar').css('display', none);
+		});
 		
 	</script>
 </body>

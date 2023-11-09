@@ -1,5 +1,38 @@
 package com.ddstudio.member;
 
-public class PurchaseHistory {
+import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ddstudio.member.model.UserBuyDTO;
+import com.ddstudio.member.repository.UserBuyDAO;
+
+@WebServlet("/member/purchase/history.do")
+public class PurchaseHistory extends HttpServlet {
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// PurchaseHistory.java
+
+		// 1.
+
+		String email = req.getSession().getAttribute("email").toString();
+
+		// 2.
+		UserBuyDAO dao = new UserBuyDAO();
+
+		UserBuyDTO dto = dao.get(email);
+
+		// 3.
+		req.setAttribute("dto", dto);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/purchase/history.jsp");
+		dispatcher.forward(req, resp);
+	}
 }
