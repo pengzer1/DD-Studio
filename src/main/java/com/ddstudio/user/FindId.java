@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/find-id.do")
+@WebServlet("/user/findid.do")
 public class FindId extends HttpServlet {
 
 	@Override
