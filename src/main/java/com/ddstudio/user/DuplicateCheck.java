@@ -32,7 +32,6 @@ public class DuplicateCheck extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 	
 		writer.printf("{ \"message\": %d }", message);
-		
 		writer.close();
 		
 	}
