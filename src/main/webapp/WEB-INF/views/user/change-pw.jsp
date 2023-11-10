@@ -20,6 +20,10 @@
 .certification {
 	margin-left: 30px;
 }
+
+td > div > input {
+	width: 80%;
+}
 </style>
 </head>
 <body>
@@ -98,7 +102,7 @@
 							<th class="required">새로운 비밀번호</th>
 							<td>
 								<div>
-									<input type="password" name="pw" id="pw" required class="middle-flat">
+									<input type="password" name="pw" id="pw" required class="middle-flat" disabled>
 								</div>
 							</td>
 						</tr>
@@ -113,7 +117,7 @@
 							<th class="required">비밀번호 확인</th>
 							<td>
 								<div>
-									<input type="password" name="pwok" id="pwok" required class="middle-flat">
+									<input type="password" name="pwok" id="pwok" required class="middle-flat" disabled>
 								</div>
 							</td>
 						</tr>
@@ -210,39 +214,38 @@
 	
 	    $('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
-	        $('#myid').val("");
+	        $('#pw').val("");
+	        $('#pwok').val("");
+            $('#pw').prop('disabled', true);
+            $('#pwok').prop('disabled', true);
 	
 	        if (authCode !== null && enteredCode === authCode.toString()) {
 	            //alert('일치');
-        		$.ajax({
-        			type: 'POST',
-        			url: '/ddstudio/user/findid.do',
-        			data: {
-        				name: $('#name').val(),
-        				tel: $('#tel').val()
-        			},
-        			dataType: 'json',
-        			success: function(result) {
-        				//alert(result.email);
-
-        				if (result.email != null) {
-        					$('#myid').val(result.email);
-        				} else {
-        					$('#myid').val('해당 정보로 가입한 회원이 없습니다.');
-        				}
-        			},
-        			errors: function(a,b,c) {
+        	    $.ajax({
+        	        type: 'POST',
+        	        url: '/ddstudio/user/changepw.do',
+        	        data: {
+        	            email: $('#email').val(),
+        	            tel: $('#tel').val()
+        	        },
+        	        dataType: 'json',
+        	        success: function (result) {
+        	            if (result.cnt == 1) { // 여기를 수정
+        	                alert("계정을 확인했습니다.");
+        	                $('#pw').prop('disabled', false);
+        	                $('#pwok').prop('disabled', false);
+        	            } else {
+        	                alert("그런 계정은 없습니다.");
+        	                $('#pw').prop('disabled', true);
+        	                $('#pwok').prop('disabled', true);
+        	            }
+        	        },
+        	        errors: function(a,b,c) {
         				console.log(a,b,c);
         			}
-        		});
+        	    });
 	        } else {
 	            alert('인증번호가 일치하지 않습니다.');
-	            //toastr.error('인증번호가 일치하지 않습니다.', '인증 오류');
-       			/* Swal.fire({
-		            icon: 'error',
-		            title: '인증번호 불일치',
-		            text: '인증번호가 일치하지 않습니다.',
-		        }); */
 	        }
 	    });
 	</script>
@@ -378,7 +381,8 @@
 		        telErrorDiv.style.display = "none";
 		        
 		        $('input[name="authcode"]').val("");
-		        $('#myid').val("");
+		        $('#pw').val("");
+		        $('#pwok').val("");
 		        
 		        isValid = [false, false];
 		        isPasswordValid = [false, false];

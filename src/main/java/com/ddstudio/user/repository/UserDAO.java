@@ -134,23 +134,29 @@ public class UserDAO {
 		
 		return null;
 	}
+
 	/*
-	 * public String findId(String name, String tel) {
-	 * 
-	 * try {
-	 * 
-	 * String sql = "select email from tblUser where name = ? and tel = ?";
-	 * 
-	 * pstat = conn.prepareStatement(sql); pstat.setString(1, name);
-	 * pstat.setString(2, tel);
-	 * 
-	 * rs = pstat.executeQuery();
-	 * 
-	 * if (rs.next()) { return rs.getString("email"); }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); }
-	 * 
-	 * return null; }
+	 * 비밀번호 변경 전 계정 존재 여부 확인
 	 */
+	public int isFindPw(UserDTO dto) {
+	    try {
+	        String sql = "SELECT COUNT(*) AS cnt FROM tblUser WHERE email = ? AND tel = ?";
+	        
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getEmail());
+	        pstat.setString(2, dto.getTel());
+	        
+	        rs = pstat.executeQuery();
+
+	        if (rs.next()) {
+	            return rs.getInt("cnt");
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return 0;
+	}
 
 }
