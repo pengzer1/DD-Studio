@@ -176,6 +176,7 @@
 	        });
 	    }
 	
+	    /* 인증번호 확인 */
 	    $('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
 	        $('#myid').val("");
@@ -283,6 +284,15 @@
 		        
 		        isValid = [false, false];
 		        updateButtonStatus();
+
+		        // 타이머 정지
+			    clearInterval(intervalCall);
+		        
+		        // 팝업 레이어 닫기
+		        if (popupLayer) {
+		            popupLayer.remove();
+		            popupLayer = null;
+		        }
 		    });
 		});
 	</script>

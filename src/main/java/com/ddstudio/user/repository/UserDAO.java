@@ -141,7 +141,7 @@ public class UserDAO {
 	 */
 	public int isFindPw(UserDTO dto) {
 	    try {
-	        String sql = "SELECT COUNT(*) AS cnt FROM tblUser WHERE email = ? AND tel = ?";
+	        String sql = "select count(*) as cnt from tblUser where email = ? and tel = ?";
 	        
 	        pstat = conn.prepareStatement(sql);
 	        pstat.setString(1, dto.getEmail());

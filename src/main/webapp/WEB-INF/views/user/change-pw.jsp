@@ -211,8 +211,8 @@ td > div > input {
 	            popupLayer = null; // 팝업이 닫힐 때 변수 초기화
 	        });
 	    }
-	
-	    $('#acceptok').on('click', function () {
+		
+		$('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
 	        $('#pw').val("");
 	        $('#pwok').val("");
@@ -235,7 +235,7 @@ td > div > input {
         	                $('#pw').prop('disabled', false);
         	                $('#pwok').prop('disabled', false);
         	            } else {
-        	                alert("그런 계정은 없습니다.");
+        	                alert("해당 정보로 가입한 회원이 없습니다.");
         	                $('#pw').prop('disabled', true);
         	                $('#pwok').prop('disabled', true);
         	            }
@@ -388,6 +388,15 @@ td > div > input {
 		        isPasswordValid = [false, false];
 		        updateButtonStatus();
 		        updateChangeButtonStatus();
+		        
+		        // 타이머 정지
+			    clearInterval(intervalCall);
+
+		        // 팝업 레이어 닫기
+		        if (popupLayer) {
+		            popupLayer.remove();
+		            popupLayer = null;
+		        }
 		    });
 		});
 	</script>
