@@ -24,7 +24,7 @@
 							<div class="material-symbols-outlined nav-icon">Attractions</div>
 							<div class="nav-menu-name">액티비티</div>
 						</a>
-						<a href="class.html" class="nav-item nav-link index-navi">
+						<a href="/ddstudio/test/recommend.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Recommend</div>
 							<div class="nav-menu-name">추천</div>
 						</a>
