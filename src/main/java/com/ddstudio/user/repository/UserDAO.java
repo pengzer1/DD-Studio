@@ -104,4 +104,11 @@ public class UserDAO {
 	    return 0;
 	}
 
+	public int findId(String name, String tel) {
+		
+		
+		
+		return 0;
+	}
+
 }
