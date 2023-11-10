@@ -12,7 +12,6 @@
 #cancel, #acceptok {
 	margin-right: 35px;
 }
-
 </style>
 </head>
 <body>
@@ -35,16 +34,14 @@
 							<th class="required">이름</th>
 							<td>
 								<div>
-									<input type="text" name="name" id="name" required
-										class="middle-flat">
+									<input type="text" name="name" id="name" required class="middle-flat">
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
-								<div id="name-error" class="error-message"
-									style="display: none;"></div>
+								<div id="name-error" class="error-message" style="display: none;"></div>
 							</td>
 						</tr>
 						<!-- 연락처 필드와 에러 메시지 -->
@@ -52,8 +49,7 @@
 							<th class="required">연락처</th>
 							<td>
 								<div>
-									<input type="text" name="tel" id="tel" required
-										class="middle-flat">
+									<input type="text" name="tel" id="tel" required class="middle-flat">
 								</div>
 							</td>
 						</tr>
@@ -68,9 +64,8 @@
 							<th class="required">인증번호</th>
 							<td>
 								<div class="certification">
-									<input type="text" name="authcode" placeholder="6자리 숫자"
-										class="certificationNumber" autocomplete="off"> <span
-										class="certificationTime">03:00</span>
+									<input type="text" name="authcode" placeholder="6자리 숫자" class="certificationNumber" autocomplete="off">
+									<span class="certificationTime">03:00</span>
 								</div>
 							</td>
 						</tr>
@@ -78,10 +73,8 @@
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="button" id="acceptreq"
-										class="acceptreq check button" disabled>요청</button>
-									<button type="button" id="acceptok" class="check button"
-										disabled>확인</button>
+									<button type="button" id="acceptreq" class="acceptreq check button" disabled>요청</button>
+									<button type="button" id="acceptok" class="check button" disabled>확인</button>
 								</div>
 							</td>
 						</tr>
@@ -95,8 +88,7 @@
 							<th>이메일 (아이디)</th>
 							<td>
 								<div>
-									<input type="text" name="myid" id="myid" class="middle-flat"
-										style="pointer-events: none;">
+									<input type="text" name="myid" id="myid" class="middle-flat" style="pointer-events: none;">
 								</div>
 							</td>
 						</tr>
@@ -104,8 +96,7 @@
 						<tr>
 							<td colspan="2">
 								<div class="button-container">
-									<button type="button" id="cancel" class="button"
-										onclick="location.href='/ddstudio/user/login.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/user/login.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -120,6 +111,7 @@
 	    let countTime = 0; //타이머 초기값
 	    let intervalCall; //타이머 식별
 	    let authCode; //인증 코드
+	    let popupLayer; //팝업 레이어
 	
 	    //타이머 시작
 	    $.time = function (time) {
@@ -157,7 +149,12 @@
 	    //인증번호 요청
 	    $('.acceptreq').on("click", function () {
 	        authCode = Math.floor(100000 + Math.random() * 900000); //랜덤한 6자리
-	
+
+	        // 기존에 열린 팝업이 있다면 닫기
+	        if (popupLayer) {
+	            popupLayer.remove();
+	        }
+	        
 	        showPopup(authCode); //팝업으로 생성된 코드 출력
 	
 	        $('input[name="authcode"]').val(authCode); //생성된 코드를 인증번호 입력란에 입력
@@ -166,7 +163,7 @@
 	    });
 	
 	    function showPopup(authCode) {
-	        let popupLayer = $('<div class="popup-layer"</div>');
+	        popupLayer = $('<div class="popup-layer"</div>');
 	        let popupBox = $('<div class="popup-box"><p>인증번호: ' + authCode + '</p><button class="close-popup">Close</button></div>');
 	
 	        popupLayer.append(popupBox);
@@ -174,11 +171,13 @@
 	        $('body').append(popupLayer);
 	        $('.close-popup').on('click', function () {
 	            popupLayer.remove();
+	            popupLayer = null; // 팝업이 닫힐 때 변수 초기화
 	        });
 	    }
 	
 	    $('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
+	        $('#myid').val("");
 	
 	        if (authCode !== null && enteredCode === authCode.toString()) {
 	            //alert('일치');
