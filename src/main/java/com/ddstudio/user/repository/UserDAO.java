@@ -39,6 +39,7 @@ public class UserDAO {
 				UserDTO result = new UserDTO();
 
 				result.setEmail(rs.getString("email"));
+				result.setUser_seq(rs.getString("user_seq"));
 				result.setName(rs.getString("name"));
 				result.setLv(rs.getString("lv"));
 
