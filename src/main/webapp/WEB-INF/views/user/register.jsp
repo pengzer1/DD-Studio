@@ -7,101 +7,14 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-td input.middle-flat {
-	color: #000;
-	margin-top: 50px;
-	width: 400px;
-	height: 40px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 16px;
-	margin: 0;
-	margin-left: 15px;
-	align-items: center;
-	justify-content: center;
-}
-
-td>div {
-	padding: 10px;
-}
-
-#email {
-	width: 270px;
-}
-
-#post-code {
-	width: 228px;
-}
-
-#birth-button {
-	width: 40px;
-}
-
-form {
-	margin-top: 20px;
-}
-
-td input.middle-flat:focus {
-	border-color: #000;
-}
-
-.button-container {
-	margin-top: 20px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.button {
-	width: 90px;
-	margin-left: 10px;
-	height: 40px;
-	font-size: 16px;
-	background-color: transparent;
-	border: 1px solid #ccc;
-}
-
-.email>.check {
-	width: 120px;
-}
-
-.address>.check {
-	width: 160px;
-}
-
-table {
-	width: 600px;
-	margin: 0 auto;
-}
-
-.error-message {
-	font-size: 14px;
-	padding: 5px;
-}
-
-th.required::before {
-	content: "* ";
-	color: cornflowerblue;
-}
-
 #cancel {
 	margin-right: 15px;
 }
 
-#main {
-	text-align: center;
-	margin-top: 150px;
-}
-
-#sub-title {
-	width: 80%;
-	text-align: center;
-	border-top: 2px solid black;
-	margin: 50px auto 0;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+#duplicate-check {
+	padding: 0;
 }
 </style>
 </head>
@@ -112,7 +25,7 @@ th.required::before {
 	<main id="main">
 		<h1>회원가입</h1>
 
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원정보입력</p>
 		</div>
 
@@ -257,7 +170,6 @@ th.required::before {
 	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 		
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
 		
@@ -361,7 +273,7 @@ th.required::before {
 		        passwordErrorDiv.textContent = isValid[2] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
 		        passwordErrorDiv.style.display = isValid[2] ? "none" : "block";
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 	
 		        if (passwordField.value.length === 0) {
@@ -381,7 +293,7 @@ th.required::before {
 		    passwordConfirmField.addEventListener("input", function () {
 		    	isValid[3] = passwordConfirmField.value === passwordField.value;
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 		        
 		        if (passwordConfirmField.value.length === 0) {
@@ -421,7 +333,7 @@ th.required::before {
 	
 		        birthErrorDiv.textContent = isValid[5] ? "" : "올바른 생년월일 형식을 입력하세요. (예: YYYY-MM-DD)";
 		        birthErrorDiv.style.display = isValid[5] ? "none" : "block";
-	
+
 		        if (birthField.value.length === 0) {
 		            birthErrorDiv.textContent = "";
 		            birthErrorDiv.style.display = "none";

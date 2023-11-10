@@ -10,7 +10,8 @@ public class RestaurantDTO {
 	private String time;
 	private String capacity;
 	private String tel;
-	private String location;
+	private String lat;
+	private String lng;
 	private String category;
 	private String img;
 }

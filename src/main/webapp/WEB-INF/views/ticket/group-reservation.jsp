@@ -179,6 +179,7 @@ form > #condition {
 						<button type="submit" class="btn"
 							onclick="location.href='/ddstudio/ticket/group-reservation.do'">예약</button>
 					</div>
+					<input type="hidden" name="seq" value="${seq}">
 				</form>
 			</div>
 

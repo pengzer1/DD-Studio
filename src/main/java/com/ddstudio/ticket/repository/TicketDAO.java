@@ -49,7 +49,7 @@ public class TicketDAO {
 		
 		try {
 
-			String sql = "select max(group_book_seq) from tblGroupBook";
+			String sql = "select max(group_book_seq) as group_book_seq from tblGroupBook";
 
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -70,12 +70,12 @@ public class TicketDAO {
 		
 		try {
 
-			String sql = "insert into tblUserGroupBook (user_group_book_seq, user_seq, group_book_seq) values (seqUserGroupBook, ?, ?)";
+			String sql = "insert into tblUserGroupBook (user_group_book_seq, user_seq, group_book_seq) values (seqUserGroupBook.nextVal, ?, ?)";
 			
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, user_seq);
-			pstat.setString(1, group_book_seq);
+			pstat.setString(2, group_book_seq);
 
 			return pstat.executeUpdate();
 

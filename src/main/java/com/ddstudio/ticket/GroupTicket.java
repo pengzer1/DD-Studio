@@ -42,6 +42,8 @@ public class GroupTicket extends HttpServlet {
         String date = req.getParameter("date");
         String time = req.getParameter("time");
         
+        String seq = req.getParameter("seq");
+        
         GroupBookDTO dto = new GroupBookDTO();
         
         dto.setGroup_division(division);
@@ -58,13 +60,17 @@ public class GroupTicket extends HttpServlet {
         if (result == 1) {
         	String group_book_seq = dao.getGroupBookSeq(); //select max(group_book_seq) from tbl
         	
-        	result = dao.addUserGroupReservation((String)session.getAttribute("seq"), group_book_seq);
+        	result = dao.addUserGroupReservation(seq, group_book_seq);
         	
         	if (result == 1) {
         		PrintWriter writer = resp.getWriter();
     			
             	resp.sendRedirect("/ddstudio/index.do");
             	writer.close();
+        	} else {
+        		PrintWriter writer = resp.getWriter();
+    			writer.print("<script>alert('Reservation failed'); history.back(); </script>");
+    			writer.close();
         	}
         	
         	

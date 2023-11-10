@@ -43,7 +43,8 @@ public class ShopDAO {
 				dto.setTime(rs.getString("time"));
 				dto.setCapacity(rs.getString("capacity"));
 				dto.setTel(rs.getString("tel"));
-				dto.setLocation(rs.getString("location"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
 				dto.setCategory(rs.getString("category"));
 				dto.setImg(rs.getString("img"));
 				
