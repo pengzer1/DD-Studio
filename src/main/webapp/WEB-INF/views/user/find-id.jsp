@@ -249,7 +249,9 @@
 		            nameErrorDiv.textContent = "";
 		            nameErrorDiv.style.display = "none";
 		        }
-	
+
+		        $('#acceptok').attr('disabled', 'disabled');
+		        
 		        updateButtonStatus();
 		    });
 	        
@@ -268,6 +270,8 @@
 		            telErrorDiv.textContent = "";
 		            telErrorDiv.style.display = "none";
 		        }
+
+		        $('#acceptok').attr('disabled', 'disabled');
 		        
 		        updateButtonStatus();
 		    });
@@ -279,6 +283,7 @@
 		        telField.value = "";
 		        nameErrorDiv.style.display = "none";
 		        telErrorDiv.style.display = "none";
+		        $('#acceptok').attr('disabled', 'disabled');
 		        $('input[name="authcode"]').val("");
 		        $('#myid').val("");
 		        
