@@ -47,6 +47,7 @@ public class UserDAO {
 			}
 
 		} catch (Exception e) {
+	        System.out.println("UserDao.login()");
 			e.printStackTrace();
 		}
 
@@ -130,6 +131,7 @@ public class UserDAO {
 			}	
 			
 		} catch (Exception e) {
+	        System.out.println("UserDao.findId()");
 			e.printStackTrace();
 		}
 		
@@ -154,10 +156,34 @@ public class UserDAO {
 	        }
 	        
 	    } catch (Exception e) {
+	        System.out.println("UserDao.isFindPw()");
 	        e.printStackTrace();
 	    }
 
 	    return 0;
+	}
+
+	/*
+	 * 비밀번호 변경
+	 */
+	public int changePw(UserDTO dto) {
+
+		try {
+
+	        String sql = "update tblUser set pw = ? where email = ?";
+
+	        pstat = conn.prepareStatement(sql);
+	        pstat.setString(1, dto.getPw());
+	        pstat.setString(2, dto.getEmail());
+
+	        return pstat.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        System.out.println("UserDao.changePw()");
+	        e.printStackTrace();
+	    }
+
+		return 0;
 	}
 
 }
