@@ -14,7 +14,7 @@ td input.middle-flat {
 	width: 400px;
 	height: 40px;
 	padding: 10px;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 	font-size: 16px;
 	margin: 0;
 	margin-left: 15px;
@@ -94,7 +94,7 @@ th.required::before {
 	margin-top: 150px;
 }
 
-#sub-title {
+.sub-title {
 	width: 80%;
 	text-align: center;
 	border-top: 2px solid black;
@@ -112,7 +112,7 @@ th.required::before {
 	<main id="main">
 		<h1>회원가입</h1>
 
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원정보입력</p>
 		</div>
 
@@ -361,7 +361,7 @@ th.required::before {
 		        passwordErrorDiv.textContent = isValid[2] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
 		        passwordErrorDiv.style.display = isValid[2] ? "none" : "block";
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 	
 		        if (passwordField.value.length === 0) {
@@ -381,7 +381,7 @@ th.required::before {
 		    passwordConfirmField.addEventListener("input", function () {
 		    	isValid[3] = passwordConfirmField.value === passwordField.value;
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 		        
 		        if (passwordConfirmField.value.length === 0) {
