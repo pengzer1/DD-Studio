@@ -7,49 +7,50 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
-import com.ddstudio.member.model.InquiryDTO;
+import com.ddstudio.member.model.VocDTO;
 
-public class InquiryDAO {
-
+public class VocDAO {
+	
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
-	public InquiryDAO() {
+	public VocDAO() {
 		this.conn = DBUtil.open();
 	}
 
-	public ArrayList<InquiryDTO> get() {
-
+	public ArrayList<VocDTO> get() {
+		
 		try {
-
-			String sql = "select inquiry_seq, type, subject, regdate, answer from tblInquiry";
-
+			
+			String sql = "select voc_seq, type, subject, regdate, answer from tblVoc";
+			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
-
-			ArrayList<InquiryDTO> list = new ArrayList<InquiryDTO>();
-
+			
+			ArrayList<VocDTO> list = new ArrayList<VocDTO>();
+			
 			while (rs.next()) {
-
-				InquiryDTO dto = new InquiryDTO();
-
-				dto.setInquiry_seq(rs.getString("inquiry_seq"));
+				
+				VocDTO dto = new VocDTO();
+				
+				dto.setVoc_seq(rs.getString("voc_seq"));
 				dto.setType(rs.getString("type"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setAnswer(rs.getString("answer"));
-
+				
 				list.add(dto);
-			}
-
+			}	
+			
 			return list;
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
+
 }
