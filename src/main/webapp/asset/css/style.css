@@ -23,7 +23,7 @@
 	margin-top: 100px;
 }
 
-#main > #sub-title {
+#main > .sub-title {
 	text-align: center;
 	height: 100px;
 	display: flex;
