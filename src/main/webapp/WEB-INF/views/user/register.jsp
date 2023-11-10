@@ -333,7 +333,7 @@
 	
 		        birthErrorDiv.textContent = isValid[5] ? "" : "올바른 생년월일 형식을 입력하세요. (예: YYYY-MM-DD)";
 		        birthErrorDiv.style.display = isValid[5] ? "none" : "block";
-	
+
 		        if (birthField.value.length === 0) {
 		            birthErrorDiv.textContent = "";
 		            birthErrorDiv.style.display = "none";
