@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<!-- accept-id.jsp -->
+	<!-- find-id.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
