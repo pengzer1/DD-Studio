@@ -327,6 +327,7 @@ td > div > input {
 
 	            $('#pw').prop('disabled', true);
 	            $('#pwok').prop('disabled', true);
+		        $('#acceptok').attr('disabled', 'disabled');
 	            
 		        updateButtonStatus();
 		        updateChangeButtonStatus();
@@ -350,6 +351,7 @@ td > div > input {
 
 	            $('#pw').prop('disabled', true);
 	            $('#pwok').prop('disabled', true);
+		        $('#acceptok').attr('disabled', 'disabled');
 	            
 		        updateButtonStatus();
 		        updateChangeButtonStatus();
@@ -418,6 +420,7 @@ td > div > input {
 		        $('#pwok').val("");
 	            $('#pw').prop('disabled', true);
 	            $('#pwok').prop('disabled', true);
+		        $('#acceptok').attr('disabled', 'disabled');
 		        
 		        isValid = [false, false];
 		        isPasswordValid = [false, false];
