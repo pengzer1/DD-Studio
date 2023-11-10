@@ -8,9 +8,11 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	/* 
 	#title > h2 {
 		margin-top: 70px;
 	}
+	 */
 	
 	#condition:hover {
 		cursor: pointer;

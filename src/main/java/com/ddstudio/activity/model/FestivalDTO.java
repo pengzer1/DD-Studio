@@ -11,4 +11,6 @@ public class FestivalDTO {
 	private String info;
 	private String period;
 	private String location_seq;
+	
+	private String img;
 }

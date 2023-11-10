@@ -62,82 +62,85 @@
 		</div>
 		
 		<div id="add-content">
-			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/attractionadd.do">
-					<table class="vertical">
-						<tbody>
-							<tr>
-								<th class="required">어트랙션명</th>
-								<td>
-									<div>
-										<input type="text" name="name"/>
-									</div>
-								</td>
-								<td></td>
-							</tr>
-							<tr>
-								<th class="required">운영시간</th>
-								<td>
-									<div>
-										<input type="text" name="time"  placeholder="HH:MM - HH:MM 형식으로 작성해주세요."/>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th class="required">탑승인원</th>
-								<td>
-									<div>
-										<input type="text" name="capacity"  placeholder="숫자 형식으로 작성해주세요."/>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>이용정보</th>
-								<td>
-									<div>
-										<textarea name="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>위치</th>
-								<td>
-									<select name="location" id="location-select" class="selectbox">
-										<c:forEach items="${locationList}" var="dto">
-										<option value="${dto.info}">${dto.info}</option>
-										</c:forEach>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th>테마</th>
-								<td>
-									<select name="theme" id="theme-select" class="selectbox">
-										<c:forEach items="${themeList}" var="dto">
-										<option value="${dto.name}">${dto.name}</option>
-										</c:forEach>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th>해시태그</th>
-								<td>
-									<input type="text" name="hashtag" id="hashtag-text"/>
-									<%-- <select name="hashtag" id="hashtag-select" class="selectbox">
-										<c:forEach items="${hashtagList}" var="dto">
-										<option value="${dto.name}">${dto.name}</option>
-										</c:forEach>
-									</select> --%>
-								</td>
-							</tr>
-							<tr>
-								<th>이미지</th>
-								<td><input type="file" name="img1"/></td>
-							</tr>
-						</tbody>
-					</table>
-				</form>
-			</div>
+			<form method="POST" action="/ddstudio/activity/attractionadd.do">
+				<table class="add-table">
+					<tbody>
+						<tr>
+							<th class="required">어트랙션명</th>
+							<td>
+								<div>
+									<input type="text" name="name"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="required">운영시간</th>
+							<td>
+								<div>
+									<input type="text" name="time"  placeholder="HH:MM - HH:MM 형식으로 작성해주세요."/>
+								</div>
+							</td>
+							<!-- 올바르지 않은 형식을 입력 시 warning message가 출력될 부분 -->
+							<td></td>
+						</tr>
+						<tr>
+							<th class="required">탑승인원</th>
+							<td>
+								<div>
+									<input type="text" name="capacity"  placeholder="숫자 형식으로 작성해주세요."/>
+								</div>
+							</td>
+							<!-- 올바르지 않은 형식을 입력 시 warning message가 출력될 부분 -->
+							<td></td>
+						</tr>
+						<tr>
+							<th>이용정보</th>
+							<td>
+								<div>
+									<textarea name="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="required">위치</th>
+							<td>
+								<select name="location" id="location-select" class="selectbox">
+									<c:forEach items="${locationList}" var="dto">
+									<option value="${dto.info}">${dto.info}</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>테마</th>
+							<td>
+								<select name="theme" id="theme-select" class="selectbox">
+									<c:forEach items="${themeList}" var="dto">
+									<option value="${dto.name}">${dto.name}</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>해시태그</th>
+							<td>
+								<input type="text" name="hashtag" id="hashtag-text"/>
+								<%-- <select name="hashtag" id="hashtag-select" class="selectbox">
+									<c:forEach items="${hashtagList}" var="dto">
+									<option value="${dto.name}">${dto.name}</option>
+									</c:forEach>
+								</select> --%>
+							</td>
+							<!-- 입력받은 해시태그가 출력될 부분 -->
+							<td></td>
+						</tr>
+						<tr>
+							<th>이미지</th>
+							<td><input type="file" name="img"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
