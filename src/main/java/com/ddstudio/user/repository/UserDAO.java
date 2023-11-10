@@ -104,11 +104,53 @@ public class UserDAO {
 	    return 0;
 	}
 
-	public int findId(String name, String tel) {
+	/*
+	 * 아이디 찾기
+	 */
+	public UserDTO findId(UserDTO dto) {
 		
+		try {
+			
+			String sql = "select email from tblUser where name = ? and tel = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getTel());
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				UserDTO result = new UserDTO();
+				
+				result.setEmail(rs.getString("email"));
+				
+				return result;
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		
-		return 0;
+		return null;
 	}
+	/*
+	 * public String findId(String name, String tel) {
+	 * 
+	 * try {
+	 * 
+	 * String sql = "select email from tblUser where name = ? and tel = ?";
+	 * 
+	 * pstat = conn.prepareStatement(sql); pstat.setString(1, name);
+	 * pstat.setString(2, tel);
+	 * 
+	 * rs = pstat.executeQuery();
+	 * 
+	 * if (rs.next()) { return rs.getString("email"); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); }
+	 * 
+	 * return null; }
+	 */
 
 }
