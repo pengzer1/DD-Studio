@@ -91,7 +91,7 @@ table {
 			<h2>로그인</h2>
 		</div>
 
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원 이메일과 비밀번호로 로그인하세요.</p>
 		</div>
 
