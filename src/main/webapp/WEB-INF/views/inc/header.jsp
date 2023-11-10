@@ -63,7 +63,12 @@
 				<c:if test="${not empty email}">
 					<div class="header-login">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
+						<c:if test="${lv==1}">
 						<a href="/ddstudio/member/mypage.do">마이페이지</a>
+						</c:if>
+						<c:if test="${lv==2}">
+						<a href="/ddstudio/member/mypage.do">관리자페이지</a>
+						</c:if>
 					</div>
 					<div>
 						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>

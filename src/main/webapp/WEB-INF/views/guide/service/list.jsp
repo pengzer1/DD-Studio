@@ -46,7 +46,7 @@
     	color: black;
     	font-size: larger;
 	}
-	 #admin-btn button {
+	 #add-button{
       margin: 3px;
       border: 0;
       border-radius: 10px;
@@ -79,9 +79,9 @@
 		</div>
 		
 		<div id="today-close">&lt; 오늘의 운휴시설 &gt;
-			<div id="admin-btn">
-            	<button type="button" id="add-btn" onclick="location.href='/ddstudio/guide/serviceadd.do'"><i class="fa-solid fa-plus"></i>추가</button>
-         	</div>
+			<c:if test="${not empty email && lv == 2}">
+			<div id="button-list"><button type="button" id="add-button" onclick="location.href='/ddstudio/guide/serviceadd.do';"><i class="fa-solid fa-plus"></i>등록</button></div>
+			</c:if>
 		</div>
 
 		<div id="content">

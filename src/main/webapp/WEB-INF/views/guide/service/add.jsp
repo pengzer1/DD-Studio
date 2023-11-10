@@ -8,6 +8,9 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	#main{
+		margin-top:150px;
+	}
 </style>
 </head>
 <body>
@@ -16,14 +19,36 @@
 	<!-- Header -->
 
 	<main id="main">
+		<h1> 운휴 등록하기</h1>
+		<form method="POST" action="/ddstudio/guide/serviceadd.do"
+			enctype="multipart/form-data" onsubmit="return validateForm()">
+			<div id="category-box">
+				<table>
+					<tr>
+						<td>
+							<select name="category" id="category">
+								<option value="attraction">어트랙션</option>
+								<option value="shop">기프트샵</option>
+								<option value="theater">영화관</option>
+								<option value="restaurant">식당</option>
+							</select>
+							<c:if test=${ }
+							<input type="date" name="birth" id="birth" required class="middle-flat">
+							<input type="date" name="birth" id="birth" required class="middle-flat">
+						</td>
+					</tr>
+				</table>
+			</div>
 
-		<div id="title" style="margin-top:123px;">
-			<h2>운휴 시설 추가하기</h2>
-		</div>
-		
-		
-	
-			
+			<div id="button-list">
+				<button type="submit" id="add-button">등록</button>
+				<button type="button" id="back-button"
+					onclick="location.href='/ddstudio/guide/service.do';">취소</button>
+			</div>
+		</form>
+
+
+
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
