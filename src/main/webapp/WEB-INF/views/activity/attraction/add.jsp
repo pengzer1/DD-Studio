@@ -17,28 +17,43 @@
 		color: #777;
 	}
 	
-	#add-content {
-		display: flex;
-		justify-content: center;
+	/* #add-content {
+		width: 800px;
+		background-color: gold;
+	} */
+	
+	.add-table {
+		margin: 0 30%;
+		border: 0px solid #777;
+		border-collapse: collapse;
+		width: 800px;	
+	}
+	
+	.add-table th, .add-table td {
+		border: 0px solid #777;
+	}
+	
+	.add-table th {
 		text-align: left;
+		width: 13%;
 	}
 	
-	#form-table tr > th {
-		width: 200px;
+	.add-table td {
+		text-align: left;
+		width: 60%;
 	}
 	
-	#form-table tr > td {
-		width: 400px;
-	}
-	
-	#form-table tr > td > input {
+	.add-table input {
 		width: 100%;
 		height: 100%;
 	}
 	
-	table.vertical {
-		margin:0 auto;
+	
+	.add-table textarea {
+		width: 100%;
+		height: 100%;
 	}
+	
 	
 </style>
 </head>
@@ -61,8 +76,8 @@
 			<p>신규 어트랙션 등록</p>
 		</div>
 		
-		<div id="add-content">
-			<form method="POST" action="/ddstudio/activity/attractionadd.do">
+		<!-- <div id="add-content"> -->
+			<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data" class="add-form">
 				<table class="add-table">
 					<tbody>
 						<tr>
@@ -87,7 +102,7 @@
 							<th class="required">탑승인원</th>
 							<td>
 								<div>
-									<input type="text" name="capacity"  placeholder="숫자 형식으로 작성해주세요."/>
+									<input type="number" name="capacity"  placeholder="숫자 형식으로 작성해주세요." min="1" />
 								</div>
 							</td>
 							<!-- 올바르지 않은 형식을 입력 시 warning message가 출력될 부분 -->
@@ -141,7 +156,8 @@
 					</tbody>
 				</table>
 			</form>
-		</div>
+		<!-- </div> -->
+		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

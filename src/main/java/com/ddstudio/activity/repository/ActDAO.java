@@ -336,7 +336,8 @@ public class ActDAO {
 						dto.setName(rs.getString("name"));
 						dto.setTime(rs.getString("time"));
 						dto.setInfo(rs.getString("info"));
-						dto.setPeriod(rs.getString("period"));
+						dto.setStart_date(rs.getString("start_date"));
+						dto.setEnd_date(rs.getString("end_date"));
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setImg(rs.getString("img"));
 						
