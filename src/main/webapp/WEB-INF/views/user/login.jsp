@@ -22,6 +22,10 @@
 	background-color: transparent;
 	border: 1px solid #ccc;
 }
+
+.button-container {
+	margin-top: 0;
+}
 </style>
 </head>
 <body>

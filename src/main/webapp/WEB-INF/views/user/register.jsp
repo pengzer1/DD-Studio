@@ -12,6 +12,10 @@
 #cancel {
 	margin-right: 15px;
 }
+
+#duplicate-check {
+	padding: 0;
+}
 </style>
 </head>
 <body>
@@ -166,7 +170,6 @@
 	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 		
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
 		
