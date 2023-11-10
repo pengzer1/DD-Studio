@@ -38,10 +38,20 @@
 						</a> <a href="team.html" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">search</div>
 							<div class="nav-menu-name">검색</div>
-						</a> <a href="contact.html" class="nav-item nav-link index-navi">
+						</a>
+						<c:if test="${not empty email}">
+						<a href="/ddstudio/ticket/select.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">book_online</div>
 							<div class="nav-menu-name">예매</div>
 						</a>
+						</c:if>
+						<c:if test="${empty email}">
+						<a href="/ddstudio/user/login.do" class="nav-item nav-link index-navi">
+							<div class="material-symbols-outlined nav-icon">book_online</div>
+							<div class="nav-menu-name">예매</div>
+						</a>
+						</c:if>
+						
 					</div>
 				</div>
 				<c:if test="${empty email}">
