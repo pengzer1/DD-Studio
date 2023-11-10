@@ -16,7 +16,7 @@ th input#email.middle-high, th input#pw.middle-high {
 	padding: 10px;
 	border: 1px solid #ccc;
 	font-size: 16px;
-	margin: -1px; /* 이메일과 비밀번호 상자를 연결 */
+	margin: -1px; /* 이메일 비밀번호 상자 연결 */
 	flex-direction: column;
 	align-items: center;
 }
@@ -58,7 +58,7 @@ th input#email.middle-high+th input#pw.middle-high {
 	background-color: cornflowerblue;
 }
 
-table.vertical {
+table {
 	margin: 0 auto;
 	text-align: center;
 }
@@ -68,13 +68,16 @@ table.vertical {
 	height: 120px;
 	border-radius: 50%;
 	font-size: 16px;
-	margin-left: 50px;
 	background-color: transparent;
 	border: 1px solid #ccc;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+}
+
+.login {
+    margin: -110px 0 0 50px;
 }
 </style>
 </head>
@@ -96,21 +99,19 @@ table.vertical {
 			<div class="wide-item">
 
 				<form method="POST" action="/ddstudio/user/login.do">
-					<table class="vertical">
+					<table>
 						<tr>
 							<th><input type="text" name="email" id="email" required class="middle-high" placeholder="이메일"></th>
-							<td rowspan="2">
-								<button class="login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</button>
-							</td>
 						</tr>
 						<tr>
-							<th><input type="text" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
+							<th><input type="password" name="pw" id="pw" required class="middle-high" placeholder="비밀번호"></th>
+							<td><button class="login round-button" id="login check" onclick="location.href='/ddstudio/user/login.do';">로그인</button></td>
 						</tr>
 						<tr>
 							<td>
 								<div class="button-container">
-									<button type="button" class="button" onclick="location.href='/ddstudio/user/find-id.do';">아이디 찾기</button>
-									<button type="button" class="button" onclick="location.href='/ddstudio/user/change-pw.do';">비밀번호 변경</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/findid.do';">아이디 찾기</button>
+									<button type="button" class="button" onclick="location.href='/ddstudio/user/changepw.do';">비밀번호 변경</button>
 								</div>
 							</td>
 						</tr>
