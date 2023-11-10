@@ -7,200 +7,10 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-td input.middle-flat {
-	color: #000;
-	margin-top: 50px;
-	width: 400px;
-	height: 40px;
-	padding: 10px;
-	/* border: 1px solid #ccc; */
-	font-size: 16px;
-	margin: 0;
-	margin-left: 15px;
-	align-items: center;
-	justify-content: center;
-}
-
-td>div {
-	padding: 10px;
-}
-
-#email {
-	width: 270px;
-}
-
-#post-code {
-	width: 228px;
-}
-
-#birth-button {
-	width: 40px;
-}
-
-#acceptnum {
-	width: 192px;
-}
-
-form {
-	margin-top: 20px;
-}
-
-td input.middle-flat:focus {
-	border-color: #000;
-}
-
-.button-container {
-	margin-top: 20px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.button {
-	width: 90px;
-	margin-left: 10px;
-	height: 40px;
-	font-size: 16px;
-	background-color: transparent;
-	border: 1px solid #ccc;
-}
-
-.email>.check {
-	width: 120px;
-}
-
-.address>.check {
-	width: 160px;
-}
-
-table {
-	width: 600px;
-	margin: 0 auto;
-}
-
-.error-message {
-	font-size: 14px;
-	padding: 5px;
-}
-
-th.required::before {
-	content: "* ";
-	color: cornflowerblue;
-}
-
 #cancel, #acceptok {
 	margin-right: 35px;
-}
-
-#main {
-	text-align: center;
-	margin-top: 150px;
-}
-
-.sub-title {
-	width: 80%;
-	text-align: center;
-	border-top: 2px solid black;
-	margin: 50px auto 0;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-}
-
-#content .sub-title {
-    border-top: none;
-}
-
-#check #myid {
-	margin-right: 25px;
-}
-
-
-
-
-input, select {
-    vertical-align:middle;
-    border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-input {
-    box-sizing:border-box;
-    width: 75%;
-    font-size: 16px;
-    border-bottom: 1.5px solid #eeeeee;
-    padding: 10px;
-}
-
-/*placeholder 공통*/
-input::placeholder {
-    font-size: 16px;
-    font-weight: 00;
-    color: #9e9e9e;
-}
-
-/*input focus 되면 border 색 변경*/
-input:focus {
-	outline:none;
-	border-bottom: 1.5px solid black;
-}
-
-.certification {
-	display: flex;
-	margin-left: 50px;
-}
-
-.certificationTime{
-    font-size: 0.875rem;
-    font-weight: 500;
-    color:#616161;
-    line-height: 28px;
-    margin-left: 18px;
-    margin-top: 10px;
-}
-
-/* 팝업 박스 */
-.popup-layer {
-    position: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-}
-
-.popup-box {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 3px;
-    width: 300px;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.popup-box p {
-    margin: 0 0 20px;
-}
-
-.close-popup {
-    background-color: #CCC;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.close-popup:hover {
-    background-color: #2980b9; /* 마우스 호버 시 배경 색 변경 */
 }
 
 </style>
@@ -225,52 +35,58 @@ input:focus {
 							<th class="required">이름</th>
 							<td>
 								<div>
-									<input type="text" name="name" id="name" required class="middle-flat">
+									<input type="text" name="name" id="name" required
+										class="middle-flat">
 								</div>
 							</td>
 						</tr>
 						<tr>
-						    <th></th>
-						    <td>
-						        <div id="name-error" class="error-message" style="display:none;"></div>
-						    </td>
+							<th></th>
+							<td>
+								<div id="name-error" class="error-message"
+									style="display: none;"></div>
+							</td>
 						</tr>
-						 <!-- 연락처 필드와 에러 메시지 -->
+						<!-- 연락처 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">연락처</th>
 							<td>
 								<div>
-									<input type="text" name="tel" id="tel" required class="middle-flat">
+									<input type="text" name="tel" id="tel" required
+										class="middle-flat">
 								</div>
 							</td>
 						</tr>
 						<tr>
-						    <th></th>
-						    <td>
-						        <div id="tel-error" class="error-message" style="display:none;"></div>
-						    </td>
+							<th></th>
+							<td>
+								<div id="tel-error" class="error-message" style="display: none;"></div>
+							</td>
 						</tr>
-						
+
 						<tr>
 							<th class="required">인증번호</th>
 							<td>
 								<div class="certification">
-						            <input type="text" name="authcode" placeholder="6자리 숫자" class="certificationNumber" autocomplete="off">
-						            <span class="certificationTime">03:00</span>
-						        </div>
+									<input type="text" name="authcode" placeholder="6자리 숫자"
+										class="certificationNumber" autocomplete="off"> <span
+										class="certificationTime">03:00</span>
+								</div>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="button" id="acceptreq" class="acceptreq check button" disabled>요청</button>
-									<button type="button" id="acceptok" class="check button" disabled>확인</button>
+									<button type="button" id="acceptreq"
+										class="acceptreq check button" disabled>요청</button>
+									<button type="button" id="acceptok" class="check button"
+										disabled>확인</button>
 								</div>
 							</td>
 						</tr>
 					</table>
-			
+
 					<div class="sub-title">
 						<p>본인 이메일 (아이디) 확인</p>
 					</div>
@@ -279,15 +95,17 @@ input:focus {
 							<th>이메일 (아이디)</th>
 							<td>
 								<div>
-									<input type="text" name="myid" id="myid" class="middle-flat" style="pointer-events: none;">
+									<input type="text" name="myid" id="myid" class="middle-flat"
+										style="pointer-events: none;">
 								</div>
 							</td>
 						</tr>
-						
+
 						<tr>
 							<td colspan="2">
 								<div class="button-container">
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/user/login.do';">취소</button>
+									<button type="button" id="cancel" class="button"
+										onclick="location.href='/ddstudio/user/login.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -296,44 +114,8 @@ input:focus {
 			</div>
 		</div>
 	</main>
-	
+
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
-	<script>
-		$('#acceptok').click(function(){
-			$.ajax({
-				type: 'POST',
-				url: '/ddstudio/user/findid.do',
-				data: {
-					name: $('#name').val()
-					tel: $('#tel').val()
-				},
-				dataType: 'json',
-				success: function(result) {
-					//alert(result.message); //사용 가능(0) 사용중(1)
-					
-					if (result.message == 0) {
-						//console.log("true");
-					    $('#duplicate-check-message').css('display', 'block');
-						$('#duplicate-check-message').text('사용 가능한 아이디입니다.');
-						$('#join').prop('disalbed', false);
-						
-						isValid[1] = true;
-					}
-					else {
-						//console.log("false");
-					    $('#duplicate-check-message').css('display', 'block');
-						$('#duplicate-check-message').text('이미 사용중인 아이디입니다.');
-						$('#join').prop('disalbed', true);
-						
-						isValid[1] = false;
-					}
-				},
-				errors: function(a,b,c) {
-					console.log(a,b,c);
-				}
-			});
-		});
-	</script>
 	<script>
 	    let countTime = 0; //타이머 초기값
 	    let intervalCall; //타이머 식별
@@ -400,7 +182,27 @@ input:focus {
 	
 	        if (authCode !== null && enteredCode === authCode.toString()) {
 	            //alert('일치');
-	            
+        		$.ajax({
+        			type: 'POST',
+        			url: '/ddstudio/user/findid.do',
+        			data: {
+        				name: $('#name').val(),
+        				tel: $('#tel').val()
+        			},
+        			dataType: 'json',
+        			success: function(result) {
+        				//alert(result.email);
+
+        				if (result.email != null) {
+        					$('#myid').val(result.email);
+        				} else {
+        					$('#myid').val('해당 정보로 가입한 회원이 없습니다.');
+        				}
+        			},
+        			errors: function(a,b,c) {
+        				console.log(a,b,c);
+        			}
+        		});
 	        } else {
 	            alert('인증번호가 일치하지 않습니다.');
 	            //toastr.error('인증번호가 일치하지 않습니다.', '인증 오류');
@@ -477,6 +279,7 @@ input:focus {
 		        nameErrorDiv.style.display = "none";
 		        telErrorDiv.style.display = "none";
 		        $('input[name="authcode"]').val("");
+		        $('#myid').val("");
 		        
 		        isValid = [false, false];
 		        updateButtonStatus();
