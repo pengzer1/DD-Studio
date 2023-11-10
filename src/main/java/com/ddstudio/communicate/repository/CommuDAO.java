@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.communicate.model.InquiryDTO;
 import com.ddstudio.communicate.model.NoticeDTO;
 
 public class CommuDAO {
@@ -207,6 +208,67 @@ public class CommuDAO {
 			pstat = conn.prepareStatement(sql);
 
 			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return 0;
+		
+	}
+	
+	/* 이용문의 */
+
+	public InquiryDTO getUserInfo(String email) {
+		
+		try {
+				
+			String sql = "select user_seq, name from tblUser where email = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, email);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				InquiryDTO dto = new InquiryDTO();
+				
+				dto.setUser_seq(rs.getString("user_seq"));
+				dto.setName(rs.getString("name"));
+				
+				return dto;
+				
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+		
+	}
+
+	public int addInquiry(InquiryDTO dto) {
+		
+		try {
+
+			String sql = "insert into tblInquiry (inquiry_seq, type, subject, content, attach, regdate, user_seq) values (seqtblInquiry.nextVal, ?, ?, ?, ?, default, ?)";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, dto.getType());
+			pstat.setString(2, dto.getSubject());
+			pstat.setString(3, dto.getContent());
+			pstat.setString(4, dto.getAttach());
+			pstat.setString(5, dto.getUser_seq());
 
 			return pstat.executeUpdate();
 

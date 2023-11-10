@@ -3,9 +3,9 @@ package com.ddstudio.member.model;
 import lombok.Data;
 
 
-public class InquiryDTO {
+public class VocDTO {
 
-	private String inquiry_seq;
+	private String voc_seq;
 	private String type;
 	private String subject;
 	private String answer;
@@ -18,10 +18,10 @@ public class InquiryDTO {
 		this.regdate = regdate;
 	}
 	public String getSeq() {
-		return inquiry_seq;
+		return voc_seq;
 	}
-	public void setInquiry_seq(String inquiry_seq) {
-		this.inquiry_seq = inquiry_seq;
+	public void setVoc_seq(String voc_seq) {
+		this.voc_seq = voc_seq;
 	}
 	public String getType() {
 		return type;

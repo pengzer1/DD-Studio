@@ -25,6 +25,14 @@
 				font-size: 1.1rem;
 				border-right: 1px solid #E1E1E1;
 			}
+			#add-form .required::before {
+				content: "* ";
+				color: red;
+			}
+			#add-form .option::before {
+				content: "* ";
+				color: cornflowerblue;
+			}
 			#add-form td {
 				width: 70%;
 				text-align: left;
@@ -49,13 +57,18 @@
 			#add-form tr:nth-child(3) td input {
 			    margin-left: 20px;
 			}
+			#button-list i {
+				margin-right: 10px;
+			}
 			#add-button, #back-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
+				width: 90px;
+				height: 40px;
+				background-color: transparent;
+				border: 2px solid #CCC;
 				margin: 50px 10px 0;
+			}
+			.nav-icon {
+				font-size: 50px;
 			}
 		</style>
 	</head>
@@ -65,22 +78,22 @@
 		<main id="add-notice">
 			<h1>공지사항 등록</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticeadd.do" enctype="multipart/form-data" onsubmit="return validateForm()">
+			<form method="POST" action="/ddstudio/communicate/noticeadd.do" enctype="multipart/form-data">
 				<table id="add-form">
 					<tr>
-						<th>제목</th>
+						<th class="required">제목</th>
 						<td><input type="text" name="subject" size="86" autofocus></td>
 					</tr>
 					<tr>
-						<th>내용</th>
+						<th class="option">내용</th>
 						<td><textarea name="content"></textarea></td>
 					</tr>
 					<tr>
-						<th>첨부파일</th>
+						<th class="option">첨부파일</th>
 						<td><input type="file" name="file"></td>
 					</tr>
 					<tr>
-						<th>고정여부</th>
+						<th class="required">고정여부</th>
 						<td>
 							<label><input type="radio" name="fix" value="y"> 네</label>
 					        <label><input type="radio" name="fix" value="n" checked> 아니오</label>
@@ -89,8 +102,8 @@
 				</table>
 				
 				<div id="button-list">
-					<button type="submit" id="add-button">등록</button>
-					<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/notice.do';">취소</button>
+					<button type="submit" id="add-button"><i class="fa-solid fa-plus"></i>등록</button>
+					<button type="button" id="back-button"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
 				</div>
 			</form>
 		</main>
@@ -98,25 +111,29 @@
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
 		<script>
-			function validateForm() {
-				var subject = document.querySelector('input[type="text"]');
+			$('#add-button').click(function () {
+				var subject = document.querySelector('input[name="subject"]');
 				var content = document.querySelector('textarea[name="content"]');
-				var file = document.querySelector('input[type="file"]');
+				var file = document.querySelector('input[name="file"]');
 				
 				if (!subject.value.trim()) {
 					alert('제목을 입력하세요.');
 					subject.focus();
 					return false;
-				} else {
-					if (!content.value.trim() && !file.files.length) {
-						alert('내용을 입력하거나 첨부파일을 선택하세요.');
-						content.focus();
-						return false;
-					} else {
-						return true;
-					}
 				}
-			}
+				
+				if (!content.value.trim() && !file.files.length) {
+					alert('내용을 입력하거나 첨부파일을 선택하세요.');
+					content.focus();
+					return false;
+				} else {
+					return true;
+				}
+			});
+			
+			$('#back-button').click(function () {
+				location.href='/ddstudio/communicate/notice.do';
+			});
 		</script>
 	</body>
 </html>

@@ -211,8 +211,8 @@ td > div > input {
 	            popupLayer = null; // 팝업이 닫힐 때 변수 초기화
 	        });
 	    }
-	
-	    $('#acceptok').on('click', function () {
+		
+		$('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
 	        $('#pw').val("");
 	        $('#pwok').val("");
@@ -226,16 +226,17 @@ td > div > input {
         	        url: '/ddstudio/user/changepw.do',
         	        data: {
         	            email: $('#email').val(),
-        	            tel: $('#tel').val()
+        	            tel: $('#tel').val(),
+           	            pw: null
         	        },
         	        dataType: 'json',
         	        success: function (result) {
-        	            if (result.cnt == 1) { // 여기를 수정
+        	            if (result.cnt == 1) {
         	                alert("계정을 확인했습니다.");
         	                $('#pw').prop('disabled', false);
         	                $('#pwok').prop('disabled', false);
         	            } else {
-        	                alert("그런 계정은 없습니다.");
+        	                alert("해당 정보로 가입한 회원이 없습니다.");
         	                $('#pw').prop('disabled', true);
         	                $('#pwok').prop('disabled', true);
         	            }
@@ -247,6 +248,32 @@ td > div > input {
 	        } else {
 	            alert('인증번호가 일치하지 않습니다.');
 	        }
+	    });
+		
+
+		$('#change').on('click', function () {
+
+       	    $.ajax({
+       	        type: 'POST',
+       	        url: '/ddstudio/user/changepw.do',
+       	        data: {
+    	            email: $('#email').val(),
+    	            tel: $('#tel').val(),
+       	            pw: $('#pw').val()
+       	        },
+       	        dataType: 'json',
+       	        success: function (result) {
+       	            if (result.message == 1) {
+       	                alert("비밀번호를 변경했습니다.");
+       	                window.location.replace('/ddstudio/index.do');
+       	            } else {
+       	                alert("비밀번호 변경에 실패했습니다.");
+       	            }
+       	        },
+       	        errors: function(a,b,c) {
+       				console.log(a,b,c);
+       			}
+       	    });
 	    });
 	</script>
 	<script>
@@ -292,15 +319,17 @@ td > div > input {
 		    	
 		        emailErrorDiv.textContent = isValid[0] ? "" : "올바른 이메일 형식을 입력하세요. (예: park@email.com)";
 		        emailErrorDiv.style.display = isValid[0] ? "none" : "block";
-
-		        $('#duplicate-check-message').css('display', 'none');
 		        
 		        if (emailField.value.length === 0) {
 		        	emailErrorDiv.textContent = "";
 		        	emailErrorDiv.style.display = "none";
 		        }
+
+	            $('#pw').prop('disabled', true);
+	            $('#pwok').prop('disabled', true);
 	            
 		        updateButtonStatus();
+		        updateChangeButtonStatus();
 		    });
 	        
 	        /* 연락처 유효성 검사 */
@@ -318,8 +347,12 @@ td > div > input {
 		            telErrorDiv.textContent = "";
 		            telErrorDiv.style.display = "none";
 		        }
-		        
+
+	            $('#pw').prop('disabled', true);
+	            $('#pwok').prop('disabled', true);
+	            
 		        updateButtonStatus();
+		        updateChangeButtonStatus();
 		    });
 
 		    /* 비밀번호 유효성 검사 */
@@ -383,11 +416,22 @@ td > div > input {
 		        $('input[name="authcode"]').val("");
 		        $('#pw').val("");
 		        $('#pwok').val("");
+	            $('#pw').prop('disabled', true);
+	            $('#pwok').prop('disabled', true);
 		        
 		        isValid = [false, false];
 		        isPasswordValid = [false, false];
 		        updateButtonStatus();
 		        updateChangeButtonStatus();
+		        
+		        // 타이머 정지
+			    clearInterval(intervalCall);
+
+		        // 팝업 레이어 닫기
+		        if (popupLayer) {
+		            popupLayer.remove();
+		            popupLayer = null;
+		        }
 		    });
 		});
 	</script>

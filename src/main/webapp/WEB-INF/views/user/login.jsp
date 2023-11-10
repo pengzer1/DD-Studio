@@ -63,7 +63,6 @@
 							</td>
 						</tr>
 					</table>
-
 				</form>
 			</div>
 
@@ -93,7 +92,7 @@
 					<button type="submit" class="login">관리자</button>
 				</form>
 			</div>
-			<!-- 자동 로그인 끝 (추후 삭제) -->
+			<!-- 자동 로그인 끝 -->
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->

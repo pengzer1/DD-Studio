@@ -56,6 +56,8 @@ public class AttractionAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//어트랙션 추가 처리
+		//- 이미지는 이미지 DB에 넣어주기
+		//- 나머지는 어트랙션 DB에 넣어주기
 		
 	
 	

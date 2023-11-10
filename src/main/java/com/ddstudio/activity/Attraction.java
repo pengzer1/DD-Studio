@@ -47,7 +47,7 @@ public class Attraction extends HttpServlet {
 		//2. 위치 가져오기
 		ArrayList<LocationDTO> locationList = dao.locationList();
 		
-		//3. 운휴일정 가져오기
+		//3. 운영/운휴일정 가져오기
 		
 		
 		//4. 데이터 전송

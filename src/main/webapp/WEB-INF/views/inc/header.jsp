@@ -28,7 +28,7 @@
 							<div class="material-symbols-outlined nav-icon">Recommend</div>
 							<div class="nav-menu-name">추천</div>
 						</a>
-						<a href="team.html" class="nav-item nav-link index-navi">
+						<a href="/ddstudio/shop/restaurant/list.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">Redeem</div>
 							<div class="nav-menu-name">샵</div>
 						</a>
@@ -44,7 +44,7 @@
 							<div class="material-symbols-outlined nav-icon">search</div>
 							<div class="nav-menu-name">검색</div>
 						</a>
-						<a href="contact.html" class="nav-item nav-link index-navi">
+						<a href="/ddstudio/ticket/select.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">book_online</div>
 							<div class="nav-menu-name">예매</div>
 						</a>

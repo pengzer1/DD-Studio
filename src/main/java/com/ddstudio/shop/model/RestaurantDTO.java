@@ -1,0 +1,17 @@
+package com.ddstudio.shop.model;
+
+import lombok.Data;
+
+@Data
+public class RestaurantDTO {
+	private String restaurant_seq;
+	private String name;
+	private String menu;
+	private String time;
+	private String capacity;
+	private String tel;
+	private String lat;
+	private String lng;
+	private String category;
+	private String img;
+}
