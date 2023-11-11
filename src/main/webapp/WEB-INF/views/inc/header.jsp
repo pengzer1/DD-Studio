@@ -115,8 +115,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/shop/restaurant.do"
-								class="nav-item nav-link index-navi">
+							<a href="/ddstudio/shop/restaurant.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">Redeem</div>
 								<div class="nav-menu-name">샵</div>
 								<div class="sub-menu">
@@ -130,8 +129,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/guide/service.do"
-								class="nav-item nav-link index-navi">
+							<a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">notification_important</div>
 								<div class="nav-menu-name">가이드</div>
 								<div class="sub-menu">
@@ -154,8 +152,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/communicate/usageinquiry.do"
-								class="nav-item nav-link index-navi">
+							<a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">sms</div>
 								<div class="nav-menu-name">소통</div>
 								<div class="sub-menu">
@@ -191,15 +188,13 @@
 							<div class="nav-menu-name">검색</div>
 						</a>
 						<c:if test="${not empty email}">
-							<a href="/ddstudio/ticket/select.do"
-								class="nav-item nav-link index-navi">
+							<a href="/ddstudio/ticket/select.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">book_online</div>
 								<div class="nav-menu-name">예매</div>
 							</a>
 						</c:if>
 						<c:if test="${empty email}">
-							<a href="/ddstudio/user/login.do"
-								class="nav-item nav-link index-navi">
+							<a href="/ddstudio/user/login.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">book_online</div>
 								<div class="nav-menu-name">예매</div>
 							</a>
@@ -209,8 +204,7 @@
 				</div>
 				<c:if test="${empty email}">
 					<div class="header-login">
-						<a href="/ddstudio/user/login.do">로그인</a> <a
-							href="/ddstudio/user/register.do">회원가입</a>
+						<a href="/ddstudio/user/login.do">로그인</a> <a href="/ddstudio/user/register.do">회원가입</a>
 					</div>
 				</c:if>
 				<c:if test="${not empty email}">
