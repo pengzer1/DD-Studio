@@ -26,6 +26,15 @@
 .button-container {
 	margin-top: 0;
 }
+
+#main {
+	margin-top: 123px;
+}
+
+#title {
+    background-image: url('/ddstudio/asset/image/background-4.jpg');
+}
+
 </style>
 </head>
 <body>

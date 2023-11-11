@@ -46,6 +46,9 @@
     	color: black;
     	font-size: larger;
 	}
+	#title {
+	    background-image: url('/ddstudio/asset/image/directions.png');
+	}
 </style>
 </head>
 <body>
