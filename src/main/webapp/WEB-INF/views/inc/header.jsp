@@ -186,7 +186,7 @@
 							</a>
 						</div>
 
-						<a href="team.html" class="nav-item nav-link index-navi">
+						<a href="/ddstudio/user/search.do" class="nav-item nav-link index-navi">
 							<div class="material-symbols-outlined nav-icon">search</div>
 							<div class="nav-menu-name">검색</div>
 						</a>

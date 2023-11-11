@@ -28,13 +28,12 @@
 }
 
 #main {
-	margin-top: 123px;
+	margin-top: 100px;
 }
 
 #title {
     background-image: url('/ddstudio/asset/image/background-4.jpg');
 }
-
 </style>
 </head>
 <body>
