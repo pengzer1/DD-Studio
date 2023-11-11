@@ -31,6 +31,15 @@
 	margin-top: 100px;
 }
 
+#main > .sub-title {
+	border-top: 0;
+	margin-top: 0;
+}
+
+.sub-title > p {
+	margin-bottom: 0;
+}
+
 #title {
     background-image: url('/ddstudio/asset/image/background-4.jpg');
 }
