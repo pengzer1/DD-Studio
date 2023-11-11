@@ -8,29 +8,41 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+
 </style>
 </head>
 <body>
-	<!-- Template.jsp -->
+	<!-- /mbti/list.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
 
 		<div id="title" style="margin-top:123px;">
-			<h2>제목</h2>
-			<br>
-			<p>내용을 입력하세요</p>
+			<h2>MBTI 추천</h2>
 		</div>
 
-		<div id="content">
-			<div id="condition">
-				<h3>기능 (예시 조건검색-롯데월드에 있던거 참고)</h3>
+		<!-- 관리자 -->
+		<c:if test="${lv == 2}">
+			<div id="admin-btn">
+				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/preferencetestadd.do'">
+					<i class="fa-solid fa-plus"></i>추가
+				</button>
+				<!-- 상세보기 -->
+				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+					<i class="fa-solid fa-pen-to-square"></i>수정
+				</button>
+				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+					<i class="fa-solid fa-trash"></i>삭제
+				</button>
 			</div>
+		</c:if>
+		
+		<div id="content">
 
 			<div class="munti-content-container">
 				<div class="item">
 					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
-					<div>아이템 1 설명</div>
+					<div>INFP</div>
 				</div>
 				<div class="item">
 					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
@@ -74,7 +86,6 @@
 				</div>
 				<!-- 추가 아이템들 -->
 			</div>
-			
 		</div>
 		
 	</main>

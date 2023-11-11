@@ -14,7 +14,7 @@ public class PreferenceTestDel extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/preferencetest/del.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/preference-test/del.jsp");
 		dispatcher.forward(req, resp);
 	}
 
