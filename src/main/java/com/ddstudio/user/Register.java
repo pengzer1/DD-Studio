@@ -33,7 +33,7 @@ public class Register extends HttpServlet {
 	        String address;
 	        
 	        if (req.getParameter("post-code").trim().isEmpty()) {
-		        address = "미기재"; //주소를 입력하지 않은 경우 (default)
+		        address = "default"; //주소를 입력하지 않은 경우 (미기재)
 	        } else {
 		        String postCode = req.getParameter("post-code").trim();
 		        String addressBasis = req.getParameter("address-basis").trim();
