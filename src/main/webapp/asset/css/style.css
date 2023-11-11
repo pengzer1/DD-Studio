@@ -175,6 +175,7 @@
 	justify-content: center;
 	align-items: center;
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+	border-top: 1px transparent; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 #admin-btn {
