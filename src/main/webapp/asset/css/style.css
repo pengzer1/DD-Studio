@@ -177,6 +177,23 @@
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
+#admin-btn {
+	text-align: right;
+}
+
+#admin-btn button {
+	margin: 3px;
+	border: 0;
+	border-radius: 10px;
+	padding: 10px 10px;
+	color: #222;
+	background-color: #E6AAAE;
+}
+
+#admin-btn button:last-child {
+	margin-right: 15px;
+}
+
 #ddstudio-header {
 	margin: 0px;
 	position: fixed;
