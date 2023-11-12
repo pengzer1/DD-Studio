@@ -15,4 +15,5 @@ public class AttractionDTO {
 	private String is_test;
 	
 	private String img;
+	private String theme;
 }
