@@ -87,5 +87,20 @@ public class CategoryDAO {
 		return 0;
 	}
 
+	public int del(CategoryDTO dto) {
+		try {
+			String sql = "delete from tblCategory where name=?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 }
