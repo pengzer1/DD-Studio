@@ -5,7 +5,7 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '박나래', 'park@naver.com', 'park1111!', '010-3951-2909', '10690 제주 51동 46층 576호', TO_DATE('19970624', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '황주원', 'hwnag@kakao.com', 'hwang1111!', '010-5341-3358', '50435 전북 99동 71층 571호', TO_DATE('19961221', 'yyyy-mm-dd'), '1', 'N');
+VALUES (seqtblUser.nextVal, '황주원', 'hwnag@kakao.com', 'hwang1111!', '010-5341-3358', '50435 전북 99동 71층 571호', TO_DATE('19961221', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '차민재', 'cha@daum.net', 'cha1111!', '010-3926-3102', '23822 부산 91동 88층 216호', TO_DATE('19980824', 'yyyy-mm-dd'), '1', 'Y');
@@ -17,7 +17,7 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '차수민', 'cha@msn.com', 'cha1111!', '010-9057-4054', '26942 서울 96동 99층 034호', TO_DATE('20000519', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '이승원', 'lee@naver.com', 'lee1111!', '010-7548-4860', '08998 경북 54동 23층 545호', TO_DATE('20000203', 'yyyy-mm-dd'), '1', 'Y');
+VALUES (seqtblUser.nextVal, '이승원', 'lee@naver.com', 'lee1111!', '010-7548-4860', '08998 경북 54동 23층 545호', TO_DATE('20000203', 'yyyy-mm-dd'), '1', 'N');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '윤준민', 'mmvph@kakao.com', '=p8-hm9vm', '010-9629-9841', '04080 전남 39동 41층 276호', TO_DATE('19980915', 'yyyy-mm-dd'), '1', 'Y');
