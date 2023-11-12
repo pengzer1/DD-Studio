@@ -45,6 +45,10 @@ CREATE TABLE tblCourse (
 	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스?��미�? */
 );
 
+select * from tblCourse;
+select * from tblUser;
+--INSERT INTO tblCourse (course_seq, name, img) VALUES (seqtblCourse.nextVal, ?, ?)
+
 /* MBTI */
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
