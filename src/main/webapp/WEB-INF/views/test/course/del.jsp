@@ -32,9 +32,9 @@ select option:checked {
 
 #courseImage {
 	width: 375px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+	justify-content: center; align-items : center;
+	text-align: center;
+	align-items: center;
 }
 </style>
 </head>
@@ -66,9 +66,7 @@ select option:checked {
 
 						<tr>
 							<th>첨부파일</th>
-							<td>
-								<img id="courseImage" alt="코스 이미지">
-							</td>
+							<td><img id="courseImage" alt="코스 이미지"></td>
 						</tr>
 
 						<tr>
@@ -76,7 +74,8 @@ select option:checked {
 							<td>
 								<div class="button-container">
 									<button type="button" id="change" class="check button">삭제</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
+									<button type="button" id="cancel" class="button"
+										onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -90,48 +89,56 @@ select option:checked {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
-		$(document).ready(function () {
-		    load();
+		$(document).ready(function() {
+			load();
 		});
-	
+
 		function load() {
-		    $.ajax({
-		        type: 'GET',
-		        url: '/ddstudio/test/coursedel.do',
-		        dataType: 'json',
-		        success: function (result) {
-		            var select = $('#name');
-		            select.empty();
-	
-		            $(result).each(function (index, item) {
-		                var option = $('<option>').val(item.course_seq).text(item.name);
-		                select.append(option);
-		            });
-		        },
-		        error: function (a, b, c) {
-		            console.log(a, b, c);
-		        }
-		    });
+			$.ajax({
+				type : 'GET',
+				url : '/ddstudio/test/coursedel.do',
+				dataType : 'json',
+				success : function(result) {
+					var select = $('#name');
+					select.empty();
+
+					$(result).each(
+							function(index, item) {
+								var option = $('<option>').val(item.course_seq)
+										.text(item.name);
+								select.append(option);
+							});
+
+					// Update the image when the course list is loaded
+					updateImage(result);
+
+					// Attach change event handler to update image when the selection changes
+					select.on('change', function() {
+						updateImage(result);
+					});
+				},
+				error : function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
 		}
-		
+
 		// 코스 이미지 업데이트
 		function updateImage(result) {
-		    $('#name').on('change', function () {
-		        var selectedCourseSeq = $('#name').val();
-		        var imageSrc = '';
-	
-		        var selectedCourse = result.find(function (course) {
-		            return course.course_seq === selectedCourseSeq;
-		        });
-	
-		        if (selectedCourse) {
-		            imageSrc = '/ddstudio/asset/image/course/' + selectedCourse.img;
-		        }
-	
-		        $('#courseImage').attr('src', imageSrc);
-		    });
+			var selectedCourseSeq = $('#name').val();
+			var imageSrc = '';
+
+			var selectedCourse = result.find(function(course) {
+				return course.course_seq === selectedCourseSeq;
+			});
+
+			if (selectedCourse) {
+				imageSrc = '/ddstudio/asset/image/course/' + selectedCourse.img;
+			}
+
+			$('#courseImage').attr('src', imageSrc);
 		}
-		
+
 		// 삭제 버튼 클릭 이벤트
 		$('#change').on('click', function(e) {
 			e.preventDefault();
@@ -146,14 +153,12 @@ select option:checked {
 					courseSeq : delCourseSeq
 				},
 				success : function(result) {
-
 					if (result == 1) {
 						alert("코스를 삭제했습니다.");
 						load();
 					} else {
 						alert("failed");
 					}
-
 				},
 				error : function(a, b, c) {
 					console.log(a, b, c);
