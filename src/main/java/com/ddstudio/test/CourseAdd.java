@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ddstudio.user.model.UserDTO;
-import com.ddstudio.user.repository.UserDAO;
+import com.ddstudio.test.model.CourseDTO;
+import com.ddstudio.test.repository.TestDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -29,50 +29,38 @@ public class CourseAdd extends HttpServlet {
 		try {
 			
 			MultipartRequest multi = new MultipartRequest(
-										req, //Request
-										req.getRealPath("/asset/pic"), //업로드 폴더 경로
-										1024 * 1024 * 10, //파일의 크기
-										"UTF-8", //인코딩 방식을 바꾸기 때문에 따로 한글 처리를 하지 않아도 된다.
+										req,
+										req.getRealPath("/asset/image/course"),
+										1024 * 1024 * 10,
+										"UTF-8",
 										new DefaultFileRenamePolicy()
 									);
-			//System.out.println(req.getRealPath("/asset/pic"));
-			//사진 저장 경로 확인
+			//System.out.println(req.getRealPath("/asset/image/test/course")); //사진 저장 경로 확인
 			
-			String id = multi.getParameter("id");
-			String pw = multi.getParameter("pw");
 			String name = multi.getParameter("name");
-			String email = multi.getParameter("email");
-			String pic = multi.getFilesystemName("pic"); //사진은 geteParameter로 가져오지 않으며, 파일 이름으로 가져와야 한다.
-			String intro = multi.getParameter("intro");
+			String img = multi.getFilesystemName("img");
 			
-			//System.out.println(intro);
+			CourseDTO dto = new CourseDTO();
 			
-			UserDTO dto = new UserDTO();
-			
-			dto.setId(id);
-			dto.setPw(pw);
 			dto.setName(name);
-			dto.setEmail(email);
 			
 			//사진
-			if (pic != null && !pic.equals("")) {
-				dto.setPic(pic);
+			if (img != null && !img.equals("")) {
+				dto.setImg(img);
 			} else {
-				dto.setPic("pic.png");
+				dto.setImg("course.png");
 			}
 			
-			dto.setIntro(intro);
+			TestDAO dao = new TestDAO();
 			
-			UserDAO dao = new UserDAO();
-			
-			int result = dao.register(dto);
+			int result = dao.courseAdd(dto);
 			
 			if (result == 1) {
-				resp.sendRedirect("/toy/index.do");
+				resp.sendRedirect("/ddstudio/test/recommend.do");
 			}			
 			
 		} catch (Exception e) {
-			System.out.println("Register.doPost()");
+			System.out.println("CourseAdd.doPost()");
 			e.printStackTrace();
 		}
 		

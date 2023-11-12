@@ -12,6 +12,11 @@
 #cancel {
 	margin-right: 35px;
 }
+
+#img {
+	border-bottom: 0;
+    margin-left: 0;
+}
 </style>
 </head>
 <body>
@@ -25,8 +30,9 @@
 		
 		<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/user/findid.do" enctype="multipart/form-data">
-					<table id="valid">
+			
+				<form method="POST" action="/ddstudio/test/courseadd.do" enctype="multipart/form-data">
+					<table>
 						<tr>
 							<th class="required">코스명</th>
 							<td>
@@ -37,10 +43,10 @@
 						</tr>
 
 						<tr>
-							<th class="required">첨부파일</th>
+							<th>첨부파일</th>
 							<td>
 								<div>
-									<input type="text" name="file" id="file" required class="middle-flat">
+									<input type="file" name="img" id="img" class="middle-flat">
 								</div>
 							</td>
 						</tr>
@@ -50,12 +56,13 @@
 							<td>
 								<div class="button-container">
 									<button type="submit" id="change" class="check button">추가</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/index.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
 								</div>
 							</td>
 						</tr>
 					</table>
 				</form>
+				
 			</div>
 		</div>
 	</main>
