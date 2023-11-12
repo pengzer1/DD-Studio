@@ -2,7 +2,7 @@
 create user JspProject identified by pass;
 grant connect, resource, dba to JspProject;
 
-/* DELETEë¬?_51ê°? */
+/* DELETEï¿½?_51ï¿½? */
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -56,7 +56,7 @@ DELETE FROM tblTheme;
 DELETE FROM tblUser;
 
 
-/* DROP TABLE_51ê°? */
+/* DROP TABLE_51ï¿½? */
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -110,7 +110,7 @@ DROP TABLE tblTheme;
 DROP TABLE tblUser;
 
 
-/* DROP SEQUENCE_51ê°? */
+/* DROP SEQUENCE_51ï¿½? */
 DROP SEQUENCE seqtblUser;
 DROP SEQUENCE seqtblTheme;
 DROP SEQUENCE seqtblHashtag;
@@ -163,445 +163,444 @@ DROP SEQUENCE seqtblUserCart;
 DROP SEQUENCE seqtblBuy;
 DROP SEQUENCE seqtblUserBuy;
 
-/* CREATEë¬?_51ê°? */
+/* CREATEï¿½?_51ï¿½? */
 
-/* ?œ ?? */
+/* ?ï¿½ï¿½?? */
 CREATE TABLE tblUser (
-	user_seq NUMBER PRIMARY KEY, /* ?œ ??ë²ˆí˜¸ */
-    name VARCHAR2(500) NOT NULL, /* ?´ë¦? */
-	email VARCHAR2(500) NOT NULL UNIQUE, /* ?´ë©”ì¼ */
-	pw VARCHAR2(500) NOT NULL, /* ë¹„ë?ë²ˆí˜¸ */
-	tel VARCHAR2(500) NOT NULL UNIQUE, /* ? „?™”ë²ˆí˜¸ */
+	user_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½??ë²ˆí˜¸ */
+    name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½ï¿½? */
+	email VARCHAR2(500) NOT NULL UNIQUE, /* ?ï¿½ï¿½ë©”ì¼ */
+	pw VARCHAR2(500) NOT NULL, /* ë¹„ï¿½?ë²ˆí˜¸ */
+	tel VARCHAR2(500) NOT NULL UNIQUE, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 	address VARCHAR2(500) NOT NULL, /* ì£¼ì†Œ */
-	birth DATE NOT NULL, /* ?ƒ?…„?›”?¼ */
-	lv CHAR(1) NOT NULL, /* ?“±ê¸? */
-	ing CHAR(1) NOT NULL /* ?ƒˆ?‡´?—¬ë¶? */
+	birth DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	lv CHAR(1) NOT NULL, /* ?ï¿½ï¿½ï¿½? */
+	ing CHAR(1) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 );
 
-/* ?…Œë§? */
+/* ?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblTheme (
-	theme_seq NUMBER PRIMARY KEY, /* ?…Œë§ˆë²ˆ?˜¸ */
-	name VARCHAR2(500) NOT NULL UNIQUE /* ?…Œë§ˆëª… */
+	theme_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½ë§ˆë²ˆ?ï¿½ï¿½ */
+	name VARCHAR2(500) NOT NULL UNIQUE /* ?ï¿½ï¿½ë§ˆëª… */
 );
 
-/* ?•´?‹œ?ƒœê·? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblHashtag (
-   hashtag_seq NUMBER PRIMARY KEY, /* ?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
-   name VARCHAR2(500) NOT NULL UNIQUE /* ?•´?‹œ?ƒœê·¸ëª… */
+   hashtag_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
+   name VARCHAR2(500) NOT NULL UNIQUE /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ëª… */
 );
 
-/* ?œ„ì¹˜ì •ë³? */
+/* ?ï¿½ï¿½ì¹˜ì •ï¿½? */
 CREATE TABLE tblLocation (
-   location_seq NUMBER PRIMARY KEY, /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
-   info VARCHAR2(500) NOT NULL UNIQUE /* ?œ„ì¹˜ì •ë³´ë‚´?š© */
+   location_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
+   info VARCHAR2(500) NOT NULL UNIQUE /* ?ï¿½ï¿½ì¹˜ì •ë³´ë‚´?ï¿½ï¿½ */
 );
 
 /* ì¹´í…Œê³ ë¦¬ */
 CREATE TABLE tblCategory (
    category_seq NUMBER PRIMARY KEY, /* ì¹´í…Œê³ ë¦¬ë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL UNIQUE /* ì¹´í…Œê³ ë¦¬ëª? */
+   name VARCHAR2(500) NOT NULL UNIQUE /* ì¹´í…Œê³ ë¦¬ï¿½? */
 );
 
-/* ?‹?‹¹ */
+/* ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblRestaurant (
-   restaurant_seq NUMBER PRIMARY KEY, /* ?‹?‹¹ë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?‹?‹¹ëª? */
-   menu VARCHAR2(500) NOT NULL, /* ???‘œë©”ë‰´ */
-   time VARCHAR2(500) NOT NULL, /* ?š´?˜?‹œê°? */
-   capacity NUMBER NOT NULL, /* ?ˆ˜?š©?¸?› */
-   tel VARCHAR2(500) NOT NULL, /* ?‹?‹¹? „?™”ë²ˆí˜¸ */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+   restaurant_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   menu VARCHAR2(500) NOT NULL, /* ???ï¿½ï¿½ë©”ë‰´ */
+   time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   capacity NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   tel VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
    category_seq NUMBER REFERENCES tblCategory(category_seq) NOT NULL /* ì¹´í…Œê³ ë¦¬ë²ˆí˜¸ */
 );
 
-/* ?‹?‹¹?´ë¯¸ì? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
 CREATE TABLE tblRestaurantImg (
-   restaurant_img_seq NUMBER PRIMARY KEY, /* ?‹?‹¹?´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'restaurant.png' NOT NULL, /* ?‹?‹¹?´ë¯¸ì? */
-   restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* ?‹?‹¹ë²ˆí˜¸ */
+   restaurant_img_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'restaurant.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
+   restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?‹?‹¹/?š´?œ´ */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblRestaurantClose (
-   restaurant_close_seq NUMBER PRIMARY KEY, /* ?‹?‹¹?š´?œ´ë²ˆí˜¸ */
-   start_date DATE NOT NULL, /* ?š´?œ´?‹œ?ž‘ */
-   end_date DATE NOT NULL, /* ?š´?œ´ì¢…ë£Œ */
-   restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* ?‹?‹¹ë²ˆí˜¸ */
+   restaurant_close_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   start_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   end_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¢…ë£Œ */
+   restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?Ž¸?˜?‹œ?„¤ */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblConvenient (
-	convenient_seq NUMBER PRIMARY KEY, /* ?Ž¸?˜?‹œ?„¤ë²ˆí˜¸ */
-	name VARCHAR2(500) NOT NULL UNIQUE, /* ?Ž¸?˜?‹œ?„¤?´ë¦? */
-	time VARCHAR2(500) NOT NULL, /* ?š´?˜?‹œê°? */
-	tel VARCHAR2(500) NOT NULL, /* ?Ž¸?˜?‹œ?„¤? „?™”ë²ˆí˜¸ */
-	img VARCHAR2(500) DEFAULT 'convenient.png' NOT NULL, /* ?Ž¸?˜?‹œ?„¤ ?´ë¯¸ì? */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+	convenient_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	tel VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	img VARCHAR2(500) DEFAULT 'convenient.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ë¯¸ï¿½? */
+	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ê¸°í”„?Š¸?ƒµ */
+/* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblShop (
-   shop_seq NUMBER PRIMARY KEY, /* ê¸°í”„?Š¸?ƒµë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ê¸°í”„?Š¸?ƒµëª? */
-   time VARCHAR2(500) NOT NULL, /* ?š´?˜?‹œê°? */
-   info VARCHAR2(2000) NOT NULL, /* ê¸°í”„?Š¸?ƒµ?„¤ëª? */
-   tel VARCHAR2(500) NOT NULL, /* ê¸°í”„?Š¸?ƒµ? „?™”ë²ˆí˜¸ */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+   shop_seq NUMBER PRIMARY KEY, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   info VARCHAR2(2000) NOT NULL, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   tel VARCHAR2(500) NOT NULL, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ê¸°í”„?Š¸?ƒµ/?š´?œ´ */
+/* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblShopClose (
-   shop_close_seq NUMBER PRIMARY KEY, /* ê¸°í”„?Š¸?ƒµ?š´?œ´ë²ˆí˜¸ */
-   start_date DATE NOT NULL, /* ?š´?œ´?‹œ?ž‘ */
-   end_date DATE NOT NULL, /* ?š´?œ´ì¢…ë£Œ */
-   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?Š¸?ƒµë²ˆí˜¸ */
+   shop_close_seq NUMBER PRIMARY KEY, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   start_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   end_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¢…ë£Œ */
+   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ê¸°í”„?Š¸?ƒµ?´ë¯¸ì? */
+/* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
 CREATE TABLE tblShopImg (
-   shop_img_seq NUMBER PRIMARY KEY, /* ê¸°í”„?Š¸?ƒµ?´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'shop.png' NOT NULL, /* ê¸°í”„?Š¸?ƒµ?´ë¯¸ì? */
-   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?Š¸?ƒµë²ˆí˜¸ */
+   shop_img_seq NUMBER PRIMARY KEY, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'shop.png' NOT NULL, /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
+   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?˜?™”ê´? */
+/* ?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblTheater (
-   theater_seq NUMBER PRIMARY KEY, /* ?˜?™”ê´?ë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?˜?™”ê´?ëª? */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+   theater_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? */
+   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?˜?™”ê´?/?š´?œ´ */
+/* ?ï¿½ï¿½?ï¿½ï¿½ï¿½?/?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblTheaterClose (
-   theater_close_seq NUMBER PRIMARY KEY, /* ?˜?™”?š´?œ´ë²ˆí˜¸ */
-   start_date DATE NOT NULL, /* ?š´?œ´?‹œ?ž‘ */
-   end_date DATE NOT NULL, /* ?š´?œ´ì¢…ë£Œ */
-   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL /* ?˜?™”ê´?ë²ˆí˜¸ */
+   theater_close_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   start_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   end_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¢…ë£Œ */
+   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ë²ˆí˜¸ */
 );
 
-/* ?˜?™” */
+/* ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblMovie (
-   movie_seq NUMBER PRIMARY KEY, /* ?˜?™”ë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?˜?™”ëª? */
-   period VARCHAR2(500) NOT NULL, /* ?˜?™”?ƒ?˜ê¸°ê°„ */
-   runningtime NUMBER NOT NULL, /* ?Ÿ¬?‹???ž„ */
-   img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* ?¬?Š¤?„°?´ë¯¸ì? */
-   preview VARCHAR2(500) /* ?˜?™”?˜ˆê³ íŽ¸?˜?ƒ */
+   movie_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   period VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê¸°ê°„ */
+   runningtime NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½???ï¿½ï¿½ */
+   img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
+   preview VARCHAR2(500) /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê³ íŽ¸?ï¿½ï¿½?ï¿½ï¿½ */
 );
 
-/* ?˜?™”?ƒ?˜ */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblMoviePlay (
-   movie_play_seq NUMBER PRIMARY KEY, /* ?˜?™”?ƒ?˜ë²ˆí˜¸ */
-   start_time VARCHAR2(500) NOT NULL, /* ?˜?™”?ƒ?˜?‹œ?ž‘?‹œê°? */
-   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL, /* ?˜?™”ê´?ë²ˆí˜¸ */
-   movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL /* ?˜?™”ë²ˆí˜¸ */
+   movie_play_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   start_time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½?ë²ˆí˜¸ */
+   movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?˜?™”/?•´?‹œ?ƒœê·? */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblMovieHashtag (
-   movie_hashtag_seq NUMBER PRIMARY KEY, /* ?˜?™”?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
-   movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL, /* ?˜?™”ë²ˆí˜¸ */
-   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
+   movie_hashtag_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
+   movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?¬?† ì¡? */
+/* ?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblPhotoZone (
-   photozone_seq NUMBER PRIMARY KEY, /* ?¬?† ì¡´ë²ˆ?˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?¬?† ì¡´ëª… */
-   time VARCHAR2(500) NOT NULL, /* ?š´?˜?‹œê°? */
-   info VARCHAR2(2000) NOT NULL, /* ?¬?† ì¡´ì„¤ëª? */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+   photozone_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ë²ˆ?ï¿½ï¿½ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ëª… */
+   time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   info VARCHAR2(2000) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ì„¤ï¿½? */
+   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?¬?† ì¡´ì´ë¯¸ì? */
+/* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ì´ë¯¸ï¿½? */
 CREATE TABLE tblPhotoZoneImg (
-   photozone_img_seq NUMBER PRIMARY KEY, /* ?¬?† ì¡´ì´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'photozone.png' NOT NULL, /* ?¬?† ì¡´ì´ë¯¸ì? */
-   photozone_seq NUMBER REFERENCES tblPhotoZone(photozone_seq) NOT NULL /* ?¬?† ì¡´ë²ˆ?˜¸ */
+   photozone_img_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ì´ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'photozone.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ì´ë¯¸ï¿½? */
+   photozone_seq NUMBER REFERENCES tblPhotoZone(photozone_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ì¡´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?Ž˜?Š¤?‹°ë²? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblFestival (
-   festival_seq NUMBER PRIMARY KEY, /* ?Ž˜?Š¤?‹°ë²Œë²ˆ?˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œëª… */
-   time VARCHAR2(500) NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œì‹œê°? */
-   info VARCHAR2(2000) NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œì„¤ëª? */
-   period VARCHAR2(500) NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œê¸°ê°? */
-   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?œ„ì¹˜ì •ë³´ë²ˆ?˜¸ */
+   festival_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œë²ˆ?ï¿½ï¿½ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œëª… */
+   time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œì‹œï¿½? */
+   info VARCHAR2(2000) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œì„¤ï¿½? */
+   period VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œê¸°ï¿½? */
+   location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* ?ï¿½ï¿½ì¹˜ì •ë³´ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?Ž˜?Š¤?‹°ë²Œì´ë¯¸ì? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œì´ë¯¸ï¿½? */
 CREATE TABLE tblFestivalImg (
-   festival_img_seq NUMBER PRIMARY KEY, /* ?Ž˜?Š¤?‹°ë²Œì´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'festival.png' NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œì´ë¯¸ì? */
-   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL /* ?Ž˜?Š¤?‹°ë²Œë²ˆ?˜¸ */
+   festival_img_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œì´ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'festival.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œì´ë¯¸ï¿½? */
+   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?Ž˜?Š¤?‹°ë²?/?•´?‹œ?ƒœê·? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?/?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblFestivalHashtag (
-   festival_hashtag_seq NUMBER PRIMARY KEY, /* ?Ž˜?Š¤?‹°ë²Œí•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
-   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL, /* ?Ž˜?Š¤?‹°ë²Œë²ˆ?˜¸ */
-   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
+   festival_hashtag_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œí•´?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
+   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²Œë²ˆ?ï¿½ï¿½ */
+   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?–´?Š¸?ž™?…˜ */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblAttraction (
-	attraction_seq NUMBER PRIMARY KEY, /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
-	name VARCHAR2(500) NOT NULL UNIQUE, /* ?–´?Š¸?ž™?…˜ëª? */
-	capacity NUMBER NOT NULL, /* ?ˆ˜?š©?¸?› */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* ?œ„ì¹˜ì •ë³? */
-	time VARCHAR2(500) NOT NULL, /* ?š´?˜?‹œê°? */
-	restriction VARCHAR2(2000), /* ?‚¤ ?¬ê¸? ? œ?•½?‚¬?•­ */
-	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* ?…Œë§ˆë²ˆ?˜¸ */
-    is_test CHAR(1) NOT NULL /* ?…Œ?Š¤?Š¸ì±„íƒ */
+	attraction_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	capacity NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* ?ï¿½ï¿½ì¹˜ì •ï¿½? */
+	time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	restriction VARCHAR2(2000), /* ?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* ?ï¿½ï¿½ë§ˆë²ˆ?ï¿½ï¿½ */
+    is_test CHAR(1) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ì±„íƒ */
 );
 
-/* ?–´?Š¸/?š´?œ´ */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblAttractionClose (
-	attraction_close_seq NUMBER PRIMARY KEY, /* ?–´?Š¸/?š´?œ´ë²ˆí˜¸ */
-	start_date DATE NOT NULL, /* ?š´?œ´?‹œ?ž‘ */
-	end_date DATE NOT NULL, /* ?š´?œ´ì¢…ë£Œ */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
+	attraction_close_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	start_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	end_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¢…ë£Œ */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?–´?Š¸?ž™?…˜ ?˜ˆ?•½ */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblAttractionBook (
-	attraction_book_seq NUMBER PRIMARY KEY, /* ?˜ˆ?•½ë²ˆí˜¸ */
-	book_time VARCHAR2(500) NOT NULL, /* ?˜ˆ?•½?‹œê°? */
-	capacity NUMBER NOT NULL /* ?˜ˆ?•½ê°??Š¥?¸?› */
+	attraction_book_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	book_time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	capacity NUMBER NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 );
 
-/* ?–´?Š¸?ž™?…˜?´ë¯¸ì? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
 CREATE TABLE tblAttractionImg (
-	attraction_img_seq NUMBER PRIMARY KEY, /* ?–´?Š¸?´ë¯¸ì?ë²ˆí˜¸ */
-	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* ?´ë¯¸ì? */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
+	attraction_img_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½?ë²ˆí˜¸ */
+	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* ?ï¿½ï¿½ë¯¸ï¿½? */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?–´?Š¸/?•´?‹œ?ƒœê·? */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblAttractionHashtag (
-	attraction_hashtag_seq NUMBER PRIMARY KEY, /* ?–´?Š¸?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
-	hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?•´?‹œ?ƒœê·¸ë²ˆ?˜¸ */
+	attraction_hashtag_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ê·¸ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ?˜ˆ?•½/?šŒ?› */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblBookUser (
-	book_user_seq NUMBER PRIMARY KEY, /* ?˜ˆ?•½?šŒ?›ë²ˆí˜¸ */
-    regdate DATE DEFAULT sysdate NOT NULL, /* ?˜ˆ?•½?‚ ì§? */
-	capacity NUMBER NOT NULL, /* ?˜ˆ?•½?¸?› */
-	attraction_book_seq NUMBER REFERENCES tblAttractionBook(attraction_book_seq) NOT NULL, /* ?˜ˆ?•½ë²ˆí˜¸ */
-	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?œ ??ë²ˆí˜¸ */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
+	book_user_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+    regdate DATE DEFAULT sysdate NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+	capacity NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	attraction_book_seq NUMBER REFERENCES tblAttractionBook(attraction_book_seq) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?ï¿½ï¿½??ë²ˆí˜¸ */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?…”??ë²„ìŠ¤ */
+/* ?ï¿½ï¿½??ë²„ìŠ¤ */
 CREATE TABLE tblBus (
-   bus_seq NUMBER PRIMARY KEY, /* ?…”??ë²„ìŠ¤ë²ˆí˜¸ */
-   start_time VARCHAR2(500) NOT NULL, /* ?‹œ?ž‘?‹œê°? */
-   interval NUMBER NOT NULL, /* ë°°ì°¨?‹œê°? */
-   capacity NUMBER NOT NULL /* ë²„ìŠ¤?ˆ˜?š©?¸?› */
+   bus_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½??ë²„ìŠ¤ë²ˆí˜¸ */
+   start_time VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   interval NUMBER NOT NULL, /* ë°°ì°¨?ï¿½ï¿½ï¿½? */
+   capacity NUMBER NOT NULL /* ë²„ìŠ¤?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 );
 
-/* ?…¸?„  */
+/* ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblRoute (
-	route_seq NUMBER PRIMARY KEY, /* ?…¸?„ ë²ˆí˜¸ */
-	route_order NUMBER NOT NULL, /* ?…¸?„ ?ˆœ?„œ */
-	bus_seq NUMBER REFERENCES tblBus(bus_seq) NOT NULL, /* ?…”??ë²„ìŠ¤ë²ˆí˜¸ */
-	start_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* ì¶œë°œ?–´?Š¸?ž™?…˜ */
-	end_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?„ì°©ì–´?Š¸?ž™?…˜ */
+	route_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+	route_order NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	bus_seq NUMBER REFERENCES tblBus(bus_seq) NOT NULL, /* ?ï¿½ï¿½??ë²„ìŠ¤ë²ˆí˜¸ */
+	start_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* ì¶œë°œ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+	end_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?ï¿½ï¿½ì°©ì–´?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 );
 
 /* ì½”ìŠ¤ */
 CREATE TABLE tblCourse (
 	course_seq NUMBER PRIMARY KEY, /* ì½”ìŠ¤ë²ˆí˜¸ */
-	name VARCHAR2(500) NOT NULL UNIQUE, /* ì½”ìŠ¤ëª? */
-	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* ì½”ìŠ¤?´ë¯¸ì? */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* ì½”ìŠ¤ï¿½? */
+	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* ì½”ìŠ¤?ï¿½ï¿½ë¯¸ï¿½? */
 );
 
 /* MBTI */
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTIë²ˆí˜¸ */
-	result VARCHAR2(500) NOT NULL, /* ê²°ê³¼ëª? */
-	mbti VARCHAR2(500) NOT NULL, /* MBTIëª? */
+	result VARCHAR2(500) NOT NULL, /* ê²°ê³¼ï¿½? */
+	mbti VARCHAR2(500) NOT NULL, /* MBTIï¿½? */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* ì½”ìŠ¤ë²ˆí˜¸ */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?–´?Š¸?ž™?…˜ë²ˆí˜¸ */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ì·¨í–¥?…Œ?Š¤?Š¸ ë¬¸ì œ */
+/* ì·¨í–¥?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì œ */
 CREATE TABLE tblTest (
 	test_seq NUMBER PRIMARY KEY, /* ë¬¸ì œë²ˆí˜¸ */
-	question VARCHAR2(500) NOT NULL, /* ë¬¸ì œ?‚´?š© */
-	answer1 VARCHAR2(500) NOT NULL, /* ?„ ?ƒ1ë²? */
-	answer2 VARCHAR2(500) NOT NULL, /* ?„ ?ƒ2ë²? */
-	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* ë¬¸ì œ?´ë¯¸ì? */
+	question VARCHAR2(500) NOT NULL, /* ë¬¸ì œ?ï¿½ï¿½?ï¿½ï¿½ */
+	answer1 VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½1ï¿½? */
+	answer2 VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½2ï¿½? */
+	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* ë¬¸ì œ?ï¿½ï¿½ë¯¸ï¿½? */
 );
 
-/* ì·¨í–¥?…Œ?Š¤?Š¸ ë¬¸ì œ ? ?ˆ˜ */
+/* ì·¨í–¥?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì œ ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblTestScore (
-	test_score_seq NUMBER PRIMARY KEY, /* ì·¨í–¥?…Œ?Š¤?Š¸ ë¬¸ì œ ? ?ˆ˜ */
+	test_score_seq NUMBER PRIMARY KEY, /* ì·¨í–¥?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì œ ?ï¿½ï¿½?ï¿½ï¿½ */
 	point1 NUMBER NOT NULL, /* 1 */
 	point2 NUMBER NOT NULL, /* 2 */
 	type VARCHAR2(500) NOT NULL, /* type(E/I, N/S, F/T, J/P) */
 	test_seq NUMBER REFERENCES tblTest(test_seq) NOT NULL /* ë¬¸ì œë²ˆí˜¸ */
 );
 
-/* ì¹?ì°?/ë¶ˆíŽ¸/ê±´ì˜ */
+/* ï¿½?ï¿½?/ë¶ˆíŽ¸/ê±´ì˜ */
 CREATE TABLE tblVOC (
 	voc_seq NUMBER PRIMARY KEY, /* ê±´ì˜ë²ˆí˜¸ */
 	type VARCHAR2(500) NOT NULL, /* êµ¬ë¶„ */
-	service_type VARCHAR2(500) NOT NULL, /* ?„œë¹„ìŠ¤?œ ?˜• */
-	subject VARCHAR2(100) NOT NULL, /* ê±´ì˜? œëª? */
-	content VARCHAR2(2000) NOT NULL, /* ê±´ì˜?‚´?š© */
-	attach VARCHAR2(500), /* ì²¨ë??ŒŒ?¼ */
-	visit_date DATE NOT NULL, /* ë°©ë¬¸?¼ */
-	answer VARCHAR2(2000), /* ?‹µë³??‚´?š© */
-	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* ?œ ??ë²ˆí˜¸ */
+	service_type VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½ë¹„ìŠ¤?ï¿½ï¿½?ï¿½ï¿½ */
+	subject VARCHAR2(100) NOT NULL, /* ê±´ì˜?ï¿½ï¿½ï¿½? */
+	content VARCHAR2(2000) NOT NULL, /* ê±´ì˜?ï¿½ï¿½?ï¿½ï¿½ */
+	attach VARCHAR2(500), /* ì²¨ï¿½??ï¿½ï¿½?ï¿½ï¿½ */
+	visit_date DATE NOT NULL, /* ë°©ë¬¸?ï¿½ï¿½ */
+	answer VARCHAR2(2000), /* ?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ */
+	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* ?ï¿½ï¿½??ë²ˆí˜¸ */
 );
 
-/* ?´?š©ë¬¸ì˜ */
+/* ?ï¿½ï¿½?ï¿½ï¿½ë¬¸ì˜ */
 CREATE TABLE tblInquiry (
-	inquiry_seq NUMBER PRIMARY KEY, /* ?´?š©ë¬¸ì˜ë²ˆí˜¸ */
-	type VARCHAR2(500) NOT NULL, /* ë¬¸ì˜?œ ?˜• */
-	subject VARCHAR2(100) NOT NULL, /* ë¬¸ì˜? œëª? */
-	content VARCHAR2(2000) NOT NULL, /* ë¬¸ì˜?‚´?š© */
-	attach VARCHAR2(500), /* ì²¨ë??ŒŒ?¼ */
-	answer VARCHAR2(2000), /* ?‹µë³??‚´?š© */
-	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* ?œ ??ë²ˆí˜¸ */
+	inquiry_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½ë¬¸ì˜ë²ˆí˜¸ */
+	type VARCHAR2(500) NOT NULL, /* ë¬¸ì˜?ï¿½ï¿½?ï¿½ï¿½ */
+	subject VARCHAR2(100) NOT NULL, /* ë¬¸ì˜?ï¿½ï¿½ï¿½? */
+	content VARCHAR2(2000) NOT NULL, /* ë¬¸ì˜?ï¿½ï¿½?ï¿½ï¿½ */
+	attach VARCHAR2(500), /* ì²¨ï¿½??ï¿½ï¿½?ï¿½ï¿½ */
+	answer VARCHAR2(2000), /* ?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ */
+	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* ?ï¿½ï¿½??ë²ˆí˜¸ */
 );
-
 
 /* FAQ */
 CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQë²ˆí˜¸ */
    type VARCHAR2(500) NOT NULL, /* ì¹´í…Œê³ ë¦¬ */
    question VARCHAR2(300) NOT NULL, /* ì§ˆë¬¸ */
-   answer VARCHAR2(2000) NOT NULL, /* ?‹µë³? */
-   faq_order NUMBER NOT NULL /* ?ˆœ?„œë²ˆí˜¸ */
+   answer VARCHAR2(2000) NOT NULL, /* ?ï¿½ï¿½ï¿½? */
+   faq_order NUMBER NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ê³µì??‚¬?•­ */
+/* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblNotice (
-   notice_seq NUMBER primary key, /* ê³µì??‚¬?•­ë²ˆí˜¸ */
-   subject VARCHAR2(100) NOT NULL, /* ê³µì??‚¬?•­? œëª? */
-   content VARCHAR2(2000), /* ê³µì??‚¬?•­?‚´?š© */
-   regdate DATE DEFAULT sysdate NOT NULL, /* ê³µì??‚¬?•­?“±ë¡ì¼ */
-   attach VARCHAR2(500), /* ê³µì??‚¬?•­ì²¨ë??ŒŒ?¼ */
-   fix CHAR(1) NOT NULL /* ê³ ì •?œ ë¬? */
+   notice_seq NUMBER primary key, /* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   subject VARCHAR2(100) NOT NULL, /* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   content VARCHAR2(2000), /* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   regdate DATE DEFAULT sysdate NOT NULL, /* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¡ì¼ */
+   attach VARCHAR2(500), /* ê³µï¿½??ï¿½ï¿½?ï¿½ï¿½ì²¨ï¿½??ï¿½ï¿½?ï¿½ï¿½ */
+   fix CHAR(1) NOT NULL /* ê³ ì •?ï¿½ï¿½ï¿½? */
 );
 
-/* ë¶„ì‹¤ë¬¼ì„¼?„° */
+/* ë¶„ì‹¤ë¬¼ì„¼?ï¿½ï¿½ */
 CREATE TABLE tblLostCenter (
-   lost_center_seq NUMBER PRIMARY KEY, /* ë¶„ì‹¤ë¬¼ë²ˆ?˜¸ */
+   lost_center_seq NUMBER PRIMARY KEY, /* ë¶„ì‹¤ë¬¼ë²ˆ?ï¿½ï¿½ */
    type VARCHAR2(500) NOT NULL, /* ë¶„ë¥˜ */
-   name VARCHAR2(500) NOT NULL, /* ?Šµ?“ë¬¼ëª… */
-   location VARCHAR2(500) NOT NULL, /* ?Šµ?“?ž¥?†Œ */
-   lost_center_date DATE NOT NULL, /* ?Šµ?“?¼ */
-   img VARCHAR2(500) DEFAULT 'lostcenter.png' NOT NULL, /* ë¶„ì‹¤ë¬¼ì´ë¯¸ì? */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ë¬¼ëª… */
+   location VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   lost_center_date DATE NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   img VARCHAR2(500) DEFAULT 'lostcenter.png' NOT NULL, /* ë¶„ì‹¤ë¬¼ì´ë¯¸ï¿½? */
    result VARCHAR2(500) NOT NULL /* ì²˜ë¦¬ê²°ê³¼ */
 );
 
-/* ?‹°ì¼? */
+/* ?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblTicket (
-   ticket_seq NUMBER primary key, /* ?‹°ì¼“ë²ˆ?˜¸ */
-   ticket_type VARCHAR2(500) NOT NULL, /* ?‹°ì¼“ì¢…ë¥? */
-   person_type VARCHAR2(500) NOT NULL, /* ê°œì¸/?‹¨ì²´êµ¬ë¶? */
-   age VARCHAR2(500) NOT NULL, /* ?‚˜?´êµ¬ë¶„ */
-   price NUMBER NOT NULL /* ?š”ê¸? */
+   ticket_seq NUMBER primary key, /* ?ï¿½ï¿½ì¼“ë²ˆ?ï¿½ï¿½ */
+   ticket_type VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½ì¼“ì¢…ï¿½? */
+   person_type VARCHAR2(500) NOT NULL, /* ê°œì¸/?ï¿½ï¿½ì²´êµ¬ï¿½? */
+   age VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½êµ¬ë¶„ */
+   price NUMBER NOT NULL /* ?ï¿½ï¿½ï¿½? */
 );
 
-/* ?˜œ?ƒ */
+/* ?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblBenefit (
-   benefit_seq NUMBER primary key, /* ?˜œ?ƒë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?˜œ?ƒëª? */
-   type VARCHAR2(500) NOT NULL, /* ?˜œ?ƒì¢…ë¥˜ */
-   benefit_date VARCHAR2(500) NOT NULL, /* ?˜œ?ƒê¸°ê°„ */
-   discount_rate NUMBER NOT NULL, /* ?• ?¸?œ¨ */
-   img VARCHAR2(500) DEFAULT 'benefit.png' NOT NULL /* ?˜œ?ƒ ?´ë¯¸ì? */
+   benefit_seq NUMBER primary key, /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   type VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ì¢…ë¥˜ */
+   benefit_date VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ê¸°ê°„ */
+   discount_rate NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
+   img VARCHAR2(500) DEFAULT 'benefit.png' NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ë¯¸ï¿½? */
 );
 
-/* ?˜ˆë§¤ë‚´?—­ */
+/* ?ï¿½ï¿½ë§¤ë‚´?ï¿½ï¿½ */
 CREATE TABLE tblTicketBook (
-   ticket_book_seq NUMBER primary key, /* ?˜ˆë§¤ë‚´?—­ë²ˆí˜¸ */
-   book_date DATE DEFAULT sysdate NOT NULL, /* ?˜ˆë§¤ì¼?ž */
-   visit_date DATE NOT NULL, /* ë°©ë¬¸?¼?ž */
-   ea NUMBER NOT NULL, /* êµ¬ë§¤?ˆ˜?Ÿ‰ */
-   ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* ?‹°ì¼“ë²ˆ?˜¸ */
-   benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* ?˜œ?ƒë²ˆí˜¸ */
+   ticket_book_seq NUMBER primary key, /* ?ï¿½ï¿½ë§¤ë‚´?ï¿½ï¿½ë²ˆí˜¸ */
+   book_date DATE DEFAULT sysdate NOT NULL, /* ?ï¿½ï¿½ë§¤ì¼?ï¿½ï¿½ */
+   visit_date DATE NOT NULL, /* ë°©ë¬¸?ï¿½ï¿½?ï¿½ï¿½ */
+   ea NUMBER NOT NULL, /* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ */
+   ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* ?ï¿½ï¿½ì¼“ë²ˆ?ï¿½ï¿½ */
+   benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?šŒ?›/?˜ˆë§? */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½ï¿½? */
 CREATE TABLE tblUserBook (
-   user_book_seq NUMBER primary key, /* ?šŒ?›?˜ˆë§¤ë²ˆ?˜¸ */
-   user_seq NUMBER references tbluser(user_seq) NOT NULL, /* ?œ ??ë²ˆí˜¸ */
-   ticket_book_seq NUMBER references tblTicketBook(ticket_book_seq) NOT NULL /* ?˜ˆë§¤ë‚´?—­ë²ˆí˜¸ */
+   user_book_seq NUMBER primary key, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë§¤ë²ˆ?ï¿½ï¿½ */
+   user_seq NUMBER references tbluser(user_seq) NOT NULL, /* ?ï¿½ï¿½??ë²ˆí˜¸ */
+   ticket_book_seq NUMBER references tblTicketBook(ticket_book_seq) NOT NULL /* ?ï¿½ï¿½ë§¤ë‚´?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
 /* ë¦¬ë·° */
 CREATE TABLE tblReview (
    review_seq NUMBER primary key, /* ë¦¬ë·°ë²ˆí˜¸ */
-   subject VARCHAR2(500) NOT NULL, /* ë¦¬ë·°? œëª? */
-   content VARCHAR2(2000) NOT NULL, /* ë¦¬ë·°?‚´?š© */
-   regdate DATE DEFAULT sysdate NOT NULL, /* ?“±ë¡ì¼ */
-   readcount NUMBER NOT NULL, /* ì¡°íšŒ?ˆ˜ */
-   user_book_seq NUMBER references tbluserbook(user_book_seq) NOT NULL /* ?šŒ?›?˜ˆë§¤ë²ˆ?˜¸ */
+   subject VARCHAR2(500) NOT NULL, /* ë¦¬ë·°?ï¿½ï¿½ï¿½? */
+   content VARCHAR2(2000) NOT NULL, /* ë¦¬ë·°?ï¿½ï¿½?ï¿½ï¿½ */
+   regdate DATE DEFAULT sysdate NOT NULL, /* ?ï¿½ï¿½ë¡ì¼ */
+   readcount NUMBER NOT NULL, /* ì¡°íšŒ?ï¿½ï¿½ */
+   user_book_seq NUMBER references tbluserbook(user_book_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë§¤ë²ˆ?ï¿½ï¿½ */
 );
 
-/* ë¦¬ë·°?´ë¯¸ì? */
+/* ë¦¬ë·°?ï¿½ï¿½ë¯¸ï¿½? */
 CREATE TABLE tblReviewImg (
-   review_img_seq NUMBER primary key, /* ë¦¬ë·°?´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'reviewimg.png' NOT NULL, /* ë¦¬ë·°?´ë¯¸ì? */
+   review_img_seq NUMBER primary key, /* ë¦¬ë·°?ï¿½ï¿½ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'reviewimg.png' NOT NULL, /* ë¦¬ë·°?ï¿½ï¿½ë¯¸ï¿½? */
    review_seq NUMBER references tblreview(review_seq) NOT NULL /* ë¦¬ë·°ë²ˆí˜¸ */
 );
 
-/* ?•„?´?…œ */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblItem (
-   item_seq NUMBER PRIMARY KEY, /* ?•„?´?…œë²ˆí˜¸ */
-   name VARCHAR2(500) NOT NULL, /* ?•„?´?…œëª? */
-   info VARCHAR2(2000) NOT NULL, /* ?•„?´?…œ? •ë³? */
-   price NUMBER NOT NULL, /* ?•„?´?…œê°?ê²? */
-   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?Š¸?ƒµë²ˆí˜¸ */
+   item_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   name VARCHAR2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   info VARCHAR2(2000) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? */
+   price NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? */
+   shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* ê¸°í”„?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?•„?´?…œ?´ë¯¸ì? */
+/* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
 CREATE TABLE tblItemImg (
-   item_img_seq NUMBER PRIMARY KEY, /* ?•„?´?…œ?´ë¯¸ì?ë²ˆí˜¸ */
-   img VARCHAR2(500) DEFAULT 'itemimg.png' NOT NULL, /* ?•„?´?…œ?´ë¯¸ì? */
-   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?•„?´?…œë²ˆí˜¸ */
+   item_img_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½?ë²ˆí˜¸ */
+   img VARCHAR2(500) DEFAULT 'itemimg.png' NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸ï¿½? */
+   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?ž¥ë°”êµ¬?‹ˆ */
+/* ?ï¿½ï¿½ë°”êµ¬?ï¿½ï¿½ */
 CREATE TABLE tblCart (
-   cart_seq NUMBER PRIMARY KEY, /* ?ž¥ë°”êµ¬?‹ˆë²ˆí˜¸ */
-   ea NUMBER NOT NULL, /* ?ˆ˜?Ÿ‰ */
-   cart_option varchar2(500) NOT NULL, /* ?˜µ?…˜ */
-   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?•„?´?…œë²ˆí˜¸ */
+   cart_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½ë°”êµ¬?ï¿½ï¿½ë²ˆí˜¸ */
+   ea NUMBER NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ */
+   cart_option varchar2(500) NOT NULL, /* ?ï¿½ï¿½?ï¿½ï¿½ */
+   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?šŒ?›/?ž¥ë°”êµ¬?‹ˆ */
+/* ?ï¿½ï¿½?ï¿½ï¿½/?ï¿½ï¿½ë°”êµ¬?ï¿½ï¿½ */
 CREATE TABLE tblUserCart (
-   user_cart_seq NUMBER PRIMARY KEY, /* ?šŒ?›?ž¥ë°”êµ¬?‹ˆë²ˆí˜¸ */
-   user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?œ ??ë²ˆí˜¸ */
-   cart_seq NUMBER REFERENCES tblCart(cart_seq) NOT NULL /* ?ž¥ë°”êµ¬?‹ˆë²ˆí˜¸ */
+   user_cart_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë°”êµ¬?ï¿½ï¿½ë²ˆí˜¸ */
+   user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?ï¿½ï¿½??ë²ˆí˜¸ */
+   cart_seq NUMBER REFERENCES tblCart(cart_seq) NOT NULL /* ?ï¿½ï¿½ë°”êµ¬?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* êµ¬ë§¤?‚´?—­ */
+/* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ */
 CREATE TABLE tblBuy (
-   buy_seq NUMBER PRIMARY KEY, /* êµ¬ë§¤?‚´?—­ë²ˆí˜¸ */
-   buy_date DATE DEFAULT sysdate NOT NULL, /* ê²°ì œ?¼ */
-   ea NUMBER NOT NULL, /* êµ¬ë§¤?ˆ˜?Ÿ‰ */
-   buy_option VARCHAR2(500) NOT NULL, /* êµ¬ë§¤?˜µ?…˜ */
-   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?•„?´?…œë²ˆí˜¸ */
+   buy_seq NUMBER PRIMARY KEY, /* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
+   buy_date DATE DEFAULT sysdate NOT NULL, /* ê²°ì œ?ï¿½ï¿½ */
+   ea NUMBER NOT NULL, /* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ */
+   buy_option VARCHAR2(500) NOT NULL, /* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ */
+   item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* ?šŒ?›/êµ¬ë§¤ */
+/* ?ï¿½ï¿½?ï¿½ï¿½/êµ¬ë§¤ */
 CREATE TABLE tblUserBuy (
-   user_buy_seq NUMBER PRIMARY KEY, /* ?šŒ?›êµ¬ë§¤ë²ˆí˜¸ */
-   user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?œ ??ë²ˆí˜¸ */
-   buy_seq NUMBER REFERENCES tblBuy(buy_seq) NOT NULL /* êµ¬ë§¤?‚´?—­ë²ˆí˜¸ */
+   user_buy_seq NUMBER PRIMARY KEY, /* ?ï¿½ï¿½?ï¿½ï¿½êµ¬ë§¤ë²ˆí˜¸ */
+   user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?ï¿½ï¿½??ë²ˆí˜¸ */
+   buy_seq NUMBER REFERENCES tblBuy(buy_seq) NOT NULL /* êµ¬ë§¤?ï¿½ï¿½?ï¿½ï¿½ë²ˆí˜¸ */
 );
 
-/* CREATE SEQUENCE_51ê°?*/
+/* CREATE SEQUENCE_51ï¿½?*/
 CREATE SEQUENCE seqtblUser;
 CREATE SEQUENCE seqtblTheme;
 CREATE SEQUENCE seqtblHashtag;
