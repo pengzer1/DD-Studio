@@ -10,7 +10,7 @@
 <style>
 
 
-#main > #title, .item div {
+#main > #title{
 	background-color: white;
 }
 
@@ -32,6 +32,30 @@ button:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 
+.item{
+	background-color: white;
+}
+.item img.totoro-image {
+        height: 280px; /* 이미지 높이 조절 */
+        transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */
+    }
+
+    .item:hover img.totoro-image {
+        animation: shake 2s ease-in-out infinite; /* hover 시에만 흔들리는 애니메이션 적용 */
+        transform: translateX(0); /* 초기 위치에서 시작 */
+    }
+
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0); /* 처음과 마지막에는 변화 없음 */
+        }
+        10%, 30%, 50%, 70%, 90% {
+            transform: translateX(-5px); /* 좌측으로 흔들림 */
+        }
+        20%, 40%, 60%, 80% {
+            transform: translateX(5px); /* 우측으로 흔들림 */
+        }
+    }
 
 </style>
 </head>
@@ -70,23 +94,23 @@ button:hover {
 			
 			<div class="munti-content-container">
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/member/mypage/edit.do';">정보수정</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/member/purchase/history.do';">구매내역</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/member/history/inquiry/inquiry.do';">문의내역</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/member/review/info.do';">리뷰관리</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/member/unregister/confirm.do';">회원탈퇴</button></div>
 				</div>
 			</div>

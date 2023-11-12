@@ -10,7 +10,7 @@
 <style>
 
 
-#main > #title, .item div {
+#main > #title{
 	background-color: white;
 }
 
@@ -31,6 +31,33 @@ button {
 button:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
+
+
+
+.item{
+	background-color: white;
+}
+.item img.totoro-image {
+        height: 280px; /* 이미지 높이 조절 */
+        transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */
+    }
+
+    .item:hover img.totoro-image {
+        animation: shake 2s ease-in-out infinite; /* hover 시에만 흔들리는 애니메이션 적용 */
+        transform: translateX(0); /* 초기 위치에서 시작 */
+    }
+
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0); /* 처음과 마지막에는 변화 없음 */
+        }
+        10%, 30%, 50%, 70%, 90% {
+            transform: translateX(-5px); /* 좌측으로 흔들림 */
+        }
+        20%, 40%, 60%, 80% {
+            transform: translateX(5px); /* 우측으로 흔들림 */
+        }
+    }
 
 
 </style>
@@ -56,15 +83,15 @@ button:hover {
 		<div id="content">			
 			<div class="munti-content-container">
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
-					<div><button type="button" onclick="location.href='/ddstudio/admin/category.do';">카테고리 관리</button></div>
+    				<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+    				<div><button type="button" onclick="location.href='/ddstudio/admin/category.do';">카테고리 관리</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtag.do';">해시태그 관리</button></div>
 				</div>
 				<div class="item">
-					<div style="background-color: white; background-image: url('/ddstudio/asset/image/토토로.png');"></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/admin/theme.do';">테마 관리</button></div>
 				</div>
 			</div>
