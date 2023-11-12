@@ -95,34 +95,6 @@ h2 small {
 					</table>
 				</form>
 			</div>
-
-			<!-- 자동 로그인 시작 (추후 삭제) -->
-			<hr>
-			
-			<h2>자동 로그인 <small>(관리자용) dml 수정 전</small></h2>
-			<div>
-				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="park@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">박나래</button>
-				</form>
-				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="hwang@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">황주원</button>
-				</form>
-				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="cha@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">차민재</button>
-				</form>
-				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="admin@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">관리자</button>
-				</form>
-			</div>
-			<!-- 자동 로그인 끝 -->
 			
 			<!-- 자동 로그인 시작 -->
 			<hr>
