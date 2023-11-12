@@ -32,7 +32,8 @@ select option:checked {
 
 #courseImage {
 	width: 375px;
-	justify-content: center; align-items : center;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	align-items: center;
 }
@@ -109,10 +110,8 @@ select option:checked {
 								select.append(option);
 							});
 
-					// Update the image when the course list is loaded
 					updateImage(result);
 
-					// Attach change event handler to update image when the selection changes
 					select.on('change', function() {
 						updateImage(result);
 					});
