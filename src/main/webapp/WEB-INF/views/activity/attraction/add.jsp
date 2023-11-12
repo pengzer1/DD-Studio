@@ -119,11 +119,7 @@
 						<tr>
 							<th class="required">위치</th>
 							<td>
-								<select name="location" id="location-select" class="selectbox">
-									<c:forEach items="${locationList}" var="dto">
-									<option value="${dto.info}">${dto.info}</option>
-									</c:forEach>
-								</select>
+								<button type="button" onclick="location.href='/ddstudio/activity/locationadd.do';">위치 등록</button>
 							</td>
 						</tr>
 						<tr>
