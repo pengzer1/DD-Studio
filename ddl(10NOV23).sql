@@ -180,7 +180,7 @@ CREATE TABLE tblUser (
 	email VARCHAR2(500) NOT NULL UNIQUE, /* 이메일 */
 	pw VARCHAR2(500) NOT NULL, /* 비밀번호 */
 	tel VARCHAR2(500) NOT NULL, /* 전화번호 */
-	address VARCHAR2(500) NOT NULL, /* 주소 */
+	address VARCHAR2(500) DEFAULT '미기재' NOT NULL, /* 주소 */
 	birth DATE NOT NULL, /* 생년월일 */
 	lv CHAR(1) NOT NULL, /* 등급 */
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
