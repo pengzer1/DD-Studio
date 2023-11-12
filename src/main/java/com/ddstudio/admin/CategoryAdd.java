@@ -26,8 +26,9 @@ public class CategoryAdd extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
+		
 			//1.
+		 	req.setCharacterEncoding("utf-8");
 			String name=req.getParameter("name");
 			
 			//2.
@@ -39,18 +40,13 @@ public class CategoryAdd extends HttpServlet {
 			int result=dao.add(dto);
 			
 			//3.
-			if (result == 1) {  //성공시
-				resp.sendRedirect("/toy/board/list.do");
+			if (result == 1) {  //성공하면 돌아갈 페이지
+				resp.sendRedirect("/ddstudio/admin/category.do");
+			}else {
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('failed');history.back();</script>");
+				writer.close();
 			}
-			
-		} catch (Exception e) {
-			System.out.println("CategoryAdd.doPost");
-			e.printStackTrace();
-		}
-		
-		PrintWriter writer = resp.getWriter();
-		writer.print("<script>alert('failed');history.back();</script>");
-		writer.close();
 		
 	}
 }

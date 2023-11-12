@@ -19,7 +19,7 @@ public class CategoryDAO {
 		this.conn=DBUtil.open();
 	}
 	
-	public ArrayList<CategoryDTO> listCategory() {
+	public ArrayList<CategoryDTO> list() {
 		try {
 			String sql = "select category_seq, name from tblCategory";
 			
@@ -41,7 +41,6 @@ public class CategoryDAO {
 			return list;
 			
 		} catch (Exception e) {
-			System.out.println("AjaxDAO.listAddress()");
 			e.printStackTrace();
 		}
 		
@@ -50,7 +49,7 @@ public class CategoryDAO {
 
 	public int add(CategoryDTO dto) {  //카테고리 등록
 		try {
-			String sql = "insert into tblcategory(seq, name) values (seqtblCategory.nextVal, ?)";
+			String sql = "insert into tblcategory(category_seq, name) values (seqtblCategory.nextVal, ?)";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getName());
@@ -61,6 +60,30 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		
+		return 0;
+	}
+
+	public int edit(CategoryDTO dto, String aftername) {  //dto와 함께 넘겨받은 변경할 이름
+		try {
+			String sql = "update tblCategory set name=? where name=?";
+			
+			pstat = conn.prepareStatement(sql);
+			//?에 맞춰서 어떤 매개변수를 넣어줄지 지정하기
+			pstat.setString(1, aftername);  //새로운 이름으로 업데이트
+			pstat.setString(2, dto.getName());  //기존의 이름으로 검색
+			
+			 return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+            try {
+                pstat.close();
+                conn.close();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
+        }
 		return 0;
 	}
 
