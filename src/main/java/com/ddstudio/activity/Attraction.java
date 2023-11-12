@@ -17,6 +17,7 @@ import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
+import com.ddstudio.activity.model.LocationDTO;
 
 @WebServlet("/activity/attraction.do")
 public class Attraction extends HttpServlet {

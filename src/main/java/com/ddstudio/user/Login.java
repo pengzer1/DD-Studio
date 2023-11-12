@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
 			//로그인 성공
 			//인증 티켓 발급
 			req.getSession().setAttribute("email", email);
+			req.getSession().setAttribute("seq", result.getUser_seq());
 			req.getSession().setAttribute("name", result.getName());
 			req.getSession().setAttribute("lv", result.getLv());
 			

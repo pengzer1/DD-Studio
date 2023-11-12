@@ -7,101 +7,10 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-td input.middle-flat {
-	color: #000;
-	margin-top: 50px;
-	width: 400px;
-	height: 40px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 16px;
-	margin: 0;
-	margin-left: 15px;
-	align-items: center;
-	justify-content: center;
-}
-
-td>div {
-	padding: 10px;
-}
-
-#email {
-	width: 270px;
-}
-
-#post-code {
-	width: 228px;
-}
-
-#birth-button {
-	width: 40px;
-}
-
-form {
-	margin-top: 20px;
-}
-
-td input.middle-flat:focus {
-	border-color: #000;
-}
-
-.button-container {
-	margin-top: 20px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.button {
-	width: 90px;
-	margin-left: 10px;
-	height: 40px;
-	font-size: 16px;
-	background-color: transparent;
-	border: 1px solid #ccc;
-}
-
-.email>.check {
-	width: 120px;
-}
-
-.address>.check {
-	width: 160px;
-}
-
-table {
-	width: 600px;
-	margin: 0 auto;
-}
-
-.error-message {
-	font-size: 14px;
-	padding: 5px;
-}
-
-th.required::before {
-	content: "* ";
-	color: cornflowerblue;
-}
-
-#cancel {
-	margin-right: 45px;
-}
-
-#main {
-	text-align: center;
-	margin-top: 150px;
-}
-
-#sub-title {
-	width: 80%;
-	text-align: center;
-	border-top: 2px solid black;
-	margin: 50px auto 0;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+#cancel, #acceptok {
+	margin-right: 35px;
 }
 </style>
 </head>
@@ -112,14 +21,14 @@ th.required::before {
 	<main id="main">
 		<h1>아이디 찾기</h1>
 
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원정보입력</p>
 		</div>
 
 		<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/user/register.do">
-					<table>
+				<form method="POST" action="/ddstudio/user/findid.do">
+					<table id="valid">
 						<!-- 이름 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">이름</th>
@@ -130,12 +39,12 @@ th.required::before {
 							</td>
 						</tr>
 						<tr>
-						    <th></th>
-						    <td>
-						        <div id="name-error" class="error-message" style="display:none;"></div>
-						    </td>
+							<th></th>
+							<td>
+								<div id="name-error" class="error-message" style="display: none;"></div>
+							</td>
 						</tr>
-						 <!-- 연락처 필드와 에러 메시지 -->
+						<!-- 연락처 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">연락처</th>
 							<td>
@@ -145,21 +54,50 @@ th.required::before {
 							</td>
 						</tr>
 						<tr>
-						    <th></th>
-						    <td>
-						        <div id="tel-error" class="error-message" style="display:none;"></div>
-						    </td>
+							<th></th>
+							<td>
+								<div id="tel-error" class="error-message" style="display: none;"></div>
+							</td>
 						</tr>
-						
-						<tr><th><div>인증코드</div></th></tr>
-						
+
+						<tr>
+							<th class="required">인증번호</th>
+							<td>
+								<div class="certification">
+									<input type="text" name="authcode" placeholder="6자리 숫자" class="certificationNumber" autocomplete="off">
+									<span class="certificationTime">03:00</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+								<div class="button-container">
+									<button type="button" id="acceptreq" class="acceptreq check button" disabled>요청</button>
+									<button type="button" id="acceptok" class="check button" disabled>확인</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+
+					<div class="sub-title">
+						<p>본인 이메일 (아이디) 확인</p>
+					</div>
+					<table id="check">
+						<!-- 본인 이메일 확인 필드 -->
+						<tr>
+							<th>이메일 (아이디)</th>
+							<td>
+								<div>
+									<input type="text" name="myid" id="myid" class="middle-flat" style="pointer-events: none;">
+								</div>
+							</td>
+						</tr>
+
 						<tr>
 							<td colspan="2">
 								<div class="button-container">
-									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
-									<!-- <div id="ok-message"></div> -->
-									<button type="submit" id="join" class="check button" disabled>찾기</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/index.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/user/login.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -168,143 +106,133 @@ th.required::before {
 			</div>
 		</div>
 	</main>
-	
+
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
-		
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
-		
-		/* 이메일 (아이디) 중복 검사 */
-		$('#duplicate-check').click(function(){
-			$.ajax({
-				type: 'POST',
-				url: '/ddstudio/user/duplicatecheck.do',
-				data: {
-					email: $('#email').val()
-				},
-				dataType: 'json',
-				success: function(result) {
-					//alert(result.message); //사용 가능(0) 사용중(1)
-					
-					if (result.message == 0) {
-						//console.log("true");
-					    $('#duplicate-check-message').css('display', 'block');
-						$('#duplicate-check-message').text('사용 가능한 아이디입니다.');
-						$('#join').prop('disalbed', false);
-						
-						isValid[1] = true;
-					}
-					else {
-						//console.log("false");
-					    $('#duplicate-check-message').css('display', 'block');
-						$('#duplicate-check-message').text('이미 사용중인 아이디입니다.');
-						$('#join').prop('disalbed', true);
-						
-						isValid[1] = false;
-					}
-				},
-				errors: function(a,b,c) {
-					console.log(a,b,c);
-				}
-			});
-		});
+	    let countTime = 0; //타이머 초기값
+	    let intervalCall; //타이머 식별
+	    let authCode; //인증 코드
+	    let popupLayer; //팝업 레이어
 	
-		// 이메일(아이디)를 수정하면 가입 불가능
-		$('#email').change(function() {
-			$('#join').prop('disabled', true);
-		});
+	    //타이머 시작
+	    $.time = function (time) {
+	        countTime = time; //시간 초기화
+	        clearInterval(intervalCall); // 이전 타이머 중단
+	        intervalCall = setInterval(alertFunc, 1000);
+	    }
+	
+	    //타이머 중단
+	    $.closeTime = function () {
+	        clearInterval(intervalCall);
+	    }
+	
+	    //타이머 호출
+	    function alertFunc() {
+	        let min = Math.floor(countTime / 60);
+	        let sec = countTime - (60 * min);
+	        
+	        //타이머 출력
+	        if (sec > 9) {
+	            $('.certificationTime').text(min + ':' + sec + '');
+	        } else {
+	            $('.certificationTime').text(min + ':0' + sec + '');
+	        }
+	        
+	        /* 인증번호 시간이 만료되면 재요청 필요 */
+	        if (countTime <= 0) {
+	            clearInterval(intervalCall); //타이머 중단
+	            $('#acceptok').attr('disabled', 'disabled'); //확인 버튼 비활성화
+	        }
+	        
+	        countTime--;
+	    };
+	
+	    //인증번호 요청
+	    $('.acceptreq').on("click", function () {
+	        authCode = Math.floor(100000 + Math.random() * 900000); //랜덤한 6자리
+
+	        // 기존에 열린 팝업이 있다면 닫기
+	        if (popupLayer) {
+	            popupLayer.remove();
+	        }
+	        
+	        showPopup(authCode); //팝업으로 생성된 코드 출력
+	
+	        $('input[name="authcode"]').val(authCode); //생성된 코드를 인증번호 입력란에 입력
+	        $('#acceptok').removeAttr('disabled'); //확인 버튼 활성화
+	        $.time(179); //179초 타이머 시작
+	    });
+	
+	    function showPopup(authCode) {
+	        popupLayer = $('<div class="popup-layer"</div>');
+	        let popupBox = $('<div class="popup-box"><p>인증번호: ' + authCode + '</p><button class="close-popup">Close</button></div>');
+	
+	        popupLayer.append(popupBox);
+	
+	        $('body').append(popupLayer);
+	        $('.close-popup').on('click', function () {
+	            popupLayer.remove();
+	            popupLayer = null; // 팝업이 닫힐 때 변수 초기화
+	        });
+	    }
+	
+	    /* 인증번호 확인 */
+	    $('#acceptok').on('click', function () {
+	        let enteredCode = $('input[name="authcode"]').val();
+	        $('#myid').val("");
+	
+	        if (authCode !== null && enteredCode === authCode.toString()) {
+	            //alert('일치');
+        		$.ajax({
+        			type: 'POST',
+        			url: '/ddstudio/user/findid.do',
+        			data: {
+        				name: $('#name').val(),
+        				tel: $('#tel').val()
+        			},
+        			dataType: 'json',
+        			success: function(result) {
+        				//alert(result.email);
+
+        				if (result.email != null) {
+        					$('#myid').val(result.email);
+        				} else {
+        					$('#myid').val('해당 정보로 가입한 회원이 없습니다.');
+        				}
+        			},
+        			errors: function(a,b,c) {
+        				console.log(a,b,c);
+        			}
+        		});
+	        } else {
+	            alert('인증번호가 일치하지 않습니다.');
+	            //toastr.error('인증번호가 일치하지 않습니다.', '인증 오류');
+       			/* Swal.fire({
+		            icon: 'error',
+		            title: '인증번호 불일치',
+		            text: '인증번호가 일치하지 않습니다.',
+		        }); */
+	        }
+	    });
+	</script>
+	<script>
+		let isValid = [false, false]; // 검사 결과 저장
 		
 		document.addEventListener("DOMContentLoaded", function () {
 			
-			const joinButton = document.getElementById("join");
+			const acceptReqButton = document.getElementById("acceptreq");
 	
 		    function updateButtonStatus() {
 		        const isAllValid = isValid.every((value) => value);
 	
 		        if (isAllValid) {
-		            joinButton.removeAttribute("disabled");
+		        	acceptReqButton.removeAttribute("disabled");
 		            //document.getElementById("ok-message").textContent = "true";
 		        } else {
-		            joinButton.setAttribute("disabled", "disabled");
+		        	acceptReqButton.setAttribute("disabled", "disabled");
 		            //document.getElementById("ok-message").textContent = "false";
 		        }
 		    }
-		    
-	        /* 이메일 유효성 검사 */
-		    const emailField = document.getElementById("email");
-		    const emailErrorDiv = document.getElementById("email-error");
-		    const emailRegex = /^[a-z0-9._%+-]{1,20}\@[a-z0-9.-]{1,8}\.[a-z]{1,5}$/;
-
-			const duplicateCheck = document.getElementById("duplicate-check");
-	        
-		    emailField.addEventListener("input", function () {
-		    	isValid[0] = emailRegex.test(emailField.value);
-		    	isValid[1] = false;
-		    	
-		        emailErrorDiv.textContent = isValid[0] ? "" : "올바른 이메일 형식을 입력하세요. (예: park@email.com)";
-		        emailErrorDiv.style.display = isValid[0] ? "none" : "block";
-
-		        $('#duplicate-check-message').css('display', 'none');
-		        
-		        if (emailField.value.length === 0) {
-		        	emailErrorDiv.textContent = "";
-		        	emailErrorDiv.style.display = "none";
-		        }
-	
-		        if (isValid[0]) {
-		        	duplicateCheck.removeAttribute("disabled");
-		        } else {
-		        	duplicateCheck.setAttribute("disabled", "disabled");
-		        }
-	            
-		        updateButtonStatus();
-		    });
-	        
-		    /* 비밀번호 유효성 검사 */
-		    const passwordField = document.getElementById("pw");
-		    const passwordErrorDiv = document.getElementById("pw-error");
-		    const passwordConfirmField = document.getElementById("pwok");
-		    const passwordConfirmErrorDiv = document.getElementById("pw-confirm-error");
-	        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/
-	        
-		    passwordField.addEventListener("input", function () {
-		    	isValid[2] = passwordRegex.test(passwordField.value);
-		    	isValid[3] = passwordConfirmField.value === passwordField.value;
-	
-		        passwordErrorDiv.textContent = isValid[2] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
-		        passwordErrorDiv.style.display = isValid[2] ? "none" : "block";
-		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
-	
-		        if (passwordField.value.length === 0) {
-		            passwordErrorDiv.textContent = "";
-		            passwordErrorDiv.style.display = "none";
-		        }
-	
-		        if (passwordConfirmField.value.length === 0) {
-		            passwordConfirmErrorDiv.textContent = "";
-		            passwordConfirmErrorDiv.style.display = "none";
-		        }
-	
-		        updateButtonStatus();
-		    });
-	
-		    /* 비밀번호 확인 유효성 검사 */
-		    passwordConfirmField.addEventListener("input", function () {
-		    	isValid[3] = passwordConfirmField.value === passwordField.value;
-		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
-		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
-		        
-		        if (passwordConfirmField.value.length === 0) {
-		            passwordConfirmErrorDiv.textContent = "";
-		            passwordConfirmErrorDiv.style.display = "none";
-		        }
-	
-		        updateButtonStatus();
-		    });
 		    
 		    /* 이름 유효성 검사 */
 		    const nameField = document.getElementById("name");
@@ -312,84 +240,64 @@ th.required::before {
 	        const nameRegex = /^[가-힣]{2,6}$/; // 2글자에서 6글자의 한글 이름만 허용
 	
 		    nameField.addEventListener("input", function () {
-		    	isValid[4] = nameRegex.test(nameField.value);
+		    	isValid[0] = nameRegex.test(nameField.value);
 		        
-		        nameErrorDiv.textContent = isValid[4] ? "" : "2-6자의 한글 이름을 입력하세요.";
-		        nameErrorDiv.style.display = isValid[4] ? "none" : "block";
+		        nameErrorDiv.textContent = isValid[0] ? "" : "2-6자의 한글 이름을 입력하세요.";
+		        nameErrorDiv.style.display = isValid[0] ? "none" : "block";
 	
 		        if (nameField.value.length === 0) {
 		            nameErrorDiv.textContent = "";
 		            nameErrorDiv.style.display = "none";
 		        }
-	
+
+		        $('#acceptok').attr('disabled', 'disabled');
+		        
 		        updateButtonStatus();
 		    });
 	        
-	        /* 생년월일 유효성 검사 */
-		    const birthField = document.getElementById("birth");
-		    const birthErrorDiv = document.getElementById("birth-error");
-		    const birthRegex = /^(19|20)\d\d-[0-1]\d-[0-3]\d$/; // YYYY-MM-DD 형식
-	
-		    birthField.addEventListener("input", function () {
-		    	isValid[5] = birthRegex.test(birthField.value);
-	
-		        birthErrorDiv.textContent = isValid[5] ? "" : "올바른 생년월일 형식을 입력하세요. (예: YYYY-MM-DD)";
-		        birthErrorDiv.style.display = isValid[5] ? "none" : "block";
-	
-		        if (birthField.value.length === 0) {
-		            birthErrorDiv.textContent = "";
-		            birthErrorDiv.style.display = "none";
-		        }
-	
-		        updateButtonStatus();
-		    });
-		    
 	        /* 연락처 유효성 검사 */
 		    const telField = document.getElementById("tel");
 		    const telErrorDiv = document.getElementById("tel-error");
 	        const telRegex = /^010-[0-9]{4}-[0-9]{4}$/; // 010-XXXX-XXXX 형식의 전화번호
 	
 		    telField.addEventListener("input", function () {
-		    	isValid[6] = telRegex.test(telField.value);
+		    	isValid[1] = telRegex.test(telField.value);
 	
-		        telErrorDiv.textContent = isValid[6] ? "" : "올바른 전화번호 형식을 입력하세요. (예: 010-XXXX-XXXX)";
-		        telErrorDiv.style.display = isValid[6] ? "none" : "block";
+		        telErrorDiv.textContent = isValid[1] ? "" : "올바른 전화번호 형식을 입력하세요. (예: 010-XXXX-XXXX)";
+		        telErrorDiv.style.display = isValid[1] ? "none" : "block";
 	
 		        if (telField.value.length === 0) {
 		            telErrorDiv.textContent = "";
 		            telErrorDiv.style.display = "none";
 		        }
+
+		        $('#acceptok').attr('disabled', 'disabled');
 		        
 		        updateButtonStatus();
 		    });
 	        
 		    const cancelButton = document.getElementById("cancel");
-	
-		    const postCodeField = document.getElementById("post-code");
-		    const addressBasisField = document.getElementById("address-basis");
-		    const addressDetailField = document.getElementById("address-detail");
 		    
 		    cancelButton.addEventListener("click", function () {
-		        emailField.value = "";
-		        passwordField.value = "";
-		        passwordConfirmField.value = "";
 		        nameField.value = "";
-		        birthField.value = "";
 		        telField.value = "";
-		        postCodeField.value = "";
-		        addressBasisField.value = "";
-		        addressDetailField.value = "";
-		        $('#duplicate-check-message').css('display', 'none');
-	
-		        emailErrorDiv.style.display = "none";
-		        passwordErrorDiv.style.display = "none";
-		        passwordConfirmErrorDiv.style.display = "none";
 		        nameErrorDiv.style.display = "none";
-		        birthErrorDiv.style.display = "none";
 		        telErrorDiv.style.display = "none";
+		        $('#acceptok').attr('disabled', 'disabled');
+		        $('input[name="authcode"]').val("");
+		        $('#myid').val("");
 		        
-		        isValid = [false, false, false, false, false, false, false];
+		        isValid = [false, false];
 		        updateButtonStatus();
+
+		        // 타이머 정지
+			    clearInterval(intervalCall);
+		        
+		        // 팝업 레이어 닫기
+		        if (popupLayer) {
+		            popupLayer.remove();
+		            popupLayer = null;
+		        }
 		    });
 		});
 	</script>

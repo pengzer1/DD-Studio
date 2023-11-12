@@ -77,3 +77,29 @@ join tblVOC V on V.user_seq = U.user_seq;
 select * from tblUser;
 select * from tblInquiry;
 select * from tblVOC;
+
+drop table tblvoc;
+
+select inquiry_seq from tblInquiry;
+
+
+drop view vwInquiry;
+
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq) values (seqtblVOC.nextVal, '칭찬', '어트랙션', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '답변내용입니다', 1);
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq) values (seqtblVOC.nextVal, '불편', '페스티벌', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('2015-11-20', 'yyyy-mm-dd'), '답변내용입니다', 2);
+
+select * from tblreview;
+
+CREATE OR REPLACE TRIGGER trg_before_insert_review
+BEFORE INSERT ON tblReview
+FOR EACH ROW
+BEGIN
+    :NEW.readcount := 0;      -- 초기 조회수를 0으로 설정
+END;
+
+
+
+DROP TRIGGER trg_before_insert_review;
+
+insert into tblreview (review_seq, subject, content, regdate, readcount, user_book_seq) values (seqtblReview.nextVal, ?, ?, sysdate, 0, seqtblUserBook.nextVal);
+

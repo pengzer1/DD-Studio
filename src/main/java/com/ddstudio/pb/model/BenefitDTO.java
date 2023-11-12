@@ -1,8 +1,5 @@
 package com.ddstudio.pb.model;
 
-import javax.persistence.Entity;
-
-
 public class BenefitDTO {
 //    BENEFIT_SEQ, NAME, TYPE, BENEFIT_DATE, DISCOUNT_RATE
 
