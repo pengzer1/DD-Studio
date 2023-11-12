@@ -41,13 +41,15 @@ public class InquiryHistory extends HttpServlet {
 		//if ("tblInquiry".equals(option)) {
 		if (option.equals("tblInquiry")) {
 			InquiryDAO inquiryDao = new InquiryDAO();
-			ArrayList<InquiryDTO> inquiryList = inquiryDao.get();
+			
+			ArrayList<InquiryDTO> inquiryList = inquiryDao.get(email);
 
 			req.setAttribute("list", inquiryList);
 			
 		} else {
 			VocDAO VocDao = new VocDAO();
-			ArrayList<VocDTO> VocList = VocDao.get();
+			
+			ArrayList<VocDTO> VocList = VocDao.get(email);
 			
 			req.setAttribute("list", VocList);
 		}

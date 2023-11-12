@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.UserBookDTO;
@@ -20,7 +21,7 @@ public class UserBookDAO {
 	}
 	
 
-	public UserBookDTO get(String email) {
+	public ArrayList <UserBookDTO> get(String email) {
 		
 		
 		try {
@@ -32,7 +33,9 @@ public class UserBookDAO {
 			
 			rs = pstat.executeQuery();
 			
-			if (rs.next()) {
+			ArrayList<UserBookDTO> list = new ArrayList<UserBookDTO>();
+			
+			while (rs.next()) {
 				
 				UserBookDTO dto = new UserBookDTO();
 				
@@ -47,16 +50,47 @@ public class UserBookDAO {
 				dto.setDiscount_rate(rs.getString("discount_rate"));
 				dto.setPrice(rs.getString("price"));
 				
-				return dto;
+				list.add(dto);
 			}	
+			
+			return list;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
-		
 		return null;
 	}
+
+
+	public int del(String userBookSeq) {
+		
+		int result = 0;
+		
+		try {
+
+			String sql = "delete tbluserbook where user_book_seq = ? ";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, userBookSeq);
+
+			result = pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+
+
+
+
+	
+
+
+	
 
 }

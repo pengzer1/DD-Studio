@@ -27,10 +27,10 @@ public class Review extends HttpServlet {
 		// 2.
 		ReviewDAO dao = new ReviewDAO();
 
-		ArrayList<ReviewDTO> dto = dao.get(email);
+		ArrayList<ReviewDTO> list = dao.get(email);
 
 		// 3.
-		req.setAttribute("dto", dto);
+		req.setAttribute("list", list);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/review/info.jsp");
 		dispatcher.forward(req, resp);

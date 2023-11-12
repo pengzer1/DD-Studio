@@ -115,7 +115,7 @@ a:hover {
 							<c:forEach items="${list}" var="dto">
 							<tr>
 								<td>${dto.review_seq}</td>
-								<td><a href="reviewDetail.html">${dto.subject}</a></td>
+								<td><a href="">${dto.subject}</a></td>
 								<td>${dto.regdate}</td>
 								<td>${dto.readcount}</td>
 							</tr>

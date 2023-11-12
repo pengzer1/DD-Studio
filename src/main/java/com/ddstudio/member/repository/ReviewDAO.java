@@ -70,6 +70,7 @@ public class ReviewDAO {
 				dto.setReadcount(rs.getString("readcount"));
 				
 				list.add(dto);
+				
 			}	
 			
 			return list;

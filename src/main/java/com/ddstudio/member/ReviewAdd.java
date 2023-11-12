@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.ddstudio.member.repository.ReviewDAO;
-import com.ddstudio.member.repository.select;
-import com.ddstudio.member.repository.where;
 
 @WebServlet("/member/review/add.do")
 public class ReviewAdd extends HttpServlet {
@@ -44,7 +42,7 @@ public class ReviewAdd extends HttpServlet {
 		
 		boolean success = dao.add(subject, content, user_book_seq);
 		
-		req.setAttribute("dto", );
+		req.setAttribute("dto", dto);
 
 		if (success) {
 			// 성공했을 경우 다시 리뷰 목록 페이지로 이동
