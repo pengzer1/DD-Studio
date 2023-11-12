@@ -1,15 +1,15 @@
 /* 유저 */
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '박나래', 'park@example.com', '1111', '111-2222-3333', '주소1', TO_DATE('2000-01-01', 'yyyy-mm-dd'), '1', 'Y');
+VALUES (seqtblUser.nextVal, '박나래', 'park@example.com', '1111', '010-2222-3333', '주소1', TO_DATE('2000-01-01', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '황주원', 'hwang@example.com', '1111', '444-5555-6666', '주소2', TO_DATE('1985-05-15', 'yyyy-mm-dd'), '1', 'Y');
+VALUES (seqtblUser.nextVal, '황주원', 'hwang@example.com', '1111', '010-5555-6666', '주소2', TO_DATE('1985-05-15', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '차민재', 'cha@example.com', '1111', '777-8888-9999', '군대', TO_DATE('2010-12-30', 'yyyy-mm-dd'), '1', 'N');
+VALUES (seqtblUser.nextVal, '차민재', 'cha@example.com', '1111', '010-8888-9999', '군대', TO_DATE('2010-12-30', 'yyyy-mm-dd'), '1', 'N');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '관리자', 'admin@example.com', '1111', '123-4567-7890', '주소3', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '2', 'Y');
+VALUES (seqtblUser.nextVal, '관리자', 'admin@example.com', '1111', '010-4567-7890', '주소3', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '2', 'Y');
 
 select * from tblUser;
 select * from tblUser where email = 'park@example.com' and pw = '1111' and ing = 'Y';

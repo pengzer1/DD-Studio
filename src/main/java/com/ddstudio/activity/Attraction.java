@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ddstudio.activity.model.AttractionDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.guide.model.LocationDTO;
+import com.ddstudio.activity.model.LocationDTO;
 
 @WebServlet("/activity/attraction.do")
 public class Attraction extends HttpServlet {
@@ -47,7 +48,7 @@ public class Attraction extends HttpServlet {
 		//2. 위치 가져오기
 		ArrayList<LocationDTO> locationList = dao.locationList();
 		
-		//3. 운휴일정 가져오기
+		//3. 운영/운휴일정 가져오기
 		
 		
 		//4. 데이터 전송

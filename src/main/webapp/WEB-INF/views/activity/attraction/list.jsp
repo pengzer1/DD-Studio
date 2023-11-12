@@ -8,9 +8,11 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	/* 
 	#title > h2 {
 		margin-top: 70px;
 	}
+	 */
 	
 	#condition:hover {
 		cursor: pointer;
@@ -43,9 +45,9 @@
 		/* 조건검색 누르면 아래로 확장되게 해야함!! */
 	}
 	
-	/* #hidden-searchbar {
+	#hidden-searchbar {
 		display: none;
-	} */
+	}
 	
 </style>
 </head>
@@ -71,7 +73,7 @@
 					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정/위치정보)</h3>
 				</div>
 
-				<%-- <!-- 조건 검색 (click 후) -->
+				<!-- 조건 검색 (click 후) -->
 				<div id="hidden-searchbar">
 					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
 					<div>
@@ -97,13 +99,13 @@
 							</c:forEach>
 						</select>
 					</div>
-				</div> --%>
+				</div>
 			</div>
 			
 			<!-- 관리자용 추가 버튼 -->
 			<c:if test="${not empty email && lv == 2}">
 				<div id="admin-btn">
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>추가</button>
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>등록</button>
 				</div>
 			</c:if>
 	
@@ -140,8 +142,17 @@
 		$('#condition').click(function(){
 			//alert();
 			
-			//if ()
+			//if (현재 display 상태를 확인해서 그게 ==block이면)
+			//alert($(this).children().css("display"));
 			
+			if ($('#default-searchbar').children().css("display") == "block") {
+				
+				$('#default-searchbar').css('display', none)
+			} else {
+				$('#default-searchbar').css('display', block)
+			}
+				
+				
 			//$('#hidden-searchbar').css('display', block);
 			//$('#default-searchbar').css('display', none);
 		});

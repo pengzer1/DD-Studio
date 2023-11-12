@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.guide.model.LocationDTO;
+import com.ddstudio.activity.model.LocationDTO;
 
 @WebServlet("/activity/attractionadd.do")
 public class AttractionAdd extends HttpServlet {
@@ -56,6 +57,8 @@ public class AttractionAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//어트랙션 추가 처리
+		//- 이미지는 이미지 DB에 넣어주기
+		//- 나머지는 어트랙션 DB에 넣어주기
 		
 	
 	
