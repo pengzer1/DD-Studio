@@ -456,7 +456,8 @@ CREATE TABLE tblVOC (
 	attach VARCHAR2(500), /* Ï≤®Î??åå?ùº */
 	visit_date DATE NOT NULL, /* Î∞©Î¨∏?ùº */
 	answer VARCHAR2(2000), /* ?ãµÎ≥??Ç¥?ö© */
-	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL /* ?ú†??Î≤àÌò∏ */
+	user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* ?ú†??Î≤àÌò∏ */
+    regdate DATE NOT NULL
 );
 
 /* ?ù¥?ö©Î¨∏Ïùò */

@@ -28,10 +28,17 @@ public class InquiryHistory extends HttpServlet {
 		// InquiryHistory.java
 		// 마이페이지에서 이용문의, 칭찬/불편/건의 내용이 추가되어 보여주는 페이지
 		// 1.
+		String email = req.getSession().getAttribute("email").toString();
+		
 		String option = req.getParameter("option");
 
+		if (option == null || option.equals("")) {
+			option = "tblInquiry";
+		}
+		
 		// 2.
 		
+		//if ("tblInquiry".equals(option)) {
 		if (option.equals("tblInquiry")) {
 			InquiryDAO inquiryDao = new InquiryDAO();
 			ArrayList<InquiryDTO> inquiryList = inquiryDao.get();
