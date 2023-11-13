@@ -32,8 +32,6 @@ button:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 
-
-
 .item{
 	background-color: white;
 }
@@ -59,6 +57,8 @@ button:hover {
         }
     }
 
+
+
 </style>
 </head>
 <body>
@@ -69,7 +69,7 @@ button:hover {
 	<main id="main">
 
 		<div id="title">
-			<h2>관리자 페이지ㅎㅅㅎ</h2>
+			<h2>카테고리 관리 페이지</h2>
 			<br>
 		</div>
 		
@@ -82,16 +82,16 @@ button:hover {
 		<div id="content">			
 			<div class="munti-content-container">
 				<div class="item">
-    				<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-    				<div><button type="button" onclick="location.href='/ddstudio/admin/category.do';">카테고리 관리</button></div>
+					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+					<div><button type="button" onclick="location.href='/ddstudio/admin/categoryadd.do';">카테고리 등록</button></div>
 				</div>
 				<div class="item">
 					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtag.do';">해시태그 관리</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/admin/categoryedit.do';">카테고리 수정</button></div>
 				</div>
 				<div class="item">
 					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/totalclose.do';">운휴 관리</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/admin/categorydel.do';">카테고리 삭제</button></div>
 				</div>
 			</div>
 		</div>
