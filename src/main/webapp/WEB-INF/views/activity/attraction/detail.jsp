@@ -13,6 +13,14 @@
 		margin-top: 150px;
 	}
 	
+	#background {
+		background-image: url('/ddstudio/asset/image/detail_background_half_trans.png');
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%
+	}
+	
 	#admin-btn {
 		text-align: right;
 	}
@@ -80,7 +88,8 @@
 		height: 370px;
 		padding: 30px;
 		margin: 30px;
-		background-color: #FFFBD0;
+		/* background-color: #FFFBD0; */
+		background-color: #FFFFFF;
 		border-radius: 5px;
 	}
 	
@@ -119,12 +128,14 @@
 		flex-direction: column;
 		align-items: center;
 		margin: 30px 0;
+		padding-top: 50px;
 	}
 	
 	.close-item {
 		width: 1277px;
-		border: 1px solid #999;
+		/* border: 1px solid #999; */
 		border-radius: 5px;
+		background-color: #FFFFFF;
 	}
 	
 	.close-time > .value {
@@ -279,45 +290,48 @@
 		
 		<!-- 어트랙션 정보 -->
 		<!-- 운휴일정, 운영시간, 탑승인원, 이용정보, 테마, 위치, 예약 순 -->
-			
-		<div class="close-container">
-			<div class="close-item">
-				<div class="label">운휴일정</div>
-				<div class="value">
-					<c:if test="${close_dto.attraction_close_seq != null}">
-						<img src="/ddstudio/asset/image/close_icon.png" alt="Image" class="icon"/>
-						금일 운휴
-						<%-- <c:out value="${now}" /> --%><!-- 금일 날짜 -->
-					</c:if>	
-					<c:if test="${close_dto.attraction_close_seq == null}">
-						<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
-						정상 운영
-					</c:if>
+		<div id="background">
+			<div class="close-container">
+				<div class="close-item">
+					<div class="label">운휴일정</div>
+					<div class="value">
+						<c:if test="${close_dto.attraction_close_seq != null}">
+							<img src="/ddstudio/asset/image/close_icon.png" alt="Image" class="icon"/>
+							금일 운휴
+							<%-- <c:out value="${now}" /> --%><!-- 금일 날짜 -->
+						</c:if>	
+						<c:if test="${close_dto.attraction_close_seq == null}">
+							<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
+							정상 운영
+						</c:if>
+					</div>
+				</div>
+			</div>
+			<div class="result-container">
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
+					<div class="label">운영시간</div>
+					<div class="value">${dto.time}</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/people_icon.png" alt="Image" class="icon"/>
+					<div class="label">탑승인원</div>
+					<div class="value">${dto.capacity}명</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
+					<div class="label">이용정보</div>
+					<div class="value">${dto.restriction}</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
+					<div class="label">테마</div>
+					<div class="value">${dto.theme}</div>
 				</div>
 			</div>
 		</div>
-		<div class="result-container">
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
-				<div class="label">운영시간</div>
-				<div class="value">${dto.time}</div>
-			</div>
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/people_icon.png" alt="Image" class="icon"/>
-				<div class="label">탑승인원</div>
-				<div class="value">${dto.capacity}명</div>
-			</div>
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
-				<div class="label">이용정보</div>
-				<div class="value">${dto.restriction}</div>
-			</div>
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
-				<div class="label">테마</div>
-				<div class="value">${dto.theme}</div>
-			</div>
-		</div>
+		
+		
 		<div class="location">
 			<div class="label">위치</div>
 			<div class="value location">

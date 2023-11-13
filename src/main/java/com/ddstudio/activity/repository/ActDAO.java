@@ -332,7 +332,8 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a";
+//					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a";
+					String sql = "select * from vwFestival";
 					
 					stat = conn.createStatement();
 					rs = stat.executeQuery(sql);
@@ -586,7 +587,8 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a where festival_seq = ?";
+//					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a where festival_seq = ?";
+					String sql = "select * from vwFestival where festival_seq = ?";
 					
 					pstat = conn.prepareStatement(sql);
 					pstat.setString(1, seq);

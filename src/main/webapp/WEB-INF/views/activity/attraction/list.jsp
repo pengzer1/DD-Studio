@@ -8,15 +8,24 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-	/* 
 	#title > h2 {
-		margin-top: 70px;
+		/* margin-top: 70px; */
+		/* color: #FFFFFF; */
 	}
-	 */
+	
+	#title > p {
+		color: #FFFFFF;
+	}
 	 
-	 #title {
-	 	/* background-image: url('/ddstudio/asset/image/Ghibli-Park.jpeg'); */
-	 }
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
+	 
+	#title {
+	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
+	 	background-image: url('/ddstudio/asset/image/detail_background_resizing.png');
+	}
 	 
 	#condition:hover {
 		cursor: pointer;

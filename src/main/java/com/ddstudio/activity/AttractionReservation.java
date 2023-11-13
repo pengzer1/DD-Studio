@@ -28,14 +28,21 @@ public class AttractionReservation extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		if (session.getAttribute("email") == null) {
-			resp.sendRedirect("/ddstudio/user/login.do");
+			
+			resp.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter writer = resp.getWriter();
+			writer.print("<script>alert('로그인이 필요한 페이지입니다.로그인 화면으로 이동합니다.');location.href='/ddstudio/user/login.do';</script>");
+			//resp.sendRedirect("/ddstudio/user/login.do");
 			return;
 		}
 		
 		if (session.getAttribute("lv").toString().equalsIgnoreCase("2")) {
+
+			resp.setContentType("text/html; charset=UTF-8");
 			
 			PrintWriter writer = resp.getWriter();
-			writer.print("<script>alert('This function is only for normal user.');history.back();</script>");
+			writer.print("<script>alert('관리자 계정으로는 사용할 수 없는 기능입니다.일반 사용자로 로그인 후 이용해주세요.');history.back();</script>");
 			writer.close();
 			return;
 		}
