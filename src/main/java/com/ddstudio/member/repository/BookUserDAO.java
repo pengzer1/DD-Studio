@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.BookUserDTO;
@@ -19,7 +20,7 @@ public class BookUserDAO {
 		this.conn = DBUtil.open();
 	}
 
-	public BookUserDTO get(String email) {
+	public ArrayList<BookUserDTO> get(String email) {
 		
 		try {
 			
@@ -30,7 +31,9 @@ public class BookUserDAO {
 			
 			rs = pstat.executeQuery();
 			
-			if (rs.next()) {
+			ArrayList<BookUserDTO> list = new ArrayList<BookUserDTO>();
+			
+			while (rs.next()) {
 				
 				BookUserDTO dto = new BookUserDTO();
 				
@@ -39,10 +42,11 @@ public class BookUserDAO {
 				dto.setBook_time(rs.getString("book_time"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setCapacity(rs.getString("capacity"));
-				
-				return dto;
+
+				list.add(dto);
 			}	
 			
+			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

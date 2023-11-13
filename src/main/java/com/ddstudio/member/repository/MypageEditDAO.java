@@ -56,15 +56,18 @@ public class MypageEditDAO {
 
 	public int edit(MypageEditDTO dto) {
 		
+		System.out.println("test");
+		
 		try {
 
-			String sql = "update tblUser set name = ?, birth = ?, tel = ?, address = ?";
+			String sql = "update tblUser set name = ?, birth = ?, tel = ?, address = ? where email = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getName());
 			pstat.setString(2, dto.getBirth());
 			pstat.setString(3, dto.getTel());
 			pstat.setString(4, dto.getAddress());
+			pstat.setString(5, dto.getEmail());
 
 			return pstat.executeUpdate();
 

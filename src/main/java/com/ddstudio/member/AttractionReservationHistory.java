@@ -1,6 +1,7 @@
 package com.ddstudio.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,10 +27,10 @@ public class AttractionReservationHistory extends HttpServlet {
 		// 2.
 		BookUserDAO dao = new BookUserDAO();
 
-		BookUserDTO dto = dao.get(email);
+		ArrayList<BookUserDTO> list = dao.get(email);
 
 		// 3.
-		req.setAttribute("dto", dto);
+		req.setAttribute("list", list);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/reservation.jsp");
 		dispatcher.forward(req, resp);

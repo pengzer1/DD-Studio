@@ -67,6 +67,9 @@ tr:nth-child(odd) {
 .button:hover {
 	background-color: #0056a4;
 }
+ .checkbox-col {
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -101,22 +104,20 @@ tr:nth-child(odd) {
 								<th>예약일자</th>
 								<th>예약시간</th>
 								<th>예약인원</th>
+								<th></th>
 							</tr>
+							<c:forEach items="${list}" var="dto">
 							<tr>
 								<td>${dto.name}</td>
 								<td>${dto.attraction_book_seq}</td>
 								<td>${dto.regdate}</td>
 								<td>${dto.book_time}</td>
 								<td>${dto.capacity}</td>
+								<td class="checkbox-col">
+                                <input type="checkbox" name="reservationCheckbox">
+                            	</td>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
+							</c:forEach>
 						</table>
 					</div>
 				</div>
@@ -136,22 +137,20 @@ tr:nth-child(odd) {
 								<th>예약일자</th>
 								<th>예약시간</th>
 								<th>예약인원</th>
+								<th></th>
 							</tr>
+							<c:forEach items="${list}" var="dto">
 							<tr>
 								<td>${dto.name}</td>
 								<td>${dto.attraction_book_seq}</td>
 								<td>${dto.regdate}</td>
 								<td>${dto.book_time}</td>
 								<td>${dto.capacity}</td>
+								<td class="checkbox-col">
+                                <input type="checkbox" name="reservationCheckbox">
+                            	</td>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
+							</c:forEach>
 						</table>
 					</div>
 				</div>
@@ -162,7 +161,7 @@ tr:nth-child(odd) {
 	<!-- Footer -->
 
 	<script>
-		
+	
 	</script>
 </body>
 </html>

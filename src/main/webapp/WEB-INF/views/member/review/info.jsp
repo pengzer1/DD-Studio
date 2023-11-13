@@ -112,24 +112,14 @@ a:hover {
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach items="${list}" var="dto">
 							<tr>
-								<td>1</td>
-								<td><a href="reviewDetail.html">리뷰 제목 1</a></td>
-								<td>2023-11-20</td>
-								<td>100</td>
+								<td>${dto.review_seq}</td>
+								<td><a href="">${dto.subject}</a></td>
+								<td>${dto.regdate}</td>
+								<td>${dto.readcount}</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td><a href="reviewDetail.html">리뷰 제목 2</a></td>
-								<td>2022-1-10</td>
-								<td>70</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td><a href="reviewDetail.html">리뷰 제목 3</a></td>
-								<td>2021-7-15</td>
-								<td>360</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 
