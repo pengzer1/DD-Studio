@@ -123,16 +123,6 @@
 							</td>
 						</tr>
 						<tr>
-							<th>테마</th>
-							<td>
-								<select name="theme" id="theme-select" class="selectbox">
-									<c:forEach items="${themeList}" var="dto">
-									<option value="${dto.name}">${dto.name}</option>
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<tr>
 							<th>해시태그</th>
 							<td>
 								<input type="text" name="hashtag" id="hashtag-text"/>

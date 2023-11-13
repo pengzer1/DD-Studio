@@ -20,14 +20,16 @@ public class VocDAO {
 		this.conn = DBUtil.open();
 	}
 
-	public ArrayList<VocDTO> get() {
+	public ArrayList<VocDTO> get(String email) {
 		
 		try {
 			
-			String sql = "select voc_seq, type, subject, regdate, answer from tblVoc";
+			String sql = "select voc_seq, type, subject, regdate, answer from vwUserVOC where email = ?";
 			
-			stat = conn.createStatement();
-			rs = stat.executeQuery(sql);
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, email);
+			
+			rs = pstat.executeQuery();	
 			
 			ArrayList<VocDTO> list = new ArrayList<VocDTO>();
 			
@@ -52,5 +54,7 @@ public class VocDAO {
 		
 		return null;
 	}
+
+	
 
 }

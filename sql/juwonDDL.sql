@@ -85,8 +85,8 @@ select inquiry_seq from tblInquiry;
 
 drop view vwInquiry;
 
-insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq) values (seqtblVOC.nextVal, '칭찬', '어트랙션', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '답변내용입니다', 1);
-insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq) values (seqtblVOC.nextVal, '불편', '페스티벌', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('2015-11-20', 'yyyy-mm-dd'), '답변내용입니다', 2);
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, '칭찬', '어트랙션', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '답변내용입니다', 1, sysdate);
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, '불편', '페스티벌', '제목입니다', '내용입니다', '첨부파일입니다', TO_DATE('2015-11-20', 'yyyy-mm-dd'), '답변내용입니다', 2, sysdate);
 
 select * from tblreview;
 
@@ -103,3 +103,4 @@ DROP TRIGGER trg_before_insert_review;
 
 insert into tblreview (review_seq, subject, content, regdate, readcount, user_book_seq) values (seqtblReview.nextVal, ?, ?, sysdate, 0, seqtblUserBook.nextVal);
 
+commit;

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.shop.model.RestaurantDTO;
 import com.ddstudio.shop.repository.ShopDAO;
 
-@WebServlet("/shop/restaurant/list.do")
+@WebServlet("/shop/restaurant.do")
 public class Restaurant extends HttpServlet {
 
 	@Override
@@ -21,7 +21,7 @@ public class Restaurant extends HttpServlet {
 		
 		ShopDAO dao = new ShopDAO();
 		
-		ArrayList<RestaurantDTO> list = dao.list();
+		ArrayList<RestaurantDTO> list = dao.restaurantList();
 		
 		req.setAttribute("list", list);
 		

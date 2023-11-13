@@ -1,4 +1,4 @@
-package com.ddstudio.guide;
+package com.ddstudio.admin;
 
 import java.io.IOException;
 
@@ -9,14 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/guide/serviceadd.do")
-public class ServiceAdd extends HttpServlet {
+@WebServlet("/admin/attractionclosedel.do")
+public class AttractionCloseDel extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/service/add.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/close/attractionclosedel.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
 }

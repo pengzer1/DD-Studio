@@ -8,15 +8,24 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-	/* 
 	#title > h2 {
-		margin-top: 70px;
+		/* margin-top: 70px; */
+		/* color: #FFFFFF; */
 	}
-	 */
+	
+	#title > p {
+		color: #FFFFFF;
+	}
 	 
-	 #title {
-	 	/* background-image: url('/ddstudio/asset/image/Ghibli-Park.jpeg'); */
-	 }
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
+	 
+	#title {
+	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
+	 	background-image: url('/ddstudio/asset/image/detail_background_resizing.png');
+	}
 	 
 	#condition:hover {
 		cursor: pointer;
@@ -80,14 +89,6 @@
 				<!-- 조건 검색 (click 후) -->
 				<div id="hidden-searchbar">
 					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
-					<div>
-						<div>테마</div>
-						<select name="theme" id="theme-select" class="selectbox">
-							<c:forEach items="${themeList}" var="dto">
-							<option value="${dto.name}">${dto.name}</option>
-							</c:forEach>
-						</select>
-					</div>
 					<div>
 						<div>운휴일정</div>
 						<select name="close" id="close-select" class="selectbox">

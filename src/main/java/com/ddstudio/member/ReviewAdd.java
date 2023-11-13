@@ -28,14 +28,21 @@ public class ReviewAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// ReviewAdd.java
+		
+		String email = req.getSession().getAttribute("email").toString();
 
 		// 폼으로부터 전송된 데이터 받기
-		String title = req.getParameter("title");
+		String subject = req.getParameter("subject");
 		String content = req.getParameter("content");
 
 		// 리뷰 테이블에 추가하는 DAO 호출
-		ReviewDAO reviewDAO = new ReviewDAO();
-		boolean success = reviewDAO.add(title, content);
+		ReviewDAO dao = new ReviewDAO();
+		
+		int user_book_seq = dao.seqGet(email); //select user_book_seq from 회원/예매 where ticket_book_seq = 2
+		
+		boolean success = dao.add(subject, content, user_book_seq);
+		
+		req.setAttribute("dto", dto);
 
 		if (success) {
 			// 성공했을 경우 다시 리뷰 목록 페이지로 이동

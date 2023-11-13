@@ -56,6 +56,13 @@ tr:nth-child(even) {
 .button:hover {
   background-color: #0056a4;
 }
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px; /* 여백 추가 */
+}
 </style>
 </head>
 <body>
@@ -87,37 +94,29 @@ tr:nth-child(even) {
 							<th>품목</th>
 							<th>수량</th>
 							<th>가격</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 첫 번째 품목 -->
+						<c:forEach items="${list}" var="dto">
 						<tr>
 							<td>${dto.shopName}</td>
 							<td>${dto.itemName}</td>
 							<td>${dto.ea}</td>
 							<td>${dto.price}</td>
+							<td class="checkbox-col">
+                                <input type="checkbox" name="reservationCheckbox">
+                            </td>
 						</tr>
-						<!-- 두 번째 품목 -->
-						<tr>
-							<td>샵 B</td>
-							<td>품목 2</td>
-							<td>1</td>
-							<td>$15.00</td>
-						</tr>
-						<!-- 세 번째 품목 -->
-						<tr>
-							<td>샵 C</td>
-							<td>품목 3</td>
-							<td>3</td>
-							<td>$30.00</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
-			</div>
-
-			<div class="buttons-container">
-				<button class="button">주문 취소</button> <!-- 팝업창구현 -->
+			
+				<div class="buttons-container">
+					<button class="button">주문 취소</button> <!-- 팝업창구현 -->
+				</div>
+			
 			</div>
 
 			<div class="container">
@@ -129,30 +128,21 @@ tr:nth-child(even) {
 							<th>품목</th>
 							<th>수량</th>
 							<th>가격</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 첫 번째 품목 -->
+						<c:forEach items="${list}" var="dto">
 						<tr>
-							<td>샵 A</td>
-							<td>품목 1</td>
-							<td>2</td>
-							<td>$20.00</td>
+							<td>${dto.shopName}</td>
+							<td>${dto.itemName}</td>
+							<td>${dto.ea}</td>
+							<td>${dto.price}</td>
+							<td class="checkbox-col">
+                                <input type="checkbox" name="reservationCheckbox">
+                            </td>
 						</tr>
-						<!-- 두 번째 품목 -->
-						<tr>
-							<td>샵 B</td>
-							<td>품목 2</td>
-							<td>1</td>
-							<td>$15.00</td>
-						</tr>
-						<!-- 세 번째 품목 -->
-						<tr>
-							<td>샵 C</td>
-							<td>품목 3</td>
-							<td>3</td>
-							<td>$30.00</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
