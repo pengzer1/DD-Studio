@@ -147,7 +147,6 @@
 					    }).text(item.mbti);
 
 					    // console.log(div);
-
 					    container.append(div);
 					});
 

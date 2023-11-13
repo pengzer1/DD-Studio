@@ -34,6 +34,11 @@ select {
 select option:checked {
 	background-color: #ddd;
 }
+
+#selected-mbti {
+	width: 400px;
+	margin-left: 47px;
+}
 </style>
 </head>
 <body>
@@ -124,7 +129,7 @@ select option:checked {
 					var result = response.result;
 
 					if (result == 1) {
-						alert("삭제 되었습니다.")
+						//alert("삭제 되었습니다.")
 						window.location.href = '/ddstudio/test/mbti.do';
 					} else {
 						alert("failed");

@@ -125,6 +125,7 @@ select option:checked {
 		            var result = response.result;
 
 		            if (result == 1) {
+						//alert("추가 되었습니다.")
 		                window.location.href = '/ddstudio/test/mbti.do';
 		            } else {
 		                alert("failed");
