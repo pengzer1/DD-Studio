@@ -26,7 +26,7 @@ public class UserBookDAO {
 		
 		try {
 			
-			String sql = "select * from vwUserBook where email = ?";
+			String sql = "select * from vwUserBook where email = ? AND visit_date > SYSDATE";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
@@ -70,7 +70,7 @@ public class UserBookDAO {
 		
 		try {
 
-			String sql = "delete tbluserbook where user_book_seq = ? ";
+			String sql = "delete tbluserbook where user_book_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, userBookSeq);

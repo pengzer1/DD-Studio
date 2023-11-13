@@ -1,12 +1,12 @@
--- ¿¹¸Å È®ÀÎ/Ãë¼Ò 
+-- ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½ï¿½ 
 CREATE OR REPLACE VIEW vwUserBook as
 SELECT
     U.email,
     UB.user_book_seq,
     UB.user_seq,
     TB.ticket_book_seq,
-    TB.book_date,
-    TB.visit_date,
+    TO_CHAR(TB.book_date,'YYYY-MM-DD') as book_date,
+    TO_CHAR(TB.visit_date,'YYYY-MM-DD') as visit_date,
     TB.ea,
     TB.ticket_seq,
     TB.benefit_seq,
@@ -21,8 +21,10 @@ join tblTicket T on TB.ticket_seq = T.ticket_seq;
 select * from vwUserBook;
 select * from vwUserBook where email = 'park@example.com';
 
+select * from tbluserbook;
 
--- ¾îÆ®·¢¼Ç ¿¹¾à È®ÀÎ/Ãë¼Ò
+commit;
+-- ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½/ï¿½ï¿½ï¿½
 CREATE OR REPLACE VIEW vwBookUser as
 SELECT
     u.email,
@@ -39,11 +41,11 @@ join tblUser U on u.user_seq = BU.user_seq;
 select * from vwBookUser;
 
 
--- È¸¿øÁ¤º¸ ¼öÁ¤
+-- È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 select * from tblUser;
 
 
--- ±âÇÁÆ®¼¥ ±¸¸Å ³»¿ª
+-- ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 CREATE OR REPLACE VIEW vwUserBuy as
 SELECT
     U.email,
@@ -85,22 +87,58 @@ select inquiry_seq from tblInquiry;
 
 drop view vwInquiry;
 
-insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, 'ÄªÂù', '¾îÆ®·¢¼Ç', 'Á¦¸ñÀÔ´Ï´Ù', '³»¿ëÀÔ´Ï´Ù', 'Ã·ºÎÆÄÀÏÀÔ´Ï´Ù', TO_DATE('1990-12-30', 'yyyy-mm-dd'), '´äº¯³»¿ëÀÔ´Ï´Ù', 1, sysdate);
-insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, 'ºÒÆí', 'Æä½ºÆ¼¹ú', 'Á¦¸ñÀÔ´Ï´Ù', '³»¿ëÀÔ´Ï´Ù', 'Ã·ºÎÆÄÀÏÀÔ´Ï´Ù', TO_DATE('2015-11-20', 'yyyy-mm-dd'), '´äº¯³»¿ëÀÔ´Ï´Ù', 2, sysdate);
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, 'Äªï¿½ï¿½', 'ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 'Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', TO_DATE('1990-12-30', 'yyyy-mm-dd'), 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 1, sysdate);
+insert into tblVOC (voc_seq, type, service_type, subject, content, attach, visit_date, answer, user_seq, regdate) values (seqtblVOC.nextVal, 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ä½ºÆ¼ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 'Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', TO_DATE('2015-11-20', 'yyyy-mm-dd'), 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½', 2, sysdate);
 
 select * from tblreview;
-
-CREATE OR REPLACE TRIGGER trg_before_insert_review
-BEFORE INSERT ON tblReview
-FOR EACH ROW
-BEGIN
-    :NEW.readcount := 0;      -- ÃÊ±â Á¶È¸¼ö¸¦ 0À¸·Î ¼³Á¤
-END;
-
 
 
 DROP TRIGGER trg_before_insert_review;
 
 insert into tblreview (review_seq, subject, content, regdate, readcount, user_book_seq) values (seqtblReview.nextVal, ?, ?, sysdate, 0, seqtblUserBook.nextVal);
+
+commit;
+
+select * from tbluserbook;
+
+insert into tbluserbook (user_book_seq, user_seq, ticket_book_seq) values (8, 2, 5);
+
+delete from tbluserbook where user_book_seq = 2; 
+
+select * from tblUserBook;
+insert into tblUserBook values (seqtblUserBook.nextVal, 2, 5);
+update tblUserBook set ticket_book_seq = 5 where user_book_seq = 2;
+commit;
+select * from tblReview;
+select * from tbluser;
+
+select * from vwUserBook  where email = 'hwang@example.com';
+select * from tblUserBook;
+
+select * from tblticketbook;
+
+update tblticketbook set visit_date = '20231130' where ticket_book_seq =5;
+
+select * from vwuserbook;
+
+commit;
+
+delete tbluserbook where user_book_seq = 2;
+
+select * from tblreview;
+
+update tblreview set user_book_seq = 6 where review_seq=2;
+
+commit;
+
+insert into tbluserbook (user_book_seq, user_seq, ticket_book_seq) values (2, 2, 5);
+
+select * from tbluser;
+
+insert into tblreview (review_seq, subject, content, regdate, readcount, user_book_seq) values (seqtblreview.nextVal, 'í…ŒìŠ¤íŠ¸ë¦¬ë·°ìž…ë‹ˆë‹¤', 'í…ŒìŠ¤íŠ¸ë‚´ìš©ìž…ë‹ˆë‹¤.', '20231113', 6, 1);
+
+DROP TRIGGER TRG_BEFORE_INSERT_REVIEW;
+
+select * from tblreview;
 
 commit;
