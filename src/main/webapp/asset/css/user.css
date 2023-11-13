@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+th input#email.middle-high, th input#pw.middle-high {
+	color: #000;
+	margin-top: 50px;
+	width: 400px;
+	height: 80px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	margin: -1px; /* 이메일 비밀번호 상자 연결 */
+	flex-direction: column;
+	align-items: center;
+}
+
+td input.middle-flat {
+	color: #000;
+	margin-top: 50px;
+	width: 400px;
+	height: 40px;
+	padding: 10px;
+	/* border: 1px solid #ccc; */
+	font-size: 16px;
+	margin: 0;
+	margin-left: 15px;
+	align-items: center;
+	justify-content: center;
+}
+
+th input#email.middle-high {
+	margin-top: 30px;
+}
+
+th input#pw.middle-high {
+	margin-bottom: 30px;
+}
+
+th input#email.middle-high:focus, th input#pw.middle-high:focus {
+	border-color: #000;
+}
+
+th input#pw.middle-high {
+	border-top: 1px solid transparent;
+}
+
+th input#email.middle-high+th input#pw.middle-high {
+	margin-top: 0;
+}
+
+table {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.round-button {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	font-size: 16px;
+	background-color: transparent;
+	border: 1px solid #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.login {
+	margin: -110px 0 0 50px;
+}
+
+td>div {
+	padding: 10px;
+}
+
+#email {
+	width: 270px;
+}
+
+#post-code {
+	width: 228px;
+}
+
+#birth-button {
+	width: 40px;
+}
+
+#acceptnum {
+	width: 192px;
+}
+
+form {
+	margin-top: 20px;
+}
+
+td input.middle-flat:focus {
+	border-color: #000;
+}
+
+.button-container {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.button {
+	width: 90px;
+	margin-left: 10px;
+	height: 40px;
+	font-size: 16px;
+	background-color: transparent;
+	border: 1px solid #ccc;
+}
+
+.email>.check {
+	width: 120px;
+}
+
+.address>.check {
+	width: 160px;
+}
+
+table {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.error-message {
+	font-size: 14px;
+	padding: 5px;
+}
+
+th.required::before {
+	content: "* ";
+	color: cornflowerblue;
+}
+
+#main {
+	text-align: center;
+	margin-top: 150px;
+}
+
+.sub-title {
+	width: 80%;
+	text-align: center;
+	border-top: 2px solid black;
+	margin: 50px auto 0;
+	justify-content: center;
+	align-items: center;
+}
+
+#content .sub-title {
+	border-top: none;
+}
+
+#check #myid {
+	margin-right: 25px;
+}
+
+/* 타이머 */
+input, select {
+	vertical-align: middle;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+td > div > input {
+	box-sizing: border-box;
+	width: 75%;
+	font-size: 16px;
+	border-bottom: 1.5px solid #eeeeee;
+	padding: 10px;
+}
+
+input::placeholder {
+	font-size: 16px;
+	font-weight: 00;
+	color: #9e9e9e;
+}
+
+input:focus {
+	outline: none;
+	border-bottom: 1.5px solid black;
+}
+
+.certification {
+	display: flex;
+	margin-left: 50px;
+}
+
+.certificationTime {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: #616161;
+	line-height: 28px;
+	margin-left: 18px;
+	margin-top: 10px;
+}
+
+/* 팝업 박스 */
+.popup-layer {
+	position: flex;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}
+
+.popup-box {
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	border-radius: 3px;
+	width: 300px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.popup-box p {
+	margin: 0 0 20px;
+}
+
+.close-popup {
+	background-color: #CCC;
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.close-popup:hover {
+	background-color: #2980b9;
+}

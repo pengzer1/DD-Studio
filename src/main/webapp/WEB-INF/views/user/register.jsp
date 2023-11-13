@@ -7,111 +7,32 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-table, td, th {
-	/* border: 1px solid #CCC; */
-	
+#cancel {
+	margin-right: 15px;
 }
 
-td input.middle-flat {
-	color: #000;
-	margin-top: 50px;
-	width: 400px;
-	height: 40px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 16px;
-	margin: 0;
-	margin-left: 15px;
-	align-items: center;
-	justify-content: center;
-}
-
-td>div {
-	padding: 10px;
-}
-
-#email {
-	width: 270px;
-}
-
-#post-code {
-	width: 228px;
-}
-
-#birth-button {
-	width: 40px;
-}
-
-form {
-	margin-top: 20px;
-}
-
-td input.middle-flat:focus {
-	border-color: #000;
-}
-
-.button-container {
-	margin-top: 20px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.button {
-	width: 90px;
-	margin-left: 10px;
-	height: 40px;
-	font-size: 16px;
-	background-color: transparent;
-	border: 1px solid #ccc;
-}
-
-.email>.check {
-	width: 120px;
-}
-
-.address>.check {
-	width: 160px;
-}
-
-table.vertical {
-	margin: 0 auto;
-}
-
-.error-message {
-	font-size: 14px;
-	padding: 5px;
-}
-
-th.required::before {
-	content: "* ";
-	color: cornflowerblue;
-}
-
-.formcontrol {
-	display: !flex;
+#duplicate-check {
+	padding: 0;
 }
 </style>
 </head>
 <body>
-	<!-- login.jsp -->
+	<!-- register.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
+		<h1>회원가입</h1>
 
-		<div id="title">
-			<h2>회원가입</h2>
-		</div>
-
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원정보입력</p>
 		</div>
 
 		<div id="content">
 			<div class="wide-item">
 				<form method="POST" action="/ddstudio/user/register.do">
-					<table class="vertical">
+					<table>
 						<!-- 이메일 필드와 에러 메시지 -->
 						<tr>
 							<th class="required">이메일 (아이디)</th>
@@ -230,9 +151,9 @@ th.required::before {
 								</div>
 							</td>
 						</tr>
-
 						<tr>
-							<td colspan="2">
+							<th></th>
+							<td>
 								<div class="button-container">
 									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
 									<!-- <div id="ok-message"></div> -->
@@ -249,8 +170,6 @@ th.required::before {
 	
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 		
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		let isValid = [false, false, false, false, false, false, false]; // 검사 결과 저장
 		
@@ -258,7 +177,7 @@ th.required::before {
 		$('#duplicate-check').click(function(){
 			$.ajax({
 				type: 'POST',
-				url: '/ddstudio/user/duplicate-check.do',
+				url: '/ddstudio/user/duplicatecheck.do',
 				data: {
 					email: $('#email').val()
 				},
@@ -354,7 +273,7 @@ th.required::before {
 		        passwordErrorDiv.textContent = isValid[2] ? "" : "8-15자의 영문/숫자/특수문자를 함께 입력하세요.";
 		        passwordErrorDiv.style.display = isValid[2] ? "none" : "block";
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 	
 		        if (passwordField.value.length === 0) {
@@ -374,7 +293,7 @@ th.required::before {
 		    passwordConfirmField.addEventListener("input", function () {
 		    	isValid[3] = passwordConfirmField.value === passwordField.value;
 		        
-		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : passwordConfirmErrorDiv.textContent = "비밀번호가 동일하지 않습니다.";
+		        passwordConfirmErrorDiv.textContent = isValid[3] ? "" : "비밀번호가 동일하지 않습니다.";
 		        passwordConfirmErrorDiv.style.display = isValid[3] ? "none" : "block";
 		        
 		        if (passwordConfirmField.value.length === 0) {
@@ -414,7 +333,7 @@ th.required::before {
 	
 		        birthErrorDiv.textContent = isValid[5] ? "" : "올바른 생년월일 형식을 입력하세요. (예: YYYY-MM-DD)";
 		        birthErrorDiv.style.display = isValid[5] ? "none" : "block";
-	
+
 		        if (birthField.value.length === 0) {
 		            birthErrorDiv.textContent = "";
 		            birthErrorDiv.style.display = "none";

@@ -9,6 +9,9 @@ public class FestivalDTO {
 	private String name;
 	private String time;
 	private String info;
-	private String period;
+	private String start_date;
+	private String end_date;
 	private String location_seq;
+	
+	private String img;
 }

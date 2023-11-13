@@ -11,6 +11,9 @@
 	#content{
 		padding-top: 150px;
 	}
+	#title {
+	    background-image: url('/ddstudio/asset/image/directions.png');
+	}
 </style>
 </head>
 <body>

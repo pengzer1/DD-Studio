@@ -9,9 +9,24 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
 	#title > h2 {
-		margin-top: 70px;
+		/* margin-top: 70px; */
+		/* color: #FFFFFF; */
 	}
 	
+	#title > p {
+		color: #FFFFFF;
+	}
+	 
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
+	 
+	#title {
+	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
+	 	background-image: url('/ddstudio/asset/image/detail_background_resizing.png');
+	}
+	 
 	#condition:hover {
 		cursor: pointer;
 	}
@@ -43,9 +58,9 @@
 		/* 조건검색 누르면 아래로 확장되게 해야함!! */
 	}
 	
-	/* #hidden-searchbar {
+	#hidden-searchbar {
 		display: none;
-	} */
+	}
 	
 </style>
 </head>
@@ -56,7 +71,7 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title">	
 			<h2>어트랙션</h2>
 			<br>
 			<p>모험과 환상의 나라 더블디 스튜디오의 어트랙션을 경험해보세요!</p>
@@ -68,10 +83,10 @@
 			
 				<!-- 조건 검색 (click 전) -->
 				<div id="default-searchbar">
-					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정/위치정보)</h3>
+					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정)</h3>
 				</div>
 
-				<%-- <!-- 조건 검색 (click 후) -->
+				<!-- 조건 검색 (click 후) -->
 				<div id="hidden-searchbar">
 					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
 					<div>
@@ -89,21 +104,13 @@
 							<option value="close">운휴</option>
 						</select>
 					</div>
-					<div>
-						<div>위치정보</div>
-						<select name="location" id="location-select" class="selectbox">
-							<c:forEach items="${locationList}" var="dto">
-							<option value="${dto.info}">${dto.info}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div> --%>
+				</div>
 			</div>
 			
 			<!-- 관리자용 추가 버튼 -->
 			<c:if test="${not empty email && lv == 2}">
 				<div id="admin-btn">
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>추가</button>
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/attractionadd.do'"><i class="fa-solid fa-plus"></i>등록</button>
 				</div>
 			</c:if>
 	
@@ -116,8 +123,8 @@
 					</div>
 				</c:forEach>
 			</div>
+			
 		</div>
-		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
@@ -140,8 +147,17 @@
 		$('#condition').click(function(){
 			//alert();
 			
-			//if ()
+			//if (현재 display 상태를 확인해서 그게 ==block이면)
+			//alert($(this).children().css("display"));
 			
+			if ($('#default-searchbar').children().css("display") == "block") {
+				
+				$('#default-searchbar').css('display', none)
+			} else {
+				$('#default-searchbar').css('display', block)
+			}
+				
+				
 			//$('#hidden-searchbar').css('display', block);
 			//$('#default-searchbar').css('display', none);
 		});
