@@ -35,7 +35,7 @@
 				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/courseadd.do'">
 					<i class="fa-solid fa-plus"></i>코스 추가
 				</button>
-				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/coursedel.do'">
+				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/course.do'">
 					<i class="fa-solid fa-trash"></i>코스 삭제
 				</button>
 			</div>
