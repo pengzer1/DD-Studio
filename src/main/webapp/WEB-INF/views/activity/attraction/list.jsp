@@ -90,14 +90,6 @@
 				<div id="hidden-searchbar">
 					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
 					<div>
-						<div>테마</div>
-						<select name="theme" id="theme-select" class="selectbox">
-							<c:forEach items="${themeList}" var="dto">
-							<option value="${dto.name}">${dto.name}</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div>
 						<div>운휴일정</div>
 						<select name="close" id="close-select" class="selectbox">
 							<option value="open">정상운영</option>

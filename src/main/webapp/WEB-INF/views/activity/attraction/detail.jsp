@@ -323,11 +323,11 @@
 					<div class="label">이용정보</div>
 					<div class="value">${dto.restriction}</div>
 				</div>
-				<div class="result-item">
+				<%-- <div class="result-item">
 					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
 					<div class="label">테마</div>
 					<div class="value">${dto.theme}</div>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 		
@@ -365,6 +365,10 @@
 		});
 	    
 	    m1.setMap(map);
+	    
+	    //확대/축소, 드래그 제어
+		map.setZoomable(false);
+	    map.setDraggable(false);
 	    
 	    /* 이미지 슬라이더용 */
 	    let slideIndex = 1;

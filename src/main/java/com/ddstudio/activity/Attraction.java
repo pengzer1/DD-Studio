@@ -33,15 +33,8 @@ public class Attraction extends HttpServlet {
 
 		ArrayList<AttractionDTO> list = dao.attractionList();
 
-		//조건 검색 select box용 테마 가져오기
-		ArrayList<ThemeDTO> themeList = dao.themeList();
-
 		//4. 데이터 전송
 		req.setAttribute("list", list);
-		req.setAttribute("themeList", themeList);
-		
-		
-		
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/list.jsp");
@@ -52,7 +45,6 @@ public class Attraction extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//- 선택한 테마(조건) 가져오기
 		//- 선택한 운휴일정(조건) 가져오기(정상운영/운휴)
 	
 	
