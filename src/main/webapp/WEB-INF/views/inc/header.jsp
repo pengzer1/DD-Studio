@@ -111,7 +111,6 @@
 							<div class="material-symbols-outlined nav-icon">notification_important</div>
 							<div class="nav-menu-name">가이드</div>
                                 <div class="sub-menu">
-                                	<div><a href="/ddstudio/guide/service.do">운영/운휴</a></div>
                                     <div><a href="/ddstudio/guide/park.do">파크 이용안내</a></div>
                                     <div><a href="/ddstudio/guide/convenient.do">편의시설</a></div>
                                     <div><a href="/ddstudio/guide/location.do">오시는 길</a></div>

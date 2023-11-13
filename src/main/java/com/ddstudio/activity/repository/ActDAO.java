@@ -11,7 +11,6 @@ import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.AttractionImgDTO;
 import com.ddstudio.admin.model.HashTagDTO;
-import com.ddstudio.admin.model.ThemeDTO;
 import com.ddstudio.activity.model.LocationDTO;
 
 
@@ -213,40 +212,6 @@ public class ActDAO {
 					System.out.println("at ActDAO.locationList");
 					e.printStackTrace();
 				}
-		
-		return null;
-	}
-
-	public ArrayList<ThemeDTO> themeList() {
-
-		try {
-					
-					String sql = "select * from tblTheme";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-					ArrayList<ThemeDTO> list = new ArrayList<ThemeDTO>();
-					while (rs.next()) {
-						
-						ThemeDTO dto = new ThemeDTO();
-						
-						dto.setTheme_seq(rs.getString("theme_seq"));
-						dto.setName(rs.getString("name"));
-						
-						
-						list.add(dto);
-						
-					}
-					
-					return list;
-					
-				} catch (Exception e) {
-					System.out.println("at ActDAO.themeList");
-					e.printStackTrace();
-				}
-		
-		
 		
 		return null;
 	}

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
-import com.ddstudio.admin.model.ThemeDTO;
 import com.ddstudio.activity.model.LocationDTO;
 
 @WebServlet("/activity/attractionadd.do")
@@ -33,15 +32,11 @@ public class AttractionAdd extends HttpServlet {
 		//1. 위치 가져오기
 		ArrayList<LocationDTO> locationList = dao.locationList();
 		
-		//2. 테마 가져오기
-		ArrayList<ThemeDTO> themeList = dao.themeList();
-		
-		//3. 해시태그 가져오기
+		//2. 해시태그 가져오기
 		ArrayList<HashTagDTO> hashtagList = dao.hashtagList();
 		
-		//4. 데이터 전송
+		//3. 데이터 전송
 		req.setAttribute("locationList", locationList);
-		req.setAttribute("themeList", themeList);
 		req.setAttribute("hashtagList", hashtagList);
 		
 		

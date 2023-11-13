@@ -2,6 +2,7 @@ package com.ddstudio.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,13 @@ import com.ddstudio.admin.repository.HashTagDAO;
 public class HashTagDel extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//데이터 보내기
+		
+		HashTagDAO dao = new HashTagDAO();
+		
+		ArrayList<HashTagDTO> list = dao.list();
+		
+		req.setAttribute("list", list);  //jsp로 list보내기
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/hashtag/del.jsp");
 		dispatcher.forward(req, resp);

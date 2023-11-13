@@ -89,10 +89,6 @@ button:hover {
 					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtag.do';">해시태그 관리</button></div>
 				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/theme.do';">테마 관리</button></div>
-				</div>
 			</div>
 		</div>
 	</main>
