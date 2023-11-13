@@ -8,7 +8,47 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+.button-container {
+	display: flex;
+	flex-wrap: wrap;
+}
 
+.item {
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFD700;
+	border-radius: 8px;
+	margin: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+	font-size: 40px;
+	font-weight: 600;
+	color: #333;
+}
+
+.item:hover {
+	transform: scale(1.05);
+	background-color: #FFA500;
+}
+
+.item h3 {
+	margin: 0;
+	font-size: 18px;
+	color: #333;
+}
+
+#title {
+	margin-top: 123px;
+}
+
+#content {
+	margin-top: 50px !important;
+}
 </style>
 </head>
 <body>
@@ -17,83 +57,66 @@
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" style="margin-top: 123px;">
 			<h2>MBTI별 추천</h2>
 		</div>
 
 		<!-- 관리자 -->
 		<c:if test="${lv == 2}">
 			<div id="admin-btn">
-				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/preferencetestadd.do'">
+				<button type="button" id="add-btn"
+					onclick="location.href='/ddstudio/test/mbtiadd.do'">
 					<i class="fa-solid fa-plus"></i>추가
 				</button>
-				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+				<button type="button" id="del-btn"
+					onclick="location.href='/ddstudio/test/mbtidel'">
 					<i class="fa-solid fa-trash"></i>삭제
 				</button>
-				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+				<button type="button" id="edit-btn"
+					onclick="location.href='/ddstudio/test/mbtiedit'">
 					<i class="fa-solid fa-pen-to-square"></i>수정
 				</button>
 			</div>
 		</c:if>
-		
+
 		<div id="content">
 
-			<div class="munti-content-container">
-				<div class="item">
-					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
-					<div>INFP</div>
-				</div>
-				<div class="item">
-					<div style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
-			</div>
-		</div>
-		
+            <form id="mbtiForm" method="GET" action="/ddstudio/test/mbtidetail.do">
+                <div class="button-container">
+                    <div class="item" name="ISTJ" id="ISTJ" onclick="handleButtonClick('ISTJ')">ISTJ</div>
+                    <div class="item" name="ISFJ" id="ISFJ" onclick="handleButtonClick('ISFJ')">ISFJ</div>
+                    <div class="item" name="INFJ" id="INFJ" onclick="handleButtonClick('INFJ')">INFJ</div>
+                    <div class="item" name="INTJ" id="INTJ" onclick="handleButtonClick('INTJ')">INTJ</div>
+                    <div class="item" name="ISTP" id="ISTP" onclick="handleButtonClick('ISTP')">ISTP</div>
+                    <div class="item" name="ISFP" id="ISFP" onclick="handleButtonClick('ISFP')">ISFP</div>
+                    <div class="item" name="INFP" id="INFP" onclick="handleButtonClick('INFP')">INFP</div>
+                    <div class="item" name="INTP" id="INTP" onclick="handleButtonClick('INTP')">INTP</div>
+                    <div class="item" name="ESTP" id="ESTP" onclick="handleButtonClick('ESTP')">ESTP</div>
+                    <div class="item" name="ESFP" id="ESFP" onclick="handleButtonClick('ESFP')">ESFP</div>
+                    <div class="item" name="ENFP" id="ENFP" onclick="handleButtonClick('ENFP')">ENFP</div>
+                    <div class="item" name="ENTP" id="ENTP" onclick="handleButtonClick('ENTP')">ENTP</div>
+                    <div class="item" name="ESTJ" id="ESTJ" onclick="handleButtonClick('ESTJ')">ESTJ</div>
+                    <div class="item" name="ESFJ" id="ESFJ" onclick="handleButtonClick('ESFJ')">ESFJ</div>
+                    <div class="item" name="ENFJ" id="ENFJ" onclick="handleButtonClick('ENFJ')">ENFJ</div>
+                    <div class="item" name="ENTJ" id="ENTJ" onclick="handleButtonClick('ENTJ')">ENTJ</div>
+                </div>
+            </form>
+        </div>
+
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
-		
+		function handleButtonClick(mbti) {
+			console.log('Button clicked:', mbti);
+			var form = document.getElementById('mbtiForm');
+			var input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = 'mbti';
+			input.value = mbti;
+			form.appendChild(input);
+			form.submit();
+		}
 	</script>
 </body>
 </html>
-
-

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
 import com.ddstudio.test.model.CourseDTO;
+import com.ddstudio.test.model.MBTIDTO;
 
 public class TestDAO {
 
@@ -98,6 +99,39 @@ public class TestDAO {
         }
 
         return 0;
+    }
+
+    /*
+     * MBTI 상세 정보 조회
+     */
+    public MBTIDTO get(String mbti) {
+        try {
+            String sql = "select * from vwMBTIDetail where mbti = ?";
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, mbti);
+
+            rs = pstat.executeQuery();
+
+            if (rs.next()) {
+                MBTIDTO result = new MBTIDTO();
+                
+                result.setMbti_seq(rs.getString("mbti_seq"));
+                result.setResult(rs.getString("result"));
+                result.setMbti(rs.getString("mbti"));
+                result.setCourse_seq(rs.getString("course_seq"));
+                result.setCourse_name(rs.getString("course_name"));
+                result.setCourse_img(rs.getString("course_img"));
+                result.setAttraction_seq(rs.getString("attraction_seq"));
+                result.setAttraction_name(rs.getString("attraction_name"));
+                result.setAttraction_img(rs.getString("attraction_img"));
+                
+                return result;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
