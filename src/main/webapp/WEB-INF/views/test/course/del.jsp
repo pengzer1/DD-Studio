@@ -40,7 +40,7 @@ select option:checked {
 </style>
 </head>
 <body>
-	<!-- /test/course/add.jsp -->
+	<!-- /test/course/del.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
@@ -106,7 +106,7 @@ select option:checked {
 					$(result).each(
 							function(index, item) {
 								var option = $('<option>').val(item.course_seq)
-										.text(item.name);
+										.text(item.course_name);
 								select.append(option);
 							});
 

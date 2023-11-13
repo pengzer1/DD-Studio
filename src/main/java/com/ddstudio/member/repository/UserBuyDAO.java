@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
-import com.ddstudio.member.model.BookUserDTO;
 import com.ddstudio.member.model.UserBuyDTO;
 
 public class UserBuyDAO {
@@ -20,7 +20,7 @@ public class UserBuyDAO {
 		this.conn = DBUtil.open();
 	}
 
-	public UserBuyDTO get(String email) {
+	public ArrayList<UserBuyDTO> get(String email) {
 
 		try {
 
@@ -30,8 +30,10 @@ public class UserBuyDAO {
 			pstat.setString(1, email);
 
 			rs = pstat.executeQuery();
+			
+			ArrayList<UserBuyDTO> list = new ArrayList<UserBuyDTO>();
 
-			if (rs.next()) {
+			while (rs.next()) {
 
 				UserBuyDTO dto = new UserBuyDTO();
 
@@ -42,9 +44,11 @@ public class UserBuyDAO {
 				dto.setBuy_seq(rs.getString("buy_seq"));
 				dto.setBuy_date(rs.getString("buy_date"));
 
-				return dto;
+				list.add(dto);
 			}
 
+			return list;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

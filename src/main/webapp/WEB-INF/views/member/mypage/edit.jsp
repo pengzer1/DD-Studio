@@ -102,15 +102,6 @@
 
 			<div class="container">
 				<form action="/ddstudio/member/mypage/edit.do" method="post">
-					<!-- <div class="form-group">
-						<label for="password">비밀번호</label> <input type="password"
-							id="password" name="password" required >
-					</div> -->
-					<!-- <div class="form-group">
-						<label for="confirmPassword">비밀번호 확인</label> <input
-							type="password" id="confirmPassword" name="confirmPassword"
-							required>
-					</div> -->
 					<div class="form-group">
 						<label for="email" >이메일</label> <input type="text" id="email" 
 							name="email" value=${dto.email} disabled>
@@ -127,50 +118,26 @@
 						<label for="tel">연락처</label> <input type="tel"
 							id="tel" name="tel" required value=${dto.tel}>
 					</div>
-					<!-- <div class="form-group">
-						<label for="address">주소</label> <input type="text"
-							id="address" name="address" required value=${dto.address}>
+					<div class="form-group">
+						<label for="post-code">우편번호</label>
+						<input type="text" name="post-code" id="post-code" class="middle-flat" placeholder="우편번호">
+						<button type="button" class="button check" onclick="execDaumPostcode()">우편번호 검색</button>
 					</div>
 					<div class="form-group">
-						<input type="text" name="address-basis" id="address-basis" class="middle-flat" placeholder="기본주소"> 
-						<input type="text" name="address-detail" id="address-detail" class="middle-flat" placeholder="상세주소">
-					</div> -->
+						<label for="address-basis">기본주소</label>
+						<input type="text" name="address-basis" id="address-basis" class="middle-flat" placeholder="기본주소" value=${dto.address}>
+					</div>
 					<div class="form-group">
-					<tr>
-							<th>주소</th>
-							<td>
-								<div class="address">
-									<input type="text" name="post-code" id="post-code" class="middle-flat" placeholder="우편번호">
-									<button type="button" class="button check" onclick="execDaumPostcode()">우편번호 검색</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td>
-								<div class="address">
-									<input type="text" name="address-basis" id="address-basis" class="middle-flat" placeholder="기본주소">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td>
-								<div class="address">
-									<input type="text" name="address-detail" id="address-detail" class="middle-flat" placeholder="상세주소">
-								</div>
-							</td>
-						</tr>
+						<label for="address-detail">상세주소</label>
+						<input type="text" name="address-detail" id="address-detail" class="middle-flat" placeholder="상세주소">
 					</div>
 					<div class="btn-container">
-						<button type="submit" class="btn" onclick="location.href='/ddstudio/member/mypage/info.do'">수정</button>
+						<button type="button" class="btn" onclick="combineAddress()">수정</button>
 						<button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/mypage/info.do'">취소</button>
 					</div>
 				</form>
 			</div>
-
 		</div>
-
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
@@ -207,13 +174,43 @@
 				// 우편번호와 주소 정보를 input 박스에 삽입
 				document.getElementById('post-code').value = data.zonecode;
 				document.getElementById("address-basis").value = addr;
-				document.getElementById("address-basis").value += extraAddr;
 				document.getElementById("address-detail").focus(); // 상세주소로 포커스 이동
 			}
 		}).open();
 	}
+
+	function combineAddress() {
+	    var basis = document.getElementById("address-basis").value;
+	    var detail = document.getElementById("address-detail").value;
+
+	    // 주소나 상세주소가 비어 있을 경우 빈 문자열로 처리
+	    basis = basis.trim() || "";
+	    detail = detail.trim() || "";
+
+	    var combinedAddress = basis + " " + detail;
+
+	    // 폼에 새로운 필드를 추가하고, 합쳐진 주소를 할당
+	    var addressInput = document.createElement("input");
+	    addressInput.type = "hidden";
+	    addressInput.name = "address";
+	    addressInput.value = combinedAddress;
+
+	    // 이전에 존재하던 주소 관련 필드들을 폼에서 제거
+	    var form = document.querySelector("form"); // 폼 요소에 대한 참조 가져오기
+	    var previousAddressInputs = document.querySelectorAll('[name^="address-"]');
+	    previousAddressInputs.forEach(function (input) {
+	        var parentNode = input.parentNode;
+	        if (parentNode.parentNode) {
+	            parentNode.parentNode.removeChild(parentNode);
+	        }
+	    });
+
+	    form.appendChild(addressInput);
+
+	    // 수정된 필드를 폼에 추가한 후에 서브밋
+	    form.submit();
+	}
+
 	</script>
 </body>
 </html>
-
-
