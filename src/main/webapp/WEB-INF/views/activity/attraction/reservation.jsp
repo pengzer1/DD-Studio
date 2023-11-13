@@ -128,10 +128,10 @@
 					<div class="reserve-box">
 						<div class="label">인원 선택</div>
 						<div class="value">
-							<input type="number" placeholder="인원(숫자)" min="1" max="3" name="capacity"/>
+							<input type="number" placeholder="인원(숫자)" min="1" max="3" name="capacity" required/>
 						</div>
 					</div>
-					<input type="hidden" name="seq" value="${dto.attraction_seq}" required/>
+					<input type="hidden" name="seq" value="${dto.attraction_seq}"/>
 					<input type="hidden" name="time" id="time" />
 				</div>
 				

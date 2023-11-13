@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.ddstudio.DBUtil;
 import com.ddstudio.activity.model.AttractionCloseDTO;
@@ -17,7 +18,6 @@ import com.ddstudio.activity.model.FestivalImgDTO;
 import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.model.PhotoZoneDTO;
 import com.ddstudio.admin.model.HashTagDTO;
-import com.ddstudio.admin.model.ThemeDTO;
 import com.ddstudio.activity.model.LocationDTO;
 
 
@@ -688,6 +688,67 @@ public class ActDAO {
 		
 		return null;
 	}
+
+	public HashMap<String, String> checkReservation(String seq, String time) {
+
+		try {
+					
+					String sql = "SELECT *\r\n"
+							+ "  FROM vwCheckBookable\r\n"
+							+ "WHERE regdate = TO_CHAR(sysdate,'YYYY-MM-DD')\r\n"
+							+ "  AND attraction_book_seq = ?\r\n"
+							+ "  AND attraction_seq = ?";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, time);
+					pstat.setString(2, seq);
+					
+					rs = pstat.executeQuery();
+					
+					if (rs.next()) {
+						
+						HashMap<String, String> map = new HashMap<String, String>();
+						
+						map.put("bookable", rs.getString("bookable"));
+						map.put("seq", seq);
+						map.put(time, time);
+						
+						return map;
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.checkReservation");
+					e.printStackTrace();
+				}
+		
+		
+		
+		return null;
+	}
+
+	public int reserveAttraction(String seq, String time, String capacity, String user_seq) {
+
+		try {
+
+			String sql = "INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)\r\n"
+					+ "VALUES (seqtblBookUser.NEXTVAL, DEFAULT, ?, ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, capacity);
+			pstat.setString(2, time);
+			pstat.setString(3, user_seq);
+			pstat.setString(4, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.reserveAttraction");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
 
 	
 	
