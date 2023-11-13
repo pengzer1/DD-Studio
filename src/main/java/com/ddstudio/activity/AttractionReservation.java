@@ -94,13 +94,22 @@ public class AttractionReservation extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String time = req.getParameter("timeBtn");
+		//어트랙션 예약 > DB 작업
+		//- attraction_seq, capacity, attraction_book_seq를 매개변수로 보내서 DB 접근!
+		//- 조건: tblBookUser에서 해당하는 어트랙션의 해당 예약 시간대에 최대 10명을 넘기면 안된다!!
+		String time = req.getParameter("time");
 		String capacity = req.getParameter("capacity");
 		String seq = req.getParameter("seq");
 
-		System.out.println(time);
-		System.out.println(capacity);
-		System.out.println(seq);
+		//System.out.println(time);
+		//System.out.println(capacity);
+		//System.out.println(seq);
+		
+		//DAO 접근 전, tblBookUser를 돌면서 수용 인원 내에서 예약이 가능한지 확인하기!!!
+		
+		for ()
+		
+		
 		//ActDAO dao = dao.reserveAttraction(seq);
 	
 	
