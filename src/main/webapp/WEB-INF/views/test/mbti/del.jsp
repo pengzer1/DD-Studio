@@ -14,7 +14,6 @@
 }
 
 select {
-	width: 85%;
 	padding: 10px;
 	font-size: 16px;
 	border: 1px solid #ccc;
@@ -24,18 +23,16 @@ select {
 	-webkit-appearance: none;
 	background-position: right 10px center;
 	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+#mbti-container {
+	display: flex;
+	margin-left: 25px;
 }
 
 select option:checked {
 	background-color: #ddd;
-}
-
-#courseImage {
-	width: 375px;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	align-items: center;
 }
 </style>
 </head>
@@ -44,39 +41,36 @@ select option:checked {
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-		<h1>코스 삭제</h1>
+		<h1>MBTI별 추천 삭제</h1>
 
 		<div class="sub-title"></div>
 
 		<div id="content">
 			<div class="wide-item">
 
-				<form method="POST" action="/ddstudio/test/coursedel.do"
+				<form method="POST" action="/ddstudio/test/mbtidel.do" id="mbtiForm"
 					enctype="multipart/form-data">
 					<table>
 						<tr>
-							<th class="required">코스명</th>
+							<th class="required">MBTI명</th>
 							<td>
-								<div>
-									<select name="name" id="name" required class="middle-flat">
-										<!-- <option value="f1">사과</option> -->
-									</select>
+								<div id="mbti-container">
+									<div>
+										<select name="selected-mbti" id="selected-mbti" required
+											class="middle-flat">
+										</select>
+									</div>
 								</div>
 							</td>
 						</tr>
-
-						<tr>
-							<th>첨부파일</th>
-							<td><img id="courseImage" alt="코스 이미지"></td>
-						</tr>
-
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="button" id="change" class="check button">삭제</button>
+									<button type="button" id="delButton" class="check button"
+										onclick="delMBTI()">삭제</button>
 									<button type="button" id="cancel" class="button"
-										onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
+										onclick="location.href='/ddstudio/test/mbti.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -90,6 +84,7 @@ select option:checked {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
+		// 데이터 로드
 		$(document).ready(function() {
 			load();
 		});
@@ -97,23 +92,16 @@ select option:checked {
 		function load() {
 			$.ajax({
 				type : 'GET',
-				url : '/ddstudio/test/coursedel.do',
+				url : '/ddstudio/test/mbtilistload.do',
 				dataType : 'json',
 				success : function(result) {
-					var select = $('#name');
-					select.empty();
+					var mbtiSelect = $('#selected-mbti');
+					mbtiSelect.empty();
 
-					$(result).each(
-							function(index, item) {
-								var option = $('<option>').val(item.course_seq)
-										.text(item.name);
-								select.append(option);
-							});
-
-					updateImage(result);
-
-					select.on('change', function() {
-						updateImage(result);
+					$.each(result, function(index, item) {
+						var option = $('<option>').val(item.mbti_seq).text(
+								item.mbti);
+						mbtiSelect.append(option);
 					});
 				},
 				error : function(a, b, c) {
@@ -122,39 +110,22 @@ select option:checked {
 			});
 		}
 
-		// 코스 이미지 업데이트
-		function updateImage(result) {
-			var selectedCourseSeq = $('#name').val();
-			var imageSrc = '';
+		// MBTI 삭제
+		function delMBTI() {
+			var mbti_seq = $('#selected-mbti').val();
 
-			var selectedCourse = result.find(function(course) {
-				return course.course_seq === selectedCourseSeq;
-			});
-
-			if (selectedCourse) {
-				imageSrc = '/ddstudio/asset/image/course/' + selectedCourse.img;
-			}
-
-			$('#courseImage').attr('src', imageSrc);
-		}
-
-		// 삭제 버튼 클릭 이벤트
-		$('#change').on('click', function(e) {
-			e.preventDefault();
-
-			var delCourseSeq = $('#name').val();
-
-			console.log(delCourseSeq);
 			$.ajax({
 				type : 'POST',
-				url : '/ddstudio/test/coursedel.do',
+				url : '/ddstudio/test/mbtidel.do',
 				data : {
-					courseSeq : delCourseSeq
+					mbti_seq : mbti_seq
 				},
-				success : function(result) {
+				success : function(response) {
+					var result = response.result;
+
 					if (result == 1) {
-						alert("코스를 삭제했습니다.");
-						load();
+						alert("삭제 되었습니다.")
+						window.location.href = '/ddstudio/test/mbti.do';
 					} else {
 						alert("failed");
 					}
@@ -163,7 +134,7 @@ select option:checked {
 					console.log(a, b, c);
 				}
 			});
-		});
+		}
 	</script>
 
 </body>

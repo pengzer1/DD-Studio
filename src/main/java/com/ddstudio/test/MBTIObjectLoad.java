@@ -17,8 +17,8 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.repository.TestDAO;
 
-@WebServlet("/test/mbtiaddload.do")
-public class MBTIAddLoad extends HttpServlet {
+@WebServlet("/test/mbtiobjectload.do")
+public class MBTIObjectLoad extends HttpServlet {
 
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

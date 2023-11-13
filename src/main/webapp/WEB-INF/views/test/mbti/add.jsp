@@ -144,7 +144,7 @@ select option:checked {
 		function load() {
 		    $.ajax({
 		        type: 'GET',
-		        url: '/ddstudio/test/mbtiaddload.do',
+		        url: '/ddstudio/test/mbtiobjectload.do',
 		        dataType: 'json',
 		        success: function (result) {
 		            var courseSelect = $('#course-name');

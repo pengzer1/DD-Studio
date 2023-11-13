@@ -85,26 +85,26 @@ public class TestDAO {
 	 * 코스 삭제
 	 */
 	public int deleteCourse(String courseSeq) {
-	    try {
-	        // tblMBTI에서 레코드 삭제
-	        String deleteMbtiSql = "delete from tblMBTI where course_seq = ?";
-	        pstat = conn.prepareStatement(deleteMbtiSql);
-	        pstat.setString(1, courseSeq);
-	        pstat.executeUpdate();
+		try {
+			// tblMBTI에서 레코드 삭제
+			String deleteMbtiSql = "delete from tblMBTI where course_seq = ?";
+			pstat = conn.prepareStatement(deleteMbtiSql);
+			pstat.setString(1, courseSeq);
+			pstat.executeUpdate();
 
-	        // tblCourse에서 레코드 삭제
-	        String deleteCourseSql = "delete from tblCourse where course_seq = ?";
-	        pstat = conn.prepareStatement(deleteCourseSql);
-	        pstat.setString(1, courseSeq);
+			// tblCourse에서 레코드 삭제
+			String deleteCourseSql = "delete from tblCourse where course_seq = ?";
+			pstat = conn.prepareStatement(deleteCourseSql);
+			pstat.setString(1, courseSeq);
 
-	        // tblCourse 삭제 실행 및 결과 반환
-	        return pstat.executeUpdate();
-	    } catch (Exception e) {
-	        System.out.println("TestDAO.deleteCourse()");
-	        e.printStackTrace();
-	    }
+			// tblCourse 삭제 실행 및 결과 반환
+			return pstat.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("TestDAO.deleteCourse()");
+			e.printStackTrace();
+		}
 
-	    return 0;
+		return 0;
 	}
 
 	/*
@@ -230,9 +230,64 @@ public class TestDAO {
 		} catch (Exception e) {
 			System.out.println("TestDAO.mbtiAdd()");
 			e.printStackTrace();
-		} 
+		}
 
 		return 0;
+	}
+
+	/*
+	 *  MBTI (관련 정보 포함) 전체 호출
+	 */
+	public ArrayList<MBTIDTO> getAllMBTI() {
+	    ArrayList<MBTIDTO> mbtiList = new ArrayList<>();
+
+	    String sql = "SELECT * FROM vwMBTIDetail ORDER BY mbti_seq";
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            MBTIDTO mbti = new MBTIDTO();
+	            mbti.setMbti_seq(rs.getString("mbti_seq"));
+	            mbti.setResult(rs.getString("result"));
+	            mbti.setMbti(rs.getString("mbti"));
+	            mbti.setCourse_seq(rs.getString("course_seq"));
+	            mbti.setCourse_name(rs.getString("course_name"));
+	            mbti.setCourse_img(rs.getString("course_img"));
+	            mbti.setAttraction_seq(rs.getString("attraction_seq"));
+	            mbti.setAttraction_name(rs.getString("attraction_name"));
+	            mbti.setAttraction_img(rs.getString("attraction_img"));
+
+	            mbtiList.add(mbti);
+	        }
+	    } catch (Exception e) {
+	        System.out.println("TestDAO.getAllMBTI()");
+	        e.printStackTrace();
+	    }
+
+	    return mbtiList;
+	}
+
+	/*
+	 * MBTI 삭제
+	 */
+	public int MBTIDel(String mbti_seq) {
+		
+		try {
+
+			String sql = "delete from tblMBTI where mbti_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, mbti_seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+	        System.out.println("TestDAO.MBTIDel()");
+			e.printStackTrace();
+		}
+		
+	    return 0;
 	}
 
 }

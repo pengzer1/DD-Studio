@@ -86,7 +86,7 @@ CREATE TABLE tblMBTI (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��?��?��?��번호 */
 );
 
-select * from TBLCOURSE;
+select * from tblCourse order by course_seq;
 select * from TBLATTRACTION;
 select * from tblLocation;
 select * from TBLATTRACTIONHASHTAG;
@@ -94,6 +94,9 @@ select * from TBLATTRACTIONIMG;
 
 select * from tblMBTI where mbti = 'INFJ';
 select * from tblMBTI order by mbti_seq;
+
+update tblMBTI set course_seq = 999 where course_seq = 6;
+SELECT * FROM vwMBTIDetail order by mbti_seq;
 
 CREATE OR REPLACE VIEW vwMBTIDetail
 AS
