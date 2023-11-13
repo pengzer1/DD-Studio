@@ -161,10 +161,9 @@
 		
 		function handleButtonClick(mbti) {
 		    console.log('Button clicked:', mbti);
-		    var form = $('#mbtiForm'); // Use jQuery to select the form
-		    form.find('input[name="mbti"]').remove(); // Remove existing input with the name 'mbti'
+		    var form = $('#mbtiForm');
+		    form.find('input[name="mbti"]').remove(); //이전의 mbti 태그 삭제
 		    
-		    // Create and append a new hidden input
 		    $('<input>').attr({
 		        type: 'hidden',
 		        name: 'mbti',

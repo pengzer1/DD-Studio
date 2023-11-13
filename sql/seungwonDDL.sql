@@ -93,7 +93,7 @@ select * from TBLATTRACTIONHASHTAG;
 select * from TBLATTRACTIONIMG;
 
 select * from tblMBTI where mbti = 'INFJ';
-select * from tblMBTI order by MBTI_SEQ;
+select * from tblMBTI order by mbti_seq;
 
 CREATE OR REPLACE VIEW vwMBTIDetail
 AS
