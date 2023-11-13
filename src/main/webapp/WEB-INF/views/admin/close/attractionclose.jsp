@@ -32,32 +32,31 @@ button:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 
-.item{
-	background-color: white;
-}
-.item img.totoro-image {
-        height: 280px; /* 이미지 높이 조절 */
-        transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */
-    }
-
-    .item:hover img.totoro-image {
-        animation: shake 2s ease-in-out infinite; /* hover 시에만 흔들리는 애니메이션 적용 */
-        transform: translateX(0); /* 초기 위치에서 시작 */
-    }
-
-    @keyframes shake {
-        0%, 100% {
-            transform: translateX(0); /* 처음과 마지막에는 변화 없음 */
+.item {
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
         }
-        10%, 30%, 50%, 70%, 90% {
-            transform: translateX(-5px); /* 좌측으로 흔들림 */
-        }
-        20%, 40%, 60%, 80% {
-            transform: translateX(5px); /* 우측으로 흔들림 */
-        }
-    }
 
+      .item img.dust-image {
+            height: 180px;
+            transform-origin: bottom center;
+            transition: transform 0.5s ease-in-out;
+        }
 
+        .item:hover img.dust-image {
+            animation: jump 1s infinite ease-in-out;
+        }
+
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
 
 </style>
 </head>
@@ -69,7 +68,7 @@ button:hover {
 	<main id="main">
 
 		<div id="title">
-			<h2>해시태그 관리 페이지</h2>
+			<h2>어트랙션 운휴 관리 페이지</h2>
 			<br>
 		</div>
 		
@@ -82,12 +81,16 @@ button:hover {
 		<div id="content">			
 			<div class="munti-content-container">
 				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagadd.do';">해시태그 추가</button></div>
+					<img src="/ddstudio/asset/image/dust.png" alt="먼지 이미지" class="dust-image">
+					<div><button type="button" onclick="location.href='/ddstudio/admin/attractioncloseadd.do';">어트랙션 운휴일정 등록</button></div>
 				</div>
 				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagdel.do';">해시태그 삭제</button></div>
+					<img src="/ddstudio/asset/image/dust.png" alt="먼지 이미지" class="dust-image">
+					<div><button type="button" onclick="location.href='/ddstudio/admin/attractioncloseedit.do';">어트랙션 운휴일정 수정</button></div>
+				</div>
+				<div class="item">
+					<img src="/ddstudio/asset/image/dust.png" alt="먼지 이미지" class="dust-image">
+					<div><button type="button" onclick="location.href='/ddstudio/admin/attractionclosedel.do';">어트랙션 운휴일정 삭제</button></div>
 				</div>
 			</div>
 		</div>

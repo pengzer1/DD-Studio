@@ -32,7 +32,7 @@
 								<option value="theater">영화관</option>
 								<option value="restaurant">식당</option>
 							</select>
-							<c:if test=${ }
+							<%-- <c:if test=${ } --%>
 							<input type="date" name="birth" id="birth" required class="middle-flat">
 							<input type="date" name="birth" id="birth" required class="middle-flat">
 						</td>
