@@ -109,7 +109,7 @@
 										<a href="/ddstudio/test/worldcup.do">DD 월드컵</a>
 									</div>
 									<div>
-										<a href="/ddstudio/test/mbti.do">MBTI 추천</a>
+										<a href="/ddstudio/test/mbti.do">MBTI별 추천</a>
 									</div>
 								</div>
 							</a>
