@@ -146,7 +146,7 @@
 					        'onclick' : 'handleButtonClick(\'' + item.mbti + '\')'
 					    }).text(item.mbti);
 
-					    console.log(div);
+					    // console.log(div);
 
 					    container.append(div);
 					});

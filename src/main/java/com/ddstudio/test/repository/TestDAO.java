@@ -53,7 +53,7 @@ public class TestDAO {
 
 		try {
 
-			String sql = "select * from tblCourse";
+			String sql = "select * from tblCourse order by course_seq";
 
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -85,22 +85,26 @@ public class TestDAO {
 	 * 코스 삭제
 	 */
 	public int deleteCourse(String courseSeq) {
+	    try {
+	        // tblMBTI에서 레코드 삭제
+	        String deleteMbtiSql = "delete from tblMBTI where course_seq = ?";
+	        pstat = conn.prepareStatement(deleteMbtiSql);
+	        pstat.setString(1, courseSeq);
+	        pstat.executeUpdate();
 
-		try {
+	        // tblCourse에서 레코드 삭제
+	        String deleteCourseSql = "delete from tblCourse where course_seq = ?";
+	        pstat = conn.prepareStatement(deleteCourseSql);
+	        pstat.setString(1, courseSeq);
 
-			String sql = "delete from tblCourse where course_seq = ?";
+	        // tblCourse 삭제 실행 및 결과 반환
+	        return pstat.executeUpdate();
+	    } catch (Exception e) {
+	        System.out.println("TestDAO.deleteCourse()");
+	        e.printStackTrace();
+	    }
 
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, courseSeq);
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("TestDAO.deleteCourse()");
-			e.printStackTrace();
-		}
-
-		return 0;
+	    return 0;
 	}
 
 	/*

@@ -121,7 +121,7 @@ select option:checked {
 			        'attraction-name': $('#attraction-name').val()
 			    },
 			    success: function (response) {
-		            console.log(response);
+		            // console.log(response);
 		            var result = response.result;
 
 		            if (result == 1) {

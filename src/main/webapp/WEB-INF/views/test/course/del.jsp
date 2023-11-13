@@ -144,7 +144,7 @@ select option:checked {
 
 			var delCourseSeq = $('#name').val();
 
-			console.log(delCourseSeq);
+			// console.log(delCourseSeq);
 			$.ajax({
 				type : 'POST',
 				url : '/ddstudio/test/coursedel.do',
