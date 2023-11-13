@@ -28,9 +28,13 @@ public class AttractionReservationHistory extends HttpServlet {
 		BookUserDAO dao = new BookUserDAO();
 
 		ArrayList<BookUserDTO> list = dao.get(email);
+		
+		ArrayList<BookUserDTO> plist = dao.pget(email);
 
 		// 3.
 		req.setAttribute("list", list);
+		
+		req.setAttribute("plist", plist);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/reservation.jsp");
 		dispatcher.forward(req, resp);

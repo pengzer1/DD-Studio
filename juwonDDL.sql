@@ -31,7 +31,7 @@ SELECT
     A.name,
     ab.attraction_book_seq,
     ab.book_time,
-    bu.regdate,
+    To_char(bu.regdate, 'YYYY-MM-DD') as regdate,
     bu.capacity
 FROM tblBookUser BU
 JOIN tblAttractionBook AB ON AB.attraction_book_seq = BU.attraction_book_seq
@@ -117,7 +117,7 @@ select * from tblUserBook;
 
 select * from tblticketbook;
 
-update tblticketbook set visit_date = '20231130' where ticket_book_seq =5;
+update tblticketbook set visit_date = '20231101' where ticket_book_seq =1;
 
 select * from vwuserbook;
 
@@ -131,7 +131,9 @@ update tblreview set user_book_seq = 6 where review_seq=2;
 
 commit;
 
-insert into tbluserbook (user_book_seq, user_seq, ticket_book_seq) values (2, 2, 5);
+insert into tbluserbook (user_book_seq, user_seq, ticket_book_seq) values (4, 2, 1);
+
+select * from tbluserbook;
 
 select * from tbluser;
 
@@ -141,4 +143,10 @@ DROP TRIGGER TRG_BEFORE_INSERT_REVIEW;
 
 select * from tblreview;
 
+select * from tblReviewImg;
+
 commit;
+
+select max(review_seq) from tblreview;
+
+select * from vwUserBook where email = 'hwang@example.com' AND visit_date < SYSDATE;

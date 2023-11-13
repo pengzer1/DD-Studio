@@ -177,20 +177,6 @@ tr:nth-child(odd) {
 				</div>
 
 
-
-				<!-- <button id="open-modal-btn">Open Modal</button>
-
-				<div id="modal" class="modal" style="display: none;"
-					onclick="closeModal()">
-					<div class="modal-content" onclick="event.stopPropagation()">
-						<span class="close" onclick="closeModal()">&times;</span> <img
-							src="asset/images/wall19.jpg" alt="분실물">
-					</div>
-				</div> -->
-
-
-
-
 				<div class="wide-item">
 					<div class="name">이전 예매 내역</div>
 					<div>
@@ -204,7 +190,7 @@ tr:nth-child(odd) {
 								<th>결제금액</th>
 								<th></th>
 							</tr>
-							<c:forEach items="${list}" var="dto">
+							<c:forEach items="${plist}" var="dto">
 								<tr>
 									<td>${dto.user_book_seq}</td>
 									<td>${dto.visit_date}</td>
@@ -227,17 +213,7 @@ tr:nth-child(odd) {
 	<!-- Footer -->
 
 	<script>
-		/* document.getElementById('open-modal-btn').addEventListener('click',
-				openModal);
-
-		function openModal() {
-			document.getElementById('modal').style.display = 'flex';
-		}
-
-		function closeModal() {
-			document.getElementById('modal').style.display = 'none';
-		} */
-
+		
 		$('#delete-button').click(function() {
 			var result = confirm("정말 예매를 취소하시겠습니까?");
 

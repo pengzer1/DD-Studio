@@ -21,7 +21,7 @@ public class TicketDel extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("result: " + req.getParameterValues("user_book_seq"));
+		//System.out.println("result: " + req.getParameterValues("user_book_seq"));
 		
 		String[] userBookSeqStr = req.getParameterValues("user_book_seq"); //[1,2,3]
 		
