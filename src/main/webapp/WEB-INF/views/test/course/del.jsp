@@ -106,7 +106,7 @@ select option:checked {
 					$(result).each(
 							function(index, item) {
 								var option = $('<option>').val(item.course_seq)
-										.text(item.course_name);
+										.text(item.name);
 								select.append(option);
 							});
 
