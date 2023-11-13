@@ -134,4 +134,41 @@ public class TestDAO {
         return null;
     }
 
+    /*
+     * MBTI 목록
+     */
+	public ArrayList<MBTIDTO> listMBTI() {
+
+		try {
+			
+			String sql = "select * from tblMBTI order by mbti_seq";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<MBTIDTO> list = new ArrayList<MBTIDTO>();
+			
+			while (rs.next()) {
+				
+				MBTIDTO dto = new MBTIDTO();
+
+				dto.setMbti_seq(rs.getString("mbti_seq"));
+				dto.setResult(rs.getString("result"));
+				dto.setMbti(rs.getString("mbti"));
+				dto.setCourse_seq(rs.getString("course_seq"));
+				dto.setAttraction_seq(rs.getString("attraction_seq"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+	        System.out.println("TestDAO.listMBTI()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

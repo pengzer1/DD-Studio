@@ -81,42 +81,99 @@
 
 		<div id="content">
 
-            <form id="mbtiForm" method="GET" action="/ddstudio/test/mbtidetail.do">
-                <div class="button-container">
-                    <div class="item" name="ISTJ" id="ISTJ" onclick="handleButtonClick('ISTJ')">ISTJ</div>
-                    <div class="item" name="ISFJ" id="ISFJ" onclick="handleButtonClick('ISFJ')">ISFJ</div>
-                    <div class="item" name="INFJ" id="INFJ" onclick="handleButtonClick('INFJ')">INFJ</div>
-                    <div class="item" name="INTJ" id="INTJ" onclick="handleButtonClick('INTJ')">INTJ</div>
-                    <div class="item" name="ISTP" id="ISTP" onclick="handleButtonClick('ISTP')">ISTP</div>
-                    <div class="item" name="ISFP" id="ISFP" onclick="handleButtonClick('ISFP')">ISFP</div>
-                    <div class="item" name="INFP" id="INFP" onclick="handleButtonClick('INFP')">INFP</div>
-                    <div class="item" name="INTP" id="INTP" onclick="handleButtonClick('INTP')">INTP</div>
-                    <div class="item" name="ESTP" id="ESTP" onclick="handleButtonClick('ESTP')">ESTP</div>
-                    <div class="item" name="ESFP" id="ESFP" onclick="handleButtonClick('ESFP')">ESFP</div>
-                    <div class="item" name="ENFP" id="ENFP" onclick="handleButtonClick('ENFP')">ENFP</div>
-                    <div class="item" name="ENTP" id="ENTP" onclick="handleButtonClick('ENTP')">ENTP</div>
-                    <div class="item" name="ESTJ" id="ESTJ" onclick="handleButtonClick('ESTJ')">ESTJ</div>
-                    <div class="item" name="ESFJ" id="ESFJ" onclick="handleButtonClick('ESFJ')">ESFJ</div>
-                    <div class="item" name="ENFJ" id="ENFJ" onclick="handleButtonClick('ENFJ')">ENFJ</div>
-                    <div class="item" name="ENTJ" id="ENTJ" onclick="handleButtonClick('ENTJ')">ENTJ</div>
-                </div>
-            </form>
-        </div>
+			<form id="mbtiForm" method="GET"
+				action="/ddstudio/test/mbtidetail.do">
+				<div class="button-container">
+					<!--
+					<div class="item" name="ISTJ" id="ISTJ"
+						onclick="handleButtonClick('ISTJ')">ISTJ</div>
+					<div class="item" name="ISFJ" id="ISFJ"
+						onclick="handleButtonClick('ISFJ')">ISFJ</div>
+					<div class="item" name="INFJ" id="INFJ"
+						onclick="handleButtonClick('INFJ')">INFJ</div>
+					<div class="item" name="INTJ" id="INTJ"
+						onclick="handleButtonClick('INTJ')">INTJ</div>
+					<div class="item" name="ISTP" id="ISTP"
+						onclick="handleButtonClick('ISTP')">ISTP</div>
+					<div class="item" name="ISFP" id="ISFP"
+						onclick="handleButtonClick('ISFP')">ISFP</div>
+					<div class="item" name="INFP" id="INFP"
+						onclick="handleButtonClick('INFP')">INFP</div>
+					<div class="item" name="INTP" id="INTP"
+						onclick="handleButtonClick('INTP')">INTP</div>
+					<div class="item" name="ESTP" id="ESTP"
+						onclick="handleButtonClick('ESTP')">ESTP</div>
+					<div class="item" name="ESFP" id="ESFP"
+						onclick="handleButtonClick('ESFP')">ESFP</div>
+					<div class="item" name="ENFP" id="ENFP"
+						onclick="handleButtonClick('ENFP')">ENFP</div>
+					<div class="item" name="ENTP" id="ENTP"
+						onclick="handleButtonClick('ENTP')">ENTP</div>
+					<div class="item" name="ESTJ" id="ESTJ"
+						onclick="handleButtonClick('ESTJ')">ESTJ</div>
+					<div class="item" name="ESFJ" id="ESFJ"
+						onclick="handleButtonClick('ESFJ')">ESFJ</div>
+					<div class="item" name="ENFJ" id="ENFJ"
+						onclick="handleButtonClick('ENFJ')">ENFJ</div>
+					<div class="item" name="ENTJ" id="ENTJ"
+						onclick="handleButtonClick('ENTJ')">ENTJ</div>
+					-->
+				</div>
+			</form>
+		</div>
 
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
-		function handleButtonClick(mbti) {
-			console.log('Button clicked:', mbti);
-			var form = document.getElementById('mbtiForm');
-			var input = document.createElement('input');
-			input.type = 'hidden';
-			input.name = 'mbti';
-			input.value = mbti;
-			form.appendChild(input);
-			form.submit();
+		$(document).ready(function() {
+			load();
+		});
+
+		function load() {
+			$.ajax({
+				type : 'GET',
+				url : '/ddstudio/test/mbti/list.do',
+				dataType : 'json',
+				success : function(result) {
+					var container = $('.button-container');
+					container.empty();
+
+					$(result).each(function(index, item) {
+					    var div = $('<div>').addClass('item').attr({
+					        'name' : item.mbti,
+					        'id' : item.mbti,
+					        'onclick' : 'handleButtonClick(\'' + item.mbti + '\')'
+					    }).text(item.mbti);
+
+					    console.log(div);
+
+					    container.append(div);
+					});
+
+					updateImage(result);
+				},
+				error : function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
 		}
+		
+		function handleButtonClick(mbti) {
+		    console.log('Button clicked:', mbti);
+		    var form = $('#mbtiForm'); // Use jQuery to select the form
+		    form.find('input[name="mbti"]').remove(); // Remove existing input with the name 'mbti'
+		    
+		    // Create and append a new hidden input
+		    $('<input>').attr({
+		        type: 'hidden',
+		        name: 'mbti',
+		        value: mbti
+		    }).appendTo(form);
+
+		    form.submit();
+		}
+
 	</script>
 </body>
 </html>
