@@ -615,7 +615,6 @@ CREATE TABLE tblItemImg (
 CREATE TABLE tblCart (
    cart_seq NUMBER PRIMARY KEY, /* 장바구니번호 */
    ea NUMBER NOT NULL, /* 수량 */
-   cart_option varchar2(500) NOT NULL, /* 옵션 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 
