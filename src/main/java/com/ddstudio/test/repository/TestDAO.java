@@ -44,7 +44,7 @@ public class TestDAO {
 	}
 
 	/*
-	 * 코스 삭제
+	 * 코스 목록
 	 */
 	public ArrayList<CourseDTO> listCourse() {
 		
