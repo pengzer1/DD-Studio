@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-#attraction-add {
+#category-del {
 	text-align: center;
 	margin-top: 150px;
 }
@@ -63,13 +63,12 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/attraction/add.jsp -->
 
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<!-- main -->
-	<main id="attraction-add">
+	<main id="category-del">
 		<h1>
 			카테고리 <small>삭제하기</small>
 		</h1>

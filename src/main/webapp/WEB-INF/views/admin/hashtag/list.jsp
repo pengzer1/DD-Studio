@@ -83,15 +83,11 @@ button:hover {
 			<div class="munti-content-container">
 				<div class="item">
 					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/category/add.do';">해시태그 추가</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagadd.do';">해시태그 추가</button></div>
 				</div>
 				<div class="item">
 					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/category/edit.do';">해시태그 수정</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/category/del.do';">해시태그 삭제</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagdel.do';">해시태그 삭제</button></div>
 				</div>
 			</div>
 		</div>

@@ -19,7 +19,7 @@ public class CategoryDAO {
 		this.conn=DBUtil.open();
 	}
 	
-	public ArrayList<CategoryDTO> list() {
+	public ArrayList<CategoryDTO> list() {  //목록보기
 		try {
 			String sql = "select category_seq, name from tblCategory";
 			
@@ -87,7 +87,7 @@ public class CategoryDAO {
 		return 0;
 	}
 
-	public int del(CategoryDTO dto) {
+	public int del(CategoryDTO dto) {  //삭제
 		try {
 			String sql = "delete from tblCategory where name=?";
 

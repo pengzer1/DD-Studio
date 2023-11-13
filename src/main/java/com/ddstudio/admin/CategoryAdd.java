@@ -33,8 +33,8 @@ public class CategoryAdd extends HttpServlet {
 			
 			//2.
 			CategoryDAO dao = new CategoryDAO();
-			CategoryDTO dto = new CategoryDTO();
 			
+			CategoryDTO dto = new CategoryDTO();
 			dto.setName(name);
 			
 			int result=dao.add(dto);
