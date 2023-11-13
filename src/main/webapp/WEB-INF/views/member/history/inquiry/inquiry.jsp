@@ -77,13 +77,12 @@ tr:nth-child(even) {
 		</div>
 
 
-
 		<div class="container">
 			<h2>문의 내역</h2>
 			<div class="form-group">
-				<select>
-					<option value="이용문의">이용문의</option>
-					<option value="칭찬/불편/건의">칭찬/불편/건의</option>
+				<select id="sel1">
+					<option value="tblInquiry">이용문의</option>
+					<option value="tblVOC">칭찬/불편/건의</option>
 				</select> <input type="text" class="search-box" placeholder="검색">
 			</div>
 			<table>
@@ -97,26 +96,22 @@ tr:nth-child(even) {
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 문의 내역 목록을 여기에 추가할 수 있습니다. -->
-					<tr>
-						<td>1</td>
-						<td>이용문의</td>
-						<td>결제 관련 문의</td>
-						<td>2023-11-15</td>
-						<td>미답변</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>불편</td>
-						<td>서비스 오류 신고</td>
-						<td>2023-11-16</td>
-						<td>답변 완료</td>
-					</tr>
-					<!-- 추가 문의 내역을 여기에 추가할 수 있습니다. -->
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.seq}</td>
+							<td>${dto.type}</td>
+							<td>${dto.subject}</td>
+							<td>${dto.regdate}</td>
+							<c:if test="${empty dto.answer}">
+								<td>답변 대기</td>
+							</c:if>
+							<c:if test="${not empty dto.answer}">
+								<td>답변 완료</td>
+							</c:if>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-
 		</div>
 
 	</main>
@@ -124,8 +119,18 @@ tr:nth-child(even) {
 	<!-- Footer -->
 
 	<script>
-		
+		$("#sel1")
+				.change(
+						function() {
+
+							location.href = '/ddstudio/member/history/inquiry/inquiry.do?option='
+									+ $(this).val();
+
+						});
+
+		$('#sel1').val('${option}');
 	</script>
+
 </body>
 </html>
 

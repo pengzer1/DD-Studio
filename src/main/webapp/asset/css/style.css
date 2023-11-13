@@ -20,7 +20,25 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 100px;
+	margin-top: 100px !important;
+}
+
+#title {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0;
+}
+
+#title h2 {
+    color: white;
+    /* font-family: 'JalnanGothic'; */
+    font-size: calc(1.375rem + 1.5vw);
+    letter-spacing: 2px;
+    margin: 0;
 }
 
 #main > .sub-title {
@@ -157,6 +175,24 @@
 	justify-content: center;
 	align-items: center;
 	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+	border-top: 1px transparent; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
+}
+
+#admin-btn {
+	text-align: right;
+}
+
+#admin-btn button {
+	margin: 3px;
+	border: 0;
+	border-radius: 10px;
+	padding: 10px 10px;
+	color: #222;
+	background-color: #E6AAAE;
+}
+
+#admin-btn button:last-child {
+	margin-right: 15px;
 }
 
 #ddstudio-header {

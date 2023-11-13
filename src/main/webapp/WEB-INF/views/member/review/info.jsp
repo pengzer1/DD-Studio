@@ -50,37 +50,31 @@
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.review {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-bottom: 20px;
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th, td {
+	border: 1px solid #ddd;
 	padding: 10px;
+	text-align: left;
 }
 
-.review-image {
-	max-width: 100%;
-	height: auto;
+th {
+	background-color: #007bff;
+	color: #fff;
 }
 
-.review-title {
-	font-size: 18px;
+a {
+	text-decoration: none;
+	color: #007bff;
 	font-weight: bold;
-	margin: 10px 0;
 }
 
-.review-content {
-	margin: 10px 0;
-}
-
-.review-info {
-	font-size: 14px;
-	color: #777;
-}
-
-.review-image {
-	width: 500px; /* 이미지의 가로 크기를 50px로 조정 */
-	height: 500px; /* 이미지의 세로 크기를 50px로 조정 */
-	object-fit: cover; /* 이미지 비율을 유지하며 크기 조정 */
+a:hover {
+	text-decoration: underline;
 }
 </style>
 </head>
@@ -108,31 +102,37 @@
 			<div class="wide-multi-content-container">
 				<div class="container">
 					<h2>리뷰 내역</h2>
-					<!-- 첫 번째 리뷰 -->
-					<div class="review">
-						<img class="review-image" src="/ddstudio/asset/image/파라오의 분노.png"
-							alt="리뷰 이미지 1">
-						<h3 class="review-title">제품 사용 후기</h3>
-						<p class="review-content">이 제품을 사용한 후 놀라운 결과를 얻었습니다. 정말
-							효과적이에요!</p>
-						<p class="review-info">등록일: 2023-11-20 | 조회수: 100</p>
-					</div>
-					<!-- 두 번째 리뷰 -->
-					<div class="review">
-						<img class="review-image" src="/ddstudio/asset/image/쌍용열차.jpg"
-							alt="리뷰 이미지 2">
-						<h3 class="review-title">좋은 제품</h3>
-						<p class="review-content">이 제품은 정말 훌륭하고 효과적입니다. 다시 구매하고 싶어요.</p>
-						<p class="review-info">등록일: 2023-11-22 | 조회수: 75</p>
-					</div>
-					<!-- 세 번째 리뷰 -->
-					<div class="review">
-						<img class="review-image" src="/ddstudio/asset/image/회전목마.jpg"
-							alt="리뷰 이미지 3">
-						<h3 class="review-title">만족스럽다</h3>
-						<p class="review-content">이 제품은 내 기대를 넘어서요. 강력 추천합니다.</p>
-						<p class="review-info">등록일: 2023-11-25 | 조회수: 120</p>
-					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성일</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td><a href="reviewDetail.html">리뷰 제목 1</a></td>
+								<td>2023-11-20</td>
+								<td>100</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td><a href="reviewDetail.html">리뷰 제목 2</a></td>
+								<td>2022-1-10</td>
+								<td>70</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td><a href="reviewDetail.html">리뷰 제목 3</a></td>
+								<td>2021-7-15</td>
+								<td>360</td>
+							</tr>
+						</tbody>
+					</table>
+
 				</div>
 
 

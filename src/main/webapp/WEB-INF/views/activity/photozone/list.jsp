@@ -8,77 +8,68 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	 
+	 #title {
+	 }
+	 
+	 #content {
+	 	margin-top: 10px;
+	 }
+	 
+	.item:hover {
+		cursor: pointer;
+	}
+	
+	#admin-btn {
+		margin: 3px 0;
+		text-align: center;
+	}
+	
+	#admin-btn button {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #E6AAAE;
+	}
+	
 </style>
 </head>
 <body>
-	<!-- Template.jsp -->
+	<!-- /activity/photozone/list.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<!-- Header -->
 
 	<main id="main">
 
-		<div id="title">
-			<h2>제목</h2>
+		<div id="title">	
+			<h2>포토존</h2>
 			<br>
-			<p>내용을 입력하세요</p>
+			<p>DD Studio의 지브리와 함께하는 다양한 포토존에서 기념 사진을 촬영해보세요!</p>
 		</div>
 
+		
 		<div id="content">
-			<div id="condition">
-				<h3>기능 (예시 조건검색-롯데월드에 있던거 참고)</h3>
-			</div>
-
+		
+			<!-- 관리자용 추가 버튼 -->
+			<c:if test="${not empty email && lv == 2}">
+				<div id="admin-btn">
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/photozoneadd.do'"><i class="fa-solid fa-plus"></i>등록</button>
+				</div>
+			</c:if>
+	
+			<!-- 포토존 컨텐츠 이미지 -->
 			<div class="munti-content-container">
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div
-						style="background-image: url('/ddstudio/asset/image/about.jpg');"></div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<div class="item">
-					<div>아이템 1</div>
-					<div>아이템 1 설명</div>
-				</div>
-				<!-- 추가 아이템들 -->
+				<c:forEach items="${list}" var="dto">
+					<div class="item" onclick="location.href= '/ddstudio/activity/photozonedetail.do?seq=' + ${dto.photozone_seq};">
+					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div>${dto.name}</div>
+					</div>
+				</c:forEach>
 			</div>
 			
 		</div>
-		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

@@ -9,6 +9,19 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
+#auto-login {
+	display: flex;
+	justify-content: space-between;
+}
+
+#auto-login .button {
+	width: 100px;
+}
+
+h2 small {
+	font-size: 80%;
+}
+  
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -25,6 +38,23 @@
 
 .button-container {
 	margin-top: 0;
+}
+
+#main {
+	margin-top: 100px;
+}
+
+#main > .sub-title {
+	border-top: 0;
+	margin-top: 0;
+}
+
+.sub-title > p {
+	margin-bottom: 0;
+}
+
+#title {
+    background-image: url('/ddstudio/asset/image/background-4.jpg');
 }
 </style>
 </head>
@@ -63,37 +93,51 @@
 							</td>
 						</tr>
 					</table>
-
 				</form>
 			</div>
-
-			<!-- 자동 로그인 시작 (추후 삭제) -->
+			
+			<!-- 자동 로그인 시작 -->
 			<hr>
 			
-			<h2>자동 로그인 (관리자용)</h2>
-			<div id="form-list">
+			<h2>자동 로그인 <small>(관리자용)</small></h2>
+			<div id="auto-login">
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="park@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">박나래</button>
+					<input type="hidden" name="email" value="admin@naver.com">
+					<input type="hidden" name="pw" value="admin1111!">
+					<button type="submit" class="login button">관리자</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="hwang@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">황주원</button>
+					<input type="hidden" name="email" value="park@naver.com">
+					<input type="hidden" name="pw" value="park1111!">
+					<button type="submit" class="login button">박나래</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="cha@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">차민재</button>
+					<input type="hidden" name="email" value="hwnag@kakao.com">
+					<input type="hidden" name="pw" value="hwang1111!">
+					<button type="submit" class="login button">황주원</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="admin@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">관리자</button>
+					<input type="hidden" name="email" value="cha@daum.net">
+					<input type="hidden" name="pw" value="cha1111!">
+					<button type="submit" class="login button">차민재</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="lee@kakao.com">
+					<input type="hidden" name="pw" value="lee1111!">
+					<button type="submit" class="login button">이정은</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="cha@msn.com">
+					<input type="hidden" name="pw" value="cha1111!">
+					<button type="submit" class="login button">차수민</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="lee@naver.com">
+					<input type="hidden" name="pw" value="lee1111!">
+					<button type="submit" class="login button">이승원</button>
 				</form>
 			</div>
-			<!-- 자동 로그인 끝 (추후 삭제) -->
+			<!-- 자동 로그인 끝 -->
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->

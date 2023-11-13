@@ -8,10 +8,16 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+	/* 
 	#title > h2 {
 		margin-top: 70px;
 	}
-	
+	 */
+	 
+	 #title {
+	 	/* background-image: url('/ddstudio/asset/image/Ghibli-Park.jpeg'); */
+	 }
+	 
 	#condition:hover {
 		cursor: pointer;
 	}
@@ -56,7 +62,7 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title">	
 			<h2>어트랙션</h2>
 			<br>
 			<p>모험과 환상의 나라 더블디 스튜디오의 어트랙션을 경험해보세요!</p>
@@ -68,7 +74,7 @@
 			
 				<!-- 조건 검색 (click 전) -->
 				<div id="default-searchbar">
-					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정/위치정보)</h3>
+					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정)</h3>
 				</div>
 
 				<!-- 조건 검색 (click 후) -->
@@ -87,14 +93,6 @@
 						<select name="close" id="close-select" class="selectbox">
 							<option value="open">정상운영</option>
 							<option value="close">운휴</option>
-						</select>
-					</div>
-					<div>
-						<div>위치정보</div>
-						<select name="location" id="location-select" class="selectbox">
-							<c:forEach items="${locationList}" var="dto">
-							<option value="${dto.info}">${dto.info}</option>
-							</c:forEach>
 						</select>
 					</div>
 				</div>
@@ -116,8 +114,8 @@
 					</div>
 				</c:forEach>
 			</div>
+			
 		</div>
-		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

@@ -74,7 +74,7 @@
 		</div>
 
 			<div class="container">
-				<img class="totoro-image" src="/ddstudio/asset/image/토토로.png"
+				<img class="totoro-image" src="/ddstudio/asset/image/흑화토토로.png"
 					alt="토토로 이미지">
 				<div class="button-container">
 					<button class="button"

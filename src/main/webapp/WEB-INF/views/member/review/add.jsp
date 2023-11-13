@@ -117,24 +117,26 @@
 
 		<div class="container">
     <h2>리뷰 작성</h2>
-    <form action="/submit_review" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="reviewTitle">제목</label>
-        <input type="text" id="reviewTitle" name="reviewTitle" required>
-      </div>
-      <div class="form-group">
-        <label for="reviewContent">내용</label>
-        <textarea id="reviewContent" name="reviewContent" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="reviewFile">첨부 파일</label>
-        <input type="file" id="reviewFile" name="reviewFile">
-      </div>	
-      <div class="btn-container">
-        <button type="submit" class="btn" onclick="location.href='/ddstudio/member/review/info.do'">등록</button>
-        <button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/review/info.do'">취소</button>
-      </div>
-    </form>
+    <form action="/ddstudio/member/review/add.do" method="post" enctype="multipart/form-data">
+   <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title" required>
+   </div>
+   <div class="form-group">
+      <label for="content">내용</label>
+      <textarea id="content" name="content" required></textarea>
+   </div>
+   <div class="form-group">
+      <label for="file">첨부 파일</label>
+      <input type="file" id="file" name="file">
+   </div>	
+   <!-- 등록 및 취소 버튼 -->
+   <div class="btn-container">
+      <button type="submit" class="btn">등록</button>
+      <button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/review/info.do'">취소</button>
+   </div>
+</form>
+
   </div>
 			
 	</main>

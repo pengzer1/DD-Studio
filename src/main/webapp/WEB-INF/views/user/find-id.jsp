@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<!-- accept-id.jsp -->
+	<!-- find-id.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
@@ -176,6 +176,7 @@
 	        });
 	    }
 	
+	    /* 인증번호 확인 */
 	    $('#acceptok').on('click', function () {
 	        let enteredCode = $('input[name="authcode"]').val();
 	        $('#myid').val("");
@@ -248,7 +249,9 @@
 		            nameErrorDiv.textContent = "";
 		            nameErrorDiv.style.display = "none";
 		        }
-	
+
+		        $('#acceptok').attr('disabled', 'disabled');
+		        
 		        updateButtonStatus();
 		    });
 	        
@@ -267,6 +270,8 @@
 		            telErrorDiv.textContent = "";
 		            telErrorDiv.style.display = "none";
 		        }
+
+		        $('#acceptok').attr('disabled', 'disabled');
 		        
 		        updateButtonStatus();
 		    });
@@ -278,11 +283,21 @@
 		        telField.value = "";
 		        nameErrorDiv.style.display = "none";
 		        telErrorDiv.style.display = "none";
+		        $('#acceptok').attr('disabled', 'disabled');
 		        $('input[name="authcode"]').val("");
 		        $('#myid').val("");
 		        
 		        isValid = [false, false];
 		        updateButtonStatus();
+
+		        // 타이머 정지
+			    clearInterval(intervalCall);
+		        
+		        // 팝업 레이어 닫기
+		        if (popupLayer) {
+		            popupLayer.remove();
+		            popupLayer = null;
+		        }
 		    });
 		});
 	</script>
