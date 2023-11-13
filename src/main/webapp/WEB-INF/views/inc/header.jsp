@@ -167,6 +167,7 @@
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<c:if test="${lv==1}">
 						<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
+						<a href="/ddstudio/member/mypage/info.do"><i class="fa-solid fa-cart-shopping"></i></a>
 						</c:if>
 						<c:if test="${lv==2}">
 						<a href="/ddstudio/admin/adminpage.do">관리자페이지</a>
