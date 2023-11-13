@@ -13,28 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.model.MBTIDTO;
 import com.ddstudio.test.repository.TestDAO;
 
-@WebServlet("/test/coursedel.do")
-public class CouseDel extends HttpServlet {
+@WebServlet("/test/mbti/list.do")
+public class MBTIList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		TestDAO dao = new TestDAO();
-
-		ArrayList<CourseDTO> clist = dao.listCourse();
+		
+		ArrayList<MBTIDTO> clist = dao.listMBTI();
 
 		JSONArray arr = new JSONArray();
-
-		for (CourseDTO dto : clist) {
+		
+		for (MBTIDTO dto : clist) {
 		    JSONObject obj = new JSONObject();
 		    
-		    obj.put("course_seq", dto.getCourse_seq());
-		    obj.put("name", dto.getName());
-		    obj.put("img", dto.getImg());
+		    obj.put("mbti", dto.getMbti());
             
 		    arr.add(obj);
 		}
@@ -45,25 +42,7 @@ public class CouseDel extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		writer.write(arr.toString());
 		writer.close();
-
-		//System.out.println(arr);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		TestDAO dao = new TestDAO();
-
-		String courseSeq = request.getParameter("courseSeq");
-
-		int result = dao.deleteCourse(courseSeq);
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-
-		PrintWriter writer = response.getWriter();
-		writer.write(String.valueOf(result));
-		writer.close();
+		
 	}
 
 }

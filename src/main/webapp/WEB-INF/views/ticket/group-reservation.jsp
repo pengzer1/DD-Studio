@@ -122,17 +122,17 @@ form > #condition {
 
 
 			<div class="container">
-				<form action="/ddstudio/ticket/group-reservation.do" method="post">
+				<form id="form" action="/ddstudio/ticket/group-reservation.do" method="post">
 					<div id="condition">
 						<h3>예약자 정보</h3>
 					</div>
 					<div class="form-group">
 						<label for="name">이름</label> <input type="text" id="name"
-							name="name" required value=${name} disabled>
+							name="name" required value=${name} readonly>
 					</div>
 					<div class="form-group">
 						<label for="email">이메일</label> <input type="text" id="email"
-							name="email"  value=${email} disabled>
+							name="email"  value=${email} readonly>
 					</div>
 					<div id="condition">
 						<h3>단체 방문 정보</h3>
@@ -232,6 +232,25 @@ form > #condition {
 						}
 					}).open();
 		}
+		
+		document.getElementById('form').addEventListener('submit', function(event) {
+	        event.preventDefault(); // 기본 폼 제출을 막습니다.
+
+	        // 필수 입력란을 확인합니다.
+	        let name = document.getElementById('name').value;
+	        let email = document.getElementById('email').value;
+	        let division = document.getElementById('division').value;
+	        let region = document.getElementById('region').value;
+	        let groupName = document.getElementById('group-name').value;
+	        // 다른 필드에 대한 유효성 검사를 추가할 수 있습니다.
+
+	        // 필수 입력란이 비어 있는지 확인합니다.
+	        if (!name || !email || !division || !region || !groupName) {
+	            alert('필수 입력란을 모두 작성해주세요.');
+	        } else {
+	            this.submit(); // 모든 필수 입력란이 채워졌다면 폼을 제출합니다.
+	        }
+	    });
 	</script>
 </body>
 </html>

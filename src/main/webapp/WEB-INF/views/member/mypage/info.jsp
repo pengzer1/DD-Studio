@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 
 
 #main > #title{
-	background-color: white;
+   background-color: white;
 }
 
 button {
@@ -33,7 +33,7 @@ button:hover {
 }
 
 .item{
-	background-color: white;
+   background-color: white;
 }
 .item img.totoro-image {
         height: 280px; /* 이미지 높이 조절 */
@@ -57,73 +57,76 @@ button:hover {
         }
     }
 
+/* #title > h2{
+	color: black;
+} */
+
 </style>
 </head>
 <body>
-	<!-- Template.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
-	<!-- Header -->
+   <!-- Template.jsp -->
+   <%@ include file="/WEB-INF/views/inc/header.jsp"%>
+   <!-- Header -->
 
-	<main id="main">
+   <main id="main">
 
-		<div id="title">
-			<h2>마이페이지</h2>
-			<br>
-		</div>
-		
-		<hr>
-		
-		<div id="sub-title">
-			<h3>${name}님 안녕하세요!</h3>
-		</div>
+      <div id="title">
+         <h2>마이페이지</h2>
+         <br>
+      </div>
+      
+      <hr>
+      
+      <div id="sub-title">
+         <h3>${name}님 안녕하세요!</h3>
+      </div>
 
-		<div id="content">
-			
-			<div class="wide-content-container">
-				<div class="wide-item">
-					<div style="background-image: url('/ddstudio/asset/image/놀이기구.png'); background-size: 50px 50px;"></div>
-					<div><button type="button" onclick="location.href='/ddstudio/member/history/ticket.do';">예매 확인/취소</button></div>
-				</div>
-				<div class="wide-item">
-					<div style="background-image: url('/ddstudio/asset/image/놀이기구.png'); background-size: 50px 50px;"></div>
-					<div><button type="button" onclick="location.href='/ddstudio/member/history/reservation.do';">어트랙션 예약 확인/취소</button></div>
-				</div>
-				<!-- 추가 아이템들 -->
-			</div>
-			
-			
-			<div class="munti-content-container">
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/member/mypage/edit.do';">정보수정</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/member/purchase/history.do';">구매내역</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/member/history/inquiry/inquiry.do';">문의내역</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/member/review/info.do';">리뷰관리</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/member/unregister/confirm.do';">회원탈퇴</button></div>
-				</div>
-			</div>
-			
-		</div>
-	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<!-- Footer -->
+      <div id="content">
+         
+         <div class="wide-content-container">
+            <div class="wide-item">
+               <div style="background-image: url('/ddstudio/asset/image/놀이기구.png'); background-size: 50px 50px;"></div>
+               <div><button type="button" onclick="location.href='/ddstudio/member/history/ticket.do';">예매 확인/취소</button></div>
+            </div>
+            <div class="wide-item">
+               <div style="background-image: url('/ddstudio/asset/image/놀이기구.png'); background-size: 50px 50px;"></div>
+               <div><button type="button" onclick="location.href='/ddstudio/member/history/reservation.do';">어트랙션 예약 확인/취소</button></div>
+            </div>
+            <!-- 추가 아이템들 -->
+         </div>
+         
+         
+         <div class="munti-content-container">
+            <div class="item">
+               <img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+               <div><button type="button" onclick="location.href='/ddstudio/member/mypage/edit.do';">정보수정</button></div>
+            </div>
+            <div class="item">
+               <img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+               <div><button type="button" onclick="location.href='/ddstudio/member/purchase/history.do';">구매내역</button></div>
+            </div>
+            <div class="item">
+               <img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+               <div><button type="button" onclick="location.href='/ddstudio/member/history/inquiry/inquiry.do';">문의내역</button></div>
+            </div>
+            <div class="item">
+               <img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+               <div><button type="button" onclick="location.href='/ddstudio/member/review/info.do';">리뷰관리</button></div>
+            </div>
+            <div class="item">
+               <img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
+               <div><button type="button" onclick="location.href='/ddstudio/member/unregister/confirm.do';">회원탈퇴</button></div>
+            </div>
+         </div>
+         
+      </div>
+   </main>
+   <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+   <!-- Footer -->
 
-	<script>
-		
-	</script>
+   <script>
+      
+   </script>
 </body>
 </html>
-
 

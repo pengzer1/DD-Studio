@@ -1,6 +1,7 @@
 package com.ddstudio.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +20,6 @@ public class PurchaseHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// PurchaseHistory.java
-
 		// 1.
 
 		String email = req.getSession().getAttribute("email").toString();
@@ -27,10 +27,10 @@ public class PurchaseHistory extends HttpServlet {
 		// 2.
 		UserBuyDAO dao = new UserBuyDAO();
 
-		UserBuyDTO dto = dao.get(email);
+		ArrayList<UserBuyDTO> list = dao.get(email);
 
 		// 3.
-		req.setAttribute("dto", dto);
+		req.setAttribute("list", list);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/purchase/history.jsp");
 		dispatcher.forward(req, resp);

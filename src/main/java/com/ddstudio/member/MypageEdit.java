@@ -41,6 +41,8 @@ public class MypageEdit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 1.
+		String email = req.getSession().getAttribute("email").toString();
+		
 		String name = req.getParameter("name");
 		String tel = req.getParameter("tel");
 		String address = req.getParameter("address");
@@ -54,13 +56,19 @@ public class MypageEdit extends HttpServlet {
 		dto.setBirth(birth);
 		dto.setTel(tel);
 		dto.setAddress(address);
+		dto.setEmail(email);
+		
+		System.out.println(name);
+		System.out.println(birth);
+		System.out.println(tel);
+		System.out.println(address);
 
 		int result = dao.edit(dto);
 
 		// 3.
 		if (result == 1) {
 
-			resp.sendRedirect("/ddstudio/member/mypage.do");
+			resp.sendRedirect("/ddstudio/member/mypage/info.do");
 
 		} else {
 			PrintWriter writer = resp.getWriter();

@@ -120,7 +120,7 @@
     <form action="/ddstudio/member/review/add.do" method="post" enctype="multipart/form-data">
    <div class="form-group">
       <label for="title">제목</label>
-      <input type="text" id="title" name="title" required>
+      <input type="text" id="subject" name="subject" required>
    </div>
    <div class="form-group">
       <label for="content">내용</label>

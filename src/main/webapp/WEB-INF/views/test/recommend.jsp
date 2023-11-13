@@ -54,7 +54,7 @@
 				</div>
 				<div class="item" onclick="location.href='/ddstudio/test/mbti.do'">
 					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
-					<div>MBTI 추천</div>
+					<div>MBTI별 추천</div>
 				</div>
 			</div>
 		</div>

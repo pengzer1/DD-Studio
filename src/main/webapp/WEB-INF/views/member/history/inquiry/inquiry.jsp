@@ -81,7 +81,7 @@ tr:nth-child(even) {
 			<h2>문의 내역</h2>
 			<div class="form-group">
 				<select id="sel1">
-					<option value="tblInquiry">이용문의</option>
+					<option value="tblInquiry" selected>이용문의</option>
 					<option value="tblVOC">칭찬/불편/건의</option>
 				</select> <input type="text" class="search-box" placeholder="검색">
 			</div>
