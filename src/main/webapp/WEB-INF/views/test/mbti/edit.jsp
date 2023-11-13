@@ -134,113 +134,121 @@ select option:checked {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
-        // 데이터 로드
-        $(document).ready(function() {
-            load();
-        });
+		// 데이터 로드
+		$(document).ready(function() {
+			load();
+		});
 
-        function load() {
-            $.ajax({
-                type: 'GET',
-                url: '/ddstudio/test/mbtilistload.do',
-                dataType: 'json',
-                success: function(result) {
-                    var mbtiSelect = $('#selected-mbti');
-                    mbtiSelect.empty();
+		function load() {
+			$.ajax({
+				type : 'GET',
+				url : '/ddstudio/test/mbtilistload.do',
+				dataType : 'json',
+				success : function(result) {
+					var mbtiSelect = $('#selected-mbti');
+					mbtiSelect.empty();
 
-                    $.each(result, function(index, item) {
-                        var option = $('<option>').val(item.mbti_seq).text(item.mbti);
-                        mbtiSelect.append(option);
-                    });
+					$.each(result, function(index, item) {
+						var option = $('<option>').val(item.mbti_seq).text(
+								item.mbti);
+						mbtiSelect.append(option);
+					});
 
-                    // 선택된 MBTI 정보 표시 함수 호출
-                    showSelectedMBTI();
-                },
-                error: function(a, b, c) {
-                    console.log(a, b, c);
-                }
-            });
-            
-            $.ajax({
-		        type: 'GET',
-		        url: '/ddstudio/test/mbtiobjectload.do',
-		        dataType: 'json',
-		        success: function (result) {
-		            var courseSelect = $('#course-name');
-		            var attractionSelect = $('#attraction-name');
-
-		            courseSelect.empty();
-		            attractionSelect.empty();
-
-		            $(result).each(function (index, item) {
-		                var option;
-
-		                if (item.type === 'course') {
-		                    option = $('<option>').val(item.course_seq).text(item.course_name);
-		                    courseSelect.append(option);
-		                } else if (item.type === 'attraction') {
-		                     option = $('<option>').val(item.attraction_seq).text(item.attraction_name);
-		                    attractionSelect.append(option);
-		                }
-		            });
-		        },
-		        error: function (a, b, c) {
-		            console.log(a, b, c);
-		        }
-		    });
-        }
-
-        // MBTI 추가
-        function editMBTI() {
-            $.ajax({
-                type: 'POST',
-                url: '/ddstudio/test/mbtiadd.do',
-                data: {
-                    mbti: $('#mbti').val(),
-                    result: $('#result').val(),
-                    'course-name': $('#course-name').val(),
-                    'attraction-name': $('#attraction-name').val()
-                },
-                success: function(response) {
-                    var result = response.result;
-
-                    if (result == 1) {
-                        window.location.href = '/ddstudio/test/mbti.do';
-                    } else {
-                        alert("failed");
-                    }
-                },
-                error: function(a, b, c) {
-                    console.log(a, b, c);
-                }
-            });
-        }
-        
-    	 // MBTI 삭제
-		function delMBTI() {
-			var mbti_seq = $('#selected-mbti').val();
+					// 선택된 MBTI 정보 표시 함수 호출
+					showSelectedMBTI();
+				},
+				error : function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
 
 			$.ajax({
-				type : 'POST',
-				url : '/ddstudio/test/mbtidel.do',
-				data : {
-					mbti_seq : mbti_seq
-				},
-				success : function(response) {
-					var result = response.result;
+				type : 'GET',
+				url : '/ddstudio/test/mbtiobjectload.do',
+				dataType : 'json',
+				success : function(result) {
+					var courseSelect = $('#course-name');
+					var attractionSelect = $('#attraction-name');
 
-					if (result == 1) {
-						load();
-					} else {
-						alert("failed");
-					}
+					courseSelect.empty();
+					attractionSelect.empty();
+
+					$(result).each(
+							function(index, item) {
+								var option;
+
+								if (item.type === 'course') {
+									option = $('<option>').val(item.course_seq)
+											.text(item.course_name);
+									courseSelect.append(option);
+								} else if (item.type === 'attraction') {
+									option = $('<option>').val(
+											item.attraction_seq).text(
+											item.attraction_name);
+									attractionSelect.append(option);
+								}
+							});
 				},
 				error : function(a, b, c) {
 					console.log(a, b, c);
 				}
 			});
 		}
-    </script>
-    
+
+		// MBTI 추가 및 삭제
+	    function editMBTI() {
+	        var mbti_seq = $('#selected-mbti').val();
+
+	        // 삭제 수행
+	        $.ajax({
+	            type: 'POST',
+	            url: '/ddstudio/test/mbtidel.do',
+	            data: {
+	                mbti_seq: mbti_seq
+	            },
+	            success: function (response) {
+	                var result = response.result;
+
+	                if (result == 1) {
+	                    // 삭제가 성공하면 추가 수행
+	                    addMBTI();
+	                } else {
+	                    alert("failed");
+	                }
+	            },
+	            error: function (a, b, c) {
+	                console.log(a, b, c);
+	            }
+	        });
+	    }
+
+	    // MBTI 추가
+	    function addMBTI() {
+	        $.ajax({
+	            type: 'POST',
+	            url: '/ddstudio/test/mbtiadd.do',
+	            data: {
+	                mbti: $('#mbti').val(),
+	                result: $('#result').val(),
+	                'course-name': $('#course-name').val(),
+	                'attraction-name': $('#attraction-name').val()
+	            },
+	            success: function (response) {
+	                var result = response.result;
+
+	                if (result == 1) {
+						//alert("수정 되었습니다.")
+	                    window.location.href = '/ddstudio/test/mbti.do';
+	                } else {
+	                    alert("failed");
+	                }
+	            },
+	            error: function (a, b, c) {
+	                console.log(a, b, c);
+	            }
+	        });
+	    }
+	</script>
+
 </body>
 </html>
