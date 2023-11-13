@@ -20,6 +20,7 @@
 	
 	#sub-title > h3 {
 		text-align: center;
+		margin: 30px;
 	}
 	
 	#content {
@@ -38,6 +39,7 @@
 		flex-direction: row;
 		align-items: center;
 		width: 800px;
+		margin: 20px 0;
 	}
 	
 	
@@ -51,8 +53,12 @@
 	
 	}
 	
+	.value {
+		margin: 0 50px;
+	}
+	
 	.value > input {
-		margin: 10px;
+		width: 120px;
 	}
 	
 	/* 예약/취소 버튼 관련 CSS */
@@ -75,13 +81,12 @@
 	}
 	
 	.select-time-container > button {
-		background-color: #999;
-		border: 0;
+		background-color: #FFFFFF;
+		border: 1;
 		border-radius: 7px;
 		padding: 10px;
 	}
 	
-
 </style>
 </head>
 <body>
@@ -100,35 +105,37 @@
 
 		<div id="content">
 			
+			<form method="POST" action="/ddstudio/activity/attractionreservation.do" id="attractionreservationForm">
 			<div class="reserve-container">
-				<div class="reserve-box">
-					<div class="label">시간 선택</div>
-					<div class="value select-time-container">
-						<button type="button">10:00</button>
-						<button type="button">11:00</button>
-						<button type="button">12:00</button>
-						<button type="button">13:00</button>
-						<button type="button">14:00</button>
-						<button type="button">15:00</button>
+					<div class="reserve-box">
+						<div class="label">시간 선택</div>
+						<div class="value select-time-container">
+							<c:forEach var="i" begin="10" end="20">
+								<c:if test="${now < i}">
+									<!-- value에 보내는 값이 tblAttractionBook의 attraction_book_seq -->
+									<button type="button" name="time" value="${i-9}" class="reserve-btn">${i}:00</button>
+								</c:if>
+							</c:forEach>
+						</div>
 					</div>
-				</div>
-				<div class="reserve-box">
-					<div class="label">인원 선택</div>
-					<div class="value">
-						<input type="number" placeholder="인원(숫자)" min="1" max="5"/>
+					<div class="reserve-box">
+						<div class="label">인원 선택</div>
+						<div class="value">
+							<input type="number" placeholder="인원(숫자)" min="1" max="3" name="capacity"/>
+						</div>
 					</div>
-				</div>
+					<input type="hidden" name="seq" value="${dto.attraction_seq}" required/>
+					<input type="hidden" name="timeBtn" id="timeBtn" />
 			</div>
 			
 			
 			<div id="reservation-content">
-				<form method="POST" action="/ddstudio/activity/attractionreservation.do">
 					<div class="btn">
 						<button><i class="fa-solid fa-calendar-check"></i> 예약</button>
 						<button type="button" onclick="location.href= '/ddstudio/activity/attractiondetail.do?seq=' + ${dto.attraction_seq};"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button>
 					</div>
-				</form>
 			</div>
+			</form>
 			
 			
 			
@@ -138,6 +145,32 @@
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
 	<script>
+	
+		let flag = 0;
+		
+	
+		
+		
+		
+		$('.reserve-btn').eq(0).css('background-color', 'gold');
+		$('#timeBtn').val($('.reserve-btn').eq(0).val());
+	
+		$('.reserve-btn').click(function() {
+		
+			$('.reserve-btn').css('background-color', '#FFF');
+
+			$(this).css('background-color', 'gold');
+			
+			//$(event.target).css('background-color', 'gold');
+			//$(this).css('border', '3px solid black');
+			//$(event.srcElement).css('border-radius', '7px');
+			//$(event.srcElement).css('background-color', 'gold');
+			//$(event.currentTarget).css('background-color', 'gold');
+			//$(event.target.nodeName).css('border-radius', '7px');
+			
+			$('#timeBtn').val($(this).val());
+
+		});
 		
 	</script>
 </body>
