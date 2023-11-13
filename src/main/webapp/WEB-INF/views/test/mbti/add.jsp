@@ -75,8 +75,7 @@ select option:checked {
 							<th class="required">코스명</th>
 							<td>
 								<div>
-									<select name="course-name" id="course-name" required
-										class="middle-flat">
+									<select name="course-name" id="course-name" required class="middle-flat">
 									</select>
 								</div>
 							</td>
@@ -85,8 +84,7 @@ select option:checked {
 							<th class="required">어트랙션명</th>
 							<td>
 								<div>
-									<select name="attraction-name" id="attraction-name" required
-										class="middle-flat">
+									<select name="attraction-name" id="attraction-name" required class="middle-flat">
 									</select>
 								</div>
 							</td>
@@ -96,10 +94,8 @@ select option:checked {
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="button" id="addButton" class="check button"
-										onclick="addMBTI()">추가</button>
-									<button type="button" id="cancel" class="button"
-										onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
+									<button type="button" id="addButton" class="check button" onclick="addMBTI()">추가</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/test/mbti.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -113,8 +109,8 @@ select option:checked {
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
+		// MBTI 추가
 		function addMBTI() {
-
 			$.ajax({
 			    type: 'POST',
 			    url: '/ddstudio/test/mbtiadd.do',
@@ -124,17 +120,23 @@ select option:checked {
 			        'course-name': $('#course-name').val(),
 			        'attraction-name': $('#attraction-name').val()
 			    },
-			    success: function (result) {
-			        if (result == 0) {
-			            alert("failed");
-			        }
-			    },
+			    success: function (response) {
+		            console.log(response);
+		            var result = response.result;
+
+		            if (result == 1) {
+		                window.location.href = '/ddstudio/test/mbti.do';
+		            } else {
+		                alert("failed");
+		            }
+		        },
 			    error: function (a, b, c) {
 			        console.log(a, b, c);
 			    }
 			});
 		}
 
+		// 데이터 로드
 		$(document).ready(function() {
 			load();
 		});
@@ -168,7 +170,6 @@ select option:checked {
 		        }
 		    });
 		}
-
 	</script>
 
 </body>
