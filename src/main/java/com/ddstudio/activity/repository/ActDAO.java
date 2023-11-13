@@ -37,7 +37,7 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a where name not like '%(운영종료)%'";
+					String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img from tblAttraction a where name not like '%(운영종료)%'";
 					
 					stat = conn.createStatement();
 					rs = stat.executeQuery(sql);
@@ -53,10 +53,9 @@ public class ActDAO {
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setTime(rs.getString("time"));
 						dto.setRestriction(rs.getString("restriction"));
-						dto.setTheme_seq(rs.getString("theme_seq"));
+						//dto.setTheme_seq(rs.getString("theme_seq"));
 						dto.setIs_test(rs.getString("is_test"));
 						dto.setImg(rs.getString("img"));
-						dto.setTheme(rs.getString("theme"));
 						
 						list.add(dto);
 						
@@ -81,7 +80,7 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a where attraction_seq = ?";
+					String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img from tblAttraction a where attraction_seq = ?";
 					
 					pstat = conn.prepareStatement(sql);
 					pstat.setString(1, seq);
@@ -98,10 +97,9 @@ public class ActDAO {
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setTime(rs.getString("time"));
 						dto.setRestriction(rs.getString("restriction"));
-						dto.setTheme_seq(rs.getString("theme_seq"));
+						//dto.setTheme_seq(rs.getString("theme_seq"));
 						dto.setIs_test(rs.getString("is_test"));
 						dto.setImg(rs.getString("img"));
-						dto.setTheme(rs.getString("theme"));
 						
 //						pstat.close();
 //						conn.close();
@@ -228,39 +226,39 @@ public class ActDAO {
 //		return null;
 //	}
 
-	public ArrayList<ThemeDTO> themeList() {
-
-		try {
-					
-					String sql = "select * from tblTheme";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-					ArrayList<ThemeDTO> list = new ArrayList<ThemeDTO>();
-					while (rs.next()) {
-						
-						ThemeDTO dto = new ThemeDTO();
-						
-						dto.setTheme_seq(rs.getString("theme_seq"));
-						dto.setName(rs.getString("name"));
-						
-						
-						list.add(dto);
-						
-					}
-					
-					return list;
-					
-				} catch (Exception e) {
-					System.out.println("at ActDAO.themeList");
-					e.printStackTrace();
-				}
-		
-		
-		
-		return null;
-	}
+//	public ArrayList<ThemeDTO> themeList() {
+//
+//		try {
+//					
+//					String sql = "select * from tblTheme";
+//					
+//					stat = conn.createStatement();
+//					rs = stat.executeQuery(sql);
+//					
+//					ArrayList<ThemeDTO> list = new ArrayList<ThemeDTO>();
+//					while (rs.next()) {
+//						
+//						ThemeDTO dto = new ThemeDTO();
+//						
+//						dto.setTheme_seq(rs.getString("theme_seq"));
+//						dto.setName(rs.getString("name"));
+//						
+//						
+//						list.add(dto);
+//						
+//					}
+//					
+//					return list;
+//					
+//				} catch (Exception e) {
+//					System.out.println("at ActDAO.themeList");
+//					e.printStackTrace();
+//				}
+//		
+//		
+//		
+//		return null;
+//	}
 
 	public ArrayList<HashTagDTO> hashtagList() {
 
@@ -304,7 +302,7 @@ public class ActDAO {
 		changeLocation(seq);
 		
 		//3. 테마번호 > 0번으로 변경(테마 0: 운영종료)
-		changeTheme(seq);
+		//changeTheme(seq);
 		
 		//4. 테스트채택 'n'으로 변경
 		changeIsTest(seq);
@@ -332,7 +330,8 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a";
+//					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a";
+					String sql = "select * from vwFestival";
 					
 					stat = conn.createStatement();
 					rs = stat.executeQuery(sql);
@@ -405,23 +404,23 @@ public class ActDAO {
 	}
 
 	//어트랙션 삭제 > 테마정보 변경
-	public void changeTheme(String seq) {
-
-		try {
-
-			String sql = "update tblAttraction set theme_seq = 0 where attraction_seq = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.changeTheme");
-			e.printStackTrace();
-		}
-		
-	}
+//	public void changeTheme(String seq) {
+//
+//		try {
+//
+//			String sql = "update tblAttraction set theme_seq = 0 where attraction_seq = ?";
+//
+//			pstat = conn.prepareStatement(sql);
+//			pstat.setString(1, seq);
+//
+//			pstat.executeUpdate();
+//
+//		} catch (Exception e) {
+//			System.out.println("at ActDAO.changeTheme");
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
 	//어트랙션 삭제 > 테스트 채택 변경 
 	public void changeIsTest(String seq) {
@@ -586,7 +585,8 @@ public class ActDAO {
 
 		try {
 					
-					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a where festival_seq = ?";
+//					String sql = "select a.*, (select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img from tblFestival a where festival_seq = ?";
+					String sql = "select * from vwFestival where festival_seq = ?";
 					
 					pstat = conn.prepareStatement(sql);
 					pstat.setString(1, seq);
