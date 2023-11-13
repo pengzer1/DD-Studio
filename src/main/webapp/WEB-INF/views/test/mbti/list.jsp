@@ -18,7 +18,7 @@
 	<main id="main">
 
 		<div id="title" style="margin-top:123px;">
-			<h2>MBTI 추천</h2>
+			<h2>MBTI별 추천</h2>
 		</div>
 
 		<!-- 관리자 -->
@@ -27,12 +27,11 @@
 				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/preferencetestadd.do'">
 					<i class="fa-solid fa-plus"></i>추가
 				</button>
-				<!-- 상세보기 -->
-				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
-					<i class="fa-solid fa-pen-to-square"></i>수정
-				</button>
 				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
 					<i class="fa-solid fa-trash"></i>삭제
+				</button>
+				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+					<i class="fa-solid fa-pen-to-square"></i>수정
 				</button>
 			</div>
 		</c:if>
