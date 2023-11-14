@@ -9,15 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/member/unregister/reconfirm.do")
-public class GoodBye extends HttpServlet {
+import com.ddstudio.member.model.ReviewDTO;
+import com.ddstudio.member.repository.ReviewDAO;
+
+@WebServlet("/member/review/detail.do")
+public class ReviewDetail extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//GoodBye.java
+		// ReviewDetail.java
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/unregister/reconfirm.jsp");
+		String seq = req.getParameter("seq");
+
+		ReviewDAO dao = new ReviewDAO();
+
+		ReviewDTO dto = dao.detail(seq);
+
+		req.setAttribute("dto", dto);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/review/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

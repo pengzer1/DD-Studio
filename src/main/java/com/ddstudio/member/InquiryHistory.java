@@ -15,9 +15,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.ddstudio.member.model.InquiryDTO;
-import com.ddstudio.member.model.VocDTO;
+import com.ddstudio.member.model.VOCDTO;
 import com.ddstudio.member.repository.InquiryDAO;
-import com.ddstudio.member.repository.VocDAO;
+import com.ddstudio.member.repository.VOCDAO;
 
 @WebServlet("/member/history/inquiry/inquiry.do")
 public class InquiryHistory extends HttpServlet {
@@ -47,9 +47,9 @@ public class InquiryHistory extends HttpServlet {
 			req.setAttribute("list", inquiryList);
 			
 		} else {
-			VocDAO VocDao = new VocDAO();
+			VOCDAO VocDao = new VOCDAO();
 			
-			ArrayList<VocDTO> VocList = VocDao.get(email);
+			ArrayList<VOCDTO> VocList = VocDao.get(email);
 			
 			req.setAttribute("list", VocList);
 		}

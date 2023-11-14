@@ -118,8 +118,10 @@
 		<div class="container">
     <h2>리뷰 작성</h2>
     <form action="/ddstudio/member/review/add.do" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="seq" name="seq" value="${seq}">
+    <input type="hidden" id="review_seq" name="review_seq" value="${review_seq}">
    <div class="form-group">
-      <label for="title">제목</label>
+      <label for="subject">제목</label>
       <input type="text" id="subject" name="subject" required>
    </div>
    <div class="form-group">
@@ -135,6 +137,7 @@
       <button type="submit" class="btn">등록</button>
       <button type="button" class="btn cancel" onclick="location.href='/ddstudio/member/review/info.do'">취소</button>
    </div>
+   
 </form>
 
   </div>
