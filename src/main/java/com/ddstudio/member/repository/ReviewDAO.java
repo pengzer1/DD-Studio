@@ -49,7 +49,7 @@ public class ReviewDAO {
 		
 		try {
 			
-			String sql = "select * from tblreview where email = ?";
+			String sql = "select * from vwreview where email = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
@@ -67,6 +67,7 @@ public class ReviewDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setReadcount(rs.getString("readcount"));
+				//dto.setUser_book_seq(rs.getString("user_book_seq"));
 				
 				list.add(dto);
 			}	
@@ -119,6 +120,38 @@ public class ReviewDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return null;
+	}
+
+	public ReviewDTO detail(String seq) {
+		
+		try {
+			
+			String sql = "select * from tblReview where review_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				ReviewDTO dto = new ReviewDTO();
+				
+				dto.setReview_seq(rs.getString("review_seq"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setReadcount(rs.getString("readcount"));
+				
+				return dto;
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		return null;
 	}

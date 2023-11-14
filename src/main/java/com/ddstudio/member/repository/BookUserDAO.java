@@ -37,6 +37,8 @@ public class BookUserDAO {
 
 				BookUserDTO dto = new BookUserDTO();
 
+				
+				dto.setBook_user_seq(rs.getString("book_user_seq"));
 				dto.setName(rs.getString("name"));
 				dto.setAttraction_book_seq(rs.getString("attraction_book_seq"));
 				dto.setBook_time(rs.getString("book_time"));

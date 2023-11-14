@@ -78,6 +78,14 @@ public class ReviewAdd extends HttpServlet {
 	
 			result=dao.addFile(idto);
 			
+			// 리뷰 등록이 성공한 후 리다이렉트할 URL
+	        String redirectURL = "/ddstudio/member/review/info.do";
+
+	        // 리다이렉트
+	        resp.sendRedirect(redirectURL);
+
+	        return; // 리다이렉트 후 추가 코드를 실행하지 않도록 중단
+			
 		} catch (Exception e) {
 			System.out.println("ReviewAdd.doPost()");
 			e.printStackTrace();

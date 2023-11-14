@@ -29,6 +29,8 @@ public class AttractionReservationHistory extends HttpServlet {
 
 		ArrayList<BookUserDTO> list = dao.get(email);
 		
+		//System.out.println(list);
+		
 		ArrayList<BookUserDTO> plist = dao.pget(email);
 
 		// 3.

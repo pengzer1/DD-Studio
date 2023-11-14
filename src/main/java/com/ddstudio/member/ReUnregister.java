@@ -9,26 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ddstudio.member.model.VOCDTO;
-import com.ddstudio.member.repository.VOCDAO;
+import com.ddstudio.member.repository.UserDAO;
 
-@WebServlet("/member/history/voc/detail.do")
-public class VOCDetail extends HttpServlet {
+@WebServlet("/member/unregister/reconfirm.do")
+public class ReUnregister extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//VOCDetail.java
+		//GoodBye.java
 		
-		String seq = req.getParameter("seq");
+		String email = req.getSession().getAttribute("email").toString();
 		
-		VOCDAO dao = new VOCDAO();
+		UserDAO dao = new UserDAO();
 		
-		VOCDTO dto = dao.detail(seq);
+		int result = dao.unregister(email);
 		
-		req.setAttribute("dto", dto);
+		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/voc/detail.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/unregister/reconfirm.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

@@ -62,6 +62,11 @@ tr:nth-child(even) {
 #main>#title, .item div {
 	background-color: white;
 }
+
+tbody tr:hover {
+        background-color: #cce5ff; /* 호버됐을 때 배경색 변경 */
+        cursor: pointer; /* 호버됐을 때 커서 모양 변경 */
+    }
 </style>
 </head>
 <body>
@@ -97,7 +102,12 @@ tr:nth-child(even) {
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="dto">
-						<tr>
+						<c:if test="${option == 'tblInquiry'}">
+						<tr onclick="location.href='/ddstudio/member/history/inquiry/detail.do?seq=${dto.seq}';">
+						</c:if>
+						<c:if test="${option == 'tblVOC'}">
+						<tr onclick="location.href='/ddstudio/member/history/voc/detail.do?seq=${dto.seq}';">
+						</c:if>
 							<td>${dto.seq}</td>
 							<td>${dto.type}</td>
 							<td>${dto.subject}</td>
@@ -129,6 +139,7 @@ tr:nth-child(even) {
 						});
 
 		$('#sel1').val('${option}');
+		
 	</script>
 
 </body>

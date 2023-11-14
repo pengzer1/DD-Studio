@@ -9,26 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ddstudio.member.model.VOCDTO;
-import com.ddstudio.member.repository.VOCDAO;
+import com.ddstudio.member.model.InquiryDTO;
+import com.ddstudio.member.repository.InquiryDAO;
 
-@WebServlet("/member/history/voc/detail.do")
-public class VOCDetail extends HttpServlet {
+@WebServlet("/member/history/inquiry/detail.do")
+public class InquiryDetail extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//VOCDetail.java
+		//InquiryDetail.java
 		
 		String seq = req.getParameter("seq");
 		
-		VOCDAO dao = new VOCDAO();
+		InquiryDAO dao = new InquiryDAO();
 		
-		VOCDTO dto = dao.detail(seq);
+		InquiryDTO dto = dao.detail(seq);
 		
 		req.setAttribute("dto", dto);
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/voc/detail.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/inquiry/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

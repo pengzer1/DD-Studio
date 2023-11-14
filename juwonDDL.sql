@@ -32,7 +32,8 @@ SELECT
     ab.attraction_book_seq,
     ab.book_time,
     To_char(bu.regdate, 'YYYY-MM-DD') as regdate,
-    bu.capacity
+    bu.capacity,
+    bu.book_user_seq
 FROM tblBookUser BU
 JOIN tblAttractionBook AB ON AB.attraction_book_seq = BU.attraction_book_seq
 JOIN tblAttraction A on a.attraction_seq = BU.attraction_seq
@@ -54,7 +55,8 @@ SELECT
     B.ea,
     I.price,
     B.buy_seq,
-    B.buy_date
+    To_char(B.buy_date, 'yyyy-mm-dd') as buy_date,
+    UB.user_buy_seq
 from tblUserBuy UB
 join tblUser U on U.user_seq = UB.user_seq
 join tblBuy B on B.buy_seq = UB.buy_seq
@@ -150,3 +152,43 @@ commit;
 select max(review_seq) from tblreview;
 
 select * from vwUserBook where email = 'hwang@example.com' AND visit_date < SYSDATE;
+
+insert into tblbookuser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq) values(seqtblbookuser.nextVal, '20231115', 3, 1, 2, 1);
+
+select * from tblbookuser;
+
+delete tblbookuser where book_user_seq = 22;
+
+commit;
+
+select * from vwUserBuy where email = 'hwang@example.com' and buy_date < sysdate - INTERVAL '14' DAY;
+select * from vwUserBuy where email = 'hwang@example.com' and buy_date >= sysdate - INTERVAL '14' DAY;
+
+insert into tblbuy (buy_seq, buy_date, ea, buy_option, item_seq) values (seqtblbuy.nextVal, '20231010', 3, '옵션4', 1);
+
+select * from tblbuy;
+select * from tblitem;
+select * from tbluserbuy;
+
+insert into tbluserbuy (user_buy_seq, user_seq, buy_seq) values (seqtbluserbuy.nextVal, 2, 21);
+
+select * from tblinquiry;
+select * from tbluser;
+select * from tblreview;
+select * from tbluserbook;
+
+CREATE OR REPLACE VIEW vwreview as
+SELECT
+    U.email,
+    R.review_seq,
+    R.subject,
+    R.content,
+    R.regdate,
+    R.readcount
+FROM tblUserBook UB
+JOIN tblUser U ON UB.user_seq = U.user_seq
+join tblReview R on UB.user_book_seq = R.user_book_seq;
+
+select * from tbluser;
+
+update tbluser set ing = 'Y' where email = 'park@example.com';

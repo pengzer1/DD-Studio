@@ -115,7 +115,7 @@ tr:nth-child(odd) {
 									<td>${dto.book_time}</td>
 									<td>${dto.capacity}</td>
 									<td class="checkbox-col"><input type="checkbox"
-										name="reservationCheckbox"></td>
+										name="reservationCheckbox" value="${dto.book_user_seq}"></td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -3,18 +3,25 @@ package com.ddstudio.member.model;
 import lombok.Data;
 
 
-public class InquiryDTO {
+public class VOCDTO {
 
-	private String inquiry_seq;
+	private String voc_seq;
 	private String type;
+	private String service_type;
 	private String subject;
 	private String content;
-	private String regdate;
 	private String attach;
+	private String visit_date;
 	private String answer;
+	private String regdate;
 	private String user_seq;
 	
-	
+	public String getService_type() {
+		return service_type;
+	}
+	public void setService_type(String service_type) {
+		this.service_type = service_type;
+	}
 	public String getContent() {
 		return content;
 	}
@@ -26,6 +33,12 @@ public class InquiryDTO {
 	}
 	public void setAttach(String attach) {
 		this.attach = attach;
+	}
+	public String getVisit_date() {
+		return visit_date;
+	}
+	public void setVisit_date(String visit_date) {
+		this.visit_date = visit_date;
 	}
 	public String getUser_seq() {
 		return user_seq;
@@ -40,10 +53,10 @@ public class InquiryDTO {
 		this.regdate = regdate;
 	}
 	public String getSeq() {
-		return inquiry_seq;
+		return voc_seq;
 	}
 	public void setSeq(String seq) {
-		this.inquiry_seq = seq;
+		this.voc_seq = seq;
 	}
 	public String getType() {
 		return type;
