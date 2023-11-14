@@ -121,7 +121,7 @@ select * from tblMBTI order by mbti_seq;
 update tblMBTI set course_seq = 999 where course_seq = 6;
 SELECT * FROM vwMBTIDetail order by mbti_seq;
 
-
+select * from tblCourse;
 
 CREATE OR REPLACE VIEW vwMBTIDetail
 AS
