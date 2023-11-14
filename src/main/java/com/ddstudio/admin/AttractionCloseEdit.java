@@ -24,6 +24,7 @@ public class AttractionCloseEdit extends HttpServlet {
 		ActDAO dao = new ActDAO();
 		
 		ArrayList<AttractionCloseDTO> list = dao.closeattractionList();
+	
 		
 		req.setAttribute("list", list);
 		
