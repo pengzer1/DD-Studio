@@ -14,6 +14,10 @@
 	background-color: white;
 }
 
+#title  h2 {
+	color: #000;
+}
+
 button {
     background-color: #007bff; /* 배경색 */
     color: #fff; /* 텍스트 색상 */

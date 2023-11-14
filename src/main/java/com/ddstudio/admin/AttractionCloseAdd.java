@@ -49,7 +49,7 @@ public class AttractionCloseAdd extends HttpServlet {
 		dto.setEnd_date(end_date);
 		dto.setAttraction_seq(attraction_seq);
 		
-		int result=dao.closeadd(dto);  //DAO에 어트랙션 운휴 테이블에 데이터를 저장해줄 메서드 만들기
+		int result=dao.attcloseadd(dto);  //DAO에 어트랙션 운휴 테이블에 데이터를 저장해줄 메서드 만들기
 		
 		//3. 피드백
 		if (result == 1) {  //성공하면 돌아갈 페이지
