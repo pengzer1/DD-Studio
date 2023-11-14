@@ -55,6 +55,7 @@
 	
 	.value {
 		margin: 0 50px;
+		display: flex;
 	}
 	
 	.value > input {

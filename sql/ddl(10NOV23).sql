@@ -2,7 +2,7 @@
 create user JspProject identified by pass;
 grant connect, resource, dba to JspProject;
 
-/* DELETE문_54개*/
+/* DELETE문_개*/
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -55,11 +55,10 @@ DELETE FROM tblRestaurant;
 DELETE FROM tblCategory;
 DELETE FROM tblLocation;
 DELETE FROM tblHashtag;
-DELETE FROM tblTheme;
 DELETE FROM tblUser;
 
 
-/* DROP TABLE_54개 */
+/* DROP TABLE_개 */
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -112,12 +111,10 @@ DROP TABLE tblRestaurant;
 DROP TABLE tblCategory;
 DROP TABLE tblLocation;
 DROP TABLE tblHashtag;
-DROP TABLE tblTheme;
 DROP TABLE tblUser;
 
-/* DROP SEQUENCE_54개 */
+/* DROP SEQUENCE_개 */
 DROP SEQUENCE seqtblUser;
-DROP SEQUENCE seqtblTheme;
 DROP SEQUENCE seqtblHashtag;
 DROP SEQUENCE seqtblLocation;
 DROP SEQUENCE seqtblCategory;
@@ -184,12 +181,6 @@ CREATE TABLE tblUser (
 	birth DATE NOT NULL, /* 생년월일 */
 	lv CHAR(1) NOT NULL, /* 등급 */
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
-);
-
-/* 테마 */
-CREATE TABLE tblTheme (
-	theme_seq NUMBER PRIMARY KEY, /* 테마번호 */
-	name VARCHAR2(500) NOT NULL UNIQUE /* 테마명 */
 );
 
 /* 해시태그 */
@@ -363,7 +354,6 @@ CREATE TABLE tblAttraction (
 	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* 위치정보 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
 	restriction VARCHAR2(2000), /* 키 크기 제약사항 등 이용정보 */
-	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* 테마번호 */
     is_test CHAR(1) NOT NULL /* 테스트채택 */
 );
 
@@ -641,9 +631,8 @@ CREATE TABLE tblUserBuy (
    buy_seq NUMBER REFERENCES tblBuy(buy_seq) NOT NULL /* 구매내역번호 */
 );
 
-/* CREATE SEQUENCE_54개*/
+/* CREATE SEQUENCE_개*/
 CREATE SEQUENCE seqtblUser;
-CREATE SEQUENCE seqtblTheme;
 CREATE SEQUENCE seqtblHashtag;
 CREATE SEQUENCE seqtblLocation;
 CREATE SEQUENCE seqtblCategory;
