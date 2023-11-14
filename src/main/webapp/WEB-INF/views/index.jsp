@@ -23,6 +23,9 @@
 	.header-login a {
 		padding: 0 5px;
 	}
+	.carousel-item active{
+		padding-top:150px;
+	}
 </style>
 </head>
 <body>

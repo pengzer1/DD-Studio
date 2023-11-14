@@ -16,6 +16,7 @@ public class Logout extends HttpServlet {
 		
 		//인증 티켓 제거
 		req.getSession().removeAttribute("email");
+		req.getSession().removeAttribute("seq");
 		req.getSession().removeAttribute("name");
 		req.getSession().removeAttribute("lv");
 		

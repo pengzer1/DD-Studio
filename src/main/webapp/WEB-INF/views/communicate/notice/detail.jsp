@@ -32,13 +32,18 @@
 			    padding: 30px 0;
 			    border-bottom: 2px solid black;
 			}
+			#button-list i {
+				margin-right: 10px;
+			}
 			#back-button, #edit-button, #delete-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
+				width: 90px;
+				height: 40px;
+				background-color: transparent;
+				border: 2px solid #CCC;
 				margin: 50px 10px 0;
+			}
+			.nav-icon {
+				font-size: 50px;
 			}
 		</style>
 	</head>
@@ -51,9 +56,12 @@
 			<div id="regdate">${dto.regdate}</div>
 			
 			<table id="detail">
-				<tr>
-					<td id="content">${dto.content}</td>
-				</tr>
+				<c:if test="${dto.content != null && !dto.content.trim().equals('')}">
+					<tr>
+						<td id="content">${dto.content}</td>
+					</tr>
+				</c:if>
+				
 				<c:if test="${dto.attach != null}">
 					<tr>
 						<td id="attach"><img src="/ddstudio/asset/image/${dto.attach}"></td>
@@ -61,16 +69,30 @@
 				</c:if>
 			</table>
 			
-			<div>
-				<button type="button" id="back-button" onclick="location.href='/ddstudio/communicate/notice.do';">목록</button>
+			<div id="button-list">
+				<button type="button" id="back-button"><i class="fa-solid fa-list"></i>목록</button>
 			
 				<c:if test="${not empty email && lv == 2}">
-					<button type="button" id="edit-button" onclick="location.href='/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}';">수정</button>
-					<button type="button" id="delete-button" onclick="location.href='/ddstudio/communicate/noticedel.do?seq=${dto.notice_seq}';">삭제</button>
+					<button type="button" id="edit-button"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+					<button type="button" id="delete-button"><i class="fa-solid fa-trash"></i>삭제</button>
 				</c:if>
 			</div>
 		</main>
 		
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
+		
+		<script>
+			$('#back-button').click(function () {
+				location.href='/ddstudio/communicate/notice.do';
+			});
+			
+			$('#edit-button').click(function () {
+				location.href='/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}';
+			});
+			
+			$('#delete-button').click(function () {
+				location.href='/ddstudio/communicate/noticedel.do?seq=${dto.notice_seq}';
+			});
+		</script>
 	</body>
 </html>

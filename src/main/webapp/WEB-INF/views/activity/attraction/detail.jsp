@@ -13,6 +13,14 @@
 		margin-top: 150px;
 	}
 	
+	#background {
+		background-image: url('/ddstudio/asset/image/detail_background_half_trans.png');
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%
+	}
+	
 	#admin-btn {
 		text-align: right;
 	}
@@ -38,56 +46,191 @@
 		background-color: #E6AAAE;
 		font-size: 1.3rem;
 	}
-
-	#carouselExampleIndicators {
-	}
 	
-	.carousel-inner div {
+	#hashtag {
 		display: flex;
+		flex-direction: row;
 		justify-content: center;
+		align-items: center;
+		margin: 30px auto;
 	}
 	
-	.carousel-item {
-		width: 700px;
-		height: 500px;
-		overflow: hidden;
+	#hashtag > i {
+		font-size: 2rem;
+		margin-right: 10px;
 	}
 	
-	.carousel-item img {
-		max-width: 100%
-		max-height: 100%
+	#hashtag > div {
+		margin: 3px 5px;
+		font-size: 1.1rem;
+		border: 0.8px solid #777;
+		border-radius: 20px;
+		padding: 7px 10px;
 	}
-	
+
 	#detail-line {
 		color: #777;
 	}
 	
 	.result-container {
-		/* display: flex;
-		flex-direction: column; */
-		display: table;
-		table-layout: fixed;
-		/* align-items: center; */
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
-	
+
 	.result-item {
-		/* display: flex;
-		flex-direction: row; */
-		/* display: table-row */
-		/* align-items: center;
-		margin-right: 10px; */
+		display: flex;
+		flex-direction: column;
+		/* justify-content: center; */
+		align-items: center;
+		border: 0px solid #888;
+		width: 276px;
+		height: 370px;
+		padding: 30px;
+		margin: 30px;
+		/* background-color: #FFFBD0; */
+		background-color: #FFFFFF;
+		border-radius: 5px;
 	}
 	
 	.label {
 		font-weight: bold;
-		margin-right: 5px;
-		display: table-cell
+		font-size: 1.5rem;
+		margin: 20px 10px;
 	}
 	
 	.value {
-		display: table-cell
+		margin: 20px 10px;
+		font-size: 1.2rem;
 	}
 	
+	/* .result-container > .result-item:nth-child(1) > .value {
+		font-size: 1.3rem;
+	} */
+	
+	.value.location {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.location {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.location .label {
+		margin-bottom: 0;
+	}
+	
+	.close-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 30px 0;
+		padding-top: 50px;
+	}
+	
+	.close-item {
+		width: 1277px;
+		/* border: 1px solid #999; */
+		border-radius: 5px;
+		background-color: #FFFFFF;
+	}
+	
+	.close-time > .value {
+		margin: 0 auto;
+	}
+	
+	.icon {
+		width: 60px;
+		height: 60px;
+		margin: 20px 10px;
+	}
+
+    /* Slideshow container */
+    .slideshow-container {
+        width: 1000px;
+        height: 650px;
+        overflow: hideen;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+    	display: none;
+    	min-width: 1000px;
+    	height: 650px;
+    }
+
+    .mySlides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    }
+
+	/* 왼쪽/오른쪽 버튼 */
+    .prev {
+    	left: 0;
+   		border-radius: 3px 0 0 3px;
+    }
+
+    .next {
+     right: 0;
+     border-radius: 3px 0 0 3px;
+    }
+    
+    .prev:hover, .next:hover {
+    	/* color: rgba(0,0,0,0.8); */
+    	background-color: rgba(0,0,0,0.8);
+    	color: #FFF;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    }
+
+    /* Fading animation */
+    .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+    }
+
+	.fade:not(.show) {
+		opacity: 1;
+	}
+  	
+    
 </style>
 </head>
 <body>
@@ -112,90 +255,87 @@
 		
 		<!-- 어트랙션 해시태그 -->
 		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
-		<%-- <div id="hashtag">
-			<c:forEach items="${}" var="dto">
-				<div><c:out>${}</div></c:out>
+		<div id="hashtag">
+			<i class="fa-solid fa-tag fa-rotate-90"></i>
+			<c:forEach items="${hashtagList}" var="dto">
+				<div><c:out value="${dto.hashtag_name}" /></div>
 			</c:forEach>
-		</div> --%>
+		</div>
 		
 		
 		<!-- 어트랙션 이미지 슬라이더 -->
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-			<!-- 하단 이미지 선택바 -->
-			<div class="carousel-indicators">
-				<c:forEach items="${imgList}" var="dto" varStatus="status">
-					<c:if test="${status.first}">
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${status.index}" class="active" aria-current="true" aria-label="Slide ${status.count}"></button>
-					</c:if>
-					<c:if test="${!status.first}">
-						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${status.index}" aria-label="Slide ${status.count}"></button>
-					</c:if>
-				</c:forEach>
-			</div>
-			<!-- 슬라이드 이미지 -->
-			<div class="carousel-inner">
-				<c:forEach items="${imgList}" var="dto" varStatus="status">
-					<c:if test="${status.first}">
-						<div class="carousel-item active">
-							<img src="/ddstudio/asset/image/${dto.img}" class="d-block w-100" alt="Image">
-						</div>
-					</c:if>
-					<c:if test="${!status.first}">
-						<div class="carousel-item">
-							<img src="/ddstudio/asset/image/${dto.img}" class="d-block w-100" alt="Image">
-						</div>
-					</c:if>
-				</c:forEach>
-			</div>
-			<!-- 사진 양 옆 화살표 버튼 -->
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
+		<!-- Slideshow container -->
+	    <div class="slideshow-container">
+	
+	    <!-- Full-width images with number and caption text -->
+	    <c:forEach items="${imgList}" var="dto">
+		    <div class="mySlides fade">
+		      <img src="/ddstudio/asset/image/${dto.img}">
+		    </div>
+	  	</c:forEach>
+  
+	    <!-- Next and previous buttons -->
+	    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+	    </div>
+	
+	    <br>
+	  
+	    <!-- The dots/circles -->
+	    <div style="text-align:center">
+	    <c:forEach items="${imgList}" var="dto" varStatus="status">
+		    <span class="dot" onclick="currentSlide(${status.count})"></span>
+	    </c:forEach>
+	    </div>
 		
 		<!-- 어트랙션 정보 -->
 		<!-- 운휴일정, 운영시간, 탑승인원, 이용정보, 테마, 위치, 예약 순 -->
-			
-		<div class="result-container">
-			<div class="result-item">
-				<div class="label">운휴일정</div>
-				<div calss="value">
-					<c:if test="${close_dto.attraction_close_seq != null}">
-						금일 운휴
-						<%-- <c:out value="${now}" /> --%><!-- 금일 날짜 -->
-					</c:if>	
-					<c:if test="${close_dto.attraction_close_seq == null}">
-						정상 운영
-					</c:if>
+		<div id="background">
+			<div class="close-container">
+				<div class="close-item">
+					<div class="label">운휴일정</div>
+					<div class="value">
+						<c:if test="${close_dto.attraction_close_seq != null}">
+							<img src="/ddstudio/asset/image/close_icon.png" alt="Image" class="icon"/>
+							금일 운휴
+							<%-- <c:out value="${now}" /> --%><!-- 금일 날짜 -->
+						</c:if>	
+						<c:if test="${close_dto.attraction_close_seq == null}">
+							<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
+							정상 운영
+						</c:if>
+					</div>
 				</div>
 			</div>
-			<div class="result-item">
-				<div class="label">운영시간</div>
-				<div class="value">${dto.time}</div>
+			<div class="result-container">
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
+					<div class="label">운영시간</div>
+					<div class="value">${dto.time}</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/people_icon.png" alt="Image" class="icon"/>
+					<div class="label">탑승인원</div>
+					<div class="value">${dto.capacity}명</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
+					<div class="label">이용정보</div>
+					<div class="value">${dto.restriction}</div>
+				</div>
+				<%-- <div class="result-item">
+					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
+					<div class="label">테마</div>
+					<div class="value">${dto.theme}</div>
+				</div> --%>
 			</div>
-			<div class="result-item">
-				<div class="label">탑승인원</div>
-				<div class="value">${dto.capacity}</div>
-			</div>
-			<div class="result-item">
-				<div class="label">이용정보</div>
-				<div class="value">${dto.restriction}</div>
-			</div>
-			<!-- 테마 가져와야함 -->
-			<div class="result-item">
-				<div class="label">테마</div>
-				<div class="value">${dto.theme_seq}</div>
-			</div>
-			<div class="result-item">
-				<div class="label">위치</div>
-				<div class="value">${dto.location_seq}</div>
+		</div>
+		
+		
+		<div class="location">
+			<div class="label">위치</div>
+			<div class="value location">
+				<div id="map" style="width:768px;height:400px;"></div>
 			</div>
 		</div>
 		
@@ -208,9 +348,58 @@
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
 
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 	<script>
+		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	    
+	    const options = { //지도를 생성할 때 필요한 기본 옵션
+	       center : new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}), //지도의 중심좌표.
+	       level : 10 //지도의 레벨(확대, 축소 정도)
+	    };
 	
+	    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
+	    //마커 출력
+	    const m1 = new kakao.maps.Marker({
+			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng})
+		});
+	    
+	    m1.setMap(map);
+	    
+	    //확대/축소, 드래그 제어
+		map.setZoomable(false);
+	    map.setDraggable(false);
+	    
+	    /* 이미지 슬라이더용 */
+	    let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+        
 	</script>
 </body>
 </html>
