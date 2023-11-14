@@ -54,6 +54,9 @@ public class RestaurantAdd extends HttpServlet {
 			String startTime = multi.getParameter("start-time");
 			String endTime = multi.getParameter("end-time");
 			
+			startTime = convertToAmPm(startTime);
+			endTime = convertToAmPm(endTime);
+			
 			String time = startTime + " - " + endTime;
 			
 			String capacity = multi.getParameter("capacity");
@@ -129,6 +132,19 @@ public class RestaurantAdd extends HttpServlet {
 				PrintWriter writer = resp.getWriter();
 				writer.print("<script>alert('failed'); history.back();</script>");
 				writer.close();
+		
+	}
+
+	private String convertToAmPm(String time) {
+	
+		String[] parse = time.split(":");
+		
+		int h = Integer.parseInt(parse[0]) % 12;
+		String m = parse[1];
+		
+		String amPm = Integer.parseInt(parse[0]) < 12 ? " AM" : " PM";
+		
+		return h + ":" + m + amPm;
 		
 	}
 	
