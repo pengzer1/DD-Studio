@@ -76,14 +76,8 @@ public class CategoryDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-            try {
-                pstat.close();
-                conn.close();
-            } catch (Exception e) {
-                throw new RuntimeException();
-            }
-        }
+		}
+		
 		return 0;
 	}
 

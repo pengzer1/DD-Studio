@@ -761,92 +761,88 @@ public class ActDAO {
 		return 0;
 	}
 
-	public ArrayList<AttractionDTO> checkAttCloseList(String status) {
+	public int attcloseadd(AttractionCloseDTO dto) {
+        try {
+           String sql = "insert into tblattractionclose(attraction_close_seq, start_date, end_date, attraction_seq) values (seqtblAttractionClose.nextVal, ?, ?, ?)";
 
-		if (status.equalsIgnoreCase("open")) {
-			
-			
-			try {
-						
-						String sql = "select b.attraction_seq, b.name, b.capacity, b.location_seq, b.time, b.restriction, b.is_test, (select img from tblAttractionImg where attraction_seq = b.attraction_seq and rownum = 1)as img\r\n"
-								+ "from (SELECT * FROM tblAttractionClose WHERE TO_CHAR(sysdate,'YYYY-MM-DD') >= TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(sysdate,'YYYY-MM-DD') <= TO_CHAR(end_date,'YYYY-MM-DD')) a\r\n"
-								+ "full outer join tblAttraction b\r\n"
-								+ "on b.attraction_seq = a.attraction_seq\r\n"
-								+ "where attraction_close_seq is null";
-						
-						stat = conn.createStatement();
-						rs = stat.executeQuery(sql);
-						
-						ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
-						while (rs.next()) {
-							
-							AttractionDTO dto = new AttractionDTO();
-							
-							dto.setAttraction_seq(rs.getString("attraction_seq"));
-							dto.setName(rs.getString("name"));
-							dto.setCapacity(rs.getString("capacity"));
-							dto.setLocation_seq(rs.getString("location_seq"));
-							dto.setTime(rs.getString("time"));
-							dto.setRestriction(rs.getString("restriction"));
-							dto.setIs_test(rs.getString("is_test"));
-							dto.setImg(rs.getString("img"));
-							
-							
-							list.add(dto);
-							
-						}
-						
-						return list;
-						
-					} catch (Exception e) {
-						System.out.println("at ActDAO.attractionCloseList");
-						e.printStackTrace();
-					}
-			
-			
-			
-		} else if (status.equalsIgnoreCase("close")) {
-			
-			try {
-				
-				String sql = "select b.attraction_seq, b.name, b.capacity, b.location_seq, b.time, b.restriction, b.is_test, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img\r\n"
-						+ "from (SELECT * FROM tblAttractionClose WHERE TO_CHAR(sysdate,'YYYY-MM-DD') >= TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(sysdate,'YYYY-MM-DD') <= TO_CHAR(end_date,'YYYY-MM-DD')) a\r\n"
-						+ "inner join tblAttraction b\r\n"
-						+ "on b.attraction_seq = a.attraction_seq";
-				
-				stat = conn.createStatement();
-				rs = stat.executeQuery(sql);
-				
-				ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
-				while (rs.next()) {
-					
-					AttractionDTO dto = new AttractionDTO();
-					
-					dto.setAttraction_seq(rs.getString("attraction_seq"));
-					dto.setName(rs.getString("name"));
-					dto.setCapacity(rs.getString("capacity"));
-					dto.setLocation_seq(rs.getString("location_seq"));
-					dto.setTime(rs.getString("time"));
-					dto.setRestriction(rs.getString("restriction"));
-					dto.setIs_test(rs.getString("is_test"));
-					dto.setImg(rs.getString("img"));
-					
-					list.add(dto);
-					
-				}
-				
-				return list;
-				
-			} catch (Exception e) {
-				System.out.println("at ActDAO.attractionCloseList");
-				e.printStackTrace();
-			}
-			
-			
+           pstat = conn.prepareStatement(sql);
+           pstat.setString(1, dto.getStart_date());
+           pstat.setString(2, dto.getEnd_date());
+           pstat.setString(3, dto.getAttraction_seq());
+
+           return pstat.executeUpdate();
+
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return 0;
+     }
+
+	public int attcloseedit(AttractionCloseDTO dto) {
+		try {
+			String sql = "update tblattractionclose set start_date=?, end_date=? where attraction_close_seq=?";
+        
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getStart_date());
+			pstat.setString(2, dto.getEnd_date());
+			pstat.setString(3, dto.getAttraction_close_seq());
+        
+			return pstat.executeUpdate();
+        
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
-		return null;
+     
+		return 0;
+	}
+
+	public ArrayList<AttractionCloseDTO> closeattractionList() {  //운휴정보를 가진 어트랙션 목록들(name 포함해서)만 보여주기
+		try {
+        
+			String sql = "select b.attraction_close_seq, a.attraction_seq, a.name, b.start_date, b.end_date from tblAttraction a\r\n"
+					+ "inner join tblAttractionClose b\r\n"
+					+ "on a.attraction_seq = b.attraction_seq\r\n"
+					+ "where TO_CHAR(sysdate,'YYYY-MM-DD') <=TO_CHAR(end_date,'YYYY-MM-DD')";
+        
+        stat = conn.createStatement();
+        rs = stat.executeQuery(sql);
+        
+        ArrayList<AttractionCloseDTO> list = new ArrayList<AttractionCloseDTO>();
+        while (rs.next()) {
+           
+           AttractionCloseDTO dto = new AttractionCloseDTO();
+           dto.setAttraction_close_seq(rs.getString("attraction_close_seq"));
+           dto.setStart_date(rs.getString("start_date"));
+           dto.setEnd_date(rs.getString("end_date"));
+           dto.setAttraction_seq(rs.getString("attraction_seq"));
+           dto.setName(rs.getString("name"));
+           
+           list.add(dto);
+        }
+        
+        return list;
+        
+     } catch (Exception e) {
+        System.out.println("at ActDAO.list");
+        e.printStackTrace();
+     }
+
+     return null;
+  }
+
+	public int del(AttractionCloseDTO dto) {
+		try {
+			String sql = "delete from tblAttractionClose where attraction_close_seq=?"	;
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getAttraction_close_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 
