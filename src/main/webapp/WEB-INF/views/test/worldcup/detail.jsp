@@ -50,27 +50,27 @@ body {
 }
 
 #item1:hover {
-  transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
-  opacity: 0.25;
-  filter: brightness(0.8);
+	transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
+	opacity: 0.25;
+	filter: brightness(0.8);
 }
 
 #item2:hover {
-  transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
-  opacity: 0.25;
-  filter: brightness(0.8);
+	transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
+	opacity: 0.25;
+	filter: brightness(0.8);
 }
 
 #itme3 {
-    
+	
 }
 
 #result-message {
-    margin-top: 40px;
-    font-size: 30px;
-    text-align: center;
-    color: #3498db;
-    font-weight: bold;
+	margin-top: 40px; font-size : 30px;
+	text-align: center;
+	color: #3498db;
+	font-weight: bold;
+	font-size: 30px;
 }
 
 .item h3 {
@@ -91,7 +91,7 @@ body {
 #worldcup-container {
 	width: 100%;
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
 </style>
 </head>
@@ -107,7 +107,7 @@ body {
 		<div id="result-info"></div>
 		<div id="worldcup-container" class="button-container">
 			<!-- 어트랙션을 출력 -->
-			
+
 			<c:forEach var="attraction" items="${selectedTwoAttractions}"
 				varStatus="loop">
 				<div class="item" id="item${loop.index + 1}"
@@ -135,7 +135,7 @@ body {
 				type : 'POST',
 				url : '/ddstudio/test/worldcupdetail.do',
 				data : {
-					'isNewSession': true
+					'isNewSession' : true
 				},
 				success : function(data) {
 					// console.log('세션 초기화', data);
@@ -151,22 +151,21 @@ body {
 				type : 'POST',
 				url : '/ddstudio/test/worldcupdetail.do',
 				data : {
-					'attractionSeq': attractionSeq
+					'attractionSeq' : attractionSeq
 				},
 				success : function(data) {
-					console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
-					console.log('남은 어트랙션:', data.remainingAttractionSeqs);
+					//console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
+					//console.log('남은 어트랙션:', data.remainingAttractionSeqs);
 
 					// 전역 변수에 할당
 					selectedTwoAttractions = data.selectedTwoAttractions;
 
 					// 어트랙션 정보에 따라 화면 갱신
-		            if (selectedTwoAttractions.length > 1) {
-		                refreshScreen();
-		            } else {
-		                resultScreen(selectedTwoAttractions[0]);
-		                console.log()
-		            }
+					if (selectedTwoAttractions.length > 1) {
+						refreshScreen();
+					} else {
+						resultScreen(selectedTwoAttractions[0]);
+					}
 				},
 				error : function(a, b, c) {
 					console.error(a, b, c);
@@ -179,7 +178,7 @@ body {
 
 			// 모든 어트랙션을 화면에 갱신
 			$('#worldcup-container').empty();
-			
+
 			for (let i = 0; i < selectedTwoAttractions.length; i++) {
 				const attraction = selectedTwoAttractions[i];
 				const imgUrl = attraction.img ? '/ddstudio/asset/image/'
@@ -198,25 +197,27 @@ body {
 				$('#worldcup-container').append(item);
 			}
 		}
-		
+
 		function resultScreen(selectedAttraction) {
-		    // console.log('resultScreen 함수 호출');
+			// console.log('resultScreen 함수 호출');
 
-		    // 어트랙션을 화면에 갱신
-		    $('#worldcup-container').empty();
+			// 어트랙션을 화면에 갱신
+			$('#worldcup-container').empty();
 
-		    const resultContainer = $('<div class="item result-container" id="item3" style="cursor: default !important;">');
-		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/' + selectedAttraction.img + '\');"></div>');
-		    const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
-		    const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>');
+			const resultContainer = $('<div class="item result-container" id="item3" style="cursor: default !important;">');
+			const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/'
+					+ selectedAttraction.img + '\');"></div>');
+			const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
+			const message = $('<p id="result-message">최고의 어트랙션이죠!<br>['
+					+ selectedAttraction.name + ']</p>');
 
-		    // 메시지
-		    $('#result-info').append(message);
-		    
-		    resultContainer.append(imgContainer).append(infoname);
+			// 메시지
+			$('#result-info').append(message);
 
-		    // 최종 선택 어트랙션
-		    $('#worldcup-container').append(resultContainer);
+			resultContainer.append(imgContainer).append(infoname);
+
+			// 최종 선택 어트랙션
+			$('#worldcup-container').append(resultContainer);
 
 		}
 	</script>
