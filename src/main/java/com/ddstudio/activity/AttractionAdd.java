@@ -30,14 +30,14 @@ public class AttractionAdd extends HttpServlet {
 		ActDAO dao = new ActDAO();
 		
 		//2. 해시태그 가져오기
-		ArrayList<HashTagDTO> hashtagList = dao.hashtagList();
-		
+		/*ArrayList<HashTagDTO> hashtagList = dao.hashtagList();
+
 		//3. 데이터 전송
 //		req.setAttribute("locationList", locationList);
 //		req.setAttribute("themeList", themeList);
 		req.setAttribute("hashtagList", hashtagList);
-		
-		
+
+		*/
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/add.jsp");
 		dispatcher.forward(req, resp);

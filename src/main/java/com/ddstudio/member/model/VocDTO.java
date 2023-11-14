@@ -1,6 +1,5 @@
 package com.ddstudio.member.model;
 
-import lombok.Data;
 
 
 public class VocDTO {

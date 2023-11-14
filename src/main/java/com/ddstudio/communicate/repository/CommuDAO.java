@@ -240,7 +240,7 @@ public class CommuDAO {
 				InquiryDTO dto = new InquiryDTO();
 				
 				dto.setUser_seq(rs.getString("user_seq"));
-				dto.setName(rs.getString("name"));
+//				dto.setName(rs.getString("name"));
 				
 				return dto;
 				

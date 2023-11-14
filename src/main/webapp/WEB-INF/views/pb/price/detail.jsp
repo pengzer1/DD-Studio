@@ -38,19 +38,12 @@
     </div>
 
 
-    <div class="container">
-        <div id="btn3" class="btn">
-            <button type="button" class="add" onclick="location.href='/ddstudio/pb/benefit.do';">혜택</button>
-        </div>
-    </div>
-
 
 
     <div id="sub-title">
         <div class="container">
             <h3>개인</h3>
             <c:if test="${not empty email && lv == 2}">
-
             <div id="btn1" class="btn">
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceadd.do';">추가</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/pricedel.do';">삭제</button>

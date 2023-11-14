@@ -30,13 +30,13 @@ public class AttractionEdit extends HttpServlet {
 		// - tblAttractionImg
 		
 		ActDAO dao = new ActDAO();
-		
+		/*
 		AttractionDTO dto = dao.getAttraction(seq);
 		
 		ArrayList<AttractionImgDTO> list = dao.attractionImgList(seq);
 		
 		req.setAttribute("dto", dto);
-		req.setAttribute("list", list);
+		req.setAttribute("list", list);*/
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/edit.jsp");
 		dispatcher.forward(req, resp);

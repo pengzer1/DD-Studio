@@ -70,7 +70,8 @@
 
     </form>
 
-
+    </div>
+</main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 <!-- Footer -->
 

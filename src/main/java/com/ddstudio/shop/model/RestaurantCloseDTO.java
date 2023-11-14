@@ -1,7 +1,6 @@
-package com.ddstudio.guide.model;
+package com.ddstudio.shop.model;
 
-
-public class RestaurantServiceDTO {
+public class RestaurantCloseDTO {
 	private String restaurant_close_seq;
 	private String start_date;
 	private String end_date;

@@ -31,10 +31,10 @@ public class Attraction extends HttpServlet {
 		//어트랙션 정보 가져오기
 		ActDAO dao = new ActDAO();
 
-		ArrayList<AttractionDTO> list = dao.attractionList();
+		/*ArrayList<AttractionDTO> list = dao.attractionList();
 
 		//4. 데이터 전송
-		req.setAttribute("list", list);
+		req.setAttribute("list", list);*/
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/list.jsp");

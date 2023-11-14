@@ -35,7 +35,7 @@ public class UsageInquiry extends HttpServlet {
 			InquiryDTO dto = dao.getUserInfo(email);
 			
 			req.setAttribute("seq", dto.getUser_seq());
-			req.setAttribute("name", dto.getName());
+//			req.setAttribute("name", dto.getName());
 			
 			String file = "";
 
