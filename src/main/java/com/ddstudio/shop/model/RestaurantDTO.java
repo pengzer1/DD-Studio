@@ -16,4 +16,6 @@ public class RestaurantDTO {
 	private String img;
 	private String start_date;
 	private String end_date;
+	
+	private String location_seq;
 }

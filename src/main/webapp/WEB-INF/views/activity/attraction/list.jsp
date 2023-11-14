@@ -54,12 +54,32 @@
 		float: right;
 	}
 	
-	#condition {
-		/* 조건검색 누르면 아래로 확장되게 해야함!! */
-	}
-	
 	#hidden-searchbar {
 		display: none;
+		width: 100%;
+		height: 100%;
+		margin: 30px;
+	}
+	
+	#hidden-searchbar .condition-container {
+		display: flex;
+		justify-content: center;
+		height: 80%;
+		align-items: center;
+	}
+	
+	.block-bubbling {
+		display: inline-block;
+		padding: 20px;
+	}
+	
+	.condition-btn > button {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #FFF;
 	}
 	
 </style>
@@ -83,20 +103,38 @@
 			
 				<!-- 조건 검색 (click 전) -->
 				<div id="default-searchbar">
-					<h3><i class="fa-solid fa-magnifying-glass"></i>조건검색(테마/운휴일정)</h3>
+					<h3><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h3>
 				</div>
 
 				<!-- 조건 검색 (click 후) -->
-				<div id="hidden-searchbar">
-					<h4><i class="fa-solid fa-magnifying-glass"></i>조건검색</h4>
-					<div>
-						<div>운휴일정</div>
-						<select name="close" id="close-select" class="selectbox">
-							<option value="open">정상운영</option>
-							<option value="close">운휴</option>
-						</select>
+				<form method="GET" action="/ddstudio/activity/attraction.do">
+					<div id="hidden-searchbar">
+						<h4><i class="fa-solid fa-magnifying-glass"></i> 
+							<c:if test="${empty close}">
+								조건 검색
+							</c:if>
+							<c:if test="${close == 'open'}">
+								정상 운영 어트랙션 조회
+							</c:if>
+							<c:if test="${close == 'close'}">
+								금일 운휴 어트랙션 조회
+							</c:if>
+						</h4>
+						<div class="block-bubbling">
+							<div class="condition-container">
+								<div>운휴일정</div>
+								<select name="close" id="close-select" class="selectbox">
+									<option value="open">정상운영</option>
+									<option value="close">운휴</option>
+								</select>
+								<div class="condition-btn">
+									<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
+									<button><i class="fa-solid fa-circle-arrow-left" onclick="removeParameter()"></i> 취소</button>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 			
 			<!-- 관리자용 추가 버튼 -->
@@ -123,36 +161,56 @@
 
 	<script>
 	
-		/* $('.item').click(function() {
+		$('.block-bubbling').click(function(event) {
+	        event.stopPropagation();
+	    });
+	
+	
+		$('#condition').click(function() {
 			
-			alert();
-			location.href= '/ddstudio/activity/attractiondetail.do?seq='${dto.attraction_seq};
-		});	 */
-		
-		/* function detail(seq) {
-			
-			//alert(seq);
-			location.href= '/ddstudio/activity/attractiondetail.do?seq=' + seq;
-			
-		} */
-		
-		$('#condition').click(function(){
-			//alert();
-			
-			//if (현재 display 상태를 확인해서 그게 ==block이면)
-			//alert($(this).children().css("display"));
-			
-			if ($('#default-searchbar').children().css("display") == "block") {
+			if ($('#condition').css('height') == "100px") {
 				
-				$('#default-searchbar').css('display', none)
+				$('#hidden-searchbar').css('display', 'block');
+				$('#condition').css('height', '200px');
+				$('#condition').css('transition', 'all .8s');
+				$('#default-searchbar').css('display', 'none');
+				
 			} else {
-				$('#default-searchbar').css('display', block)
+				
+				$('#hidden-searchbar').css('display', 'none');
+				$('#condition').css('height', '100px');
+				$('#condition').css('transition', 'all .8s');
+				$('#default-searchbar').css('display', 'block');
+		        
 			}
-				
-				
-			//$('#hidden-searchbar').css('display', block);
-			//$('#default-searchbar').css('display', none);
+			
 		});
+		
+		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
+//		if (${close == 'open' || close == 'close'}) {
+		if (${not empty close}) {
+			
+			$('#hidden-searchbar').css('display', 'block');
+			$('#condition').css('height', '200px');
+			$('#default-searchbar').css('display', 'none');
+			
+			$('#close-select').val(${close}).attr("selected", "selected");
+		}
+		
+		function removeParameter() {
+            // 현재 URL 가져오기
+            var currentUrl = window.location.href;
+
+            // URL의 쿼리 문자열 가져오기
+            var queryString = window.location.search;
+
+            // 만약 쿼리 문자열이 있다면, 해당 부분을 빈 문자열로 교체하여 제거
+            if (queryString) {
+                var updatedUrl = currentUrl.replace(queryString, '');
+                // 새로운 URL로 이동하면서 페이지 이력에 기록하지 않음
+                history.replaceState({}, document.title, updatedUrl);
+            }
+        }
 		
 	</script>
 </body>

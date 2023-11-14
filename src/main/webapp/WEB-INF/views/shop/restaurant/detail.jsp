@@ -87,12 +87,12 @@ ul {
 }
 
 .infoArea li.op7 {
-	background: url('/ddstudio/asset/image/close_icon.png') no-repeat
+	background: url('/ddstudio/asset/image/close_icon2.png') no-repeat
 		0 center;
 }
 
 .infoArea li.op8 {
-	background: url('/ddstudio/asset/image/calendar_icon.png') no-repeat
+	background: url('/ddstudio/asset/image/calendar_icon2.png') no-repeat
 		0 center;
 }
 
@@ -132,13 +132,40 @@ ul {
     align-items: center;
     margin: 0 auto;
 }
+
+#admin-btn {
+      text-align: right;
+   }
+   
+   #admin-btn button {
+      margin: 3px;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 10px;
+      color: #222;
+      background-color: #E6AAAE;
+   }
+   
+   #admin-btn button:last-child {
+      margin-right: 15px;
+   }
 </style>
 </head>
 <body>
 	<!-- register.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
+	
 	<main id="main">
+		<div style="height: 50px">
+			<c:if test="${not empty lv && lv == 2}">
+			<div id="admin-btn">
+         <button type="button" id="del-btn" onclick="location.href='/ddstudio/shop/restaurant/del.do?seq=${dto.restaurant_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
+         <button type="button" id="edit-btn" onclick="location.href='/ddstudio/shop/restaurant/edit.do?seq=${dto.restaurant_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+      </div>
+         	</c:if>
+		</div>
+	
 		<h1>${dto.name}</h1>
 		<br>
 		<h5>${dto.category}</h5>
