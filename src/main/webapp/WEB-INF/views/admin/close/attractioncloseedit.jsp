@@ -102,7 +102,7 @@
 							<td><input type="date" name="start_date" id="closedate" value="${dto.start_date}"></td>
 							</c:if> --%>
 							<th>운휴시작일</th>
-							<td><input type="date" name="start_date" id="start_date" ></td>
+							<td><input type="date" name="start_date" id="start_date"></td>
 						</tr>
 						<tr>
 							<th>운휴종료일</th>
@@ -126,6 +126,8 @@
 
 	<script>
 	
+	const date = document.getElementById('start_date');
+	
 		$('select[name=attraction]').change(function() {
 				for (let i=0; i<close_list.length; i++) {
 					if (close_list[i].seq == $(this).val()) {
@@ -140,23 +142,33 @@
 		
 		function selDate(i) {
 			
-			const now = new Date();
+			const now = new Date();  //현재날짜
 			const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate();
 			
 			//alert(now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate());
 			//alert(close_list[i].start_date);
 			
+			
 			if (nowStr > close_list[i].start_date) {
 				$('#start_date').val(close_list[i].start_date.substr(0,  10));
-				$('#start_date').prop('readOnly', true);
+				$('#start_date').prop('readOnly', true);  //운휴가 현재날짜보다 이전이면 -> 운휴 이미 시작이므로 readonly.
 			} else {
+				$('#start_date').attr('min', nowStr);
 				$('#start_date').val(close_list[i].start_date.substr(0,  10));
 				$('#start_date').prop('readOnly', false);
 			}
 
+			changeDate(i);
 			
-			$('#end_date').attr('min', close_list[i].start_date.substr(0,  10));
+		}
+		
+		function changeDate(i) {
+			$('#end_date').attr('min', date.value);  //end_date는 재선택한 운휴시작일 넣어주기
 			$('#end_date').val(close_list[i].end_date.substr(0,  10));
+			$('#start_date').change(function() {
+				$('#end_date').attr('min', date.value);
+			});
+			
 			
 		}
 	
