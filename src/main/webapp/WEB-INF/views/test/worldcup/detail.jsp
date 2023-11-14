@@ -139,7 +139,7 @@
 		  }
 	
 		  function refreshScreen() {
-		      console.log('refreshScreen 함수 호출됨');
+		      console.log('refreshScreen 함수 호출');
 	
 		      // 모든 어트랙션을 화면에 갱신
 		      $('#worldcup-container').empty();

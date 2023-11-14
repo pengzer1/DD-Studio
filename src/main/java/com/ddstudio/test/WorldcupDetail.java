@@ -23,7 +23,9 @@ public class WorldcupDetail extends HttpServlet {
 
 	private ArrayList<AttractionDTO> attractionList;
 
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		TestDAO dao = new TestDAO();
 
 		// 어트랙션 리스트 가져오기
@@ -36,12 +38,7 @@ public class WorldcupDetail extends HttpServlet {
 		@SuppressWarnings("unchecked") // 제네릭 경고 무시
 		ArrayList<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
 
-		// 새로운 세션일 경우에만 초기화
-		if (req.getParameter("isNewSession") != null) {
-			selectedAttractions = new ArrayList<>();
-		}
-		
-		session.setAttribute("selectedAttractions", selectedAttractions);
+		selectedAttractions = new ArrayList<>();
 
 		// 선택하지 않은 어트랙션 리스트 생성
 		ArrayList<AttractionDTO> remainingAttractions = new ArrayList<>();
@@ -50,8 +47,7 @@ public class WorldcupDetail extends HttpServlet {
 		}
 
 		// 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
-		ArrayList<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions,
-				selectedAttractions);
+		ArrayList<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
 
 		// 선택한 어트랙션과 선택한 두 어트랙션을 request에 저장
 		req.setAttribute("selectedAttractions", selectedAttractions);
@@ -63,26 +59,25 @@ public class WorldcupDetail extends HttpServlet {
 	}
 
 	// 랜덤으로 두 어트랙션을 선택하는 메서드
-	private ArrayList<AttractionDTO> getRandomTwoAttractions(ArrayList<AttractionDTO> allAttractions,
-			ArrayList<String> selectedAttractions) {
-		ArrayList<AttractionDTO> remainingAttractions = new ArrayList<>(allAttractions);
-		remainingAttractions.removeIf(attraction -> selectedAttractions.contains(attraction.getAttraction_seq()));
-
+	private ArrayList<AttractionDTO> getRandomTwoAttractions(ArrayList<AttractionDTO> attractions) {
 		ArrayList<AttractionDTO> selectedTwoAttractions = new ArrayList<>();
 
+		Random random = new Random();
+		int index1 = random.nextInt(attractions.size());
+		int index2;
+		
 		// 선택할 어트랙션이 2개 이상일 때만 랜덤으로 두 개 선택
-		if (remainingAttractions.size() >= 2) {
-			Random random = new Random();
-			int index1 = random.nextInt(remainingAttractions.size());
-			int index2;
-
+		if (attractions != null && attractions.size() >= 2) {
 			do {
-				index2 = random.nextInt(remainingAttractions.size());
+				index2 = random.nextInt(attractions.size());
 			} while (index1 == index2);
 
 			// 두 어트랙션을 리스트에 추가
-			selectedTwoAttractions.add(remainingAttractions.get(index1));
-			selectedTwoAttractions.add(remainingAttractions.get(index2));
+			selectedTwoAttractions.add(attractions.get(index1));
+			selectedTwoAttractions.add(attractions.get(index2));
+		} else if (attractions != null && attractions.size() == 1) {
+		    // 어트랙션이 1개인 경우
+		    selectedTwoAttractions.add(attractions.get(0));
 		}
 
 		return selectedTwoAttractions;
@@ -90,66 +85,62 @@ public class WorldcupDetail extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String selectedAttractionSeq = req.getParameter("attractionSeq");
-		HttpSession session = req.getSession();
+	    String selectedAttractionSeq = req.getParameter("attractionSeq");
+	    HttpSession session = req.getSession();
 
-		@SuppressWarnings("unchecked")
-		ArrayList<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
+	    @SuppressWarnings("unchecked")
+	    ArrayList<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
 
-		// 새로운 세션일 경우에만 초기화
-		if (req.getParameter("isNewSession") != null) {
-			selectedAttractions = new ArrayList<>();
-		}
-		// System.out.println(req.getParameter("isNewSession"));
+	    // 새로운 세션일 경우에만 초기화
+	    if (req.getParameter("isNewSession") != null) {
+	        selectedAttractions = new ArrayList<>();
+	        session.setAttribute("selectedAttractions", selectedAttractions);
+	    }
 
-		session.setAttribute("selectedAttractions", selectedAttractions);
+	    System.out.println(req.getParameter("isNewSession"));
+	    // 선택한 어트랙션이 중복되지 않았을 때만 추가
+	    if (!selectedAttractions.contains(selectedAttractionSeq)) {
+	        selectedAttractions.add(selectedAttractionSeq);
+	        session.setAttribute("selectedAttractions", selectedAttractions);
 
-		// 선택한 어트랙션이 중복되지 않았을 때만 추가
-		if (!selectedAttractions.contains(selectedAttractionSeq)) {
-			selectedAttractions.add(selectedAttractionSeq);
-			session.setAttribute("selectedAttractions", selectedAttractions);
+	        // 두 개의 어트랙션을 다시 선택
+	        ArrayList<AttractionDTO> remainingAttractions = new ArrayList<>();
+	        for (AttractionDTO attraction : attractionList) {
+	            if (!selectedAttractions.contains(attraction.getAttraction_seq())) {
+	                remainingAttractions.add(attraction);
+	            }
+	        }
+	        ArrayList<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
 
-			// 두 개의 어트랙션을 다시 선택
-			ArrayList<AttractionDTO> remainingAttractions = new ArrayList<>();
-			for (AttractionDTO attraction : attractionList) {
-				if (!selectedAttractions.contains(attraction.getAttraction_seq())) {
-					remainingAttractions.add(attraction);
-				}
-			}
+	        // JSON 응답 생성
+	        resp.setContentType("application/json");
+	        resp.setCharacterEncoding("UTF-8");
 
-			// 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
-			ArrayList<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions,
-					selectedAttractions);
+	        JSONObject jsonResponse = new JSONObject();
+	        jsonResponse.put("selectedAttraction", selectedAttractionSeq);
+	        jsonResponse.put("selectedAttractions", selectedAttractions);
 
-			// JSON 응답 생성
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
+	        // 이미지 정보를 JSON으로 추가
+	        JSONArray selectedTwoAttractionsJsonArray = new JSONArray();
+	        for (AttractionDTO attraction : selectedTwoAttractions) {
+	            JSONObject attractionJson = new JSONObject();
+	            attractionJson.put("attraction_seq", attraction.getAttraction_seq());
+	            attractionJson.put("name", attraction.getName());
+	            attractionJson.put("img", attraction.getImg());
+	            selectedTwoAttractionsJsonArray.add(attractionJson);
+	        }
 
-			JSONObject jsonResponse = new JSONObject();
-			jsonResponse.put("selectedAttraction", selectedAttractionSeq);
-			jsonResponse.put("selectedAttractions", selectedAttractions);
+	        // 선택되지 않은 어트랙션 시퀀스 추가
+	        ArrayList<String> remainingAttractionSeqs = new ArrayList<>();
+	        for (AttractionDTO attraction : remainingAttractions) {
+	            remainingAttractionSeqs.add(attraction.getAttraction_seq());
+	        }
+	        jsonResponse.put("remainingAttractionSeqs", remainingAttractionSeqs);
 
-			// 이미지 정보를 JSON으로 추가
-			JSONArray selectedTwoAttractionsJsonArray = new JSONArray();
-			for (AttractionDTO attraction : selectedTwoAttractions) {
-				JSONObject attractionJson = new JSONObject();
-				attractionJson.put("attraction_seq", attraction.getAttraction_seq());
-				attractionJson.put("name", attraction.getName());
-				attractionJson.put("img", attraction.getImg());
-				selectedTwoAttractionsJsonArray.add(attractionJson);
-			}
+	        jsonResponse.put("selectedTwoAttractions", selectedTwoAttractionsJsonArray);
 
-			// 선택되지 않은 어트랙션 시퀀스 추가
-			ArrayList<String> remainingAttractionSeqs = new ArrayList<>();
-			for (AttractionDTO attraction : remainingAttractions) {
-				remainingAttractionSeqs.add(attraction.getAttraction_seq());
-			}
-			jsonResponse.put("remainingAttractionSeqs", remainingAttractionSeqs);
-
-			jsonResponse.put("selectedTwoAttractions", selectedTwoAttractionsJsonArray);
-
-			resp.getWriter().write(jsonResponse.toString());
-		}
+	        resp.getWriter().write(jsonResponse.toString());
+	    }
 	}
 
 }

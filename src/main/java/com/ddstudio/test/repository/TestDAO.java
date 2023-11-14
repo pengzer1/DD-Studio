@@ -294,7 +294,7 @@ public class TestDAO {
 		ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
 
 		try {
-			String sql = "SELECT * FROM vwAttractionList ORDER BY attraction_seq";
+			String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a";
 
 			stat = conn.createStatement();
 
@@ -304,8 +304,8 @@ public class TestDAO {
 			while (rs.next()) {
 				AttractionDTO dto = new AttractionDTO();
 				dto.setAttraction_seq(rs.getString("attraction_seq"));
-				dto.setName(rs.getString("attraction_name"));
-				dto.setImg(rs.getString("attraction_img"));
+				dto.setName(rs.getString("name"));
+				dto.setImg(rs.getString("img"));
 
 				list.add(dto);
 			}

@@ -85,12 +85,12 @@ button:hover {
 			<div class="munti-content-container">
 				<div class="item">
 					<img src="/ddstudio/asset/image/chromi.png" alt="어트랙션" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/test/worldcupdetail.do';">어트랙션</button></div>
+					<div><button type="button" onclick="location.href='/ddstudio/test/worldcupdetail.do';">어트랙션 월드컵</button></div>
 				</div>
-				<div class="item">
+				<!-- <div class="item">
 					<img src="/ddstudio/asset/image/토토로.png" alt="코스" class="totoro-image">
 					<div><button type="button" onclick="location.href='/ddstudio/test/worldcupdetail.do';">코스</button></div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</main>
