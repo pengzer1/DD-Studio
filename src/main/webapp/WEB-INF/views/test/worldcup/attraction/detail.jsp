@@ -61,12 +61,16 @@ body {
 	filter: brightness(0.8);
 }
 
-#itme3 {
-	
+#attinfo {
+	font-size : 18px;
+	text-align: center;
+	color: #444;
+	font-weight: bold;
+	margin-bottom: 3px;
 }
 
 #result-message {
-	margin-top: 40px; font-size : 30px;
+	margin-top: 40px;
 	text-align: center;
 	color: #3498db;
 	font-weight: bold;
@@ -96,12 +100,12 @@ body {
 </style>
 </head>
 <body>
-	<%-- /test/worldcup/detail.jsp --%>
+	<%-- /test/worldcup/attraction/detail.jsp --%>
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
 		<div id="title" style="margin-top: 123px;">
-			<h2>DD 월드컵</h2>
+			<h2>어트랙션 월드컵</h2>
 		</div>
 
 		<div id="result-info"></div>
@@ -133,7 +137,7 @@ body {
 		function initializeSession() {
 			$.ajax({
 				type : 'POST',
-				url : '/ddstudio/test/worldcupdetail.do',
+				url : '/ddstudio/test/worldcup/attraction/detail.do',
 				data : {
 					'isNewSession' : true
 				},
@@ -149,7 +153,7 @@ body {
 		function selectAttraction(attractionSeq) {
 			$.ajax({
 				type : 'POST',
-				url : '/ddstudio/test/worldcupdetail.do',
+				url : '/ddstudio/test/worldcup/attraction/detail.do',
 				data : {
 					'attractionSeq' : attractionSeq
 				},
@@ -199,27 +203,30 @@ body {
 		}
 
 		function resultScreen(selectedAttraction) {
-			// console.log('resultScreen 함수 호출');
+		    // 어트랙션을 화면에 갱신
+		    $('#worldcup-container').empty();
 
-			// 어트랙션을 화면에 갱신
-			$('#worldcup-container').empty();
+		    const resultContainer = $('<div class="item result-container" id="item3">');
+		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/' + selectedAttraction.img + '\');"></div>');
+		    const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
+		    const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>' + '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
 
-			const resultContainer = $('<div class="item result-container" id="item3" style="cursor: default !important;">');
-			const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/'
-					+ selectedAttraction.img + '\');"></div>');
-			const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
-			const message = $('<p id="result-message">최고의 어트랙션이죠!<br>['
-					+ selectedAttraction.name + ']</p>');
+		    // 메시지
+		    $('#result-info').append(message);
 
-			// 메시지
-			$('#result-info').append(message);
+		    // 최종 선택 어트랙션
+		    resultContainer.append(imgContainer).append(infoname);
 
-			resultContainer.append(imgContainer).append(infoname);
+		    // 클릭 이벤트 처리
+		    resultContainer.click(function() {
+		        // 어트랙션 상세 페이지로 이동
+		        window.location.href = '/ddstudio/activity/attractiondetail.do?seq=' + selectedAttraction.attraction_seq;
+		    });
 
-			// 최종 선택 어트랙션
-			$('#worldcup-container').append(resultContainer);
-
+		    // #worldcup-container에 추가
+		    $('#worldcup-container').append(resultContainer);
 		}
+
 	</script>
 </body>
 </html>

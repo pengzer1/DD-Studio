@@ -316,4 +316,30 @@ public class TestDAO {
 		return list;
 	}
 
+	public ArrayList<CourseDTO> getCourseList() {
+		
+		ArrayList<CourseDTO> list = new ArrayList<CourseDTO>();
+
+		try {
+			String sql = "select * from tblCourse";
+
+			stat = conn.createStatement();
+
+			// 쿼리 실행 및 결과 처리
+			rs = stat.executeQuery(sql);
+
+			while (rs.next()) {
+				CourseDTO dto = new CourseDTO();
+				dto.setCourse_seq(rs.getString("course_seq"));
+				dto.setName(rs.getString("name"));
+				dto.setImg(rs.getString("img"));
+
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 }

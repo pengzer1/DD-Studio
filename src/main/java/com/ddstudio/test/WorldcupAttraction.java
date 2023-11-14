@@ -18,8 +18,8 @@ import org.json.simple.JSONObject;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.test.repository.TestDAO;
 
-@WebServlet("/test/worldcupdetail.do")
-public class WorldcupDetail extends HttpServlet {
+@WebServlet("/test/worldcup/attraction/detail.do")
+public class WorldcupAttraction extends HttpServlet {
 
 	private ArrayList<AttractionDTO> attractionList;
 
@@ -54,7 +54,7 @@ public class WorldcupDetail extends HttpServlet {
 		req.setAttribute("selectedTwoAttractions", selectedTwoAttractions);
 
 		// JSP로 포워딩
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/detail.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/attraction/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
 
