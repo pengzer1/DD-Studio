@@ -9,4 +9,6 @@ public class AttractionCloseDTO {
 	private String start_date;
 	private String end_date;
 	private String attraction_seq;
+	
+	private String name;
 }

@@ -28,8 +28,6 @@ cursor: pointer;
 transform: scale(1.1);
 }
 
-.item:
-
 p {
 	color: #444;
 }

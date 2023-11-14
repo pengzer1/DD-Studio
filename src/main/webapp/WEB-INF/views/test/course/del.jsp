@@ -106,7 +106,7 @@ select option:checked {
 					$(result).each(
 							function(index, item) {
 								var option = $('<option>').val(item.course_seq)
-										.text(item.course_name);
+										.text(item.name);
 								select.append(option);
 							});
 
@@ -144,7 +144,7 @@ select option:checked {
 
 			var delCourseSeq = $('#name').val();
 
-			console.log(delCourseSeq);
+			// console.log(delCourseSeq);
 			$.ajax({
 				type : 'POST',
 				url : '/ddstudio/test/coursedel.do',
