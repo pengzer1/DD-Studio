@@ -86,7 +86,14 @@ CREATE TABLE tblMBTI (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��?��?��?��번호 */
 );
 
-/* 월드컵 */
+drop table tblWorldcup;
+--/* 월드컵 */
+--create table tblWorldcup (
+--	worldcup_seq number primary key,
+--	select_seq number,
+--	remain_seq number
+--);
+--
 
 select * from tblCourse order by course_seq;
 select * from TBLATTRACTION;
@@ -105,6 +112,7 @@ from tblAttraction a
 left join tblAttractionImg ai
 on a.attraction_seq = ai.attraction_seq;
 
+select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a;
 select * from vwAttractionList order by attraction_seq;
 
 select * from tblMBTI where mbti = 'INFJ';

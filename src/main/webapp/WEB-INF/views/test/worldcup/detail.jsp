@@ -12,6 +12,10 @@
 	display: flex;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 .item {
 	width: 50%;
 	height: 600px;
@@ -19,12 +23,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #CCC; /* transparent */
+	background-color: transparent;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 20px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease;
+	transition: all 0.35s ease;
 	transform-origin: center bottom;
 	cursor: pointer;
 	font-size: 40px;
@@ -46,15 +50,27 @@
 }
 
 #item1:hover {
-	/* transform: scale(1.02); */
-	transform: rotate(-10deg) translateY(5px);
-	opacity: 0.2; /* 투명도 조절 */
+  transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
+  opacity: 0.25;
+  filter: brightness(0.8);
 }
 
 #item2:hover {
-	/* transform: scale(1.02); */
-	transform: rotate(10deg) translateY(5px);
-	opacity: 0.2; /* 투명도 조절 */
+  transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
+  opacity: 0.25;
+  filter: brightness(0.8);
+}
+
+#itme3 {
+    
+}
+
+#result-message {
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
+    color: #3498db;
+    font-weight: bold;
 }
 
 .item h3 {
@@ -75,6 +91,7 @@
 #worldcup-container {
 	width: 100%;
 	display: flex;
+    justify-content: center;
 }
 </style>
 </head>
@@ -87,8 +104,10 @@
 			<h2>DD 월드컵</h2>
 		</div>
 
+		<div id="result-info"></div>
 		<div id="worldcup-container" class="button-container">
 			<!-- 어트랙션을 출력 -->
+			
 			<c:forEach var="attraction" items="${selectedTwoAttractions}"
 				varStatus="loop">
 				<div class="item" id="item${loop.index + 1}"
@@ -116,13 +135,13 @@
 				type : 'POST',
 				url : '/ddstudio/test/worldcupdetail.do',
 				data : {
-					'isNewSession' : true
+					'isNewSession': true
 				},
 				success : function(data) {
-					console.log('세션 초기화 완료:', data);
+					// console.log('세션 초기화', data);
 				},
 				error : function(a, b, c) {
-					console.error('세션 초기화 에러:', a, b, c);
+					console.error(a, b, c);
 				}
 			});
 		}
@@ -132,7 +151,7 @@
 				type : 'POST',
 				url : '/ddstudio/test/worldcupdetail.do',
 				data : {
-					'attractionSeq' : attractionSeq
+					'attractionSeq': attractionSeq
 				},
 				success : function(data) {
 					console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
@@ -141,8 +160,13 @@
 					// 전역 변수에 할당
 					selectedTwoAttractions = data.selectedTwoAttractions;
 
-					// refreshScreen 함수 호출
-					refreshScreen();
+					// 어트랙션 정보에 따라 화면 갱신
+		            if (selectedTwoAttractions.length > 1) {
+		                refreshScreen();
+		            } else {
+		                resultScreen(selectedTwoAttractions[0]);
+		                console.log()
+		            }
 				},
 				error : function(a, b, c) {
 					console.error(a, b, c);
@@ -151,10 +175,11 @@
 		}
 
 		function refreshScreen() {
-			console.log('refreshScreen 함수 호출');
+			//console.log('refreshScreen 함수 호출');
 
 			// 모든 어트랙션을 화면에 갱신
 			$('#worldcup-container').empty();
+			
 			for (let i = 0; i < selectedTwoAttractions.length; i++) {
 				const attraction = selectedTwoAttractions[i];
 				const imgUrl = attraction.img ? '/ddstudio/asset/image/'
@@ -172,6 +197,27 @@
 						'<h3>' + attraction.name + '</h3>');
 				$('#worldcup-container').append(item);
 			}
+		}
+		
+		function resultScreen(selectedAttraction) {
+		    // console.log('resultScreen 함수 호출');
+
+		    // 어트랙션을 화면에 갱신
+		    $('#worldcup-container').empty();
+
+		    const resultContainer = $('<div class="item result-container" id="item3" style="cursor: default !important;">');
+		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/' + selectedAttraction.img + '\');"></div>');
+		    const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
+		    const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>');
+
+		    // 메시지
+		    $('#result-info').append(message);
+		    
+		    resultContainer.append(imgContainer).append(infoname);
+
+		    // 최종 선택 어트랙션
+		    $('#worldcup-container').append(resultContainer);
+
 		}
 	</script>
 </body>

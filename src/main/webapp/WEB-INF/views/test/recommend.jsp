@@ -44,10 +44,10 @@
 		<div id="content">
 		
 			<div class="munti-content-container">
-				<div class="item" onclick="location.href='/ddstudio/test/preferencetest.do'">
+				<!-- <div class="item" onclick="location.href='/ddstudio/test/preferencetest.do'">
 					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
 					<div>취향 테스트</div>
-				</div>
+				</div> -->
 				<div class="item" onclick="location.href='/ddstudio/test/worldcup.do'">
 					<div style="background-image: url('/ddstudio/asset/image/chromi.png');"></div>
 					<div>DD 월드컵</div>
