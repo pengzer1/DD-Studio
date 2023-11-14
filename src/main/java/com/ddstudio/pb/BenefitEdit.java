@@ -76,7 +76,6 @@ public class BenefitEdit extends HttpServlet {
 
             int result = dao.benefitEdit(dto);
 
-            System.out.println(result);
 
             if (result == 1) {
                 resp.sendRedirect("/ddstudio/pb/benefitdetail.do?seq=" + seq1);

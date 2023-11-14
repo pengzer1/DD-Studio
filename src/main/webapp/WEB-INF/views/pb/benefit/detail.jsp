@@ -53,7 +53,7 @@
 
     <div id="title" style="margin-top:123px;">
         <h2>혜택명</h2>
-        <p>내용을 입력하세요</p>
+        <p>ㅇㅇ</p>
     </div>
 
     <c:if test="${not empty email && lv == 2}">
