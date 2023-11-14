@@ -50,7 +50,7 @@ public class PriceEdit extends HttpServlet {
         PriceDTO dto = new PriceDTO();
         dto.setTicket_type(ticketType);
         dto.setAge(age);
-        dto.setPrice(Integer.parseInt(price));
+        dto.setPrice((price));
 
         int result = dao.edit(dto);  // 해당  티켓타입과 , 나이가 같으면 가격 수정
 

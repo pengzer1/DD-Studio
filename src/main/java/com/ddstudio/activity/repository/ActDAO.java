@@ -12,7 +12,7 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.AttractionImgDTO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.guide.model.LocationDTO;
+import com.ddstudio.activity.model.LocationDTO;
 
 
 public class ActDAO {

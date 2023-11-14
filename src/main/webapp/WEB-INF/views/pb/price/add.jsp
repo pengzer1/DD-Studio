@@ -26,6 +26,14 @@
             text-align: right;
             padding-right: 10px;
         }
+
+        .vertical tr > td {
+            width: 400px;
+        }
+        .vertical tr > td > input{
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -62,11 +70,12 @@
 
     </form>
 
-</main>
+
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 <!-- Footer -->
 
 <script>
+
 
 </script>
 </body>

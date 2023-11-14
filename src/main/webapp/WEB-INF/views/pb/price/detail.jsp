@@ -28,9 +28,9 @@
     </style>
 </head>
 <body>
-<!-- Template.jsp -->
+<!-- Template.jsp --ㅈ>
 <%@ include file="/WEB-INF/views/inc/header.jsp"%>
-<!-- Header -->
+<-- Header -->
 
 <main id="main">
     <div id="title">
@@ -49,11 +49,15 @@
     <div id="sub-title">
         <div class="container">
             <h3>개인</h3>
+            <c:if test="${not empty email && lv == 2}">
+
             <div id="btn1" class="btn">
-                <button type="button" class="add" onclick="location.href='ㅈ/ddstudio/pb/priceadd.do';">추가</button>
+                <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceadd.do';">추가</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/pricedel.do';">삭제</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/priceedit.do';">수정</button>
             </div>
+            </c:if>
+
         </div>
     </div>
 
@@ -93,11 +97,14 @@
 
         <div id="sub-title1" align="center">
             <h3>단체</h3>
+<c:if test="${not empty email && lv == 2}">
+
             <div id="btn2" class="btn">
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-priceadd.do';">추가</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-pricedel.do';">삭제</button>
                 <button type="button" class="add" onclick="location.href='/ddstudio/pb/group-priceedit.do';">수정</button>
             </div>
+</c:if>
         </div>
 
 

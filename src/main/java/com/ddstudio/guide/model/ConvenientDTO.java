@@ -1,8 +1,6 @@
 package com.ddstudio.guide.model;
 
-import lombok.Data;
 
-@Data
 public class ConvenientDTO {
 	private String convenient_seq;
 	private String name;
