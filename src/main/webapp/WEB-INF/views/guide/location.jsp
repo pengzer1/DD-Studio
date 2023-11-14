@@ -112,7 +112,7 @@
 		
 		//
 		let imageSrc = '/ddstudio/asset/image/marker/놀이공원.png'; // 마커이미지의 주소    
-    	let imageSize = new kakao.maps.Size(50, 50); // 마커이미지의 크기
+    	let imageSize = new kakao.maps.Size(100, 100); // 마커이미지의 크기
     	let imageOption = { }; 
     	
     	console.log(imageSrc);

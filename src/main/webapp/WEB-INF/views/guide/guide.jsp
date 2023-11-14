@@ -62,36 +62,15 @@
 		</div>
 
 		<div id="container">
-			<div style="font-size:20px; font-weight:bold; padding-bottom:8px;" id="come">
-				<input type="button" value="어트랙션" id="attraction">
-				<input type="button" value="편의시설" id="conveninet">
+			<div style="font-size:20px; font-weight:bold; padding-bottom:8px;" id="guidemap">
+				<select id="choice" name="choice">
+					<option id="attraction" value="${location.seq}">어트랙션</option>
+					<option id="convenient" value="${location.seq}">편의시설</option>
+				</select>
 			</div>
 			<div id="total">
 				<div class="left">
-					<p><i class="fa-solid fa-plane"></i> 비행기 이용시</p>
-						<ul>
-							<li>
-								<p>인천 국제공항 <i class="fa-solid fa-arrow-right"></i> 제주 공항</p>
-							</li>
-							<li>
-								<p>김포 공항 <i class="fa-solid fa-arrow-right"></i> 제주 공항</p>
-							</li>
 						
-						</ul>
-				</div>
-				<div class="right">
-					<p><i class="fa-solid fa-ship"></i> 배 이용시</p>
-					<ul>
-							<li>
-								<p> 부산항 여객터미널 <i class="fa-solid fa-arrow-right"></i> 제주</p>
-							</li>
-							<li>
-								<p> 여수항 여객터미널 <i class="fa-solid fa-arrow-right"></i> 제주</p>
-							</li>
-							<li>
-								<p>마산항 여객터미널 <i class="fa-solid fa-arrow-right"></i> 제주</p>
-							</li>
-						</ul>
 				</div>
 			</div>
 		</div>
