@@ -12,4 +12,8 @@ public class GiftShopDTO {
 	private String lat;
 	private String lng;
 	private String img;
+	private String location_seq;
+	
+	private String startTime;
+	private String endTime;
 }

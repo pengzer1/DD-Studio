@@ -22,6 +22,8 @@ public class GiftshopDetail extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String seq = req.getParameter("seq");
+		
 		ShopDAO dao = new ShopDAO();
 		
 		GiftShopDTO dto = dao.giftShopDetail(req.getParameter("seq"));
@@ -32,6 +34,7 @@ public class GiftshopDetail extends HttpServlet {
 		
 		ArrayList<ItemDTO> list = dao.itemList(req.getParameter("seq"));
 		
+		req.setAttribute("seq", seq);
 		req.setAttribute("dto", dto);
 		req.setAttribute("closeDTO", closeDTO);
 		req.setAttribute("list", list);
