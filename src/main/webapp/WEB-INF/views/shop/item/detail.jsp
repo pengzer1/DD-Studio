@@ -161,11 +161,11 @@ ul {
 			<c:if test="${not empty lv && lv == 2}">
 				<div id="admin-btn">
 					<button type="button" id="del-btn"
-						onclick="location.href='/ddstudio/shop/restaurant/del.do?seq=${dto.item_seq}'">
+						onclick="location.href='/ddstudio/shop/item/del.do?seq=${dto.item_seq}'">
 						<i class="fa-solid fa-trash"></i>삭제
 					</button>
 					<button type="button" id="edit-btn"
-						onclick="location.href='/ddstudio/shop/restaurant/edit.do?seq=${dto.item_seq}'">
+						onclick="location.href='/ddstudio/shop/item/edit.do?seq=${dto.item_seq}'">
 						<i class="fa-solid fa-pen-to-square"></i>수정
 					</button>
 				</div>
