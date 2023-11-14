@@ -24,7 +24,8 @@
 	margin: 10px;
 	padding: 20px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease;
+	transform-origin: center bottom;
 	cursor: pointer;
 	font-size: 40px;
 	font-weight: 600;
@@ -44,8 +45,16 @@
 	background-position: center;
 }
 
-.item:hover {
-	transform: scale(1.02);
+#item1:hover {
+	/* transform: scale(1.02); */
+	transform: rotate(-10deg) translateY(5px);
+	opacity: 0.2; /* 투명도 조절 */
+}
+
+#item2:hover {
+	/* transform: scale(1.02); */
+	transform: rotate(10deg) translateY(5px);
+	opacity: 0.2; /* 투명도 조절 */
 }
 
 .item h3 {
@@ -74,84 +83,96 @@
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-        <div id="title" style="margin-top: 123px;">
-            <h2>DD 월드컵</h2>
-        </div>
+		<div id="title" style="margin-top: 123px;">
+			<h2>DD 월드컵</h2>
+		</div>
 
-        <div id="worldcup-container" class="button-container">
-            <!-- 어트랙션을 출력 -->
-            <c:forEach var="attraction" items="${selectedTwoAttractions}">
-                <div class="item" onclick="selectAttraction('${attraction.attraction_seq}')">
-                    <div class="img-container" style="background-image: url('/ddstudio/asset/image/${attraction.img}');"></div>
-                    <h3>${attraction.name}</h3>
-                </div>
-            </c:forEach>
-        </div>
-    </main>
+		<div id="worldcup-container" class="button-container">
+			<!-- 어트랙션을 출력 -->
+			<c:forEach var="attraction" items="${selectedTwoAttractions}"
+				varStatus="loop">
+				<div class="item" id="item${loop.index + 1}"
+					onclick="selectAttraction('${attraction.attraction_seq}')">
+					<div class="img-container"
+						style="background-image: url('/ddstudio/asset/image/${attraction.img}');"></div>
+					<h3>${attraction.name}</h3>
+				</div>
+			</c:forEach>
+		</div>
+	</main>
 
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
-	  <script>
-		  let selectedTwoAttractions;
-	
-		  $(document).ready(function () {
-		      // 페이지가 로드될 때 세션 초기화 요청
-		      initializeSession();
-		  });
-	
-		  function initializeSession() {
-		      $.ajax({
-		          type: 'POST',
-		          url: '/ddstudio/test/worldcupdetail.do',
-		          data: {
-		              'isNewSession': true
-		          },
-		          success: function (data) {
-		              console.log('세션 초기화 완료:', data);
-		          },
-		          error: function (a, b, c) {
-		              console.error('세션 초기화 에러:', a, b, c);
-		          }
-		      });
-		  }
-	
-		  function selectAttraction(attractionSeq) {
-		      $.ajax({
-		          type: 'POST',
-		          url: '/ddstudio/test/worldcupdetail.do',
-		          data: {
-		              'attractionSeq': attractionSeq
-		          },
-		          success: function (data) {
-		              console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
-		              console.log('남은 어트랙션:', data.remainingAttractionSeqs);
-	
-		              // 전역 변수에 할당
-		              selectedTwoAttractions = data.selectedTwoAttractions;
-	
-		              // refreshScreen 함수 호출
-		              refreshScreen();
-		          },
-		          error: function (a, b, c) {
-		              console.error(a, b, c);
-		          }
-		      });
-		  }
-	
-		  function refreshScreen() {
-		      console.log('refreshScreen 함수 호출');
-	
-		      // 모든 어트랙션을 화면에 갱신
-		      $('#worldcup-container').empty();
-		      for (let i = 0; i < selectedTwoAttractions.length; i++) {
-		          const attraction = selectedTwoAttractions[i];
-		          const imgUrl = attraction.img ? '/ddstudio/asset/image/' + attraction.img : '쌍용열차.jpg';
-		          const item = $('<div class="item" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
-		              .append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-		              .append('<h3>' + attraction.name + '</h3>');
-		          $('#worldcup-container').append(item);
-		      }
-		  }
-    </script>
+	<script>
+		let selectedTwoAttractions;
+
+		$(document).ready(function() {
+			// 페이지가 로드될 때 세션 초기화
+			initializeSession();
+		});
+
+		function initializeSession() {
+			$.ajax({
+				type : 'POST',
+				url : '/ddstudio/test/worldcupdetail.do',
+				data : {
+					'isNewSession' : true
+				},
+				success : function(data) {
+					console.log('세션 초기화 완료:', data);
+				},
+				error : function(a, b, c) {
+					console.error('세션 초기화 에러:', a, b, c);
+				}
+			});
+		}
+
+		function selectAttraction(attractionSeq) {
+			$.ajax({
+				type : 'POST',
+				url : '/ddstudio/test/worldcupdetail.do',
+				data : {
+					'attractionSeq' : attractionSeq
+				},
+				success : function(data) {
+					console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
+					console.log('남은 어트랙션:', data.remainingAttractionSeqs);
+
+					// 전역 변수에 할당
+					selectedTwoAttractions = data.selectedTwoAttractions;
+
+					// refreshScreen 함수 호출
+					refreshScreen();
+				},
+				error : function(a, b, c) {
+					console.error(a, b, c);
+				}
+			});
+		}
+
+		function refreshScreen() {
+			console.log('refreshScreen 함수 호출');
+
+			// 모든 어트랙션을 화면에 갱신
+			$('#worldcup-container').empty();
+			for (let i = 0; i < selectedTwoAttractions.length; i++) {
+				const attraction = selectedTwoAttractions[i];
+				const imgUrl = attraction.img ? '/ddstudio/asset/image/'
+						+ attraction.img : '쌍용열차.jpg';
+
+				// 동적으로 id 생성
+				const itemId = 'item' + (i + 1);
+
+				const item = $(
+						'<div class="item" id="' + itemId
+								+ '" onclick="selectAttraction('
+								+ attraction.attraction_seq + ')">').append(
+						'<div class="img-container" style="background-image: url(\''
+								+ imgUrl + '\');"></div>').append(
+						'<h3>' + attraction.name + '</h3>');
+				$('#worldcup-container').append(item);
+			}
+		}
+	</script>
 </body>
 </html>
