@@ -58,7 +58,14 @@
 	}
 	
 	.value > input {
-		width: 120px;
+		width: 100px;
+		height: 40px;
+		border: 2px solid black;
+		border-radius: 7px;
+	}
+	
+	.value > input::placeholder {
+		text-align: center;
 	}
 	
 	/* 예약/취소 버튼 관련 CSS */
@@ -82,7 +89,7 @@
 	
 	.select-time-container > button {
 		background-color: #FFFFFF;
-		border: 1;
+		border: 2px solid black;
 		border-radius: 7px;
 		padding: 10px;
 	}
@@ -106,14 +113,14 @@
 		<div id="content">
 			
 			<form method="POST" action="/ddstudio/activity/attractionreservation.do" id="attractionreservationForm">
-			<div class="reserve-container">
+				<div class="reserve-container">
 					<div class="reserve-box">
 						<div class="label">시간 선택</div>
 						<div class="value select-time-container">
 							<c:forEach var="i" begin="10" end="20">
 								<c:if test="${now < i}">
 									<!-- value에 보내는 값이 tblAttractionBook의 attraction_book_seq -->
-									<button type="button" name="time" value="${i-9}" class="reserve-btn">${i}:00</button>
+									<button type="button" value="${i-9}" class="reserve-btn">${i}:00</button>
 								</c:if>
 							</c:forEach>
 						</div>
@@ -121,20 +128,20 @@
 					<div class="reserve-box">
 						<div class="label">인원 선택</div>
 						<div class="value">
-							<input type="number" placeholder="인원(숫자)" min="1" max="3" name="capacity"/>
+							<input type="number" placeholder="인원(숫자)" min="1" max="3" name="capacity" required/>
 						</div>
 					</div>
-					<input type="hidden" name="seq" value="${dto.attraction_seq}" required/>
-					<input type="hidden" name="timeBtn" id="timeBtn" />
-			</div>
-			
-			
-			<div id="reservation-content">
+					<input type="hidden" name="seq" value="${dto.attraction_seq}"/>
+					<input type="hidden" name="time" id="time" />
+				</div>
+				
+				
+				<div id="reservation-content">
 					<div class="btn">
 						<button><i class="fa-solid fa-calendar-check"></i> 예약</button>
 						<button type="button" onclick="location.href= '/ddstudio/activity/attractiondetail.do?seq=' + ${dto.attraction_seq};"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button>
 					</div>
-			</div>
+				</div>
 			</form>
 			
 			
@@ -148,12 +155,8 @@
 	
 		let flag = 0;
 		
-	
-		
-		
-		
 		$('.reserve-btn').eq(0).css('background-color', 'gold');
-		$('#timeBtn').val($('.reserve-btn').eq(0).val());
+		$('#time').val($('.reserve-btn').eq(0).val());
 	
 		$('.reserve-btn').click(function() {
 		
@@ -161,14 +164,7 @@
 
 			$(this).css('background-color', 'gold');
 			
-			//$(event.target).css('background-color', 'gold');
-			//$(this).css('border', '3px solid black');
-			//$(event.srcElement).css('border-radius', '7px');
-			//$(event.srcElement).css('background-color', 'gold');
-			//$(event.currentTarget).css('background-color', 'gold');
-			//$(event.target.nodeName).css('border-radius', '7px');
-			
-			$('#timeBtn').val($(this).val());
+			$('#time').val($(this).val());
 
 		});
 		
