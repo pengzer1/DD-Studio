@@ -25,6 +25,7 @@ public class SearchHashtag extends HttpServlet {
 
             System.out.println(hashtagList);
             // 해시태그 목록을 JSON 형식으로 변환
+            
             StringBuilder hashtagJson = new StringBuilder("[");
             for (int i = 0; i < hashtagList.size(); i++) {
                 hashtagJson.append("\"").append(hashtagList.get(i)).append("\"");
