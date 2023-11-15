@@ -28,7 +28,7 @@ public class Guide extends HttpServlet {
 		//1.
 		ConvenientDAO dao = new ConvenientDAO();
 		
-		ArrayList<LocationDTO> list = dao.listPlace();
+		//ArrayList<LocationDTO> list = dao.listPlace();
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/detail.jsp");

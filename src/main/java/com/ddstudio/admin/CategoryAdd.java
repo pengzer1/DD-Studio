@@ -2,6 +2,7 @@ package com.ddstudio.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,12 @@ import com.ddstudio.admin.repository.CategoryDAO;
 public class CategoryAdd extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		CategoryDAO dao = new CategoryDAO();
+		
+		ArrayList<CategoryDTO> list = dao.list();
+		
+		req.setAttribute("list", list);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/category/add.jsp");
 		dispatcher.forward(req, resp);
 	}
