@@ -189,10 +189,9 @@ public class UserDAO {
 
 	// 검색 메서드
     public ArrayList<SearchDTO> search(String searchWord) {
-        ArrayList<SearchDTO> results = new ArrayList<>();
-
+        ArrayList<SearchDTO> searchResult = new ArrayList<>();
+        
         try {
-            // 모든 컬럼을 대상으로 검색
             String sql = "SELECT * FROM vwSearch WHERE "
                     + "ATTRACTION_NAME LIKE ? OR "
                     + "THEME_NAME LIKE ? OR "
@@ -222,16 +221,16 @@ public class UserDAO {
             
             pstat = conn.prepareStatement(sql);
 
-            // 모든 컬럼에 대해 검색어 바인딩
-            for (int i = 1; i <= 27; i++) {
+            // 모든 컬럼에 대해 검색
+            for (int i = 1; i <= 25; i++) {
                 pstat.setString(i, "%" + searchWord + "%");
             }
 
-            rs = pstat.executeQuery();
+			rs = pstat.executeQuery();
 
             while (rs.next()) {
                 SearchDTO result = new SearchDTO();
-                // 필요한 필드 추가
+                
                 result.setAttractionName(rs.getString("ATTRACTION_NAME"));
                 result.setThemeName(rs.getString("THEME_NAME"));
                 result.setMbtiResult(rs.getString("MBTI_RESULT"));
@@ -258,14 +257,16 @@ public class UserDAO {
                 result.setFaqQuestion(rs.getString("FAQ_QUESTION"));
                 result.setFaqAnswer(rs.getString("FAQ_ANSWER"));
 
-                results.add(result);
+                //System.out.println("ATTRACTION_NAME: " + rs.getString("ATTRACTION_NAME"));
+                
+                searchResult.add(result);
             }
         } catch (Exception e) {
-            System.out.println("SearchDAO.search()");
+            System.out.println("UserDAO.search()");
             e.printStackTrace();
         }
 
-        return results;
+        return searchResult;
     }
 
 }

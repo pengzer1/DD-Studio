@@ -121,71 +121,32 @@ SELECT
     NULL, null, name, type, NULL, NULL, NULL
 FROM tblBenefit;
 
--- 전체 검색 정보
+-- 전체 검색
 drop view vwSearch;
 select * from vwSearch;
 
 CREATE OR REPLACE VIEW vwSearch AS
 SELECT
-    attraction_name,
-    theme_name,
-    mbti_result,
-    mbti_mbti,
-    course_name,
-    hashtag_name,
-    restaurant_name,
-    restaurant_menu,
-    category_name,
-    shop_name,
-    shop_info,
-    item_name,
-    item_info,
-    convenient_name,
-    festival_name,
-    festival_info,
-    theater_name,
-    movie_name,
-    null as notice_subject,
-    null as notice_content,
-    null as benefit_name,
-    null as benefit_type,
-    null as faq_category,
-    null as faq_question,
-    null as faq_answer
+    attraction_name, theme_name, mbti_result, mbti_mbti, course_name, hashtag_name,
+    restaurant_name, restaurant_menu, category_name, shop_name, shop_info, item_name,
+    item_info, convenient_name, festival_name, festival_info, theater_name, movie_name,
+    null notice_subject, null notice_content, null benefit_name, null benefit_type,
+    null faq_category, null faq_question, null faq_answer
 FROM vwSearchLocation
 UNION ALL
 SELECT
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    notice_subject,
-    notice_content,
-    benefit_name,
-    benefit_type,
-    faq_category,
-    faq_question,
-    faq_answer
+    null, null, null, null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null,
+    notice_subject, notice_content, benefit_name, benefit_type, faq_category,
+    faq_question, faq_answer
 FROM vwSearchInfo;
 
 
+SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%';
 
-
-
+SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' or THEME_NAME LIKE '%테마%';
+SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE ? OR THEME_NAME LIKE ? or FAQ_ANSWER LIKE ?;
+                    
 --임시(삭제예정)
 CREATE OR REPLACE VIEW vwSearchInfo AS
 SELECT 
@@ -217,31 +178,6 @@ select * from tblBenefit;
 select * from tblFAQ;
 select * from tblTicket;
 select * from tblLostCenter;
-
-
-CREATE OR REPLACE view vsSearchRestaurant
-AS
-SELECT
-
-LEFT JOIN 
-ON 
-LEFT JOIN 
-ON 
-LEFT JOIN 
-ON 
-
-
-
-
-
-LEFT JOIN 
-ON 
-LEFT JOIN 
-ON 
-LEFT JOIN 
-ON 
-LEFT JOIN 
-ON 
 
 -- dml
 -- course
