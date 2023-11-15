@@ -333,7 +333,7 @@
 		
 		
 		<div class="location">
-			<div class="label">위치</div>
+			<div class="label">위치 정보</div>
 			<div class="value location">
 				<div id="map" style="width:768px;height:400px;"></div>
 			</div>
@@ -353,7 +353,7 @@
 		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	    
 	    const options = { //지도를 생성할 때 필요한 기본 옵션
-	       center : new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}), //지도의 중심좌표.
+	       center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 	       level : 10 //지도의 레벨(확대, 축소 정도)
 	    };
 	

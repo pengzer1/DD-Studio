@@ -51,20 +51,6 @@ public class Attraction extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//- 선택한 운휴일정(조건) 가져오기(정상운영/운휴)
-//		String close = req.getParameter("close");
-//		
-//		ActDAO dao = new ActDAO();
-//			
-//		ArrayList<AttractionDTO> list = dao.checkAttCloseList(close);
-//	
-//		//데이터 전송 > 'search'란 조건 보내서 jsp에서 search가 y일 경우에는 조건 검색이 적용된 어트랙션이 보이게 하기
-//		req.setAttribute("list", list);
-//		req.setAttribute("close", close);
-//		
-//		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/list.jsp");
-//		dispatcher.forward(req, resp);
-		
 	
 	}
 }

@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 public class AttractionHashtag extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//AttractionHashtag.java
+		
+		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attractionhashtag.jsp");
 		dispatcher.forward(req, resp);
