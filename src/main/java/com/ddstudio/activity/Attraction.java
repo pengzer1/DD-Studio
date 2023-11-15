@@ -9,14 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
-import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
-import com.ddstudio.admin.model.HashTagDTO;
-import com.ddstudio.admin.model.ThemeDTO;
-import com.ddstudio.activity.model.LocationDTO;
 
 @WebServlet("/activity/attraction.do")
 public class Attraction extends HttpServlet {
@@ -25,43 +21,50 @@ public class Attraction extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//Attraction.java
-
-		//Step 1. 페이지 구분 없이 일단 어트랙션 테이블, 어트랙션 이미지 테이블 가지고 와서 jsp로 보내주기
+		//- 조건 검색기능 O > 페이지 구분 X (조건 검색: 운휴일정)
 		
+		req.removeAttribute("close");
+		String close = req.getParameter("close");
 		
-		//tkfkdgo 아래 지워버려 없어도 됑!
-		//0. 세션객체에 관리자 lv 담아서 전달하기
-//		HttpSession session = req.getSession();
-//		
-//		String lv = session.getAttribute("lv").toString();
-//		
-//		session.setAttribute("lv", lv);
+		if (close == null || close.equals("")) {
+			close = "";
+		}
 		
+		//close = ""
+		//close = "open"
+		//close = "close"
+		
+		//어트랙션 정보 가져오기
 		ActDAO dao = new ActDAO();
 
-		ArrayList<AttractionDTO> list = dao.attractionList();
+		ArrayList<AttractionDTO> list = dao.attractionList(close);
 
-		//조건 검색용
-		//1. 테마 가져오기
-		ArrayList<ThemeDTO> themeList = dao.themeList();
-
-		//2. 위치 가져오기
-		ArrayList<LocationDTO> locationList = dao.locationList();
-		
-		//3. 운영/운휴일정 가져오기
-		
-		
 		//4. 데이터 전송
 		req.setAttribute("list", list);
-		req.setAttribute("themeList", themeList);
-		req.setAttribute("locationList", locationList);
-		
-		
-		
-		
+		req.setAttribute("close", close);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/list.jsp");
 		dispatcher.forward(req, resp);
 
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		//- 선택한 운휴일정(조건) 가져오기(정상운영/운휴)
+//		String close = req.getParameter("close");
+//		
+//		ActDAO dao = new ActDAO();
+//			
+//		ArrayList<AttractionDTO> list = dao.checkAttCloseList(close);
+//	
+//		//데이터 전송 > 'search'란 조건 보내서 jsp에서 search가 y일 경우에는 조건 검색이 적용된 어트랙션이 보이게 하기
+//		req.setAttribute("list", list);
+//		req.setAttribute("close", close);
+//		
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/list.jsp");
+//		dispatcher.forward(req, resp);
+		
+	
 	}
 }

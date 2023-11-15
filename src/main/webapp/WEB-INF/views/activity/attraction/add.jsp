@@ -7,53 +7,34 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
+
 <style>
-	#attraction-add {
-		text-align: center;
-		margin-top: 150px;
+
+	#cancel {
+	margin-right: 15px;
 	}
 	
-	#add-line {
-		color: #777;
+	#duplicate-check {
+		padding: 0;
 	}
 	
-	/* #add-content {
-		width: 800px;
-		background-color: gold;
-	} */
-	
-	.add-table {
-		margin: 0 30%;
-		border: 0px solid #777;
-		border-collapse: collapse;
-		width: 800px;	
+	select {
+	   width: 85%;
+	   padding: 10px;
+	   font-size: 14px;
+	   border: 1px solid #ccc;
+	   border-radius: 4px;
+	   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	   appearance: none;
+	   -webkit-appearance: none;
+	   background-position: right 10px center;
+	   background-repeat: no-repeat;
 	}
 	
-	.add-table th, .add-table td {
-		border: 0px solid #777;
+	select option:checked {
+	   background-color: #ddd;
 	}
-	
-	.add-table th {
-		text-align: left;
-		width: 13%;
-	}
-	
-	.add-table td {
-		text-align: left;
-		width: 60%;
-	}
-	
-	.add-table input {
-		width: 100%;
-		height: 100%;
-	}
-	
-	
-	.add-table textarea {
-		width: 100%;
-		height: 100%;
-	}
-	
 	
 </style>
 </head>
@@ -64,106 +45,189 @@
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<!-- main -->
-	<main id="attraction-add">
-	
-		<div>
-			<h2>어트랙션 등록하기</h2>
-		</div>
+	<main id="main">
+	<h1>어트랙션 추가</h1>
+
+	<div class="sub-title">
+		<p>어트랙션 정보 입력</p>
+	</div>
 		
-		<hr id="add-line"/>
-		
-		<div id="sub-title">
-			<p>신규 어트랙션 등록</p>
-		</div>
-		
-		<!-- <div id="add-content"> -->
-			<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data" class="add-form">
-				<table class="add-table">
-					<tbody>
+	<div id="content">
+			<div class="wide-item">
+				<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data">
+					<table>
+						<!-- 어트랙션명 필드 -->
 						<tr>
 							<th class="required">어트랙션명</th>
 							<td>
-								<div>
-									<input type="text" name="name"/>
+								<div class="name">
+									<input type="text" name="name" id="name" required
+										class="middle-flat">
 								</div>
 							</td>
 						</tr>
+						<!-- 탑승 인원 필드 -->
 						<tr>
-							<th class="required">운영시간</th>
+							<th class="required">탑승 인원</th>
 							<td>
 								<div>
-									<input type="text" name="time"  placeholder="HH:MM - HH:MM 형식으로 작성해주세요."/>
+									<input type="number" name="capacity" id="capacity" min="1" required
+										class="middle-flat">
 								</div>
 							</td>
-							<!-- 올바르지 않은 형식을 입력 시 warning message가 출력될 부분 -->
-							<td></td>
 						</tr>
+						<!-- 이용 정보 필드 -->
 						<tr>
-							<th class="required">탑승인원</th>
-							<td>
-								<div>
-									<input type="number" name="capacity"  placeholder="숫자 형식으로 작성해주세요." min="1" />
-								</div>
-							</td>
-							<!-- 올바르지 않은 형식을 입력 시 warning message가 출력될 부분 -->
-							<td></td>
-						</tr>
-						<tr>
-							<th>이용정보</th>
+							<th>이용 정보</th>
 							<td>
 								<div>
 									<textarea name="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
 								</div>
 							</td>
 						</tr>
+						<!-- 위치 필드 -->
 						<tr>
 							<th class="required">위치</th>
 							<td>
-								<select name="location" id="location-select" class="selectbox">
-									<c:forEach items="${locationList}" var="dto">
-									<option value="${dto.info}">${dto.info}</option>
-									</c:forEach>
-								</select>
+								<div id="total-map">
+									<div>
+										<div id="map" class="middle-flat" style="height: 380px;"></div>
+									</div>
+								</div>
 							</td>
 						</tr>
+						<!-- 해시태그 필드 -->
 						<tr>
-							<th>테마</th>
+							<th class="required">해시태그</th>
 							<td>
-								<select name="theme" id="theme-select" class="selectbox">
-									<c:forEach items="${themeList}" var="dto">
-									<option value="${dto.name}">${dto.name}</option>
-									</c:forEach>
-								</select>
+								<div class="middle-flat">
+									<input type="text" name="hashtag" id="hashtag"/>
+									<button id="hashtagBtn">등록</button>
+								</div>
+								<!-- 해시태그 결과 출력용 -->
+								<div id="hashtag-result"></div>
 							</td>
 						</tr>
+						<!-- 이미지 필드 -->
 						<tr>
-							<th>해시태그</th>
+							<th class="required">이미지</th>
 							<td>
-								<input type="text" name="hashtag" id="hashtag-text"/>
-								<%-- <select name="hashtag" id="hashtag-select" class="selectbox">
-									<c:forEach items="${hashtagList}" var="dto">
-									<option value="${dto.name}">${dto.name}</option>
-									</c:forEach>
-								</select> --%>
+								<input type="file" name="images" id="images" multiple>
 							</td>
-							<!-- 입력받은 해시태그가 출력될 부분 -->
-							<td></td>
 						</tr>
 						<tr>
-							<th>이미지</th>
-							<td><input type="file" name="img"/></td>
+							<th></th>
+							<td>
+								<div class="button-container">
+									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
+									<!-- <div id="ok-message"></div> -->
+									<button type="submit" id="join" class="check button" disabled>추가</button>
+									<button type="button" id="cancel" class="button"
+										onclick="location.href='/ddstudio/shop/restaurant.do';">취소</button>
+								</div>
+							</td>
 						</tr>
-					</tbody>
-				</table>
-			</form>
-		<!-- </div> -->
-		
-	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
-	<!-- Footer -->
+					</table>
+					<input type="hidden" name="lng" id="lng"> <input
+						type="hidden" name="lat" id="lat">
 
-	<script>
+				</form>
+			</div>
+		</div>
+	</main>	
 		
+	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
+	<script>
+		const inputs = document.querySelectorAll('input[required]');
+		const latInput = document.getElementById('lat');
+		const lngInput = document.getElementById('lng');
+		    
+		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
+		    inputs.forEach(input => {
+		        input.addEventListener('input', function() {
+		            let allFilled = true;
+		            inputs.forEach(requiredInput => {
+		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
+		                if (requiredInput.value === '') {
+		                    allFilled = false;
+		                }
+		            });
+	
+		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
+		            const joinButton = document.getElementById('join');
+		            if (allFilled) {
+		                joinButton.disabled = false;
+		            } else {
+		                joinButton.disabled = true;
+		            }
+		        });
+		    });
+		    
+		    const container = document.getElementById('map');
+			const options = {
+				center : new kakao.maps.LatLng(33.3808, 126.5450),
+				level : 10,
+				draggable : true, // 이동 금지
+				disableDoubleClick : true, // 더블클릭 확대 금지
+				scrollwheel : false
+			// 휠 확대/축소 금지
+			};
+			
+			const map = new kakao.maps.Map(container, options);
+			
+			let m = null;
+			let lat = null;
+			let lng = null;
+			
+			 kakao.maps.event.addListener(map, 'click', function(evt) {
+			        lat = evt.latLng.getLat();
+			        lng = evt.latLng.getLng();
+	
+			        if (m != null) {
+			            // 기존 마커 제거
+			            m.setMap(null);
+			        }
+	
+			        m = new kakao.maps.Marker({
+			            position: new kakao.maps.LatLng(lat, lng)
+			        });
+	
+			        m.setMap(map);
+			        
+			        latInput.value = lat;
+			        lngInput.value = lng;
+			        
+			    });
+			 
+			 
+		 //해시태그 Ajax
+		 //select a.*,(select name from tblHashtag where hashtag_seq = a.hashtag_seq)as hashtag_name from tblattractionhashtag a;
+		 //위에 테이블 확인해서 해시태그가 있으면 해당 내용 가져오고, 없으면 바로 인서트하기
+		 
+		 //해시태그 추가하기
+		 $('#hashtagBtn').click(function() {
+			 
+			 $('#hashtag-result').append("#" + $('#hashtag').val());
+			 $('#hashtag').val(''); //초기화
+			 
+		 });
+		 
+		 
+		 //해시 태그 작성 후, 엔터 입력 시 버튼 클릭되는 기능
+		 $('#hashtag').keydown(function() {
+			 if (event.keyCode == 13) {
+				 $('#hashtagBtn').click();
+			 }
+		 });
+		 
+		 //load();
+		 
+		 //어트랙션 해시 태그 목록 가져오기(Ajax) > 화면에 출력
+			 
 	</script>
 </body>
 </html>

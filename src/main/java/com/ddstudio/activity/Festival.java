@@ -23,9 +23,7 @@ public class Festival extends HttpServlet {
 		
 		//A. festival.do > 목록보기(조건: 페스티벌 기간 내 오늘 날짜 포함)
 		//- tblFestival > list 불러오기
-		//- 조건검색: 진행 여부별, 위치별 조회
-		
-		//1. 
+		//- 조건검색: 진행 여부별 조회
 		
 		ActDAO dao = new ActDAO();
 		
