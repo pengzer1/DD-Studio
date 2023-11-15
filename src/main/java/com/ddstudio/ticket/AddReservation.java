@@ -104,7 +104,13 @@ public class AddReservation extends HttpServlet {
 						}
 					}
 					
-					resp.sendRedirect("/ddstudio/index.do");
+					resp.setContentType("text/html; charset=UTF-8");
+					
+					PrintWriter writer = resp.getWriter();
+					writer.print("<script>alert('티켓 예매 완료');location.href='/ddstudio/index.do';</script>");
+					writer.close();
+					
+					return;
 					
 				} else {
 					PrintWriter writer = resp.getWriter();

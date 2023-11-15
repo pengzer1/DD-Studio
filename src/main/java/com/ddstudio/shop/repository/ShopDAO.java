@@ -517,7 +517,7 @@ try {
 
 		try {
 			
-			String sql = "select * from tblcategory order by category_seq asc";
+			String sql = "select * from tblcategory where name != '0' order by category_seq asc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
