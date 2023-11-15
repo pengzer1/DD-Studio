@@ -55,7 +55,7 @@
 			<a href="/ddstudio/index.do"
 				class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
 				<!-- <h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD Studio</h1> -->
-				<img src="/ddstudio/asset/image/DDstudio.png" alt="DD Studio Logo" style="width: 80%; height: 80%;">
+				<img src="/ddstudio/asset/image/DDstudio.png" alt="DD Studio Logo" style="width: 70%;">
 			</a>
 		</div>
 		<div class="col-lg-9">
