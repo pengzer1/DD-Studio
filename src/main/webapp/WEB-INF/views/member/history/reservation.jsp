@@ -53,6 +53,7 @@ tr:nth-child(odd) {
 
 .buttons-container {
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .button {
@@ -71,6 +72,14 @@ tr:nth-child(odd) {
 .checkbox-col {
 	text-align: center;
 }
+
+#content{
+	margin-top: 100px;
+}
+
+.wide-item>div:nth-child(2){
+	height: auto;
+}
 </style>
 </head>
 <body>
@@ -81,16 +90,10 @@ tr:nth-child(odd) {
 	<main id="main">
 
 		<div id="title">
-			<h2>예매 확인/취소</h2>
-			<br>
-			<p></p>
+			<h2>어트랙션 예약 확인/취소</h2>
 		</div>
 
 		<hr>
-
-		<div id="sub-title">
-			<h3></h3>
-		</div>
 
 		<div id="content">
 
@@ -119,13 +122,12 @@ tr:nth-child(odd) {
 								</tr>
 							</c:forEach>
 						</table>
+						<div class="buttons-container">
+							<button class="button" id="delete-button">예약 취소</button>
+						</div>
 					</div>
 				</div>
 
-				<div class="buttons-container">
-					<button class="button" id="delete-button">예약 취소</button>
-
-				</div>
 
 				<div class="wide-item">
 					<div class="name">이전 예약 내역</div>
@@ -157,44 +159,46 @@ tr:nth-child(odd) {
 	<!-- Footer -->
 
 	<script>
-		$('#delete-button').click(
-				function() {
-					var result = confirm("정말 예매를 취소하시겠습니까?");
+		$('#delete-button')
+				.click(
+						function() {
+							var result = confirm("정말 예매를 취소하시겠습니까?");
 
-					if (result) {
-						var selectedUserBookSeqs = $(
-								'input[name="reservationCheckbox"]:checked')
-								.map(function() {
-									return this.value;
-								}).get();
+							if (result) {
+								var selectedUserBookSeqs = $(
+										'input[name="reservationCheckbox"]:checked')
+										.map(function() {
+											return this.value;
+										}).get();
 
-						// 선택된 예매 정보를 서버로 전송
-						$.ajax({
-							type : 'POST',
-							url : '/ddstudio/member/attractionreservationdel.do',
-							data : {
-								book_user_seq : selectedUserBookSeqs
-							},
-							traditional : true,
+								// 선택된 예매 정보를 서버로 전송
+								$
+										.ajax({
+											type : 'POST',
+											url : '/ddstudio/member/attractionreservationdel.do',
+											data : {
+												book_user_seq : selectedUserBookSeqs
+											},
+											traditional : true,
 
-							dataType : 'json',
-							success : function(data) { //data == { "result" : 1 }
-								// 서버에서의 응답에 대한 처리
-								// 예를 들면, 삭제 후에 어떤 동작을 할지에 대한 로직을 추가할 수 있습니다.
-								if (data.result == 1) {
-									location.reload(); // 예제로 새로고침을 수행하도록 했습니다.
-								} else {
-									alert('failed');
-								}
-							},
-							error : function() {
-								alert('예매 취소에 실패했습니다.');
+											dataType : 'json',
+											success : function(data) { //data == { "result" : 1 }
+												// 서버에서의 응답에 대한 처리
+												// 예를 들면, 삭제 후에 어떤 동작을 할지에 대한 로직을 추가할 수 있습니다.
+												if (data.result == 1) {
+													location.reload(); // 예제로 새로고침을 수행하도록 했습니다.
+												} else {
+													alert('failed');
+												}
+											},
+											error : function() {
+												alert('예매 취소에 실패했습니다.');
+											}
+										});
+							} else {
+								return false;
 							}
 						});
-					} else {
-						return false;
-					}
-				});
 	</script>
 </body>
 </html>

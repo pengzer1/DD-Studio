@@ -94,6 +94,9 @@
     .btn.cancel {
       background-color: #ccc;
     }
+    #content{
+    	padding: unset;
+    }
 </style>
 </head>
 <body>
