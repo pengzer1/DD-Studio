@@ -266,5 +266,28 @@ public class UserDAO {
 
         return searchResult;
     }
+    
+    /*
+     * 해시태그 목록
+     */
+    public ArrayList<String> getHashtagList() {
+        ArrayList<String> hashtagList = new ArrayList<>();
+
+        try {
+            String query = "SELECT NAME FROM tblHashtag";
+            stat = conn.createStatement();
+            rs = stat.executeQuery(query);
+
+            while (rs.next()) {
+                String hashtagName = rs.getString("NAME");
+                hashtagList.add(hashtagName);
+            }
+        } catch (Exception e) {
+            System.out.println("UserDAO.getHashtagList()");
+            e.printStackTrace();
+        }
+
+        return hashtagList;
+    }
 
 }

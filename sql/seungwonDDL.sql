@@ -62,8 +62,6 @@ SELECT
 FROM tblLocation l
 LEFT JOIN tblAttraction a
 ON l.location_seq = a.location_seq
-LEFT JOIN tblTheme th
-ON a.theme_seq = th.theme_seq
 LEFT join tblMBTI mb
 ON a.attraction_seq = mb.attraction_seq
 LEFT JOIN tblCourse c
@@ -124,6 +122,8 @@ FROM tblBenefit;
 drop view vwSearch;
 select * from vwSearch;
 
+select * from tblHashtag;
+
 CREATE OR REPLACE VIEW vwSearch AS
 SELECT
     attraction_name, mbti_result, mbti_mbti, course_name, hashtag_name,
@@ -147,7 +147,10 @@ SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%';
 
 SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' or THEME_NAME LIKE '%테마%';
 SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' OR THEME_NAME LIKE '%지브리%' or FAQ_ANSWER LIKE '%지브리%';
-                    
+                
+
+select * from vwReview;
+
 --임시(삭제예정)
 CREATE OR REPLACE VIEW vwSearchInfo AS
 SELECT 
