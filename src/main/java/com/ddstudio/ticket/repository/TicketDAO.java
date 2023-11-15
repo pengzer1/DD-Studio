@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.ticket.model.BenefitDTO;
 import com.ddstudio.ticket.model.GroupBookDTO;
 
 public class TicketDAO {
@@ -85,6 +87,80 @@ public class TicketDAO {
 		}
 		
 		return 0;
+	}
+
+	public ArrayList<BenefitDTO> getBenefit() {
+		
+		try {
+			
+			String sql = "select * from tblbenefit where type = '일반' and TO_CHAR(sysdate,'YYYY-MM-DD') >= TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(sysdate,'YYYY-MM-DD') <= TO_CHAR(end_date,'YYYY-MM-DD')";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<BenefitDTO> list = new ArrayList<BenefitDTO>();
+			
+			while (rs.next()) {
+				
+				BenefitDTO dto = new BenefitDTO();
+				
+				
+				
+				dto.setBenefit_seq(rs.getString("benefit_seq"));
+				dto.setName(rs.getString("name"));
+				dto.setType(rs.getString("type"));
+				dto.setStart_date(rs.getString("start_date").substring(0, 10));
+				dto.setEnd_date(rs.getString("end_date").substring(0, 10));
+				dto.setDiscount_rate(rs.getInt("discount_rate"));
+				dto.setImg(rs.getString("img"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("TicketDAO.getBenefit()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<BenefitDTO> getCardBenefit() {
+		
+		try {
+			
+			String sql = "select * from tblbenefit where type like '%카드%' and TO_CHAR(sysdate,'YYYY-MM-DD') >= TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(sysdate,'YYYY-MM-DD') <= TO_CHAR(end_date,'YYYY-MM-DD')";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<BenefitDTO> list = new ArrayList<BenefitDTO>();
+			
+			while (rs.next()) {
+				
+				BenefitDTO dto = new BenefitDTO();
+				
+				dto.setBenefit_seq(rs.getString("benefit_seq"));
+				dto.setName(rs.getString("name"));
+				dto.setType(rs.getString("type"));
+				dto.setStart_date(rs.getString("start_date").substring(0, 10));
+				dto.setEnd_date(rs.getString("end_date").substring(0, 10));
+				dto.setDiscount_rate(rs.getInt("discount_rate"));
+				dto.setImg(rs.getString("img"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("TicketDAO.getCardBenefit()");
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

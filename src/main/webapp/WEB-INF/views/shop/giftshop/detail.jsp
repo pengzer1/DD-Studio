@@ -178,6 +178,90 @@ ul {
 .item>div:nth-child(2)>p:nth-child(3) {
 	text-align: center;
 }
+
+
+/* 임시 */
+/* Slideshow container */
+    .slideshow-container {
+        width: 1000px;
+        height: 650px;
+        overflow: hideen;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+    	display: none;
+    	min-width: 1000px;
+    	height: 650px;
+    }
+
+    .mySlides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    }
+
+	/* 왼쪽/오른쪽 버튼 */
+    .prev {
+    	left: 0;
+   		border-radius: 3px 0 0 3px;
+    }
+
+    .next {
+     right: 0;
+     border-radius: 3px 0 0 3px;
+    }
+    
+    .prev:hover, .next:hover {
+    	/* color: rgba(0,0,0,0.8); */
+    	background-color: rgba(0,0,0,0.8);
+    	color: #FFF;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    }
+
+    /* Fading animation */
+    .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+    }
+
+	.fade:not(.show) {
+		opacity: 1;
+	}
 </style>
 </head>
 <body>
@@ -214,6 +298,34 @@ ul {
 		<h1>${dto.name}</h1>
 		<br>
 		<h5>${dto.info}</h5>
+		
+		
+		<%-- <!-- 어트랙션 이미지 슬라이더 -->
+		<!-- Slideshow container -->
+	    <div class="slideshow-container">
+	
+	    <!-- Full-width images with number and caption text -->
+	    <c:forEach items="${imgList}" var="dto">
+		    <div class="mySlides fade">
+		      <img src="/ddstudio/asset/image/${dto.img}">
+		    </div>
+	  	</c:forEach>
+  
+	    <!-- Next and previous buttons -->
+	    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+	    </div>
+	
+	    <br>
+	  
+	    <!-- The dots/circles -->
+	    <div style="text-align:center">
+	    <c:forEach items="${imgList}" var="dto" varStatus="status">
+		    <span class="dot" onclick="currentSlide(${status.count})"></span>
+	    </c:forEach>
+	    </div> --%>
+	    
+	    
 
 		<div id="content">
 
@@ -309,6 +421,38 @@ ul {
 		});
 		
 		m.setMap(map);
+	</script>
+	
+	<script>
+	/* 이미지 슬라이더용 */
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+    showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+    showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    }
 	</script>
 </body>
 </html>

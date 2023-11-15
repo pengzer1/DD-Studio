@@ -72,9 +72,10 @@ public class GiftshopAdd extends HttpServlet {
 							shop_seq = dao.getShopSeq();
 							
 							Enumeration<?> files = multi.getFileNames();
-							while (files.hasMoreElements()) {
+							for (;files.hasMoreElements();) {
 							    String name = (String) files.nextElement();
 							    String filename = multi.getFilesystemName(name);
+							   
 							    // 파일명을 이용하여 다양한 작업 수행
 							    // filename을 리스트에 추가하거나, DB에 저장하거나, 다른 작업 수행 가능
 							    fileList.add(filename);
