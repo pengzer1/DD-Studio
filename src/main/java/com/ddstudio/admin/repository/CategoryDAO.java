@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.activity.model.AttractionDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.admin.model.CategoryDTO;
 
 public class CategoryDAO {
@@ -95,6 +97,5 @@ public class CategoryDAO {
 		}
 		return 0;
 	}
-
 
 }

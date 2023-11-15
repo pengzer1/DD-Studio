@@ -70,7 +70,9 @@
 			</div>
 			<div id="total">
 				<div class="left">
-						
+					<table id="list">
+						<tbody></tbody>			
+					</table>
 				</div>
 			</div>
 		</div>
@@ -92,6 +94,11 @@
 		// 휠 확대/축소 금지
 		};
 		const map = new kakao.maps.Map(container, options);
+		
+		
+		//
+		
+		
 	</script>
 </body>
 </html>

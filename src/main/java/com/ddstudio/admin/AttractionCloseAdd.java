@@ -23,7 +23,7 @@ public class AttractionCloseAdd extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<AttractionDTO> list = dao.attractionList();
+		ArrayList<AttractionDTO> list = dao.attractionList("");
 		
 		req.setAttribute("list", list);
 		
