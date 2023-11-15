@@ -116,7 +116,7 @@
 			// 어트랙션 업데이트
 			var attractionImg = document.getElementById('attraction-img');
 			if (attractionImg) {
-				attractionImg.innerHTML = '<img src="/ddstudio/asset/image/' + data.attraction_img + '" alt="' + data.attraction_name + '">';
+				attractionImg.innerHTML = '<img src="/ddstudio/asset/image/attraction/' + data.attraction_img + '" alt="' + data.attraction_name + '">';
 			}
 
 			var attractionName = document.getElementById('attraction-name');

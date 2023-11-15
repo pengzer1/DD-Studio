@@ -4,7 +4,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="/ddstudio/asset/favicon.ico">
+<link rel="shortcut icon" href="/ddstudio/asset/image/favicon.ico">
 
 <!-- CSS -->
 <link rel="stylesheet" href="/ddstudio/asset/css/style.css">

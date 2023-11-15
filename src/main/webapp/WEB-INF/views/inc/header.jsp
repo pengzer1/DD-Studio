@@ -104,9 +104,6 @@
 								<div class="nav-menu-name">추천</div>
 								<div class="sub-menu">
 									<div>
-										<a href="/ddstudio/test/preferencetest.do">취향 테스트</a>
-									</div>
-									<div>
 										<a href="/ddstudio/test/worldcup.do">DD 월드컵</a>
 									</div>
 									<div>
