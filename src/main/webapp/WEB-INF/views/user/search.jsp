@@ -27,6 +27,7 @@
 	margin-top: 50px;
 }
 
+/*
 #hashtag-container {
     display: flex;
     text-align: center;
@@ -45,7 +46,8 @@
 .hashtag:not(:last-child) {
     margin-right: 0;
 }
-
+ */
+ 
 #result-container {
 	text-align: left;
 	margin-top: 20px;
@@ -56,6 +58,12 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    position: relative;
+}
+
+.result-title::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 60.7 28.7 32 64 32h96c123.7 0 224 100.3 224 224s-100.3 224-224 224H64c-35.3 0-64-28.7-64-64V96zm160 0H64V416h96c88.4 0 160-71.6 160-160s-71.6-160-160-160z"/></svg>');
+    margin-right: 10px;
 }
 
 .result-title + .result-title {
@@ -74,8 +82,16 @@
     border-bottom: none;
 }
 
+#result-container > p::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>');
+   	margin-right: 5px;
+    vertical-align: text-top;
+}
+
 #result-container > p {
-	text-align: center
+    text-align: center;
+    font-size: 18px;
+    color: #555;
 }
 
 #category {
@@ -106,6 +122,7 @@
 </style>
 </head>
 <body>
+	<!-- search.jsp -->
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<main id="main">
@@ -121,20 +138,20 @@
 					<span class="material-symbols-outlined">search</span>
 				</button>
 			</form>
-
-			<div id="hashtag-container">
-				<div id="hashtag">#hashtag</div>
-				<div id="hashtag">#hashtag</div>
-				<div id="hashtag">#hashtag</div>
-			</div>
-
-			<div id="result-container">
-			</div>
+			<!-- 
+				<div id="hashtag-container">
+					<div id="hashtag">#hashtag</div>
+					<div id="hashtag">#hashtag</div>
+					<div id="hashtag">#hashtag</div>
+				</div>
+ 			-->
+			<div id="result-container"></div>
 		</div>
 	</main>
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	<script>
+		/*
 		// 페이지 로드 시 해시태그를 랜덤으로 추가
 	    function addRandomHashtags(hashtagList) {
 	        $('#hashtag-container').empty();
@@ -198,7 +215,8 @@
 	            $('#search-form').submit();
 	        }
 	    });
-
+		*/
+		
 	    // 검색 실행
 	    $('#search-form').submit(function(e) {
 	        e.preventDefault();
@@ -206,6 +224,7 @@
 	        // 검색어
 	        var searchTerm = $('#search-field').val().toLowerCase();
 	
+	        /*
 		    // 해시태그를 클릭한 경우
 	        if ($('#hashtag-container .hashtag').hasClass('hashtag-clicked')) {
 	            console.log("해시태그 클릭")
@@ -216,6 +235,7 @@
 	            
 	            $('#hashtag-container .hashtag-clicked').removeClass('hashtag-clicked');
 	        }
+	        */
 		     
 	        $.ajax({
 	            type: 'POST',
