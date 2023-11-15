@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 		<style>
-			#notice {
+			#inquiry {
 				text-align: center;
 				margin-top: 150px;
 			}
@@ -14,7 +14,7 @@
 				margin-top: 50px;
 			}
 			#category {
-				width: 100px;
+				width: 110px;
 				height: 40px;
 				margin-right: 5px;
 			}
@@ -31,43 +31,49 @@
 				position: relative;
 				top: 13px;
 			}
-			#notice-list {
+			#inquiry-list {
 				width: 80%;
 				text-align: center;
 				border-top: 2px solid black;
 				margin: 50px auto 0;
 			}
-			#notice-list th, #notice-list td {
+			#inquiry-list th, #inquiry-list td {
 				height: 60px;
 				color: #444;
 				padding: 10px;
 				border-bottom: 1px solid #E1E1E1;
 			}
-			#notice-list th {
+			#inquiry-list th {
 				font-size: 1.02rem;
 				font-weight: bold;
 			}
-			#notice-list td:nth-child(2) a {
-				color: #333;
-				font-weight: bold;
+			#inquiry-list th:nth-child(1) {
+				width: 7%;
 			}
-			#notice-list th:nth-child(1) {
-				width: 20%;
+			#inquiry-list th:nth-child(2) {
+				width: 10%;
 			}
-			#notice-list th:nth-child(2) {
-				width: 60%;
+			#inquiry-list th:nth-child(3) {
+				width: 45%;
 			}
-			#notice-list th:nth-child(3) {
-				width: 20%;
+			#inquiry-list th:nth-child(4) {
+				width: 18%;
 			}
-			#notice-list td:nth-child(2) {
+			#inquiry-list th:nth-child(5) {
+				width: 10%;
+			}
+			#inquiry-list th:nth-child(6) {
+				width: 10%;
+			}
+			#inquiry-list td:nth-child(3) {
 				font-size: 1.1rem;
 			}
-			#fixed {
-				background-color: #EDFFFC;
+			#inquiry-list td:nth-child(3) a {
+				font-weight: bold;
+				color: #333;
 			}
-			#fix-icon {
-				color: #F00;
+			#no-answer {
+				background-color: #EEFAF0;
 			}
 			#page-bar {
 				display: flex;
@@ -86,82 +92,59 @@
 			#current-page {
 				color: red;
 			}
-			#button-list {
-				display: flex;
-    			justify-content: flex-end;
-			}
-			#add-button {
-				width: 100px;
-				height: 33px;
-				background-color: #FBF2F3;
-				border: 2px solid #F49097;
-				border-radius: 15px;
-				margin-top: 10px;
-			    margin-right: 150px;
+			.nav-icon {
+				font-size: 50px;
 			}
 		</style>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/views/inc/header.jsp"%>
 		
-		<main id="notice">
-			<h1>공지사항</h1>
+		<main id="inquiry">
+			<h1>이용문의</h1>
 				
-			<form method="GET" action="/ddstudio/communicate/notice.do" id="search-form">
+			<form method="GET" action="/ddstudio/communicate/usageinquiry.do" id="search-form">
 				<select name="category" id="category">
-					<option value="subject">제목</option>
-					<option value="content">내용</option>
+					<option value="type">문의유형</option>
+					<option value="email">이메일</option>
 				</select>
 					
-				<input type="text" name="word" id="search-field" size="60" pattern=".{2,}" placeholder="두 글자 이상의 단어를 입력하세요." required>
+				<input type="text" name="word" id="search-field" size="50" placeholder="검색어를 입력하세요." required>
 					
 				<button type="submit" id="search-button"><span class="material-symbols-outlined">search</span></button>
 			</form>
 			
-			<table id="notice-list">
+			<table id="inquiry-list">
 				<thead>
 					<tr>
 						<th>번호</th>
+						<th>문의유형</th>
 						<th>제목</th>
+						<th>문의자</th>
 						<th>등록일</th>
+						<th>답변상태</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="dto" varStatus="status">
-						<c:if test="${dto.fix == 'n'}">
-							<tr>
-					            <td>${totalPosts - status.index - map.startIndex + 1}</td>
-					            <td><a href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
-					            <td>${dto.regdate}</td>
-					        </tr>
-					    </c:if>
-						
-						<c:if test="${dto.fix == 'y'}">
-							<tr id="fixed">
-								<td><span id="fix-icon" class="material-symbols-outlined">report</span></td>
-								<td><a href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
-								<td>${dto.regdate}</td>
-							</tr>
-						</c:if>
+					    <tr id="${empty dto.answer ? 'no-answer' : ''}">
+					        <td>${totalInquiries - status.index - map.startIndex + 1}</td>
+					        <td>${dto.type}</td>
+					        <td><a href="/ddstudio/communicate/usageinquirydetail.do?seq=${dto.inquiry_seq}">${dto.subject}</a></td>
+					        <td>${dto.name}<br>(${dto.email})</td>
+					        <td>${dto.regdate}</td>
+					        <td>${empty dto.answer ? '미완료' : '완료'}</td>
+					    </tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</main>
 		
 		<div id="page-bar">${pageBar}</div>
-		
-		<c:if test="${not empty email && lv == 2}">
-			<div id="button-list"><button type="button" id="add-button" onclick="location.href='/ddstudio/communicate/noticeadd.do';">등록</button></div>
-		</c:if>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
 		<script>
-			<c:if test="${map.searchStatus == 'y'}">
-				$('#category').val('${map.category}');
-				$('#search-field').val('${map.word}');
-			</c:if>
-			
 			document.addEventListener('DOMContentLoaded', function () {
 		        var searchField = document.getElementById('search-field');
 
@@ -171,6 +154,17 @@
 		            }
 		        });
 		    });
+			
+			<c:if test="${map.searchStatus == 'y'}">
+				$('#category').val('${map.category}');
+				$('#search-field').val('${map.word}');
+			</c:if>
+			
+			document.addEventListener('keydown', function(event) {
+				if (event.key === 'F5' || ((event.ctrlKey || event.metaKey) && event.key === 'F5')) {
+			        location.href='/ddstudio/communicate/usageinquiry.do';
+			    }
+			});
 		</script>
 	</body>
 </html>

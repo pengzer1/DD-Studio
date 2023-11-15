@@ -6,17 +6,20 @@
 		<meta charset="UTF-8">
 		<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 		<style>
-			#inquiry-detail {
+			#voc-detail {
 				text-align: center;
 				margin-top: 150px;
 			}
-			#regdate {
+			#date {
 				margin-top: 30px;
 			}
-			#regdate i {
+			#date > span {
+				margin: 0 30px;
+			}
+			#date span i {
 				margin-right: 5px;
 			}
-			#regdate span {
+			#date span span {
 				font-size: 1.02rem;
 				font-weight: bold;
 				margin-right: 8px;
@@ -99,10 +102,13 @@
 	<body>
 		<%@include file="/WEB-INF/views/inc/header.jsp"%>
 		
-		<main id="inquiry-detail">
+		<main id="voc-detail">
 			<h1>${dto.subject}</h1>
 			
-			<div id="regdate"><i class="fa-regular fa-calendar"></i><span>등록일</span>${dto.regdate}</div>
+			<div id="date">
+				<span><i class="fa-regular fa-calendar"></i><span>방문일</span> ${dto.visit_date}</span>
+				<span><i class="fa-regular fa-calendar"></i><span>등록일</span> ${dto.regdate}</span>
+			</div>
 			
 			<table id="detail">
 				<c:if test="${dto.content != null && !dto.content.trim().equals('')}">
@@ -125,7 +131,7 @@
 		</main>
 		
 		<div id="answer">
-			<form method="POST" action="/ddstudio/communicate/usageinquiryanswer.do?seq=${dto.inquiry_seq}">
+			<form method="POST" action="/ddstudio/communicate/vocanswer.do?seq=${dto.voc_seq}">
 				<table id="add-form">
 					<tr>
 						<th>답변</th>
@@ -145,25 +151,25 @@
 		
 		<script>
 			$('#back-button').click(function () {
-				location.href='/ddstudio/communicate/usageinquiry.do';
+				location.href='/ddstudio/communicate/voc.do';
 			});
 			
 			$('#delete-button').click(function () {
-				location.href='/ddstudio/communicate/usageinquirydel.do?seq=${dto.inquiry_seq}';
+				location.href='/ddstudio/communicate/vocdel.do?seq=${dto.voc_seq}';
 			});
 			
 			$('#add-answer-button').click(function () {
-				var url = '/ddstudio/communicate/usageinquiryanswer.do?seq=${dto.inquiry_seq}&action=add';
+				var url = '/ddstudio/communicate/vocanswer.do?seq=${dto.voc_seq}&action=add';
 				$(this).closest('form').attr('action', url);
 			});
 			
 			$('#edit-answer-button').click(function () {
-				var url = '/ddstudio/communicate/usageinquiryanswer.do?seq=${dto.inquiry_seq}&action=edit';
+				var url = '/ddstudio/communicate/vocanswer.do?seq=${dto.voc_seq}&action=edit';
 				$(this).closest('form').attr('action', url);
 			});
 			
 			$('#delete-answer-button').click(function () {
-				var url = '/ddstudio/communicate/usageinquiryanswer.do?seq=${dto.inquiry_seq}&action=delete';
+				var url = '/ddstudio/communicate/vocanswer.do?seq=${dto.voc_seq}&action=delete';
 				$(this).closest('form').attr('action', url);
 			});
 		</script>

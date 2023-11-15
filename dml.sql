@@ -381,14 +381,14 @@ INSERT INTO tblNotice (notice_seq, subject, content, attach, fix)
 VALUES (seqtblNotice.NEXTVAL, '공지사항 3', '휴업일 변경 공지', 'attach3.doc', 1);
 
 /* 분실물센터 */
-INSERT INTO tblLostCenter (lost_center_seq, type, name, location, lost_center_date, img, result)
-VALUES (seqtblLostCenter.NEXTVAL, '분류1', '습득물 1', '로비', TO_DATE('2023-10-15', 'YYYY-MM-DD'), 'lost1.jpg', '처리 완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.NEXTVAL, '분류1', '습득물 1', '로비', TO_DATE('2023-10-15', 'YYYY-MM-DD'), 'lost1.jpg', '수령완료');
 
-INSERT INTO tblLostCenter (lost_center_seq, type, name, location, lost_center_date, img, result)
-VALUES (seqtblLostCenter.NEXTVAL, '분류2', '습득물 2', '2층 로비', TO_DATE('2023-11-02', 'YYYY-MM-DD'), 'lost2.jpg', '미처리');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.NEXTVAL, '분류2', '습득물 2', '2층 로비', TO_DATE('2023-11-02', 'YYYY-MM-DD'), null, '보관중');
 
-INSERT INTO tblLostCenter (lost_center_seq, type, name, location, lost_center_date, img, result)
-VALUES (seqtblLostCenter.NEXTVAL, '분류1', '습득물 3', '1층 대문 앞', TO_DATE('2023-11-10', 'YYYY-MM-DD'), 'lost3.jpg', '처리 완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.NEXTVAL, '분류1', '습득물 3', '1층 대문 앞', TO_DATE('2023-11-10', 'YYYY-MM-DD'), 'lost3.jpg', '수령완료');
 
 /* 티켓 */
 INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
