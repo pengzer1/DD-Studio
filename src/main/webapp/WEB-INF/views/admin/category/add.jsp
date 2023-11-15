@@ -24,7 +24,7 @@
 }
 
 #form-table tr>th {
-	width: 200px;
+	width: 100px;
 }
 
 #form-table tr>td {
@@ -60,6 +60,24 @@
 .add-btn {
 	background-color: #007bff;
 }
+
+#main_box{
+	border: 1px solid black;
+	width:380px;
+	/* height:100px; */
+	padding-top:5px;
+	margin: 0 auto;
+}
+
+#content_box{
+	border: 1px solid black;
+	align-items: center;
+	width: 100px;
+	height: 30px;
+	padding:5px;
+	margin:5px 10px;
+	
+}
 </style>
 </head>
 <body>
@@ -73,26 +91,22 @@
 		</h1>
 
 		<hr id="add-line" />
-		<!-- <div id="add-content"> -->
 		
-		
-		
-		
-		<!-- 카테고리 리스트 출력하기 -->
-			<div class="category_list" style="float:left;">
-				<c:forEach items="${list}" var="dto">
-					<div class="item">
-					<div>${dto.name}</div>
-					</div>
-				</c:forEach>
+		<div id="main_box">
+			<p style="text-align:center;">현재 등록되어 있는 카테고리 종류입니다.</p>
+			<hr>
+			<div style="display: flex; flex-wrap:wrap; align-items:center; margin-left: 10px;">
+			<c:forEach items="${list}" var="dto">
+				<div id="content_box">
+					<p>${dto.name}</p>
+				</div>
+			</c:forEach>
 			</div>
+		</div>
 		
-			
+		<hr id="bottom-line">
 		
-		
-		
-		
-		
+		 <div id="add-content">
 			<form name="categoryForm" method="POST"
 				action="/ddstudio/admin/categoryadd.do">
 				<table id="form-table">
@@ -105,7 +119,7 @@
 					</tbody>
 				</table>
 				</form>
-		<!-- </div> -->
+		 </div>
 		<div id="admin-btn">
 			<button type="button" class="back-btn" onclick="location.href='/ddstudio/admin/category.do';">
 				<i class="fa-regular fa-circle-xmark"></i>취소
