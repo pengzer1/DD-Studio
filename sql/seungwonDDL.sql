@@ -34,6 +34,214 @@ ON m.attraction_seq = a.attraction_seq
 LEFT JOIN tblAttractionImg ai
 ON a.attraction_seq = ai.attraction_seq;
 
+-- 검색
+drop view vwSearchAttraction;
+select * from vwSearchLocation;
+
+-- 검색 (어트랙션, 영화관, 기프트숍 등 위치정보)
+CREATE OR REPLACE VIEW vwSearchLocation
+AS
+SELECT
+	a.name as attraction_name,
+	th.name as theme_name,
+	mb.result as mbti_result,
+	mb.mbti as mbti_mbti,
+	c.name as course_name,
+	h.name as hashtag_name,
+	r.name as restaurant_name,
+	r.menu as restaurant_menu,
+	ct.name as category_name,
+	s.name as shop_name,
+	s.info as shop_info,
+	i.name as item_name,
+	i.info as item_info,
+	co.name as convenient_name,
+	f.name as festival_name,
+	f.info as festival_info,
+	t.name as theater_name,
+	m.name as movie_name
+FROM tblLocation l
+LEFT JOIN tblAttraction a
+ON l.location_seq = a.location_seq
+LEFT JOIN tblTheme th
+ON a.theme_seq = th.theme_seq
+LEFT join tblMBTI mb
+ON a.attraction_seq = mb.attraction_seq
+LEFT JOIN tblCourse c
+ON mb.course_seq = c.course_seq
+LEFT JOIN tblAttractionHashtag ah
+ON a.attraction_seq = ah.attraction_seq
+LEFT JOIN tblHashtag h
+ON h.hashtag_seq = ah.hashtag_seq
+LEFT JOIN tblRestaurant r
+ON l.location_seq = r.location_seq
+LEFT JOIN tblCategory ct
+ON r.category_seq = ct.category_seq
+LEFT JOIN tblShop s
+ON l.location_seq = s.location_seq
+LEFT JOIN tblItem i
+ON s.shop_seq = i.shop_seq
+LEFT JOIN tblConvenient co
+ON l.location_seq = co.location_seq
+LEFT JOIN tblFestival f
+ON l.location_seq = f.location_seq
+LEFT JOIN tblFestivalHashtag fh
+ON f.festival_seq = fh.festival_seq
+LEFT JOIN tblHashtag h
+ON h.hashtag_seq = fh.hashtag_seq
+LEFT JOIN tblTheater t
+ON l.location_seq = t.location_seq
+LEFT JOIN tblMoviePlay mp
+ON t.theater_seq = mp.theater_seq
+LEFT JOIN tblMovie m
+ON mp.movie_seq = m.movie_seq
+LEFT JOIN tblMovieHashtag mh
+ON m.movie_seq = mh.movie_seq
+LEFT JOIN tblHashtag h
+on h.hashtag_seq = mh.hashtag_seq;
+
+-- 검색 (공지사항, FAQ, 헤택 등 정보)
+drop view vwSearchInfo;
+select * from vwSearchInfo;
+
+CREATE OR REPLACE VIEW vwSearchInfo AS
+SELECT 
+    subject AS notice_subject, content AS notice_content, null as benefit_name, null AS benefit_type, NULL AS faq_category, NULL AS faq_question, NULL AS faq_answer
+FROM tblNotice
+UNION ALL
+SELECT 
+    NULL, NULL, NULL, NULL, type, question, answer
+FROM tblFAQ
+UNION ALL
+SELECT 
+    NULL, null, NULL, NULL, NULL, NULL, NULL
+FROM tblTicket
+UNION ALL
+SELECT 
+    NULL, null, name, type, NULL, NULL, NULL
+FROM tblBenefit;
+
+-- 전체 검색 정보
+drop view vwSearch;
+select * from vwSearch;
+
+CREATE OR REPLACE VIEW vwSearch AS
+SELECT
+    attraction_name,
+    theme_name,
+    mbti_result,
+    mbti_mbti,
+    course_name,
+    hashtag_name,
+    restaurant_name,
+    restaurant_menu,
+    category_name,
+    shop_name,
+    shop_info,
+    item_name,
+    item_info,
+    convenient_name,
+    festival_name,
+    festival_info,
+    theater_name,
+    movie_name,
+    null as notice_subject,
+    null as notice_content,
+    null as benefit_name,
+    null as benefit_type,
+    null as faq_category,
+    null as faq_question,
+    null as faq_answer
+FROM vwSearchLocation
+UNION ALL
+SELECT
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    notice_subject,
+    notice_content,
+    benefit_name,
+    benefit_type,
+    faq_category,
+    faq_question,
+    faq_answer
+FROM vwSearchInfo;
+
+
+
+
+
+--임시(삭제예정)
+CREATE OR REPLACE VIEW vwSearchInfo AS
+SELECT 
+    'tblNotice' AS table_name, subject AS notice_subject, content AS notice_content, null as benefit_name, null AS benefit_type, NULL AS faq_category, NULL AS faq_question, NULL AS faq_answer
+FROM tblNotice
+UNION ALL
+SELECT 
+    'tblFAQ', NULL, NULL, NULL, NULL, type, question, answer
+FROM tblFAQ
+UNION ALL
+SELECT 
+    'tblTicket', NULL, null, NULL, NULL, NULL, NULL, NULL
+FROM tblTicket
+UNION ALL
+SELECT 
+    'tblBenefit', NULL, null, name, type, NULL, NULL, NULL
+FROM tblBenefit;
+
+
+
+SELECT * FROM tblBenefit;
+select * from vsSearch;
+
+
+
+
+
+select * from tblBenefit;
+select * from tblFAQ;
+select * from tblTicket;
+select * from tblLostCenter;
+
+
+CREATE OR REPLACE view vsSearchRestaurant
+AS
+SELECT
+
+LEFT JOIN 
+ON 
+LEFT JOIN 
+ON 
+LEFT JOIN 
+ON 
+
+
+
+
+
+LEFT JOIN 
+ON 
+LEFT JOIN 
+ON 
+LEFT JOIN 
+ON 
+LEFT JOIN 
+ON 
 
 -- dml
 -- course
@@ -82,6 +290,8 @@ VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는
 
 
 
+select * from TBLHASHTAG;
+select * from TBLATTRACTIONHASHTAG;
 
 
 
