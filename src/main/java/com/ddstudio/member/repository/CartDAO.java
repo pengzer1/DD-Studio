@@ -79,5 +79,10 @@ public class CartDAO {
 		
 		return 0;
 	}
+
+	public int order(String user_cart_seq) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

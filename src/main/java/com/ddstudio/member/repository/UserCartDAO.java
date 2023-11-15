@@ -37,6 +37,7 @@ public class UserCartDAO {
 				
 				UserCartDTO dto = new UserCartDTO();
 				
+				dto.setUser_cart_seq(rs.getString("user_cart_seq"));
 				dto.setEa(rs.getString("ea"));
 				dto.setImg(rs.getString("img"));
 				dto.setName(rs.getString("name"));
