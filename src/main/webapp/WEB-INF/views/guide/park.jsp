@@ -15,6 +15,9 @@
 	.wide-multi-content-container{
 		margin: 30px;
 	}
+	#content_box{
+		text-align:left;
+	}
 </style>
 </head>
 <body>
@@ -31,7 +34,7 @@
 		</div>
 		
 		<div id="sub-title">
-			<h3>주의 사항</h3>
+			<h3 style="text-align:center;">주의 사항</h3>
 		</div>
 
 		<div id="content">
@@ -39,7 +42,11 @@
 			<div class="wide-multi-content-container">
 				<div class="wide-item">
 					<div>1. 밑에 내용들은 가지고 입장하실 수 없어요ㅠㅠ</div>
-					<div>아이템 2 설명</div>
+					<div id="content_box">
+						<div>아이템 2 설명</div>
+						<div>아이템 3 설명</div>
+						<div>아이템 4 설명</div>
+					</div>
 				</div>
 				<div class="wide-item">
 					<div>아이템 2</div>

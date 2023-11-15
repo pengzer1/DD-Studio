@@ -118,7 +118,6 @@
 						</tr>
 					</tbody>
 				</table>
-				</form>
 		 </div>
 		<div id="admin-btn">
 			<button type="button" class="back-btn" onclick="location.href='/ddstudio/admin/category.do';">
@@ -128,6 +127,7 @@
 				<i class="fa-solid fa-plus"></i>등록
 			</button>
 		</div>
+		</form>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
