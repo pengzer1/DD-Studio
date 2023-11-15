@@ -131,7 +131,6 @@
                     var searchResults = data;
 
                     var attractionNameList = [];
-                    var themeNameList = [];
                     var mbtiResultList = [];
                     var mbtiMbtiList = [];
                     var courseNameList = [];
@@ -164,9 +163,6 @@
 
                         if (containsSearchTerm(result.attractionName) && result.attractionName !== " ") {
                             attractionNameList.push(result.attractionName);
-                        }
-                        if (containsSearchTerm(result.themeName) && result.themeName !== " ") {
-                            themeNameList.push(result.themeName);
                         }
                         if (containsSearchTerm(result.mbtiResult) && result.mbtiResult !== " ") {
                             mbtiResultList.push(result.mbtiResult);
@@ -240,7 +236,30 @@
                     $('#result-container').empty();
 
 					// 검색 결과
-                    if (attractionNameList.length > 0 || themeNameList.length > 0 || festivalInfoList.length > 0) {
+                    if (attractionNameList.length > 0 ||
+						mbtiResultList.length > 0 ||
+						mbtiMbtiList.length > 0 ||
+						courseNameList.length > 0 ||
+						hashtagNameList.length > 0 ||
+						restaurantNameList.length > 0 ||
+						restaurantMenuList.length > 0 ||
+						categoryNameList.length > 0 ||
+						shopNameList.length > 0 ||
+						shopInfoList.length > 0 ||
+						itemNameList.length > 0 ||
+						itemInfoList.length > 0 ||
+						convenientNameList.length > 0 ||
+						festivalNameList.length > 0 ||
+						festivalInfoList.length > 0 ||
+						theaterNameList.length > 0 ||
+						movieNameList.length > 0 ||
+						noticeSubjectList.length > 0 ||
+						noticeContentList.length > 0 ||
+						benefitNameList.length > 0 ||
+						benefitTypeList.length > 0 ||
+						faqCategoryList.length > 0 ||
+						faqQuestionList.length > 0) {
+                    	
                         $('#result-container').append('<div id="result-title">검색 결과</div>');
 
                         // attractionNameList
@@ -253,18 +272,7 @@
                             attractionContent += '</div>';
                             $('#result-container').append(attractionContent);
                         }
-
-                        // themeNameList
-                        if (themeNameList.length > 0) {
-                            var themeContent = '<div class="result-content">테마명: ';
-                            $.each(themeNameList, function(index, theme) {
-                                themeContent += theme + ', ';
-                            });
-                            themeContent = themeContent.slice(0, -2);
-                            themeContent += '</div>';
-                            $('#result-container').append(themeContent);
-                        }
-
+                        
                         // festivalInfoList
                         if (festivalInfoList.length > 0) {
                             var festivalContent = '<div class="result-content">축제정보: ';

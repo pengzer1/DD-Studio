@@ -44,7 +44,6 @@ public class Search extends HttpServlet {
 				JSONObject jsonObject = new JSONObject();
 				
 				jsonObject.put("attractionName", result.getAttractionName());
-				jsonObject.put("themeName", result.getThemeName());
 				jsonObject.put("mbtiResult", result.getMbtiResult());
 				jsonObject.put("mbtiMbti", result.getMbtiMbti());
 				jsonObject.put("courseName", result.getCourseName());

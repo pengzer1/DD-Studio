@@ -2,7 +2,6 @@ package com.ddstudio.user.repository;
 
 public class SearchDTO {
 	private String attractionName;
-	private String themeName;
 	private String mbtiResult;
 	private String mbtiMbti;
 	private String courseName;
@@ -33,14 +32,6 @@ public class SearchDTO {
 
 	public void setAttractionName(String attractionName) {
 		this.attractionName = (attractionName != null && !attractionName.trim().isEmpty()) ? attractionName : " ";
-	}
-
-	public String getThemeName() {
-		return (themeName != null) ? themeName : " ";
-	}
-
-	public void setThemeName(String themeName) {
-		this.themeName = (themeName != null && !themeName.trim().isEmpty()) ? themeName : " ";
 	}
 
 	public String getMbtiResult() {

@@ -43,7 +43,6 @@ CREATE OR REPLACE VIEW vwSearchLocation
 AS
 SELECT
 	a.name as attraction_name,
-	th.name as theme_name,
 	mb.result as mbti_result,
 	mb.mbti as mbti_mbti,
 	c.name as course_name,
@@ -127,7 +126,7 @@ select * from vwSearch;
 
 CREATE OR REPLACE VIEW vwSearch AS
 SELECT
-    attraction_name, theme_name, mbti_result, mbti_mbti, course_name, hashtag_name,
+    attraction_name, mbti_result, mbti_mbti, course_name, hashtag_name,
     restaurant_name, restaurant_menu, category_name, shop_name, shop_info, item_name,
     item_info, convenient_name, festival_name, festival_info, theater_name, movie_name,
     null notice_subject, null notice_content, null benefit_name, null benefit_type,
@@ -135,17 +134,19 @@ SELECT
 FROM vwSearchLocation
 UNION ALL
 SELECT
-    null, null, null, null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null,
     notice_subject, notice_content, benefit_name, benefit_type, faq_category,
     faq_question, faq_answer
 FROM vwSearchInfo;
 
+SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' OR THEME_NAME LIKE '%지브리%' OR MBTI_RESULT LIKE '%지브리%' OR MBTI_MBTI LIKE '%지브리%' OR COURSE_NAME LIKE '%지브리%' OR HASHTAG_NAME LIKE '%지브리%' OR RESTAURANT_NAME LIKE '%지브리%' OR RESTAURANT_MENU LIKE '%지브리%' OR CATEGORY_NAME LIKE '%지브리%' OR SHOP_NAME LIKE '%지브리%' OR SHOP_INFO LIKE '%지브리%' OR ITEM_NAME LIKE '%지브리%' OR ITEM_INFO LIKE '%지브리%' OR CONVENIENT_NAME LIKE '%지브리%' OR FESTIVAL_NAME LIKE '%지브리%' OR FESTIVAL_INFO LIKE '%지브리%' OR THEATER_NAME LIKE '%지브리%' OR MOVIE_NAME LIKE '%지브리%' OR NOTICE_SUBJECT LIKE '%지브리%' OR NOTICE_CONTENT LIKE '%지브리%' OR BENEFIT_NAME LIKE '%지브리%' OR BENEFIT_TYPE LIKE '%지브리%' OR FAQ_CATEGORY LIKE '%지브리%' OR FAQ_QUESTION LIKE '%지브리%' OR FAQ_ANSWER LIKE '%지브리%';	
+
 
 SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%';
 
 SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' or THEME_NAME LIKE '%테마%';
-SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE ? OR THEME_NAME LIKE ? or FAQ_ANSWER LIKE ?;
+SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' OR THEME_NAME LIKE '%지브리%' or FAQ_ANSWER LIKE '%지브리%';
                     
 --임시(삭제예정)
 CREATE OR REPLACE VIEW vwSearchInfo AS
@@ -168,6 +169,7 @@ FROM tblBenefit;
 
 
 SELECT * FROM tblBenefit;
+
 select * from vsSearch;
 
 
@@ -247,48 +249,48 @@ CREATE SEQUENCE seqtblTest;
 CREATE SEQUENCE seqtblTestScore;
 
 CREATE TABLE tblUser (
-	user_seq NUMBER PRIMARY KEY, /* ?��??번호 */
-    name VARCHAR2(500) NOT NULL, /* ?���? */
-	email VARCHAR2(500) NOT NULL UNIQUE, /* ?��메일 */
-	pw VARCHAR2(500) NOT NULL, /* 비�?번호 */
-	tel VARCHAR2(500) NOT NULL UNIQUE, /* ?��?��번호 */
+	user_seq NUMBER PRIMARY KEY, /* '%지브리%'��'%지브리%''%지브리%'번호 */
+    name VARCHAR2(500) NOT NULL, /* '%지브리%'���'%지브리%' */
+	email VARCHAR2(500) NOT NULL UNIQUE, /* '%지브리%'��메일 */
+	pw VARCHAR2(500) NOT NULL, /* 비�'%지브리%'번호 */
+	tel VARCHAR2(500) NOT NULL UNIQUE, /* '%지브리%'��'%지브리%'��번호 */
 	address VARCHAR2(500) NOT NULL, /* 주소 */
-	birth DATE NOT NULL, /* ?��?��?��?�� */
-	lv CHAR(1) NOT NULL, /* ?���? */
-	ing CHAR(1) NOT NULL /* ?��?��?���? */
+	birth DATE NOT NULL, /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'�� */
+	lv CHAR(1) NOT NULL, /* '%지브리%'���'%지브리%' */
+	ing CHAR(1) NOT NULL /* '%지브리%'��'%지브리%'��'%지브리%'���'%지브리%' */
 );
 
 CREATE TABLE tblAttraction (
-	attraction_seq NUMBER PRIMARY KEY, /* ?��?��?��?��번호 */
-	name VARCHAR2(500) NOT NULL UNIQUE, /* ?��?��?��?���? */
-	capacity NUMBER NOT NULL, /* ?��?��?��?�� */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* ?��치정�? */
-	time VARCHAR2(500) NOT NULL, /* ?��?��?���? */
-	restriction VARCHAR2(2000), /* ?�� ?���? ?��?��?��?�� */
-	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* ?��마번?�� */
-    is_test CHAR(1) NOT NULL /* ?��?��?��채택 */
+	attraction_seq NUMBER PRIMARY KEY, /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'��번호 */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'���'%지브리%' */
+	capacity NUMBER NOT NULL, /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'�� */
+	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* '%지브리%'��치정�'%지브리%' */
+	time VARCHAR2(500) NOT NULL, /* '%지브리%'��'%지브리%'��'%지브리%'���'%지브리%' */
+	restriction VARCHAR2(2000), /* '%지브리%'�� '%지브리%'���'%지브리%' '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'�� */
+	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* '%지브리%'��마번'%지브리%'�� */
+    is_test CHAR(1) NOT NULL /* '%지브리%'��'%지브리%'��'%지브리%'��채택 */
 );
 
 CREATE TABLE tblAttractionImg (
-	attraction_img_seq NUMBER PRIMARY KEY, /* ?��?��?��미�?번호 */
-	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* ?��미�? */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��?��?��?��번호 */
+	attraction_img_seq NUMBER PRIMARY KEY, /* '%지브리%'��'%지브리%'��'%지브리%'��미�'%지브리%'번호 */
+	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* '%지브리%'��미�'%지브리%' */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'��번호 */
 );
 
-/* ?��?�� */
+/* '%지브리%'��'%지브리%'�� */
 CREATE TABLE tblRoute (
-	route_seq NUMBER PRIMARY KEY, /* ?��?��번호 */
-	route_order NUMBER NOT NULL, /* ?��?��?��?�� */
-	bus_seq NUMBER REFERENCES tblBus(bus_seq) NOT NULL, /* ?��??버스번호 */
-	start_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* 출발?��?��?��?�� */
-	end_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��착어?��?��?�� */
+	route_seq NUMBER PRIMARY KEY, /* '%지브리%'��'%지브리%'��번호 */
+	route_order NUMBER NOT NULL, /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'�� */
+	bus_seq NUMBER REFERENCES tblBus(bus_seq) NOT NULL, /* '%지브리%'��'%지브리%''%지브리%'버스번호 */
+	start_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* 출발'%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'�� */
+	end_attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* '%지브리%'��착어'%지브리%'��'%지브리%'��'%지브리%'�� */
 );
 
 /* 코스 */
 CREATE TABLE tblCourse (
 	course_seq NUMBER PRIMARY KEY, /* 코스번호 */
-	name VARCHAR2(500) NOT NULL UNIQUE, /* 코스�? */
-	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스?��미�? */
+	name VARCHAR2(500) NOT NULL UNIQUE, /* 코스�'%지브리%' */
+	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스'%지브리%'��미�'%지브리%' */
 );
 
 select * from tblCourse;
@@ -296,15 +298,15 @@ select * from tblCourse;
 commit;
 
 select * from tblUser;
---INSERT INTO tblCourse (course_seq, name, img) VALUES (seqtblCourse.nextVal, ?, ?)
+--INSERT INTO tblCourse (course_seq, name, img) VALUES (seqtblCourse.nextVal, '%지브리%', '%지브리%')
 
 /* MBTI */
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
-	result VARCHAR2(500) NOT NULL, /* 결과�? */
-	mbti VARCHAR2(500) NOT NULL, /* MBTI�? */
+	result VARCHAR2(500) NOT NULL, /* 결과�'%지브리%' */
+	mbti VARCHAR2(500) NOT NULL, /* MBTI�'%지브리%' */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��?��?��?��번호 */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* '%지브리%'��'%지브리%'��'%지브리%'��'%지브리%'��번호 */
 );
 
 
@@ -355,18 +357,18 @@ commit;
 
 commit;
 
-/* 취향?��?��?�� 문제 */
+/* 취향'%지브리%'��'%지브리%'��'%지브리%'�� 문제 */
 CREATE TABLE tblTest (
 	test_seq NUMBER PRIMARY KEY, /* 문제번호 */
-	question VARCHAR2(500) NOT NULL, /* 문제?��?�� */
-	answer1 VARCHAR2(500) NOT NULL, /* ?��?��1�? */
-	answer2 VARCHAR2(500) NOT NULL, /* ?��?��2�? */
-	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* 문제?��미�? */
+	question VARCHAR2(500) NOT NULL, /* 문제'%지브리%'��'%지브리%'�� */
+	answer1 VARCHAR2(500) NOT NULL, /* '%지브리%'��'%지브리%'��1�'%지브리%' */
+	answer2 VARCHAR2(500) NOT NULL, /* '%지브리%'��'%지브리%'��2�'%지브리%' */
+	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* 문제'%지브리%'��미�'%지브리%' */
 );
 
-/* 취향?��?��?�� 문제 ?��?�� */
+/* 취향'%지브리%'��'%지브리%'��'%지브리%'�� 문제 '%지브리%'��'%지브리%'�� */
 CREATE TABLE tblTestScore (
-	test_score_seq NUMBER PRIMARY KEY, /* 취향?��?��?�� 문제 ?��?�� */
+	test_score_seq NUMBER PRIMARY KEY, /* 취향'%지브리%'��'%지브리%'��'%지브리%'�� 문제 '%지브리%'��'%지브리%'�� */
 	point1 NUMBER NOT NULL, /* 1 */
 	point2 NUMBER NOT NULL, /* 2 */
 	type VARCHAR2(500) NOT NULL, /* type(E/I, N/S, F/T, J/P) */

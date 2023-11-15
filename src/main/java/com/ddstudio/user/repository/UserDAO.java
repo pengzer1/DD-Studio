@@ -194,7 +194,6 @@ public class UserDAO {
         try {
             String sql = "SELECT * FROM vwSearch WHERE "
                     + "ATTRACTION_NAME LIKE ? OR "
-                    + "THEME_NAME LIKE ? OR "
                     + "MBTI_RESULT LIKE ? OR "
                     + "MBTI_MBTI LIKE ? OR "
                     + "COURSE_NAME LIKE ? OR "
@@ -222,7 +221,7 @@ public class UserDAO {
             pstat = conn.prepareStatement(sql);
 
             // 모든 컬럼에 대해 검색
-            for (int i = 1; i <= 25; i++) {
+            for (int i = 1; i <= 24; i++) {
                 pstat.setString(i, "%" + searchWord + "%");
             }
 
@@ -232,7 +231,6 @@ public class UserDAO {
                 SearchDTO result = new SearchDTO();
                 
                 result.setAttractionName(rs.getString("ATTRACTION_NAME"));
-                result.setThemeName(rs.getString("THEME_NAME"));
                 result.setMbtiResult(rs.getString("MBTI_RESULT"));
                 result.setMbtiMbti(rs.getString("MBTI_MBTI"));
                 result.setCourseName(rs.getString("COURSE_NAME"));
