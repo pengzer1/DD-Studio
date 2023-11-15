@@ -130,6 +130,20 @@
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);
 		
+		/*
+		let iwContent = '<div style="padding:3px;">★DD Studio★<br><a href="https://map.kakao.com/link/map/DD Studio!,33.3808,126.5450" style="color:blue" target="_blank">카카오맵으로 보기</a></div>';
+	    let iwPosition = new kakao.maps.LatLng(33.3808, 126.5450); //인포윈도우 표시 위치
+
+		// 인포윈도우를 생성
+		let infowindow = new kakao.maps.InfoWindow({
+	    	position : iwPosition;
+	    	content : iwContent 
+		});
+	  
+		// 마커 위에 인포윈도우를 표시
+		infowindow.open(map, marker);
+		*/
+		
 	</script>
 </body>
 </html>
