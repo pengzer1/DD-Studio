@@ -517,7 +517,7 @@ try {
 
 		try {
 			
-			String sql = "select * from tblcategory order by category_seq asc";
+			String sql = "select * from tblcategory where name != '0' order by category_seq asc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -754,7 +754,7 @@ try {
 	}
 
 	public int addShopImg(ArrayList<String> fileList, String shop_seq) {
-int result = 0;
+		int result = 0;
 		
 		for (String name : fileList) {
 			
@@ -765,6 +765,8 @@ int result = 0;
 				pstat = conn.prepareStatement(sql);
 				pstat.setString(1, name);
 				pstat.setString(2, shop_seq);
+				
+				System.out.println();
 				
 				result += pstat.executeUpdate();
 
