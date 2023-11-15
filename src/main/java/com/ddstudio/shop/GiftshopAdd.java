@@ -22,93 +22,94 @@ public class GiftshopAdd extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/shop/giftshop/add.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		// multiple DATA라 req.getParameter() 동작 불가 > MultipartRequest로 대체해야댐
-				ShopDAO dao = new ShopDAO();
-				GiftShopDTO dto = new GiftShopDTO();
-				ArrayList<String> fileList = new ArrayList<String>();
-				String shop_seq = "";
-				
-				try {
-					
-					MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
-					System.out.println(req.getRealPath("/asset/image"));
-					
-					String shopName = multi.getParameter("name");
-					String startTime = multi.getParameter("start-time");
-					String endTime = multi.getParameter("end-time");
-					
-					String time = startTime + " - " + endTime;
-					
-					String info = multi.getParameter("info");
-					String tel = multi.getParameter("tel");
-					String lng = multi.getParameter("lng");
-					String lat = multi.getParameter("lat"); 
-					
-					dto.setName(shopName);
-					dto.setTime(time);
-					dto.setInfo(info);
-					dto.setTel(tel);
-					dto.setLat(lat);
-					dto.setLng(lng);
-					
-					dao.addLocation(dto);
-					
-					String location_seq = dao.getLocationSeq(dto);
-					
-					if (location_seq != null) {
-						dto.setLocation_seq(location_seq);
-						
-						int result = dao.addGiftShop(dto);
-						
-						if (result == 1) {
-							shop_seq = dao.getShopSeq();
-							
-							Enumeration<?> files = multi.getFileNames();
-							for (;files.hasMoreElements();) {
-							    String name = (String) files.nextElement();
-							    String filename = multi.getFilesystemName(name);
-							   
-							    // 파일명을 이용하여 다양한 작업 수행
-							    // filename을 리스트에 추가하거나, DB에 저장하거나, 다른 작업 수행 가능
-							    fileList.add(filename);
-							}
-							
-							result = dao.addShopImg(fileList, shop_seq);
-							
-							if (result > 0) {
-								resp.sendRedirect("/ddstudio/shop/giftshop.do");
-							} else {
-								PrintWriter writer = resp.getWriter();
-								writer.print("<script>alert('Add Shop Img failed'); history.back();</script>");
-								writer.close();
-							}
-						} else {
-							PrintWriter writer = resp.getWriter();
-							writer.print("<script>alert('Add Shop failed'); history.back();</script>");
-							writer.close();
-						}
+		ShopDAO dao = new ShopDAO();
+		GiftShopDTO dto = new GiftShopDTO();
+		ArrayList<String> fileList = new ArrayList<String>();
+		String shop_seq = "";
+
+		try {
+
+			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 10,
+					"UTF-8", new DefaultFileRenamePolicy());
+			System.out.println(req.getRealPath("/asset/image"));
+
+			String shopName = multi.getParameter("name");
+			String startTime = multi.getParameter("start-time");
+			String endTime = multi.getParameter("end-time");
+
+			String time = startTime + " - " + endTime;
+
+			String info = multi.getParameter("info");
+			String tel = multi.getParameter("tel");
+			String lng = multi.getParameter("lng");
+			String lat = multi.getParameter("lat");
+
+			dto.setName(shopName);
+			dto.setTime(time);
+			dto.setInfo(info);
+			dto.setTel(tel);
+			dto.setLat(lat);
+			dto.setLng(lng);
+
+			dao.addLocation(dto);
+
+			String location_seq = dao.getLocationSeq(dto);
+
+			if (location_seq != null) {
+				dto.setLocation_seq(location_seq);
+
+				int result = dao.addGiftShop(dto);
+
+				if (result == 1) {
+					shop_seq = dao.getShopSeq();
+
+					Enumeration<?> files = multi.getFileNames();
+					for (; files.hasMoreElements();) {
+						String name = (String) files.nextElement();
+						String filename = multi.getFilesystemName(name);
+
+						// 파일명을 이용하여 다양한 작업 수행
+						// filename을 리스트에 추가하거나, DB에 저장하거나, 다른 작업 수행 가능
+						fileList.add(filename);
+					}
+
+					result = dao.addShopImg(fileList, shop_seq);
+
+					if (result > 0) {
+						resp.sendRedirect("/ddstudio/shop/giftshop.do");
 					} else {
 						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('location failed'); history.back();</script>");
+						writer.print("<script>alert('Add Shop Img failed'); history.back();</script>");
 						writer.close();
 					}
-					
-				} catch (Exception e) {
-					System.out.println("GiftshopAdd.enclosing_method()");
-					e.printStackTrace();
+				} else {
+					PrintWriter writer = resp.getWriter();
+					writer.print("<script>alert('Add Shop failed'); history.back();</script>");
+					writer.close();
 				}
-				
+			} else {
 				PrintWriter writer = resp.getWriter();
-				writer.print("<script>alert('failed'); history.back();</script>");
+				writer.print("<script>alert('location failed'); history.back();</script>");
 				writer.close();
+			}
+
+		} catch (Exception e) {
+			System.out.println("GiftshopAdd.enclosing_method()");
+			e.printStackTrace();
+		}
+
+		PrintWriter writer = resp.getWriter();
+		writer.print("<script>alert('failed'); history.back();</script>");
+		writer.close();
 	}
 
 }

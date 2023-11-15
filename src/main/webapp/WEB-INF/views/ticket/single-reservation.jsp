@@ -344,18 +344,7 @@ text-align: center;
 
 
 			<div class="container">
-				<form action="/ddstudio/ticket/group-reservation.do" method="post">
-					<div id="condition">
-						<h3>예약자 정보</h3>
-					</div>
-					<div class="form-group">
-						<label for="name">이름</label> <input type="text" id="name"
-							name="name" required value=${name } disabled>
-					</div>
-					<div class="form-group">
-						<label for="email">이메일</label> <input type="text" id="email"
-							name="email" value=${email} disabled>
-					</div>
+				<form action="/ddstudio/ticket/reservation-check.do" method="post">	
 					<div id="condition">
 						<h3>방문일자/인원 선택</h3>
 					</div>
@@ -378,7 +367,7 @@ text-align: center;
 									성인
 									<select name="adult" class="personnel">
 										<option value="0">0</option>
-										<option value="1">1</option>
+										<option value="1" selected>1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
@@ -439,7 +428,7 @@ text-align: center;
 									 	</div>
 									</div>
 									<div class="it">
-										<button type="button" class="benefit-button" onclick="changeBenefit(this, ${dto.discount_rate});">혜택 선택</button>
+										<button type="button" class="benefit-button" onclick="changeBenefit(this, ${dto.benefit_seq}, '${dto.name}', ${dto.discount_rate});">선택</button>
 									</div>
 								</li>
 								</c:forEach>
@@ -462,7 +451,7 @@ text-align: center;
 									 	</div>
 									</div>
 									<div class="it">
-									<button type="button" class="benefit-button" onclick="changeBenefit(this, ${dto.discount_rate});">선택</button>
+									<button type="button" class="benefit-button" onclick="changeBenefit(this, ${dto.benefit_seq}, '${dto.name}', ${dto.discount_rate});">선택</button>
 									</div>
 								</li>
 								</c:forEach>
@@ -493,9 +482,10 @@ text-align: center;
 					</div>
 
 					<div class="btn-container">
-						<button type="submit" class="btn"
-							onclick="location.href='/ddstudio/ticket/group-reservation.do'">예약</button>
+						<button type="submit" class="btn">예매</button>
 					</div>
+					<input type="hidden" name="benefit_seq" id="benefit_seq" value="0">
+					<input type="hidden" name="benefit_name" id="benefit_name">
 					<input type="hidden" name="discount_rate" id="discount_rate" value="0">
 				</form>
 			</div>
@@ -534,9 +524,14 @@ text-align: center;
 	        document.getElementById(tabId).style.display = "block";
 	      }
 	    
-	    function changeBenefit(button, value) {
+	    function changeBenefit(button, seq, name, value) {
+	    	const benefit_seq = document.getElementById("benefit_seq");
 	    	const discount_rate = document.getElementById("discount_rate");
+	    	const benefit_name = document.getElementById("benefit_name");
 	    	const benefitButtons = document.querySelectorAll(".benefit-button");
+	    	
+	    	benefit_seq.value = seq;
+	    	benefit_name.value = name;
 	    	discount_rate.value = value;
 	    	
 	    	benefitButtons.forEach(btn => {
@@ -546,6 +541,29 @@ text-align: center;
 	        // 현재 클릭한 버튼만 비활성화
 	        button.disabled = true;
 	    }
+	    
+	    const inputs = document.querySelectorAll('input[required]');
+	    
+	 // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
+	    inputs.forEach(input => {
+	        input.addEventListener('input', function() {
+	            let allFilled = true;
+	            inputs.forEach(requiredInput => {
+	                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
+	                if (requiredInput.value === '') {
+	                    allFilled = false;
+	                }
+	            });
+
+	            // 모든 input이 채워졌다면 버튼을 활성화합니다.
+	            const joinButton = document.getElementById('join');
+	            if (allFilled) {
+	                joinButton.disabled = false;
+	            } else {
+	                joinButton.disabled = true;
+	            }
+	        });
+	    });
 	</script>
 </body>
 </html>
