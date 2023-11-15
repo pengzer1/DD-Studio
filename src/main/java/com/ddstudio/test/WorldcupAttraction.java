@@ -53,7 +53,6 @@ public class WorldcupAttraction extends HttpServlet {
 		req.setAttribute("selectedAttractions", selectedAttractions);
 		req.setAttribute("selectedTwoAttractions", selectedTwoAttractions);
 
-		// JSP로 포워딩
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/attraction/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -136,7 +135,6 @@ public class WorldcupAttraction extends HttpServlet {
 				remainingAttractionSeqs.add(attraction.getAttraction_seq());
 			}
 			jsonResponse.put("remainingAttractionSeqs", remainingAttractionSeqs);
-
 			jsonResponse.put("selectedTwoAttractions", selectedTwoAttractionsJsonArray);
 
 			resp.getWriter().write(jsonResponse.toString());
