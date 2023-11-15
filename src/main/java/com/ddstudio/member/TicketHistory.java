@@ -29,10 +29,13 @@ public class TicketHistory extends HttpServlet {
 		
 		ArrayList<UserBookDTO> list = dao.get(email);
 		
+		ArrayList<UserBookDTO> plist = dao.pget(email);
+		
 		/* dto.setIntro(dto.getIntro().replace("\r\n","<br>")); */
 		
 		//3.
 		req.setAttribute("list", list);
+		req.setAttribute("plist", plist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/ticket.jsp");
 		dispatcher.forward(req, resp);

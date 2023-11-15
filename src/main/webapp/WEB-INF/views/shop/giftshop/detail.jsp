@@ -204,7 +204,7 @@ ul {
 			<c:if test="${not empty lv && lv == 2}">
 				<div id="admin-btn">
 					<button type="button" id="add-btn"
-						onclick="location.href='/ddstudio/shop/restaurant/add.do'">
+						onclick="location.href='/ddstudio/shop/item/add.do?shop_seq=${seq}'">
 						<i class="fa-solid fa-plus"></i> 상품 추가
 					</button>
 				</div>

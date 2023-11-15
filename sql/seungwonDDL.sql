@@ -86,14 +86,42 @@ CREATE TABLE tblMBTI (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* ?��?��?��?��번호 */
 );
 
-select * from TBLCOURSE;
+drop table tblWorldcup;
+--/* 월드컵 */
+--create table tblWorldcup (
+--	worldcup_seq number primary key,
+--	select_seq number,
+--	remain_seq number
+--);
+--
+
+select * from tblCourse order by course_seq;
 select * from TBLATTRACTION;
 select * from tblLocation;
 select * from TBLATTRACTIONHASHTAG;
 select * from TBLATTRACTIONIMG;
 
+drop view vwAttraction;
+CREATE OR REPLACE VIEW vwAttractionList
+AS
+select
+    a.attraction_seq,
+    a.name as attraction_name,
+    ai.img as attraction_img
+from tblAttraction a
+left join tblAttractionImg ai
+on a.attraction_seq = ai.attraction_seq;
+
+select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a;
+select * from vwAttractionList order by attraction_seq;
+
 select * from tblMBTI where mbti = 'INFJ';
 select * from tblMBTI order by mbti_seq;
+
+update tblMBTI set course_seq = 999 where course_seq = 6;
+SELECT * FROM vwMBTIDetail order by mbti_seq;
+
+select * from tblCourse;
 
 CREATE OR REPLACE VIEW vwMBTIDetail
 AS

@@ -43,7 +43,7 @@ public class ItemDel extends HttpServlet {
 		
 		if (result == 1) {
 			
-			resp.sendRedirect("/ddstudio/shop/giftshop/detail.do?req=" + shop_seq);
+			resp.sendRedirect("/ddstudio/shop/giftshop/detail.do?seq=" + shop_seq);
 			
 		} else {
 			PrintWriter writer = resp.getWriter();

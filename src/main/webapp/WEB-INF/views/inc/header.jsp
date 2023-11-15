@@ -46,6 +46,12 @@
     .sub-menu .nav-item:hover > .sub-sub-menu {
         display: block;
     }
+   
+   .cart-icon {
+        font-size: 24px; /* 원하는 크기로 조정 */
+        color: #000; /* 아이콘 색상 조정 (원하는 색상으로 변경) */
+        margin-right: 0px; /* 원하는 여백으로 조정 */
+    }
 </style>
 
 <!-- Header Start -->
@@ -128,13 +134,10 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/guide/park.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">notification_important</div>
 								<div class="nav-menu-name">가이드</div>
 								<div class="sub-menu">
-									<div>
-										<a href="/ddstudio/guide/service.do">운영/운휴</a>
-									</div>
 									<div>
 										<a href="/ddstudio/guide/park.do">파크 이용안내</a>
 									</div>
@@ -212,6 +215,7 @@
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<c:if test="${lv==1}">
 						<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
+						<a href="/ddstudio/member/cart/list.do" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a>
 						</c:if>
 						<c:if test="${lv==2}">
 						<a href="/ddstudio/admin/adminpage.do">관리자페이지</a>
