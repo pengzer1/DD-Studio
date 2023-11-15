@@ -15,4 +15,7 @@ public class AttractionDTO {
 	private String is_test;
 	
 	private String img;
+	
+	private String lat;
+	private String lng;
 }

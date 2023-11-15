@@ -8,7 +8,8 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
-
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 <style>
 
 	#cancel {
@@ -36,6 +37,67 @@
 	   background-color: #ddd;
 	}
 	
+	/* Tagify 사용 시도 */
+	.tagify{
+		width: 500px;
+		max-width: 500px;
+	}
+	
+	.tagify--outside{
+        border: 0;
+    }
+
+    .tagify--outside .tagify__input{
+      order: -1;
+      flex: 100%;
+      border: 1px solid var(--tags-border-color);
+      margin-bottom: 1em;
+      /* transition: .1s; */
+    }
+
+    .tagify--outside .tagify__input:hover{ border-color:var(--tags-hover-border-color); }
+    .tagify--outside.tagify--focus .tagify__input{
+      transition:0s;
+      border-color: var(--tags-focus-border-color);
+    }
+    
+    #restriction {
+    	width: 500px;
+    	max-width: 500px;
+    	
+    }
+    
+    td > div > textarea {
+    	border: 1.5px solid #eeeeee;
+    }
+    
+    textarea::placeholder {
+		font-size: 16px;
+		font-weight: 00;
+		color: #9e9e9e;
+		text-align: center;
+	}
+	
+	input::placeholder {
+		font-size: 16px;
+		font-weight: 00;
+		color: #9e9e9e;
+		text-align: center;
+	}
+	
+	table {
+		width: 700px;
+		margin: 0 auto;
+	}
+	
+	td > div > input[type=radio] {
+		width: auto;
+		height: auto;
+		border: 1.5px solid #ccc;
+		border-radius: 7px;
+		appearance: auto;
+	}
+    
 </style>
 </head>
 <body>
@@ -54,15 +116,14 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data">
+				<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
 						<!-- 어트랙션명 필드 -->
 						<tr>
 							<th class="required">어트랙션명</th>
 							<td>
 								<div class="name">
-									<input type="text" name="name" id="name" required
-										class="middle-flat">
+									<input type="text" name="name" id="name" class="middle-flat" placeholder="어트랙션명을 입력해주세요." required>
 								</div>
 							</td>
 						</tr>
@@ -71,8 +132,7 @@
 							<th class="required">탑승 인원</th>
 							<td>
 								<div>
-									<input type="number" name="capacity" id="capacity" min="1" required
-										class="middle-flat">
+									<input type="number" name="capacity" id="capacity" min="1" class="middle-flat" placeholder="탑승 인원(숫자)을 입력해주세요." required>
 								</div>
 							</td>
 						</tr>
@@ -81,7 +141,17 @@
 							<th>이용 정보</th>
 							<td>
 								<div>
-									<textarea name="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
+									<textarea name="restriction" id="restriction" placeholder="제한사항 등 해당 어트랙션의 이용정보를 작성해주세요."></textarea>
+								</div>
+							</td>
+						</tr>
+						<!-- 고객 맞춤형 추천 목록 사용 여부 필드 -->
+						<tr>
+							<th>Test 사용 여부</th>
+							<td>
+								<div>
+									<input type="radio" name="is_test" value="Y" id="test_y"/><label for="test_y">사용</label>
+									<input type="radio" name="is_test" value="N" id="test_n" checked/><label for="test_n">미사용</label>
 								</div>
 							</td>
 						</tr>
@@ -100,37 +170,41 @@
 						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<div class="middle-flat">
-									<input type="text" name="hashtag" id="hashtag"/>
-									<button id="hashtagBtn">등록</button>
-								</div>
-								<!-- 해시태그 결과 출력용 -->
-								<div id="hashtag-result"></div>
+								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
 						</tr>
 						<!-- 이미지 필드 -->
 						<tr>
-							<th class="required">이미지</th>
-							<td>
-								<input type="file" name="images" id="images" multiple>
-							</td>
-						</tr>
+	                    	<th>이미지</th>
+			                	<td>
+			                    	<input type="file" name="images1" class="images">
+			                    </td>
+		                </tr>
+		                <tr>
+		                	<th> </th>
+		                    <td>
+		                    	<input type="file" name="images2" class="images">
+		                    </td>
+	                    </tr>
+		                <tr>
+		                	<th> </th>
+		                    <td>
+		                    	<input type="file" name="images3" class="images">
+		                    </td>
+		                </tr>
+		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<!-- validateAndSubmit 함수로 가입 버튼 클릭 시 유효성 검사 -->
-									<!-- <div id="ok-message"></div> -->
-									<button type="submit" id="join" class="check button" disabled>추가</button>
-									<button type="button" id="cancel" class="button"
-										onclick="location.href='/ddstudio/shop/restaurant.do';">취소</button>
+									<button id="submit" class="check button">추가</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/attraction.do';">취소</button>
 								</div>
 							</td>
 						</tr>
 					</table>
-					<input type="hidden" name="lng" id="lng"> <input
-						type="hidden" name="lat" id="lat">
-
+					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="lat" id="lat">
 				</form>
 			</div>
 		</div>
@@ -146,6 +220,8 @@
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
 		    
+		
+		/*
 		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
 		    inputs.forEach(input => {
 		        input.addEventListener('input', function() {
@@ -158,14 +234,15 @@
 		            });
 	
 		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const joinButton = document.getElementById('join');
+		            const submitButton = document.getElementById('submit');
 		            if (allFilled) {
-		                joinButton.disabled = false;
+		                submitButton.disabled = false;
 		            } else {
-		                joinButton.disabled = true;
+		                submitButton.disabled = true;
 		            }
 		        });
 		    });
+		    */
 		    
 		    const container = document.getElementById('map');
 			const options = {
@@ -204,30 +281,28 @@
 			    });
 			 
 			 
-		 //해시태그 Ajax
-		 //select a.*,(select name from tblHashtag where hashtag_seq = a.hashtag_seq)as hashtag_name from tblattractionhashtag a;
-		 //위에 테이블 확인해서 해시태그가 있으면 해당 내용 가져오고, 없으면 바로 인서트하기
-		 
-		 //해시태그 추가하기
-		 $('#hashtagBtn').click(function() {
-			 
-			 $('#hashtag-result').append("#" + $('#hashtag').val());
-			 $('#hashtag').val(''); //초기화
-			 
-		 });
+		 //Tagify whitelist용 변수 생성
+		 const taglist = ${taglist}
 		 
 		 
-		 //해시 태그 작성 후, 엔터 입력 시 버튼 클릭되는 기능
-		 $('#hashtag').keydown(function() {
-			 if (event.keyCode == 13) {
-				 $('#hashtagBtn').click();
-			 }
-		 });
+		 //Tagify 도전기
+		 var input = document.querySelector('textarea[name=tags]'),
+		 	tagify = new Tagify(input, {
+		    enforceWhitelist : true,
+		    maxTags          : 5,
+ 		    delimiters       : null,
+ 		    whitelist        : taglist
+		  });
 		 
-		 //load();
+		 /*
+		 tagify.on('input', onInput)
+		 function onInput(e){
+	        console.log("onInput: ", e.detail);
+	        
+	        tagify.dropdown.show(e.detail.value); // 드롭다운 메뉴 보여주기
+   		 }
+		 */
 		 
-		 //어트랙션 해시 태그 목록 가져오기(Ajax) > 화면에 출력
-			 
 	</script>
 </body>
 </html>
