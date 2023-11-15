@@ -28,16 +28,22 @@
 }
 
 #hashtag-container {
-	display: flex;
-	text-align: center;
-	margin-top: 10px;
-	justify-content: center;
+    display: flex;
+    text-align: center;
+    margin-top: 13px;
+    font-size: 18px;
+    justify-content: center;
 }
 
-#hashtag {
-	width: 100px;
-	height: 40px;
-	margin-right: 5px;
+.hashtag {
+    width: 100px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.hashtag:not(:last-child) {
+    margin-right: 0;
 }
 
 #result-container {
@@ -129,29 +135,39 @@
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	<script>
-		// 페이지 로드 시 해시태그를 랜덤으로 추가하는 함수
+		// 페이지 로드 시 해시태그를 랜덤으로 추가
 	    function addRandomHashtags(hashtagList) {
-	        // 해시태그 컨테이너 초기화
 	        $('#hashtag-container').empty();
 	
 	        // 랜덤으로 3개의 해시태그 선택
 	        var randomHashtags = getRandomElements(hashtagList, 3);
 	
-	        // 선택된 해시태그를 동적으로 추가
+	        // 해시태그를 동적으로 추가
 	        $.each(randomHashtags, function (index, hashtag) {
 	            var hashtagElement = '<div class="hashtag">#' + hashtag + '</div>';
 	            $('#hashtag-container').append(hashtagElement);
 	        });
+	        
+	    	// 해시태그 클릭 이벤트 추가
+	        $('.hashtag').click(function () {
+	            // 클릭된 해시태그의 텍스트를 search-field에 설정
+	            $('#search-field').val($(this).text().substring(1)); // '#' 제외한 부분만 설정
+
+	            // 검색 실행
+	            $('#search-form').submit();
+	        });
 	    }
 	
-	    // 배열에서 랜덤으로 요소를 선택하는 함수
+	    // 배열에서 랜덤으로 요소를 선택
 	    function getRandomElements(array, numElements) {
 	        var shuffledArray = array.slice(); // 복제본을 만들어 셔플링
+	        
 	        for (var i = shuffledArray.length - 1; i > 0; i--) {
 	            var j = Math.floor(Math.random() * (i + 1));
 	            // 배열 요소 교환
 	            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
 	        }
+	        
 	        // 처음부터 numElements만큼의 요소 반환
 	        return shuffledArray.slice(0, numElements);
 	    }
@@ -161,9 +177,9 @@
 	        // 서버에서 해시태그 데이터를 가져오는 AJAX 요청
 	        $.ajax({
 	            type: 'GET',
-	            url: '/user/searchhashtag.do',
+	            url: '/ddstudio/user/searchhashtag.do',
 	            success: function (data) {
-	                console.log('Hashtag data:', data);
+	                // console.log('Hashtag data:', data);
 	
 	                // 가져온 해시태그 데이터를 기반으로 동적으로 추가
 	                addRandomHashtags(data);
@@ -186,7 +202,7 @@
 	            url: '/ddstudio/user/search.do',
 	            data: $('#search-form').serialize(),
 	            success: function(data) {
-	                console.log('data:', data);
+	                // console.log('data:', data);
 	                var searchResults = data;
 	
 	                // 검색 결과를 담을 객체 초기화

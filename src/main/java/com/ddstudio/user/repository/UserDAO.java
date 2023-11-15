@@ -280,6 +280,7 @@ public class UserDAO {
 
             while (rs.next()) {
                 String hashtagName = rs.getString("NAME");
+                
                 hashtagList.add(hashtagName);
             }
         } catch (Exception e) {
