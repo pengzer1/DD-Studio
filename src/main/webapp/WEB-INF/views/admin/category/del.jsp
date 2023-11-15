@@ -84,7 +84,7 @@
 							<td>
 								<select name="category_name">
 									<c:forEach items="${list}" var="dto">  <!-- Catedorydel.java가 보낸 list에서 for문 돌리기 -->
-                            			<option value="${dto.name}">${dto.name}</option>
+                            			<option value="${dto.category_seq}">${dto.name}</option>
                         			</c:forEach>
 								</select>
 							</td>

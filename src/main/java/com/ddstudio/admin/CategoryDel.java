@@ -33,12 +33,12 @@ public class CategoryDel extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String name=req.getParameter("category_name");
+		String category_seq=req.getParameter("category_name");
 		
 		CategoryDAO dao = new CategoryDAO();
 		
 		CategoryDTO dto = new CategoryDTO();
-		dto.setName(name);
+		dto.setCategory_seq(category_seq);
 		
 		int result = dao.del(dto);
 		
