@@ -12,5 +12,6 @@ public class UserBuyDTO {
 	private String price;
 	private String buy_seq;
 	private String buy_date;
+	private String user_buy_seq;
 	
 }

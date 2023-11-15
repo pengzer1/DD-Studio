@@ -1,6 +1,7 @@
 package com.ddstudio.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,12 +27,15 @@ public class TicketHistory extends HttpServlet {
 		//2.
 		UserBookDAO dao = new UserBookDAO();
 		
-		UserBookDTO dto = dao.get(email);
+		ArrayList<UserBookDTO> list = dao.get(email);
+		
+		ArrayList<UserBookDTO> plist = dao.pget(email);
 		
 		/* dto.setIntro(dto.getIntro().replace("\r\n","<br>")); */
 		
 		//3.
-		req.setAttribute("dto", dto);
+		req.setAttribute("list", list);
+		req.setAttribute("plist", plist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/ticket.jsp");
 		dispatcher.forward(req, resp);

@@ -74,11 +74,11 @@
 		</div>
 
 			<div class="container">
-				<img class="totoro-image" src="/ddstudio/asset/image/토토로.png"
+				<img class="totoro-image" src="/ddstudio/asset/image/흑화토토로.png"
 					alt="토토로 이미지">
 				<div class="button-container">
 					<button class="button"
-						onclick="location.href='/ddstudio/index.do'">탈퇴</button>
+						onclick="location.href='/ddstudio/user/logout.do'" style = "background-color : tomato">탈퇴</button>
 					<button class="button"
 						onclick="location.href='/ddstudio/member/mypage/info.do'">취소</button>
 				</div>

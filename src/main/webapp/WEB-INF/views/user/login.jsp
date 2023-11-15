@@ -7,38 +7,19 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
+<link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-th input#email.middle-high, th input#pw.middle-high {
-	color: #000;
-	margin-top: 50px;
-	width: 400px;
-	height: 80px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 16px;
-	margin: -1px; /* 이메일 비밀번호 상자 연결 */
-	flex-direction: column;
-	align-items: center;
+#auto-login {
+	display: flex;
+	justify-content: space-between;
 }
 
-th input#email.middle-high {
-	margin-top: 30px;
+#auto-login .button {
+	width: 100px;
 }
 
-th input#pw.middle-high {
-	margin-bottom: 30px;
-}
-
-th input#email.middle-high:focus, th input#pw.middle-high:focus {
-	border-color: #000;
-}
-
-th input#pw.middle-high {
-	border-top: 0;
-}
-
-th input#email.middle-high+th input#pw.middle-high {
-	margin-top: 0;
+h2 small {
+	font-size: 80%;
 }
 
 .button-container {
@@ -48,36 +29,36 @@ th input#email.middle-high+th input#pw.middle-high {
 
 .button {
 	width: 183px;
+	margin-left: 0;
 	height: 40px;
 	font-size: 16px;
 	background-color: transparent;
 	border: 1px solid #ccc;
 }
 
-#check {
-	background-color: cornflowerblue;
+.button-container {
+	margin-top: 0;
 }
 
-table {
-	margin: 0 auto;
-	text-align: center;
+#main {
+	margin-top: 100px;
 }
 
-.round-button {
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
-	font-size: 16px;
-	background-color: transparent;
-	border: 1px solid #ccc;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
+#main > .sub-title {
+	border-top: 0;
+	margin-top: 0;
 }
 
-.login {
-    margin: -110px 0 0 50px;
+.sub-title > p {
+	margin-bottom: 0;
+}
+
+#title {
+    background-image: url('/ddstudio/asset/image/background-4.jpg');
+}
+
+#title > h2 {
+	color: white;
 }
 </style>
 </head>
@@ -91,7 +72,7 @@ table {
 			<h2>로그인</h2>
 		</div>
 
-		<div id="sub-title">
+		<div class="sub-title">
 			<p>회원 이메일과 비밀번호로 로그인하세요.</p>
 		</div>
 
@@ -116,37 +97,51 @@ table {
 							</td>
 						</tr>
 					</table>
-
 				</form>
 			</div>
-
-			<!-- 자동 로그인 시작 (추후 삭제) -->
+			
+			<!-- 자동 로그인 시작 -->
 			<hr>
 			
-			<h2>자동 로그인 (관리자용)</h2>
-			<div id="form-list">
+			<h2>자동 로그인 <small>(관리자용)</small></h2>
+			<div id="auto-login">
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="park@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">박나래</button>
+					<input type="hidden" name="email" value="admin@naver.com">
+					<input type="hidden" name="pw" value="admin1111!">
+					<button type="submit" class="login button">관리자</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="hwang@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">황주원</button>
+					<input type="hidden" name="email" value="park@naver.com">
+					<input type="hidden" name="pw" value="park1111!">
+					<button type="submit" class="login button">박나래</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="cha@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">차민재</button>
+					<input type="hidden" name="email" value="hwnag@kakao.com">
+					<input type="hidden" name="pw" value="hwang1111!">
+					<button type="submit" class="login button">황주원</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
-					<input type="hidden" name="email" value="admin@example.com">
-					<input type="hidden" name="pw" value="1111">
-					<button type="submit" class="login">관리자</button>
+					<input type="hidden" name="email" value="cha@daum.net">
+					<input type="hidden" name="pw" value="cha1111!">
+					<button type="submit" class="login button">차민재</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="lee@kakao.com">
+					<input type="hidden" name="pw" value="lee1111!">
+					<button type="submit" class="login button">이정은</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="cha@msn.com">
+					<input type="hidden" name="pw" value="cha1111!">
+					<button type="submit" class="login button">차수민</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="lee@naver.com">
+					<input type="hidden" name="pw" value="lee1111!">
+					<button type="submit" class="login button">이승원</button>
 				</form>
 			</div>
-			<!-- 자동 로그인 끝 (추후 삭제) -->
+			<!-- 자동 로그인 끝 -->
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->

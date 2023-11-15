@@ -8,37 +8,55 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-	#attraction-add {
+	#attraction-del {
 		text-align: center;
 		margin-top: 150px;
 	}
 	
-	#add-line {
+	#del-line {
 		color: #777;
 	}
 	
-	#add-content {
+	#del-content {
 		display: flex;
 		justify-content: center;
 		text-align: left;
 	}
 	
-	#form-table tr > th {
-		width: 200px;
+	#btn {
+		text-align: center;
 	}
 	
-	#form-table tr > td {
-		width: 400px;
+	#btn button {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #E6AAAE;
 	}
 	
-	#form-table tr > td > input {
-		width: 100%;
-		height: 100%;
+	.del-box {
+		border: 1px solid #777;
+		text-align: left;
+		display: inline-block;
+		width: 470px;
+		padding: 10px 13px;
+		border-radius: 7px;
 	}
 	
-	table.vertical {
-		margin:0 auto;
+	.del-box p {
+		margin-bottom: 0;
 	}
+	
+	#sub-title > p:first-child {
+		color: #dc3545;
+	}
+	
+	#sub-title > p:last-child {
+		margin-top: 1rem;
+	}
+	
 	
 </style>
 </head>
@@ -55,17 +73,24 @@
 			<h2>어트랙션 삭제하기</h2>
 		</div>
 		
-		<hr id="attraction-line"/>
+		<hr id="del-line"/>
 		
 		<div id="sub-title">
-			<p>어트랙션 삭제</p>
+			<p class="--bs-red"><i class="fa-solid fa-triangle-exclamation"></i>주의사항<i class="fa-solid fa-triangle-exclamation"></i></p>
+					<p>하단의 삭제버튼을 누르는 즉시 어트랙션은 삭제 처리 되며, 하기 내용의 업무가 더이상 불가능하게됩니다.</p>
+				<div class="del-box">
+					<!-- <p>1. 위치/테마 정보 조회에서 해당 어트랙션 조회가 불가합니다.</p> -->
+					<p>1. 해시태그 조회에서 해당 어트랙션 조회가 불가합니다.</p>
+					<p>2. MBTI별 추천 항목에서 해당 어트랙션이 제외됩니다.</p>
+				</div>
+			<p>정말로 선택하신 어트랙션을 삭제하시겠습니까?</p>
 		</div>
 		
 		<div id="del-content">
 			<form method="POST" action="/ddstudio/activity/attractiondel.do">
-				<div>
-					<button>취소</button>
-					<button>삭제</button>
+				<div id="btn">
+					<button type="button" onclick="location.href= '/ddstudio/activity/attractiondetail.do?seq=' + ${seq};"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
+					<button><i class="fa-solid fa-trash"></i>삭제</button>
 				</div>
 				<input type="hidden" name="seq" value="${seq}" />
 			</form>

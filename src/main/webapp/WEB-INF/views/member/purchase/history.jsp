@@ -54,7 +54,22 @@ tr:nth-child(even) {
 }
 
 .button:hover {
-  background-color: #0056a4;
+	background-color: #0056a4;
+}
+
+.button-container {
+	position: relative;
+}
+
+#content{
+	margin-top: 100px;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 24px;
+	color: #686A6F;
+	text-align:center;
 }
 </style>
 </head>
@@ -67,19 +82,14 @@ tr:nth-child(even) {
 
 		<div id="title">
 			<h2>구매 내역</h2>
-
 		</div>
 
 		<hr>
 
-		<div id="sub-title">
-			<h3></h3>
-		</div>
-
 		<div id="content">
-
 			<div class="container">
-				<h2>주문 내역</h2>
+				<h2 class="name">주문 내역</h2>
+				<hr>
 				<table>
 					<thead>
 						<tr>
@@ -87,41 +97,35 @@ tr:nth-child(even) {
 							<th>품목</th>
 							<th>수량</th>
 							<th>가격</th>
+							<th>결제일</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 첫 번째 품목 -->
-						<tr>
-							<td>${dto.shopName}</td>
-							<td>${dto.itemName}</td>
-							<td>${dto.ea}</td>
-							<td>${dto.price}</td>
-						</tr>
-						<!-- 두 번째 품목 -->
-						<tr>
-							<td>샵 B</td>
-							<td>품목 2</td>
-							<td>1</td>
-							<td>$15.00</td>
-						</tr>
-						<!-- 세 번째 품목 -->
-						<tr>
-							<td>샵 C</td>
-							<td>품목 3</td>
-							<td>3</td>
-							<td>$30.00</td>
-						</tr>
+						<c:forEach items="${list}" var="dto">
+							<tr>
+								<td>${dto.shopName}</td>
+								<td>${dto.itemName}</td>
+								<td>${dto.ea}</td>
+								<td>${dto.price}</td>
+								<td>${dto.buy_date}</td>
+								<td class="checkbox-col"><input type="checkbox"
+									name="reservationCheckbox" value="${dto.user_buy_seq}">
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
-			</div>
 
-			<div class="buttons-container">
-				<button class="button">주문 취소</button> <!-- 팝업창구현 -->
+				<div class="buttons-container">
+					<button class="button" id="delete-button">주문 취소</button>
+				</div>
+
 			</div>
 
 			<div class="container">
-				<h2>이전 기프트샵 구매 내역</h2>
+				<h2 class="name">이전 기프트샵 구매 내역</h2>
+				<hr>
 				<table>
 					<thead>
 						<tr>
@@ -129,35 +133,23 @@ tr:nth-child(even) {
 							<th>품목</th>
 							<th>수량</th>
 							<th>가격</th>
+							<th>결제일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 첫 번째 품목 -->
-						<tr>
-							<td>샵 A</td>
-							<td>품목 1</td>
-							<td>2</td>
-							<td>$20.00</td>
-						</tr>
-						<!-- 두 번째 품목 -->
-						<tr>
-							<td>샵 B</td>
-							<td>품목 2</td>
-							<td>1</td>
-							<td>$15.00</td>
-						</tr>
-						<!-- 세 번째 품목 -->
-						<tr>
-							<td>샵 C</td>
-							<td>품목 3</td>
-							<td>3</td>
-							<td>$30.00</td>
-						</tr>
+						<c:forEach items="${plist}" var="dto">
+							<tr>
+								<td>${dto.shopName}</td>
+								<td>${dto.itemName}</td>
+								<td>${dto.ea}</td>
+								<td>${dto.price}</td>
+								<td>${dto.buy_date}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
 			</div>
-
 		</div>
 
 	</main>
@@ -165,7 +157,44 @@ tr:nth-child(even) {
 	<!-- Footer -->
 
 	<script>
-		
+		$('#delete-button').click(
+				function() {
+					var result = confirm("정말 예매를 취소하시겠습니까?");
+
+					if (result) {
+						var selectedUserBookSeqs = $(
+								'input[name="reservationCheckbox"]:checked')
+								.map(function() {
+									return this.value;
+								}).get();
+
+						// 선택된 예매 정보를 서버로 전송
+						$.ajax({
+							type : 'POST',
+							url : '/ddstudio/member/purchasedel.do',
+							data : {
+								user_buy_seq : selectedUserBookSeqs
+							},
+							traditional : true,
+
+							dataType : 'json',
+							success : function(data) { //data == { "result" : 1 }
+								// 서버에서의 응답에 대한 처리
+								// 예를 들면, 삭제 후에 어떤 동작을 할지에 대한 로직을 추가할 수 있습니다.
+								if (data.result == 1) {
+									location.reload(); // 예제로 새로고침을 수행하도록 했습니다.
+								} else {
+									alert('failed');
+								}
+							},
+							error : function() {
+								alert('예매 취소에 실패했습니다.');
+							}
+						});
+					} else {
+						return false;
+					}
+				});
 	</script>
 </body>
 </html>

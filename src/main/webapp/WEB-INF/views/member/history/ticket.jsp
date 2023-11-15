@@ -52,7 +52,7 @@ tr:nth-child(odd) {
 }
 
 .buttons-container {
-	text-align: center;
+	position: relative;
 }
 
 .button {
@@ -67,6 +67,10 @@ tr:nth-child(odd) {
 .button:hover {
 	background-color: #0056a4;
 }
+
+#content{
+	margin-top: 100px;
+}
 </style>
 </head>
 <body>
@@ -78,15 +82,9 @@ tr:nth-child(odd) {
 
 		<div id="title">
 			<h2>예매 확인/취소</h2>
-			<br>
-			<p></p>
 		</div>
 
 		<hr>
-
-		<div id="sub-title">
-			<h3></h3>
-		</div>
 
 		<div id="content">
 
@@ -96,70 +94,67 @@ tr:nth-child(odd) {
 					<div>
 						<table>
 							<tr>
-								<th>내용</th>
-								<th>방문일</th>
+								<th>번호</th>
+								<th>방문예정일</th>
 								<th>예매일</th>
-								<th>혜택</th>
+								<th>할인율</th>
 								<th>수량</th>
 								<th>결제금액</th>
+								<th></th>
 							</tr>
-							<tr>
-								<td>${dto.user_book_seq}</td>
-								<td>${dto.visit_date}</td>
-								<td>${dto.book_date}</td>
-								<td>${dto.discount_rate}</td>
-								<td>${dto.ea}</td>
-								<td>${dto.price}</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
+							<form name="delete-form" action="/ddstudio/member/ticketdel.do" method="post">
+								<c:forEach items="${list}" var="dto">
+									<tr>
+										<td>${dto.user_book_seq}</td>
+										<td>${dto.visit_date}</td>
+										<td>${dto.book_date}</td>
+										<td>${dto.discount_rate}</td>
+										<td>${dto.ea}</td>
+										<td>${dto.price}</td>
+										<td class="checkbox-col"><input type="checkbox"
+											name="reservationCheckbox" value="${dto.user_book_seq}"></td>
+									</tr>
+								</c:forEach>
+							</form>
 						</table>
+				<div class="buttons-container">
+					<button class="button" id="delete-button">예매 취소</button>
+				</div>
 					</div>
 				</div>
 
-				<div class="buttons-container">
-					<button class="button">예매 취소</button>
-					<!-- 누르면 팝업으로 취소창 구현해야함..ㅋㅋ -->
-					<!-- <button class="button" onclick="location.href='/ddstudio/member/history/ticket.do';">리뷰 작성</button> -->
-				</div>
+
+
 
 				<div class="wide-item">
 					<div class="name">이전 예매 내역</div>
 					<div>
 						<table>
 							<tr>
-								<th>내용</th>
-								<th>방문일</th>
+								<th>번호</th>
+								<th>방문 예정일</th>
 								<th>예매일</th>
-								<th>혜택</th>
+								<th>할인율</th>
 								<th>수량</th>
 								<th>결제금액</th>
+								<th></th>
 							</tr>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-								<td>1</td>
-							</tr>
-							<!-- 여기에 추가 결제 내역을 추가할 수 있습니다. -->
+							<c:forEach items="${plist}" var="dto">
+								<tr>
+									<td>${dto.user_book_seq}</td>
+									<td>${dto.visit_date}</td>
+									<td>${dto.book_date}</td>
+									<td>${dto.discount_rate}</td>
+									<td>${dto.ea}</td>
+									<td>${dto.price}</td>
+									<td class="checkbox-col"><input type="checkbox"
+										name="reviewCheckbox" value="${dto.user_book_seq}"></td>
+								</tr>
+							</c:forEach>
 						</table>
+						<div class="buttons-container">
+							<button class="button" onclick="writeReview()">리뷰작성</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -170,6 +165,51 @@ tr:nth-child(odd) {
 
 	<script>
 		
+		$('#delete-button').click(function() {
+			var result = confirm("정말 예매를 취소하시겠습니까?");
+
+			if (result) {
+                var selectedUserBookSeqs = $('input[name="reservationCheckbox"]:checked').map(function() {
+                    return this.value;
+                }).get();
+
+                // 선택된 예매 정보를 서버로 전송
+                $.ajax({
+                    type: 'POST',
+                    url: '/ddstudio/member/ticketdel.do',
+                    data: { user_book_seq: selectedUserBookSeqs },
+                    traditional: true,
+                    
+                    dataType: 'json',
+                    success: function(data) { //data == { "result" : 1 }
+                        // 서버에서의 응답에 대한 처리
+                        // 예를 들면, 삭제 후에 어떤 동작을 할지에 대한 로직을 추가할 수 있습니다.
+                        if (data.result == 1) {
+                        	location.reload(); // 예제로 새로고침을 수행하도록 했습니다.
+                        } else {
+                        	alert('failed');
+                        }
+                    },
+                    error: function() {
+                        alert('예매 취소에 실패했습니다.');
+                    }
+                });
+            } else {
+                return false;
+            }
+        });
+		
+		
+		function writeReview() {
+	        var selectedUserBookSeq = $('input[name="reviewCheckbox"]:checked').val();
+
+	        if (selectedUserBookSeq) {
+	            // 선택된 예매 정보의 user_book_seq를 이용하여 리뷰 작성 페이지로 이동
+	            location.href = '/ddstudio/member/review/add.do?seq=' + selectedUserBookSeq;
+	        } else {
+	            alert('예매 정보를 선택하세요.');
+	        }
+	    }
 	</script>
 </body>
 </html>

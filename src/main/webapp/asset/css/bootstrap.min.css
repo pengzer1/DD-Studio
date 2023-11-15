@@ -1437,7 +1437,8 @@ progress {
 
     .col-lg-9 {
         flex: 0 0 auto;
-        width: 75%
+        margin-top: 15px;
+        width: 75%;
     }
 
     .col-lg-10 {
@@ -6583,7 +6584,7 @@ div.col-lg-9 > nav > button > span > i {
     position: relative;
     width: 100%;
    /* overflow: hidden */
-   padding-top:123px;
+   padding-top:103px;
 }
 
 .carousel-inner::after {

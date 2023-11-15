@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp"%>
 <style>
+.nav-icon {
+	font-size: 50px !important;
+}
+
 #main {
 	text-align: center;
 	margin-top: 150px;
@@ -25,6 +29,47 @@
 
 #hashtag-container {
 	display: flex;
+	text-align: center;
+	margin-top: 10px;
+	justify-content: center;
+}
+
+#hashtag {
+	width: 100px;
+	height: 40px;
+	margin-right: 5px;
+}
+
+#result-container {
+	text-align: left;
+	margin-top: 20px;
+}
+
+.result-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.result-title + .result-title {
+    margin-top: 30px;
+}
+
+.result-content {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEE;
+}
+
+.result-content:last-child {
+    border-bottom: none;
+}
+
+#result-container > p {
+	text-align: center
 }
 
 #category {
@@ -52,94 +97,6 @@
 	position: relative;
 	top: 13px;
 }
-
-#notice-list {
-	width: 80%;
-	text-align: center;
-	border-top: 2px solid black;
-	margin: 50px auto 0;
-}
-
-#notice-list th, #notice-list td {
-	height: 60px;
-	color: #444;
-	padding: 10px;
-	border-bottom: 1px solid #E1E1E1;
-}
-
-#notice-list th {
-	font-size: 1.02rem;
-	font-weight: bold;
-}
-
-#notice-list td:nth-child(2) a {
-	color: #333;
-	font-weight: bold;
-}
-
-#notice-list th:nth-child(1) {
-	width: 20%;
-}
-
-#notice-list th:nth-child(2) {
-	width: 60%;
-}
-
-#notice-list th:nth-child(3) {
-	width: 20%;
-}
-
-#notice-list td:nth-child(2) {
-	font-size: 1.1rem;
-}
-
-#fixed {
-	background-color: #EDFFFC;
-}
-
-#fix-icon {
-	color: #F00;
-}
-
-#page-bar {
-	display: flex;
-	font-size: 1.2rem;
-	justify-content: center;
-	margin-top: 50px;
-}
-
-#previous-button, #current-page, #other-pages, #next-button {
-	color: #000;
-	margin: 0 10px;
-}
-
-#previous-button, #next-button {
-	display: block;
-	margin-top: 1.5px;
-}
-
-#current-page {
-	color: red;
-}
-
-#button-list {
-	display: flex;
-	justify-content: flex-end;
-}
-
-#add-button {
-	width: 100px;
-	height: 33px;
-	background-color: #FBF2F3;
-	border: 2px solid #F49097;
-	border-radius: 15px;
-	margin-top: 10px;
-	margin-right: 150px;
-}
-
-.nav-icon {
-	font-size: 50px;
-}
 </style>
 </head>
 <body>
@@ -149,83 +106,174 @@
 		<h1>검색</h1>
 
 		<div id="search-container">
-			<form method="GET" action="/ddstudio/communicate/notice.do" id="search-form">
-				<input type="text" name="word" id="search-field"
-					pattern=".{2,}" placeholder="두 글자 이상의 단어를 입력하세요." required>
+			<form method="POST" action="/ddstudio/user/search.do"
+				id="search-form">
+				<input type="text" name="word" id="search-field" pattern=".{2,}"
+					placeholder="두 글자 이상의 단어를 입력하세요." required>
 
 				<button type="submit" id="search-button">
 					<span class="material-symbols-outlined">search</span>
 				</button>
 			</form>
+
 			<div id="hashtag-container">
 				<div id="hashtag">#hashtag</div>
 				<div id="hashtag">#hashtag</div>
 				<div id="hashtag">#hashtag</div>
 			</div>
-			<div>
-			
+
+			<div id="result-container">
 			</div>
 		</div>
-		
-		<%-- 
-		<table id="notice-list">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list}" var="dto" varStatus="status">
-					<c:if test="${dto.fix == 'n'}">
-						<tr>
-							<td>${totalPosts - status.index - map.startIndex + 1}</td>
-							<td><a
-								href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
-							<td>${dto.regdate}</td>
-						</tr>
-					</c:if>
-
-					<c:if test="${dto.fix == 'y'}">
-						<tr id="fixed">
-							<td><span id="fix-icon" class="material-symbols-outlined">report</span></td>
-							<td><a
-								href="/ddstudio/communicate/noticedetail.do?seq=${dto.notice_seq}">${dto.subject}</a></td>
-							<td>${dto.regdate}</td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</tbody>
-		</table> --%>
 	</main>
-
-	<div id="page-bar">${pageBar}</div>
-
-	<c:if test="${not empty email && lv == 2}">
-		<div id="button-list">
-			<button type="button" id="add-button"
-				onclick="location.href='/ddstudio/communicate/noticeadd.do';">등록</button>
-		</div>
-	</c:if>
-
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
-
+	
 	<script>
-		<c:if test="${map.searchStatus == 'y'}">
-		$('#category').val('${map.category}');
-		$('#search-field').val('${map.word}');
-		</c:if>
-
-		document.addEventListener('DOMContentLoaded', function() {
-			var searchField = document.getElementById('search-field');
-
-			searchField.addEventListener('keyup', function(event) {
-				if (event.key === 'Enter') {
-					document.getElementById('search-form').submit();
-				}
-			});
-		});
+		// 페이지 로드 시 해시태그를 랜덤으로 추가하는 함수
+	    function addRandomHashtags(hashtagList) {
+	        // 해시태그 컨테이너 초기화
+	        $('#hashtag-container').empty();
+	
+	        // 랜덤으로 3개의 해시태그 선택
+	        var randomHashtags = getRandomElements(hashtagList, 3);
+	
+	        // 선택된 해시태그를 동적으로 추가
+	        $.each(randomHashtags, function (index, hashtag) {
+	            var hashtagElement = '<div class="hashtag">#' + hashtag + '</div>';
+	            $('#hashtag-container').append(hashtagElement);
+	        });
+	    }
+	
+	    // 배열에서 랜덤으로 요소를 선택하는 함수
+	    function getRandomElements(array, numElements) {
+	        var shuffledArray = array.slice(); // 복제본을 만들어 셔플링
+	        for (var i = shuffledArray.length - 1; i > 0; i--) {
+	            var j = Math.floor(Math.random() * (i + 1));
+	            // 배열 요소 교환
+	            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+	        }
+	        // 처음부터 numElements만큼의 요소 반환
+	        return shuffledArray.slice(0, numElements);
+	    }
+	
+	    // 페이지 로드 시 실행
+	    $(document).ready(function () {
+	        // 서버에서 해시태그 데이터를 가져오는 AJAX 요청
+	        $.ajax({
+	            type: 'GET',
+	            url: '/user/searchhashtag.do',
+	            success: function (data) {
+	                console.log('Hashtag data:', data);
+	
+	                // 가져온 해시태그 데이터를 기반으로 동적으로 추가
+	                addRandomHashtags(data);
+	            },
+	            error: function (a, b, c) {
+	                console.error(a, b, c);
+	            }
+	        });
+	    });
+	    
+	    // 검색 실행
+	    $('#search-form').submit(function(e) {
+	        e.preventDefault();
+	
+	        // 검색어
+	        var searchTerm = $('#search-field').val().toLowerCase();
+	
+	        $.ajax({
+	            type: 'POST',
+	            url: '/ddstudio/user/search.do',
+	            data: $('#search-form').serialize(),
+	            success: function(data) {
+	                console.log('data:', data);
+	                var searchResults = data;
+	
+	                // 검색 결과를 담을 객체 초기화
+	                var resultLists = {};
+	
+	                // 검색 결과 태그 초기화
+	                $('#result-container').empty();
+	
+	                // 검색 결과 처리 함수
+	                var processResults = function (title, list) {
+	                    if (list.length > 0) {
+	                        $('#result-container').append('<div class="result-title">' + title + '</div>');
+	                        var content = '<div class="result-content">';
+	                        $.each(list, function (index, item) {
+	                            content += item + ', ';
+	                        });
+	                        content = content.slice(0, -2);
+	                        content += '</div>';
+	                        $('#result-container').append(content);
+	                    }
+	                };
+	
+	                // 검색 결과 반복 처리
+	                $.each(searchResults, function(index, result) {
+	                    var containsSearchTerm = function(attribute) {
+	                        return attribute.toLowerCase().indexOf(searchTerm) !== -1;
+	                    };
+	
+	                    // 각 속성에 대한 처리
+	                    $.each(result, function (key, value) {
+	                        if (containsSearchTerm(value) && value.trim() !== " ") {
+	                            // 결과 배열이 없으면 초기화
+	                            if (!resultLists[key]) {
+	                                resultLists[key] = [];
+	                            }
+	                            
+	                            // 중복 체크 후 추가
+	                            if (!resultLists[key].includes(value)) {
+	                                resultLists[key].push(value);
+	                            }
+	                        }
+	                    });
+	                });
+	
+	                // 결과 출력을 위한 한글 설명 매핑
+	                var titleMapping = {
+	                    attractionName: '어트랙션명',
+	                    mbtiResult: 'MBTI 결과',
+	                    mbtiMbti: 'MBTI',
+	                    courseName: '코스명',
+	                    hashtagName: '해시태그',
+	                    restaurantName: '식당명',
+	                    restaurantMenu: '식당 메뉴',
+	                    categoryName: '카테고리명',
+	                    shopName: '가게명',
+	                    shopInfo: '가게 정보',
+	                    itemName: '아이템명',
+	                    itemInfo: '아이템 정보',
+	                    convenientName: '편의시설명',
+	                    festivalName: '축제명',
+	                    festivalInfo: '축제 정보',
+	                    theaterName: '극장명',
+	                    movieName: '영화명',
+	                    noticeSubject: '공지 제목',
+	                    noticeContent: '공지 내용',
+	                    benefitName: '혜택명',
+	                    benefitType: '혜택 유형',
+	                    faqCategory: 'FAQ 카테고리',
+	                    faqQuestion: 'FAQ 질문'
+	                };
+	
+	                // 결과 출력
+	                $.each(resultLists, function (key, list) {
+	                    processResults(titleMapping[key] || key, list);
+	                });
+	
+	                // 검색 결과가 없는 경우 메시지 출력
+	                if ($.isEmptyObject(resultLists)) {
+	                    $('#result-container').append('<p>검색 결과가 없습니다.</p>');
+	                }
+	            },
+	            error: function(a, b, c) {
+	                console.error(a, b, c);
+	            }
+	        });
+	    });
 	</script>
+
 </body>
 </html>

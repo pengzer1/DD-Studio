@@ -16,12 +16,14 @@
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 100px;
 }
 
 .form-group {
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
+	width: 35%;
 }
 
 .form-group select {
@@ -62,6 +64,18 @@ tr:nth-child(even) {
 #main>#title, .item div {
 	background-color: white;
 }
+
+tbody tr:hover {
+	background-color: #cce5ff; /* 호버됐을 때 배경색 변경 */
+	cursor: pointer; /* 호버됐을 때 커서 모양 변경 */
+}
+
+.name {
+	font-weight: bold;
+	font-size: 24px;
+	color: #686A6F;
+	text-align:center;
+}
 </style>
 </head>
 <body>
@@ -73,18 +87,17 @@ tr:nth-child(even) {
 
 		<div id="title">
 			<h2>문의 내역</h2>
-			<br>
 		</div>
 
-
+		<hr>
 
 		<div class="container">
-			<h2>문의 내역</h2>
+			<h2 class="name">문의 내역</h2>
 			<div class="form-group">
-				<select>
-					<option value="이용문의">이용문의</option>
-					<option value="칭찬/불편/건의">칭찬/불편/건의</option>
-				</select> <input type="text" class="search-box" placeholder="검색">
+				<select id="sel1">
+					<option value="tblInquiry" selected>이용문의</option>
+					<option value="tblVOC">칭찬/불편/건의</option>
+				</select>
 			</div>
 			<table>
 				<thead>
@@ -97,26 +110,29 @@ tr:nth-child(even) {
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 문의 내역 목록을 여기에 추가할 수 있습니다. -->
-					<tr>
-						<td>1</td>
-						<td>이용문의</td>
-						<td>결제 관련 문의</td>
-						<td>2023-11-15</td>
-						<td>미답변</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>불편</td>
-						<td>서비스 오류 신고</td>
-						<td>2023-11-16</td>
-						<td>답변 완료</td>
-					</tr>
-					<!-- 추가 문의 내역을 여기에 추가할 수 있습니다. -->
+					<c:forEach items="${list}" var="dto">
+						<c:if test="${option == 'tblInquiry'}">
+							<tr
+								onclick="location.href='/ddstudio/member/history/inquiry/detail.do?seq=${dto.seq}';">
+						</c:if>
+						<c:if test="${option == 'tblVOC'}">
+							<tr
+								onclick="location.href='/ddstudio/member/history/voc/detail.do?seq=${dto.seq}';">
+						</c:if>
+						<td>${dto.seq}</td>
+						<td>${dto.type}</td>
+						<td>${dto.subject}</td>
+						<td>${dto.regdate}</td>
+						<c:if test="${empty dto.answer}">
+							<td>답변 대기</td>
+						</c:if>
+						<c:if test="${not empty dto.answer}">
+							<td>답변 완료</td>
+						</c:if>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-
 		</div>
 
 	</main>
@@ -124,8 +140,18 @@ tr:nth-child(even) {
 	<!-- Footer -->
 
 	<script>
-		
+		$("#sel1")
+				.change(
+						function() {
+
+							location.href = '/ddstudio/member/history/inquiry/inquiry.do?option='
+									+ $(this).val();
+
+						});
+
+		$('#sel1').val('${option}');
 	</script>
+
 </body>
 </html>
 
