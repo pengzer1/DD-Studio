@@ -117,7 +117,7 @@ body {
 				<div class="item" id="item${loop.index + 1}"
 					onclick="selectAttraction('${attraction.attraction_seq}')">
 					<div class="img-container"
-						style="background-image: url('/ddstudio/asset/image/${attraction.img}');"></div>
+						style="background-image: url('/ddstudio/asset/image/attraction/${attraction.img}');"></div>
 					<h3>${attraction.name}</h3>
 				</div>
 			</c:forEach>
@@ -185,7 +185,7 @@ body {
 
 			for (let i = 0; i < selectedTwoAttractions.length; i++) {
 				const attraction = selectedTwoAttractions[i];
-				const imgUrl = attraction.img ? '/ddstudio/asset/image/'
+				const imgUrl = attraction.img ? '/ddstudio/asset/image/attraction/'
 						+ attraction.img : '쌍용열차.jpg';
 
 				// 동적으로 id 생성
@@ -207,7 +207,7 @@ body {
 		    $('#worldcup-container').empty();
 
 		    const resultContainer = $('<div class="item result-container" id="item3">');
-		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/' + selectedAttraction.img + '\');"></div>');
+		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/attraction/' + selectedAttraction.img + '\');"></div>');
 		    const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
 		    const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>' + '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
 
