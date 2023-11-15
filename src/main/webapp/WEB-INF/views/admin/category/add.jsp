@@ -71,10 +71,28 @@
 		<h1>
 			카테고리 <small>등록하기</small>
 		</h1>
-		<!-- 카테고리명 중복 검사하기 -->
 
 		<hr id="add-line" />
-		<div id="add-content">
+		<!-- <div id="add-content"> -->
+		
+		
+		
+		
+		<!-- 카테고리 리스트 출력하기 -->
+			<div class="category_list" style="float:left;">
+				<c:forEach items="${list}" var="dto">
+					<div class="item">
+					<div>${dto.name}</div>
+					</div>
+				</c:forEach>
+			</div>
+		
+			
+		
+		
+		
+		
+		
 			<form name="categoryForm" method="POST"
 				action="/ddstudio/admin/categoryadd.do">
 				<table id="form-table">
@@ -86,7 +104,8 @@
 						</tr>
 					</tbody>
 				</table>
-		</div>
+				</form>
+		<!-- </div> -->
 		<div id="admin-btn">
 			<button type="button" class="back-btn" onclick="location.href='/ddstudio/admin/category.do';">
 				<i class="fa-regular fa-circle-xmark"></i>취소
@@ -95,7 +114,6 @@
 				<i class="fa-solid fa-plus"></i>등록
 			</button>
 		</div>
-		</form>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->

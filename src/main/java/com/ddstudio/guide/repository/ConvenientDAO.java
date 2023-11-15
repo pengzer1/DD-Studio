@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.ddstudio.DBUtil;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.LocationDTO;
+import com.ddstudio.guide.model.ConvenientDTO;
 
 public class ConvenientDAO {
 	private Connection conn;
@@ -20,6 +21,40 @@ public class ConvenientDAO {
 		this.conn=DBUtil.open();
 	}
 
+	public ArrayList<ConvenientDTO> list() {
+		try {
+			String sql = "select *\r\n"
+					+ "from tblconvenient c inner join tbllocation l on c.location_seq=l.location_seq";
+			
+			stat = conn.createStatement();
+			rs=stat.executeQuery(sql);
+			
+			ArrayList<ConvenientDTO> list = new ArrayList<ConvenientDTO>();
+			while(rs.next()) {
+				ConvenientDTO dto = new ConvenientDTO();
+				
+				dto.setConvenient_seq(rs.getString("convenient_seq"));
+				dto.setName(rs.getString("name"));
+				dto.setTime(rs.getString("time"));
+				dto.setTel(rs.getString("tel"));
+				dto.setImg(rs.getString("img"));
+				dto.setLocation_seq(rs.getString("location_seq"));
+				
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
+				
+				list.add(dto);
+				
+			}
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/*
 	public ArrayList<LocationDTO> listPlace(String choice) {
 		try {
 			String sql = "";
@@ -67,4 +102,7 @@ public class ConvenientDAO {
 		}
 		return null;
 	}
+	*/
+	
+	
 }
