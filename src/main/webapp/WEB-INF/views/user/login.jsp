@@ -21,7 +21,7 @@
 h2 small {
 	font-size: 80%;
 }
-  
+
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -55,6 +55,10 @@ h2 small {
 
 #title {
     background-image: url('/ddstudio/asset/image/background-4.jpg');
+}
+
+#title > h2 {
+	color: white;
 }
 </style>
 </head>

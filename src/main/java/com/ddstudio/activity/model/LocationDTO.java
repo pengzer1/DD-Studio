@@ -7,4 +7,6 @@ public class LocationDTO {
 	private String location_seq;
 	private String lat;
 	private String lng;
+	
+	private String name;
 }

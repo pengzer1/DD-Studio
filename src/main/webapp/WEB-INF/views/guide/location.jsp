@@ -109,6 +109,41 @@
 		// 휠 확대/축소 금지
 		};
 		const map = new kakao.maps.Map(container, options);
+		
+		//
+		let imageSrc = '/ddstudio/asset/image/marker/놀이공원.png'; // 마커이미지의 주소    
+    	let imageSize = new kakao.maps.Size(100, 100); // 마커이미지의 크기
+    	let imageOption = { }; 
+    	
+    	//console.log(imageSrc);
+		
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성
+		let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    	let markerPosition = new kakao.maps.LatLng(33.3808, 126.5450); // 마커가 표시될 위치
+
+		// 마커를 생성
+		let marker = new kakao.maps.Marker({
+    	position: markerPosition, 
+    	image: markerImage // 마커이미지 설정 
+		});
+
+		// 마커가 지도 위에 표시되도록 설정
+		marker.setMap(map);
+		
+		/*
+		let iwContent = '<div style="padding:3px;">★DD Studio★<br><a href="https://map.kakao.com/link/map/DD Studio!,33.3808,126.5450" style="color:blue" target="_blank">카카오맵으로 보기</a></div>';
+	    let iwPosition = new kakao.maps.LatLng(33.3808, 126.5450); //인포윈도우 표시 위치
+
+		// 인포윈도우를 생성
+		let infowindow = new kakao.maps.InfoWindow({
+	    	position : iwPosition;
+	    	content : iwContent 
+		});
+	  
+		// 마커 위에 인포윈도우를 표시
+		infowindow.open(map, marker);
+		*/
+		
 	</script>
 </body>
 </html>

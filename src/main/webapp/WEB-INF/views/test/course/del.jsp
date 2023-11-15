@@ -40,7 +40,7 @@ select option:checked {
 </style>
 </head>
 <body>
-	<!-- /test/course/add.jsp -->
+	<!-- /test/course/del.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
@@ -144,7 +144,7 @@ select option:checked {
 
 			var delCourseSeq = $('#name').val();
 
-			console.log(delCourseSeq);
+			// console.log(delCourseSeq);
 			$.ajax({
 				type : 'POST',
 				url : '/ddstudio/test/coursedel.do',

@@ -33,12 +33,11 @@
 				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/preferencetestadd.do'">
 					<i class="fa-solid fa-plus"></i>추가
 				</button>
-				<!-- 상세보기 -->
-				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
-					<i class="fa-solid fa-pen-to-square"></i>수정
-				</button>
 				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
 					<i class="fa-solid fa-trash"></i>삭제
+				</button>
+				<button type="button" id="edit-btn" onclick="location.href='/ddstudio/test/preferencetestdel.do?seq=${dto.attraction_seq}'">
+					<i class="fa-solid fa-pen-to-square"></i>수정
 				</button>
 			</div>
 		</c:if>

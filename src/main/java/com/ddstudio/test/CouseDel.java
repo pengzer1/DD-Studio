@@ -14,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.ddstudio.test.model.CourseDTO;
+import com.ddstudio.test.model.MBTIDTO;
 import com.ddstudio.test.repository.TestDAO;
 
 @WebServlet("/test/coursedel.do")

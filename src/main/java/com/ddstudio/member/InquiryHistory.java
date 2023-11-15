@@ -15,9 +15,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.ddstudio.member.model.InquiryDTO;
-import com.ddstudio.member.model.VocDTO;
+import com.ddstudio.member.model.VOCDTO;
 import com.ddstudio.member.repository.InquiryDAO;
-import com.ddstudio.member.repository.VocDAO;
+import com.ddstudio.member.repository.VOCDAO;
 
 @WebServlet("/member/history/inquiry/inquiry.do")
 public class InquiryHistory extends HttpServlet {
@@ -28,19 +28,28 @@ public class InquiryHistory extends HttpServlet {
 		// InquiryHistory.java
 		// 마이페이지에서 이용문의, 칭찬/불편/건의 내용이 추가되어 보여주는 페이지
 		// 1.
+		String email = req.getSession().getAttribute("email").toString();
+		
 		String option = req.getParameter("option");
 
+		if (option == null || option.equals("")) {
+			option = "tblInquiry";
+		}
+		
 		// 2.
 		
+		//if ("tblInquiry".equals(option)) {
 		if (option.equals("tblInquiry")) {
 			InquiryDAO inquiryDao = new InquiryDAO();
-			ArrayList<InquiryDTO> inquiryList = inquiryDao.get();
+			
+			ArrayList<InquiryDTO> inquiryList = inquiryDao.get(email);
 
 			req.setAttribute("list", inquiryList);
 			
 		} else {
-			VocDAO VocDao = new VocDAO();
-			ArrayList<VocDTO> VocList = VocDao.get();
+			VOCDAO VocDao = new VOCDAO();
+			
+			ArrayList<VOCDTO> VocList = VocDao.get(email);
 			
 			req.setAttribute("list", VocList);
 		}

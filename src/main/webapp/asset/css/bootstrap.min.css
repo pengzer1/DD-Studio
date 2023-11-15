@@ -1437,7 +1437,8 @@ progress {
 
     .col-lg-9 {
         flex: 0 0 auto;
-        width: 75%
+        margin-top: 15px;
+        width: 75%;
     }
 
     .col-lg-10 {

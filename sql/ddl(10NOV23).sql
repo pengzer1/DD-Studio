@@ -2,7 +2,7 @@
 create user JspProject identified by pass;
 grant connect, resource, dba to JspProject;
 
-/* DELETE문_54개*/
+/* DELETE문_개*/
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -18,7 +18,7 @@ DELETE FROM tblGroupBook;
 DELETE FROM tblTicketBook;
 DELETE FROM tblBenefit;
 DELETE FROM tblTicket;
-DELETE FROM tblLostCenter;
+DELETE FROM tblLostProperty;
 DELETE FROM tblNotice;
 DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
@@ -55,11 +55,10 @@ DELETE FROM tblRestaurant;
 DELETE FROM tblCategory;
 DELETE FROM tblLocation;
 DELETE FROM tblHashtag;
-DELETE FROM tblTheme;
 DELETE FROM tblUser;
 
 
-/* DROP TABLE_54개 */
+/* DROP TABLE_개 */
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -75,7 +74,7 @@ DROP TABLE tblGroupBook;
 DROP TABLE tblTicketBook;
 DROP TABLE tblBenefit;
 DROP TABLE tblTicket;
-DROP TABLE tblLostCenter;
+DROP TABLE tblLostProperty;
 DROP TABLE tblNotice;
 DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
@@ -112,12 +111,10 @@ DROP TABLE tblRestaurant;
 DROP TABLE tblCategory;
 DROP TABLE tblLocation;
 DROP TABLE tblHashtag;
-DROP TABLE tblTheme;
 DROP TABLE tblUser;
 
-/* DROP SEQUENCE_54개 */
+/* DROP SEQUENCE_개 */
 DROP SEQUENCE seqtblUser;
-DROP SEQUENCE seqtblTheme;
 DROP SEQUENCE seqtblHashtag;
 DROP SEQUENCE seqtblLocation;
 DROP SEQUENCE seqtblCategory;
@@ -154,7 +151,7 @@ DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
 DROP SEQUENCE seqtblFAQ;
 DROP SEQUENCE seqtblNotice;
-DROP SEQUENCE seqtblLostCenter;
+DROP SEQUENCE seqtblLostProperty;
 DROP SEQUENCE seqtblTicket;
 DROP SEQUENCE seqtblBenefit;
 DROP SEQUENCE seqtblTicketBook;
@@ -184,12 +181,6 @@ CREATE TABLE tblUser (
 	birth DATE NOT NULL, /* 생년월일 */
 	lv CHAR(1) NOT NULL, /* 등급 */
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
-);
-
-/* 테마 */
-CREATE TABLE tblTheme (
-	theme_seq NUMBER PRIMARY KEY, /* 테마번호 */
-	name VARCHAR2(500) NOT NULL UNIQUE /* 테마명 */
 );
 
 /* 해시태그 */
@@ -363,7 +354,6 @@ CREATE TABLE tblAttraction (
 	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL, /* 위치정보 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
 	restriction VARCHAR2(2000), /* 키 크기 제약사항 등 이용정보 */
-	theme_seq NUMBER REFERENCES tblTheme(theme_seq) NOT NULL, /* 테마번호 */
     is_test CHAR(1) NOT NULL /* 테스트채택 */
 );
 
@@ -488,8 +478,7 @@ CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQ번호 */
    type VARCHAR2(500) NOT NULL, /* 카테고리 */
    question VARCHAR2(300) NOT NULL, /* 질문 */
-   answer VARCHAR2(2000) NOT NULL, /* 답변 */
-   faq_order NUMBER NOT NULL /* 순서번호 */
+   answer VARCHAR2(2000) NOT NULL /* 답변 */
 );
 
 /* 공지사항 */
@@ -503,13 +492,13 @@ CREATE TABLE tblNotice (
 );
 
 /* 분실물센터 */
-CREATE TABLE tblLostCenter (
+CREATE TABLE tblLostProperty (
    lost_center_seq NUMBER PRIMARY KEY, /* 분실물번호 */
    type VARCHAR2(500) NOT NULL, /* 분류 */
    name VARCHAR2(500) NOT NULL, /* 습득물명 */
    location VARCHAR2(500) NOT NULL, /* 습득장소 */
    lost_center_date DATE NOT NULL, /* 습득일 */
-   img VARCHAR2(500) DEFAULT 'lostcenter.png' NOT NULL, /* 분실물이미지 */
+   img VARCHAR2(500), /* 분실물이미지 */
    result VARCHAR2(500) NOT NULL /* 처리결과 */
 );
 
@@ -539,6 +528,7 @@ CREATE TABLE tblTicketBook (
    book_date DATE DEFAULT sysdate NOT NULL, /* 예매일자 */
    visit_date DATE NOT NULL, /* 방문일자 */
    ea NUMBER NOT NULL, /* 구매수량 */
+   price NUMBER NOT NULL, /*결제 금액 */
    ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* 티켓번호 */
    benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* 혜택번호 */
 );
@@ -615,7 +605,6 @@ CREATE TABLE tblItemImg (
 CREATE TABLE tblCart (
    cart_seq NUMBER PRIMARY KEY, /* 장바구니번호 */
    ea NUMBER NOT NULL, /* 수량 */
-   cart_option varchar2(500) NOT NULL, /* 옵션 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 
@@ -642,9 +631,8 @@ CREATE TABLE tblUserBuy (
    buy_seq NUMBER REFERENCES tblBuy(buy_seq) NOT NULL /* 구매내역번호 */
 );
 
-/* CREATE SEQUENCE_54개*/
+/* CREATE SEQUENCE_개*/
 CREATE SEQUENCE seqtblUser;
-CREATE SEQUENCE seqtblTheme;
 CREATE SEQUENCE seqtblHashtag;
 CREATE SEQUENCE seqtblLocation;
 CREATE SEQUENCE seqtblCategory;
@@ -763,4 +751,8 @@ join tblVOC V on V.user_seq = U.user_seq;
 
 create or replace view vwRestaurant
 as
-select restaurant_seq, name, menu, time, capacity, tel, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img from tblRestaurant r;
+select restaurant_seq, name, menu, time, capacity, tel, location_seq, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img from tblRestaurant r;
+
+create or replace view vwShop
+as
+select shop_seq, name, time, info, tel, location_seq, (select lat from tblLocation where location_seq = s.location_seq) as lat, (select lng from tblLocation where location_seq = s.location_seq) as lng, (select img from tblShopImg where shop_seq = s.shop_seq and rownum = 1) as img from tblShop s;
