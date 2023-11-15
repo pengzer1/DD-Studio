@@ -122,9 +122,6 @@ FROM tblBenefit;
 
 -- 전체 검색
 drop view vwSearch;
-select * from vwSearch;
-
-select * from tblHashtag;
 
 CREATE OR REPLACE VIEW vwSearch AS
 SELECT
