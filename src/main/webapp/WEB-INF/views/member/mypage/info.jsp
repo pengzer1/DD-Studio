@@ -9,58 +9,139 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
 
-
-#main > #title{
-   background-color: white;
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: 'NotoSans-Bold', '맑은 고딕', 'Malgun Gothic', sans-serif;
+    background-color: white;
+    color: #343a40;
+    line-height: 1.6;
+}
+
+#main {
+    margin-top: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styles */
+
+#main > #title {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#title h2 {
+    color: #1f1f1f;
+    
+}
+
+/* Sub Title Styles */
+
+#sub-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+#sub-title h3 {
+    color: #1f1f1f;
+}
+
+/* Button Styles */
+
 button {
-    background-color: #007bff; /* 배경색 */
-    color: #fff; /* 텍스트 색상 */
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 5px; /* 둥근 모서리 */
-    padding: 10px 20px; /* 내부 패딩 */
-    font-size: 16px; /* 폰트 크기 */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
+    background-color: #0056b3;
 }
 
-.item{
-   background-color: white;
+/* Item Styles */
+
+.wide-content-container,
+.munti-content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
+
+.wide-item,
+.item {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.wide-item img.totoro-image,
 .item img.totoro-image {
-        height: 280px; /* 이미지 높이 조절 */
-        transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */
+    height: 280px;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.item:hover {
+    animation: shake 2s ease-in-out infinite;
+    transform: translateX(0);
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
     }
-
-    .item:hover img.totoro-image {
-        animation: shake 2s ease-in-out infinite; /* hover 시에만 흔들리는 애니메이션 적용 */
-        transform: translateX(0); /* 초기 위치에서 시작 */
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
     }
-
-    @keyframes shake {
-        0%, 100% {
-            transform: translateX(0); /* 처음과 마지막에는 변화 없음 */
-        }
-        10%, 30%, 50%, 70%, 90% {
-            transform: translateX(-5px); /* 좌측으로 흔들림 */
-        }
-        20%, 40%, 60%, 80% {
-            transform: translateX(5px); /* 우측으로 흔들림 */
-        }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
     }
+}
 
-/* #title > h2{
-	color: black;
-} */
+.munti-content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Increased the gap between items */
+    margin-bottom: 200px;
+}
 
+.item {
+    width: calc(20% - 20px); /* 20% of the container width with gap in between */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.item img.totoro-image {
+    max-width: 100%; /* 이미지의 최대 너비를 부모 요소에 맞춤 */
+    height: auto;
+    display: block; /* 인라인 요소에서 블록 요소로 변경하여 세로 간격이 생기지 않도록 함 */
+    margin: 0 auto; /* 가로 중앙 정렬을 위한 margin 설정 */
+}
 </style>
 </head>
 <body>
@@ -78,7 +159,7 @@ button:hover {
       <hr>
       
       <div id="sub-title">
-         <h3>${name}님 안녕하세요!</h3>
+         <p style="font-size: 25px">${name}님 안녕하세요!</p>
       </div>
 
       <div id="content">

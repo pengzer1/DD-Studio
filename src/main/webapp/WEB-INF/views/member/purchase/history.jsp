@@ -58,10 +58,18 @@ tr:nth-child(even) {
 }
 
 .button-container {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	margin: 20px; /* 여백 추가 */
+	position: relative;
+}
+
+#content{
+	margin-top: 100px;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 24px;
+	color: #686A6F;
+	text-align:center;
 }
 </style>
 </head>
@@ -74,19 +82,14 @@ tr:nth-child(even) {
 
 		<div id="title">
 			<h2>구매 내역</h2>
-
 		</div>
 
 		<hr>
 
-		<div id="sub-title">
-			<h3></h3>
-		</div>
-
 		<div id="content">
-
 			<div class="container">
-				<h2>주문 내역</h2>
+				<h2 class="name">주문 내역</h2>
+				<hr>
 				<table>
 					<thead>
 						<tr>
@@ -113,7 +116,6 @@ tr:nth-child(even) {
 						</c:forEach>
 					</tbody>
 				</table>
-				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
 
 				<div class="buttons-container">
 					<button class="button" id="delete-button">주문 취소</button>
@@ -122,7 +124,8 @@ tr:nth-child(even) {
 			</div>
 
 			<div class="container">
-				<h2>이전 기프트샵 구매 내역</h2>
+				<h2 class="name">이전 기프트샵 구매 내역</h2>
+				<hr>
 				<table>
 					<thead>
 						<tr>
@@ -147,7 +150,6 @@ tr:nth-child(even) {
 				</table>
 				<!-- 추가 품목 별 내용을 여기에 추가할 수 있습니다. -->
 			</div>
-
 		</div>
 
 	</main>

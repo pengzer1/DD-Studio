@@ -68,53 +68,8 @@ tr:nth-child(odd) {
 	background-color: #0056a4;
 }
 
-.modal {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(22, 22, 22, 0.6);
-	align-items: center;
-	position: fixed;
-	left: 0;
-	top: 0;
-}
-
-.modal-content {
-	display: flex;
-	width: 50%;
-	height: 70%;
-	background-color: #FFF;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	border: 1px solid #888;
-	border-radius: 10px;
-	overflow-y: auto;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.modal-content img {
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
-}
-
-.close {
-	font-size: 28px;
-	font-weight: bold;
-	color: #9E9E9E;
-	position: absolute;
-	top: 5px;
-	right: 15px;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
+#content{
+	margin-top: 100px;
 }
 </style>
 </head>
@@ -127,15 +82,9 @@ tr:nth-child(odd) {
 
 		<div id="title">
 			<h2>예매 확인/취소</h2>
-			<br>
-			<p></p>
 		</div>
 
 		<hr>
-
-		<div id="sub-title">
-			<h3></h3>
-		</div>
 
 		<div id="content">
 
@@ -168,13 +117,13 @@ tr:nth-child(odd) {
 								</c:forEach>
 							</form>
 						</table>
+				<div class="buttons-container">
+					<button class="button" id="delete-button">예매 취소</button>
+				</div>
 					</div>
 				</div>
 
 
-				<div class="buttons-container">
-					<button class="button" id="delete-button">예매 취소</button>
-				</div>
 
 
 				<div class="wide-item">
@@ -203,9 +152,11 @@ tr:nth-child(odd) {
 								</tr>
 							</c:forEach>
 						</table>
+						<div class="buttons-container">
+							<button class="button" onclick="writeReview()">리뷰작성</button>
+						</div>
 					</div>
 				</div>
-				<button class="button" onclick="writeReview()">리뷰작성</button>
 			</div>
 		</div>
 	</main>

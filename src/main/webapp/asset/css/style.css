@@ -14,7 +14,7 @@
 
 #main > #title {
 	text-align: center;
-	background-color: tomato;
+	background-color: white;
 	height: 300px;
 	display: flex;
 	flex-direction: column;
@@ -34,7 +34,7 @@
 }
 
 #title h2 {
-    color: white;
+    color: black;
     /* font-family: 'JalnanGothic'; */
     font-size: calc(1.375rem + 1.5vw);
     letter-spacing: 2px;
