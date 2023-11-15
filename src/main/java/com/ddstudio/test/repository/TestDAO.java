@@ -184,7 +184,7 @@ public class TestDAO {
 
 		try {
 
-			String sql = "select * from tblAttraction";
+			String sql = "select * from tblAttraction where name not like '%(운영종료)%'";
 
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -295,9 +295,9 @@ public class TestDAO {
 	public ArrayList<AttractionDTO> getAttractionList() {
 		
 		ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
-
+		
 		try {
-			String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img from tblAttraction a";
+			String sql = "SELECT a.*, (SELECT img FROM tblAttractionImg WHERE attraction_seq = a.attraction_seq AND rownum = 1) AS img FROM tblAttraction a WHERE a.name NOT LIKE '%(운영종료)%'";
 
 			stat = conn.createStatement();
 
