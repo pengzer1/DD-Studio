@@ -289,12 +289,15 @@ public class TestDAO {
 		return 0;
 	}
 
+	/*
+	 * 어트랙션 목록
+	 */
 	public ArrayList<AttractionDTO> getAttractionList() {
 		
 		ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
 
 		try {
-			String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1) as img, (select name from tblTheme where a.theme_seq = theme_seq) as theme from tblAttraction a";
+			String sql = "select a.*, (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img from tblAttraction a";
 
 			stat = conn.createStatement();
 
@@ -316,6 +319,9 @@ public class TestDAO {
 		return list;
 	}
 
+	/*
+	 * 코스 목록
+	 */
 	public ArrayList<CourseDTO> getCourseList() {
 		
 		ArrayList<CourseDTO> list = new ArrayList<CourseDTO>();

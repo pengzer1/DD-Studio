@@ -8,7 +8,6 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-
 button {
     background-color: #007bff; /* 배경색 */
     color: #fff; /* 텍스트 색상 */
@@ -32,26 +31,30 @@ button:hover {
       text-align: center;
       padding: 20px;
       position: relative;
-  }
+}
 
 .item img.dust-image {
-      height: 180px;
-      transform-origin: bottom center;
-      transition: transform 0.5s ease-in-out;
-  }
+	height: 180px;
+ 	transform-origin: bottom center;
+	transition: transform 0.5s ease-in-out;
+}
 
-  .item:hover img.dust-image {
-      animation: jump 1s infinite ease-in-out;
-  }
+.item:hover img.dust-image {
+	animation: jump 1s infinite ease-in-out;
+}
 
-  @keyframes jump {
-      0%, 100% {
-          transform: translateY(0);
-      }
-      50% {
-          transform: translateY(-20px);
-      }
-  }
+@keyframes jump {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+}
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
 }
 </style>
 </head>
@@ -61,7 +64,7 @@ button:hover {
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" title="작가 senivpetro 출처 Freepik">
 			<h2>DD 월드컵</h2>
 		</div>
 		

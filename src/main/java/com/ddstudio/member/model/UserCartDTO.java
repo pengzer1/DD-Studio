@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserCartDTO {
-
+	private String user_cart_seq;
 	private String ea;
 	private String name;
 	private String price;
