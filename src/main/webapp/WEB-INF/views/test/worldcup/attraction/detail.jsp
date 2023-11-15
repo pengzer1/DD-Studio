@@ -104,7 +104,7 @@ body {
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-		<div id="title" style="margin-top: 123px;">
+		<div id="title">
 			<h2>어트랙션 월드컵</h2>
 		</div>
 
