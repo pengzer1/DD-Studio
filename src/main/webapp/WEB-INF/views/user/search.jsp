@@ -147,15 +147,6 @@
 	            var hashtagElement = '<div class="hashtag">#' + hashtag + '</div>';
 	            $('#hashtag-container').append(hashtagElement);
 	        });
-	        
-	    	// 해시태그 클릭 이벤트 추가
-	        $('.hashtag').click(function () {
-	            // 클릭된 해시태그의 텍스트를 search-field에 설정
-	            $('#search-field').val($(this).text().substring(1)); // '#' 제외한 부분만 설정
-
-	            // 검색 실행
-	            $('#search-form').submit();
-	        });
 	    }
 	
 	    // 배열에서 랜덤으로 요소를 선택
@@ -174,14 +165,13 @@
 	
 	    // 페이지 로드 시 실행
 	    $(document).ready(function () {
-	        // 서버에서 해시태그 데이터를 가져오는 AJAX 요청
 	        $.ajax({
 	            type: 'GET',
 	            url: '/ddstudio/user/searchhashtag.do',
 	            success: function (data) {
 	                // console.log('Hashtag data:', data);
 	
-	                // 가져온 해시태그 데이터를 기반으로 동적으로 추가
+	                // 해시태그 추가
 	                addRandomHashtags(data);
 	            },
 	            error: function (a, b, c) {
@@ -190,6 +180,25 @@
 	        });
 	    });
 	    
+	 	// 해시태그 클릭 이벤트 추가
+	    $(document).on('click', '#hashtag-container .hashtag', function () {
+	        // 클릭된 해시태그의 클래스를 토글
+	        $(this).toggleClass('hashtag-clicked');
+
+	        // 클릭된 해시태그가 있으면 검색어 필드에 해당 해시태그 값을 넣고 검색 실행
+	        if ($('#hashtag-container .hashtag-clicked').length > 0) {
+	            var clickedHashtags = $('#hashtag-container .hashtag-clicked').map(function () {
+	                return $(this).text().substring(1); // '#' 제외한 부분만 추출
+	            }).get();
+
+	            // 검색어 필드에 클릭된 해시태그 값을 넣음
+	            $('#search-field').val(clickedHashtags.join(' '));
+
+	            // 검색 실행
+	            $('#search-form').submit();
+	        }
+	    });
+
 	    // 검색 실행
 	    $('#search-form').submit(function(e) {
 	        e.preventDefault();
@@ -197,6 +206,17 @@
 	        // 검색어
 	        var searchTerm = $('#search-field').val().toLowerCase();
 	
+		    // 해시태그를 클릭한 경우
+	        if ($('#hashtag-container .hashtag').hasClass('hashtag-clicked')) {
+	            console.log("해시태그 클릭")
+	            
+	            $('#hashtag-container .hashtag-clicked').removeClass('hashtag-clicked');
+	        } else {
+	            console.log("해시태그 안 클릭")
+	            
+	            $('#hashtag-container .hashtag-clicked').removeClass('hashtag-clicked');
+	        }
+		     
 	        $.ajax({
 	            type: 'POST',
 	            url: '/ddstudio/user/search.do',
