@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
+#main {
+	margin-top: 0;
+}
+
 #title h2 {
 	color: #ddd;
 }
@@ -478,6 +482,10 @@ to {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
     }
+    
+    function detail(seq) {
+		window.location.href = "/ddstudio/shop/item/detail.do?seq="+seq;
+	}
 	</script>
 </body>
 </html>
