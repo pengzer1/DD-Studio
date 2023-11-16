@@ -55,10 +55,6 @@ button:hover {
 	margin-top: 123px;
 	background-image: url('/ddstudio/asset/image/background-7.jpg');
 }
-
-#title > p {
-    shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
 </style>
 </head>
 <body>

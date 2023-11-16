@@ -107,6 +107,11 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
+}
 </style>
 </head>
 <body>
@@ -114,7 +119,7 @@ body {
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-		<div id="title">
+		<div id="title" title="작가 senivpetro 출처 Freepik">
 			<h2>어트랙션 월드컵</h2>
 		</div>
 
