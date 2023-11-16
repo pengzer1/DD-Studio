@@ -127,7 +127,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/guide/guide.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">notification_important</div>
 								<div class="nav-menu-name">가이드</div>
 								<div class="sub-menu">
