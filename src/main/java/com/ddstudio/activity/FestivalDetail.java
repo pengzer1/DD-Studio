@@ -26,7 +26,7 @@ public class FestivalDetail extends HttpServlet {
 		//1. 해당 페스티벌 seq 받아오기
 		String seq = req.getParameter("seq");
 		
-		//2. DB 접근
+		/*//2. DB 접근
 		ActDAO dao = new ActDAO();
 		
 		//2-1. 해당 페스티벌의 태그 가져오기 > festivalhashtagDTO
@@ -46,7 +46,7 @@ public class FestivalDetail extends HttpServlet {
 		req.setAttribute("hashtagList", hashtagList);
 		req.setAttribute("imgList", imgList);
 		req.setAttribute("dto", dto);
-		req.setAttribute("location_dto", location_dto);
+		req.setAttribute("location_dto", location_dto);*/
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/festival/detail.jsp");
 		dispatcher.forward(req, resp);

@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-#convenient-map {
+#convenient-map{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -30,18 +30,6 @@
 	margin: 0;
 	align-items: center;
 	justify-content: center;
-}
-
-form>#condition {
-	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
-	text-align: center;
-	background-color: cornflowerblue;
-	height: 70px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 15px;
 }
 
 .form-group {
@@ -362,7 +350,7 @@ table td {
 					<hr>
 					<div
 						style="display: flex; flex-wrap: wrap; align-items: center; margin-left: 10px; justify-content: center;">
-						<c:forEach items="${list}" var="dto">
+						<c:forEach items="${alist}" var="dto">
 							<div id="content_box">
 								<p style="text-align: center;">${dto.name}</p>
 							</div>
@@ -396,6 +384,31 @@ table td {
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=40256c0b64f3ce915f7db1ab8f75aeca"></script>
 	<script>
+	
+
+    const alist = [];  //어트랙션 마커들을 담을 배열
+    const clist = [];  //편의시설 마커들을 담을 배열
+    
+    <c:forEach items="${alist}" var="dto" varStatus="status">
+    
+    const m${status.count} = new kakao.maps.Marker({
+       position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
+    });  //alist 위치 생성
+
+    alist.push(m${status.count});  //배열에 push
+    
+    </c:forEach>
+    
+    <c:forEach items="${clist}" var="dto" varStatus="status">
+    
+    const n${status.count} = new kakao.maps.Marker({
+       position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
+    });  //clist 위치 생성
+
+    clist.push(n${status.count});  //배열에 위치 push
+    </c:forEach>
+    
+    
 	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
     
     const options = { //지도를 생성할 때 필요한 기본 옵션
@@ -407,75 +420,116 @@ table td {
     };
 
     const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-    //마커 출력
-    let imageSrc = '/ddstudio/asset/image/marker/heart_marker3.png'; // 마커이미지의 주소
-    let imageSize = new kakao.maps.Size(40,40);
-    let option = {};
-    
-    //마커 설정 완료
-    let markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
-      
-    <c:forEach items="${list}" var="dto" varStatus="status">
-    
-    const m${status.count} = new kakao.maps.Marker({
-       position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
-    });
-    
-    m${status.count}.setImage(markerImg);
-    m${status.count}.setMap(map);
-    
-    </c:forEach>
   	
+  	//
+  
     //
-    showTab("tab01");
+    showTab("tab01", "heart_marker3.png");  //페이지 초기화 값
 	
-	document.getElementById("selTab01").addEventListener("click", function() {
+	document.getElementById("selTab01").addEventListener("click", function() {  //tab01을 눌렀을때
 		event.preventDefault();
-      showTab("tab01");
+      showTab("tab01", "heart_marker3.png");
       
       document.getElementById("sel01").classList.add("on");
       document.getElementById("sel02").classList.remove("on");
     });
 
-    document.getElementById("selTab02").addEventListener("click", function() {
+    document.getElementById("selTab02").addEventListener("click", function() {   //tab02을 눌렀을때
     	event.preventDefault();
-      showTab("tab02");
+      	showTab("tab02", "info1.png");
       
-      document.getElementById("sel02").classList.add("on");
-      document.getElementById("sel01").classList.remove("on");
+      	document.getElementById("sel02").classList.add("on");
+      	document.getElementById("sel01").classList.remove("on");
     });
     
-    function showTab(tabId) {
-        // 모든 탭 숨기기
+    function showTab(tabId, imgname) {
+    
+    	//마커 출력
+        let imageSrc; // 마커이미지의 주소
+        if (imgname === "heart_marker3.png") {
+            imageSrc = '/ddstudio/asset/image/marker/heart_marker3.png';
+        } else if (imgname === "info1.png") {
+            imageSrc = '/ddstudio/asset/image/marker/info1.png';
+        } else {
+            // 기본 이미지 주소 또는 예외 처리
+            imageSrc = '/ddstudio/asset/image/marker/festival_marker4.png';
+        }
+        const imageSize = new kakao.maps.Size(40,40);
+        const option = {};
+        
+        //마커 설정 완료
+        const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+         
+        if (tabId == 'tab01') {
+    		for (let i=0; i<alist.length; i++) {
+    			alist[i].setImage(markerImg);  //설정한 마커 넣어주고
+    			alist[i].setMap(map);  //지도에 찍기
+    		}
+    		for (let i=0; i<clist.length; i++) {  //어트랙션 찍을때는 편의시설 마크 지워주기
+    			clist[i].setMap(null);
+    		}
+    	} else {  //tabId == 'tab02'
+    		for (let i=0; i<clist.length; i++) {
+    			clist[i].setImage(markerImg);
+    			clist[i].setMap(map);
+    		}
+    		for (let i=0; i<alist.length; i++) {
+    			alist[i].setMap(null);
+    		}
+    	}
+       
+    	
+    	// 모든 탭 숨기기
         document.getElementById("tab01").style.display = "none";
         document.getElementById("tab02").style.display = "none";
 
         // 선택한 탭 보이기
         document.getElementById(tabId).style.display = "block";
+    	 
       }
     
-    <%-- function changeBenefit(button, seq, name, value) {
-    	const benefit_seq = document.getElementById("benefit_seq");
-    	const discount_rate = document.getElementById("discount_rate");
-    	const benefit_name = document.getElementById("benefit_name");
-    	const benefitButtons = document.querySelectorAll(".benefit-button");
-    	
-    	benefit_seq.value = seq;
-    	benefit_name.value = name;
-    	discount_rate.value = value;
-    	
-    	benefitButtons.forEach(btn => {
-            btn.disabled = false;
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+    	  const contentBoxes = document.querySelectorAll('#content_box');
+		
+    	  contentBoxes.forEach((box, index) => {
+    	    box.addEventListener('click', function (event) {
+    	      const itemId = this.id;
 
-        // 현재 클릭한 버튼만 비활성화
-        button.disabled = true;
-    }
-    
-    const inputs = document.querySelectorAll('input[required]');
-    --%>
-    
+    	      contentBoxes.forEach((box) => {
+    	        box.style.backgroundColor = 'white'; // 모든 박스의 배경색 초기화
+    	      });
+    	      this.style.backgroundColor = 'gold'; // 클릭된 박스의 배경색 변경
+
+    	      // 클릭된 리스트 아이템에 대한 추가 동작
+    	      setMarkersOpacity(index, 1);
+    	    });
+    	  });
+    	});
+
+    	function setMarkersOpacity(clickedIndex, opacity) {
+    	  // 모든 마커의 투명도를 초기화
+    	  alist.forEach((marker) => {
+    	    marker.setOpacity(0.3);
+    	  });
+    	  
+    	  clist.forEach((marker) => {
+    	    marker.setOpacity(0.3);
+    	  });
+
+    	  // 클릭된 인덱스에 해당하는 마커의 투명도를 조절
+    	  if (document.getElementById('sel01').classList.contains('on')) {
+    	    // 어트랙션 탭이 선택된 경우
+    	    if (alist[clickedIndex]) {
+    	      alist[clickedIndex].setOpacity(opacity);
+    	    }
+    	  } else if (document.getElementById('sel02').classList.contains('on')) {
+    	    // 편의시설 탭이 선택된 경우
+    	    clickedIndex -= alist.length;
+    	    if (clist[clickedIndex]) {
+    	      clist[clickedIndex].setOpacity(opacity);
+    	    }
+    	  }
+    	}
 		
 	</script>
 </body>

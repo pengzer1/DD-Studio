@@ -8,7 +8,7 @@
 		<style>
 			#inquiry {
 				text-align: center;
-				margin-top: 150px;
+				margin-top: 180px;
 			}
 			#add-form {
 				width: 80%;

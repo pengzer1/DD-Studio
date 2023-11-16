@@ -8,7 +8,7 @@
 		<style>
 			#edit-lost-property {
 				text-align: center;
-				margin-top: 150px;
+				margin-top: 180px;
 			}
 			#edit-form {
 				width: 80%;
