@@ -31,7 +31,7 @@ public class Guide extends HttpServlet {
 		//ArrayList<LocationDTO> list = dao.listPlace();
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/detail.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/guide.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
