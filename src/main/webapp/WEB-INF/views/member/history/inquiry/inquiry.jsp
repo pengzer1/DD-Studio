@@ -16,12 +16,14 @@
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 100px;
 }
 
 .form-group {
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
+	width: 35%;
 }
 
 .form-group select {
@@ -64,9 +66,16 @@ tr:nth-child(even) {
 }
 
 tbody tr:hover {
-        background-color: #cce5ff; /* 호버됐을 때 배경색 변경 */
-        cursor: pointer; /* 호버됐을 때 커서 모양 변경 */
-    }
+	background-color: #cce5ff; /* 호버됐을 때 배경색 변경 */
+	cursor: pointer; /* 호버됐을 때 커서 모양 변경 */
+}
+
+.name {
+	font-weight: bold;
+	font-size: 24px;
+	color: #686A6F;
+	text-align:center;
+}
 </style>
 </head>
 <body>
@@ -78,17 +87,17 @@ tbody tr:hover {
 
 		<div id="title">
 			<h2>문의 내역</h2>
-			<br>
 		</div>
 
+		<hr>
 
 		<div class="container">
-			<h2>문의 내역</h2>
+			<h2 class="name">문의 내역</h2>
 			<div class="form-group">
 				<select id="sel1">
 					<option value="tblInquiry" selected>이용문의</option>
 					<option value="tblVOC">칭찬/불편/건의</option>
-				</select> <input type="text" class="search-box" placeholder="검색">
+				</select>
 			</div>
 			<table>
 				<thead>
@@ -103,21 +112,23 @@ tbody tr:hover {
 				<tbody>
 					<c:forEach items="${list}" var="dto">
 						<c:if test="${option == 'tblInquiry'}">
-						<tr onclick="location.href='/ddstudio/member/history/inquiry/detail.do?seq=${dto.seq}';">
+							<tr
+								onclick="location.href='/ddstudio/member/history/inquiry/detail.do?seq=${dto.seq}';">
 						</c:if>
 						<c:if test="${option == 'tblVOC'}">
-						<tr onclick="location.href='/ddstudio/member/history/voc/detail.do?seq=${dto.seq}';">
+							<tr
+								onclick="location.href='/ddstudio/member/history/voc/detail.do?seq=${dto.seq}';">
 						</c:if>
-							<td>${dto.seq}</td>
-							<td>${dto.type}</td>
-							<td>${dto.subject}</td>
-							<td>${dto.regdate}</td>
-							<c:if test="${empty dto.answer}">
-								<td>답변 대기</td>
-							</c:if>
-							<c:if test="${not empty dto.answer}">
-								<td>답변 완료</td>
-							</c:if>
+						<td>${dto.seq}</td>
+						<td>${dto.type}</td>
+						<td>${dto.subject}</td>
+						<td>${dto.regdate}</td>
+						<c:if test="${empty dto.answer}">
+							<td>답변 대기</td>
+						</c:if>
+						<c:if test="${not empty dto.answer}">
+							<td>답변 완료</td>
+						</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -139,7 +150,6 @@ tbody tr:hover {
 						});
 
 		$('#sel1').val('${option}');
-		
 	</script>
 
 </body>

@@ -50,6 +50,15 @@ button:hover {
         transform: translateX(5px); /* 우측으로 흔들림 */
     }
 }
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
+}
+
+#title > p {
+    shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
 </style>
 </head>
 <body>
@@ -58,12 +67,24 @@ button:hover {
 
 	<main id="main">
 
-		<div id="title" style="margin-top: 123px;">
-			<h2>추천</h2>
-			<br>
-			<p>나에게 딱 맞는 어트랙션을 찾아보세요!</p>
+		<div id="title" title="작가 senivpetro 출처 Freepik">
+		    <h2>추천</h2>
+		    <br>
+		    <p>나에게 딱 맞는 어트랙션을 찾아보세요!</p>
 		</div>
 
+		<!-- 관리자 -->
+		<c:if test="${lv == 2}">
+			<div id="admin-btn">
+				<button type="button" id="add-btn" onclick="location.href='/ddstudio/test/courseadd.do'">
+					<i class="fa-solid fa-plus"></i>코스 추가
+				</button>
+				<button type="button" id="del-btn" onclick="location.href='/ddstudio/test/course.do'">
+					<i class="fa-solid fa-trash"></i>코스 삭제
+				</button>
+			</div>
+		</c:if>
+		
 		<div id="content">			
 			<div class="munti-content-container">
 				<div class="item">

@@ -23,7 +23,7 @@ CREATE SEQUENCE seqUserGroupBook;
 
 create or replace view vwRestaurant
 as
-select restaurant_seq, name, menu, time, capacity, tel, location_seq, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img, (select start_date from tblRestaurantClose where restaurant_seq = r.restaurant_seq) as start_date, (select end_date from tblRestaurantClose where restaurant_seq = r.restaurant_seq) as end_date from tblRestaurant r;
+select restaurant_seq, name, menu, time, capacity, tel, location_seq, category_seq, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img, (select start_date from tblRestaurantClose where restaurant_seq = r.restaurant_seq) as start_date, (select end_date from tblRestaurantClose where restaurant_seq = r.restaurant_seq) as end_date from tblRestaurant r;
 
 
 /* 기프트샵 view */

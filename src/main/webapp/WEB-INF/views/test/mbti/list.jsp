@@ -44,6 +44,7 @@
 
 #title {
 	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
 }
 
 #content {
@@ -56,8 +57,7 @@
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-
-		<div id="title" style="margin-top: 123px;">
+		<div id="title" title="senivpetro 출처 Freepik">
 			<h2>MBTI별 추천</h2>
 		</div>
 

@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.activity.model.AttractionDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.admin.model.CategoryDTO;
 
 public class CategoryDAO {
@@ -21,7 +23,7 @@ public class CategoryDAO {
 	
 	public ArrayList<CategoryDTO> list() {  //목록보기
 		try {
-			String sql = "select category_seq, name from tblCategory";
+			String sql = "select category_seq, name from tblCategory where name != '0'";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -83,10 +85,10 @@ public class CategoryDAO {
 
 	public int del(CategoryDTO dto) {  //삭제
 		try {
-			String sql = "delete from tblCategory where name=?";
+			String sql = "update tblCategory set name='0' where category_seq=?";
 
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getName());
+			pstat.setString(1, dto.getCategory_seq());
 
 			return pstat.executeUpdate();
 

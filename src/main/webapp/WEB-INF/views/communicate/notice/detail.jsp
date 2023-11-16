@@ -13,9 +13,17 @@
 			#regdate {
 				margin-top: 30px;
 			}
+			#regdate i {
+				margin-right: 5px;
+			}
+			#regdate span {
+				font-size: 1.02rem;
+				font-weight: bold;
+				margin-right: 8px;
+			}
 			#detail {
 				width: 80%;
-				border-top: 2px solid black;
+				border-top: 2px solid #000;
 				margin: 20px auto 0;
 			}
 			#content {
@@ -23,14 +31,14 @@
 			    color: #555;
 			    text-align: left;
 			    padding: 30px 40px;
-			    border-bottom: 2px solid black;
+			    border-bottom: 2px solid #000;
 			}
 			#detail:has(#attach) #content {
 			    border-bottom: 2px solid #E1E1E1;
 			}
 			#attach {
 			    padding: 30px 0;
-			    border-bottom: 2px solid black;
+			    border-bottom: 2px solid #000;
 			}
 			#button-list i {
 				margin-right: 10px;
@@ -53,7 +61,7 @@
 		<main id="notice-detail">
 			<h1>${dto.subject}</h1>
 			
-			<div id="regdate">${dto.regdate}</div>
+			<div id="regdate"><i class="fa-regular fa-calendar"></i><span>등록일</span>${dto.regdate}</div>
 			
 			<table id="detail">
 				<c:if test="${dto.content != null && !dto.content.trim().equals('')}">
@@ -72,7 +80,7 @@
 			<div id="button-list">
 				<button type="button" id="back-button"><i class="fa-solid fa-list"></i>목록</button>
 			
-				<c:if test="${not empty email && lv == 2}">
+				<c:if test="${lv == 2}">
 					<button type="button" id="edit-button"><i class="fa-solid fa-pen-to-square"></i>수정</button>
 					<button type="button" id="delete-button"><i class="fa-solid fa-trash"></i>삭제</button>
 				</c:if>

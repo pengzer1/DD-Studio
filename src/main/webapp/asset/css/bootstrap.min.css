@@ -232,7 +232,7 @@ sup {
 }
 
 a {
-    color: #FB5B21;
+    color: #1f1f1f;
     text-decoration: none
 }
 
@@ -914,7 +914,9 @@ progress {
 
 .g-5,
 .gx-5 {
-    --bs-gutter-x: 3rem
+    --bs-gutter-x: 3rem;
+    display: flex;
+    justify-content: center;
 }
 
 .g-5,
@@ -1437,7 +1439,8 @@ progress {
 
     .col-lg-9 {
         flex: 0 0 auto;
-        width: 75%
+        margin-top: 15px;
+        width: 75%;
     }
 
     .col-lg-10 {
@@ -8102,8 +8105,9 @@ div.col-lg-9 > nav > button > span > i {
 }
 
 .py-3 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important
+    /* padding-top: 1rem !important; */
+    /* padding-bottom: 1rem !important */
+    margin-bottom: 25px;
 }
 
 .py-4 {
