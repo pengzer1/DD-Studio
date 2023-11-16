@@ -19,6 +19,7 @@ public class CourseAdd extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 코스 추가 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/course/add.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -27,7 +28,7 @@ public class CourseAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			
+			// 파일 업로드 MultipartRequest 객체
 			MultipartRequest multi = new MultipartRequest(
 										req,
 										req.getRealPath("/asset/image/course"),
@@ -35,26 +36,29 @@ public class CourseAdd extends HttpServlet {
 										"UTF-8",
 										new DefaultFileRenamePolicy()
 									);
-			//System.out.println(req.getRealPath("/asset/image/test/course")); //사진 저장 경로 확인
+			//이미지 저장 경로 확인
+			//System.out.println(req.getRealPath("/asset/image/test/course"));
 			
-			String name = multi.getParameter("name");
-			String img = multi.getFilesystemName("img");
+			String name = multi.getParameter("name"); // 이름
+			String img = multi.getFilesystemName("img"); // 이미지
 			
 			CourseDTO dto = new CourseDTO();
 			
 			dto.setName(name);
 			
-			//사진
+			//이미지가 업로드 되었는지 확인 후 설정
 			if (img != null && !img.equals("")) {
 				dto.setImg(img);
 			} else {
-				dto.setImg("course.png");
+				dto.setImg("course.png"); // 기본 이미지
 			}
 			
 			TestDAO dao = new TestDAO();
 			
+			// 코스 추가
 			int result = dao.courseAdd(dto);
 			
+			// 코스 추가 성공 시 추천 페이지로 이동
 			if (result == 1) {
 				resp.sendRedirect("/ddstudio/test/recommend.do");
 			}			

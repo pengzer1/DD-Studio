@@ -89,20 +89,19 @@ th {
 			<header>
 				<h3>장바구니</h3>
 			</header>
+			<form method="post" action="/ddstudio/member/purchase/view.do">
+				<table>
+					<thead>
+						<tr>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>수량</th>
+							<th>합계</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
 
-			<table>
-				<thead>
-					<tr>
-						<th>상품명</th>
-						<th>가격</th>
-						<th>수량</th>
-						<th>합계</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<form name="order-form" action="/ddstudio/member/purchase/view.do"
-						method="post">
 						<c:forEach items="${list}" var="dto">
 							<tr>
 								<td>${dto.name}</td>
@@ -113,52 +112,32 @@ th {
 									name="reservationCheckbox" value="${dto.user_cart_seq}"></td>
 							</tr>
 						</c:forEach>
-					</form>
-				</tbody>
-			</table>
 
-			<div class="buttons-container">
-				<button class="button" id="order">주문하기</button>
-			</div>
+
+					</tbody>
+				</table>
+				<c:if test="${not empty list}">
+				<div class="buttons-container">
+					<button type="submit" class="button">주문하기</button>
+				</div>
+				</c:if>
+			</form>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
 
 	<script>
-	$('#order').click(function() {
-		
-            var selectedUserBookSeqs = $('input[name="reservationCheckbox"]:checked').map(function() {
-                return this.value;
-            }).get();
+		var checkboxes = document.querySelectorAll(".cart-checkbox");
+		var orderButton = document.getElementById("orderButton");
 
-            // 선택된 예매 정보를 서버로 전송
-            $.ajax({
-                type: 'POST',
-                url: '/ddstudio/member/purchase/view.do',
-                data: { user_book_seq: selectedUserBookSeqs },
-                traditional: true,
-                
-                dataType: 'json',
-                success: function(data) { //data == { "result" : 1 }
-                    // 서버에서의 응답에 대한 처리
-                    // 예를 들면, 삭제 후에 어떤 동작을 할지에 대한 로직을 추가할 수 있습니다.
-                    if (data.result == 1) {
-                    	location.href = '/ddstudio/member/purchase/view.do';
-                    } else {
-                    	alert('failed');
-                    }
-                },
-                error: function() {
-                    alert('예매 취소에 실패했습니다.');
-                }
-            })
-	};
-        
-    
-	
+		checkboxes.forEach(function(checkbox) {
+			checkbox.addEventListener("change", function() {
+				var checkedCheckboxes = document
+						.querySelectorAll(".cart-checkbox:checked");
+				orderButton.disabled = checkedCheckboxes.length === 0;
+			});
+		});
 	</script>
 </body>
 </html>
-
-

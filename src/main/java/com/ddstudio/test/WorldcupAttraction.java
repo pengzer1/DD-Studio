@@ -21,6 +21,7 @@ import com.ddstudio.test.repository.TestDAO;
 @WebServlet("/test/worldcup/attraction/detail.do")
 public class WorldcupAttraction extends HttpServlet {
 
+	// 어트랙션 리스트
 	private ArrayList<AttractionDTO> attractionList;
 
 	@Override
@@ -38,7 +39,7 @@ public class WorldcupAttraction extends HttpServlet {
 		@SuppressWarnings("unchecked") // 제네릭 경고 무시
 		ArrayList<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
 
-		selectedAttractions = new ArrayList<>();
+		// selectedAttractions = new ArrayList<>();
 
 		// 선택하지 않은 어트랙션 리스트 생성
 		ArrayList<AttractionDTO> remainingAttractions = new ArrayList<>();
@@ -53,6 +54,7 @@ public class WorldcupAttraction extends HttpServlet {
 		req.setAttribute("selectedAttractions", selectedAttractions);
 		req.setAttribute("selectedTwoAttractions", selectedTwoAttractions);
 
+		// 어트랙션 월드컵 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/attraction/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -63,18 +65,21 @@ public class WorldcupAttraction extends HttpServlet {
 
 		Random random = new Random();
 
+		// 어트랙션 리스트가 있고, 크기가 1보다 큰 경우
 		if (attractions != null && attractions.size() > 1) {
 			int index1 = random.nextInt(attractions.size());
 			int index2;
 
+			// index1과 다른 index2 선택 (중복 회피)
 			do {
 				index2 = random.nextInt(attractions.size());
 			} while (index1 == index2);
 
-			// 두 어트랙션을 리스트에 추가
+			// 두 개의 어트랙션을 리스트에 추가
 			selectedTwoAttractions.add(attractions.get(index1));
 			selectedTwoAttractions.add(attractions.get(index2));
 		} else if (attractions != null && attractions.size() == 1) {
+			// 어트랙션이 하나만 남았을 경우
 			selectedTwoAttractions.add(attractions.get(0));
 		}
 
@@ -83,9 +88,11 @@ public class WorldcupAttraction extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String selectedAttractionSeq = req.getParameter("attractionSeq");
-		HttpSession session = req.getSession();
+		String selectedAttractionSeq = req.getParameter("attractionSeq"); // 선택한 어트랙션 시퀀스
 
+		HttpSession session = req.getSession(); // 세션 가져오기
+
+		// 세션에서 선택한 어트랙션 리스트
 		@SuppressWarnings("unchecked")
 		ArrayList<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
 
@@ -97,7 +104,7 @@ public class WorldcupAttraction extends HttpServlet {
 
 		// System.out.println(req.getParameter("isNewSession"));
 
-		// 선택한 어트랙션이 중복되지 않았을 때만 추가
+		// 선택한 어트랙션이 중복되지 않았을 경우 추가
 		if (!selectedAttractions.contains(selectedAttractionSeq)) {
 			selectedAttractions.add(selectedAttractionSeq);
 			session.setAttribute("selectedAttractions", selectedAttractions);
@@ -111,7 +118,6 @@ public class WorldcupAttraction extends HttpServlet {
 			}
 			ArrayList<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
 
-			// JSON 응답 생성
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 
@@ -134,12 +140,13 @@ public class WorldcupAttraction extends HttpServlet {
 			for (AttractionDTO attraction : remainingAttractions) {
 				remainingAttractionSeqs.add(attraction.getAttraction_seq());
 			}
+			
+			// JSON에 데이터 추가 및 전송
 			jsonResponse.put("remainingAttractionSeqs", remainingAttractionSeqs);
 			jsonResponse.put("selectedTwoAttractions", selectedTwoAttractionsJsonArray);
-
 			resp.getWriter().write(jsonResponse.toString());
 		}
-		
+
 	}
 
 }

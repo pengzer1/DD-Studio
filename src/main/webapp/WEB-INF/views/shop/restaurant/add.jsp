@@ -33,6 +33,96 @@ select {
 select option:checked {
    background-color: #ddd;
 }
+
+ul {
+list-style-type: none;
+margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-size: 14px;
+}
+
+li {
+	display: inline-block;
+    width: 80%;
+    position: relative;
+    vertical-align: top;
+}
+
+
+.amountWrap {
+    color: #505050;
+    border: 3px solid #61656a;
+    
+}
+
+.payWrap .amountWrap .totalOrder {
+    border-width: 3px 0 3px 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.amountWrap ul li {
+	margin: auto 0;
+    margin-top: 10px;
+}
+
+.amountWrap ul li:first-child {
+    margin-top: 0;
+}
+
+.tit_order {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.txtColorType03, table td.txtColorType03 {
+    color: #e12f36 !important;
+}
+
+.amountWrap ul li span, .amountWrap .total span {
+float: right;
+    font-size: 16px;
+    font-weight: 600;
+}
+.inlineblock {
+    display: inline-block !important;
+}
+
+.fn {
+    float: none !important;
+}
+
+.amountWrap .price i {
+    margin-right: 6px;
+    font-size: 15px;
+    font-style: normal;
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+b {
+    font-weight: 700;
+}
+
+.amountWrap .scheduledPay {
+    padding-right: 140px;
+    padding-left: 140px;
+    padding: 18px 3.74%;
+    color: #fff;
+    background-color: #61656a;
+}
+
+.amountWrap .scheduledPay .total span {
+    font-size: 23px;
+    color: #ff5b62;
+}
 </style>
 </head>
 <body>

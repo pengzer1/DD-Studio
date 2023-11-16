@@ -10,4 +10,5 @@ public class UserCartDTO {
 	private String price;
 	private String img;
 	private String total_price;
+	private String item_seq;
 }

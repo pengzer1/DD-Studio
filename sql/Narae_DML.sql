@@ -118,7 +118,7 @@ INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '센과 치히로의 동굴 탐험.jpeg', 5);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
-VALUES (seqtblAttractionImg.NEXTVAL, '늑대체험.jpg', 6);
+VALUES (seqtblAttractionImg.NEXTVAL, '늑대 체험.jpg', 6);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '우리는 빙글빙글1.jpeg', 7);
@@ -136,7 +136,7 @@ INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '즐거움은 방울방울2.jpeg', 9);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
-VALUES (seqtblAttractionImg.NEXTVAL, '마녀배달부 디디.jpeg', 10);
+VALUES (seqtblAttractionImg.NEXTVAL, '마녀 배달부 디디.jpeg', 10);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '빗자루여행.jpg', 11);

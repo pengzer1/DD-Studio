@@ -221,7 +221,7 @@
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
 			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/festivaldel.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='ddstudio/activity/festivaledit.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/festivaledit.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
 		</div>
 		</c:if>
 		

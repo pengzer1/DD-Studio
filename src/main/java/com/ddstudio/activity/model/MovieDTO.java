@@ -12,4 +12,6 @@ public class MovieDTO {
 	private String runningtime;
 	private String img;
 	private String preview;
+	
+	private String start_time;
 }
