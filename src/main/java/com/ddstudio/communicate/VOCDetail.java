@@ -38,7 +38,7 @@ public class VOCDetail extends HttpServlet {
 		    content = content.replace("<", "&lt;");
 		    content = content.replace(">", "&gt;");
 		    
-		    content = content.replace("\n", "<br>");
+		    content = content.replace("\r\n", "<br>");
 
 		    dto.setContent(content);
 		    

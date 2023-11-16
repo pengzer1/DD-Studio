@@ -84,7 +84,7 @@
 				color: #333;
 			}
 			#keep {
-				background-color: #EEFAF0;
+				background-color: #D5F1EA;
 			}
 			.open-modal-btn {
 				width: 50px;
