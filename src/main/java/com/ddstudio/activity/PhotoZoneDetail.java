@@ -26,9 +26,9 @@ public class PhotoZoneDetail extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<PhotoZoneImgDTO> imgList = dao.photozoneImgList(seq);
-		
 		PhotoZoneDTO dto = dao.getPhotozone(seq);
+		
+		ArrayList<PhotoZoneImgDTO> imgList = dao.photozoneImgList(seq);
 		
 		LocationDTO location_dto = dao.getPhotozoneLocation(seq);
 		

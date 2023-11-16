@@ -296,8 +296,8 @@
 			 
 			 
 		 //Tagify whitelist용 변수 생성
-		 const taglist = ${taglist}
-		 const valuelist = ${hashtag_list}
+		 const taglist = ${taglist};
+		 const valuelist = ${valuelist};
 		 
 		 
 		 //Tagify 태그 입력
@@ -306,9 +306,10 @@
 		    enforceWhitelist : true,
 		    maxTags          : 5,
  		    delimiters       : null,
- 		    whitelist        : taglist,
- 		    value            : valuelist
+ 		    whitelist        : taglist
 		  });
+		 
+		 tagify.addTags(valuelist);
 		 
 		 
 		 //Tagify 드롭 다운 메뉴 표출
