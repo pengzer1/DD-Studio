@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 <style>
-		.nav-icon {
+	.nav-icon {
 		font-size: 50px;
 	}
 	
@@ -36,10 +36,10 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="/ddstudio/asset/image/Ghibli-festival-sample3.png" alt="Image">
+                    <img class="w-100" src="/ddstudio/asset/image/festival/Ghibli-festival-sample3.png" alt="Image">
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="/ddstudio/asset/image/Ghibli-festival-sample2.png" alt="Image">
+                    <img class="w-100" src="/ddstudio/asset/image/festival/Ghibli-festival-sample2.png" alt="Image">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
@@ -64,25 +64,25 @@
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
                     <h5 class="best-attraction">이 달의 BEST 어트랙션 1위</h5>
-                    <img src="/ddstudio/asset/image/파라오의 분노.png" alt="Image" class="main-thumbnail">
-                    <h3 class="text-uppercase my-4">파라오의 분노</h3>
-                    <a class="text-uppercase" href="">자세히 보기 <i class="bi bi-arrow-right"></i></a>
+                    <img src="/ddstudio/asset/image/attraction/토토로스핀.jpeg" alt="Image" class="main-thumbnail">
+                    <h3 class="text-uppercase my-4">토토로스핀</h3>
+                    <a class="text-uppercase" href="/ddstudio/activity/attractiondetail.do?seq=15">자세히 보기 <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
-                    <h5 class="best-attraction">이 달의 BEST 어트랙션 2위</h5>
-                    <img src="/ddstudio/asset/image/쌍용열차.jpg" alt="Image" class="main-thumbnail">
-                    <h3 class="text-uppercase my-4">쌍용열차</h3>
-                    <a class="text-uppercase" href="">자세히 보기 <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="best-attraction">이 달의 Best 어트랙션 2위</h5>
+                    <img src="/ddstudio/asset/image/attraction/지브리특급1.jpeg" alt="Image" class="main-thumbnail">
+                    <h3 class="text-uppercase my-4">지브리특급</h3>
+                    <a class="text-uppercase" href="/ddstudio/activity/attractiondetail.do?seq=1">자세히 보기 <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="bg-light rounded text-center p-5">
-                    <h5 class="best-attraction">이 달의 Best 어트랙션 3위</h5>
-                    <img src="/ddstudio/asset/image/회전목마.jpg" alt="Image" class="main-thumbnail">
-                    <h3 class="text-uppercase my-4">회전목마</h3>
-                    <a class="text-uppercase" href="">자세히 보기 <i class="bi bi-arrow-right"></i></a>
+                    <h5 class="best-attraction">이 달의 BEST 어트랙션 3위</h5>
+                    <img src="/ddstudio/asset/image/attraction/마루 밑 아리에티를 찾아서.jpeg" alt="Image" class="main-thumbnail">
+                    <h3 class="text-uppercase my-4">마루 밑 아리에티를 찾아서</h3>
+                    <a class="text-uppercase" href="/ddstudio/activity/attractiondetail.do?seq=25">자세히 보기 <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
