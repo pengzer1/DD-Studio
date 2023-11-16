@@ -1,6 +1,7 @@
 package com.ddstudio.activity;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -41,15 +42,17 @@ public class AttractionEdit extends HttpServlet {
 		
 		ArrayList<AttractionImgDTO> list = dao.attractionImgList(seq);
 		
-		ArrayList<AttractionHashtagDTO> hashtag_list = dao.attractionHashtagList(seq);
+		ArrayList<HashTagDTO> taglist = dao.getHashtagList();
+		
+		//ArrayList<AttractionHashtagDTO> hashtag_list = dao.attractionHashtagList(seq);
 		
 		int flag = 0;
 		String temp = "[";
 		
-		for (AttractionHashtagDTO tag : hashtag_list) {
-				temp += "\"" + dto.getName() + "\",";
+		for (HashTagDTO tag : taglist) {
+				temp += "\"" + tag.getName() + "\",";
 				flag ++;
-				if (flag == hashtag_list.size()) {
+				if (flag == taglist.size()) {
 					temp = temp.substring(0, temp.length()-1) + "]";
 				}
 		}
@@ -57,7 +60,7 @@ public class AttractionEdit extends HttpServlet {
 		req.setAttribute("dto", dto);
 		req.setAttribute("location_dto", location_dto);
 		req.setAttribute("list", list);
-		req.setAttribute("hashtag_list", temp);
+		req.setAttribute("taglist", temp);
 		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/edit.jsp");
@@ -69,6 +72,55 @@ public class AttractionEdit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//수정하기
+		String seq = req.getParameter("seq");
+		String name = req.getParameter("name");
+		String capacity = req.getParameter("capacity");
+		String restriction = req.getParameter("restriction");
+		String is_test = req.getParameter("is_test");
+		String lat = req.getParameter("lat");
+		String lng = req.getParameter("lng");
+		
+		ActDAO dao = new ActDAO();
+		
+		AttractionDTO dto = new AttractionDTO();
+		
+		dto.setAttraction_seq(seq);
+		dto.setName(name);
+		dto.setCapacity(capacity);
+		dto.setRestriction(restriction);
+		dto.setIs_test(is_test);
+		dto.setLat(lat);
+		dto.setLng(lng);
+		
+//		int result = dao.addLocation(dto);
+		
+//		if (result == 1) {
+//			
+//			String location_seq = dao.getLocationSeq(dto);
+//			dto.setLocation_seq(location_seq);
+			int result = dao.editAttraction(dto, seq);
+			
+			if (result == 1) {
+				
+				resp.sendRedirect("/ddstudio/activity/attraction.do");
+				
+			} else {
+				
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('Edit Attraction failed'); history.back();</script>");
+				writer.close();
+			}
+			
+//		} else {
+//			
+//			PrintWriter writer = resp.getWriter();
+//			writer.print("<script>alert('Add Location failed'); history.back();</script>");
+//			writer.close();
+//			
+//		}
+		
+		
+		
 		
 	}
 }
