@@ -43,9 +43,9 @@
     </style>
 </head>
 <body>
-<!-- Template.jsp --ㅈ>
+<!-- Template.jsp -->
 <%@ include file="/WEB-INF/views/inc/header.jsp"%>
-<-- Header -->
+<!-- Header -->
 
 <main id="main">
     <div id="title">

@@ -1,6 +1,8 @@
 package com.ddstudio.communicate.model;
 
+import lombok.Data;
 
+@Data
 public class InquiryDTO {
 	
 	private String name;
