@@ -18,6 +18,7 @@ public class Register extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 회원가입 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/register.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -25,6 +26,7 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+			// 회원 정보
 			String email = req.getParameter("email");
 	        String pw = req.getParameter("pw");
 	        String name = req.getParameter("name");
@@ -32,6 +34,7 @@ public class Register extends HttpServlet {
 	        String tel = req.getParameter("tel");
 	        String address;
 	        
+	        // 주소 처리
 	        if (req.getParameter("post-code").trim().isEmpty()) {
 		        address = "default"; //주소를 입력하지 않은 경우 (미기재)
 	        } else {
@@ -61,8 +64,10 @@ public class Register extends HttpServlet {
 
 			UserDAO dao = new UserDAO();
 
+			// 회원 등록
 			int result = dao.register(dto);
 
+			// 회원 등록 성공 시 환영 페이지로 이동
 			if (result == 1) {
 				resp.sendRedirect("/ddstudio/user/registerwelcome.do");
 				return;

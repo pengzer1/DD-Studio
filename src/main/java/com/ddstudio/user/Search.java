@@ -22,6 +22,7 @@ public class Search extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 검색 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/search.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -34,12 +35,16 @@ public class Search extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		try {
-			String searchWord = req.getParameter("word");
+			String searchWord = req.getParameter("word"); // 검색어
+			
 			UserDAO dao = new UserDAO();
+			
+			// 검색 결과
 			ArrayList<SearchDTO> searchResults = dao.search(searchWord);
-
+			
 			JSONArray jsonArray = new JSONArray();
 
+			// 검색 결과를 JSON 객체로 변환하여 배열에 추가
 			for (SearchDTO result : searchResults) {
 				JSONObject jsonObject = new JSONObject();
 				
@@ -72,6 +77,7 @@ public class Search extends HttpServlet {
 				// System.out.println(jsonObject);
 			}
 
+			// JSON 배열을 응답
 			out.print(jsonArray.toJSONString());
 		} catch (Exception e) {
 			System.out.println("Search.doPost()");

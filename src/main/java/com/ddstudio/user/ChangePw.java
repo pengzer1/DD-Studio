@@ -18,6 +18,7 @@ public class ChangePw extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 비밀번호 변경 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/change-pw.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -31,9 +32,9 @@ public class ChangePw extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 		
-		String email = req.getParameter("email");
-		String tel = req.getParameter("tel");
-		String pw = req.getParameter("pw");
+		String email = req.getParameter("email"); // 아이디 (이메일)
+		String tel = req.getParameter("tel"); // 연락처
+		String pw = req.getParameter("pw"); // 비밀번호
 
 		UserDAO dao = new UserDAO();
 		UserDTO dto = new UserDTO();
