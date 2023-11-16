@@ -78,6 +78,7 @@
             </div>
 
         </form>
+    </div>
 
 </main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
@@ -91,7 +92,7 @@
 
         // 시작일과 종료일이 둘 다 선택된 경우에만 비교
         if (startDate && endDate) {
-            if (endDate <= startDate) {
+            if (endDate < startDate) {
                 alert('종료일은 시작일보다 늦은 날짜여야 합니다.');
                 document.getElementById('end').value = ''; // 종료일 초기화
             }

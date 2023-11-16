@@ -73,7 +73,7 @@
             </table>
             <div>
                 <input type="submit" value="수정">
-                <input type="button" value="취소"onclick="location.href='/ddstudio/pb/benefitdetail.do?seq='+${seq-1}">
+                <input type="button" value="취소"onclick="location.href='/ddstudio/pb/benefitdetail.do?seq='+${seq}">
             </div>
 
 
@@ -84,7 +84,7 @@
 </main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 <!-- Footer -->
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 
     function validateDates() {
@@ -99,6 +99,66 @@
             }
         }
     }
+
+    const date = document.getElementById('start_date');
+
+    $('select[name=attraction]').change(function() {
+        for (let i=0; i<close_list.length; i++) {
+            if (close_list[i].seq == $(this).val()) {
+                //alert(close_list[i].start_date);
+                //alert(close_list[i].end_date);
+
+                selDate(i);
+
+            }
+        }
+    });
+
+    function selDate(i) {
+
+        const now = new Date();  //현재날짜
+        const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate();
+
+        //alert(now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate());
+        //alert(close_list[i].start_date);
+
+
+        if (nowStr > close_list[i].start_date) {
+            $('#start').val(close_list[i].start_date.substr(0,  10));
+            $('#start').prop('readOnly', true);  //운휴가 현재날짜보다 이전이면 -> 운휴 이미 시작이므로 readonly.
+        } else {
+            $('#start').attr('min', nowStr);
+            $('#start').val(close_list[i].start_date.substr(0,  10));
+            $('#start').prop('readOnly', false);
+        }
+
+        changeDate(i);
+
+    }
+
+    function changeDate(i) {
+        $('#end').attr('min', date.value);  //end_date는 재선택한 운휴시작일 넣어주기
+        $('#end').val(close_list[i].end_date.substr(0,  10));
+        $('#start').change(function() {
+            $('#end').attr('min', date.value);
+        });
+
+
+    }
+
+    const close_list = [];
+    <c:forEach items="${list}" var="dto">
+    close_list.push({
+        seq: ${dto.attraction_close_seq},
+        start_date:'${dto.start_date}',
+        end_date:'${dto.end_date}'
+    });
+
+    </c:forEach>
+
+    selDate(0);
+
+
 
 
 </script>

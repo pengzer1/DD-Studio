@@ -43,6 +43,7 @@ public class BenefitDel extends HttpServlet {
 
         //1.
         String seq = req.getParameter("seq");
+        System.out.println(seq);
 
         //2.
         BenefitDAO dao = new BenefitDAO();

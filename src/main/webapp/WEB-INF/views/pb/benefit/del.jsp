@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-container">
-        <form method="post" action="/ddstudio/pb/benefitdel.do" enctype="multipart/form-data">
+        <form method="post" action="/ddstudio/pb/benefitdel.do"`>
             <table class="vertical">
                 <tr>
                     <th>혜택명</th>
@@ -67,13 +67,15 @@
                     <td>${dto.discount_rate}%</td>
                 </tr>
             </table>
+
+
             <div>
                 <input type="submit" value="삭제" onclick="delOk()">
                 <input type="button" value="취소"onclick="location.href='/ddstudio/pb/benefitdetail.do?seq='+${seq-1}">
             </div>
 
+            <input type="hidden" name="seq" value="${seq}">
 
-            <input type="hidden" name="seq" value="${dto.benefit_seq}">
 
         </form>
     </div>

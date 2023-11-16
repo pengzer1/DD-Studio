@@ -131,15 +131,14 @@ public class BenefitDAO {
 
     public int partnerShipBenefitAdd(BenefitDTO dto) {
         try {
-            String sql = "insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,?,?,?,?,?,?)";
+            String sql = "insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,?,'카드/통신사',?,?,?,?)";
 
             pstat = conn.prepareStatement(sql);
             pstat.setString(1,dto.getName());
-            pstat.setString(2,dto.getType());
-            pstat.setString(3, dto.getStart_date());
-            pstat.setString(4, dto.getEnd_date());
-            pstat.setString(5, dto.getDiscount_rate());
-            pstat.setString(6, dto.getImg());
+            pstat.setString(2, dto.getStart_date());
+            pstat.setString(3, dto.getEnd_date());
+            pstat.setString(4, dto.getDiscount_rate());
+            pstat.setString(5, dto.getImg());
 
             return pstat.executeUpdate();
 
@@ -227,6 +226,38 @@ public class BenefitDAO {
 
         return 0;
 
+    }
+
+
+    public BenefitDTO getName(String seq) {
+
+        try {
+
+            String sql = "SELECT  name FROM TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, seq);
+
+            rs = pstat.executeQuery();
+
+            ArrayList<BenefitDTO> list = new ArrayList<>();
+
+            while (rs.next()) {
+
+                BenefitDTO dto = new BenefitDTO();
+                dto.setName(rs.getString("name"));
+
+
+                list.add(dto);
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
 

@@ -69,7 +69,6 @@ public class BenefitEdit extends HttpServlet {
             dto.setEnd_date(end);
             dto.setDiscount_rate(discount);
             dto.setImg(pic);
-            int seq1 = (Integer.parseInt(seq) - 1);
 
 
             BenefitDAO dao = new BenefitDAO();
@@ -78,7 +77,7 @@ public class BenefitEdit extends HttpServlet {
 
 
             if (result == 1) {
-                resp.sendRedirect("/ddstudio/pb/benefitdetail.do?seq=" + seq1);
+                resp.sendRedirect("/ddstudio/pb/benefitdetail.do?seq=" + seq);
 
             }
 

@@ -52,7 +52,13 @@
         <table class="vertical">
             <tr>
                 <th>종류</th>
-                <td><input type="text" name="ticketType" required></td>
+                <td>
+                    <select name="ticketType" required>
+                        <option value="1Day">1Day</option>
+                        <option value="After4">After4</option>
+                    </select>
+
+                </td>
             </tr>
             <tr>
                 <th>구분</th>

@@ -20,7 +20,6 @@ public class PriceDAO {
     }
 
 
-
     public int add(PriceDTO dto) { // 티켓 테이블 추가하기
 
         //DTO > insert
@@ -37,13 +36,11 @@ public class PriceDAO {
             int result = pstat.executeUpdate();
 
 
-
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
         return 0;
@@ -216,7 +213,7 @@ public class PriceDAO {
             pstat.setString(2, dto.getTicket_type());
             pstat.setString(3, dto.getAge());
 
-            int result =  pstat.executeUpdate();
+            int result = pstat.executeUpdate();
 
 
             return result;
@@ -237,7 +234,7 @@ public class PriceDAO {
             pstat.setString(1, dto.getTicket_type());
             pstat.setString(2, dto.getAge());
 
-            int result =  pstat.executeUpdate();
+            int result = pstat.executeUpdate();
 
             return result;
 
@@ -248,5 +245,65 @@ public class PriceDAO {
         return 0;
     }
 
+
+    public ArrayList<PriceDTO> groupTypeList() {
+
+        ArrayList<PriceDTO> list = new ArrayList<>();
+
+        try {
+
+            String sql = "select * from TBLTICKET where PERSON_TYPE ='단체' order by PRICE desc ";
+
+            stat = conn.createStatement();
+
+            rs = stat.executeQuery(sql);
+
+            //rs == 메모 목록
+
+            //rs를  list로 옮기기
+            while (rs.next()) {
+
+                //레코드 1줄 > MemoDTO 1개
+                PriceDTO dto = new PriceDTO();
+                dto.setTicket_seq(rs.getString("ticket_seq"));
+                dto.setTicket_type(rs.getString("ticket_type"));
+                dto.setPerson_type(rs.getString("person_type"));
+                dto.setAge(rs.getString("age"));
+                dto.setPrice(rs.getString("price"));
+
+
+                list.add(dto);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
+
+    public String getName(String s) {
+
+        try {
+
+            String sql = "select name from TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, s);
+
+            rs = pstat.executeQuery();
+
+            if (rs.next()) {
+
+                return rs.getString("name");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
 
 }

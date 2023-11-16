@@ -44,11 +44,11 @@
 <main id="main">
 
     <div id="title">
-        <h2>일반 혜택 추가</h2>
+        <h2>카드/통신사 혜택 추가</h2>
     </div>
 
     <div class="form-container">
-        <form method="post" action="/ddstudio/pb/benefitadd.do" enctype="multipart/form-data">
+        <form method="post" action="/ddstudio/pb/partnershipbenefitadd.do" enctype="multipart/form-data">
             <table class="vertical">
                 <tr>
                     <th>혜택명</th>
@@ -57,8 +57,7 @@
                 <tr>
                     <th>카드/통신사</th>
                     <td><select name="type" required>
-                        <option value="카드">카드</option>
-                        <option value="통신사">통신사</option>
+                        <option value="카드/통신사">카드/통신사</option>
                     </select></td>
                 </tr>
                 <tr>
@@ -81,11 +80,11 @@
             </table>
             <div>
                 <input type="submit" value="추가">
-                <input type="button" value="취소"onclick="location.href='/ddstudio/pb/benefitadd.do'">
+                <input type="button" value="취소"onclick="location.href='/ddstudio/pb/benefit.do'">
             </div>
 
         </form>
-
+    </div>
 </main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 <!-- Footer -->

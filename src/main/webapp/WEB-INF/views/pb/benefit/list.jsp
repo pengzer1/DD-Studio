@@ -10,11 +10,19 @@
     <style>
 
 
+        .item {
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            border: 2px solid #FFA500; /* Add a border color on hover */
+        }
 
 
         .benefitBt {
             text-align: center;
-            margin: 84px;
+            margin-bottom: 20px;
         }
 
         .btn{
@@ -23,6 +31,54 @@
             justify-content: right;
         }
 
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .munti-content-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .item {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .item > div {
+            margin-bottom: 10px;
+        }
+
+        .item img {
+            max-width: 100%;
+            border-radius: 6px;
+        }
+
+        .item-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+        }
+        #title {
+            background-image: url('/ddstudio/asset/image/detail_background_resizing.png');
+        }
     </style>
 </head>
 <body>
@@ -56,8 +112,8 @@
 
 
         <div class="benefitBt">
-            <a href="javascript:" class="bnftClasCd on" data-cd="01">일반혜택</a>
-            <a href="javascript:" class="bnftClasCd " data-cd="02">카드혜택</a>
+            <a href="javascript:" class="bnftClasCd on" data-cd="일반">일반혜택</a>
+            <a href="javascript:" class="bnftClasCd " data-cd="카드/통신사">카드혜택</a>
         </div>
 
 
@@ -70,13 +126,14 @@
 
             <div class="munti-content-container">
                 <c:forEach items="${list}" var="dto">
-                    <div class="item" onclick="location.href= '/ddstudio/pb/benefitdetail.do?seq=' + ${dto.benefit_seq - 1};">
+                    <div class="item" data-category="${dto.type}" onclick="location.href= '/ddstudio/pb/benefitdetail.do?seq=' + ${dto.benefit_seq};">
                         <div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
-                        <div>${dto.name}</div>
+                        <div class="item-title">${dto.name}</div>
                         <div>${dto.start_date}~${dto.end_date}</div>
                     </div>
                 </c:forEach>
             </div>
+
 
 
 
@@ -93,44 +150,28 @@
 <!-- Footer -->
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const benefitButtons = document.querySelectorAll('.bnftClasCd');
+        const benefitContainer = document.getElementById('benefitContainer');
 
-    $('#btn1').click(function() {
-
-        const hong = {
-            name: '홍길동',
-            age: 20,
-            hello: function() {
-
-            }
-        };
-
-        $.ajax({
-
-            //Ajax
-            //- 비동기 자바스크립트 통신
-
-            //ajax.open('GET', 'do') > 페이지 요청 정보
-            type: 'GET',
-            url: '/ajax/ex03data.do',
-
-            //async: true, //true(비동기), false(동기)
-
-            //ex03data.do?name=홍길동
-            data: 'name=홍길동',
-
-            //onreadystatechange + readyState(4) + status(200)
-            success: function(result) {
-                //result == ajax.responseText
-                $('#txt1').val(result);
-            },
-
-            //에러 발생 시 호출(이벤트)
-            error: function(a, b, c) {
-                console.log(a, b, c);
-            }
-
+        benefitButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const category = this.getAttribute('data-cd');
+                filterBenefits(category);
+            });
         });
 
+        function filterBenefits(category) {
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (category === 'all' || category === itemCategory) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
     });
 
 </script>

@@ -12,6 +12,12 @@ public class BusDTO {
 	private String start_attraction_seq;
 	private String end_attraction_seq;
 
+
+	private String attraction_seq;
+	private String start_name;
+	private String end_name;
+
+
 	public String getBus_seq() {
 		return bus_seq;
 	}
@@ -74,5 +80,29 @@ public class BusDTO {
 
 	public void setEnd_attraction_seq(String end_attraction_seq) {
 		this.end_attraction_seq = end_attraction_seq;
+	}
+
+	public String getStart_name() {
+		return start_name;
+	}
+
+	public void setStart_name(String start_name) {
+		this.start_name = start_name;
+	}
+
+	public String getEnd_name() {
+		return end_name;
+	}
+
+	public void setEnd_name(String end_name) {
+		this.end_name = end_name;
+	}
+
+	public String getAttraction_seq() {
+		return attraction_seq;
+	}
+
+	public void setAttraction_seq(String attraction_seq) {
+		this.attraction_seq = attraction_seq;
 	}
 }
