@@ -164,7 +164,7 @@
 										<a href="/ddstudio/communicate/faq.do?type=이용정보">FAQ</a>
 									</div>
 									<div>
-										<a href="/ddstudio/communicate/review.do">리뷰</a>
+										<a href="/ddstudio/communicate/review.do?sort=최신순">리뷰</a>
 									</div>
 									<div>
 										<a href="/ddstudio/communicate/usageinquiry.do">고객소리함</a>

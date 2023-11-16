@@ -8,7 +8,7 @@
 		<style>
 			#delete-faq {
 				text-align: center;
-				margin-top: 150px;
+				margin-top: 180px;
 			}
 			table {
 				width: 80%;

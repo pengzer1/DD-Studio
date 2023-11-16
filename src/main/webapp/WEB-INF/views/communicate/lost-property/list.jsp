@@ -67,7 +67,7 @@
 				width: 25%;
 			}
 			#lost-property-list th:nth-child(5) {
-				width: 5%;
+				width: 7%;
 			}
 			#lost-property-list th:nth-child(6) {
 				width: 30%;
