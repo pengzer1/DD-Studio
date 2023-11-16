@@ -8,7 +8,7 @@
 		<style>
 			#notice {
 				text-align: center;
-				margin-top: 150px;
+				margin-top: 180px;
 			}
 			#search-form {
 				margin-top: 50px;
@@ -34,7 +34,7 @@
 			#notice-list {
 				width: 80%;
 				text-align: center;
-				border-top: 2px solid black;
+				border-top: 2px solid #000;
 				margin: 50px auto 0;
 			}
 			#notice-list th, #notice-list td {
@@ -45,10 +45,6 @@
 			}
 			#notice-list th {
 				font-size: 1.02rem;
-				font-weight: bold;
-			}
-			#notice-list td:nth-child(2) a {
-				color: #333;
 				font-weight: bold;
 			}
 			#notice-list th:nth-child(1) {
@@ -63,8 +59,12 @@
 			#notice-list td:nth-child(2) {
 				font-size: 1.1rem;
 			}
+			#notice-list td:nth-child(2) a {
+				font-weight: bold;
+				color: #333;
+			}
 			#fixed {
-				background-color: #EDFFFC;
+				background-color: #EEFAF0;
 			}
 			#fix-icon {
 				color: #F00;
@@ -84,7 +84,7 @@
 				margin-top: 1.5px;
 			}
 			#current-page {
-				color: red;
+				color: #F00;
 			}
 			#button-list {
     			text-align: right;
@@ -97,10 +97,7 @@
 				height: 40px;
 				background-color: transparent;
 				border: 2px solid #CCC;
-				margin: 50px 150px 0;
-			}
-			.nav-icon {
-				font-size: 50px;
+				margin: 30px 150px 0;
 			}
 			.nav-icon {
 				font-size: 50px;
@@ -156,18 +153,13 @@
 		
 		<div id="page-bar">${pageBar}</div>
 		
-		<c:if test="${not empty email && lv == 2}">
+		<c:if test="${lv == 2}">
 			<div id="button-list"><button type="button" id="add-button"><i class="fa-solid fa-plus"></i>등록</button></div>
 		</c:if>
 
 		<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 		
 		<script>
-			<c:if test="${map.searchStatus == 'y'}">
-				$('#category').val('${map.category}');
-				$('#search-field').val('${map.word}');
-			</c:if>
-			
 			document.addEventListener('DOMContentLoaded', function () {
 		        var searchField = document.getElementById('search-field');
 
@@ -177,6 +169,17 @@
 		            }
 		        });
 		    });
+			
+			<c:if test="${map.searchStatus == 'y'}">
+				$('#category').val('${map.category}');
+				$('#search-field').val('${map.word}');
+			</c:if>
+			
+			document.addEventListener('keydown', function(event) {
+			    if (event.key === 'F5' || ((event.ctrlKey || event.metaKey) && event.key === 'F5')) {
+			    	location.href='/ddstudio/communicate/notice.do';
+			    }
+			});
 			
 			$('#add-button').click(function () {
 				location.href='/ddstudio/communicate/noticeadd.do';

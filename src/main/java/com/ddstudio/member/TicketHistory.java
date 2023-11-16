@@ -35,6 +35,7 @@ public class TicketHistory extends HttpServlet {
 		
 		//3.
 		req.setAttribute("list", list);
+		
 		req.setAttribute("plist", plist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/history/ticket.jsp");

@@ -15,6 +15,6 @@ public class UserBookDTO {
 	private String benefit_seq;
 	private String discount_rate;
 	private String price;
-	
+	private String total_price;
 	
 }

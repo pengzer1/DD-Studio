@@ -12,7 +12,7 @@
 			}
 			table {
 				width: 80%;
-				border-top: 2px solid black;
+				border-top: 2px solid #000;
 				margin: 50px auto 0;
 			}
 			i {
@@ -25,6 +25,9 @@
 				border: 2px solid #CCC;
 				margin: 50px 10px 0;
 			}
+			.nav-icon {
+				font-size: 50px;
+			}
 		</style>
 	</head>
 	<body>
@@ -33,9 +36,7 @@
 		<main id="delete-notice">
 			<h1>공지사항 삭제</h1>
 			
-			<form method="POST" action="/ddstudio/communicate/noticedel.do?seq=${seq}" name="delete-form">
-				<input type="hidden" name="seq" value="${seq}">
-				
+			<form method="POST" action="/ddstudio/communicate/noticedel.do?seq=${seq}" name="delete-form">				
 				<table>
 					<tr>
 						<td>

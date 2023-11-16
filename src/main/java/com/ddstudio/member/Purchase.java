@@ -21,7 +21,6 @@ public class Purchase extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// Purchase.java
-
 		HttpSession session = req.getSession();
 
 		String name = (String) session.getAttribute("name");

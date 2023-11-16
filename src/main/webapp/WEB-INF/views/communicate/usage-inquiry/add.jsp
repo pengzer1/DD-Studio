@@ -181,14 +181,14 @@
 					agree.focus();
 					return false;
 				} else {
-					alert('등록되었습니다.');
 					return true;
 				}
 			});
 			
 			$('#back-button').click(function () {
-				alert('취소되었습니다.');
-				location.href='/ddstudio/index.do';
+			    if (confirm('작성 중인 내용이 저장되지 않을 수 있습니다.\n취소하시겠습니까?')) {
+			        location.href='/ddstudio/index.do';
+			    }
 			});
 		</script>
 	</body>

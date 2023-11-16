@@ -7,7 +7,8 @@ public class MovieDTO {
 	
 	private String movie_seq;
 	private String name;
-	private String period;
+	private String start_date;
+	private String end_date;
 	private String runningtime;
 	private String img;
 	private String preview;

@@ -89,7 +89,6 @@ th {
 			<header>
 				<h3>장바구니</h3>
 			</header>
-
 			<form method="post" action="/ddstudio/member/purchase/view.do">
 				<table>
 					<thead>
@@ -123,8 +122,6 @@ th {
 				</div>
 				</c:if>
 			</form>
-
-
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
