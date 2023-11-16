@@ -53,7 +53,7 @@ public class AttractionReservation extends HttpServlet {
 		
 		//운휴중이면 예매가 불가하도록
 		ActDAO dao = new ActDAO();
-		
+		/*
 		AttractionCloseDTO close_dto = dao.getAttractionClose(seq);
 		
 		if (close_dto != null) {
@@ -82,7 +82,7 @@ public class AttractionReservation extends HttpServlet {
 		
 		//jsp로 객체에 담아 전달
 		req.setAttribute("dto", dto);
-		req.setAttribute("now", now);
+		req.setAttribute("now", now);*/
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/reservation.jsp");
