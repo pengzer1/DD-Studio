@@ -12,7 +12,7 @@
 			}
 			#edit-form {
 				width: 80%;
-				border-top: 2px solid black;
+				border-top: 2px solid #000;
 				margin: 50px auto 0;
 			}
 			#edit-form th, #edit-form td {
@@ -27,11 +27,11 @@
 			}
 			#edit-form .required::before {
 				content: "* ";
-				color: red;
+				color: #F00;
 			}
 			#edit-form .option::before {
 				content: "* ";
-				color: cornflowerblue;
+				color: #6495ED;
 			}
 			#edit-form td {
 				width: 70%;
@@ -48,7 +48,6 @@
 			#edit-form textarea {
 			    width: 93%;
 			    height: 88%;
-			    box-sizing: border-box;
 			    padding: 10px;
 			    margin: 30px;
 			    resize: none;
@@ -83,8 +82,6 @@
 			<h1>공지사항 수정</h1>
 			
 			<form method="POST" action="/ddstudio/communicate/noticeedit.do?seq=${dto.notice_seq}" enctype="multipart/form-data">
-				<input type="hidden" name="seq" value="${dto.notice_seq}">
-
 				<table id="edit-form">
 					<tr>
 						<th class="required">제목</th>
@@ -135,7 +132,7 @@
 		        }
 		    }
 		    
-		    $('#add-button').click(function () {
+		    $('#edit-button').click(function () {
 				var subject = document.querySelector('input[name="subject"]');
 				var content = document.querySelector('textarea[name="content"]');
 				var file = document.querySelector('input[name="file"]');

@@ -13,6 +13,10 @@
 		/* color: #FFFFFF; */
 	}
 	
+	#title > h2 > a {
+		color: #FFF;
+	}
+	
 	#title > p {
 		color: #FFFFFF;
 	}
@@ -24,7 +28,7 @@
 	 
 	#title {
 	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
-	 	background-image: url('/ddstudio/asset/image/detail_background_resizing.png');
+	 	background-image: url('/ddstudio/asset/image/attraction/detail_background_resizing.png');
 	}
 	 
 	#condition:hover {
@@ -54,17 +58,23 @@
 		float: right;
 	}
 	
+	form {
+		width: 100%;
+		height: 100%
+	}
+	
 	#hidden-searchbar {
 		display: none;
 		width: 100%;
 		height: 100%;
-		margin: 30px;
+		padding: 40px;
+		position: relative;
 	}
 	
 	#hidden-searchbar .condition-container {
 		display: flex;
 		justify-content: center;
-		height: 80%;
+		/* height: 80%; */
 		align-items: center;
 	}
 	
@@ -82,6 +92,21 @@
 		background-color: #FFF;
 	}
 	
+	#delBtn {
+		font-size: 50px;
+		top: -10px;
+		right: 10px;
+		color: #FFF;
+	}
+	
+	#delBtn > a {
+		color: #FFF;
+	}
+	
+	#default-searchbar {
+		padding: 30px
+	}
+	
 </style>
 </head>
 <body>
@@ -92,7 +117,7 @@
 	<main id="main">
 
 		<div id="title">	
-			<h2>어트랙션</h2>
+			<h2><a href="/ddstudio/activity/attraction.do">어트랙션</a></h2>
 			<br>
 			<p>모험과 환상의 나라 더블디 스튜디오의 어트랙션을 경험해보세요!</p>
 		</div>
@@ -109,27 +134,20 @@
 				<!-- 조건 검색 (click 후) -->
 				<form method="GET" action="/ddstudio/activity/attraction.do">
 					<div id="hidden-searchbar">
-						<h4><i class="fa-solid fa-magnifying-glass"></i> 
-							<c:if test="${empty close}">
-								조건 검색
-							</c:if>
-							<c:if test="${close == 'open'}">
-								정상 운영 어트랙션 조회
-							</c:if>
-							<c:if test="${close == 'close'}">
-								금일 운휴 어트랙션 조회
-							</c:if>
-						</h4>
-						<div class="block-bubbling">
-							<div class="condition-container">
-								<div>운휴일정</div>
-								<select name="close" id="close-select" class="selectbox">
-									<option value="open">정상운영</option>
-									<option value="close">운휴</option>
-								</select>
-								<div class="condition-btn">
-									<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
-									<button><i class="fa-solid fa-circle-arrow-left" onclick="removeParameter()"></i> 취소</button>
+						<span id="delBtn"style="position: absolute;"><a href="/ddstudio/activity/attraction.do">&times;</a></span>
+						<div>
+							<h4><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h4>
+							<div class="block-bubbling">
+								<div class="condition-container">
+									<div>운휴일정</div>
+									<select name="close" id="close-select" class="selectbox">
+										<option value="open">정상운영</option>
+										<option value="close">운휴</option>
+									</select>
+									<div class="condition-btn">
+										<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
+										<!-- <button type="button" onclick="location.href='/ddstudio/activity/attraction.do';"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button> -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -148,7 +166,7 @@
 			<div class="munti-content-container">
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="location.href= '/ddstudio/activity/attractiondetail.do?seq=' + ${dto.attraction_seq};">
-					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div style="background-image: url('/ddstudio/asset/image/attraction/${dto.img}');"></div>
 					<div>${dto.name}</div>
 					</div>
 				</c:forEach>
@@ -164,6 +182,9 @@
 		$('.block-bubbling').click(function(event) {
 	        event.stopPropagation();
 	    });
+		$('#delBtn').click(function(event) {
+	        event.stopPropagation();
+	    });
 	
 	
 		$('#condition').click(function() {
@@ -172,45 +193,40 @@
 				
 				$('#hidden-searchbar').css('display', 'block');
 				$('#condition').css('height', '200px');
-				$('#condition').css('transition', 'all .8s');
+				$('#condition').css('transition', 'height .3s');
 				$('#default-searchbar').css('display', 'none');
 				
 			} else {
 				
 				$('#hidden-searchbar').css('display', 'none');
 				$('#condition').css('height', '100px');
-				$('#condition').css('transition', 'all .8s');
+				$('#condition').css('transition', 'height .3s');
 				$('#default-searchbar').css('display', 'block');
 		        
 			}
 			
 		});
 		
+		$('#delBtn').click(function(event) {
+			event.stopPropagation();
+			
+		})
+		
+		
+		
 		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
-//		if (${close == 'open' || close == 'close'}) {
 		if (${not empty close}) {
 			
 			$('#hidden-searchbar').css('display', 'block');
 			$('#condition').css('height', '200px');
 			$('#default-searchbar').css('display', 'none');
-			
-			$('#close-select').val(${close}).attr("selected", "selected");
+
+			if (${close == 'open'}) {
+				$('#close-select').val("open").prop("selected", true);
+			} else if (${close == 'close'}) {
+				$('#close-select').val("close").prop("selected", true);
+			}
 		}
-		
-		function removeParameter() {
-            // 현재 URL 가져오기
-            var currentUrl = window.location.href;
-
-            // URL의 쿼리 문자열 가져오기
-            var queryString = window.location.search;
-
-            // 만약 쿼리 문자열이 있다면, 해당 부분을 빈 문자열로 교체하여 제거
-            if (queryString) {
-                var updatedUrl = currentUrl.replace(queryString, '');
-                // 새로운 URL로 이동하면서 페이지 이력에 기록하지 않음
-                history.replaceState({}, document.title, updatedUrl);
-            }
-        }
 		
 	</script>
 </body>

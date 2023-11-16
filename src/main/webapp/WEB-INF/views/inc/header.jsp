@@ -55,7 +55,7 @@
 			<a href="/ddstudio/index.do"
 				class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
 				<!-- <h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD Studio</h1> -->
-				<img src="/ddstudio/asset/image/DDstudio.png" alt="DD Studio Logo" style="width: 80%; height: 80%;">
+				<img src="/ddstudio/asset/image/DDstudio.png" alt="DD Studio Logo" style="width: 70%;">
 			</a>
 		</div>
 		<div class="col-lg-9">
@@ -104,9 +104,6 @@
 								<div class="nav-menu-name">추천</div>
 								<div class="sub-menu">
 									<div>
-										<a href="/ddstudio/test/preferencetest.do">취향 테스트</a>
-									</div>
-									<div>
 										<a href="/ddstudio/test/worldcup.do">DD 월드컵</a>
 									</div>
 									<div>
@@ -153,7 +150,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/communicate/notice.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">sms</div>
 								<div class="nav-menu-name">소통</div>
 								<div class="sub-menu">
@@ -161,19 +158,19 @@
 										<a href="/ddstudio/communicate/notice.do">공지사항</a>
 									</div>
 									<div>
-										<a href="/ddstudio/communicate/faq.do">FAQ</a>
+										<a href="/ddstudio/communicate/faq.do?type=이용정보">FAQ</a>
 									</div>
 									<div>
 										<a href="/ddstudio/communicate/review.do">리뷰</a>
 									</div>
 									<div>
-										<a href="/ddstudio/communicate/voc.do">고객소리함</a>
+										<a href="/ddstudio/communicate/usageinquiry.do">고객소리함</a>
 										<div class="sub-sub-menu">
 											<div>
 												<a href="/ddstudio/communicate/usageinquiry.do">이용문의</a>
 											</div>
 											<div>
-												<a href="/ddstudio/communicate/usageinquiry.do">칭찬/불편/건의</a>
+												<a href="/ddstudio/communicate/voc.do">칭찬/불편/건의</a>
 											</div>
 											<div>
 												<a href="/ddstudio/communicate/lostproperty.do">분실물 찾기</a>

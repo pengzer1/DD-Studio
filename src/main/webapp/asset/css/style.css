@@ -12,6 +12,10 @@
 	margin-left: 0;
 }
 
+body {
+    overflow-y: scroll;
+}
+
 #main > #title {
 	text-align: center;
 	background-color: white;

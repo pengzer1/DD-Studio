@@ -53,7 +53,6 @@ public class WorldcupCourse extends HttpServlet {
 		req.setAttribute("selectedCourses", selectedCourses);
 		req.setAttribute("selectedTwoCourses", selectedTwoCourses);
 
-		// JSP로 포워딩
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/course/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -136,7 +135,6 @@ public class WorldcupCourse extends HttpServlet {
 				remainingCourseSeqs.add(course.getCourse_seq());
 			}
 			jsonResponse.put("remainingCourseSeqs", remainingCourseSeqs);
-
 			jsonResponse.put("selectedTwoCourses", selectedTwoCoursesJsonArray);
 
 			resp.getWriter().write(jsonResponse.toString());

@@ -25,12 +25,24 @@ public class Festival extends HttpServlet {
 		//- tblFestival > list 불러오기
 		//- 조건검색: 진행 여부별 조회
 		
+		req.removeAttribute("status");
+		String status = req.getParameter("status");
+		
+		if (status == null || status.equals("")) {
+			status = "";
+		}
+		
+		//status = ""
+		//status = "ing"
+		//status = "will"
+		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<FestivalDTO> list = dao.festivalList();
+		ArrayList<FestivalDTO> list = dao.festivalList(status);
 		
 		//데이터 전송
 		req.setAttribute("list", list);
+		req.setAttribute("status", status);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/festival/list.jsp");
 		dispatcher.forward(req, resp);

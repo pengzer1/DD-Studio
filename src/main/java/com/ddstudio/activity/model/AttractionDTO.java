@@ -11,8 +11,10 @@ public class AttractionDTO {
 	private String location_seq;
 	private String time;
 	private String restriction;
-	private String theme_seq;
 	private String is_test;
 	
 	private String img;
+	
+	private String lat;
+	private String lng;
 }
