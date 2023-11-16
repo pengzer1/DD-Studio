@@ -149,6 +149,15 @@ ul {
 #admin-btn button:last-child {
 	margin-right: 15px;
 }
+
+.btn {
+    padding: 10px 20px;
+    background-color: #0074cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -207,8 +216,8 @@ ul {
 						</li>
 						<li>
 							<div class="tableCell">
-								<button type="button" id="cart">장바구니</button>
-								<button type="submit">바로 구매</button>
+								<button class="btn" type="button" id="cart">장바구니</button>
+								<button class="btn" type="submit">바로 구매</button>
 							</div>
 						</li>
 					</ul>
