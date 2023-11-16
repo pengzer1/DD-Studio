@@ -24,21 +24,22 @@ public class MBTIList extends HttpServlet {
 		
 		TestDAO dao = new TestDAO();
 		
+		// MBTI 정보 가져오기
 		ArrayList<MBTIDTO> clist = dao.listMBTI();
 
 		JSONArray arr = new JSONArray();
 		
+		// MBTI 정보를 JSON 형식으로 배열에 추가
 		for (MBTIDTO dto : clist) {
 		    JSONObject obj = new JSONObject();
-		    
 		    obj.put("mbti", dto.getMbti());
-            
 		    arr.add(obj);
 		}
 
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 
+		// JSON 데이터 전송
 		PrintWriter writer = resp.getWriter();
 		writer.write(arr.toString());
 		writer.close();
