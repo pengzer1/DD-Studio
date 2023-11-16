@@ -17,7 +17,7 @@
 	.header-login {
 		position: absolute;
 		top: -15%;
-		right: 2%;
+		right: 5%;
 	}
 	
 	.header-login a {
@@ -114,7 +114,7 @@
     <!-- 회전 이미지 끝 -->
     
     <div class="col-lg-12 col-md-6 text-center">
-        <h1 class="text-uppercase mb-4">운영시간 07:00 ~ 22:00</h1>
+        <h1 class="text-uppercase mb-4">운영시간 10:00 ~ 22:00</h1>
     </div>
 
     <!-- Best Attraction 시작 -->

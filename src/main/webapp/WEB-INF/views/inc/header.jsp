@@ -206,7 +206,7 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty email}">
-					<div class="header-login">
+					<div class="header-login" style="right: 3%;">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<c:if test="${lv==1}">
 							<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
@@ -217,7 +217,7 @@
 						</c:if>
 					</div>
 					<div>
-						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>
+						<span style="font-size: 15px; color: #CCC; margin-right: 60px;">${name}님 환영합니다!</span>
 					</div>
 				</c:if>
 			</nav>
