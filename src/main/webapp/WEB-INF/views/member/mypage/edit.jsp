@@ -97,7 +97,7 @@
 
 		<div id="content">
 			<div id="condition">
-				<h3>회원정보 수정</h3>
+				<h3>회원정보</h3>
 			</div>
 
 			<div class="container">

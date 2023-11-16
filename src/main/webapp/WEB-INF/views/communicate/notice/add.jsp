@@ -12,7 +12,7 @@
 			}
 			#add-form {
 				width: 80%;
-				border-top: 2px solid black;
+				border-top: 2px solid #000;
 				margin: 50px auto 0;
 			}
 			#add-form th, #add-form td {
@@ -27,11 +27,11 @@
 			}
 			#add-form .required::before {
 				content: "* ";
-				color: red;
+				color: #F00;
 			}
 			#add-form .option::before {
 				content: "* ";
-				color: cornflowerblue;
+				color: #6495ED;
 			}
 			#add-form td {
 				width: 70%;
@@ -48,7 +48,6 @@
 			#add-form textarea {
 			    width: 93%;
 			    height: 88%;
-			    box-sizing: border-box;
 			    padding: 10px;
 			    margin: 30px;
 			    resize: none;

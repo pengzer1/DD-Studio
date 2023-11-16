@@ -13,6 +13,16 @@
 		margin-top: 150px;
 	}
 	
+	#background {
+		background-image: url('/ddstudio/asset/image/festival_page_background.png');
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+		padding: 150px 0;
+		margin-top: 30px;
+	}
+	
 	#admin-btn {
 		text-align: right;
 	}
@@ -28,15 +38,6 @@
 	
 	#admin-btn button:last-child {
 		margin-right: 15px;
-	}
-	
-	#reservation-btn {
-		border: 0;
-		border-radius: 10px;
-		padding: 15px 15px;
-		color: #222;
-		background-color: #E6AAAE;
-		font-size: 1.3rem;
 	}
 	
 	#hashtag {
@@ -80,7 +81,8 @@
 		height: 370px;
 		padding: 30px;
 		margin: 30px;
-		background-color: #FFFBD0;
+		/* background-color: #FFFBD0; */
+		background-color: #FFFFFF;
 		border-radius: 5px;
 	}
 	
@@ -254,7 +256,7 @@
 	    <br>
 	  
 	    <!-- The dots/circles -->
-	    <div style="text-align:center">
+	    <div style="text-align:center; margin-bottom: 20px;">
 	    <c:forEach items="${imgList}" var="dto" varStatus="status">
 		    <span class="dot" onclick="currentSlide(${status.count})"></span>
 	    </c:forEach>
@@ -262,23 +264,27 @@
 		
 		<!-- 페스티벌 정보 -->
 		<!-- 정보, 시간 시작일, 종료일, 위치 순 -->
-		<div>
-			<p>${dto.info}</p>		
-		</div>
-		<div class="result-container">
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
-				<div class="label">시간</div>
-				<div class="value">${dto.time}</div>
-			</div>
-			<div class="result-item">
-				<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
-				<div class="label">기간</div>
-				<div class="value">${dto.start_date} ~ ${dto.end_date}</div>
+		<div id="background">
+			<div class="result-container">
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
+					<div class="label">시간</div>
+					<div class="value">${dto.time}</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
+					<div class="label">기간</div>
+					<div class="value">${dto.start_date}<br>~<br>${dto.end_date}</div>
+				</div>
+				<div class="result-item">
+					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
+					<div class="label">정보</div>
+					<div class="value">${dto.info}</div>
+				</div>
 			</div>
 		</div>
 		<div class="location">
-			<div class="label">위치</div>
+			<div class="label">위치 정보</div>
 			<div class="value location">
 				<div id="map" style="width:768px;height:400px;"></div>
 			</div>
@@ -294,7 +300,7 @@
 		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	    
 	    const options = { //지도를 생성할 때 필요한 기본 옵션
-	       center : new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}), //지도의 중심좌표.
+	       center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 	       level : 10 //지도의 레벨(확대, 축소 정도)
 	    };
 	
@@ -307,35 +313,39 @@
 	    
 	    m1.setMap(map);
 	    
+	    //확대/축소, 드래그 제어
+		map.setZoomable(false);
+	    map.setDraggable(false);
+	    
 	    /* 이미지 슬라이더용 */
 	    let slideIndex = 1;
-        showSlides(slideIndex);
-
-        // Next/previous controls
-        function plusSlides(n) {
-        showSlides(slideIndex += n);
-        }
-
-        // Thumbnail image controls
-        function currentSlide(n) {
-        showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-        }
+	    showSlides(slideIndex);
+	
+	    // Next/previous controls
+	    function plusSlides(n) {
+	    showSlides(slideIndex += n);
+	    }
+	
+	    // Thumbnail image controls
+	    function currentSlide(n) {
+	    showSlides(slideIndex = n);
+	    }
+	
+	    function showSlides(n) {
+	    let i;
+	    let slides = document.getElementsByClassName("mySlides");
+	    let dots = document.getElementsByClassName("dot");
+	    if (n > slides.length) {slideIndex = 1}
+	    if (n < 1) {slideIndex = slides.length}
+	    for (i = 0; i < slides.length; i++) {
+	        slides[i].style.display = "none";
+	    }
+	    for (i = 0; i < dots.length; i++) {
+	        dots[i].className = dots[i].className.replace(" active", "");
+	    }
+	    slides[slideIndex-1].style.display = "block";
+	    dots[slideIndex-1].className += " active";
+	    }
         
 	</script>
 </body>

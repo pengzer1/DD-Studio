@@ -246,7 +246,7 @@ try {
 		
 		try {
 			
-			String sql = "select i.*, (select img from tblitemImg where item_seq = i.item_seq and rownum = 1) as img from tblitem i where item_seq = ? and name not like '%종료%'";
+			String sql = "select i.*, (select img from tblitemImg where item_seq = i.item_seq and rownum = 1) as img from tblitem i where shop_seq = ? and name not like '%종료%'";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -517,7 +517,7 @@ try {
 
 		try {
 			
-			String sql = "select * from tblcategory order by category_seq asc";
+			String sql = "select * from tblcategory where name != '0' order by category_seq asc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -662,6 +662,367 @@ try {
 		}
 		
 		return result;
+	}
+
+	public int addLocation(GiftShopDTO dto) {
+		
+		try {
+
+			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			pstat.setString(3, dto.getLat());
+			pstat.setString(4, dto.getLng());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.addLocation()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
+	}
+
+	public String getLocationSeq(GiftShopDTO dto) {
+		try {
+
+			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				return rs.getString("location_seq");
+			}
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getLocationSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addGiftShop(GiftShopDTO dto) {
+
+		try {
+
+			String sql = "insert into tblshop (shop_seq, name, time, info, tel, location_seq) values (seqtblshop.nextval, ?, ?, ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getTime());
+			pstat.setString(3, dto.getInfo());
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, dto.getLocation_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.addGiftShop()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getShopSeq() {
+		try {
+
+			String sql = "select max(shop_seq) as shop_seq from tblShop";
+
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+
+			if (rs.next()) {
+				return rs.getString("shop_seq");
+			}
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getRestaurantSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addShopImg(ArrayList<String> fileList, String shop_seq) {
+		int result = 0;
+		
+		for (String name : fileList) {
+			
+			try {
+
+				String sql = "insert into tblShopImg (shop_img_seq, img, shop_seq) values (seqtblshopimg.nextVal, ?, ?)";
+
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, name);
+				pstat.setString(2, shop_seq);
+				
+				System.out.println();
+				
+				result += pstat.executeUpdate();
+
+			} catch (Exception e) {
+				System.out.println("ShopDAO.addShopImg()");
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+
+	public int addItem(ItemDTO dto) {
+
+		try {
+
+			String sql = "insert into tblitem (item_seq, name, info, price, shop_seq) values (seqtblitem.nextVal, ?, ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getInfo());
+			pstat.setInt(3, dto.getPrice());
+			pstat.setString(4, dto.getShop_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.addItem()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getItemSeq() {
+
+		try {
+
+			String sql = "select max(item_seq) as item_seq from tblItem";
+
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+
+			if (rs.next()) {
+				return rs.getString("item_seq");
+			}
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getItemSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addItemImg(ArrayList<String> fileList, String item_seq) {
+int result = 0;
+		
+		for (String name : fileList) {
+			
+			try {
+
+				String sql = "insert into tblItemImg (item_img_seq, img, item_seq) values (seqtblitemimg.nextVal, ?, ?)";
+
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, name);
+				pstat.setString(2, item_seq);
+				
+				result += pstat.executeUpdate();
+
+			} catch (Exception e) {
+				System.out.println("ShopDAO.addItemImg()");
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}
+
+	public GiftShopDTO getGiftshop(String seq) {
+
+		try {
+			
+			String sql = "select s.*, (select lat from tblLocation where location_seq = s.location_seq) as lat, (select lng from tblLocation where location_seq = s.location_seq) as lng from tblshop s where shop_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				GiftShopDTO	dto = new GiftShopDTO();
+				
+				dto.setShop_seq(seq);
+				dto.setName(rs.getString("name"));
+				dto.setTime(rs.getString("time"));
+				dto.setInfo(rs.getString("info"));
+				dto.setTel(rs.getString("tel"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
+				
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getGiftshop()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int editGiftShop(GiftShopDTO dto) {
+
+		try {
+			String sql = "update tblshop set name = ?, time = ?, info = ?, tel = ?, location_seq = ? where shop_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getTime());
+			pstat.setString(3, dto.getInfo());
+			pstat.setString(4, dto.getTel());
+			pstat.setString(5, dto.getLocation_seq());
+			pstat.setString(6, dto.getShop_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.editGiftShop()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public RestaurantDTO getRestaurant(String seq) {
+		
+		try {
+			
+			String sql = "select * from vwrestaurant where restaurant_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				RestaurantDTO dto = new RestaurantDTO();
+				
+				dto.setRestaurant_seq(rs.getString("restaurant_seq"));
+				dto.setName(rs.getString("name"));
+				dto.setMenu(rs.getString("menu"));
+				dto.setTime(rs.getString("time"));
+				dto.setCapacity(rs.getString("capacity"));
+				dto.setTel(rs.getString("tel"));
+				dto.setLat(rs.getString("lat"));
+				dto.setLng(rs.getString("lng"));
+				dto.setCategory_seq(rs.getString("category_seq"));
+				
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getRestaurant()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int editRestaurant(RestaurantDTO dto) {
+		
+		try {
+
+			String sql = "update tblRestaurant set name = ?, menu = ?, time = ?, capacity = ?, tel = ?, location_seq = ?, category_seq = ? where restaurant_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getMenu());
+			pstat.setString(3, dto.getTime());
+			pstat.setString(4, dto.getCapacity());
+			pstat.setString(5, dto.getTel());
+			pstat.setString(6, dto.getLocation_seq());
+			pstat.setString(7, dto.getCategory_seq());
+			pstat.setString(8, dto.getRestaurant_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.editRestaurant()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public ItemDTO getItem(String seq) {
+		
+		try {
+			
+			String sql = "select * from tblitem where item_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				ItemDTO dto = new ItemDTO ();
+				
+				dto.setItem_seq(seq);
+				dto.setName(rs.getString("name"));
+				dto.setInfo(rs.getString("info"));
+				dto.setPrice(rs.getInt("price"));
+				
+				return dto;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ShopDAO.getItem()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int editItem(ItemDTO dto) {
+		
+		try {
+			
+			System.out.println(dto.getName());
+			System.out.println(dto.getInfo());
+			System.out.println(dto.getPrice());
+			System.out.println(dto.getItem_seq());
+
+			String sql = "update tblitem set name = ?, info = ?, price = ? where item_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getInfo());
+			pstat.setInt(3, dto.getPrice());
+			pstat.setString(4, dto.getItem_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ShopDAO.editItem()");
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 }

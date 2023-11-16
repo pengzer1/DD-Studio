@@ -18,7 +18,7 @@ DELETE FROM tblGroupBook;
 DELETE FROM tblTicketBook;
 DELETE FROM tblBenefit;
 DELETE FROM tblTicket;
-DELETE FROM tblLostCenter;
+DELETE FROM tblLostProperty;
 DELETE FROM tblNotice;
 DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
@@ -74,7 +74,7 @@ DROP TABLE tblGroupBook;
 DROP TABLE tblTicketBook;
 DROP TABLE tblBenefit;
 DROP TABLE tblTicket;
-DROP TABLE tblLostCenter;
+DROP TABLE tblLostProperty;
 DROP TABLE tblNotice;
 DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
@@ -151,7 +151,7 @@ DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
 DROP SEQUENCE seqtblFAQ;
 DROP SEQUENCE seqtblNotice;
-DROP SEQUENCE seqtblLostCenter;
+DROP SEQUENCE seqtblLostProperty;
 DROP SEQUENCE seqtblTicket;
 DROP SEQUENCE seqtblBenefit;
 DROP SEQUENCE seqtblTicketBook;
@@ -478,8 +478,7 @@ CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQ번호 */
    type VARCHAR2(500) NOT NULL, /* 카테고리 */
    question VARCHAR2(300) NOT NULL, /* 질문 */
-   answer VARCHAR2(2000) NOT NULL, /* 답변 */
-   faq_order NUMBER NOT NULL /* 순서번호 */
+   answer VARCHAR2(2000) NOT NULL /* 답변 */
 );
 
 /* 공지사항 */
@@ -493,13 +492,13 @@ CREATE TABLE tblNotice (
 );
 
 /* 분실물센터 */
-CREATE TABLE tblLostCenter (
+CREATE TABLE tblLostProperty (
    lost_center_seq NUMBER PRIMARY KEY, /* 분실물번호 */
    type VARCHAR2(500) NOT NULL, /* 분류 */
    name VARCHAR2(500) NOT NULL, /* 습득물명 */
    location VARCHAR2(500) NOT NULL, /* 습득장소 */
    lost_center_date DATE NOT NULL, /* 습득일 */
-   img VARCHAR2(500) DEFAULT 'lostcenter.png' NOT NULL, /* 분실물이미지 */
+   img VARCHAR2(500), /* 분실물이미지 */
    result VARCHAR2(500) NOT NULL /* 처리결과 */
 );
 
@@ -529,6 +528,7 @@ CREATE TABLE tblTicketBook (
    book_date DATE DEFAULT sysdate NOT NULL, /* 예매일자 */
    visit_date DATE NOT NULL, /* 방문일자 */
    ea NUMBER NOT NULL, /* 구매수량 */
+   price NUMBER NOT NULL, /*결제 금액 */
    ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* 티켓번호 */
    benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* 혜택번호 */
 );
@@ -751,4 +751,8 @@ join tblVOC V on V.user_seq = U.user_seq;
 
 create or replace view vwRestaurant
 as
-select restaurant_seq, name, menu, time, capacity, tel, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img from tblRestaurant r;
+select restaurant_seq, name, menu, time, capacity, tel, location_seq, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img from tblRestaurant r;
+
+create or replace view vwShop
+as
+select shop_seq, name, time, info, tel, location_seq, (select lat from tblLocation where location_seq = s.location_seq) as lat, (select lng from tblLocation where location_seq = s.location_seq) as lng, (select img from tblShopImg where shop_seq = s.shop_seq and rownum = 1) as img from tblShop s;
