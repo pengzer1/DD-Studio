@@ -1047,11 +1047,11 @@ return 0;
 			
 			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
 			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
+			/*
+			 * pstat = conn.prepareStatement(sql); pstat.setString(1, dto.getLat());
+			 * pstat.setString(2, dto.getLng()); pstat.setString(3, dto.getLat());
+			 * pstat.setString(4, dto.getLng());
+			 */
 			
 			return pstat.executeUpdate();
 			
