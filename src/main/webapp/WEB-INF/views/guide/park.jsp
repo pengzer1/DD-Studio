@@ -41,7 +41,7 @@
 		
 			<div class="wide-multi-content-container">
 				<div class="wide-item">
-					<div>1. 밑에 내용들은 가지고 입장하실 수 없어요ㅠㅠ</div>
+					<div>밑에 내용들은 가지고 입장하실 수 없어요ㅠㅠ</div>
 					<div id="content_box">
 						<div>아이템 2 설명</div>
 						<div>아이템 3 설명</div>

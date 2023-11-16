@@ -214,6 +214,8 @@ select * from tblCourse order by course_seq;
 select * from tblMBTI order by mbti_seq;
 
 
+select * from tblAttraction;
+
 commit;
 
 select * from tblAttraction;
@@ -259,7 +261,7 @@ select * from vsSearch;
 
 
 
-
+commit;
 
 select * from tblBenefit;
 select * from tblFAQ;
@@ -271,7 +273,7 @@ select * from tblLostCenter;
 select * from TBLHASHTAG;
 select * from TBLATTRACTIONHASHTAG;
 
-
+select * from TBLMBTI;
 
 DELETE FROM tblMBTI;
 DELETE FROM tblCourse;
