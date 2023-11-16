@@ -116,8 +116,8 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="blog-item">
-                    <div class="position-relative overflow-hidden rounded-top">
+                <div class="blog-item" onclick="window.location.href='/ddstudio/test/worldcup/course/detail.do'">
+            	    <div class="position-relative overflow-hidden rounded-top">
                         <img class="img-fluid" src="/ddstudio/asset/image/DD월드컵.jpg" alt="">
                     </div>
                     <div class="bg-dark d-flex align-items-center rounded-bottom p-4">
@@ -130,8 +130,8 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="blog-item">
-                    <div class="position-relative overflow-hidden rounded-top">
+                <div class="blog-item" onclick="window.location.href='/ddstudio/test/mbti.do'">
+            	    <div class="position-relative overflow-hidden rounded-top">
                         <img class="img-fluid" src="/ddstudio/asset/image/MBTI.png" alt="">
                     </div>
                     <div class="bg-dark d-flex align-items-center rounded-bottom p-4">
