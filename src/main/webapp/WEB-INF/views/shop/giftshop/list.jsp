@@ -21,14 +21,8 @@
 	padding: 8px;
 }
 
-.item {
-	border: 1px solid #AAAAAA;
-	transition: transform 0.5s;
-}
-
-.item:hover {
-	cursor: pointer;
-	transform: scale(1.1);
+.item:hover div:nth-child(2) {
+	background-color: rgba(200, 229, 229, 0.95);
 }
 
 p {
