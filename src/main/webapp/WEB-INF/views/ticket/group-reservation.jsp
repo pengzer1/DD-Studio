@@ -8,10 +8,6 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-
-body {
-	background-color: #EEE;
-}
 #main>#title {
 	background-color: white;
 }
