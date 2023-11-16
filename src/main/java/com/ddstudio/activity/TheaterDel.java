@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/activity/photozone/del.do")
-public class PhotoZoneDel extends HttpServlet {
+@WebServlet("/activity/theaterdel.do")
+public class TheaterDel extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//PhotoZoneDel.java
+		//TheaterDel.java
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/photozone/del.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/movie/theaterdel.jsp");
 		dispatcher.forward(req, resp);
 
 	}

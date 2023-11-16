@@ -315,7 +315,7 @@ public class ActDAO {
 		changeAttractionName(seq);
 		
 		//2. 위치정보번호 > 0번으로 변경(위치 0: 운영종료)
-		changeLocation(seq);
+		changeAttractionLocation(seq);
 		
 		//3. 테마번호 > 0번으로 변경(테마 0: 운영종료)
 		//changeTheme(seq);
@@ -411,7 +411,7 @@ public class ActDAO {
 	}
 
 	//어트랙션 삭제 > 위치정보 변경
-	public void changeLocation(String seq) {
+	public void changeAttractionLocation(String seq) {
 
 		try {
 
@@ -907,6 +907,8 @@ public class ActDAO {
 						dto.setInfo(rs.getString("info"));
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setImg(rs.getString("img"));
+						dto.setLat(rs.getString("lat"));
+						dto.setLng(rs.getString("lng"));
 						
 						return dto;
 					}
@@ -1034,7 +1036,7 @@ public class ActDAO {
 		return 0;
 	}
 
-	public int addLocation(MovieDTO dto) {
+	public int addLocation(TheaterDTO dto) {
 		
 		try {
 			
@@ -1516,10 +1518,251 @@ public class ActDAO {
 		return result;
 	}
 
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-      return 0;
-   }
-	
+	public int delFestival(String seq) {
+
+		try {
+
+			String sql = "update tblFestival set name = name || '(공연중단)' where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFestival");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int changeFestivalLocation(String seq) {
+
+		try {
+
+			String sql = "update tblFestival set location_seq = 0 where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.changeFestivalLocation");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return 0;
+	}
+
+	public int delFestivalImg(String seq) {
+
+		
+		try {
+
+			String sql = "delete from tblFestivalImg where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFestivalImg");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int delFestivalHashtag(String seq) {
+
+		try {
+
+			String sql = "delete from tblFestivalHashtag where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFEstivalHashtag");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public TheaterDTO getTheater(String seq) {
+
+		try {
+					
+					String sql = "select * from tblTheater where theater_seq = ? ";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, seq);
+					
+					rs = pstat.executeQuery();
+					
+					if (rs.next()) {
+						
+						TheaterDTO dto = new TheaterDTO();
+						
+						dto.setTheater_seq(rs.getString("theater_seq"));
+						dto.setName(rs.getString("name"));
+						dto.setLocation_seq(rs.getString("location_seq"));
+						
+						return dto;
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.getTheater");
+					e.printStackTrace();
+				}
+		
+		return null;
+	}
+
+	public ArrayList<MovieDTO> movieList() {
+	//오늘 날짜(sysdate)기준 상영하는 영화 가져오기
+		try {
+					
+					String sql = "SELECT * FROM tblMovie WHERE TO_CHAR(sysdate, 'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD')) order by movie_seq";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
+					while (rs.next()) {
+						
+						MovieDTO dto = new MovieDTO();
+						
+						dto.setMovie_seq(rs.getString("movie_seq"));
+						dto.setName(rs.getString("name"));
+						dto.setStart_date(rs.getString("start_date"));
+						dto.setEnd_date(rs.getString("end_date"));
+						dto.setRunningtime(rs.getString("runningtime"));
+						dto.setImg(rs.getString("img"));
+						dto.setPreview(rs.getString("preview"));
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.movieList");
+					e.printStackTrace();
+				}
+		
+		return null;
+	}
+
+	public int addPhotozone(PhotoZoneDTO dto) {
+		
+		try {
+
+			String sql = "INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)\r\n"
+					+ "VALUES (seqtblPhotoZone.NEXTVAL, ?, '10:00 - 22:00', ?, ?);";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(3, dto.getInfo());
+			pstat.setString(6, dto.getLocation_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addPhotozone");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getPhotozoneSeq() {
+
+		try {
+			
+			String sql = "select max(photozone_seq) as photozone_seq from tblPhotozone";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getString("photozone_seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("at ActDAO.getPhotozoneSeq");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int addPhotozoneImg(ArrayList<String> fileList, String photozone_seq) {
+
+		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
+		//이미지가 1개라도 추가되었다면, 기존 insert문 > 나머지는 null처리로 DB 추가 불가
+		int flag = 0;
+		int result = 0;
+		String sql = "";
+		
+		for (String name : fileList) {
+			if (name == null) {
+				flag++;
+			}
+		}
+		
+		if (flag == 3) { //이미지 추가X > default 입력
+			
+			try {
+				
+				sql = "insert into tblPhotozoneImg (photozone_img_seq, img, photozone_seq) values (seqtblphotozoneimg.nextVal, DEFAULT, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, photozone_seq);
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addPhotozoneImg");
+				e.printStackTrace();
+			}
+			
+			
+		} else { //이미지 1개 이상 추가 > 기존 insert문 사용(null값은 DB 에러발생으로 처리 안됨!)
+			
+			for (String name : fileList) {
+				
+				try {
+					
+					sql = "insert into tblPhotozoneImg (photozone_img_seq, img, photozone_seq) values (seqtblphotozoneimg.nextVal, ?, ?)";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, name);
+					pstat.setString(2, photozone_seq);
+					
+					result += pstat.executeUpdate();
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.addPhotozoneImg");
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		return result;
+	}	
+		
 }

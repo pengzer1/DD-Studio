@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.AttractionHashtagDTO;
 import com.ddstudio.activity.model.AttractionImgDTO;
+import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 
@@ -36,6 +37,8 @@ public class AttractionEdit extends HttpServlet {
 		
 		AttractionDTO dto = dao.getAttraction(seq);
 		
+		LocationDTO location_dto = dao.getAttractionLocation(seq);
+		
 		ArrayList<AttractionImgDTO> list = dao.attractionImgList(seq);
 		
 		ArrayList<AttractionHashtagDTO> hashtag_list = dao.attractionHashtagList(seq);
@@ -46,12 +49,13 @@ public class AttractionEdit extends HttpServlet {
 		for (AttractionHashtagDTO tag : hashtag_list) {
 				temp += "\"" + dto.getName() + "\",";
 				flag ++;
-				if (flag == list.size()) {
+				if (flag == hashtag_list.size()) {
 					temp = temp.substring(0, temp.length()-1) + "]";
 				}
 		}
 		
 		req.setAttribute("dto", dto);
+		req.setAttribute("location_dto", location_dto);
 		req.setAttribute("list", list);
 		req.setAttribute("hashtag_list", temp);
 		

@@ -101,7 +101,7 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/attraction/add.jsp -->
+	<!-- /ddstudio/activity/attraction/edit.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
@@ -116,7 +116,7 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/attractionedit.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
 						<!-- 어트랙션명 필드 -->
 						<tr>
@@ -233,8 +233,8 @@
 			const map = new kakao.maps.Map(container, options);
 			
 			let m = null;
-			let lat = ${dto.lat};
-			let lng = ${dto.lng};
+			let lat = ${location_dto.lat};
+			let lng = ${location_dto.lng};
 			
 			m = new kakao.maps.Marker({
 	            position: new kakao.maps.LatLng(lat, lng)
@@ -265,7 +265,7 @@
 			 
 		 //Tagify whitelist용 변수 생성
 		 const taglist = ${taglist}
-		 const valuelist = ${hashtag_list}
+		 /* const valuelist = ${hashtag_list} */
 		 
 		 
 		 //Tagify 도전기
@@ -274,8 +274,7 @@
 		    enforceWhitelist : true,
 		    maxTags          : 5,
  		    delimiters       : null,
- 		    whitelist        : taglist,
- 		    value            : valuelist
+ 		    whitelist        : taglist
 		  });
 		
 		 //tagify 해시태그 목록 드롭다운 메뉴 표출

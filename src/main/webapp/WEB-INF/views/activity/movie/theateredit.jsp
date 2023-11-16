@@ -37,30 +37,6 @@
 	   background-color: #ddd;
 	}
 	
-	/* Tagify 사용 시도 */
-	.tagify{
-		width: 500px;
-		max-width: 500px;
-	}
-	
-	.tagify--outside{
-        border: 0;
-    }
-
-    .tagify--outside .tagify__input{
-      order: -1;
-      flex: 100%;
-      border: 1px solid var(--tags-border-color);
-      margin-bottom: 1em;
-      /* transition: .1s; */
-    }
-
-    .tagify--outside .tagify__input:hover{ border-color:var(--tags-hover-border-color); }
-    .tagify--outside.tagify--focus .tagify__input{
-      transition:0s;
-      border-color: var(--tags-focus-border-color);
-    }
-    
     #restriction {
     	width: 500px;
     	max-width: 500px;
@@ -101,47 +77,29 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/photozone/add.jsp -->
+	<!-- /ddstudio/activity/movie/theateradd.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<!-- main -->
 	<main id="main">
-	<h1>포토존 추가</h1>
+	<h1>영화관 추가</h1>
 
 	<div class="sub-title">
-		<p>포토존 정보 입력</p>
+		<p>영화관 정보 입력</p>
 	</div>
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/photozoneadd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/theateredit.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
-						<!-- 포토존명 필드 -->
+						<!-- 영화관명 필드 -->
 						<tr>
-							<th class="required">포토존명</th>
+							<th class="required">영화관명</th>
 							<td>
 								<div>
-									<input type="text" name="name" id="name" class="middle-flat" placeholder="포토존명을 입력해주세요." required>
-								</div>
-							</td>
-						</tr>
-						<!-- 시간 필드 -->
-						<!-- <tr>
-							<th class="required">시간</th>
-							<td>
-								<div>
-									<input type="text" name="time" id="time" class="middle-flat" placeholder="시간을 입력해주세요.(형식: HH:MM)" required>
-								</div>
-							</td>
-						</tr> -->
-						<!-- 이용 정보 필드 -->
-						<tr>
-							<th class="required">이용 정보</th>
-							<td>
-								<div>
-									<input type="text" name="info" id="info" class="middle-flat" placeholder="포토존 소개를 입력해주세요." required />
+									<input type="text" name="name" id="name" class="middle-flat" placeholder="영화관명을 입력해주세요." value="${dto.name}" required>
 								</div>
 							</td>
 						</tr>
@@ -156,39 +114,13 @@
 								</div>
 							</td>
 						</tr>
-						<!-- 해시태그 필드 -->
-						<!-- <tr>
-							<th class="required">해시태그</th>
-							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
-							</td>
-						</tr> -->
-						<!-- 이미지 필드 -->
-						<tr>
-	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images">
-			                    </td>
-		                </tr>
-		                <tr>
-		                	<th> </th>
-		                    <td>
-		                    	<input type="file" name="images2" class="images">
-		                    </td>
-	                    </tr>
-		                <tr>
-		                	<th> </th>
-		                    <td>
-		                    	<input type="file" name="images3" class="images">
-		                    </td>
-		                </tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
 									<button id="submit" class="check button">추가</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/photozone.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/movie.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -247,10 +179,16 @@
 			const map = new kakao.maps.Map(container, options);
 			
 			let m = null;
-			let lat = null;
-			let lng = null;
+			let lat = ${dto.lat};
+			let lng = ${dto.lng};
 			
-			 kakao.maps.event.addListener(map, 'click', function(evt) {
+			m = new kakao.maps.Marker({
+    	        position: new kakao.maps.LatLng(lat, lng)
+	        });
+
+	        m.setMap(map);
+			
+			kakao.maps.event.addListener(map, 'click', function(evt) {
 			        lat = evt.latLng.getLat();
 			        lng = evt.latLng.getLng();
 	
@@ -268,8 +206,9 @@
 			        latInput.value = lat;
 			        lngInput.value = lng;
 			        
-			    });
+	   		});
 			 
+		 
 	</script>
 </body>
 </html>
