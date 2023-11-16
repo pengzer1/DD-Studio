@@ -50,15 +50,25 @@ body {
 }
 
 #item1:hover {
-	transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
-	opacity: 0.25;
-	filter: brightness(0.8);
+    transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
 }
 
 #item2:hover {
-	transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
-	opacity: 0.25;
-	filter: brightness(0.8);
+    transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
+}
+
+.item:hover {
+    opacity: 0.25;
+}
+
+.item:hover .img-container i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 1;
+    color: white;
+    transition: opacity 0.3s ease;
 }
 
 #attinfo {
@@ -226,7 +236,18 @@ body {
 		    // #worldcup-container에 추가
 		    $('#worldcup-container').append(resultContainer);
 		}
+		
+		// 이미지 중앙에 우는 아이콘 추가
+		$('#worldcup-container').on('mouseenter', '.item', function () {
+		    // 호버 시작
+		    const sadFaceIcon = $('<i class="fa-regular fa-face-sad-cry"></i>');
+		    $(this).find('.img-container').append(sadFaceIcon);
+		});
 
+		$('#worldcup-container').on('mouseleave', '.item', function () {
+		    // 호버 종료
+		    $(this).find('.img-container .fa-face-sad-cry').remove();
+		});
 	</script>
 </body>
 </html>
