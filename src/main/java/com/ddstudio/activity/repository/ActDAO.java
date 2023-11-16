@@ -848,7 +848,12 @@ public class ActDAO {
 
          pstat = conn.prepareStatement(sql);
          pstat.setString(1, dto.getAttraction_close_seq());
-
+      } catch (Exception e) {
+			System.out.println("at ActDAO.del");
+			e.printStackTrace();
+		}
+return 0;
+}
 	public ArrayList<PhotoZoneImgDTO> photozoneImgList(String seq) {
 
 		try {
@@ -1176,11 +1181,5 @@ public class ActDAO {
 		
 		return null;
 	}
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-      return 0;
-   }
 	
 }
