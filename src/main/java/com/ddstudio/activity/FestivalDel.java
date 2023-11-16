@@ -31,64 +31,69 @@ public class FestivalDel extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		//페스티벌 삭제 처리
+		//0. 페스티벌 위치 정보 삭제 > 0으로 변경
+		//1. 페스티벌 이미지 삭제
+		//2. 페스티벌/해시태그 삭제
+		//3. 페스티벌 삭제 > 페스티벌명 + (공연중단)
 		String seq = req.getParameter("seq");
 		
 		ActDAO dao = new ActDAO();
 		
-		int result = dao.delFestival(seq);
+		//0. 페스티벌 위치 정보 삭제 > 0으로 변경
+		int result = dao.changeFestivalLocation(seq);
 		
-		if (result == 1) {
+		if (result == 1) { //페스티벌 위치 정보 삭제 성공
 			
-			result = dao.changeFestivalLocation(seq);
+			//1. 페스티벌 이미지 삭제
+			result = dao.delFestivalImg(seq);
 			
-			if (result == 1) {
+			if (result > 0) { //이미지 삭제 성공
 				
-				result = dao.delFestivalImg(seq);
+				//2. 페스티벌/해시태그 삭제
+				result = dao.delFestivalHashtag(seq);
 				
-				if (result > 0) {
+				if (result > 0) { //페스티벌/해시태그 삭제 성공
 					
-					result = dao.delFestivalHashtag(seq);
+					//3. 페스티벌 삭제 > 페스티벌명 + (공연중단)
+					result = dao.delFestival(seq);
 					
-					if (result > 0) {
+					if (result == 1) { //페스티벌 삭제 성공
+						
+						resp.sendRedirect("/ddstudio/activity/festival.do");
+						
+					} else { //페스티벌 삭제 실패
 						
 						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('Successfully deleted!'); location.href='/ddstudio/activity/festival.do';</script>");
-						writer.close();
-						
-					} else {
-						
-						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('Del FestivalHashtag failed'); history.back();</script>");
+						writer.print("<script>alert('Delete festival failed'); history.back();</script>");
 						writer.close();
 						
 					}
 					
-				} else {
+				} else { //페스티벌/해시태그 삭제 실패
 					
 					PrintWriter writer = resp.getWriter();
-					writer.print("<script>alert('Del FestivalImg failed'); history.back();</script>");
+					writer.print("<script>alert('Delete festival hashtag failed'); history.back();</script>");
 					writer.close();
 					
 				}
 				
-			} else {
+				
+				
+			} else { //이미지 삭제 실패
 				
 				PrintWriter writer = resp.getWriter();
-				writer.print("<script>alert('Change FestivalLocation failed'); history.back();</script>");
+				writer.print("<script>alert('Delete festival images failed'); history.back();</script>");
 				writer.close();
 				
 			}
-			
-		} else {
+		
+		} else { //페스티벌 위치 정보 삭제 실패
 			
 			PrintWriter writer = resp.getWriter();
-			writer.print("<script>alert('delFestival failed'); history.back();</script>");
+			writer.print("<script>alert('Delete festival location failed'); history.back();</script>");
 			writer.close();
-			
 		}
-	
-	
-	
-	
+		
 	}
 }

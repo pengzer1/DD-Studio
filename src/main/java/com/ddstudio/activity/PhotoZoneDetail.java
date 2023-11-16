@@ -26,11 +26,16 @@ public class PhotoZoneDetail extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<PhotoZoneImgDTO> imgList = dao.photozoneImgList(seq);
-		
 		PhotoZoneDTO dto = dao.getPhotozone(seq);
 		
+		ArrayList<PhotoZoneImgDTO> imgList = dao.photozoneImgList(seq);
+		
 		LocationDTO location_dto = dao.getPhotozoneLocation(seq);
+		
+		System.out.println(imgList.toString());
+		System.out.println(location_dto.toString());
+		System.out.println(dto.toString());
+		
 		
 		
 		req.setAttribute("imgList", imgList);

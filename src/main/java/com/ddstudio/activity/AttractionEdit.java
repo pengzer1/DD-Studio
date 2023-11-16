@@ -92,13 +92,13 @@ public class AttractionEdit extends HttpServlet {
 		dto.setLat(lat);
 		dto.setLng(lng);
 		
-//		int result = dao.addLocation(dto);
+		int result = dao.addLocation(dto);
 		
-//		if (result == 1) {
-//			
-//			String location_seq = dao.getLocationSeq(dto);
-//			dto.setLocation_seq(location_seq);
-			int result = dao.editAttraction(dto, seq);
+		if (result == 1) {
+			
+			String location_seq = dao.getLocationSeq(dto);
+			dto.setLocation_seq(location_seq);
+			result = dao.editAttraction(dto, seq);
 			
 			if (result == 1) {
 				
@@ -122,5 +122,6 @@ public class AttractionEdit extends HttpServlet {
 		
 		
 		
+		}
 	}
 }
