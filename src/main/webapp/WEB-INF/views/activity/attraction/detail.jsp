@@ -14,7 +14,7 @@
 	}
 	
 	#background {
-		background-image: url('/ddstudio/asset/image/detail_background_half_trans.png');
+		background-image: url('/ddstudio/asset/image/attraction/detail_background_half_trans.png');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-position: center;

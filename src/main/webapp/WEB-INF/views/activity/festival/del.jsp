@@ -77,11 +77,7 @@
 		
 		<div id="sub-title">
 			<p class="--bs-red"><i class="fa-solid fa-triangle-exclamation"></i>주의사항<i class="fa-solid fa-triangle-exclamation"></i></p>
-					<p>하단의 삭제버튼을 누르는 즉시 페스티벌은 삭제 처리 되며, 하기 내용의 업무가 더이상 불가능하게됩니다.</p>
-				<div class="del-box">
-					<!-- <p>1. 위치/테마 정보 조회에서 해당 어트랙션 조회가 불가합니다.</p> -->
-					<p>1. 해시태그 조회에서 해당 페스티벌 조회가 불가합니다.</p>
-				</div>
+			<p>하단의 삭제버튼을 누르는 즉시 페스티벌은 삭제 처리됩니다.</p>
 			<p>정말로 선택하신 페스티벌을 삭제하시겠습니까?</p>
 		</div>
 		

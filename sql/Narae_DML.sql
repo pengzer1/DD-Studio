@@ -277,6 +277,7 @@ INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, l
 
 /* 페스티벌이미지 */
 SELECT * FROM tblFestivalImg;
+commit;
 
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
 VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample1.png', 1);
@@ -286,6 +287,10 @@ VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample2.png', 2);
 
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
 VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample3.png', 3);
+
+update tblFestivalImg set img = 'Ghibli-festival-sample1.png' where festival_seq = 1;
+update tblFestivalImg set img = 'Ghibli-festival-sample2.png' where festival_seq = 2;
+update tblFestivalImg set img = 'Ghibli-festival-sample3.png' where festival_seq = 3;
 
 /* 페스티벌/해시태그 */
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
@@ -297,3 +302,152 @@ VALUES (seqtblFestivalHashtag.NEXTVAL, 2, 2);
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
 VALUES (seqtblFestivalHashtag.NEXTVAL, 3, 3);
 
+--해시태그
+/* 해시태그 */
+SELECT * FROM tblHashtag;
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '어트랙션');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '페스티벌');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '영화');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '신나는');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스릴');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스윙');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '짜릿함');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '연인');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '데이트');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '가족');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '어린이');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '익사이팅');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스트레스');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '동심');
+
+--어트랙션 해시태그
+/* 어트/해시태그 */
+select * from tblattractionhashtag;
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 1, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 2, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 3, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 4, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 5, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 6, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 7, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 8, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 9, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 10, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 11, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 12, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 13, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 14, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 15, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 16, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 17, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 18, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 19, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 20, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 21, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 22, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 23, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 24, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 25, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 26, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 27, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 28, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 29, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 30, 3);
+
+
+/* 위치 */
+select * from tbllocation;
+
+insert into tblLocation values (0, 0, 0);
+
+commit;
+
+select * from tblfestival;

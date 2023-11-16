@@ -137,12 +137,8 @@ public class FestivalAdd extends HttpServlet {
 						System.out.println("addFestivalHashtag 결과: "+ result);
 						
 						if (result > 0) {
+							resp.sendRedirect("/ddstudio/activity/festival.do");
 							
-							PrintWriter writer = resp.getWriter();
-							writer.print("<script>alert('Successfully added!'); location.href='/ddstudio/activity/festival.do';</script>");
-							writer.close();
-							
-							//resp.sendRedirect("/ddstudio/activity/festival.do");
 						} else {
 							
 							PrintWriter writer = resp.getWriter();

@@ -18,7 +18,7 @@
 	}
 	
 	#title > p {
-		color: #FFFFFF;
+		color: #000;
 	}
 	 
 	#main > #title {
@@ -134,6 +134,7 @@
 				<!-- 조건 검색 (click 후) -->
 				<form method="GET" action="/ddstudio/activity/attraction.do">
 					<div id="hidden-searchbar">
+						<span id="delBtn"style="position: absolute;"><a href="/ddstudio/activity/attraction.do">&times;</a></span>
 						<div>
 							<h4><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h4>
 							<div class="block-bubbling">

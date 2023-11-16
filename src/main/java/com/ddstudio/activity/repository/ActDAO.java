@@ -1532,7 +1532,7 @@ return 0;
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
 
-			pstat.executeUpdate();
+			return pstat.executeUpdate();
 
 		} catch (Exception e) {
 			System.out.println("at ActDAO.delFestival");
@@ -1551,8 +1551,12 @@ return 0;
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
+			
+			FestivalDTO dto = new FestivalDTO();
+			dto.setLat("0");
+			dto.setLng("0");
 
-			pstat.executeUpdate();
+			return pstat.executeUpdate();
 
 		} catch (Exception e) {
 			System.out.println("at ActDAO.changeFestivalLocation");
@@ -1597,7 +1601,7 @@ return 0;
 			return pstat.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("at ActDAO.delFEstivalHashtag");
+			System.out.println("at ActDAO.delFestivalHashtag");
 			e.printStackTrace();
 		}
 		
