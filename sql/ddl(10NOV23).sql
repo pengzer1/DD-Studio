@@ -199,7 +199,7 @@ CREATE TABLE tblLocation (
 /* 카테고리 */
 CREATE TABLE tblCategory (
    category_seq NUMBER PRIMARY KEY, /* 카테고리번호 */
-   name VARCHAR2(500) NOT NULL UNIQUE /* 카테고리명 */
+   name VARCHAR2(500) NOT NULL /* 카테고리명 */
 );
 
 /* 식당 */
@@ -476,8 +476,8 @@ CREATE TABLE tblInquiry (
 /* FAQ */
 CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQ번호 */
-   type VARCHAR2(500) NOT NULL, /* 카테고리 */
-   question VARCHAR2(300) NOT NULL, /* 질문 */
+   type VARCHAR2(100) NOT NULL, /* 카테고리 */
+   question VARCHAR2(150) NOT NULL, /* 질문 */
    answer VARCHAR2(2000) NOT NULL /* 답변 */
 );
 
@@ -528,7 +528,6 @@ CREATE TABLE tblTicketBook (
    book_date DATE DEFAULT sysdate NOT NULL, /* 예매일자 */
    visit_date DATE NOT NULL, /* 방문일자 */
    ea NUMBER NOT NULL, /* 구매수량 */
-   price NUMBER NOT NULL, /*결제 금액 */
    ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* 티켓번호 */
    benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* 혜택번호 */
 );
@@ -669,7 +668,7 @@ CREATE SEQUENCE seqtblVOC;
 CREATE SEQUENCE seqtblInquiry;
 CREATE SEQUENCE seqtblFAQ;
 CREATE SEQUENCE seqtblNotice;
-CREATE SEQUENCE seqtblLostCenter;
+CREATE SEQUENCE seqtblLostProperty;
 CREATE SEQUENCE seqtblTicket;
 CREATE SEQUENCE seqtblBenefit;
 CREATE SEQUENCE seqtblTicketBook;

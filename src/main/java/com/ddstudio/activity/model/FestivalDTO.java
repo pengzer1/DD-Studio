@@ -14,4 +14,7 @@ public class FestivalDTO {
 	private String location_seq;
 	
 	private String img;
+	
+	private String lat;
+	private String lng;
 }
