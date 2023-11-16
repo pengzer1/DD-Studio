@@ -19,11 +19,19 @@ public class Restaurant extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.removeAttribute("close");
+		String close = req.getParameter("close");
+		
+		if (close == null || close.equals("")) {
+			close = "";
+		}
+		
 		ShopDAO dao = new ShopDAO();
 		
-		ArrayList<RestaurantDTO> list = dao.restaurantList();
+		ArrayList<RestaurantDTO> list = dao.restaurantList(close);
 		
 		req.setAttribute("list", list);
+		req.setAttribute("close", close);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/shop/restaurant/list.jsp");
 		dispatcher.forward(req, resp);
