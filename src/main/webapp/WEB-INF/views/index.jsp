@@ -27,6 +27,10 @@
 	.carousel-item active{
 		padding-top:150px;
 	}
+	
+	.blog-item {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -98,8 +102,8 @@
         </div>
         <div class="row g-5">
             <div class="col-lg-4">
-                <div class="blog-item">
-                    <div class="position-relative overflow-hidden rounded-top">
+                <div class="blog-item" onclick="window.location.href='/ddstudio/test/worldcup/attraction/detail.do'">
+            	    <div class="position-relative overflow-hidden rounded-top">
                         <img class="img-fluid" src="/ddstudio/asset/image/취향테스트.jpg" alt="Image">
                     </div>
                     <div class="bg-dark d-flex align-items-center rounded-bottom p-4">
