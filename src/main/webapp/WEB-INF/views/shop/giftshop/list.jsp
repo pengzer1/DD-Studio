@@ -21,6 +21,10 @@
 	padding: 8px;
 }
 
+.item:hover div:nth-child(2) {
+	background-color: rgba(200, 229, 229, 0.95);
+}
+
 p {
 	color: #444;
 }

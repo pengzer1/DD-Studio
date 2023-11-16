@@ -158,6 +158,10 @@ ul {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.item:hover div:nth-child(2) {
+	background-color: rgba(200, 229, 229, 0.95);
+}
 </style>
 </head>
 <body>

@@ -139,10 +139,6 @@ body {
 	
 }
 
-.item:hover div:nth-child(2) {
-	background-color: rgba(200, 229, 229, 0.95);
-}
-
 .item>div:nth-child(1) {
 	height: 70%;
 	background-color: #CCC;

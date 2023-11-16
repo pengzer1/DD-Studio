@@ -31,6 +31,25 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+/* Item Styles */
+
+.wide-content-container,
+.munti-content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.wide-item,
+.item {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
 </style>
 </head>
 <body>

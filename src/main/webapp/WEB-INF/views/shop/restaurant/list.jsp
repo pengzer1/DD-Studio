@@ -27,6 +27,10 @@
 	transition: transform 0.5s;
 }
 
+.item:hover div:nth-child(2) {
+	background-color: rgba(200, 229, 229, 0.95);
+}
+
 .item .item-name {
 	font-weight: bold;
 	font-size: 1.3rem;
