@@ -283,7 +283,7 @@ try {
 		
 		try {
 			
-			String sql = "select *  from tblitem where item_seq = ?";
+			String sql = "select i.*, (select img from tblitemImg where item_seq = i.item_seq and rownum = 1) as img  from tblitem i where item_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -295,6 +295,7 @@ try {
 				ItemDTO dto = new ItemDTO();
 				
 				dto.setItem_seq(rs.getString("item_seq"));
+				dto.setImg(rs.getString("img"));
 				dto.setName(rs.getString("name"));
 				dto.setInfo(rs.getString("info"));
 				dto.setPrice(rs.getInt("price"));

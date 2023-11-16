@@ -8,6 +8,10 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+#title h2, #title p {
+color: #EEE;
+}
+
 .item>div:nth-child(2) {
 	height: 35%;
 	display: flex;
@@ -60,7 +64,7 @@ p {
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" style="margin-top:123px; background-image: url('/ddstudio/asset/image/enjoy_bg3.jpg');">
 			<h2>레스토랑</h2>
 			<br>
 			<p>맛있는 휴식, 달콤한 상상! 가족·친구·연인과 함께 즐겨보세요!</p>

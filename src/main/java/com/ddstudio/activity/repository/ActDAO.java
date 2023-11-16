@@ -846,19 +846,16 @@ public class ActDAO {
 
 	public int del(AttractionCloseDTO dto) {
 		try {
-			String sql = "delete from tblAttractionClose where attraction_close_seq=?"	;
+			String sql = "delete from tblAttractionClose where attraction_close_seq=?";
 
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getAttraction_close_seq());
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
+         pstat = conn.prepareStatement(sql);
+         pstat.setString(1, dto.getAttraction_close_seq());
+      } catch (Exception e) {
+			System.out.println("at ActDAO.del");
 			e.printStackTrace();
 		}
-		return 0;
-	}
-
+return 0;
+}
 	public ArrayList<PhotoZoneImgDTO> photozoneImgList(String seq) {
 
 		try {
