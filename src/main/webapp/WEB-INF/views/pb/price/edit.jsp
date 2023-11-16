@@ -26,6 +26,14 @@
             text-align: right;
             padding-right: 10px;
         }
+
+        .vertical tr > td {
+            width: 400px;
+        }
+        .vertical tr > td > input{
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +52,7 @@
             <table class="vertical">
                 <tr>
                     <th>종류</th>
-                    <td> <select name="ticket_type">
+                    <td> <select name="ticket_type" id="ticket_type">
                     <c:forEach items="${ticketTypeList}" var="dto">
                         <option value="${dto.ticket_type}">${dto.ticket_type}</option>
                     </c:forEach>
@@ -53,7 +61,7 @@
                 </tr>
                 <tr>
                     <th>구분</th>
-                    <td><select name="age">
+                    <td><select name="age" id="age">
                         <c:forEach items="${ageList}" var="dto">
                             <option value="${dto.age}">${dto.age}</option>
                         </c:forEach>
@@ -76,6 +84,8 @@
 <!-- Footer -->
 
 <script>
+
+
 
 </script>
 </body>

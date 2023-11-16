@@ -1,6 +1,7 @@
 package com.ddstudio.pb.repository;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.pb.Benefit;
 import com.ddstudio.pb.model.BenefitDTO;
 import com.ddstudio.pb.model.PriceDTO;
 
@@ -29,7 +30,7 @@ public class BenefitDAO {
 
         try {
 
-            String sql = "select * from TBLBENEFIT ";
+            String sql = "SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT order by BENEFIT_SEQ desc ";
 
             stat = conn.createStatement();
 
@@ -45,8 +46,10 @@ public class BenefitDAO {
                 dto.setBenefit_seq(rs.getString("benefit_seq"));
                 dto.setName(rs.getString("name"));
                 dto.setType(rs.getString("type"));
-                dto.setBenefit_date(rs.getString("benefit_date"));
+                dto.setStart_date(rs.getString("start_date"));
+                dto.setEnd_date(rs.getString("end_date"));
                 dto.setDiscount_rate(rs.getString("discount_rate"));
+                dto.setImg(rs.getString("img"));
 
 
                 list.add(dto);
@@ -60,4 +63,204 @@ public class BenefitDAO {
         return list;
 
     }
+
+
+
+    public ArrayList<BenefitDTO> benefitInfo(String seq) {
+
+
+        try {
+
+            String sql = "SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, seq);
+
+            rs = pstat.executeQuery();
+
+            ArrayList<BenefitDTO> list = new ArrayList<>();
+
+            while (rs.next()) {
+
+                BenefitDTO dto = new BenefitDTO();
+                dto.setBenefit_seq(rs.getString("benefit_seq"));
+                dto.setName(rs.getString("name"));
+                dto.setType(rs.getString("type"));
+                dto.setStart_date(rs.getString("start_date"));
+                dto.setEnd_date(rs.getString("end_date"));
+                dto.setDiscount_rate(rs.getString("discount_rate"));
+                dto.setImg(rs.getString("img"));
+
+
+
+                list.add(dto);
+            }
+
+            return list;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    public int benefitAdd(BenefitDTO dto) {
+
+
+        try {
+            String sql = "insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,?,'일반',?,?,?,?)";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1,dto.getName());
+            pstat.setString(2, dto.getStart_date());
+            pstat.setString(3, dto.getEnd_date());
+            pstat.setString(4, dto.getDiscount_rate());
+            pstat.setString(5, dto.getImg());
+
+            return pstat.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+
+    }
+
+    public int partnerShipBenefitAdd(BenefitDTO dto) {
+        try {
+            String sql = "insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,?,'카드/통신사',?,?,?,?)";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1,dto.getName());
+            pstat.setString(2, dto.getStart_date());
+            pstat.setString(3, dto.getEnd_date());
+            pstat.setString(4, dto.getDiscount_rate());
+            pstat.setString(5, dto.getImg());
+
+            return pstat.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+
+    }
+
+
+    public BenefitDTO get(String seq) {
+        try {
+
+            String sql = "SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, seq);
+
+            rs = pstat.executeQuery();
+
+            if (rs.next()) {
+
+                BenefitDTO dto = new BenefitDTO();
+
+                dto.setBenefit_seq(rs.getString("benefit_seq"));
+                dto.setName(rs.getString("name"));
+                dto.setType(rs.getString("type"));
+                dto.setStart_date(rs.getString("start_date"));
+                dto.setEnd_date(rs.getString("end_date"));
+                dto.setDiscount_rate(rs.getString("discount_rate"));
+                dto.setImg(rs.getString("img"));
+
+                dto.setName(rs.getString("name"));
+
+                return dto;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public int benefitEdit(BenefitDTO dto) {
+        try {
+
+            String sql = "update TBLBENEFIT set NAME = ?,START_DATE = ? , END_DATE = ? ,DISCOUNT_RATE = ? ,IMG = ? where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, dto.getName());
+            pstat.setString(2, dto.getStart_date());
+            pstat.setString(3, dto.getEnd_date());
+            pstat.setString(4, dto.getDiscount_rate());
+            pstat.setString(5, dto.getImg());
+            pstat.setString(6, dto.getBenefit_seq());
+
+            return pstat.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return 0;
+
+
+    }
+
+    public int del(String seq) {
+        try {
+
+            String sql = "delete from TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, seq);
+
+            return pstat.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+
+    }
+
+
+    public BenefitDTO getName(String seq) {
+
+        try {
+
+            String sql = "SELECT  name FROM TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, seq);
+
+            rs = pstat.executeQuery();
+
+            ArrayList<BenefitDTO> list = new ArrayList<>();
+
+            while (rs.next()) {
+
+                BenefitDTO dto = new BenefitDTO();
+                dto.setName(rs.getString("name"));
+
+
+                list.add(dto);
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
+
+
+
+

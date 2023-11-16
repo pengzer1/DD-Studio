@@ -42,7 +42,7 @@ public class AttractionDel extends HttpServlet {
 		//Step 5. 어트/해시 태그 삭제
 
 		
-		//1. 넘긴 seq 받아오기
+		/*//1. 넘긴 seq 받아오기
 		String seq = req.getParameter("seq");
 		
 		//2. DB 작업 > DELETE
@@ -59,7 +59,7 @@ public class AttractionDel extends HttpServlet {
 			writer.print("<script>alert('failed');history.back();</script>");
 			
 			writer.close();
-		}
+		}*/
 	
 	
 	}

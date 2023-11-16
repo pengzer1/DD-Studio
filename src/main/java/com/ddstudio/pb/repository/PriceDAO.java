@@ -1,6 +1,7 @@
 package com.ddstudio.pb.repository;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.pb.model.BenefitDTO;
 import com.ddstudio.pb.model.PriceDTO;
 
 import java.sql.*;
@@ -16,7 +17,6 @@ public class PriceDAO {
 
         this.conn = DBUtil.open();
 //        System.out.println(this.conn);
-
     }
 
 
@@ -31,10 +31,9 @@ public class PriceDAO {
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, dto.getTicket_type());
             pstat.setString(2, dto.getAge());
-            pstat.setInt(3, dto.getPrice());
+            pstat.setString(3, dto.getPrice());
 
             int result = pstat.executeUpdate();
-
 
 
             return result;
@@ -42,7 +41,6 @@ public class PriceDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
         return 0;
@@ -73,7 +71,7 @@ public class PriceDAO {
                 dto.setTicket_type(rs.getString("ticket_type"));
                 dto.setPerson_type(rs.getString("person_type"));
                 dto.setAge(rs.getString("age"));
-                dto.setPrice(rs.getInt("price"));
+                dto.setPrice(rs.getString("price"));
 
 
                 list.add(dto);
@@ -113,7 +111,7 @@ public class PriceDAO {
                 dto.setTicket_type(rs.getString("ticket_type"));
                 dto.setPerson_type(rs.getString("person_type"));
                 dto.setAge(rs.getString("age"));
-                dto.setPrice(rs.getInt("price"));
+                dto.setPrice(rs.getString("price"));
 
 
                 list.add(dto);
@@ -211,11 +209,11 @@ public class PriceDAO {
 
             pstat = conn.prepareStatement(sql);
 
-            pstat.setInt(1, dto.getPrice());
+            pstat.setString(1, dto.getPrice());
             pstat.setString(2, dto.getTicket_type());
             pstat.setString(3, dto.getAge());
 
-            int result =  pstat.executeUpdate();
+            int result = pstat.executeUpdate();
 
 
             return result;
@@ -236,7 +234,7 @@ public class PriceDAO {
             pstat.setString(1, dto.getTicket_type());
             pstat.setString(2, dto.getAge());
 
-            int result =  pstat.executeUpdate();
+            int result = pstat.executeUpdate();
 
             return result;
 
@@ -246,4 +244,66 @@ public class PriceDAO {
 
         return 0;
     }
+
+
+    public ArrayList<PriceDTO> groupTypeList() {
+
+        ArrayList<PriceDTO> list = new ArrayList<>();
+
+        try {
+
+            String sql = "select * from TBLTICKET where PERSON_TYPE ='단체' order by PRICE desc ";
+
+            stat = conn.createStatement();
+
+            rs = stat.executeQuery(sql);
+
+            //rs == 메모 목록
+
+            //rs를  list로 옮기기
+            while (rs.next()) {
+
+                //레코드 1줄 > MemoDTO 1개
+                PriceDTO dto = new PriceDTO();
+                dto.setTicket_seq(rs.getString("ticket_seq"));
+                dto.setTicket_type(rs.getString("ticket_type"));
+                dto.setPerson_type(rs.getString("person_type"));
+                dto.setAge(rs.getString("age"));
+                dto.setPrice(rs.getString("price"));
+
+
+                list.add(dto);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
+
+    public String getName(String s) {
+
+        try {
+
+            String sql = "select name from TBLBENEFIT where BENEFIT_SEQ = ?";
+
+            pstat = conn.prepareStatement(sql);
+            pstat.setString(1, s);
+
+            rs = pstat.executeQuery();
+
+            if (rs.next()) {
+
+                return rs.getString("name");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
 }

@@ -5,7 +5,7 @@ public class PriceDTO {
     private String ticket_type;
     private String person_type;
     private String age;
-    private int price;
+    private String price;
 
     public String getTicket_seq() {
         return ticket_seq;
@@ -39,11 +39,11 @@ public class PriceDTO {
         this.age = age;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
