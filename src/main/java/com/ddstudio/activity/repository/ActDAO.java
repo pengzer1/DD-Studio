@@ -846,7 +846,7 @@ public class ActDAO {
 
 	public int del(AttractionCloseDTO dto) {
 		try {
-			String sql = "delete from tblAttractionClose where attraction_close_seq=?"	;
+			String sql = "delete from tblAttractionClose where attraction_close_seq=?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getAttraction_close_seq());
