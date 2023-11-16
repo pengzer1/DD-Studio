@@ -17,7 +17,7 @@
 	.header-login {
 		position: absolute;
 		top: -15%;
-		right: 5%;
+		right: 2%;
 	}
 	
 	.header-login a {

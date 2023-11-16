@@ -47,6 +47,7 @@ public class UserBookDAO {
 				dto.setBenefit_seq(rs.getString("benefit_seq"));
 				dto.setDiscount_rate(rs.getString("discount_rate"));
 				dto.setPrice(rs.getString("price"));
+				dto.setTotal_price(rs.getString("total_price"));
 
 				list.add(dto);
 			}
@@ -107,6 +108,7 @@ public class UserBookDAO {
 				dto.setBenefit_seq(rs.getString("benefit_seq"));
 				dto.setDiscount_rate(rs.getString("discount_rate"));
 				dto.setPrice(rs.getString("price"));
+				dto.setTotal_price(rs.getString("total_price"));
 
 				plist.add(dto);
 			}
