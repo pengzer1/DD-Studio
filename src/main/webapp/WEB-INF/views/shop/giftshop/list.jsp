@@ -21,16 +21,6 @@
 	padding: 8px;
 }
 
-.item {
-	border: 1px solid #AAAAAA;
-	transition: transform 0.5s;
-}
-
-.item:hover {
-	cursor: pointer;
-	transform: scale(1.1);
-}
-
 p {
 	color: #444;
 }

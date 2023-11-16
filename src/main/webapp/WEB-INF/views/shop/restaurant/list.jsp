@@ -27,13 +27,6 @@
 	transition: transform 0.5s;
 }
 
-.item:hover {
-	cursor: pointer;
-	transform: scale(1.1);
-}
-
-
-
 .item .item-name {
 	font-weight: bold;
 	font-size: 1.3rem;
