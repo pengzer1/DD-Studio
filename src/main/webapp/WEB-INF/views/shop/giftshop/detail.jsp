@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
+#title h2 {
+	color: #ddd;
+}
+
 ul, ol, li {
 	list-style: none;
 }
@@ -32,7 +36,7 @@ ul {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 100px auto;
+	margin: 50px auto;
 }
 
 .item-detail {
@@ -50,6 +54,7 @@ ul {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	border: 1px solid #AAAAAA;
 }
 
 .infoArea {
@@ -133,6 +138,8 @@ ul {
 	color: #000;
 	text-align: center;
 	margin-bottom: 30px;
+	border: 0;
+	font-weight: bold;
 }
 
 #total-map {
@@ -172,96 +179,99 @@ ul {
 	text-align: left;
 	justify-content: left;
 	align-items: normal;
-	margin: 8px;
 }
 
 .item>div:nth-child(2)>p:nth-child(3) {
 	text-align: center;
 }
 
-
 /* 임시 */
 /* Slideshow container */
-    .slideshow-container {
-        width: 1000px;
-        height: 650px;
-        overflow: hideen;
-        position: relative;
-        margin: 0 auto;
-    }
+.slideshow-container {
+	width: 1000px;
+	height: 650px;
+	overflow: hideen;
+	position: relative;
+	margin: 0 auto;
+}
 
-    /* Hide the images by default */
-    .mySlides {
-    	display: none;
-    	min-width: 1000px;
-    	height: 650px;
-    }
+/* Hide the images by default */
+.mySlides {
+	display: none;
+	min-width: 1000px;
+	height: 650px;
+}
 
-    .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.mySlides img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
-    /* Next & previous buttons */
-    .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    }
+/* Next & previous buttons */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
 
-	/* 왼쪽/오른쪽 버튼 */
-    .prev {
-    	left: 0;
-   		border-radius: 3px 0 0 3px;
-    }
+/* 왼쪽/오른쪽 버튼 */
+.prev {
+	left: 0;
+	border-radius: 3px 0 0 3px;
+}
 
-    .next {
-     right: 0;
-     border-radius: 3px 0 0 3px;
-    }
-    
-    .prev:hover, .next:hover {
-    	/* color: rgba(0,0,0,0.8); */
-    	background-color: rgba(0,0,0,0.8);
-    	color: #FFF;
-    }
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
 
-    /* The dots/bullets/indicators */
-    .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-    }
+.prev:hover, .next:hover {
+	/* color: rgba(0,0,0,0.8); */
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #FFF;
+}
 
-    /* Fading animation */
-    .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-    }
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
 
-    @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-    }
+/* Fading animation */
+.fade {
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
 
-	.fade:not(.show) {
-		opacity: 1;
-	}
+@
+keyframes fade {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+}
+.fade:not(.show) {
+	opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -270,8 +280,9 @@ ul {
 
 
 	<main id="main">
-		<div style="height: 50px">
-			<c:if test="${not empty lv && lv == 2}">
+		<c:if test="${not empty lv && lv == 2}">
+			<div style="height: 50px">
+
 				<div id="admin-btn">
 					<button type="button" id="del-btn"
 						onclick="location.href='/ddstudio/shop/giftshop/del.do?seq=${dto.shop_seq}'">
@@ -282,24 +293,30 @@ ul {
 						<i class="fa-solid fa-pen-to-square"></i>수정
 					</button>
 				</div>
-			</c:if>
-		</div>
-		<div style="height: 50px">
-			<c:if test="${not empty lv && lv == 2}">
+
+			</div>
+		</c:if>
+		<c:if test="${not empty lv && lv == 2}">
+			<div style="height: 50px">
+
 				<div id="admin-btn">
 					<button type="button" id="add-btn"
 						onclick="location.href='/ddstudio/shop/item/add.do?shop_seq=${seq}'">
 						<i class="fa-solid fa-plus"></i> 상품 추가
 					</button>
 				</div>
-			</c:if>
+
+			</div>
+		</c:if>
+
+		<div id="title"
+			style="margin-top: 123px; background-image: url('/ddstudio/asset/image/background-5.jpg');">
+			<h2>${dto.name}</h2>
+			<br>
+			<p>${dto.info}</p>
 		</div>
 
-		<h1>${dto.name}</h1>
-		<br>
-		<h5>${dto.info}</h5>
-		
-		
+
 		<%-- <!-- 어트랙션 이미지 슬라이더 -->
 		<!-- Slideshow container -->
 	    <div class="slideshow-container">
@@ -324,11 +341,13 @@ ul {
 		    <span class="dot" onclick="currentSlide(${status.count})"></span>
 	    </c:forEach>
 	    </div> --%>
-	    
-	    
+
+
 
 		<div id="content">
-
+			<div class="container">
+				<p class="sub-title" style="padding-top: 50px;">매장 정보</p>
+			</div>
 			<div class="detail">
 				<div class="img"
 					style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
@@ -364,21 +383,27 @@ ul {
 				</ul>
 			</div>
 
-			<div class="item-detail">
-				<c:forEach items="${list}" var="dto">
-					<div class="item" onclick="detail(${dto.item_seq})">
-						<div
-							style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
-						<div>
-							<p class="item-name">${dto.name}</p>
-							<p>${dto.price}원</p>
-							<p>
-							<button onclick="location.href='/ddstudio/shop/item/detail.do?seq=${dto.item_seq}'">상세정보</button>
-							</p>
+			<c:if test="${not empty list}">
+				<div class="container">
+					<p class="sub-title">매장 상품</p>
+				</div>
+				<div class="item-detail">
+					<c:forEach items="${list}" var="dto">
+						<div class="item" onclick="detail(${dto.item_seq})">
+							<div
+								style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+							<div>
+								<p class="item-name">${dto.name}</p>
+								<p>${dto.price}원</p>
+								<p>
+									<button
+										onclick="location.href='/ddstudio/shop/item/detail.do?seq=${dto.item_seq}'">상세정보</button>
+								</p>
+							</div>
 						</div>
-					</div>
-				</c:forEach>
-			</div>
+					</c:forEach>
+				</div>
+			</c:if>
 
 			<div class="container">
 				<p class="sub-title">위치 정보</p>
@@ -399,7 +424,7 @@ ul {
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
-		
+
 	<script>
 		const container = document.getElementById('map');
 		const options = {
@@ -422,7 +447,7 @@ ul {
 		
 		m.setMap(map);
 	</script>
-	
+
 	<script>
 	/* 이미지 슬라이더용 */
     let slideIndex = 1;

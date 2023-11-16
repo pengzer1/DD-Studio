@@ -16,7 +16,7 @@
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" style="margin-top:123px; background-image: url('/ddstudio/asset/image/background-6.jpg');">
 			<h2>예매</h2>
 			<br>
 			<p>예매 방법을 선택하세요.</p>
