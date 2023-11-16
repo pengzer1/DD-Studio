@@ -2,7 +2,7 @@
 create user JspProject identified by pass;
 grant connect, resource, dba to JspProject;
 
-/* DELETE문_개*/
+/* DELETE문*/
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -23,8 +23,6 @@ DELETE FROM tblNotice;
 DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
 DELETE FROM tblVOC;
-DELETE FROM tblTestScore;
-DELETE FROM tblTest;
 DELETE FROM tblMBTI;
 DELETE FROM tblCourse;
 DELETE FROM tblRoute;
@@ -58,7 +56,7 @@ DELETE FROM tblHashtag;
 DELETE FROM tblUser;
 
 
-/* DROP TABLE_개 */
+/* DROP TABLE */
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -79,8 +77,6 @@ DROP TABLE tblNotice;
 DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
 DROP TABLE tblVOC;
-DROP TABLE tblTestScore;
-DROP TABLE tblTest;
 DROP TABLE tblMBTI;
 DROP TABLE tblCourse;
 DROP TABLE tblRoute;
@@ -113,7 +109,7 @@ DROP TABLE tblLocation;
 DROP TABLE tblHashtag;
 DROP TABLE tblUser;
 
-/* DROP SEQUENCE_개 */
+/* DROP SEQUENCE */
 DROP SEQUENCE seqtblUser;
 DROP SEQUENCE seqtblHashtag;
 DROP SEQUENCE seqtblLocation;
@@ -145,8 +141,6 @@ DROP SEQUENCE seqtblRoute;
 DROP SEQUENCE seqtblBus;
 DROP SEQUENCE seqtblCourse;
 DROP SEQUENCE seqtblMBTI;
-DROP SEQUENCE seqtblTest;
-DROP SEQUENCE seqtblTestScore;
 DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
 DROP SEQUENCE seqtblFAQ;
@@ -427,24 +421,6 @@ CREATE TABLE tblMBTI (
 	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
-);
-
-/* 취향테스트 문제 */
-CREATE TABLE tblTest (
-	test_seq NUMBER PRIMARY KEY, /* 문제번호 */
-	question VARCHAR2(500) NOT NULL, /* 문제내용 */
-	answer1 VARCHAR2(500) NOT NULL, /* 선택1번 */
-	answer2 VARCHAR2(500) NOT NULL, /* 선택2번 */
-	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* 문제이미지 */
-);
-
-/* 취향테스트 문제 점수 */
-CREATE TABLE tblTestScore (
-	test_score_seq NUMBER PRIMARY KEY, /* 취향테스트 문제 점수 */
-	point1 NUMBER NOT NULL, /* 1 */
-	point2 NUMBER NOT NULL, /* 2 */
-	type VARCHAR2(500) NOT NULL, /* type(E/I, N/S, F/T, J/P) */
-	test_seq NUMBER REFERENCES tblTest(test_seq) NOT NULL /* 문제번호 */
 );
 
 /* 칭찬/불편/건의 */
