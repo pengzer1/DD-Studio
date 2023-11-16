@@ -34,8 +34,6 @@ ON m.attraction_seq = a.attraction_seq
 LEFT JOIN tblAttractionImg ai
 ON a.attraction_seq = ai.attraction_seq;
 
-select * from tbl
-
 -- 검색
 drop view vwSearchAttraction;
 select * from vwSearchLocation;
@@ -100,9 +98,6 @@ LEFT JOIN tblHashtag h
 on h.hashtag_seq = mh.hashtag_seq;
 
 -- 검색 (공지사항, FAQ, 헤택 등 정보)
-drop view vwSearchInfo;
-select * from vwSearchInfo;
-
 CREATE OR REPLACE VIEW vwSearchInfo AS
 SELECT 
     subject AS notice_subject, content AS notice_content, null as benefit_name, null AS benefit_type, NULL AS faq_category, NULL AS faq_question, NULL AS faq_answer
@@ -143,18 +138,25 @@ FROM vwSearchInfo;
 -- course
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '고양이의 보은 코스', '고양이의 보은 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '마녀 배달부 키키와 함께하는 배달 코스', '마녀 배달부 키키와 함께하는 배달 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '센과 치히로의 행방불명 코스', '센과 치히로의 행방불명 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '원령공주 코스', '원령공주 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '천공의 성 코스', '천공의 성 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '토토로 코스', '토토로 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '포뇨 수영 코스', '포뇨 수영 코스.png');
+
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '하울과 함께 움직이는 코스', '하울과 함께 움직이는 코스.png');
 
@@ -208,15 +210,17 @@ INSERT INTO tblMBTI (mbti_seq, result, mbti, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', '4', '16');
 
 
-select * from tblCourse;
+select * from tblCourse order by course_seq;
 select * from tblMBTI order by mbti_seq;
 
 
+commit;
 
+select * from tblAttraction;
 
+select * from TBLLOSTPROPERTY;
 
-
-
+select * from tblUser;
 
 SELECT * FROM vwSearch WHERE ATTRACTION_NAME LIKE '%지브리%' OR THEME_NAME LIKE '%지브리%' OR MBTI_RESULT LIKE '%지브리%' OR MBTI_MBTI LIKE '%지브리%' OR COURSE_NAME LIKE '%지브리%' OR HASHTAG_NAME LIKE '%지브리%' OR RESTAURANT_NAME LIKE '%지브리%' OR RESTAURANT_MENU LIKE '%지브리%' OR CATEGORY_NAME LIKE '%지브리%' OR SHOP_NAME LIKE '%지브리%' OR SHOP_INFO LIKE '%지브리%' OR ITEM_NAME LIKE '%지브리%' OR ITEM_INFO LIKE '%지브리%' OR CONVENIENT_NAME LIKE '%지브리%' OR FESTIVAL_NAME LIKE '%지브리%' OR FESTIVAL_INFO LIKE '%지브리%' OR THEATER_NAME LIKE '%지브리%' OR MOVIE_NAME LIKE '%지브리%' OR NOTICE_SUBJECT LIKE '%지브리%' OR NOTICE_CONTENT LIKE '%지브리%' OR BENEFIT_NAME LIKE '%지브리%' OR BENEFIT_TYPE LIKE '%지브리%' OR FAQ_CATEGORY LIKE '%지브리%' OR FAQ_QUESTION LIKE '%지브리%' OR FAQ_ANSWER LIKE '%지브리%';	
 
