@@ -6,31 +6,88 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 <style>
-	.nav-icon {
-		font-size: 50px;
-	}
+.nav-icon {
+    font-size: 50px;
+}
+
+.nav-menu-name {
+    font-size: 15px;
+}
+
+.header-login {
+    position: absolute;
+    top: -15%;
+    right: 2%;
+}
+
+.header-login a {
+    padding: 0 5px;
+}
+
+.carousel-item active{
+    padding-top:150px;
+}
 	
-	.nav-menu-name {
-		font-size: 15px;
-	}
-	
-	.header-login {
-		position: absolute;
-		top: -15%;
-		right: 2%;
-	}
-	
-	.header-login a {
-		padding: 0 5px;
-	}
-	
-	.carousel-item active{
-		padding-top:150px;
-	}
-	
-	.blog-item {
-		cursor: pointer;
-	}
+.blog-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-item > * {
+    flex: 1; /* 각 요소를 균일하게 키우기 위해 */
+}
+
+.blog-item .bg-dark {
+    flex: 1;
+    display: flex;
+    /* flex-direction: column; */
+    padding: 10px;
+}
+
+.blog-item .bg-dark .flex-shrink-0 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blog-item img {
+    width: 100%; /* 이미지를 박스에 꽉 채우기 위해 */
+     height: 100%;/* 이미지를 박스에 꽉 채우기 위해 */
+    object-fit: cover; /* 이미지가 박스에 맞게 잘리거나 확대/축소되도록 설정 */
+    border-radius: 10px 10px 0 0;
+}
+
+.bg-dark.d-flex {
+    padding: 10px; /* 기존 4개의 방향 패딩을 전체적으로 10px로 줄입니다 */
+}
+
+.flex-shrink-0 {
+    padding-right: 8px; /* 텍스트와 여백을 좁히기 위해 오른쪽 패딩을 줄입니다 */
+}
+
+.text-light {
+    font-size: 16px; /* 텍스트 크기를 줄입니다 */
+}
+
+.blog-item .position-relative {
+    padding-bottom: 80%; /* 이미지 영역을 8:2 비율로 설정 */
+    position: relative;
+}
+
+.blog-item .position-relative img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지를 박스에 맞게 잘리거나 확대/축소되도록 설정 */
+}
+
+.blog-item {
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
