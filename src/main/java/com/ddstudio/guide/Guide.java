@@ -19,13 +19,12 @@ import com.ddstudio.guide.repository.ConvenientDAO;
 public class Guide extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ActDAO dao = new ActDAO();
 		ConvenientDAO cdao = new ConvenientDAO();
 		
-		ArrayList<AttractionDTO> list = dao.attractionList("");
+		ArrayList<AttractionDTO> alist = cdao.attractionList();
 		ArrayList<ConvenientDTO> clist = cdao.list();
 		
-		req.setAttribute("list", list);
+		req.setAttribute("alist", alist);
 		req.setAttribute("clist", clist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/guide.jsp");
