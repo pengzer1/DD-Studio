@@ -52,7 +52,7 @@ public class AttractionAdd extends HttpServlet {
 				}
 		}
 		
-		System.out.println(temp);
+		//System.out.println(temp);
 		
 		req.setAttribute("taglist", temp);
 		
@@ -80,7 +80,7 @@ public class AttractionAdd extends HttpServlet {
 		
 		try {
 			
-			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image/attraction"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
 			
 			String name = multi.getParameter("name");
 			String capacity = multi.getParameter("capacity");
@@ -124,15 +124,18 @@ public class AttractionAdd extends HttpServlet {
 			dao.addLocation(dto);
 			
 			String location_seq = dao.getLocationSeq(dto);
+			System.out.println("location_seq: " + location_seq);
 			
 			//2. 어트랙션 테이블에 추가
 			if (location_seq != null) {
 				dto.setLocation_seq(location_seq);
 				
 				int result = dao.addAttraction(dto);
+				System.out.println("dao.addAttraction 결과: " + result);
 				
 				if(result == 1) {
 					attraction_seq = dao.getAttractionSeq();
+					System.out.println("attraction_seq: " + attraction_seq);
 					
 					Enumeration<?> files = multi.getFileNames();
 					while (files.hasMoreElements()) {
@@ -143,13 +146,17 @@ public class AttractionAdd extends HttpServlet {
 					    fileList.add(filename);
 					}
 					
+					System.out.println("fileList: " + fileList.toString());
 					result = dao.addAttractionImg(fileList, attraction_seq);
 					
 					if (result > 0) {
 						
-						ArrayList<AttractionHashtagDTO> attraction_hashtag_dto = dao.getHashtagSeq(taglist, attraction_seq);
+						System.out.println(taglist.toString());
+						ArrayList<AttractionHashtagDTO> seqlist = dao.getHashtagSeq(taglist);
 						
-						result = dao.addAttractionHashtag(attraction_hashtag_dto);
+						result = dao.addAttractionHashtag(seqlist, attraction_seq);
+						System.out.println(seqlist.toString());
+						System.out.println("addAttractionHashtag 결과: " + result);
 						
 						if (result > 0) {
 							

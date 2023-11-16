@@ -110,7 +110,7 @@ tr:nth-child(odd) {
 										<td>${dto.book_date}</td>
 										<td>${dto.discount_rate}</td>
 										<td>${dto.ea}</td>
-										<td>${dto.price}</td>
+										<td>${dto.total_price}</td>
 										<td class="checkbox-col"><input type="checkbox"
 											name="reservationCheckbox" value="${dto.user_book_seq}"></td>
 									</tr>
@@ -146,7 +146,7 @@ tr:nth-child(odd) {
 									<td>${dto.book_date}</td>
 									<td>${dto.discount_rate}</td>
 									<td>${dto.ea}</td>
-									<td>${dto.price}</td>
+									<td>${dto.total_price}</td>
 									<td class="checkbox-col"><input type="checkbox"
 										name="reviewCheckbox" value="${dto.user_book_seq}"></td>
 								</tr>

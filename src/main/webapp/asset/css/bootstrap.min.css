@@ -232,7 +232,7 @@ sup {
 }
 
 a {
-    color: #FB5B21;
+    color: #1f1f1f;
     text-decoration: none
 }
 
@@ -8103,8 +8103,9 @@ div.col-lg-9 > nav > button > span > i {
 }
 
 .py-3 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important
+    /* padding-top: 1rem !important; */
+    /* padding-bottom: 1rem !important */
+    margin-bottom: 25px;
 }
 
 .py-4 {

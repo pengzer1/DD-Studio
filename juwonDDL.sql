@@ -11,7 +11,8 @@ SELECT
     TB.ticket_seq,
     TB.benefit_seq,
     B.discount_rate,
-    T.price
+    T.price,
+    TB.price as total_price
 FROM tblUserBook UB
 JOIN tblTicketBook TB ON UB.ticket_book_seq = TB.ticket_book_seq
 JOIN tblUser U ON UB.user_seq = U.user_seq
@@ -204,10 +205,21 @@ SELECT
     i.price,
     c.ea * i.price AS total_price,
     ii.img,
-    u.email
+    u.email,
+    uc.user_cart_seq,
+    i.item_seq,
+    u.address
 FROM tblcart C
 JOIN tblUserCart UC ON C.cart_seq = UC.cart_seq
 join tblItem I on C.item_seq = I.item_seq
 join tblItemImg II on I.item_seq = II.item_seq
 join tbluser U on u.user_seq = UC.user_seq;
 
+select * from tblusercart;
+select * from tblcart;
+insert into tblusercart (user_cart_seq, user_seq, cart_seq) values(1, 2, 1);
+
+select * from vwcart where email = 'hwang@example.com';
+
+select * from tblticket;
+select * from tblticketbook;

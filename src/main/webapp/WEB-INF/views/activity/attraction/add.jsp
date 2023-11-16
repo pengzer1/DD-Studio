@@ -293,15 +293,14 @@
  		    delimiters       : null,
  		    whitelist        : taglist
 		  });
-		 
-		 /*
+
+		 //tagify 해시태그 목록 드롭다운 메뉴 표출
 		 tagify.on('input', onInput)
 		 function onInput(e){
 	        console.log("onInput: ", e.detail);
 	        
 	        tagify.dropdown.show(e.detail.value); // 드롭다운 메뉴 보여주기
    		 }
-		 */
 		 
 	</script>
 </body>
