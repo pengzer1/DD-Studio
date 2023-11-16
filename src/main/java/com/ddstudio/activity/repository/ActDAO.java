@@ -1313,7 +1313,7 @@ public class ActDAO {
 				
 				try {
 					
-					sql = "insert into tblFestivalImg (festival_img_seq, img, festival_seq) values (seqtblfestivalimg.nextVal, ?, ?)";
+					sql = "insert into tblAttractionImg (attraction_img_seq, img, attraction_seq) values (seqtblattractionimg.nextVal, ?, ?)";
 					
 					pstat = conn.prepareStatement(sql);
 					pstat.setString(1, name);
@@ -1771,6 +1771,31 @@ public class ActDAO {
 		}
 		
 		return result;
+	}
+
+	public int editAttraction(AttractionDTO dto, String seq) {
+
+		try {
+
+			String sql = "update tblAttraction set name = ?, capacity = ?, restriction = ?, is_test = ? where attraction_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getCapacity());
+			pstat.setString(3, dto.getRestriction());
+			pstat.setString(4, dto.getIs_test());
+			pstat.setString(5, dto.getAttraction_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.editAttraction");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return 0;
 	}	
 		
 }
