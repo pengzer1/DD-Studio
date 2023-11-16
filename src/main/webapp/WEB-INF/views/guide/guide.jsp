@@ -386,16 +386,16 @@ table td {
 	<script>
 	
 
-    const alist = [];
-    const clist = [];
+    const alist = [];  //어트랙션 마커들을 담을 배열
+    const clist = [];  //편의시설 마커들을 담을 배열
     
     <c:forEach items="${alist}" var="dto" varStatus="status">
     
     const m${status.count} = new kakao.maps.Marker({
        position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
-    });
+    });  //alist 위치 생성
 
-    alist.push(m${status.count});
+    alist.push(m${status.count});  //배열에 push
     
     </c:forEach>
     
@@ -403,10 +403,9 @@ table td {
     
     const n${status.count} = new kakao.maps.Marker({
        position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
-    });
-      
+    });  //clist 위치 생성
 
-    clist.push(n${status.count});
+    clist.push(n${status.count});  //배열에 위치 push
     </c:forEach>
     
     
@@ -425,7 +424,7 @@ table td {
   	//
   
     //
-    showTab("tab01", "heart_marker3.png");
+    showTab("tab01", "heart_marker3.png");  //페이지 초기화 값
 	
 	document.getElementById("selTab01").addEventListener("click", function() {  //tab01을 눌렀을때
 		event.preventDefault();
@@ -443,11 +442,7 @@ table td {
       	document.getElementById("sel01").classList.remove("on");
     });
     
-
-    
     function showTab(tabId, imgname) {
-    	
-    	
     
     	//마커 출력
         let imageSrc; // 마커이미지의 주소
@@ -467,13 +462,13 @@ table td {
          
         if (tabId == 'tab01') {
     		for (let i=0; i<alist.length; i++) {
-    			alist[i].setImage(markerImg);
-    			alist[i].setMap(map);
+    			alist[i].setImage(markerImg);  //설정한 마커 넣어주고
+    			alist[i].setMap(map);  //지도에 찍기
     		}
-    		for (let i=0; i<clist.length; i++) {
+    		for (let i=0; i<clist.length; i++) {  //어트랙션 찍을때는 편의시설 마크 지워주기
     			clist[i].setMap(null);
     		}
-    	} else {
+    	} else {  //tabId == 'tab02'
     		for (let i=0; i<clist.length; i++) {
     			clist[i].setImage(markerImg);
     			clist[i].setMap(map);
@@ -492,6 +487,49 @@ table td {
         document.getElementById(tabId).style.display = "block";
     	 
       }
+    
+    document.addEventListener('DOMContentLoaded', function () {
+    	  const contentBoxes = document.querySelectorAll('#content_box');
+		
+    	  contentBoxes.forEach((box, index) => {
+    	    box.addEventListener('click', function (event) {
+    	      const itemId = this.id;
+
+    	      contentBoxes.forEach((box) => {
+    	        box.style.backgroundColor = 'white'; // 모든 박스의 배경색 초기화
+    	      });
+    	      this.style.backgroundColor = 'gold'; // 클릭된 박스의 배경색 변경
+
+    	      // 클릭된 리스트 아이템에 대한 추가 동작
+    	      setMarkersOpacity(index, 1);
+    	    });
+    	  });
+    	});
+
+    	function setMarkersOpacity(clickedIndex, opacity) {
+    	  // 모든 마커의 투명도를 초기화
+    	  alist.forEach((marker) => {
+    	    marker.setOpacity(0.3);
+    	  });
+    	  
+    	  clist.forEach((marker) => {
+    	    marker.setOpacity(0.3);
+    	  });
+
+    	  // 클릭된 인덱스에 해당하는 마커의 투명도를 조절
+    	  if (document.getElementById('sel01').classList.contains('on')) {
+    	    // 어트랙션 탭이 선택된 경우
+    	    if (alist[clickedIndex]) {
+    	      alist[clickedIndex].setOpacity(opacity);
+    	    }
+    	  } else if (document.getElementById('sel02').classList.contains('on')) {
+    	    // 편의시설 탭이 선택된 경우
+    	    clickedIndex -= alist.length;
+    	    if (clist[clickedIndex]) {
+    	      clist[clickedIndex].setOpacity(opacity);
+    	    }
+    	  }
+    	}
 		
 	</script>
 </body>
