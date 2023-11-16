@@ -71,6 +71,10 @@ tr:nth-child(even) {
 	color: #686A6F;
 	text-align:center;
 }
+
+#title h2 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -80,11 +84,9 @@ tr:nth-child(even) {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro048.jpg');">
 			<h2>구매 내역</h2>
 		</div>
-
-		<hr>
 
 		<div id="content">
 			<div class="container">

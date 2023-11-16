@@ -23,7 +23,7 @@
 }
 
 .totoro-image {
-	max-width: 100%;
+	max-width: 55%;
 	height: auto;
 	display: block;
 	margin: 0 auto;
@@ -52,6 +52,10 @@
 #sub-title{
 	text-align: center;
 }
+
+#title h2 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -61,19 +65,18 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro019.jpg');">
 			<h2>회원탈퇴</h2>
 			<br>
-			<p></p>
 		</div>
 
 		<div id="content">
 
-		<div id="sub-title">
-			<h3>정말로 탈퇴하시겠습니까?</h3>
+		<div id="sub-title" style="margin-bottom: 50px;">
 		</div>
 
 			<div class="container">
+			<h3 style="text-align: center;">정말로 탈퇴할구야..?</h3>
 				<img class="totoro-image" src="/ddstudio/asset/image/흑화토토로.png"
 					alt="토토로 이미지">
 				<div class="button-container">
