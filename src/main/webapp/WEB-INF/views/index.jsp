@@ -206,7 +206,7 @@
     
     <div class="col-lg-12 col-md-6 text-center bg-dark" style="padding: 2rem;">
         <h1 class="text-uppercase text-light mb-4">더 빠른 탑승을 위한 최고의 선택!</h1>
-        <a href="/ddstudio/ticket/select.do" class="btn btn-primary py-3 px-5">어트랙션 예약</a>
+        <a href="/ddstudio/activity/attraction.do" class="btn btn-primary py-3 px-5">어트랙션 예약</a>
     </div>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp" %> <!-- Footer -->
 
