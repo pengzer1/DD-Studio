@@ -17,11 +17,13 @@ public class DuplicateCheck extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String email = req.getParameter("email");
-		UserDAO dao = new UserDAO();
+		String email = req.getParameter("email"); // 아이디 (이메일)
 		
 		//System.out.println(email);
+
+		UserDAO dao = new UserDAO();
 		
+		// 이메일 중복 검사
 		int message = dao.check(email);
 
 		//System.out.println(message);
@@ -31,6 +33,7 @@ public class DuplicateCheck extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 	
+		// 중복 여부 메시지
 		writer.printf("{ \"message\": %d }", message);
 		writer.close();
 		

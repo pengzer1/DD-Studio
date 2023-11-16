@@ -20,6 +20,7 @@ public class FindId extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 아이디 찾기 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/find-id.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -29,8 +30,8 @@ public class FindId extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		
-		String name = req.getParameter("name");
-		String tel = req.getParameter("tel");
+		String name = req.getParameter("name"); // 이름
+		String tel = req.getParameter("tel"); // 전화번호
 
 		UserDAO dao = new UserDAO();
 		UserDTO dto = new UserDTO();
@@ -38,11 +39,13 @@ public class FindId extends HttpServlet {
 		dto.setName(name);
 		dto.setTel(tel);
 		
+		// 입력한 정보로 아이디 찾기
 		UserDTO result = dao.findId(dto);
 
 		resp.setContentType("application/json");
 		PrintWriter writer = resp.getWriter();
 
+		// 회원 정보가 있을 경우 아이디 전달
 		JSONObject obj = new JSONObject();
 		if (result != null) {
 			obj.put("email", result.getEmail());

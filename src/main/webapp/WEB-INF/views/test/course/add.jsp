@@ -55,7 +55,7 @@
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="submit" id="change" class="check button">추가</button>
+									<button type="submit" id="add" class="check button">추가</button>
 									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/test/recommend.do';">취소</button>
 								</div>
 							</td>

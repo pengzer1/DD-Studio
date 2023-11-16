@@ -54,7 +54,17 @@ public class UsageInquiryAdd extends HttpServlet {
 			
 			if (result == 1) {
 				
-				resp.sendRedirect("/ddstudio/communicate/usageinquiry.do");
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter writer = resp.getWriter();
+				
+                writer.println("<script>");
+                writer.println("alert('등록되었습니다.');");
+                writer.println("location.href='/ddstudio/communicate/usageinquiry.do';");
+                writer.println("</script>");
+                
+                writer.close();
 				
 			}
 			

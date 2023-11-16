@@ -9,4 +9,7 @@ public class ConvenientDTO {
 	private String img;
 	private String location_seq;
 	
+	private String lat;
+	private String lng;
+	
 }

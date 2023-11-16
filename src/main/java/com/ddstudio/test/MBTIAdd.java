@@ -1,7 +1,6 @@
 package com.ddstudio.test;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,40 +17,48 @@ public class MBTIAdd extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// MBTI별 추천 추가 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/mbti/add.jsp");
 		dispatcher.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String mbti = req.getParameter("mbti");
-		String resultMessage = req.getParameter("result");
-		String courseSeq = req.getParameter("course-name");
-		String attractionSeq = req.getParameter("attraction-name");
 
-		// System.out.println(mbti);
-		// System.out.println(resultMessage);
-		// System.out.println(courseSeq);
-		// System.out.println(attractionSeq);
-		
-		MBTIDTO dto = new MBTIDTO();
-		
-		dto.setMbti(mbti);
-		dto.setResult(resultMessage);
-		dto.setCourse_seq(courseSeq);
-		dto.setAttraction_seq(attractionSeq);
+		try {
+			
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("UTF-8");
+			
+			// MBTI별 추천 추가할 데이터
+			String mbti = req.getParameter("mbti");
+			String resultMessage = req.getParameter("result");
+			String courseSeq = req.getParameter("course-name");
+			String attractionSeq = req.getParameter("attraction-name");
 
-		TestDAO dao = new TestDAO();
-		
-		int result = dao.mbtiAdd(dto);
+			MBTIDTO dto = new MBTIDTO();
+			dto.setMbti(mbti);
+			dto.setResult(resultMessage);
+			dto.setCourse_seq(courseSeq);
+			dto.setAttraction_seq(attractionSeq);
 
-		System.out.println(result);
-		
-		//0 또는 에러
-		PrintWriter writer = resp.getWriter();
-		writer.print("<script>alert('failed');history.back();</script>");
-		writer.close();
+			TestDAO dao = new TestDAO();
+
+			// MBTI별 추천 정보 추가
+			int result = dao.mbtiAdd(dto);
+
+			// System.out.println(result);
+
+			// 응답 데이터를 JSON 형식으로 생성
+			String jsonResponse = "{\"result\": " + result + "}";
+			resp.getWriter().write(jsonResponse);
+
+		} catch (Exception e) {
+			// 에러 발생
+			e.printStackTrace();
+			resp.getWriter().write("{\"result\": 0}");
+		}
+
 	}
-	
+
 }

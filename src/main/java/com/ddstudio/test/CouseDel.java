@@ -25,10 +25,12 @@ public class CouseDel extends HttpServlet {
 
 		TestDAO dao = new TestDAO();
 
+		// 코스 정보 가져오기
 		ArrayList<CourseDTO> clist = dao.listCourse();
 
 		JSONArray arr = new JSONArray();
 
+		// 각 코스 정보를 JSON 객체로 변환하여 배열에 추가
 		for (CourseDTO dto : clist) {
 		    JSONObject obj = new JSONObject();
 		    
@@ -42,6 +44,7 @@ public class CouseDel extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 
+		// JSON 배열 전송
 		PrintWriter writer = resp.getWriter();
 		writer.write(arr.toString());
 		writer.close();
@@ -54,13 +57,15 @@ public class CouseDel extends HttpServlet {
 
 		TestDAO dao = new TestDAO();
 
-		String courseSeq = request.getParameter("courseSeq");
+		String courseSeq = request.getParameter("courseSeq"); // 삭제할 코스 번호
 
+		// 코스 삭제
 		int result = dao.deleteCourse(courseSeq);
 
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
+		// 삭제 결과 전송
 		PrintWriter writer = response.getWriter();
 		writer.write(String.valueOf(result));
 		writer.close();

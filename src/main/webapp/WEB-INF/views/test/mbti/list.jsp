@@ -44,6 +44,7 @@
 
 #title {
 	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
 }
 
 #content {
@@ -56,8 +57,7 @@
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-
-		<div id="title" style="margin-top: 123px;">
+		<div id="title" title="senivpetro 출처 Freepik">
 			<h2>MBTI별 추천</h2>
 		</div>
 
@@ -69,11 +69,11 @@
 					<i class="fa-solid fa-plus"></i>추가
 				</button>
 				<button type="button" id="del-btn"
-					onclick="location.href='/ddstudio/test/mbtidel'">
+					onclick="location.href='/ddstudio/test/mbtidel.do'">
 					<i class="fa-solid fa-trash"></i>삭제
 				</button>
 				<button type="button" id="edit-btn"
-					onclick="location.href='/ddstudio/test/mbtiedit'">
+					onclick="location.href='/ddstudio/test/mbtiedit.do'">
 					<i class="fa-solid fa-pen-to-square"></i>수정
 				</button>
 			</div>
@@ -146,8 +146,7 @@
 					        'onclick' : 'handleButtonClick(\'' + item.mbti + '\')'
 					    }).text(item.mbti);
 
-					    console.log(div);
-
+					    // console.log(div);
 					    container.append(div);
 					});
 

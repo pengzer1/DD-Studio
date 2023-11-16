@@ -9,19 +9,38 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
 	 
-	 #title {
-	 }
+	 #title > h2 {
+		/* margin-top: 70px; */
+		/* color: #000; */
+	}
+	
+	#title > h2 > a {
+		color: #FFF;
+	}
+	
+	#title > p {
+		color: #000;
+	}
 	 
-	 #content {
-	 	margin-top: 10px;
-	 }
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
 	 
+	#title {
+	 	background-image: url('/ddstudio/asset/image/photozone/Ghibli_photozone_half_trans.png');
+	}
+	 
+	#condition:hover {
+		cursor: pointer;
+	}
+
 	.item:hover {
 		cursor: pointer;
 	}
 	
 	#admin-btn {
-		margin: 3px 0;
+		margin-top: 60px;
 		text-align: center;
 	}
 	
@@ -34,6 +53,24 @@
 		background-color: #E6AAAE;
 	}
 	
+	.block-bubbling {
+		display: inline-block;
+		padding: 20px;
+	}
+	
+	.condition-btn > button {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #FFF;
+	}
+	
+	#content .munti-content-container {
+		margin-top: 30px;
+	}
+	
 </style>
 </head>
 <body>
@@ -44,7 +81,7 @@
 	<main id="main">
 
 		<div id="title">	
-			<h2>포토존</h2>
+			<h2><a href="/ddstudio/activity/photozone.do">포토존</a></h2>
 			<br>
 			<p>DD Studio의 지브리와 함께하는 다양한 포토존에서 기념 사진을 촬영해보세요!</p>
 		</div>
@@ -63,7 +100,7 @@
 			<div class="munti-content-container">
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="location.href= '/ddstudio/activity/photozonedetail.do?seq=' + ${dto.photozone_seq};">
-					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div style="background-image: url('/ddstudio/asset/image/photozone/${dto.img}');"></div>
 					<div>${dto.name}</div>
 					</div>
 				</c:forEach>

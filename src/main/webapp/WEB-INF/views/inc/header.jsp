@@ -3,57 +3,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
-	#ddstudio-header{
-		border-bottom: 2px solid #CCC;
-		/* background-image: url('/ddstudio/asset/image/cloud2.png'); */
-        background-size: contain;
-        background-position: center;
-	}
-	.navbar-nav .sub-menu,
-    .navbar-nav .sub-sub-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e5e5;
-        padding: 10px;
-        width: 100%;
-        right: 0;
-        text-align: left;
-    }
-    .sub-menu,
-	.sub-sub-menu {
-    	position: absolute;
-    	top: 100%;
-    	left: 0;
-    	z-index: 1;
-    	background-color: #fff;
-    	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    	border: 1px solid #e5e5e5;
-    	padding: 10px;
-    	width: 100%;
-    	right: 0;
-    	text-align: left;
+#ddstudio-header {
+	border-bottom: 2px solid #CCC;
+	/* background-image: url('/ddstudio/asset/image/cloud2.png'); */
+	background-size: contain;
+	background-position: center;
 }
 
-    .navbar-nav .nav-item:hover > .sub-menu {
-        display: block;
-    }
+.navbar-nav .sub-menu, .navbar-nav .sub-sub-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e5e5e5;
+	padding: 10px;
+	width: 100%;
+	right: 0;
+	text-align: left;
+}
 
-    .sub-menu .nav-item:hover > .sub-sub-menu {
-        display: block;
-    }
+.sub-menu, .sub-sub-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e5e5e5;
+	padding: 10px;
+	width: 100%;
+	right: 0;
+	text-align: left;
+}
+
+.navbar-nav .nav-item:hover>.sub-menu {
+	display: block;
+}
+
+.sub-menu .nav-item:hover>.sub-sub-menu {
+	display: block;
+}
 </style>
 
 <!-- Header Start -->
 <div id="ddstudio-header" class="container-fluid px-0">
 	<div class="row gx-0">
 		<div class="col-lg-3 d-none d-lg-block">
-			<a href="/ddstudio/index.do" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-				<h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD Studio</h1>
+			<a href="/ddstudio/index.do"
+				class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+				<!-- <h1 class="m-0 display-4 text-uppercase" id="ddstudio-logo">DD Studio</h1> -->
+				<img src="/ddstudio/asset/image/DDstudio.png" alt="DD Studio Logo" style="width: 70%;">
 			</a>
 		</div>
 		<div class="col-lg-9">
@@ -102,13 +104,10 @@
 								<div class="nav-menu-name">추천</div>
 								<div class="sub-menu">
 									<div>
-										<a href="/ddstudio/test/preferencetest.do">취향 테스트</a>
-									</div>
-									<div>
 										<a href="/ddstudio/test/worldcup.do">DD 월드컵</a>
 									</div>
 									<div>
-										<a href="/ddstudio/test/mbti.do">MBTI별 추천</a>
+										<a href="/ddstudio/test/mbti.do">MBTI 추천</a>
 									</div>
 								</div>
 							</a>
@@ -128,7 +127,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/guide/guide.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">notification_important</div>
 								<div class="nav-menu-name">가이드</div>
 								<div class="sub-menu">
@@ -151,7 +150,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/communicate/usageinquiry.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/communicate/notice.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">sms</div>
 								<div class="nav-menu-name">소통</div>
 								<div class="sub-menu">
@@ -159,19 +158,19 @@
 										<a href="/ddstudio/communicate/notice.do">공지사항</a>
 									</div>
 									<div>
-										<a href="/ddstudio/communicate/faq.do">FAQ</a>
+										<a href="/ddstudio/communicate/faq.do?type=이용정보">FAQ</a>
 									</div>
 									<div>
 										<a href="/ddstudio/communicate/review.do">리뷰</a>
 									</div>
 									<div>
-										<a href="/ddstudio/communicate/voc.do">고객소리함</a>
+										<a href="/ddstudio/communicate/usageinquiry.do">고객소리함</a>
 										<div class="sub-sub-menu">
 											<div>
 												<a href="/ddstudio/communicate/usageinquiry.do">이용문의</a>
 											</div>
 											<div>
-												<a href="/ddstudio/communicate/usageinquiry.do">칭찬/불편/건의</a>
+												<a href="/ddstudio/communicate/voc.do">칭찬/불편/건의</a>
 											</div>
 											<div>
 												<a href="/ddstudio/communicate/lostproperty.do">분실물 찾기</a>
@@ -187,38 +186,38 @@
 							<div class="nav-menu-name">검색</div>
 						</a>
 						<c:if test="${not empty email}">
-						<a href="/ddstudio/ticket/select.do" class="nav-item nav-link index-navi">
-							<div class="material-symbols-outlined nav-icon">book_online</div>
-							<div class="nav-menu-name">예매</div>
-						</a>
+							<a href="/ddstudio/ticket/select.do" class="nav-item nav-link index-navi">
+								<div class="material-symbols-outlined nav-icon">book_online</div>
+								<div class="nav-menu-name">예매</div>
+							</a>
 						</c:if>
 						<c:if test="${empty email}">
-						<a href="/ddstudio/user/login.do" class="nav-item nav-link index-navi">
-							<div class="material-symbols-outlined nav-icon">book_online</div>
-							<div class="nav-menu-name">예매</div>
-						</a>
+							<a href="/ddstudio/user/login.do" class="nav-item nav-link index-navi">
+								<div class="material-symbols-outlined nav-icon">book_online</div>
+								<div class="nav-menu-name">예매</div>
+							</a>
 						</c:if>
-						
+
 					</div>
 				</div>
 				<c:if test="${empty email}">
 					<div class="header-login">
-						<a href="/ddstudio/user/login.do">로그인</a>
-						<a href="/ddstudio/user/register.do">회원가입</a>
+						<a href="/ddstudio/user/login.do">로그인</a> <a href="/ddstudio/user/register.do">회원가입</a>
 					</div>
 				</c:if>
 				<c:if test="${not empty email}">
-					<div class="header-login">
+					<div class="header-login" style="right: 3%;">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<c:if test="${lv==1}">
-						<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
+							<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
+							<a href="/ddstudio/member/cart/list.do" class="cart-icon"><i class="fa-solid fa-cart-shopping"></i></a>
 						</c:if>
 						<c:if test="${lv==2}">
-						<a href="/ddstudio/admin/adminpage.do">관리자페이지</a>
+							<a href="/ddstudio/admin/adminpage.do">관리자페이지</a>
 						</c:if>
 					</div>
 					<div>
-						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>
+						<span style="font-size: 15px; color: #CCC; margin-right: 60px;">${name}님 환영합니다!</span>
 					</div>
 				</c:if>
 			</nav>
@@ -229,40 +228,41 @@
 <!-- Header End -->
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    var subMenus = document.querySelectorAll('.navbar-nav .sub-menu');
-    var subSubMenus = document.querySelectorAll('.navbar-nav .sub-sub-menu');
+	document.addEventListener('DOMContentLoaded', function() {
+		var subMenus = document.querySelectorAll('.navbar-nav .sub-menu');
+		var subSubMenus = document
+				.querySelectorAll('.navbar-nav .sub-sub-menu');
 
-    function showMenu(menu) {
-        menu.style.display = 'block';
-    }
+		function showMenu(menu) {
+			menu.style.display = 'block';
+		}
 
-    function hideMenu(menu) {
-        menu.style.display = 'none';
-    }
+		function hideMenu(menu) {
+			menu.style.display = 'none';
+		}
 
-    function attachEvents(parent, menu) {
-        parent.addEventListener('mouseenter', function () {
-            showMenu(menu);
-        });
+		function attachEvents(parent, menu) {
+			parent.addEventListener('mouseenter', function() {
+				showMenu(menu);
+			});
 
-        parent.addEventListener('mouseleave', function () {
-            hideMenu(menu);
-        });
-    }
+			parent.addEventListener('mouseleave', function() {
+				hideMenu(menu);
+			});
+		}
 
-    subMenus.forEach(function (menu) {
-        attachEvents(menu.parentElement, menu);
+		subMenus.forEach(function(menu) {
+			attachEvents(menu.parentElement, menu);
 
-        // Attach events for sub-sub-menus
-        var subSubMenusInSubMenu = menu.querySelectorAll('.sub-sub-menu');
-        subSubMenusInSubMenu.forEach(function (subSubMenu) {
-            attachEvents(subSubMenu.parentElement, subSubMenu);
-        });
-    });
+			// Attach events for sub-sub-menus
+			var subSubMenusInSubMenu = menu.querySelectorAll('.sub-sub-menu');
+			subSubMenusInSubMenu.forEach(function(subSubMenu) {
+				attachEvents(subSubMenu.parentElement, subSubMenu);
+			});
+		});
 
-    subSubMenus.forEach(function (subSubMenu) {
-        attachEvents(subSubMenu.parentElement, subSubMenu);
-    });
-});
+		subSubMenus.forEach(function(subSubMenu) {
+			attachEvents(subSubMenu.parentElement, subSubMenu);
+		});
+	});
 </script>

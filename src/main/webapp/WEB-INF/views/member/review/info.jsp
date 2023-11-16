@@ -25,6 +25,7 @@
 
 .buttons-container {
 	text-align: right;
+	margin-top: 20px;
 }
 
 .button {
@@ -69,12 +70,17 @@ th {
 
 a {
 	text-decoration: none;
-	color: #007bff;
+	color: #1f1f1f;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+#content {
+	margin-top: 100px;
 }
 </style>
 </head>
@@ -87,18 +93,12 @@ a:hover {
 
 		<div id="title">
 			<h2>리뷰</h2>
-			<br>
 			<p></p>
 		</div>
 
 		<hr>
 
-		<div id="sub-title">
-			<h3></h3>
-		</div>
-
 		<div id="content">
-
 			<div class="wide-multi-content-container">
 				<div class="container">
 					<h2>리뷰 내역</h2>
@@ -113,23 +113,21 @@ a:hover {
 						</thead>
 						<tbody>
 							<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>${dto.review_seq}</td>
-								<td><a href="">${dto.subject}</a></td>
-								<td>${dto.regdate}</td>
-								<td>${dto.readcount}</td>
-							</tr>
+								<tr>
+									<td>${dto.review_seq}</td>
+									<td><a
+										href='/ddstudio/member/review/detail.do?seq=${dto.review_seq}'>${dto.subject}</a></td>
+									<td>${dto.regdate}</td>
+									<td>${dto.readcount}</td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-
+					<div class="buttons-container">
+						<button class="button"
+							onclick="location.href='/ddstudio/member/review/add.do';">리뷰작성</button>
+					</div>
 				</div>
-
-
-			</div>
-			<div class="buttons-container">
-				<button class="button"
-					onclick="location.href='/ddstudio/member/review/add.do';">리뷰작성</button>
 			</div>
 		</div>
 	</main>

@@ -22,11 +22,11 @@ public class AttractionCloseAdd extends HttpServlet {
 		//어트랙션 리스트 가져오기 -> select박스에 보여줘야 하니까
 		
 		ActDAO dao = new ActDAO();
-		/*
-		ArrayList<AttractionDTO> list = dao.attractionList();
+		
+		ArrayList<AttractionDTO> list = dao.attractionList("");
 		
 		req.setAttribute("list", list);
-		*/
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/close/attractioncloseadd.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -49,7 +49,7 @@ public class AttractionCloseAdd extends HttpServlet {
 		dto.setEnd_date(end_date);
 		dto.setAttraction_seq(attraction_seq);
 		
-	/*	int result=dao.closeadd(dto);  //DAO에 어트랙션 운휴 테이블에 데이터를 저장해줄 메서드 만들기
+		int result=dao.attcloseadd(dto);  //DAO에 어트랙션 운휴 테이블에 데이터를 저장해줄 메서드 만들기
 		
 		//3. 피드백
 		if (result == 1) {  //성공하면 돌아갈 페이지
@@ -59,7 +59,7 @@ public class AttractionCloseAdd extends HttpServlet {
 			writer.print("<script>alert('failed');history.back();</script>");
 			writer.close();
 		}
-		*/
+		
 	
 	}
 }

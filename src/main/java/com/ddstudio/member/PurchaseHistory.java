@@ -28,9 +28,13 @@ public class PurchaseHistory extends HttpServlet {
 		UserBuyDAO dao = new UserBuyDAO();
 
 		ArrayList<UserBuyDTO> list = dao.get(email);
+		
+		ArrayList<UserBuyDTO> plist = dao.pget(email);
 
 		// 3.
 		req.setAttribute("list", list);
+		
+		req.setAttribute("plist", plist);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/member/purchase/history.jsp");
 		dispatcher.forward(req, resp);

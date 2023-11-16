@@ -14,7 +14,7 @@
 	}
 	
 	#background {
-		background-image: url('/ddstudio/asset/image/detail_background_half_trans.png');
+		background-image: url('/ddstudio/asset/image/attraction/detail_background_half_trans.png');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -247,7 +247,7 @@
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
 			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/attractiondel.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
 		</div>
 		</c:if>
 		
@@ -256,7 +256,9 @@
 		<!-- 어트랙션 해시태그 -->
 		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
 		<div id="hashtag">
-			<i class="fa-solid fa-tag fa-rotate-90"></i>
+			<c:if test="${not empty hashtagList}">
+				<i class="fa-solid fa-tag fa-rotate-90"></i>
+			</c:if>
 			<c:forEach items="${hashtagList}" var="dto">
 				<div><c:out value="${dto.hashtag_name}" /></div>
 			</c:forEach>
@@ -270,7 +272,7 @@
 	    <!-- Full-width images with number and caption text -->
 	    <c:forEach items="${imgList}" var="dto">
 		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/${dto.img}">
+		      <img src="/ddstudio/asset/image/attraction/${dto.img}">
 		    </div>
 	  	</c:forEach>
   
@@ -321,7 +323,12 @@
 				<div class="result-item">
 					<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
 					<div class="label">이용정보</div>
-					<div class="value">${dto.restriction}</div>
+					<c:if test="${dto.restriction == null}">
+						<div class="value">제한 없음</div>
+					</c:if>
+					<c:if test="${dto.restriction != null}">
+						<div class="value">${dto.restriction}</div>
+					</c:if>
 				</div>
 				<%-- <div class="result-item">
 					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
@@ -333,7 +340,7 @@
 		
 		
 		<div class="location">
-			<div class="label">위치</div>
+			<div class="label">위치 정보</div>
 			<div class="value location">
 				<div id="map" style="width:768px;height:400px;"></div>
 			</div>
@@ -353,7 +360,7 @@
 		const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	    
 	    const options = { //지도를 생성할 때 필요한 기본 옵션
-	       center : new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}), //지도의 중심좌표.
+	       center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 	       level : 10 //지도의 레벨(확대, 축소 정도)
 	    };
 	

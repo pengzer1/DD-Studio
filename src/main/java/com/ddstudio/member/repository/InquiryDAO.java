@@ -37,7 +37,7 @@ public class InquiryDAO {
 				
 				InquiryDTO dto = new InquiryDTO();
 				
-				dto.setInquiry_seq(rs.getString("inquiry_seq"));
+				dto.setSeq(rs.getString("inquiry_seq"));
 				dto.setType(rs.getString("type"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setRegdate(rs.getString("regdate"));
@@ -51,6 +51,41 @@ public class InquiryDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return null;
+	}
+
+	public InquiryDTO detail(String seq) {
+		
+		try {
+			
+			String sql = "select * from tblinquiry where inquiry_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				InquiryDTO dto = new InquiryDTO();
+				
+				dto.setSeq(rs.getString("inquiry_seq"));
+				dto.setType(rs.getString("type"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setAnswer(rs.getString("answer"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setContent(rs.getString("content"));
+				dto.setAttach(rs.getString("attach"));
+				dto.setUser_seq(rs.getString("user_seq"));
+				
+				return dto;
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		return null;
 	}
