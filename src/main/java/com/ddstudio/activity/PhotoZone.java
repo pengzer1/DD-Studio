@@ -24,9 +24,9 @@ public class PhotoZone extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<PhotoZoneDTO> list = dao.photozoneList();
+		/*ArrayList<PhotoZoneDTO> list = dao.photozoneList();
 		
-		req.setAttribute("list", list);
+		req.setAttribute("list", list);*/
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/photozone/list.jsp");
 		dispatcher.forward(req, resp);

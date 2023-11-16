@@ -26,7 +26,7 @@ import com.ddstudio.shop.model.RestaurantDTO;
 
 
 public class ActDAO {
-
+/*
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
@@ -310,7 +310,7 @@ public class ActDAO {
 
 	public int delAttraction(String seq) {
 
-		/* 어트랙션 삭제 */
+		*//* 어트랙션 삭제 *//*
 		//1. 기존 어트랙션명 + (운영종료) 텍스트 추가
 		changeAttractionName(seq);
 		
@@ -712,7 +712,7 @@ public class ActDAO {
 		
 		
 		return null;
-	}
+	}*/
 
 	public HashMap<String, String> checkReservation(String seq, String time) {
 

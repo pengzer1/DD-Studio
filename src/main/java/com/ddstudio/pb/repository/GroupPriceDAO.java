@@ -34,7 +34,7 @@ public class GroupPriceDAO {
             pstat = conn.prepareStatement(sql);
             pstat.setString(1, dto.getTicket_type());
             pstat.setString(2, dto.getAge());
-            pstat.setInt(3, dto.getPrice());
+            pstat.setString(3, dto.getPrice());
 
             int result = pstat.executeUpdate();
 
@@ -75,7 +75,7 @@ public class GroupPriceDAO {
                 dto.setTicket_type(rs.getString("ticket_type"));
                 dto.setPerson_type(rs.getString("person_type"));
                 dto.setAge(rs.getString("age"));
-                dto.setPrice(rs.getInt("price"));
+                dto.setPrice(rs.getString("price"));
 
 
                 list.add(dto);
@@ -171,7 +171,7 @@ public class GroupPriceDAO {
 
             pstat = conn.prepareStatement(sql);
 
-            pstat.setInt(1, dto.getPrice());
+            pstat.setString(1, dto.getPrice());
             pstat.setString(2, dto.getTicket_type());
             pstat.setString(3, dto.getAge());
 
