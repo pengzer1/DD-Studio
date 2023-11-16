@@ -2,7 +2,7 @@
 create user JspProject identified by pass;
 grant connect, resource, dba to JspProject;
 
-/* DELETE문_개*/
+/* DELETE문*/
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -23,8 +23,6 @@ DELETE FROM tblNotice;
 DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
 DELETE FROM tblVOC;
-DELETE FROM tblTestScore;
-DELETE FROM tblTest;
 DELETE FROM tblMBTI;
 DELETE FROM tblCourse;
 DELETE FROM tblRoute;
@@ -58,7 +56,7 @@ DELETE FROM tblHashtag;
 DELETE FROM tblUser;
 
 
-/* DROP TABLE_개 */
+/* DROP TABLE */
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -79,8 +77,6 @@ DROP TABLE tblNotice;
 DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
 DROP TABLE tblVOC;
-DROP TABLE tblTestScore;
-DROP TABLE tblTest;
 DROP TABLE tblMBTI;
 DROP TABLE tblCourse;
 DROP TABLE tblRoute;
@@ -113,7 +109,7 @@ DROP TABLE tblLocation;
 DROP TABLE tblHashtag;
 DROP TABLE tblUser;
 
-/* DROP SEQUENCE_개 */
+/* DROP SEQUENCE */
 DROP SEQUENCE seqtblUser;
 DROP SEQUENCE seqtblHashtag;
 DROP SEQUENCE seqtblLocation;
@@ -145,8 +141,6 @@ DROP SEQUENCE seqtblRoute;
 DROP SEQUENCE seqtblBus;
 DROP SEQUENCE seqtblCourse;
 DROP SEQUENCE seqtblMBTI;
-DROP SEQUENCE seqtblTest;
-DROP SEQUENCE seqtblTestScore;
 DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
 DROP SEQUENCE seqtblFAQ;
@@ -199,7 +193,7 @@ CREATE TABLE tblLocation (
 /* 카테고리 */
 CREATE TABLE tblCategory (
    category_seq NUMBER PRIMARY KEY, /* 카테고리번호 */
-   name VARCHAR2(500) NOT NULL UNIQUE /* 카테고리명 */
+   name VARCHAR2(500) NOT NULL /* 카테고리명 */
 );
 
 /* 식당 */
@@ -429,24 +423,6 @@ CREATE TABLE tblMBTI (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
-/* 취향테스트 문제 */
-CREATE TABLE tblTest (
-	test_seq NUMBER PRIMARY KEY, /* 문제번호 */
-	question VARCHAR2(500) NOT NULL, /* 문제내용 */
-	answer1 VARCHAR2(500) NOT NULL, /* 선택1번 */
-	answer2 VARCHAR2(500) NOT NULL, /* 선택2번 */
-	img VARCHAR2(500) DEFAULT 'test.png' NOT NULL /* 문제이미지 */
-);
-
-/* 취향테스트 문제 점수 */
-CREATE TABLE tblTestScore (
-	test_score_seq NUMBER PRIMARY KEY, /* 취향테스트 문제 점수 */
-	point1 NUMBER NOT NULL, /* 1 */
-	point2 NUMBER NOT NULL, /* 2 */
-	type VARCHAR2(500) NOT NULL, /* type(E/I, N/S, F/T, J/P) */
-	test_seq NUMBER REFERENCES tblTest(test_seq) NOT NULL /* 문제번호 */
-);
-
 /* 칭찬/불편/건의 */
 CREATE TABLE tblVOC (
 	voc_seq NUMBER PRIMARY KEY, /* 건의번호 */
@@ -476,8 +452,8 @@ CREATE TABLE tblInquiry (
 /* FAQ */
 CREATE TABLE tblFAQ (
    faq_seq NUMBER primary key, /* FAQ번호 */
-   type VARCHAR2(500) NOT NULL, /* 카테고리 */
-   question VARCHAR2(300) NOT NULL, /* 질문 */
+   type VARCHAR2(100) NOT NULL, /* 카테고리 */
+   question VARCHAR2(150) NOT NULL, /* 질문 */
    answer VARCHAR2(2000) NOT NULL /* 답변 */
 );
 
@@ -528,7 +504,6 @@ CREATE TABLE tblTicketBook (
    book_date DATE DEFAULT sysdate NOT NULL, /* 예매일자 */
    visit_date DATE NOT NULL, /* 방문일자 */
    ea NUMBER NOT NULL, /* 구매수량 */
-   price NUMBER NOT NULL, /*결제 금액 */
    ticket_seq NUMBER references tblTicket(ticket_seq) NOT NULL, /* 티켓번호 */
    benefit_seq NUMBER references tblbenefit(benefit_seq) NOT NULL /* 혜택번호 */
 );
@@ -669,7 +644,7 @@ CREATE SEQUENCE seqtblVOC;
 CREATE SEQUENCE seqtblInquiry;
 CREATE SEQUENCE seqtblFAQ;
 CREATE SEQUENCE seqtblNotice;
-CREATE SEQUENCE seqtblLostCenter;
+CREATE SEQUENCE seqtblLostProperty;
 CREATE SEQUENCE seqtblTicket;
 CREATE SEQUENCE seqtblBenefit;
 CREATE SEQUENCE seqtblTicketBook;

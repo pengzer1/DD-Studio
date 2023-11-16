@@ -256,7 +256,9 @@
 		<!-- 어트랙션 해시태그 -->
 		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
 		<div id="hashtag">
-			<i class="fa-solid fa-tag fa-rotate-90"></i>
+			<c:if test="${not empty hashtagList}">
+				<i class="fa-solid fa-tag fa-rotate-90"></i>
+			</c:if>
 			<c:forEach items="${hashtagList}" var="dto">
 				<div><c:out value="${dto.hashtag_name}" /></div>
 			</c:forEach>
@@ -270,7 +272,7 @@
 	    <!-- Full-width images with number and caption text -->
 	    <c:forEach items="${imgList}" var="dto">
 		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/${dto.img}">
+		      <img src="/ddstudio/asset/image/attraction/${dto.img}">
 		    </div>
 	  	</c:forEach>
   
@@ -321,7 +323,12 @@
 				<div class="result-item">
 					<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
 					<div class="label">이용정보</div>
-					<div class="value">${dto.restriction}</div>
+					<c:if test="${dto.restriction == null}">
+						<div class="value">제한 없음</div>
+					</c:if>
+					<c:if test="${dto.restriction != null}">
+						<div class="value">${dto.restriction}</div>
+					</c:if>
 				</div>
 				<%-- <div class="result-item">
 					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>

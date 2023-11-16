@@ -12,4 +12,7 @@ public class PhotoZoneDTO {
 	private String location_seq;
 	
 	private String img;
+	
+	private String lat;
+	private String lng;
 }

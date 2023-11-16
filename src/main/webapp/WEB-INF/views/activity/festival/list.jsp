@@ -28,8 +28,7 @@
 	}
 	 
 	#title {
-	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
-	 	background-image: url('/ddstudio/asset/image/festival_page_background.png');
+	 	background-image: url('/ddstudio/asset/image/festival/festival_page_background.png');
 	}
 	 
 	#condition:hover {
@@ -167,7 +166,7 @@
 			<div class="munti-content-container">
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="location.href= '/ddstudio/activity/festivaldetail.do?seq=' + ${dto.festival_seq};">
-					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div style="background-image: url('/ddstudio/asset/image/festival/${dto.img}');"></div>
 					<div>${dto.name}</div>
 					</div>
 				</c:forEach>
