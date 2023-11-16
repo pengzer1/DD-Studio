@@ -8,6 +8,10 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+body {
+	background-color: #EEE;
+}
+
 #main>#title, .item div {
 	background-color: white;
 }
@@ -38,7 +42,7 @@
 form>#condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 	text-align: center;
-	background-color: cornflowerblue;
+	background-color: rgba(43, 114, 201, 0.3);
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -114,8 +118,9 @@ margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 200px;
     font-size: 14px;
+    width: 100%;
 }
 
 li {
@@ -198,6 +203,10 @@ b {
     color: #ff5b62;
 }
 
+#content {
+	margin-top: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -207,7 +216,7 @@ b {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style=" background-image: url('/ddstudio/asset/image/background-6.jpg');">
 			<h2>개인 예매</h2>
 		</div>
 

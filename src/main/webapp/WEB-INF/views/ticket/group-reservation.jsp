@@ -8,7 +8,11 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-#main>#title, .item div {
+
+body {
+	background-color: #EEE;
+}
+#main>#title {
 	background-color: white;
 }
 
@@ -25,6 +29,11 @@
 	justify-content: center;
 }
 
+#content {
+	margin-top: 0px;
+	padding-top: 20px;
+}
+
 .container {
 	width: 80%;
 	margin: 0 auto;
@@ -38,7 +47,7 @@
 form > #condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 	text-align: center;
-	background-color: cornflowerblue;
+	background-color: rgba(43, 114, 201, 0.3);
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -114,7 +123,7 @@ form > #condition {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style=" background-image: url('/ddstudio/asset/image/background-6.jpg');">
 			<h2>단체 예매</h2>
 		</div>
 

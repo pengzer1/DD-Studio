@@ -149,6 +149,15 @@ ul {
 #admin-btn button:last-child {
 	margin-right: 15px;
 }
+
+.btn {
+    padding: 10px 20px;
+    background-color: #0074cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -176,7 +185,7 @@ ul {
 
 		<div id="content">
 
-			<form method="POST" action="/ddstudio/member/purshase/list.do">
+			<form method="POST" action="/ddstudio/member/purchase/view.do">
 				<div class="detail">
 					<div class="img"
 						style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
@@ -196,7 +205,7 @@ ul {
 						<li>
 							<div class="tableCell">
 								<p class="txt1">가격</p>
-								<p class="txt2">${dto.price}원</p>
+								<p class="txt2">${dto.price} 원</p>
 							</div>
 						</li>
 						<li>
@@ -207,13 +216,15 @@ ul {
 						</li>
 						<li>
 							<div class="tableCell">
-								<button type="button" id="cart">장바구니</button>
-								<button type="submit">바로 구매</button>
+								<button class="btn" type="button" id="cart">장바구니</button>
+								<button class="btn" type="submit">바로 구매</button>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<input type="hidden" name="item_seq" value="${dto.item_seq}">
+				<input type="hidden" name="name" value="${dto.name}">
+				<input type="hidden" name="price" value="${dto.price}">
 			</form>
 		</div>
 

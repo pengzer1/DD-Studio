@@ -101,7 +101,7 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/attraction/add.jsp -->
+	<!-- /ddstudio/activity/attraction/edit.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
@@ -116,7 +116,7 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/attractionadd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/attractionedit.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
 						<!-- 어트랙션명 필드 -->
 						<tr>
@@ -150,8 +150,14 @@
 							<th>Test 사용 여부</th>
 							<td>
 								<div>
+									<c:if test="${dto.is_test == 'Y'}">
+									<input type="radio" name="is_test" value="Y" id="test_y" checked /><label for="test_y">사용</label>
+									<input type="radio" name="is_test" value="N" id="test_n"/><label for="test_n">미사용</label>
+									</c:if>
+									<c:if test="${dto.is_test == 'N'}">
 									<input type="radio" name="is_test" value="Y" id="test_y"/><label for="test_y">사용</label>
-									<input type="radio" name="is_test" value="N" id="test_n" checked/><label for="test_n">미사용</label>
+									<input type="radio" name="is_test" value="N" id="test_n" checked /><label for="test_n">미사용</label>
+									</c:if>
 								</div>
 							</td>
 						</tr>
@@ -167,12 +173,12 @@
 							</td>
 						</tr>
 						<!-- 해시태그 필드 -->
-						<tr>
+						<!-- <tr>
 							<th class="required">해시태그</th>
 							<td>
 								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
-						</tr>
+						</tr> -->
 						<!-- 이미지 필드 -->
 						<!-- <tr>
 	                    	<th>이미지</th>
@@ -197,7 +203,7 @@
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button id="submit" class="check button">추가</button>
+									<button id="submit" class="check button">수정</button>
 									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/attraction.do';">취소</button>
 								</div>
 							</td>
@@ -205,6 +211,7 @@
 					</table>
 					<input type="hidden" name="lng" id="lng">
 					<input type="hidden" name="lat" id="lat">
+					<input type="hidden" name="seq" value="${dto.attraction_seq}" />
 				</form>
 			</div>
 		</div>
@@ -233,8 +240,8 @@
 			const map = new kakao.maps.Map(container, options);
 			
 			let m = null;
-			let lat = ${dto.lat};
-			let lng = ${dto.lng};
+			let lat = ${location_dto.lat};
+			let lng = ${location_dto.lng};
 			
 			m = new kakao.maps.Marker({
 	            position: new kakao.maps.LatLng(lat, lng)
@@ -264,18 +271,17 @@
 			 
 			 
 		 //Tagify whitelist용 변수 생성
-		 const taglist = ${taglist}
-		 const valuelist = ${hashtag_list}
+		 /* const taglist = ${taglist} */
+		 /* const valuelist = ${hashtag_list} */
 		 
-		 
+		 /*
 		 //Tagify 도전기
 		 var input = document.querySelector('textarea[name=tags]'),
 		 	tagify = new Tagify(input, {
 		    enforceWhitelist : true,
 		    maxTags          : 5,
  		    delimiters       : null,
- 		    whitelist        : taglist,
- 		    value            : valuelist
+ 		    whitelist        : taglist
 		  });
 		
 		 //tagify 해시태그 목록 드롭다운 메뉴 표출
@@ -285,6 +291,8 @@
 	        
 	        tagify.dropdown.show(e.detail.value); // 드롭다운 메뉴 보여주기
    		 }
+		 */
+		 
 		 
 	</script>
 </body>

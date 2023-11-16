@@ -8,9 +8,14 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-#main>#title, .item div {
+body {
+	background-color: #EEE;
+}
+
+#main>#title{
 	background-color: white;
 }
+
 
 .middle-flat {
 	color: #000;
@@ -23,6 +28,10 @@
 	margin: 0;
 	align-items: center;
 	justify-content: center;
+}
+
+#content {
+	margin-top: 20px;
 }
 
 .container {
@@ -38,7 +47,7 @@
 form>#condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 	text-align: center;
-	background-color: cornflowerblue;
+	background-color: rgba(43, 114, 201, 0.3);
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -196,7 +205,7 @@ table td {
 
 .tab_red {
     position: relative;
-    background: #3e3e4d;
+    background-color: #3e3e4d !important;
     z-index: 1;
     }
     
@@ -216,7 +225,7 @@ table td {
 }
 
 .tab .two {
-	width: 45%;
+	width: 48%;
 }
 
 .tab_red .on {
@@ -303,6 +312,15 @@ text-align: center;
     box-sizing: border-box;
 }
 
+.res_benefit li .none {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
 .res_benefit li .it {
     float: left;
     width: 36%;
@@ -327,6 +345,18 @@ text-align: center;
     width: 55%;
     padding: 0 5%;
 }
+
+.option {
+	border-left: 1px solid #AAA;
+	border-right: 1px solid #AAA;
+	border-bottom: 1px solid #AAA;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+	padding-top: 5px;
+}
+
+.option p {
+	margin-left: 15px;
+}
 </style>
 </head>
 <body>
@@ -336,7 +366,7 @@ text-align: center;
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style=" background-image: url('/ddstudio/asset/image/background-6.jpg');">
 			<h2>개인 예매</h2>
 		</div>
 
@@ -348,18 +378,18 @@ text-align: center;
 					<div id="condition">
 						<h3>방문일자/인원 선택</h3>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 40px;">
 						<label for="date">방문일</label> <input type="date" id="date"
 							name="date" required class="middle-flat">
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 40px; box-shadow: 0 1px 1px rgba(0, 0, 0, .2);">
 						<label for="ticket-type">티켓 종류</label>
 						<div id="ticket-type">
 							<input type="radio" id="1Day" name="ticket-type" value="1Day" checked><label for="1Day">1Day</label>
 							<input type="radio" id="After4" name="ticket-type" value="After4" style="margin-left: 100px;"><label for="After4">After4</label>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom: 40px; box-shadow: 0 1px 1px rgba(0, 0, 0, .2);">
 						<label for="personnel">인원</label>
 							<table>
 								<tr>
@@ -432,6 +462,13 @@ text-align: center;
 									</div>
 								</li>
 								</c:forEach>
+								<c:if test="${empty list}">
+								<li class="line">
+									<div class="none">
+										혜택 없음
+									</div>
+								</li>
+								</c:if>
 							</ul>
 						</div>
 						<div id="tab02" style="display: none;">
@@ -455,20 +492,27 @@ text-align: center;
 									</div>
 								</li>
 								</c:forEach>
+								<c:if test="${empty plist}">
+								<li class="line">
+									<div class="none">
+										혜택 없음
+									</div>
+								</li>
+								</c:if>
 							</ul>
 						</div>
 					</div>
 					<br>
-					<div class="form-group">
-						<label for="ticket-type">이용 안내</label>
+					<div class="form-group option">
+						<label for="ticket-type" style="margin-left: 5px;">이용 안내</label>
 						<p>1. 어드벤처 예매페이지 및 모바일APP을 통한 티켓예매</p>
 						<p>2. 카카오 알림톡(또는 문자메시지)으로 웹티켓 URL 발송</p>
 						<p>3. 웹티켓을 게이트에 제시 후 빠른 입장</p>
 					</div>
 					
 					<br>
-					<div class="form-group">
-						<label for="ticket-type">취소/환불 안내</label>
+					<div class="form-group option">
+						<label for="ticket-type" style="margin-left: 5px;">취소/환불 안내</label>
 						<p>온라인 예매 시 선택한 날짜에만 방문 및 이용이 가능하며, 미사용시에 해당날짜가 지나면 자동 취소 됩니다.
 (사용 후에는 취소가 불가능합니다.)</p>
 						<ul>

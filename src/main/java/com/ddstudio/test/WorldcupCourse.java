@@ -38,7 +38,7 @@ public class WorldcupCourse extends HttpServlet {
 		@SuppressWarnings("unchecked") // 제네릭 경고 무시
 		ArrayList<String> selectedCourses = (ArrayList<String>) session.getAttribute("selectedCourses");
 
-		selectedCourses = new ArrayList<>();
+		// selectedCourses = new ArrayList<>();
 
 		// 선택하지 않은 코스 리스트 생성
 		ArrayList<CourseDTO> remainingCourses = new ArrayList<>();
@@ -53,6 +53,7 @@ public class WorldcupCourse extends HttpServlet {
 		req.setAttribute("selectedCourses", selectedCourses);
 		req.setAttribute("selectedTwoCourses", selectedTwoCourses);
 
+		// 코스 월드컵 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/worldcup/course/detail.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -63,18 +64,21 @@ public class WorldcupCourse extends HttpServlet {
 
 		Random random = new Random();
 
+		// 코스 리스트가 있고, 크기가 1보다 큰 경우
 		if (courses != null && courses.size() > 1) {
 			int index1 = random.nextInt(courses.size());
 			int index2;
 
+			// index1과 다른 index2 선택 (중복 회피)
 			do {
 				index2 = random.nextInt(courses.size());
 			} while (index1 == index2);
 
-			// 두 코스를 리스트에 추가
+			// 두 개의 코스를 리스트에 추가
 			selectedTwoCourses.add(courses.get(index1));
 			selectedTwoCourses.add(courses.get(index2));
 		} else if (courses != null && courses.size() == 1) {
+			// 코스가 하나만 남았을 경우
 			selectedTwoCourses.add(courses.get(0));
 		}
 
@@ -83,9 +87,11 @@ public class WorldcupCourse extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String selectedCourseseq = req.getParameter("courseSeq");
-		HttpSession session = req.getSession();
+		String selectedCourseseq = req.getParameter("courseSeq"); // 선택한 코스 시퀀스
 
+		HttpSession session = req.getSession(); // 세션 가져오기
+
+		// 세션에서 선택한 코스 리스트
 		@SuppressWarnings("unchecked")
 		ArrayList<String> selectedCourses = (ArrayList<String>) session.getAttribute("selectedCourses");
 
@@ -97,7 +103,7 @@ public class WorldcupCourse extends HttpServlet {
 
 		// System.out.println(req.getParameter("isNewSession"));
 
-		// 선택한 코스가 중복되지 않았을 때만 추가
+		// 선택한 코스가 중복되지 않았을 경우 추가
 		if (!selectedCourses.contains(selectedCourseseq)) {
 			selectedCourses.add(selectedCourseseq);
 			session.setAttribute("selectedCourses", selectedCourses);
@@ -111,7 +117,6 @@ public class WorldcupCourse extends HttpServlet {
 			}
 			ArrayList<CourseDTO> selectedTwoCourses = getRandomTwoCourses(remainingCourses);
 
-			// JSON 응답 생성
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 
@@ -134,12 +139,13 @@ public class WorldcupCourse extends HttpServlet {
 			for (CourseDTO course : remainingCourses) {
 				remainingCourseSeqs.add(course.getCourse_seq());
 			}
+			
+			// JSON에 데이터 추가 및 전송
 			jsonResponse.put("remainingCourseSeqs", remainingCourseSeqs);
 			jsonResponse.put("selectedTwoCourses", selectedTwoCoursesJsonArray);
-
 			resp.getWriter().write(jsonResponse.toString());
 		}
-		
+
 	}
 
 }

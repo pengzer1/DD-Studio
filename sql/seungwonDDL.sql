@@ -213,6 +213,8 @@ VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는
 select * from tblCourse order by course_seq;
 select * from tblMBTI order by mbti_seq;
 
+select * from tblAttraction;
+select * from TBLATTRACTIONIMG order by ATTRACTION_IMG_SEQ;
 
 commit;
 
@@ -259,7 +261,7 @@ select * from vsSearch;
 
 
 
-
+commit;
 
 select * from tblBenefit;
 select * from tblFAQ;
@@ -271,7 +273,7 @@ select * from tblLostCenter;
 select * from TBLHASHTAG;
 select * from TBLATTRACTIONHASHTAG;
 
-
+select * from TBLMBTI;
 
 DELETE FROM tblMBTI;
 DELETE FROM tblCourse;

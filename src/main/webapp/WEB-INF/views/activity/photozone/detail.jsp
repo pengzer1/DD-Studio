@@ -14,7 +14,7 @@
 	}
 	
 	#background {
-		background-image: url('/ddstudio/asset/image/Ghibli_photozone_half_trans.png');
+		background-image: url('/ddstudio/asset/image/photozone/Ghibli_photozone_half_trans.png');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -244,7 +244,7 @@
 	    <!-- Full-width images with number and caption text -->
 	    <c:forEach items="${imgList}" var="dto">
 		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/${dto.img}">
+		      <img src="/ddstudio/asset/image/photozone/${dto.img}">
 		    </div>
 	  	</c:forEach>
   
