@@ -8,6 +8,10 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+#title h2, #title p {
+color: #EEE;
+}
+
 .item>div:nth-child(2) {
 	height: 25%;
 	display: flex;
@@ -60,7 +64,7 @@ p {
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" style="margin-top:123px; background-image: url('/ddstudio/asset/image/background-5.jpg');">
 			<h2>기프트샵</h2>
 			<br>
 			<p>사랑 가득, 추억 듬뿍! 기프트샵에서 귀여운 상품들을 만나보세요.</p>
