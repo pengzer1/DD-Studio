@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-                    <p class="text-secondary mb-0" style="text-align: right; margin-bottom: 30px !important;">&copy; <a class="text-light fw-bold" href="#">DD Studio</a>. All Rights Reserved.</p>
+                    <p class="text-secondary mb-0" style="text-align: right; margin-bottom: 80px !important;">&copy; <a class="text-light fw-bold" href="#">DD Studio</a>. All Rights Reserved.</p>
         </div>
     </div>
     <!-- <div class="container-fluid py-4 py-lg-0 px-5" style="background: #111111;">
