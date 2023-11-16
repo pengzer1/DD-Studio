@@ -7,8 +7,10 @@ public class BenefitDTO {
     private String name;
 
     private String type;
-    private String benefit_date;
+    private String start_date;
+    private String end_date;
     private String discount_rate;
+    private String img;
 
     public String getBenefit_seq() {
         return benefit_seq;
@@ -34,12 +36,20 @@ public class BenefitDTO {
         this.type = type;
     }
 
-    public String getBenefit_date() {
-        return benefit_date;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setBenefit_date(String benefit_date) {
-        this.benefit_date = benefit_date;
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
     public String getDiscount_rate() {
@@ -48,5 +58,13 @@ public class BenefitDTO {
 
     public void setDiscount_rate(String discount_rate) {
         this.discount_rate = discount_rate;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

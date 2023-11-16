@@ -33,6 +33,8 @@
 				<button type="button" id="shuttle" onclick="location.href='/ddstudio/guide/bus.do';">셔틀버스</button>
 			</div>
 			
+			
+			
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
