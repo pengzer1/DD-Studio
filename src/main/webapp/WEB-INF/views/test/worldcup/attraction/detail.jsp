@@ -57,7 +57,7 @@ body {
     transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
 }
 
-.item:hover {
+#item1:hover, #item2:hover {
     opacity: 0.25;
 }
 

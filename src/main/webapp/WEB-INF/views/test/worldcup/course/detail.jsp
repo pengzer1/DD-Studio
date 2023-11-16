@@ -57,8 +57,12 @@ body {
     transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
 }
 
-.item:hover {
+#item1:hover, #item2:hover {
     opacity: 0.25;
+}
+
+#item3 {
+	cursor: default;
 }
 
 .item:hover .img-container i {
@@ -193,10 +197,28 @@ body {
 			// 모든 코스를 화면에 갱신
 			$('#worldcup-container').empty();
 
-			for (let i = 0; i < selectedTwoCourses.length; i++) {
-				const course = selectedTwoCourses[i];
+			if (selectedTwoCourses.length == 2) {
+				for (let i = 0; i < selectedTwoCourses.length; i++) {
+					const course = selectedTwoCourses[i];
+					const imgUrl = course.img ? '/ddstudio/asset/image/course/'
+							+ course.img : 'course.png';
+	
+					// 동적으로 id 생성
+					const itemId = 'item' + (i + 1);
+	
+					const item = $(
+							'<div class="item" id="' + itemId
+									+ '" onclick="selectCourse('
+									+ course.course_seq + ')">').append(
+							'<div class="img-container" style="background-image: url(\''
+									+ imgUrl + '\');"></div>').append(
+							'<h3>' + course.name + '</h3>');
+					$('#worldcup-container').append(item);
+				}
+			} else {
+				const course = selectedTwoCourses0;
 				const imgUrl = course.img ? '/ddstudio/asset/image/course/'
-						+ course.img : '쌍용열차.jpg';
+						+ course.img : 'course.png';
 
 				// 동적으로 id 생성
 				const itemId = 'item' + (i + 1);
@@ -236,15 +258,26 @@ body {
 		    // #worldcup-container에 추가
 		    $('#worldcup-container').append(resultContainer);
 		}
-		
+
 		// 이미지 중앙에 우는 아이콘 추가
-		$('#worldcup-container').on('mouseenter', '.item', function () {
+		$('#worldcup-container').on('mouseenter', '#item1', function () {
+		    // 호버 시작
+		    const sadFaceIcon = $('<i class="fa-regular fa-face-sad-cry"></i>');
+		    $(this).find('.img-container').append(sadFaceIcon);
+		});
+		
+		$('#worldcup-container').on('mouseenter', '#item2', function () {
 		    // 호버 시작
 		    const sadFaceIcon = $('<i class="fa-regular fa-face-sad-cry"></i>');
 		    $(this).find('.img-container').append(sadFaceIcon);
 		});
 
-		$('#worldcup-container').on('mouseleave', '.item', function () {
+		$('#worldcup-container').on('mouseleave', '#item1', function () {
+		    // 호버 종료
+		    $(this).find('.img-container .fa-face-sad-cry').remove();
+		});
+
+		$('#worldcup-container').on('mouseleave', '#item2', function () {
 		    // 호버 종료
 		    $(this).find('.img-container .fa-face-sad-cry').remove();
 		});
