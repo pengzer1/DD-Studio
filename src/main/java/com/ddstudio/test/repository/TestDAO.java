@@ -23,9 +23,12 @@ public class TestDAO {
 		this.conn = DBUtil.open();
 	}
 
-	/*
-	 * 코스 추가
-	 */
+	/**
+     * 코스 추가
+     *
+     * @param dto 추가할 코스 정보를 담은 CourseDTO 객체
+     * @return 데이터베이스에 추가된 행의 수
+     */
 	public int courseAdd(CourseDTO dto) {
 
 		try {
@@ -46,9 +49,11 @@ public class TestDAO {
 		return 0;
 	}
 
-	/*
-	 * 코스 목록
-	 */
+	/**
+     * 코스 목록 조회
+     *
+     * @return 코스 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<CourseDTO> listCourse() {
 
 		try {
@@ -81,9 +86,12 @@ public class TestDAO {
 		return null;
 	}
 
-	/*
-	 * 코스 삭제
-	 */
+	/**
+     * 코스 삭제
+     *
+     * @param courseSeq 삭제할 코스의 일련번호
+     * @return 데이터베이스에 삭제된 행의 수
+     */
 	public int deleteCourse(String courseSeq) {
 		try {
 			// tblMBTI에서 레코드 삭제
@@ -107,9 +115,12 @@ public class TestDAO {
 		return 0;
 	}
 
-	/*
-	 * MBTI 상세 정보 조회
-	 */
+	/**
+     * MBTI 상세 정보 조회
+     *
+     * @param mbti 조회할 MBTI
+     * @return 조회된 MBTI 정보를 담은 MBTIDTO 객체
+     */
 	public MBTIDTO get(String mbti) {
 		try {
 			String sql = "select * from vwMBTIDetail where mbti = ?";
@@ -140,9 +151,11 @@ public class TestDAO {
 		return null;
 	}
 
-	/*
-	 * MBTI 목록
-	 */
+	/**
+     * MBTI 목록 조회하
+     *
+     * @return MBTI 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<MBTIDTO> listMBTI() {
 
 		try {
@@ -177,9 +190,11 @@ public class TestDAO {
 		return null;
 	}
 
-	/*
-	 * 어트랙션 목록
-	 */
+	/**
+     * 어트랙션 목록 조회
+     *
+     * @return 어트랙션 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<AttractionDTO> listAttraction() {
 
 		try {
@@ -211,9 +226,12 @@ public class TestDAO {
 		return null;
 	}
 
-	/*
-	 * MBTI별 추천 추가
-	 */
+	/**
+     * MBTI별 추천 추가
+     *
+     * @param dto MBTI 정보를 담은 MBTIDTO 객체
+     * @return 데이터베이스에 추가된 행의 수
+     */
 	public int mbtiAdd(MBTIDTO dto) {
 		try {
 			String sql = "INSERT INTO tblMBTI (mbti_seq, result, mbti, course_seq, attraction_seq) VALUES (seqtblMBTI.nextVal, ?, ?, ?, ?)";
@@ -235,9 +253,11 @@ public class TestDAO {
 		return 0;
 	}
 
-	/*
-	 * MBTI (관련 정보 포함) 전체 호출
-	 */
+	/**
+     * MBTI 전체 조회 (관련 정보 포함)
+     *
+     * @return MBTI 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<MBTIDTO> getAllMBTI() {
 		ArrayList<MBTIDTO> mbtiList = new ArrayList<>();
 
@@ -267,9 +287,12 @@ public class TestDAO {
 		return mbtiList;
 	}
 
-	/*
-	 * MBTI 삭제
-	 */
+	/**
+     * MBTI 삭제
+     *
+     * @param mbti_seq 삭제할 MBTI의 일련번호
+     * @return 데이터베이스에 삭제된 행의 수
+     */
 	public int MBTIDel(String mbti_seq) {
 
 		try {
@@ -289,9 +312,11 @@ public class TestDAO {
 		return 0;
 	}
 
-	/*
-	 * 어트랙션 목록
-	 */
+	/**
+     * 어트랙션 목록 조회
+     *
+     * @return 어트랙션 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<AttractionDTO> getAttractionList() {
 		
 		ArrayList<AttractionDTO> list = new ArrayList<AttractionDTO>();
@@ -319,9 +344,11 @@ public class TestDAO {
 		return list;
 	}
 
-	/*
-	 * 코스 목록
-	 */
+	/**
+     * 코스 목록 조회
+     *
+     * @return 코스 목록을 담은 ArrayList 객체
+     */
 	public ArrayList<CourseDTO> getCourseList() {
 		
 		ArrayList<CourseDTO> list = new ArrayList<CourseDTO>();
