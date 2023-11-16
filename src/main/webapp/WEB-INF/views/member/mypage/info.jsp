@@ -151,12 +151,11 @@ button:hover {
 
    <main id="main">
 
-      <div id="title">
-         <h2>마이페이지</h2>
+      <div id="title" style="background-image: url('/ddstudio/asset/image/하울의 움직이는 성.png');">
+         <h2 >마이페이지</h2>
          <br>
       </div>
       
-      <hr>
       
       <div id="sub-title">
          <p style="font-size: 25px">${name}님 안녕하세요!</p>

@@ -27,19 +27,27 @@
 	margin-top: 50px;
 }
 
+/*
 #hashtag-container {
-	display: flex;
-	text-align: center;
-	margin-top: 10px;
-	justify-content: center;
+    display: flex;
+    text-align: center;
+    margin-top: 13px;
+    font-size: 18px;
+    justify-content: center;
 }
 
-#hashtag {
-	width: 100px;
-	height: 40px;
-	margin-right: 5px;
+.hashtag {
+    width: 100px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
+.hashtag:not(:last-child) {
+    margin-right: 0;
+}
+ */
+ 
 #result-container {
 	text-align: left;
 	margin-top: 20px;
@@ -50,6 +58,12 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    position: relative;
+}
+
+.result-title::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 60.7 28.7 32 64 32h96c123.7 0 224 100.3 224 224s-100.3 224-224 224H64c-35.3 0-64-28.7-64-64V96zm160 0H64V416h96c88.4 0 160-71.6 160-160s-71.6-160-160-160z"/></svg>');
+    margin-right: 10px;
 }
 
 .result-title + .result-title {
@@ -68,8 +82,16 @@
     border-bottom: none;
 }
 
+#result-container > p::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>');
+   	margin-right: 5px;
+    vertical-align: text-top;
+}
+
 #result-container > p {
-	text-align: center
+    text-align: center;
+    font-size: 18px;
+    color: #555;
 }
 
 #category {
@@ -100,6 +122,7 @@
 </style>
 </head>
 <body>
+	<!-- search.jsp -->
 	<%@include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<main id="main">
@@ -115,57 +138,57 @@
 					<span class="material-symbols-outlined">search</span>
 				</button>
 			</form>
-
-			<div id="hashtag-container">
-				<div id="hashtag">#hashtag</div>
-				<div id="hashtag">#hashtag</div>
-				<div id="hashtag">#hashtag</div>
-			</div>
-
-			<div id="result-container">
-			</div>
+			<!-- 
+				<div id="hashtag-container">
+					<div id="hashtag">#hashtag</div>
+					<div id="hashtag">#hashtag</div>
+					<div id="hashtag">#hashtag</div>
+				</div>
+ 			-->
+			<div id="result-container"></div>
 		</div>
 	</main>
 	<%@include file="/WEB-INF/views/inc/footer.jsp"%>
 	
 	<script>
-		// 페이지 로드 시 해시태그를 랜덤으로 추가하는 함수
+		/*
+		// 페이지 로드 시 해시태그를 랜덤으로 추가
 	    function addRandomHashtags(hashtagList) {
-	        // 해시태그 컨테이너 초기화
 	        $('#hashtag-container').empty();
 	
 	        // 랜덤으로 3개의 해시태그 선택
 	        var randomHashtags = getRandomElements(hashtagList, 3);
 	
-	        // 선택된 해시태그를 동적으로 추가
+	        // 해시태그를 동적으로 추가
 	        $.each(randomHashtags, function (index, hashtag) {
 	            var hashtagElement = '<div class="hashtag">#' + hashtag + '</div>';
 	            $('#hashtag-container').append(hashtagElement);
 	        });
 	    }
 	
-	    // 배열에서 랜덤으로 요소를 선택하는 함수
+	    // 배열에서 랜덤으로 요소를 선택
 	    function getRandomElements(array, numElements) {
 	        var shuffledArray = array.slice(); // 복제본을 만들어 셔플링
+	        
 	        for (var i = shuffledArray.length - 1; i > 0; i--) {
 	            var j = Math.floor(Math.random() * (i + 1));
 	            // 배열 요소 교환
 	            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
 	        }
+	        
 	        // 처음부터 numElements만큼의 요소 반환
 	        return shuffledArray.slice(0, numElements);
 	    }
 	
 	    // 페이지 로드 시 실행
 	    $(document).ready(function () {
-	        // 서버에서 해시태그 데이터를 가져오는 AJAX 요청
 	        $.ajax({
 	            type: 'GET',
-	            url: '/user/searchhashtag.do',
+	            url: '/ddstudio/user/searchhashtag.do',
 	            success: function (data) {
-	                console.log('Hashtag data:', data);
+	                // console.log('Hashtag data:', data);
 	
-	                // 가져온 해시태그 데이터를 기반으로 동적으로 추가
+	                // 해시태그 추가
 	                addRandomHashtags(data);
 	            },
 	            error: function (a, b, c) {
@@ -174,6 +197,26 @@
 	        });
 	    });
 	    
+	 	// 해시태그 클릭 이벤트 추가
+	    $(document).on('click', '#hashtag-container .hashtag', function () {
+	        // 클릭된 해시태그의 클래스를 토글
+	        $(this).toggleClass('hashtag-clicked');
+
+	        // 클릭된 해시태그가 있으면 검색어 필드에 해당 해시태그 값을 넣고 검색 실행
+	        if ($('#hashtag-container .hashtag-clicked').length > 0) {
+	            var clickedHashtags = $('#hashtag-container .hashtag-clicked').map(function () {
+	                return $(this).text().substring(1); // '#' 제외한 부분만 추출
+	            }).get();
+
+	            // 검색어 필드에 클릭된 해시태그 값을 넣음
+	            $('#search-field').val(clickedHashtags.join(' '));
+
+	            // 검색 실행
+	            $('#search-form').submit();
+	        }
+	    });
+		*/
+		
 	    // 검색 실행
 	    $('#search-form').submit(function(e) {
 	        e.preventDefault();
@@ -181,12 +224,25 @@
 	        // 검색어
 	        var searchTerm = $('#search-field').val().toLowerCase();
 	
+	        /*
+		    // 해시태그를 클릭한 경우
+	        if ($('#hashtag-container .hashtag').hasClass('hashtag-clicked')) {
+	            console.log("해시태그 클릭")
+	            
+	            $('#hashtag-container .hashtag-clicked').removeClass('hashtag-clicked');
+	        } else {
+	            console.log("해시태그 안 클릭")
+	            
+	            $('#hashtag-container .hashtag-clicked').removeClass('hashtag-clicked');
+	        }
+	        */
+		     
 	        $.ajax({
 	            type: 'POST',
 	            url: '/ddstudio/user/search.do',
 	            data: $('#search-form').serialize(),
 	            success: function(data) {
-	                console.log('data:', data);
+	                // console.log('data:', data);
 	                var searchResults = data;
 	
 	                // 검색 결과를 담을 객체 초기화

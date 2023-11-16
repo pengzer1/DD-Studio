@@ -28,8 +28,7 @@
 	}
 	 
 	#title {
-	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
-	 	background-image: url('/ddstudio/asset/image/Ghibli_photozone_half_trans.png');
+	 	background-image: url('/ddstudio/asset/image/photozone/Ghibli_photozone_half_trans.png');
 	}
 	 
 	#condition:hover {
@@ -101,7 +100,7 @@
 			<div class="munti-content-container">
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="location.href= '/ddstudio/activity/photozonedetail.do?seq=' + ${dto.photozone_seq};">
-					<div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					<div style="background-image: url('/ddstudio/asset/image/photozone/${dto.img}');"></div>
 					<div>${dto.name}</div>
 					</div>
 				</c:forEach>

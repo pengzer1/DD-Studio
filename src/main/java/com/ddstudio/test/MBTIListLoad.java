@@ -24,14 +24,17 @@ public class MBTIListLoad extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		
-		PrintWriter out = resp.getWriter();
+		PrintWriter writer = resp.getWriter();
 		
 		try {
 			TestDAO dao = new TestDAO();
+			
+			// MBTI 정보 가져오기
 			ArrayList<MBTIDTO> mbtiList = dao.getAllMBTI();
 			
 			JSONArray jsonArray = new JSONArray();
 			
+			// MBTI 정보를 JSON 형식으로 배열에 추가
 			for (MBTIDTO mbti : mbtiList) {
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("mbti_seq", mbti.getMbti_seq());
@@ -47,11 +50,12 @@ public class MBTIListLoad extends HttpServlet {
 				jsonArray.add(jsonObject);
 			}
 			
-			out.print(jsonArray.toJSONString());
+			// JSON 배열을 문자열로 변환하여 전
+			writer.print(jsonArray.toJSONString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			out.close();
+			writer.close();
 		}
 	}
 }

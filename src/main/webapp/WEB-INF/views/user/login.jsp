@@ -54,8 +54,15 @@ h2 small {
 }
 
 #title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-8.jpg');
+}
+
+/*
+#title {
     background-image: url('/ddstudio/asset/image/background-4.jpg');
 }
+*/
 
 #title > h2 {
 	color: white;
@@ -68,7 +75,7 @@ h2 small {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" title="작가 wirestock 출처 Freepik">
 			<h2>로그인</h2>
 		</div>
 

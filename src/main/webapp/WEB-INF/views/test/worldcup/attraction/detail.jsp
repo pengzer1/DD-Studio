@@ -50,15 +50,25 @@ body {
 }
 
 #item1:hover {
-	transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
-	opacity: 0.25;
-	filter: brightness(0.8);
+    transform: rotate(-10deg) scale(0.9) translateX(-10px) translateY(5px);
 }
 
 #item2:hover {
-	transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
-	opacity: 0.25;
-	filter: brightness(0.8);
+    transform: rotate(10deg) scale(0.9) translateX(10px) translateY(5px);
+}
+
+#item1:hover, #item2:hover {
+    opacity: 0.25;
+}
+
+.item:hover .img-container i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 1;
+    color: white;
+    transition: opacity 0.3s ease;
 }
 
 #attinfo {
@@ -97,6 +107,11 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
+}
 </style>
 </head>
 <body>
@@ -104,7 +119,7 @@ body {
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%><!-- Header -->
 
 	<main id="main">
-		<div id="title" style="margin-top: 123px;">
+		<div id="title" title="작가 senivpetro 출처 Freepik">
 			<h2>어트랙션 월드컵</h2>
 		</div>
 
@@ -117,7 +132,7 @@ body {
 				<div class="item" id="item${loop.index + 1}"
 					onclick="selectAttraction('${attraction.attraction_seq}')">
 					<div class="img-container"
-						style="background-image: url('/ddstudio/asset/image/${attraction.img}');"></div>
+						style="background-image: url('/ddstudio/asset/image/attraction/${attraction.img}');"></div>
 					<h3>${attraction.name}</h3>
 				</div>
 			</c:forEach>
@@ -182,14 +197,30 @@ body {
 
 			// 모든 어트랙션을 화면에 갱신
 			$('#worldcup-container').empty();
-
-			for (let i = 0; i < selectedTwoAttractions.length; i++) {
-				const attraction = selectedTwoAttractions[i];
-				const imgUrl = attraction.img ? '/ddstudio/asset/image/'
-						+ attraction.img : '쌍용열차.jpg';
+	
+			if (selectedTwoAttractions.length == 2) {
+				for (let i = 0; i < selectedTwoAttractions.length; i++) {
+					const attraction = selectedTwoAttractions[i];
+					const imgUrl = attraction.img ? '/ddstudio/asset/image/attraction/' + attraction.img : '쌍용열차.jpg';
+	
+					// 동적으로 id 생성
+					const itemId = 'item' + (i + 1);
+	
+					const item = $(
+							'<div class="item" id="' + itemId
+									+ '" onclick="selectAttraction('
+									+ attraction.attraction_seq + ')">').append(
+							'<div class="img-container" style="background-image: url(\''
+									+ imgUrl + '\');"></div>').append(
+							'<h3>' + attraction.name + '</h3>');
+					$('#worldcup-container').append(item);
+				}
+			} else {
+				const attraction = selectedTwoAttractions[0];
+				const imgUrl = attraction.img ? '/ddstudio/asset/image/attraction/' + attraction.img : '쌍용열차.jpg';
 
 				// 동적으로 id 생성
-				const itemId = 'item' + (i + 1);
+				const itemId = 'item3';
 
 				const item = $(
 						'<div class="item" id="' + itemId
@@ -207,7 +238,7 @@ body {
 		    $('#worldcup-container').empty();
 
 		    const resultContainer = $('<div class="item result-container" id="item3">');
-		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/' + selectedAttraction.img + '\');"></div>');
+		    const imgContainer = $('<div class="img-container" style="background-image: url(\'/ddstudio/asset/image/attraction/' + selectedAttraction.img + '\');"></div>');
 		    const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
 		    const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>' + '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
 
@@ -226,7 +257,29 @@ body {
 		    // #worldcup-container에 추가
 		    $('#worldcup-container').append(resultContainer);
 		}
+		
+		// 이미지 중앙에 우는 아이콘 추가
+		$('#worldcup-container').on('mouseenter', '#item1', function () {
+		    // 호버 시작
+		    const sadFaceIcon = $('<i class="fa-regular fa-face-sad-cry"></i>');
+		    $(this).find('.img-container').append(sadFaceIcon);
+		});
+		
+		$('#worldcup-container').on('mouseenter', '#item2', function () {
+		    // 호버 시작
+		    const sadFaceIcon = $('<i class="fa-regular fa-face-sad-cry"></i>');
+		    $(this).find('.img-container').append(sadFaceIcon);
+		});
 
+		$('#worldcup-container').on('mouseleave', '#item1', function () {
+		    // 호버 종료
+		    $(this).find('.img-container .fa-face-sad-cry').remove();
+		});
+
+		$('#worldcup-container').on('mouseleave', '#item2', function () {
+		    // 호버 종료
+		    $(this).find('.img-container .fa-face-sad-cry').remove();
+		});
 	</script>
 </body>
 </html>

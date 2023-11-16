@@ -14,7 +14,7 @@
 	}
 	
 	#background {
-		background-image: url('/ddstudio/asset/image/festival_page_background.png');
+		background-image: url('/ddstudio/asset/image/festival/festival_page_background.png');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -220,8 +220,8 @@
 		<!-- 관리자용 수정/삭제 버튼 -->
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
-			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/attractiondel.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/festivaldel.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
+			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/festivaledit.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
 		</div>
 		</c:if>
 		
@@ -230,7 +230,9 @@
 		<!-- 페스티벌 해시태그 -->
 		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
 		<div id="hashtag">
-			<i class="fa-solid fa-tag fa-rotate-90"></i>
+			<c:if test="${not empty hashtagList}">
+				<i class="fa-solid fa-tag fa-rotate-90"></i>
+			</c:if>
 			<c:forEach items="${hashtagList}" var="dto">
 				<div><c:out value="${dto.hashtag_name}" /></div>
 			</c:forEach>
@@ -244,7 +246,7 @@
 	    <!-- Full-width images with number and caption text -->
 	    <c:forEach items="${imgList}" var="dto">
 		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/${dto.img}">
+		      <img src="/ddstudio/asset/image/festival/${dto.img}">
 		    </div>
 	  	</c:forEach>
   

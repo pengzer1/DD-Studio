@@ -103,9 +103,21 @@ select option:checked {
 						</tr>
 						<!-- 이미지 필드 -->
 						<tr>
-							<th>이미지</th>
+							<th class="required">이미지</th>
 							<td>
-								<input type="file" name="images" id="images" multiple>
+								<input type="file" name="images1" id="images">
+							</td>
+						</tr>
+						<tr>
+							<th> </th>
+							<td>
+								<input type="file" name="images2" id="images">
+							</td>
+						</tr>
+						<tr>
+							<th> </th>
+							<td>
+								<input type="file" name="images3" id="images">
 							</td>
 						</tr>
 						<tr>

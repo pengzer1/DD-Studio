@@ -48,6 +48,11 @@
     justify-content: end;
     margin-top: 10px;
 }
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-7.jpg');
+}
 </style>
 </head>
 <body>
@@ -56,7 +61,7 @@
 
 	<main id="main">
 
-		<div id="title" style="margin-top: 123px;">
+		<div id="title" title="작가 senivpetro 출처 Freepik">
 			<h2 id="mbtiTitle">ISTJ</h2>
 			<br>
 			<p>MBTI별 추천 결과</p>
@@ -116,7 +121,7 @@
 			// 어트랙션 업데이트
 			var attractionImg = document.getElementById('attraction-img');
 			if (attractionImg) {
-				attractionImg.innerHTML = '<img src="/ddstudio/asset/image/' + data.attraction_img + '" alt="' + data.attraction_name + '">';
+				attractionImg.innerHTML = '<img src="/ddstudio/asset/image/attraction/' + data.attraction_img + '" alt="' + data.attraction_name + '">';
 			}
 
 			var attractionName = document.getElementById('attraction-name');

@@ -17,6 +17,7 @@ public class MBTIAdd extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// MBTI별 추천 추가 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/mbti/add.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -29,13 +30,13 @@ public class MBTIAdd extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 			
+			// MBTI별 추천 추가할 데이터
 			String mbti = req.getParameter("mbti");
 			String resultMessage = req.getParameter("result");
 			String courseSeq = req.getParameter("course-name");
 			String attractionSeq = req.getParameter("attraction-name");
 
 			MBTIDTO dto = new MBTIDTO();
-
 			dto.setMbti(mbti);
 			dto.setResult(resultMessage);
 			dto.setCourse_seq(courseSeq);
@@ -43,6 +44,7 @@ public class MBTIAdd extends HttpServlet {
 
 			TestDAO dao = new TestDAO();
 
+			// MBTI별 추천 정보 추가
 			int result = dao.mbtiAdd(dto);
 
 			// System.out.println(result);

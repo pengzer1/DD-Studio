@@ -17,8 +17,10 @@ import com.ddstudio.activity.model.FestivalDTO;
 import com.ddstudio.activity.model.FestivalHashtagDTO;
 import com.ddstudio.activity.model.FestivalImgDTO;
 import com.ddstudio.activity.model.LocationDTO;
+import com.ddstudio.activity.model.MovieDTO;
 import com.ddstudio.activity.model.PhotoZoneDTO;
 import com.ddstudio.activity.model.PhotoZoneImgDTO;
+import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.shop.model.RestaurantDTO;
 
@@ -313,7 +315,7 @@ public class ActDAO {
 		changeAttractionName(seq);
 		
 		//2. 위치정보번호 > 0번으로 변경(위치 0: 운영종료)
-		changeLocation(seq);
+		changeAttractionLocation(seq);
 		
 		//3. 테마번호 > 0번으로 변경(테마 0: 운영종료)
 		//changeTheme(seq);
@@ -409,7 +411,7 @@ public class ActDAO {
 	}
 
 	//어트랙션 삭제 > 위치정보 변경
-	public void changeLocation(String seq) {
+	public void changeAttractionLocation(String seq) {
 
 		try {
 
@@ -790,31 +792,31 @@ public class ActDAO {
         return 0;
      }
 
-   public int attcloseedit(AttractionCloseDTO dto) {
-      try {
-         String sql = "update tblattractionclose set start_date=?, end_date=? where attraction_close_seq=?";
+	public int attcloseedit(AttractionCloseDTO dto) {
+		try {
+			String sql = "update tblattractionclose set start_date=?, end_date=? where attraction_close_seq=?";
         
-         pstat = conn.prepareStatement(sql);
-         pstat.setString(1, dto.getStart_date());
-         pstat.setString(2, dto.getEnd_date());
-         pstat.setString(3, dto.getAttraction_close_seq());
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getStart_date());
+			pstat.setString(2, dto.getEnd_date());
+			pstat.setString(3, dto.getAttraction_close_seq());
         
-         return pstat.executeUpdate();
+			return pstat.executeUpdate();
         
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
      
-      return 0;
-   }
+		return 0;
+	}
 
-   public ArrayList<AttractionCloseDTO> closeattractionList() {  //운휴정보를 가진 어트랙션 목록들(name 포함해서)만 보여주기
-      try {
+	public ArrayList<AttractionCloseDTO> closeattractionList() {  //운휴정보를 가진 어트랙션 목록들(name 포함해서)만 보여주기
+		try {
         
-         String sql = "select b.attraction_close_seq, a.attraction_seq, a.name, b.start_date, b.end_date from tblAttraction a\r\n"
-               + "inner join tblAttractionClose b\r\n"
-               + "on a.attraction_seq = b.attraction_seq\r\n"
-               + "where TO_CHAR(sysdate,'YYYY-MM-DD') <=TO_CHAR(end_date,'YYYY-MM-DD')";
+			String sql = "select b.attraction_close_seq, a.attraction_seq, a.name, b.start_date, b.end_date from tblAttraction a\r\n"
+					+ "inner join tblAttractionClose b\r\n"
+					+ "on a.attraction_seq = b.attraction_seq\r\n"
+					+ "where TO_CHAR(sysdate,'YYYY-MM-DD') <=TO_CHAR(end_date,'YYYY-MM-DD')";
         
         stat = conn.createStatement();
         rs = stat.executeQuery(sql);
@@ -842,13 +844,18 @@ public class ActDAO {
      return null;
   }
 
-   public int del(AttractionCloseDTO dto) {
-      try {
-         String sql = "delete from tblAttractionClose where attraction_close_seq=?"   ;
+	public int del(AttractionCloseDTO dto) {
+		try {
+			String sql = "delete from tblAttractionClose where attraction_close_seq=?";
 
          pstat = conn.prepareStatement(sql);
          pstat.setString(1, dto.getAttraction_close_seq());
-
+      } catch (Exception e) {
+			System.out.println("at ActDAO.del");
+			e.printStackTrace();
+		}
+return 0;
+}
 	public ArrayList<PhotoZoneImgDTO> photozoneImgList(String seq) {
 
 		try {
@@ -905,6 +912,8 @@ public class ActDAO {
 						dto.setInfo(rs.getString("info"));
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setImg(rs.getString("img"));
+						dto.setLat(rs.getString("lat"));
+						dto.setLng(rs.getString("lng"));
 						
 						return dto;
 					}
@@ -953,129 +962,6 @@ public class ActDAO {
 		
 		return null;
 	}
-	
-	public int addLocation(AttractionDTO dto) {
-		
-		try {
-
-			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("ActDAO.addLocation()");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-	
-	public String getLocationSeq(AttractionDTO dto) {
-
-		try {
-
-			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-
-			rs = pstat.executeQuery();
-
-			if (rs.next()) {
-				return rs.getString("location_seq");
-			}
-
-		} catch (Exception e) {
-			System.out.println("ActDAO.getLocationSeq()");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
-	public int addAttraction(AttractionDTO dto) {
-
-		try {
-
-			String sql = "INSERT INTO tblAttraction (attraction_seq, name, capacity, location_seq, time, restriction, is_test)\r\n"
-					+ "VALUES (seqtblAttraction.NEXTVAL, ?, ?, ?, '10:00 - 22:00', ?, ?);";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getName());
-			pstat.setString(2, dto.getCapacity());
-			pstat.setString(3, dto.getLocation_seq());
-			pstat.setString(4, dto.getRestriction());
-			pstat.setString(5, dto.getIs_test());
-			
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.addAttraction");
-			e.printStackTrace();
-		}
-		
-		
-		return 0;
-	}
-
-	public String getAttractionSeq() {
-
-		try {
-					
-					String sql = "select max(attraction_seq) as attraction_seq from tblAttraction";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-					if (rs.next()) {
-						
-						return rs.getString("attraction_seq");
-					}
-					
-				} catch (Exception e) {
-					System.out.println("at ActDAO.getAttractionSeq");
-					e.printStackTrace();
-				}
-		
-		
-		return null;
-	}
-
-	public int addAttractionImg(ArrayList<String> fileList, String attraction_seq) {
-
-		int result = 0;
-		
-		for (String name : fileList) {
-			
-			
-			try {
-
-				String sql = "insert into tblAttractionImg (attraction_img_seq, img, attraction_seq) values (seqtblattractionimg.nextVal, ?, ?)";
-
-				pstat = conn.prepareStatement(sql);
-				pstat.setString(1, name);
-				pstat.setString(2, attraction_seq);
-
-				result += pstat.executeUpdate();
-
-			} catch (Exception e) {
-				System.out.println("at ActDAO.addAttractionImg");
-				e.printStackTrace();
-			}
-			
-		}
-		
-		
-		return result;
-	}
 
 	public ArrayList<HashTagDTO> getHashtagList() {
 
@@ -1109,11 +995,484 @@ public class ActDAO {
 		return null;
 	}
 
-	public int addAttractionHashtag(ArrayList<AttractionHashtagDTO> list) {
+	//액티비티 추가용 method overloading
+	//- addLocation(dto)
+	public int addLocation(AttractionDTO dto) {
+		
+		try {
 
+			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			pstat.setString(3, dto.getLat());
+			pstat.setString(4, dto.getLng());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("ActDAO.addLocation()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public int addLocation(FestivalDTO dto) {
+		
+		try {
+			
+			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			pstat.setString(3, dto.getLat());
+			pstat.setString(4, dto.getLng());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("ActDAO.addLocation()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int addLocation(TheaterDTO dto) {
+		
+		try {
+			
+			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			pstat.setString(3, dto.getLat());
+			pstat.setString(4, dto.getLng());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("ActDAO.addLocation()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	public int addLocation(PhotoZoneDTO dto) {
+		
+		try {
+			
+			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			pstat.setString(3, dto.getLat());
+			pstat.setString(4, dto.getLng());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("ActDAO.addLocation()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	//getLocationSeq(dto)
+	public String getLocationSeq(AttractionDTO dto) {
+
+		try {
+
+			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				return rs.getString("location_seq");
+			}
+
+		} catch (Exception e) {
+			System.out.println("ActDAO.getLocationSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String getLocationSeq(FestivalDTO dto) {
+		
+		try {
+
+			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				return rs.getString("location_seq");
+			}
+
+		} catch (Exception e) {
+			System.out.println("ActDAO.getLocationSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String getLocationSeq(TheaterDTO dto) {
+		
+		try {
+			
+			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getString("location_seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ActDAO.getLocationSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String getLocationSeq(PhotoZoneDTO dto) {
+		
+		try {
+			
+			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getLat());
+			pstat.setString(2, dto.getLng());
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getString("location_seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ActDAO.getLocationSeq()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addAttraction(AttractionDTO dto) {
+	
+		try {
+	
+			String sql = "INSERT INTO tblAttraction (attraction_seq, name, capacity, location_seq, time, restriction, is_test) VALUES (seqtblAttraction.NEXTVAL, ?, ?, ?, '10:00 - 22:00', ?, ?)";
+	
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getCapacity());
+			pstat.setString(3, dto.getLocation_seq());
+			pstat.setString(4, dto.getRestriction());
+			pstat.setString(5, dto.getIs_test());
+			
+	
+			return pstat.executeUpdate();
+	
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addAttraction");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int addFestival(FestivalDTO dto) {
+
+		try {
+
+			String sql = "INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, location_seq) VALUES (seqtblFestival.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getTime());
+			pstat.setString(3, dto.getInfo());
+			pstat.setString(4, dto.getStart_date());
+			pstat.setString(5, dto.getEnd_date());
+			pstat.setString(6, dto.getLocation_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addFestival");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getAttractionSeq() {
+	
+		try {
+					
+					String sql = "select max(attraction_seq) as attraction_seq from tblAttraction";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					if (rs.next()) {
+						
+						return rs.getString("attraction_seq");
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.getAttractionSeq");
+					e.printStackTrace();
+				}
+		
+		
+		return null;
+	}
+
+	public String getFestivalSeq() {
+
+		try {
+					
+					String sql = "select max(festival_seq) as festival_seq from tblFestival";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					if (rs.next()) {
+						return rs.getString("festival_seq");
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.getFestivalSeq");
+					e.printStackTrace();
+				}
+		return null;
+	}
+
+	public int addAttractionImg(ArrayList<String> fileList, String attraction_seq) {
+	
+		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
+		//이미지가 1개라도 추가되었다면, 기존 insert문 > 나머지는 null처리로 DB 추가 불가
+		int flag = 0;
+		int result = 0;
+		String sql = "";
+		
+		for (String name : fileList) {
+			if (name == null) {
+				flag++;
+			}
+		}
+		
+		if (flag == 3) { //이미지 추가X > default 입력
+			
+			try {
+				
+				sql = "insert into tblAttractionImg (attraction_img_seq, img, attraction_seq) values (seqtblattractionimg.nextVal, DEFAULT, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, attraction_seq);
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addFestivalImg");
+				e.printStackTrace();
+			}
+			
+			
+		} else { //이미지 1개 이상 추가 > 기존 insert문 사용(null값은 DB 에러발생으로 처리 안됨!)
+			
+			for (String name : fileList) {
+				
+				try {
+					
+					sql = "insert into tblAttractionImg (attraction_img_seq, img, attraction_seq) values (seqtblattractionimg.nextVal, ?, ?)";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, name);
+					pstat.setString(2, attraction_seq);
+					
+					result += pstat.executeUpdate();
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.addAttractionImg");
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		return result;
+	}
+
+	public int addFestivalImg(ArrayList<String> fileList, String festival_seq) {
+
+		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
+		//이미지가 1개라도 추가되었다면, 기존 insert문 > 나머지는 null처리로 DB 추가 불가
+		int flag = 0;
+		int result = 0;
+		String sql = "";
+		
+		for (String name : fileList) {
+			if (name == null) {
+				flag++;
+			}
+		}
+		
+		if (flag == 3) { //이미지 추가X > default 입력
+			
+			try {
+				
+				sql = "insert into tblFestivalImg (festival_img_seq, img, festival_seq) values (seqtblfestivalimg.nextVal, DEFAULT, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, festival_seq);
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addFestivalImg");
+				e.printStackTrace();
+			}
+			
+			
+		} else { //이미지 1개 이상 추가 > 기존 insert문 사용(null값은 DB 에러발생으로 처리 안됨!)
+			
+			for (String name : fileList) {
+				
+				try {
+					
+					sql = "insert into tblFestivalImg (festival_img_seq, img, festival_seq) values (seqtblfestivalimg.nextVal, ?, ?)";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, name);
+					pstat.setString(2, festival_seq);
+					
+					result += pstat.executeUpdate();
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.addAttractionImg");
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		
+		return result;
+	}
+
+	public ArrayList<AttractionHashtagDTO> getHashtagSeq(ArrayList<String> taglist) {
+	
+		ArrayList<AttractionHashtagDTO> list = new ArrayList<AttractionHashtagDTO>();
+		
+		for (String tag : taglist) {
+			
+			try {
+						
+						String sql = "select hashtag_seq from tblHashtag where name = ?";
+						
+						pstat = conn.prepareStatement(sql);
+						pstat.setString(1, tag);
+						
+						rs = pstat.executeQuery();
+						
+						
+						while (rs.next()) {
+							
+							AttractionHashtagDTO dto = new AttractionHashtagDTO();
+							
+							dto.setHashtag_seq(rs.getString("hashtag_seq"));
+							
+							list.add(dto);
+							
+						}
+						
+						
+					} catch (Exception e) {
+						System.out.println("at ActDAO.getHashtagSeq");
+						e.printStackTrace();
+						return null;
+					}
+			
+			
+			
+		}
+		return list;
+		
+	}
+
+	public ArrayList<FestivalHashtagDTO> getHashtagSeq_festival(ArrayList<String> taglist) {
+		
+		ArrayList<FestivalHashtagDTO> list = new ArrayList<FestivalHashtagDTO>();
+		
+		for (String tag : taglist) {
+			
+			try {
+				
+				String sql = "select hashtag_seq from tblHashtag where name = ?";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, tag);
+				
+				rs = pstat.executeQuery();
+				
+				
+				while (rs.next()) {
+					
+					FestivalHashtagDTO dto = new FestivalHashtagDTO();
+					
+					dto.setHashtag_seq(rs.getString("hashtag_seq"));
+					
+					list.add(dto);
+					
+				}
+				
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.getHashtagSeq");
+				e.printStackTrace();
+				return null;
+			}
+			
+			
+			
+		}
+		return list;
+		
+	}
+
+	public int addAttractionHashtag(ArrayList<AttractionHashtagDTO> seqlist, String attraction_seq) {
+	
 		int result = 0;
 		
-		for (AttractionHashtagDTO dto : list) {
+		for (AttractionHashtagDTO dto : seqlist) {
 			
 			try {
 				
@@ -1121,7 +1480,7 @@ public class ActDAO {
 						+ "VALUES (seqtblAttractionHashtag.NEXTVAL, ?, ?)";
 				
 				pstat = conn.prepareStatement(sql);
-				pstat.setString(1, dto.getAttraction_seq());
+				pstat.setString(1, attraction_seq);
 				pstat.setString(2, dto.getHashtag_seq());
 				
 				result += pstat.executeUpdate();
@@ -1136,51 +1495,308 @@ public class ActDAO {
 		return result;
 	}
 
-	public ArrayList<AttractionHashtagDTO> getHashtagSeq(ArrayList<String> taglist, String attraction_seq) {
+	public int addFestivalHashtag(ArrayList<FestivalHashtagDTO> seqlist, String festival_seq) {
 
+		int result = 0;
 		
-		for (String tag : taglist) {
+		for (FestivalHashtagDTO dto : seqlist) {
 			
 			try {
-						
-						String sql = "select a.attraction_seq, a.hashtag_seq, (select name from tblHashtag where hashtag_seq = a.hashtag_seq)as hashtag_name from tblAttractionHashtag a where (select name from tblHashtag where hashtag_seq = a.hashtag_seq) = ?";
-						
-						pstat = conn.prepareStatement(sql);
-						pstat.setString(1, tag);
-						
-						rs = pstat.executeQuery();
-						
-						ArrayList<AttractionHashtagDTO> list = new ArrayList<AttractionHashtagDTO>();
-						while (rs.next()) {
-							
-							AttractionHashtagDTO dto = new AttractionHashtagDTO();
-							
-							dto.setAttraction_seq(rs.getString("attraction_seq"));
-							dto.setHashtag_seq(rs.getString("hashtag_seq"));
-							dto.setHashtag_name(rs.getString("hashtag_name"));
-							
-							list.add(dto);
-							
-						}
-						
-						return list;
-						
-					} catch (Exception e) {
-						System.out.println("at ActDAO.getHashtagSeq");
-						e.printStackTrace();
-					}
-			
-			
+				
+				String sql = "INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)\r\n"
+						+ "VALUES (seqtblAttractionHashtag.NEXTVAL, ?, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, festival_seq);
+				pstat.setString(2, dto.getHashtag_seq());
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addAttractionHashtag");
+				e.printStackTrace();
+			}
 			
 		}
+		
+		
+		return result;
+	}
+
+	public int delFestival(String seq) {
+
+		try {
+
+			String sql = "update tblFestival set name = name || '(공연중단)' where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFestival");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int changeFestivalLocation(String seq) {
+
+		try {
+
+			String sql = "update tblFestival set location_seq = 0 where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			FestivalDTO dto = new FestivalDTO();
+			dto.setLat("0");
+			dto.setLng("0");
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.changeFestivalLocation");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return 0;
+	}
+
+	public int delFestivalImg(String seq) {
+
+		
+		try {
+
+			String sql = "delete from tblFestivalImg where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFestivalImg");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int delFestivalHashtag(String seq) {
+
+		try {
+
+			String sql = "delete from tblFestivalHashtag where festival_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delFestivalHashtag");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public TheaterDTO getTheater(String seq) {
+
+		try {
+					
+					String sql = "select * from tblTheater where theater_seq = ? ";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, seq);
+					
+					rs = pstat.executeQuery();
+					
+					if (rs.next()) {
+						
+						TheaterDTO dto = new TheaterDTO();
+						
+						dto.setTheater_seq(rs.getString("theater_seq"));
+						dto.setName(rs.getString("name"));
+						dto.setLocation_seq(rs.getString("location_seq"));
+						
+						return dto;
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.getTheater");
+					e.printStackTrace();
+				}
 		
 		return null;
 	}
 
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-      return 0;
-   }
-	
+	public ArrayList<MovieDTO> movieList() {
+	//오늘 날짜(sysdate)기준 상영하는 영화 가져오기
+		try {
+					
+					String sql = "SELECT * FROM tblMovie WHERE TO_CHAR(sysdate, 'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD')) order by movie_seq";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
+					while (rs.next()) {
+						
+						MovieDTO dto = new MovieDTO();
+						
+						dto.setMovie_seq(rs.getString("movie_seq"));
+						dto.setName(rs.getString("name"));
+						dto.setStart_date(rs.getString("start_date"));
+						dto.setEnd_date(rs.getString("end_date"));
+						dto.setRunningtime(rs.getString("runningtime"));
+						dto.setImg(rs.getString("img"));
+						dto.setPreview(rs.getString("preview"));
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.movieList");
+					e.printStackTrace();
+				}
+		
+		return null;
+	}
+
+	public int addPhotozone(PhotoZoneDTO dto) {
+		
+		try {
+
+			String sql = "INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)\r\n"
+					+ "VALUES (seqtblPhotoZone.NEXTVAL, ?, '10:00 - 22:00', ?, ?);";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(3, dto.getInfo());
+			pstat.setString(6, dto.getLocation_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addPhotozone");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getPhotozoneSeq() {
+
+		try {
+			
+			String sql = "select max(photozone_seq) as photozone_seq from tblPhotozone";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getString("photozone_seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("at ActDAO.getPhotozoneSeq");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int addPhotozoneImg(ArrayList<String> fileList, String photozone_seq) {
+
+		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
+		//이미지가 1개라도 추가되었다면, 기존 insert문 > 나머지는 null처리로 DB 추가 불가
+		int flag = 0;
+		int result = 0;
+		String sql = "";
+		
+		for (String name : fileList) {
+			if (name == null) {
+				flag++;
+			}
+		}
+		
+		if (flag == 3) { //이미지 추가X > default 입력
+			
+			try {
+				
+				sql = "insert into tblPhotozoneImg (photozone_img_seq, img, photozone_seq) values (seqtblphotozoneimg.nextVal, DEFAULT, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, photozone_seq);
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addPhotozoneImg");
+				e.printStackTrace();
+			}
+			
+			
+		} else { //이미지 1개 이상 추가 > 기존 insert문 사용(null값은 DB 에러발생으로 처리 안됨!)
+			
+			for (String name : fileList) {
+				
+				try {
+					
+					sql = "insert into tblPhotozoneImg (photozone_img_seq, img, photozone_seq) values (seqtblphotozoneimg.nextVal, ?, ?)";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, name);
+					pstat.setString(2, photozone_seq);
+					
+					result += pstat.executeUpdate();
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.addPhotozoneImg");
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		return result;
+	}
+
+	public int editAttraction(AttractionDTO dto, String seq) {
+
+		try {
+
+			String sql = "update tblAttraction set name = ?, capacity = ?, restriction = ?, is_test = ? where attraction_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getCapacity());
+			pstat.setString(3, dto.getRestriction());
+			pstat.setString(4, dto.getIs_test());
+			pstat.setString(5, dto.getAttraction_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.editAttraction");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return 0;
+	}	
+		
 }

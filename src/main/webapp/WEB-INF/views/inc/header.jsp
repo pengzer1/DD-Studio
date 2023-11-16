@@ -104,9 +104,6 @@
 								<div class="nav-menu-name">추천</div>
 								<div class="sub-menu">
 									<div>
-										<a href="/ddstudio/test/preferencetest.do">취향 테스트</a>
-									</div>
-									<div>
 										<a href="/ddstudio/test/worldcup.do">DD 월드컵</a>
 									</div>
 									<div>
@@ -130,7 +127,7 @@
 							</a>
 						</div>
 						<div class="nav-item nav-link index-navi">
-							<a href="/ddstudio/guide/service.do" class="nav-item nav-link index-navi">
+							<a href="/ddstudio/guide/guide.do" class="nav-item nav-link index-navi">
 								<div class="material-symbols-outlined nav-icon">notification_important</div>
 								<div class="nav-menu-name">가이드</div>
 								<div class="sub-menu">
@@ -209,7 +206,7 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty email}">
-					<div class="header-login">
+					<div class="header-login" style="right: 3%;">
 						<a href="/ddstudio/user/logout.do">로그아웃</a>
 						<c:if test="${lv==1}">
 							<a href="/ddstudio/member/mypage/info.do">마이페이지</a>
@@ -220,7 +217,7 @@
 						</c:if>
 					</div>
 					<div>
-						<span style="font-size: 15px; color: #CCC; margin-right: 10px;">${name}(${email})</span>
+						<span style="font-size: 15px; color: #CCC; margin-right: 60px;">${name}님 환영합니다!</span>
 					</div>
 				</c:if>
 			</nav>

@@ -30,11 +30,19 @@ public class ShopDAO {
 
     }
 
-	public ArrayList<RestaurantDTO> restaurantList() {
+	public ArrayList<RestaurantDTO> restaurantList(String close) {
 		
 		try {
 			
-			String sql = "select * from vwRestaurant where location_seq != 0";
+			String sql = "";
+			
+			if (close.equals("")) {
+				sql = "select * from vwRestaurant where location_seq != 0";
+			} else if (close.equalsIgnoreCase("open")) {
+				sql = "select * from vwRestaurant where location_seq != 0 and restaurant_seq not in (select restaurant_seq from tblRestaurantClose  where TO_CHAR(sysdate,'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD'))";
+			} else if (close.equalsIgnoreCase("close")) {
+				sql = "select * from vwRestaurant where location_seq != 0 and restaurant_seq in (select restaurant_seq from tblRestaurantClose  where TO_CHAR(sysdate,'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD'))";
+			}
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -69,11 +77,18 @@ public class ShopDAO {
 		return null;
 	}
 
-	public ArrayList<GiftShopDTO> giftShopList() {
+	public ArrayList<GiftShopDTO> giftShopList(String close) {
 		
 try {
+			String sql = "";
 			
-			String sql = "select * from vwShop where location_seq != 0";
+			if (close.equals("")) {
+				sql = "select * from vwShop where location_seq != 0";
+			} else if (close.equalsIgnoreCase("open")) {
+				sql = "select * from vwShop where location_seq != 0 and shop_seq not in (select shop_seq from tblShopClose  where TO_CHAR(sysdate,'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD'))";
+			} else if (close.equalsIgnoreCase("close")) {
+				sql = "select * from vwShop where location_seq != 0 and shop_seq in (select shop_seq from tblShopClose  where TO_CHAR(sysdate,'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD'))";
+			}
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -283,7 +298,7 @@ try {
 		
 		try {
 			
-			String sql = "select *  from tblitem where item_seq = ?";
+			String sql = "select i.*, (select img from tblitemImg where item_seq = i.item_seq and rownum = 1) as img  from tblitem i where item_seq = ?";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
@@ -295,6 +310,7 @@ try {
 				ItemDTO dto = new ItemDTO();
 				
 				dto.setItem_seq(rs.getString("item_seq"));
+				dto.setImg(rs.getString("img"));
 				dto.setName(rs.getString("name"));
 				dto.setInfo(rs.getString("info"));
 				dto.setPrice(rs.getInt("price"));
@@ -517,7 +533,7 @@ try {
 
 		try {
 			
-			String sql = "select * from tblcategory order by category_seq asc";
+			String sql = "select * from tblcategory where name != '0' order by category_seq asc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
@@ -754,7 +770,7 @@ try {
 	}
 
 	public int addShopImg(ArrayList<String> fileList, String shop_seq) {
-int result = 0;
+		int result = 0;
 		
 		for (String name : fileList) {
 			
@@ -765,6 +781,8 @@ int result = 0;
 				pstat = conn.prepareStatement(sql);
 				pstat.setString(1, name);
 				pstat.setString(2, shop_seq);
+				
+				System.out.println();
 				
 				result += pstat.executeUpdate();
 

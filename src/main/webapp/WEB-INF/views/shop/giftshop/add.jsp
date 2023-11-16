@@ -105,7 +105,19 @@ select option:checked {
 						<tr>
 							<th class="required">이미지</th>
 							<td>
-								<input type="file" name="images" id="images" multiple>
+								<input type="file" name="images1" id="images">
+							</td>
+						</tr>
+						<tr>
+							<th> </th>
+							<td>
+								<input type="file" name="images2" id="images">
+							</td>
+						</tr>
+						<tr>
+							<th> </th>
+							<td>
+								<input type="file" name="images3" id="images">
 							</td>
 						</tr>
 						<tr>
@@ -130,6 +142,9 @@ select option:checked {
 	</main>
 
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
+	
+	<script>
+	</script>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
