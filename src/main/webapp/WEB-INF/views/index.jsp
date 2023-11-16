@@ -17,7 +17,7 @@
 	.header-login {
 		position: absolute;
 		top: -15%;
-		right: 5%;
+		right: 2%;
 	}
 	
 	.header-login a {
@@ -26,6 +26,7 @@
 	.carousel-item active{
 		padding-top:150px;
 	}
+	
 </style>
 </head>
 <body>
