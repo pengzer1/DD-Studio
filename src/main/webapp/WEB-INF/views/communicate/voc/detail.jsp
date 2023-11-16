@@ -8,7 +8,7 @@
 		<style>
 			#voc-detail {
 				text-align: center;
-				margin-top: 150px;
+				margin-top: 180px;
 			}
 			#date {
 				margin-top: 30px;

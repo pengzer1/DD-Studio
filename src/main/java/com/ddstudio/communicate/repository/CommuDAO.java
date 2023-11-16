@@ -12,6 +12,8 @@ import com.ddstudio.communicate.model.FAQDTO;
 import com.ddstudio.communicate.model.InquiryDTO;
 import com.ddstudio.communicate.model.LostPropertyDTO;
 import com.ddstudio.communicate.model.NoticeDTO;
+import com.ddstudio.communicate.model.ReviewDTO;
+import com.ddstudio.communicate.model.ReviewImgDTO;
 import com.ddstudio.communicate.model.VOCDTO;
 
 public class CommuDAO {
@@ -66,7 +68,7 @@ public class CommuDAO {
 				
 			}
 
-			String sql = String.format("select * from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc) n %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
+			String sql = String.format("select * from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc, notice_seq desc) n %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
 			
 			stat = conn.createStatement();
 			
@@ -111,7 +113,7 @@ public class CommuDAO {
 				
 				String condition = String.format("where %s like '%%%s%%'", map.get("category"), map.get("word"));
 				
-				sql = String.format("select count(*) as cnt from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc) n %s)", condition);
+				sql = String.format("select count(*) as cnt from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc, notice_seq desc) n %s)", condition);
 				
 			} else {
 				
@@ -297,7 +299,7 @@ public class CommuDAO {
 				
 			}
 
-			String sql = String.format("select * from (select i.*, rownum as rnum from (select i.*, name, email from tblInquiry i inner join tblUser u on i.user_seq = u.user_seq order by regdate desc) i %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
+			String sql = String.format("select * from (select i.*, rownum as rnum from (select i.*, name, email from tblInquiry i inner join tblUser u on i.user_seq = u.user_seq order by regdate desc, inquiry_seq desc) i %s) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
 			
 			stat = conn.createStatement();
 			
@@ -346,7 +348,7 @@ public class CommuDAO {
 				
 				String condition = String.format("where %s like '%%%s%%'", map.get("category"), map.get("word"));
 					
-				sql = String.format("select count(*) as cnt from (select i.*, rownum as rnum from (select i.*, name, email from tblInquiry i inner join tblUser u on i.user_seq = u.user_seq order by regdate desc) i %s)", condition);
+				sql = String.format("select count(*) as cnt from (select i.*, rownum as rnum from (select i.*, name, email from tblInquiry i inner join tblUser u on i.user_seq = u.user_seq order by regdate desc, inquiry_seq desc) i %s)", condition);
 
 			} else {
 				
@@ -1202,6 +1204,249 @@ public class CommuDAO {
 		try {
 
 			String sql = "delete from tblFAQ where faq_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return 0;
+		
+	}
+	
+	/* Review */
+
+	public ArrayList<ReviewDTO> getReviewList(HashMap<String, String> map) {
+
+		try {
+			
+			String condition = "";
+			
+			if (map.get("sort").equals("최신순")) {
+
+				condition = "order by regdate desc, review_seq desc";
+
+			} else if (map.get("sort").equals("조회순")) {
+				
+				condition = "order by readcount desc, review_seq desc";
+				
+			}
+
+			String sql = String.format("select * from (select r.*, rownum as rnum from (select r.*, visit_date, (select img from tblReviewImg i where r.review_seq = i.review_seq and rownum = 1) as img from tblReview r inner join tblUserBook ub on r.user_book_seq = ub.user_book_seq inner join tblTicketBook tb on ub.ticket_book_seq = tb.ticket_book_seq %s) r) where rnum between %s and %s", condition, map.get("startIndex"), map.get("endIndex"));
+			
+			stat = conn.createStatement();
+			
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();
+			
+			while (rs.next()) {
+				
+				ReviewDTO dto = new ReviewDTO();
+				
+				dto.setReview_seq(rs.getString("review_seq"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setReadcount(rs.getString("readcount"));
+				dto.setUser_book_seq(rs.getString("user_book_seq"));
+				dto.setVisit_date(rs.getString("visit_date"));
+				dto.setImg(rs.getString("img"));
+				
+				list.add(dto);
+				
+			}	
+			
+			return list;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+		
+	}
+
+	public int getTotalReviews(HashMap<String, String> map) {
+
+		try {
+			
+			String sql = "select count(*) as cnt from tblReview";
+
+			stat = conn.createStatement();
+
+			rs = stat.executeQuery(sql);
+
+			if (rs.next()) {
+
+				return rs.getInt("cnt");
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return 0;
+		
+	}
+	
+	public ReviewDTO getReview(String seq) {
+
+		try {
+			
+			String sql = "select * from (select r.*, rownum as rnum from (select r.*, visit_date from tblReview r inner join tblUserBook ub on r.user_book_seq = ub.user_book_seq inner join tblTicketBook tb on ub.ticket_book_seq = tb.ticket_book_seq) r) where review_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				
+				ReviewDTO dto = new ReviewDTO();
+				
+				dto.setReview_seq(rs.getString("review_seq"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setReadcount(rs.getString("readcount"));
+				dto.setUser_book_seq(rs.getString("user_book_seq"));
+				dto.setVisit_date(rs.getString("visit_date"));
+				
+				return dto;
+				
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+		
+	}
+	
+	public ArrayList<ReviewImgDTO> getReviewImgList(String seq) {
+
+		try {
+			
+			String sql = "select * from tblReviewImg where review_seq = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<ReviewImgDTO> list = new ArrayList<ReviewImgDTO>();
+			
+			while (rs.next()) {
+				
+				ReviewImgDTO dto = new ReviewImgDTO();
+				
+				dto.setReview_img_seq(rs.getString("review_img_seq"));
+				dto.setImg(rs.getString("img"));
+				dto.setReview_seq(rs.getString("review_seq"));
+				
+				list.add(dto);
+				
+			}
+
+			return list;
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			
+		}
+
+		return null;
+
+	}
+
+	public void updateReadcount(String seq) {
+
+		try {
+
+			String sql = "update tblReview set readcount = readcount + 1 where review_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, seq);
+			
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+	}
+
+	public int editReview(ReviewDTO dto) {
+
+		try {
+
+			String sql = "update tblReview set subject = ?, content = ? where review_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, dto.getSubject());
+			pstat.setString(2, dto.getContent());
+			pstat.setString(3, dto.getReview_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return 0;
+		
+	}
+
+	public void deleteReviewImgList(String seq) {
+
+		try {
+
+			String sql = "delete from tblReviewImg where review_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+
+			pstat.setString(1, seq);
+
+			pstat.executeUpdate();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+	}
+
+	public int deleteReview(String seq) {
+
+		try {
+
+			String sql = "delete from tblReview where review_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 

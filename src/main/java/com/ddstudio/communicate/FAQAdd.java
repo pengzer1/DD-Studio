@@ -2,6 +2,7 @@ package com.ddstudio.communicate;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,7 +47,7 @@ public class FAQAdd extends HttpServlet {
 			
 			if (result == 1) {
 				
-				resp.sendRedirect("/ddstudio/communicate/faq.do");
+				resp.sendRedirect("/ddstudio/communicate/faq.do?type=" + URLEncoder.encode("이용정보", "UTF-8"));
 				
 			}
 			
