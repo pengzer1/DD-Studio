@@ -1,6 +1,7 @@
 package com.ddstudio.activity;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +35,57 @@ public class FestivalDel extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		//int result = dao.delFestival(seq);
+		int result = dao.delFestival(seq);
+		
+		if (result == 1) {
+			
+			result = dao.changeFestivalLocation(seq);
+			
+			if (result == 1) {
+				
+				result = dao.delFestivalImg(seq);
+				
+				if (result > 0) {
+					
+					result = dao.delFestivalHashtag(seq);
+					
+					if (result > 0) {
+						
+						PrintWriter writer = resp.getWriter();
+						writer.print("<script>alert('Successfully deleted!'); location.href='/ddstudio/activity/festival.do';</script>");
+						writer.close();
+						
+					} else {
+						
+						PrintWriter writer = resp.getWriter();
+						writer.print("<script>alert('Del FestivalHashtag failed'); history.back();</script>");
+						writer.close();
+						
+					}
+					
+				} else {
+					
+					PrintWriter writer = resp.getWriter();
+					writer.print("<script>alert('Del FestivalImg failed'); history.back();</script>");
+					writer.close();
+					
+				}
+				
+			} else {
+				
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('Change FestivalLocation failed'); history.back();</script>");
+				writer.close();
+				
+			}
+			
+		} else {
+			
+			PrintWriter writer = resp.getWriter();
+			writer.print("<script>alert('delFestival failed'); history.back();</script>");
+			writer.close();
+			
+		}
 	
 	
 	

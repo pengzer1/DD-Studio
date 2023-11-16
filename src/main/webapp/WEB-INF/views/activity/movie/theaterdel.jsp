@@ -61,7 +61,7 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/festival/del.jsp -->
+	<!-- /ddstudio/activity/movie/theaterdel.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
@@ -70,25 +70,25 @@
 	<main id="attraction-del">
 	
 		<div>
-			<h2>페스티벌 삭제하기</h2>
+			<h2>영화관 삭제하기</h2>
 		</div>
 		
 		<hr id="del-line"/>
 		
 		<div id="sub-title">
 			<p class="--bs-red"><i class="fa-solid fa-triangle-exclamation"></i>주의사항<i class="fa-solid fa-triangle-exclamation"></i></p>
-					<p>하단의 삭제버튼을 누르는 즉시 페스티벌은 삭제 처리 되며, 하기 내용의 업무가 더이상 불가능하게됩니다.</p>
+					<p>하단의 삭제버튼을 누르는 즉시 영화관은 삭제 처리 되며, 하기 내용의 업무가 더이상 불가능하게됩니다.</p>
 				<div class="del-box">
-					<!-- <p>1. 위치/테마 정보 조회에서 해당 어트랙션 조회가 불가합니다.</p> -->
-					<p>1. 해시태그 조회에서 해당 페스티벌 조회가 불가합니다.</p>
+					<p>1. 위치 정보 조회에서 해당 영화관 조회가 불가합니다.</p>
+					<!-- <p>2. 해시태그 조회에서 해당 영화 조회가 불가합니다.</p> -->
 				</div>
-			<p>정말로 선택하신 페스티벌을 삭제하시겠습니까?</p>
+			<p>정말로 선택하신 영화관을 삭제하시겠습니까?</p>
 		</div>
 		
 		<div id="del-content">
-			<form method="POST" action="/ddstudio/activity/festivaldel.do">
+			<form method="POST" action="/ddstudio/activity/theaterdel.do">
 				<div id="btn">
-					<button type="button" onclick="location.href= '/ddstudio/activity/festivaldetail.do?seq=' + ${seq};"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
+					<button type="button" onclick="location.href= '/ddstudio/activity/movie.do';"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
 					<button><i class="fa-solid fa-trash"></i>삭제</button>
 				</div>
 				<input type="hidden" name="seq" value="${seq}" />
