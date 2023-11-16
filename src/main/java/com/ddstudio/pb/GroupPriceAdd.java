@@ -51,7 +51,7 @@ public class GroupPriceAdd extends HttpServlet {
 
         dto.setTicket_type(ticketType);
         dto.setAge(age);
-        dto.setPrice(Integer.parseInt(price));
+        dto.setPrice((price));
 
 
         /*dto.setSubject(subject);

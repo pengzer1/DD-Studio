@@ -25,12 +25,16 @@ public class Benefit extends HttpServlet {
 
         ArrayList<BenefitDTO> list = dao.list();
 
+
+
+
+
         req.setAttribute("list", list);
 
         
 
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pb/benefit/detail.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pb/benefit/list.jsp");
         dispatcher.forward(req, resp);
 
 

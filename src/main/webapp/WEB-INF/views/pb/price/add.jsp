@@ -26,6 +26,14 @@
             text-align: right;
             padding-right: 10px;
         }
+
+        .vertical tr > td {
+            width: 400px;
+        }
+        .vertical tr > td > input{
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +52,13 @@
         <table class="vertical">
             <tr>
                 <th>종류</th>
-                <td><input type="text" name="ticketType" required></td>
+                <td>
+                    <select name="ticketType" required>
+                        <option value="1Day">1Day</option>
+                        <option value="After4">After4</option>
+                    </select>
+
+                </td>
             </tr>
             <tr>
                 <th>구분</th>
@@ -62,11 +76,13 @@
 
     </form>
 
+    </div>
 </main>
 <%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 <!-- Footer -->
 
 <script>
+
 
 </script>
 </body>
