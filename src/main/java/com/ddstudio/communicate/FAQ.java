@@ -84,6 +84,8 @@ public class FAQ extends HttpServlet {
 			answer = answer.replace("<", "&lt;");
 			answer = answer.replace(">", "&gt;");
 			
+			answer = answer.replace("\r\n", "<br>");
+			
 			dto.setAnswer(answer);
 			
 		}

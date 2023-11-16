@@ -127,7 +127,7 @@
             <div class="munti-content-container">
                 <c:forEach items="${list}" var="dto">
                     <div class="item" data-category="${dto.type}" onclick="location.href= '/ddstudio/pb/benefitdetail.do?seq=' + ${dto.benefit_seq};">
-                        <div style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+                        <div style="background-image: url('/ddstudio/asset/image/benefit/${dto.img}');"></div>
                         <div class="item-title">${dto.name}</div>
                         <div>${dto.start_date}~${dto.end_date}</div>
                     </div>
