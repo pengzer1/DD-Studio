@@ -19,6 +19,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	color: white;
 	background-color: #007bff;
 	border-radius: 8px;
 	margin: 10px;
@@ -29,7 +30,6 @@
 	cursor: pointer;
 	font-size: 40px;
 	font-weight: 600;
-	color: #333;
 }
 
 .item:hover {
