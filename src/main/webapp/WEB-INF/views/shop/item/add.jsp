@@ -38,6 +38,27 @@ table {
     background-color: rgba(43, 114, 201, 0.3);
     border: 1px solid #aaaaaa;
 }
+
+.sub-title > p {
+	font-size: 20px;
+    font-weight: 800;
+}
+
+.button {
+	background-color: rgba(200, 229, 229, 0.6);
+}
+
+table {
+	border-left: 2px solid #d1d1d1;
+    border-right: 2px solid #d1d1d1;
+    border-radius: 20px;
+    border-collapse: separate;
+    background: #eeeef0;
+}
+
+table th {
+	padding: 0 10px;
+}
 </style>
 </head>
 <body>

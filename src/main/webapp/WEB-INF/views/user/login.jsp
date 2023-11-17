@@ -49,8 +49,14 @@ h2 small {
 	margin-top: 0;
 }
 
+.button, .round-button {
+	background-color: rgba(200, 229, 229, 0.6);
+}
+
 .sub-title > p {
-	margin-bottom: 0;
+	margin-bottom: 0;    
+	font-size: 20px;
+    font-weight: 800;
 }
 
 #title {

@@ -17,8 +17,14 @@
     margin: auto;
 }
 
+.sub-title {
+	font-weight: 800;
+    font-size: 24px;
+    margin-top: 30px;
+}
+
 #content .wide-content-container {
-    margin-top: -80px;
+    margin-top: -140px;
 }
 
 .wide-item>div {
@@ -47,11 +53,38 @@
 .wide-item>div:nth-child(2) {
     justify-content: end;
     margin-top: 10px;
+    height: 150px;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.wide-item img {
+	height: 270px;
 }
 
 #title {
 	margin-top: 123px;
 	background-image: url('/ddstudio/asset/image/background-7.jpg');
+}
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: black;
+	opacity: 0.45; /* 투명도 조절 */
+	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+}
+
+#title h2 {
+	color: #EEE;
+	z-index: 2;
+}
+
+#title p {
+	z-index: 2;
 }
 </style>
 </head>
@@ -62,6 +95,7 @@
 	<main id="main">
 
 		<div id="title" title="작가 senivpetro 출처 Freepik">
+		<div id="overlay-div"></div>
 			<h2 id="mbtiTitle">ISTJ</h2>
 			<br>
 			<p>MBTI별 추천 결과</p>

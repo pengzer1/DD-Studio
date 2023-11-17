@@ -298,7 +298,14 @@ ul {
 		const m = new kakao.maps.Marker({
 			position : new kakao.maps.LatLng(lat, lng)
 		});
+		
+		const imageSrc = '/ddstudio/asset/image/marker/restaurant.png';
+		const imageSize = new kakao.maps.Size(40, 40);
+		const option = {};
+		
+		const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
+		m.setImage(markerImg);
 		m.setMap(map);
 	</script>
 </body>
