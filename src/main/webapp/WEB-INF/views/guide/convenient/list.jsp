@@ -90,22 +90,6 @@ button:hover {
 			</div>
 		</div>
 		
-		
-		<!-- <div id="content">			
-			<div class="munti-content-container">
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagadd.do';">해시태그 추가</button></div>
-				</div>
-				<div class="item">
-					<img src="/ddstudio/asset/image/토토로.png" alt="토토로 이미지" class="totoro-image">
-					<div><button type="button" onclick="location.href='/ddstudio/admin/hashtagdel.do';">해시태그 삭제</button></div>
-				</div>
-			</div>
-		</div> -->
-		
-		
-		
 	</main>
 	<%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
 
