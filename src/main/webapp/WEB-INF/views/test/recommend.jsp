@@ -56,6 +56,14 @@ button:hover {
    right: 50px;
 }
 
+.item>div:nth-child(1) {
+	background-color: transparent;
+}
+
+.item>div:nth-child(2) {
+	background-color: transparent;
+}
+
 .item img.totoro-image {
     height: 280px; /* 이미지 높이 조절 */
     transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */

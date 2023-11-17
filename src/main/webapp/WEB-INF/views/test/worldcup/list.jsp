@@ -50,6 +50,14 @@ button:hover {
    right: -50px;
 }
 
+.item>div:nth-child(1) {
+	background-color: transparent;
+}
+
+.item>div:nth-child(2) {
+	background-color: transparent;
+}
+
 #content .munti-content-container {
 	flex-wrap: nowrap;
 }
