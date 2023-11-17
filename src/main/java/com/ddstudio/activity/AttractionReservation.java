@@ -37,7 +37,7 @@ public class AttractionReservation extends HttpServlet {
 			
 			PrintWriter writer = resp.getWriter();
 			writer.print("<script>alert('로그인이 필요한 페이지입니다.로그인 화면으로 이동합니다.');location.href='/ddstudio/user/login.do';</script>");
-			//resp.sendRedirect("/ddstudio/user/login.do");
+			writer.close();
 			return;
 		}
 		

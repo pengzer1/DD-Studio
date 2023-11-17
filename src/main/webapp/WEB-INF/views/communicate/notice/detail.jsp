@@ -10,6 +10,11 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			
+			#notice-detail > h1 {
+				font-family: 'SUIT-Regular';
+			}
+			
 			#regdate {
 				margin-top: 30px;
 			}

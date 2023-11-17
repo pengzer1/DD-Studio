@@ -10,6 +10,11 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			
+			#review-detail > h1 {
+				font-family: 'SUIT-Regular';
+			}
+			
 			#date {
 				width: 80%;
 				padding: 10px 20px 20px;

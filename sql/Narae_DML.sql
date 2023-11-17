@@ -1,5 +1,5 @@
 --어트랙션(tblAttraction): 30개(위치번호: 1~30)
-/* 어트랙션 */
+/* 어트랙션 */--OK
 SELECT * FROM tblAttraction;
 
 INSERT INTO tblAttraction (attraction_seq, name, capacity, location_seq, time, restriction, is_test)
@@ -93,7 +93,7 @@ INSERT INTO tblAttraction (attraction_seq, name, capacity, location_seq, time, r
 VALUES (seqtblAttraction.NEXTVAL, '귀를 기울이면', 120, 30, '10:00 - 22:00', '제한 없음', 'N');
 
 --어트랙션 이미지(tblAttractionImg): 30개
-/* 어트랙션이미지 */
+/* 어트랙션이미지 */--OK
 select * from tblAttractionImg;
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
@@ -204,7 +204,7 @@ VALUES (seqtblAttractionImg.NEXTVAL, '이웃집 탐방기.jpeg', 29);
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '귀를 기울이면.jpeg', 30);
 
---포토존(tblPhotozone): 10개(위치번호: 36~45)
+--포토존(tblPhotozone): 10개(위치번호: 36~45)--OK
 SELECT * FROM tblPhotozone;
 
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
@@ -237,7 +237,7 @@ VALUES (seqtblPhotoZone.NEXTVAL, '코쿠리코 언덕', '10:00 - 22:00', '코쿠
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
 VALUES (seqtblPhotoZone.NEXTVAL, '마루 밑', '10:00 - 22:00', '마루 밑 아리에티가 있던 곳에서 아름다운 추억을 남겨보세요.', 45);
 
-/* 포토존이미지 */
+/* 포토존이미지 */--OK
 SELECT * FROM tblPhotozoneImg;
 
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
@@ -270,14 +270,13 @@ VALUES (seqtblPhotoZoneImg.NEXTVAL, '코쿠리코 언덕.jpg', 9);
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
 VALUES (seqtblPhotoZoneImg.NEXTVAL, '마루 밑 아리에티.png', 10);
 
-/* 페스티벌 */
+/* 페스티벌 */ --OK
 INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, location_seq) VALUES (seqtblFestival.NEXTVAL, '지브리 페스티벌', '11:00', '지브리의 모든 캐릭터들을 만나보세요!',TO_DATE('2023.10.01', 'YYYY-MM-DD'), TO_DATE('2024.10.31', 'YYYY-MM-DD'), 46);
 INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, location_seq) VALUES (seqtblFestival.NEXTVAL, '토토로의 밤 나들이', '20:00', '토토로와 함께하는 밤 나들이 시간!', TO_DATE('2023.10.01', 'YYYY-MM-DD'), TO_DATE('2024.10.31', 'YYYY-MM-DD'), 47);
 INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, location_seq) VALUES (seqtblFestival.NEXTVAL, '포뇨와 함께하는 바다 구경', '13:00', '포뇨와 함께 바닷속을 구경해봐요!', TO_DATE('2023.10.01', 'YYYY-MM-DD'), TO_DATE('2024.10.31', 'YYYY-MM-DD'), 48);
 
-/* 페스티벌이미지 */
+/* 페스티벌이미지 */ --OK
 SELECT * FROM tblFestivalImg;
-commit;
 
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
 VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample1.png', 1);
@@ -292,7 +291,7 @@ update tblFestivalImg set img = 'Ghibli-festival-sample1.png' where festival_seq
 update tblFestivalImg set img = 'Ghibli-festival-sample2.png' where festival_seq = 2;
 update tblFestivalImg set img = 'Ghibli-festival-sample3.png' where festival_seq = 3;
 
-/* 페스티벌/해시태그 */
+/* 페스티벌/해시태그 */ --OK
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
 VALUES (seqtblFestivalHashtag.NEXTVAL, 1, 1);
 
@@ -302,7 +301,7 @@ VALUES (seqtblFestivalHashtag.NEXTVAL, 2, 2);
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
 VALUES (seqtblFestivalHashtag.NEXTVAL, 3, 3);
 
---해시태그
+--해시태그--OK
 /* 해시태그 */
 SELECT * FROM tblHashtag;
 
@@ -349,7 +348,7 @@ INSERT INTO tblHashtag (hashtag_seq, name)
 VALUES (seqtblHashtag.nextVal, '동심');
 
 --어트랙션 해시태그
-/* 어트/해시태그 */
+/* 어트/해시태그 */--OK
 select * from tblattractionhashtag;
 
 INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)

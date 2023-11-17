@@ -13,8 +13,13 @@
 }
 
 body {
+	font-family: 'SUIT-Regular';
     overflow-y: scroll;
     background-color: #F8F8FF !important;
+}
+
+* {
+	font-family: 'SUIT-Regular';
 }
 
 #main > #title {
@@ -40,7 +45,7 @@ body {
 
 #title h2 {
     color: black;
-    /* font-family: 'JalnanGothic'; */
+    font-family: 'SUIT-Regular';
     font-size: calc(1.7rem + 1.5vw);
     letter-spacing: 2px;
     margin: 0;
@@ -425,4 +430,11 @@ h5, h6, .font-weight-medium {
 		background: var(- -primary);
 	}
 }
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+	}
 
