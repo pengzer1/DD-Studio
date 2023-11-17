@@ -12,7 +12,8 @@
 		padding-top: 150px;
 	}
 	#title {
-	    background-image: url('/ddstudio/asset/image/directions.png');
+   margin-top: 123px;
+   background-image: url('/ddstudio/asset/image/background-9.jpg');
 	}
 </style>
 </head>
