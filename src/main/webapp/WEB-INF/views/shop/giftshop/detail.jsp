@@ -53,27 +53,29 @@ ul {
 }
 
 .img {
-	width: 500px;
+	width: 600px;
 	height: 500px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	border: 1px solid #AAAAAA;
+	margin-left: 150px;
 }
 
 .infoArea {
-	border: 0;
-	padding: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	width: calc(100% - 615px);
-	margin-left: 40px;
+	margin: 0 40px;
 	word-wrap: break-word;
 	word-break: keep-all;
 	min-height: 512px;
 	height: auto;
 	float: right;
+	border-bottom: 1px solid #999;
+	border-top: 1px solid #999;
+	padding: 20px 10px 0 10px;
+	border-radius: 25px;
 }
 
 .infoArea li {
@@ -124,6 +126,7 @@ ul {
 	font-size: 18px;
 	color: #555555;
 	text-align: left;
+	font-weight: 800;
 }
 
 .infoArea li .txt2 {
@@ -189,92 +192,43 @@ ul {
 	text-align: center;
 }
 
-/* 임시 */
-/* Slideshow container */
-.slideshow-container {
-	width: 1000px;
-	height: 650px;
-	overflow: hideen;
-	position: relative;
-	margin: 0 auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-	display: none;
-	min-width: 1000px;
-	height: 650px;
-}
-
-.mySlides img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-	cursor: pointer;
+#overlay-div {
 	position: absolute;
-	top: 50%;
-	width: auto;
-	margin-top: -22px;
-	padding: 16px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
-	user-select: none;
-}
-
-/* 왼쪽/오른쪽 버튼 */
-.prev {
+	top: 0;
 	left: 0;
-	border-radius: 3px 0 0 3px;
+	width: 100%;
+	height: 400px;
+	background-color: black;
+	opacity: 0.65; /* 투명도 조절 */
+	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 }
 
-.next {
-	right: 0;
-	border-radius: 3px 0 0 3px;
+#title h2, #title p {
+	z-index: 2;
 }
 
-.prev:hover, .next:hover {
-	/* color: rgba(0,0,0,0.8); */
-	background-color: rgba(0, 0, 0, 0.8);
-	color: #FFF;
+#condition {
+	position: relative;
+	z-index: 2;
 }
 
-/* The dots/bullets/indicators */
-.dot {
-	cursor: pointer;
-	height: 15px;
-	width: 15px;
-	margin: 0 2px;
-	background-color: #bbb;
-	border-radius: 50%;
-	display: inline-block;
-	transition: background-color 0.6s ease;
+.btn {
+    background-color: #007bcc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
-/* Fading animation */
-.fade {
-	animation-name: fade;
-	animation-duration: 1.5s;
-}
-
-@
-keyframes fade {
-	from {opacity: .4
-}
-
-to {
-	opacity: 1
-}
-
-}
-.fade:not(.show) {
-	opacity: 1;
+.btn:hover {
+    background-color: #0056b3;
 }
 </style>
 </head>
@@ -284,6 +238,16 @@ to {
 
 
 	<main id="main">
+
+
+		<div id="title"
+			style="margin-top: 123px; background-image: url('/ddstudio/asset/image/background-5.jpg');">
+			<div id="overlay-div"></div>
+			<h2>${dto.name}</h2>
+			<br>
+			<p>${dto.info}</p>
+		</div>
+
 		<c:if test="${not empty lv && lv == 2}">
 			<div style="height: 50px">
 
@@ -313,48 +277,13 @@ to {
 			</div>
 		</c:if>
 
-		<div id="title"
-			style="margin-top: 123px; background-image: url('/ddstudio/asset/image/background-5.jpg');">
-			<h2>${dto.name}</h2>
-			<br>
-			<p>${dto.info}</p>
-		</div>
-
-
-		<%-- <!-- 어트랙션 이미지 슬라이더 -->
-		<!-- Slideshow container -->
-	    <div class="slideshow-container">
-	
-	    <!-- Full-width images with number and caption text -->
-	    <c:forEach items="${imgList}" var="dto">
-		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/${dto.img}">
-		    </div>
-	  	</c:forEach>
-  
-	    <!-- Next and previous buttons -->
-	    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-	    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-	    </div>
-	
-	    <br>
-	  
-	    <!-- The dots/circles -->
-	    <div style="text-align:center">
-	    <c:forEach items="${imgList}" var="dto" varStatus="status">
-		    <span class="dot" onclick="currentSlide(${status.count})"></span>
-	    </c:forEach>
-	    </div> --%>
-
-
-
 		<div id="content">
 			<div class="container">
 				<p class="sub-title" style="padding-top: 50px;">매장 정보</p>
 			</div>
 			<div class="detail">
 				<div class="img"
-					style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+					style="background-image: url('/ddstudio/asset/image/giftshop/${dto.img}');"></div>
 				<ul class="infoArea">
 					<li class="op2">
 						<div class="tableCell">
@@ -395,14 +324,10 @@ to {
 					<c:forEach items="${list}" var="dto">
 						<div class="item" onclick="detail(${dto.item_seq})">
 							<div
-								style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+								style="background-image: url('/ddstudio/asset/image/item/${dto.img}');"></div>
 							<div>
 								<p class="item-name">${dto.name}</p>
 								<p>${dto.price}원</p>
-								<p>
-									<button
-										onclick="location.href='/ddstudio/shop/item/detail.do?seq=${dto.item_seq}'">상세정보</button>
-								</p>
 							</div>
 						</div>
 					</c:forEach>
@@ -416,10 +341,12 @@ to {
 						<div id="map" style="width: 1125px; height: 380px;"></div>
 					</div>
 				</div>
-
-
 			</div>
 
+			<div class="container" style="margin-top: 50px;">
+				<button type="button" class="btn"
+					onclick="location.href='/ddstudio/shop/giftshop.do'">목록</button>
+			</div>
 
 		</div>
 	</main>
@@ -484,7 +411,7 @@ to {
     }
     
     function detail(seq) {
-		window.location.href = "/ddstudio/shop/item/detail.do?seq="+seq;
+		window.location.href = "/ddstudio/shop/item/detail.do?seq="+seq+"&shopSeq="+${seq};
 	}
 	</script>
 </body>

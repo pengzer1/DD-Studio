@@ -13,6 +13,13 @@ ul, ol, li {
 	list-style: none;
 }
 
+select {
+    vertical-align: middle;
+    border: 1px solid #999;
+    border-radius: 3px;
+    appearance: auto;
+}
+
 ul {
 	margin-block-start: 1em;
 	margin-block-end: 1em;
@@ -36,21 +43,24 @@ ul {
 }
 
 .img {
-	width: 500px;
-	height: 500px;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	width: 600px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 150px;
 }
 
 .infoArea {
-	border: 0;
+	border: 1px solid #bbb;
+	border-radius: 10px;
 	padding: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	width: calc(100% - 615px);
-	margin-left: 40px;
+	margin: 0 40px;
+	padding-top: 20px;
 	word-wrap: break-word;
 	word-break: keep-all;
 	min-height: 512px;
@@ -106,6 +116,12 @@ ul {
 	font-size: 18px;
 	color: #555555;
 	text-align: left;
+	font-weight: 800;
+}
+
+.infoArea li .txt1 span {
+	border-bottom: 3px solid #777;
+    padding: 0 10px 3px 0
 }
 
 .infoArea li .txt2 {
@@ -192,38 +208,52 @@ ul {
 			<form method="POST" action="/ddstudio/member/purchase/view.do">
 				<div class="detail">
 					<div class="img"
-						style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+						style="background-image: url('/ddstudio/asset/image/item/${dto.img}');"></div>
 					<ul class="infoArea">
 						<li>
 							<div class="tableCell">
-								<p class="txt1">상품명</p>
+								<p class="txt1"><span>상품명</span></p>
 								<p class="txt2">${dto.name}</p>
 							</div>
 						</li>
 						<li>
 							<div class="tableCell">
-								<p class="txt1">상품정보</p>
+								<p class="txt1"><span>상품정보</span></p>
 								<p class="txt2">${dto.info}</p>
 							</div>
 						</li>
 						<li>
 							<div class="tableCell">
-								<p class="txt1">가격</p>
+								<p class="txt1"><span>가격</span></p>
 								<p class="txt2">${dto.price} 원</p>
 							</div>
 						</li>
 						<li>
 							<div class="tableCell">
-								<p class="txt1">수량</p>
-								<p class="txt2"><input type="number" name="num" min="1" max="100" value="1" required></p>
+								<p class="txt1"><span>수량</span></p>
+								<p class="txt2"><select name="number" class="personnel">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+									</select> 개</p>
 							</div>
 						</li>
+						<c:if test="${not empty email && lv == 1}">
 						<li>
 							<div class="tableCell">
 								<button class="btn" type="button" id="cart">장바구니</button>
 								<button class="btn" type="submit">바로 구매</button>
 							</div>
 						</li>
+						</c:if>
+						<c:if test="${empty email}">
+							<div class="tableCell">
+								<button class="btn" type="button" onclick="location.href='/ddstudio/user/login.do';">로그인</button>
+							</div>
+						</c:if>
 					</ul>
 				</div>
 				<input type="hidden" name="item_seq" value="${dto.item_seq}">
@@ -231,6 +261,11 @@ ul {
 				<input type="hidden" name="price" value="${dto.price}">
 			</form>
 		</div>
+		
+		<div class="container" style="margin-top: 40px;">
+				<button type="button" class="btn"
+					onclick="location.href='/ddstudio/shop/giftshop/detail.do?seq=${shopSeq}'">돌아가기</button>
+			</div>
 
 	</main>
 
