@@ -24,7 +24,7 @@ public class BookUserDAO {
 
 		try {
 
-			String sql = "select * from vwBookUser where email = ? and regdate >= sysdate";
+			String sql = "select * from vwBookUser where email = ? and regdate >= to_char(sysdate, 'yyyy-mm-dd')";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, email);
