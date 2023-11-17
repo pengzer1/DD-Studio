@@ -41,7 +41,7 @@ public class AttractionDetail extends HttpServlet {
 		//5. 해당 어트랙션의 위치 가져오기
 		
 		//DB 접근
-	/*	ActDAO dao = new ActDAO();
+		ActDAO dao = new ActDAO();
 
 		//1. 해당 어트랙션의 태그 가져오기 > attractionHashtagDTO
 		ArrayList<AttractionHashtagDTO> hashtagList = dao.attractionHashtagList(seq);
@@ -78,6 +78,6 @@ public class AttractionDetail extends HttpServlet {
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/attraction/detail.jsp");
 		dispatcher.forward(req, resp);
-*/
+
 	}
 }

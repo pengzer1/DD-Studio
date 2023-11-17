@@ -67,7 +67,7 @@
 				width: 25%;
 			}
 			#lost-property-list th:nth-child(5) {
-				width: 5%;
+				width: 7%;
 			}
 			#lost-property-list th:nth-child(6) {
 				width: 30%;
@@ -84,7 +84,7 @@
 				color: #333;
 			}
 			#keep {
-				background-color: #EEFAF0;
+				background-color: #D5F1EA;
 			}
 			.open-modal-btn {
 				width: 50px;

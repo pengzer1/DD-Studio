@@ -26,7 +26,7 @@ import com.ddstudio.shop.model.RestaurantDTO;
 
 
 public class ActDAO {
-/*
+
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
@@ -310,7 +310,7 @@ public class ActDAO {
 
 	public int delAttraction(String seq) {
 
-		*//* 어트랙션 삭제 *//*
+		/* 어트랙션 삭제 */
 		//1. 기존 어트랙션명 + (운영종료) 텍스트 추가
 		changeAttractionName(seq);
 		
@@ -712,7 +712,7 @@ public class ActDAO {
 		
 		
 		return null;
-	}*/
+	}
 
 	public HashMap<String, String> checkReservation(String seq, String time) {
 
@@ -1047,11 +1047,11 @@ return 0;
 			
 			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
 			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
+			/*
+			 * pstat = conn.prepareStatement(sql); pstat.setString(1, dto.getLat());
+			 * pstat.setString(2, dto.getLng()); pstat.setString(3, dto.getLat());
+			 * pstat.setString(4, dto.getLng());
+			 */
 			
 			return pstat.executeUpdate();
 			
