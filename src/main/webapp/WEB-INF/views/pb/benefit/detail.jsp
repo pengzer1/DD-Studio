@@ -62,8 +62,8 @@
 
 
 <main id="main">
-    <div id="title" style="margin-top:123px;">
-        <h2>${name}</h2>
+    <div id="title" style="margin-top:123px; background-image: url('/ddstudio/asset/image/할로윈.png');">
+        <h2 style="color: white;">${name}</h2>
     </div>
 
     <c:if test="${not empty email && lv == 2}">
@@ -81,7 +81,7 @@
 
 
     <div id="sub-title">
-        <h3>1Day(개인)</h3>
+        <h3 style="text-align: center;">1Day(개인)</h3>
     </div>
 
     <div id="content">
@@ -159,7 +159,7 @@
 
 
             <div id="sub-title2" class="sub-title">
-                <h3>1Day(단체)</h3>
+                <h3 style="text-align: center;">1Day(단체)</h3>
             </div>
             <div class="wide-content-container">
 
@@ -196,7 +196,7 @@
 
 
             <div id="sub-title3" class="sub-title">
-                <h3>After4(단체)</h3>
+                <h3 style="text-align: center;">After4(단체)</h3>
             </div>
 
             <div id="content2">
