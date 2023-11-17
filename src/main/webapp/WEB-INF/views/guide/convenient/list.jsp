@@ -15,6 +15,10 @@
    margin-top: 123px;
    background-image: url('/ddstudio/asset/image/background-9.jpg');
 	}
+	#choose>img{
+		width:500px;
+		height:250px;
+	}
 </style>
 </head>
 <body>
@@ -31,7 +35,9 @@
 			
 			<div id="choose">
 				<button type="button" id="conveni" onclick="location.href='/ddstudio/guide/convenientdetail.do';">편의시설</button>
-				<button type="button" id="shuttle" onclick="location.href='/ddstudio/guide/bus.do';">셔틀버스</button>
+			</div>
+			<div>
+				<img src="/ddstudio/asset/image/고양이버스.png"><button type="button" id="shuttle" onclick="location.href='/ddstudio/guide/bus.do';">셔틀버스</button>
 			</div>
 			
 			
