@@ -57,14 +57,12 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="margin-bottom: 80px; background-image: url('/ddstudio/asset/image/chihiro023.jpg');" >
 			<h2>회원탈퇴</h2>
 			<br>
-			<p></p>
 		</div>
 
 		<div id="content">
-
 
 			<div class="container">
 				<img class="totoro-image" src="/ddstudio/asset/image/토토로.png"

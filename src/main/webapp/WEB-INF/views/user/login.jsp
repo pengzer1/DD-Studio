@@ -134,6 +134,11 @@ h2 small {
 					<button type="submit" class="login button">황주원</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="kim@kakao.com">
+					<input type="hidden" name="pw" value="kim1111!">
+					<button type="submit" class="login button">김형우</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
 					<input type="hidden" name="email" value="cha@daum.net">
 					<input type="hidden" name="pw" value="cha1111!">
 					<button type="submit" class="login button">차민재</button>

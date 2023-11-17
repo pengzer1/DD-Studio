@@ -76,6 +76,10 @@ tbody tr:hover {
 	color: #686A6F;
 	text-align:center;
 }
+
+#title h2 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -85,11 +89,9 @@ tbody tr:hover {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro014.jpg');">
 			<h2>문의 내역</h2>
 		</div>
-
-		<hr>
 
 		<div class="container">
 			<h2 class="name">문의 내역</h2>
