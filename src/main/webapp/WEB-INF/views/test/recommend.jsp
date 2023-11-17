@@ -20,6 +20,7 @@ button {
     display: inline-block;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+	transition: all 0.3s ease-in-out;
 }
 
 button:hover {
@@ -40,6 +41,7 @@ button:hover {
    min-width: 330px !important;
    aspect-ratio: 1.1;
    margin: 0 10px;
+   transition: all 0.3s ease-in-out;
 }
 
 #content .munti-content-container {
