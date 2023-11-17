@@ -9,7 +9,21 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
+#auto-login {
+	display: flex;
+	justify-content: space-between;
+}
+
+#auto-login .button {
+	width: 100px;
+}
+
+h2 small {
+	font-size: 80%;
+}
+
 .button-container {
+	margin-top: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -19,12 +33,82 @@
 	margin-left: 0;
 	height: 40px;
 	font-size: 16px;
-	background-color: transparent;
 	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.button-container {
+/* 
+.button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+ 
+.button:hover {
+    background: #0056b3;
+    color: #fff;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+ */
+ 
+.round-button {
+    background: #007bff;
+    background: linear-gradient(to right, #6bC2ff, #007bff);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.round-button:hover {
+    /* background: #0056b3; */
+    color: #fff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#main {
+	margin-top: 100px;
+}
+
+#main > .sub-title {
+	border-top: 0;
 	margin-top: 0;
+}
+
+.sub-title > p {
+	margin-bottom: 0;    
+	font-size: 20px;
+    font-weight: 800;
+}
+
+#title {
+	margin-top: 123px;
+	background-image: url('/ddstudio/asset/image/background-8.jpg');
+}
+
+/*
+#title {
+    background-image: url('/ddstudio/asset/image/background-4.jpg');
+}
+*/
+
+#title > h2 {
+	color: white;
 }
 </style>
 </head>

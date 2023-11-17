@@ -209,7 +209,7 @@ VALUES (seqtblMBTI.NEXTVAL, '놀이기구 제일 잘 타는(줄 아는) 사람',
 INSERT INTO tblMBTI (mbti_seq, result, mbti, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', '4', '16');
 
-
+select * from tblUser order by USER_SEQ;
 select * from tblCourse order by course_seq;
 select * from tblMBTI order by mbti_seq;
 
@@ -217,6 +217,9 @@ select * from tblAttraction;
 select * from TBLATTRACTIONIMG order by ATTRACTION_IMG_SEQ;
 
 commit;
+
+select * from TBLREVIEWIMG;
+insert into TBLREVIEWIMG (review_img_seq, img, review_seq) values (2, 'reviewimg2.png', 2)
 
 select * from tblAttraction;
 
