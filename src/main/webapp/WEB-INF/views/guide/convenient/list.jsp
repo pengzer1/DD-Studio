@@ -16,8 +16,8 @@
    background-image: url('/ddstudio/asset/image/background-9.jpg');
 	}
 	#choose>img{
-		width:500px;
-		height:250px;
+		width:450px;
+		height:200px;
 	}
 </style>
 </head>
