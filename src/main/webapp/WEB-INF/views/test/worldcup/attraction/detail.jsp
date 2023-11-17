@@ -42,6 +42,10 @@ body {
 	background-color: transparent;
 }
 
+.item>div:nth-child(2) {
+	background-color: transparent;
+}
+
 .item div.img-container {
 	width: 100%;
 	height: 100%;

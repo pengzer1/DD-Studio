@@ -19,16 +19,17 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #007bcc;
+	color: white;
+	background-color: #007bff;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 20px;
+	border: 0px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease-in-out;
 	cursor: pointer;
 	font-size: 40px;
 	font-weight: 600;
-	color: #333;
 }
 
 .item:hover {

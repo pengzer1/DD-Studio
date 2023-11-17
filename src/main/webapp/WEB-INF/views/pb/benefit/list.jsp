@@ -406,12 +406,12 @@
 
 <main id="main">
 
-    <div id="title" style="margin-top: 123px;">
-        <h2>코스 이미지</h2>
+    <div id="title" style="margin-top: 123px; background-image: url('/ddstudio/asset/image/chihiro015.jpg');">
+        <h2>혜택</h2>
     </div>
 
     <div class="form-group">
-        <ul class="tab tab_red" style="width: 300px;">
+        <ul class="tab tab_red">
             <li id="sel00" class="two"><a href="#tab00" id="selTab00">전체</a></li>
             <li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
             <li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
