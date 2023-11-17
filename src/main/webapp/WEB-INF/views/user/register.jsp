@@ -29,6 +29,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    background-color: white;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }

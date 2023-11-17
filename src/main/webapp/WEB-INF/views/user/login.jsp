@@ -31,11 +31,10 @@ h2 small {
 .button {
 	width: 183px;
 	margin-left: 0;
-	height: 40px;
 	font-size: 16px;
-	background-color: transparent;
 	border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
