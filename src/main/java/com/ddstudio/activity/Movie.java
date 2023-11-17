@@ -22,7 +22,6 @@ public class Movie extends HttpServlet {
 		//Movie.java
 		//- 조건 검색: 날짜별 선택 > 일단 버려
 		
-		req.removeAttribute("date");
 		String date = req.getParameter("date");
 		
 		if (date == null || date.equalsIgnoreCase("")) {
@@ -34,9 +33,10 @@ public class Movie extends HttpServlet {
 		
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<MovieDTO> list = dao.movieList();
+//		ArrayList<MovieDTO> list = dao.movieList(date);
 		
-		req.setAttribute("list", list);
+//		req.setAttribute("list", list);
+//		req.setAttribute("date", date);
 		
 		
 		

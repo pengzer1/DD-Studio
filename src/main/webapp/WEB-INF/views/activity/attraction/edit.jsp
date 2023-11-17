@@ -97,6 +97,13 @@
 		border-radius: 7px;
 		appearance: auto;
 	}
+	
+	table {
+	   	border-left: 2px solid #d1d1d1;
+	    border-right: 2px solid #d1d1d1;
+	    border-radius: 20px;
+	    border-collapse: separate;
+	}
     
 </style>
 </head>

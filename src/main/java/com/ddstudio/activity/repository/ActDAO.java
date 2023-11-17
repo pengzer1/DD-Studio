@@ -2109,6 +2109,60 @@ return 0;
 		return 0;
 	}
 
+//	public ArrayList<MovieDTO> movieList(String date) {
+//
+//		try {
+//		
+//			String sql = "";
+//		
+//			//view에 start_date, end_date to_char 처리 해놓음!
+//			if (date.equalsIgnoreCase("")) {
+//				sql = "select * from vwFestival where to_char(sysdate, 'yyyy-mm-dd') <= end_date order by movie_seq";
+//			} else {
+//				sql = "select * from vwFestival where ? between start_date and end_date order by movie_seq";
+//			}
+//			
+//			if (date.equalsIgnoreCase("") ) {
+//				
+//				stat = conn.createStatement();
+//				rs = stat.executeQuery(sql);
+//			} else {
+//				
+//				pstat = conn.prepareStatement(sql);
+//				pstat.setString(1, date);
+//				
+//				rs = pstat.executeQuery();
+//			}
+//		
+//			ArrayList<FestivalDTO> list = new ArrayList<FestivalDTO>();
+//			while (rs.next()) {
+//				
+//				FestivalDTO dto = new FestivalDTO();
+//				
+//				dto.setFestival_seq(rs.getString("festival_seq"));
+//				dto.setName(rs.getString("name"));
+//				dto.setTime(rs.getString("time"));
+//				dto.setInfo(rs.getString("info"));
+//				dto.setStart_date(rs.getString("start_date"));
+//				dto.setEnd_date(rs.getString("end_date"));
+//				dto.setLocation_seq(rs.getString("location_seq"));
+//				dto.setImg(rs.getString("img"));
+//				
+//				list.add(dto);
+//				
+//			}
+//			
+//			return list;
+//		
+//	} catch (Exception e) {
+//		System.out.println("at ActDAO.festivalList");
+//		e.printStackTrace();
+//	}
+//
+//		
+//		return null;
+//	}
+
 
 
 		
