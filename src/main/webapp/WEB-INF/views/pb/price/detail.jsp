@@ -43,7 +43,7 @@
 	<-- Header -->
 
 	<main id="main">
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro015.jpg');">
 			<h2>티켓 요금</h2>
 		</div>
 
@@ -52,7 +52,7 @@
 
 		<div id="sub-title">
 			<div class="container">
-				<h3>개인</h3>
+				<h3 style="text-align: center;">개인</h3>
 				<c:if test="${not empty email && lv == 2}">
 					<div id="btn1" class="btn">
 						<button type="button" class="add"
