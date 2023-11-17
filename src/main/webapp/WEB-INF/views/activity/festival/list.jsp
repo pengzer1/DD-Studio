@@ -16,6 +16,7 @@
 	
 	#title > h2 > a {
 		color: #FFF;
+		font-family: 'SUIT-Regular';
 	}
 	
 	#title > p {

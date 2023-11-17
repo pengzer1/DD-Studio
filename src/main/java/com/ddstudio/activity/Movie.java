@@ -20,8 +20,8 @@ public class Movie extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//Movie.java
-
 		//- 조건 검색: 날짜별 선택 > 일단 버려
+		
 		req.removeAttribute("date");
 		String date = req.getParameter("date");
 		
