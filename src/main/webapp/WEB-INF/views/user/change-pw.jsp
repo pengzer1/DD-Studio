@@ -14,7 +14,11 @@
 }
 
 #cancel, #acceptok {
-	margin-right: 13px;
+	margin-right: 10px;
+}
+
+#valid > tbody > tr:nth-child(5) > td > div > input {
+	margin-left: -10px;
 }
 
 .certification {
@@ -31,7 +35,14 @@ td > div > input {
 }
 
 .button {
-	background-color: rgba(200, 229, 229, 0.6);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 table {
@@ -39,11 +50,16 @@ table {
     border-right: 2px solid #d1d1d1;
     border-radius: 20px;
     border-collapse: separate;
-    background: #eeeef0;
+    background: transparent;
 }
 
 table th {
 	padding: 0 0 0 10px;
+}
+
+td > div > input {
+	background: transparent;
+    border-bottom: 1.5px solid #cecece;
 }
 </style>
 </head>

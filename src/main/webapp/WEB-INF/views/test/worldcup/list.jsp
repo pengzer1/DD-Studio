@@ -9,21 +9,21 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
 button {
-	background-color: #007bff; /* 배경색 */
-	color: #fff; /* 텍스트 색상 */
+	background-color: #007bff; 
+	color: #fff;
 	border: none;
-	border-radius: 5px; /* 둥근 모서리 */
-	padding: 10px 20px; /* 내부 패딩 */
-	font-size: 16px; /* 폰트 크기 */
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	cursor: pointer;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-	background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
+	background-color: #0056b3;
 }
 
 #content {
