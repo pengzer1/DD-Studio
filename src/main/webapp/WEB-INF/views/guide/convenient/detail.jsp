@@ -14,6 +14,10 @@
 		align-items: center;
 		padding-top:15px;
 	}
+	
+	#title h2{
+		color:white;
+	}
 </style>
 </head>
 <body>
@@ -22,7 +26,7 @@
 
 	<main id="main">
 
-		<div id="title" style="margin-top:123px;">
+		<div id="title" style="margin-top:123px; background-image: url('/ddstudio/asset/image/ponyo013.jpg');">
 			<h2>편의시설</h2>
 		</div>
 		
@@ -38,7 +42,8 @@
 			<c:forEach items="${list}" var="dto">
 				<div class="item">
 					<div style="background-image: url('/ddstudio/asset/image/convenient/${dto.img}');"></div>
-					<div style="color:black;">${dto.name}</div>
+					<div style="color:black; border-bottom: 1px">${dto.name}</div>
+					<hr>
 					<div style="color:black;">운영시간 : ${dto.time}</div>
 					<div style="color:black;">전화번호 : ${dto.tel}</div>
 				</div>
