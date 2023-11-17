@@ -20,15 +20,42 @@ button {
     display: inline-block;
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+	transition: all 0.3s ease-in-out;
 }
 
 button:hover {
     background-color: #0056b3; /* 마우스 호버 시 배경색 변경 */
 }
 
-.item{
-	background-color: white;
+#content {
+   padding: 0 530px;
 }
+
+.item{
+   background-color: white;
+   text-align: center;
+   corlor: white;
+   padding: 20px;
+   position: relative;
+   width: 330px;
+   min-width: 330px !important;
+   aspect-ratio: 1.1;
+   margin: 0 10px;
+   transition: all 0.3s ease-in-out;
+}
+
+#content .munti-content-container {
+	flex-wrap: nowrap;
+}
+
+.item:first-child {
+   left: -200px;
+}
+
+.item:nth-child(2) {
+   right: 50px;
+}
+
 .item img.totoro-image {
     height: 280px; /* 이미지 높이 조절 */
     transition: transform 0.3s ease-in-out; /* 변환 속성에 대한 전환 효과 추가 */
@@ -103,5 +130,3 @@ button:hover {
 	</script>
 </body>
 </html>
-
-

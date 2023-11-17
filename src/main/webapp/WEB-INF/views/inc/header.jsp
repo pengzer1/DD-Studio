@@ -227,8 +227,7 @@
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		var subMenus = document.querySelectorAll('.navbar-nav .sub-menu');
-		var subSubMenus = document
-				.querySelectorAll('.navbar-nav .sub-sub-menu');
+		var subSubMenus = document.querySelectorAll('.navbar-nav .sub-sub-menu');
 
 		function showMenu(menu) {
 			menu.style.display = 'block';
@@ -263,3 +262,58 @@
 		});
 	});
 </script>
+
+<!--
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var subMenus = document.querySelectorAll('.navbar-nav .sub-menu');
+        var subSubMenus = document.querySelectorAll('.navbar-nav .sub-sub-menu');
+
+        function showMenu(menu) {
+            menu.style.display = 'block';
+        }
+
+        function hideMenu(menu) {
+            setTimeout(function () {
+                menu.style.display = 'none';
+            }, 2000);
+        }
+
+        function attachEvents(parent, menu) {
+            parent.addEventListener('mouseenter', function() {
+                showMenu(menu);
+            });
+
+            parent.addEventListener('mouseleave', function() {
+                hideMenu(menu);
+            });
+        }
+
+        subMenus.forEach(function(menu) {
+            attachEvents(menu.parentElement, menu);
+
+            // Attach events for sub-sub-menus
+            var subSubMenusInSubMenu = menu.querySelectorAll('.sub-sub-menu');
+            subSubMenusInSubMenu.forEach(function(subSubMenu) {
+                attachEvents(subSubMenu.parentElement, subSubMenu);
+            });
+        });
+
+        subSubMenus.forEach(function(subSubMenu) {
+            attachEvents(subSubMenu.parentElement, subSubMenu);
+        });
+
+        // Hide sub-sub-menu when mouse leaves both sub-menu and main nav-item
+        subMenus.forEach(function(menu) {
+            var mainNavItem = menu.parentElement;
+
+            mainNavItem.addEventListener('mouseleave', function() {
+                var subSubMenusInSubMenu = menu.querySelectorAll('.sub-sub-menu');
+                subSubMenusInSubMenu.forEach(function(subSubMenu) {
+                    hideMenu(subSubMenu);
+                });
+            });
+        });
+    });
+</script>
+-->
