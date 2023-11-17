@@ -4,10 +4,7 @@
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary px-5 mt-5" style="max-height: 290px;">
         <div class="row gx-5">
-            <div class="col-lg-8 col-md-6">
-                <div class="row gx-5">
-                    <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                        <h4 class="text-uppercase text-light mb-4">Get In Touch</h4>
+                        <h4 class="text-uppercase text-light mb-4" style="margin-top: 70px;">Get In Touch</h4>
                         <div class="d-flex mb-2">
                             <i class="bi bi-geo-alt text-primary me-2"></i>
                             <p class="mb-0">제주도 제주시 제주읍 DDstudio</p>
@@ -20,6 +17,9 @@
                             <i class="bi bi-telephone text-primary me-2"></i>
                             <p class="mb-0">012-3456-7890</p>
                         </div>
+            <div class="col-lg-8 col-md-6">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-md-12 pt-5 mb-5">
                     </div>
                 </div>
             </div>
