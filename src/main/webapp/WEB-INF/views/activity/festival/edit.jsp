@@ -97,11 +97,18 @@
 		border-radius: 7px;
 		appearance: auto;
 	}
+	
+	table {
+	  	border-left: 2px solid #d1d1d1;
+	    border-right: 2px solid #d1d1d1;
+	    border-radius: 20px;
+	    border-collapse: separate;
+	}
     
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/festival/add.jsp -->
+	<!-- /ddstudio/activity/festival/edit.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
@@ -116,7 +123,7 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/festivaladd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/festivaledit.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
 						<!-- 페스티벌명 필드 -->
 						<tr>
@@ -150,7 +157,7 @@
 							<th class="required">페스티벌 시작 날짜</th>
 							<td>
 								<div>
-									<input type="date" name="start_date" id="start_date" min="" />
+									<input type="date" name="start_date" id="start_date" />
 								</div>
 							</td>
 						</tr>
@@ -159,7 +166,7 @@
 							<th class="required">페스티벌 종료 날짜</th>
 							<td>
 								<div>
-									<input type="date" name="end_date" id="end_date" min=""/>
+									<input type="date" name="end_date" id="end_date" />
 								</div>
 							</td>
 						</tr>
@@ -178,18 +185,18 @@
 						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
+								<textarea name='tags' placeholder='반드시 태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
 						</tr>
 						<!-- 이미지 필드 -->
-						<!-- <tr>
-	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images">
-			                    </td>
+						<tr>
+	                    	<th> </th>
+		                	<td>
+		                    	<input type="file" name="images1" class="images">
+		                    </td>
 		                </tr>
 		                <tr>
-		                	<th> </th>
+		                	<th>이미지</th>
 		                    <td>
 		                    	<input type="file" name="images2" class="images">
 		                    </td>
@@ -199,13 +206,13 @@
 		                    <td>
 		                    	<input type="file" name="images3" class="images">
 		                    </td>
-		                </tr> -->
+		                </tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button id="submit" class="check button">추가</button>
+									<button id="submit" class="check button">수정</button>
 									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/festival.do';">취소</button>
 								</div>
 							</td>
@@ -213,6 +220,7 @@
 					</table>
 					<input type="hidden" name="lat" id="lat">
 					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="seq" id="seq" value="${dto.festival_seq}"/>
 				</form>
 			</div>
 		</div>
@@ -224,83 +232,67 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
 		    
+	    const container = document.getElementById('map');
+		const options = {
+			center : new kakao.maps.LatLng(33.3808, 126.5450),
+			level : 10,
+			draggable : true, // 이동 금지
+			disableDoubleClick : true, // 더블클릭 확대 금지
+			scrollwheel : false // 휠 확대/축소 금지
+		};
+			
+		const map = new kakao.maps.Map(container, options);
 		
-		/*
-		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
-		    inputs.forEach(input => {
-		        input.addEventListener('input', function() {
-		            let allFilled = true;
-		            inputs.forEach(requiredInput => {
-		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
-		                if (requiredInput.value === '') {
-		                    allFilled = false;
-		                }
-		            });
+		let m = null;
+		let lat = ${location_dto.lat};
+		let lng = ${location_dto.lng};
+		
+		//마커 출력
+	    let imageSrc = '/ddstudio/asset/image/marker/festival_marker3.png'; // 마커이미지의 주소
+	    const imageSize = new kakao.maps.Size(40,40);
+	    const option = {};
+	    
+	    //마커 설정
+	    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+		
+		
+		m = new kakao.maps.Marker({
+	        position: new kakao.maps.LatLng(lat, lng),
+	        image: markerImg
+	    });
 	
-		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const submitButton = document.getElementById('submit');
-		            if (allFilled) {
-		                submitButton.disabled = false;
-		            } else {
-		                submitButton.disabled = true;
-		            }
+		//마커 지도에 출력
+	    m.setMap(map);
+		
+		 kakao.maps.event.addListener(map, 'click', function(evt) {
+		        lat = evt.latLng.getLat();
+		        lng = evt.latLng.getLng();
+	
+		        if (m != null) {
+		            // 기존 마커 제거
+		            m.setMap(null);
+		        }
+	
+		        m = new kakao.maps.Marker({
+		            position: new kakao.maps.LatLng(lat, lng)
 		        });
-		    });
-		    */
-		    
-		    const container = document.getElementById('map');
-			const options = {
-				center : new kakao.maps.LatLng(33.3808, 126.5450),
-				level : 10,
-				draggable : true, // 이동 금지
-				disableDoubleClick : true, // 더블클릭 확대 금지
-				scrollwheel : false
-			// 휠 확대/축소 금지
-			};
-			
-			const map = new kakao.maps.Map(container, options);
-			
-			let m = null;
-			let lat = ${location_dto.lat};
-			let lng = ${location_dto.lng};
-			
-			m = new kakao.maps.Marker({
-	            position: new kakao.maps.LatLng(lat, lng)
-	        });
-
-	        m.setMap(map);
-			
-			 kakao.maps.event.addListener(map, 'click', function(evt) {
-			        lat = evt.latLng.getLat();
-			        lng = evt.latLng.getLng();
 	
-			        if (m != null) {
-			            // 기존 마커 제거
-			            m.setMap(null);
-			        }
-	
-			        m = new kakao.maps.Marker({
-			            position: new kakao.maps.LatLng(lat, lng)
-			        });
-	
-			        m.setMap(map);
-			        
-			        latInput.value = lat;
-			        lngInput.value = lng;
-			        
-			    });
+		        m.setMap(map);
+		        
+		        latInput.value = lat;
+		        lngInput.value = lng;
+		        
+	    });
 			 
 			 
-		 //Tagify whitelist용 변수 생성
+		//Tagify whitelist용 변수 생성
 		 const taglist = ${taglist};
 		 const valuelist = ${valuelist};
 		 
-		 
-		 //Tagify 태그 입력
+		 //Tagify 도전기
 		 var input = document.querySelector('textarea[name=tags]'),
 		 	tagify = new Tagify(input, {
 		    enforceWhitelist : true,
@@ -310,9 +302,8 @@
 		  });
 		 
 		 tagify.addTags(valuelist);
-		 
-		 
-		 //Tagify 드롭 다운 메뉴 표출
+		
+		 //tagify 해시태그 목록 드롭다운 메뉴 표출
 		 tagify.on('input', onInput)
 		 function onInput(e){
 	        console.log("onInput: ", e.detail);
@@ -322,30 +313,52 @@
 		 
 		 //날짜 입력 유효성 검사
 		 
-		 const start_date = document.getElementById('start_date');
-
-		 const now = new Date();
-		 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+		 const startdate = document.getElementById('start_date');
 		 
-		 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
-		 
-		 function isValidEndDate() {
-			 
-			 $('#end_date').attr('min', start_date.value);
-			 
-		 }
-		 
-		 
+	
 		 $('#start_date').change(function() {
-		
-			 isValidEndDate();
-			 
-			 
+			selDate(0);
 		 });
 		 
-		 
-		 
-		 
+		 function selDate(i) {
+			 
+			 const now = new Date();
+			 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+			
+			if (nowStr > date[i].start_date) {
+				$('#start_date').val(date[i].start_date);
+				$('#start_date').prop('readOnly', true);  //페스티벌 시작일이 현재날짜보다 이전이면 -> 페스티벌 이미 시작중이므로 변경 불가
+			} else {
+				$('#start_date').attr('min', nowStr);
+				$('#start_date').val(date[i].start_date);
+				$('#start_date').prop('readOnly', false);
+			}
+			
+			changeDate(i)
+	
+		}
+	
+		 function changeDate(i) {
+				$('#end_date').attr('min', startdate.value);  //end_date는 재선택한 페스티벌 시작일 넣어주기
+				$('#end_date').val(date[i].end_date);
+				$('#start_date').change(function() {
+					$('#end_date').attr('min', startdate.value);
+				});
+				
+		}
+		
+		
+		const date = [];
+		<c:forEach items="${list}" var="dto">
+			date.push({
+			start_date:'${dto.start_date}',
+			end_date:'${dto.end_date}'
+		});
+		</c:forEach>
+		/* console.log(date); */
+		
+		selDate(0);
+		
 	</script>
 </body>
 </html>

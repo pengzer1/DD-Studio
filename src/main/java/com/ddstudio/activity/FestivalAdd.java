@@ -16,9 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.FestivalDTO;
-import com.ddstudio.activity.model.FestivalHashtagDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -60,7 +58,11 @@ public class FestivalAdd extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//jsp에서 보낸 데이터 가져오기
+		//페스티벌 추가 처리
+		//- 이미지는 이미지 DB에 넣어주기
+		//- 위치는 위치 DB에 넣어주기
+		//- 해시태그는 해시태그 DB에 넣어주기
+		//- 나머지는 페스티벌 DB에 넣어주기
 		
 		ActDAO dao = new ActDAO();
 		FestivalDTO dto = new FestivalDTO();
@@ -100,21 +102,27 @@ public class FestivalAdd extends HttpServlet {
 				taglist.add(((JSONObject)obj).get("value").toString());
 			}
 			
-			//1. 동일한 위치 탐색 후 위치 테이블 추가
-			dao.addLocation(dto);
+			//1. 동일한 위치 탐색하여 없으면 위치 테이블에 추가
+			int result = dao.addLocation(lat, lng);
 			
-			String location_seq = dao.getLocationSeq(dto);
-			
-			if (location_seq != null) {
+			if (result == 1) { //위치 추가 성공
+				
+				String location_seq = dao.getLocationSeq(lat, lng);
 				dto.setLocation_seq(location_seq);
 				
-				int result = dao.addFestival(dto);
+				System.out.println("location_seq: " + location_seq);
 				
-				if (result == 1) {
+				//2. 페스티벌 테이블에 추가
+				result = dao.addFestival(dto);
+			
+				System.out.println("dao.addFestival 결과: " + ((result == 1)? "성공" : "실패"));
+				
+				if (result == 1) { //페스티벌 테이블 추가 성공
 					
 					festival_seq = dao.getFestivalSeq();
 					System.out.println("festival_seq: " + festival_seq);
-					
+
+					//3. 페스티벌 이미지 테이블에 추가
 					Enumeration<?> files = multi.getFileNames();
 					while (files.hasMoreElements()) {
 					    String fname = (String) files.nextElement();
@@ -123,50 +131,65 @@ public class FestivalAdd extends HttpServlet {
 					    // filename을 리스트에 추가하거나, DB에 저장하거나, 다른 작업 수행 가능
 					    fileList.add(filename);
 					}
-				
-					System.out.println("fileList: " + fileList.toString());
+			
 					result = dao.addFestivalImg(fileList, festival_seq);
-				
-					if (result > 0) {
+					
+					System.out.println("fileList: " + fileList.toString());
+					System.out.println("dao.addFestivalImg 결과: " + ((result > 0)? "성공" : "실패"));
+					
+					if (result > 0) { //페스티벌 이미지 추가 성공
 						
-						System.out.println(taglist.toString());
-						ArrayList<FestivalHashtagDTO> seqlist = dao.getHashtagSeq_festival(taglist);
-						System.out.println("seqlist: " + seqlist.toString());
+						//4. 페스티벌 해시태그 테이블에 추가
+						System.out.println("입력 받은 해시 태그: " + taglist.toString());
+						ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
 						
 						result = dao.addFestivalHashtag(seqlist, festival_seq);
-						System.out.println("addFestivalHashtag 결과: "+ result);
 						
-						if (result > 0) {
-							resp.sendRedirect("/ddstudio/activity/festival.do");
+						System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
+						System.out.println("addFestivalHashtag 결과: " + ((result > 0)? "성공" : "실패"));
+						
+						if (result > 0) { //페스티벌 해시태그 추가 성공
 							
-						} else {
+							//**최종 등록 성공!!!!!**
+							resp.sendRedirect("/ddstudio/activity/festival.do");
+			
+						} else { //페스티벌 해시태그 추가 실패
+							
+							resp.setContentType("text/html; charset=UTF-8");
 							
 							PrintWriter writer = resp.getWriter();
-							writer.print("<script>alert('Add FestivalHashtag failed'); history.back();</script>");
+							writer.print("<script>alert('페스티벌 해시태그 추가에 실패했습니다.');history.back();</script>");
 							writer.close();
 							
 						}
-						
-						
-					} else {
+					
+					} else { //페스티벌 이미지 추가 실패
+					
+						resp.setContentType("text/html; charset=UTF-8");
 						
 						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('Add FestivalImg failed'); history.back();</script>");
+						writer.print("<script>alert('페스티벌 이미지 추가에 실패했습니다.');history.back();</script>");
 						writer.close();
 						
 					}
-				
-				} else {
+					
+				} else { //페스티벌 테이블 추가 실패
+					
+					resp.setContentType("text/html; charset=UTF-8");
 					
 					PrintWriter writer = resp.getWriter();
-					writer.print("<script>alert('Add Festival failed'); history.back();</script>");
+					writer.print("<script>alert('페스티벌 테이블 등록에 실패했습니다.');history.back();</script>");
 					writer.close();
+					
 				}
 				
-			} else {
+				
+			} else { //위치 추가 실패
+				
+				resp.setContentType("text/html; charset=UTF-8");
 				
 				PrintWriter writer = resp.getWriter();
-				writer.print("<script>alert('location failed'); history.back();</script>");
+				writer.print("<script>alert('동일한 위치에 장소가 존재합니다. 다른 위치를 선택해주세요.');history.back();</script>");
 				writer.close();
 				
 			}
@@ -176,6 +199,9 @@ public class FestivalAdd extends HttpServlet {
 			e.printStackTrace();
 		}
 	
+		PrintWriter writer = resp.getWriter();
+		writer.print("<script>alert('failed'); history.back();</script>");
+		writer.close();
 	
 	}
 }

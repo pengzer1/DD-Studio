@@ -35,32 +35,87 @@ public class AttractionDel extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//삭제 절차
-		//Step 1. 기존 어트랙션명 + (운영종료) 텍스트 추가
-		//Step 2. 위치정보번호 > 0번으로 변경(위치 0: 운영종료)
-		//Step 3. 테마번호 > 0번으로 변경(테마 0: 운영종료)
-		//Step 4. 테스트채택 'n'으로 변경
-		//Step 5. 어트/해시 태그 삭제
+		//Step 1. 어트/해시 태그 삭제
+		//Step 2. 어트랙션 이미지 테이블에서 삭제
+		//Step 3-1. 위치정보번호 > 0번으로 변경(위치 0: 운영종료)
+		//Step 3-2. 테스트채택 'n'으로 변경
+		//Step 3-3. 기존 어트랙션명 + (운영종료) 텍스트 추가
 
-		
-		/*//1. 넘긴 seq 받아오기
+		ActDAO dao = new ActDAO();
+		int result = 0;
+
+		//0. 넘긴 seq 받아오기
 		String seq = req.getParameter("seq");
 		
-		//2. DB 작업 > DELETE
-		ActDAO dao = new ActDAO();
-
-		int result = dao.delAttraction(seq);
+		System.out.println("Attraction seq: " + seq);
 		
-		//3. 피드백
-		if (result == 1) { //삭제 성공 시, 어트랙션 목록보기로 이동
+		//Step 1. 어트/해시 태그 삭제
+		//- 해시태그가 기 존재하는지 확인(개수 확인)
+		int cnt = dao.countAttractionHashtag(seq);
+		
+		System.out.println((cnt > 0? "해시태그 존재" : "해시태그 존재X"));
+		
+		if (cnt > 0) { //기 존재 해시태그 삭제
+			result = dao.delAttractionHashtag(seq);
+			
+			System.out.println("기존 어트랙션 해시태그 삭제 완료");
+			
+			if (result == 0) {
+				
+				resp.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('어트랙션 해시태그 삭제에 실패했습니다.');history.back();</script>");
+				writer.close();
+				
+			}
+			
+		}
+		
+		//Step 2. 어트랙션 이미지 테이블에서 삭제
+		//- 어트랙션 이미지가 기 존재하는지 확인(개수 확인)
+		cnt = dao.countAttractionImg(seq);
+		
+		System.out.println((cnt > 0 ? "이미지 존재" : "이미지 존재X"));
+		
+		if (cnt > 0) { //기 존재 이미지 삭제
+			
+			result = dao.delAttractionImg(seq);
+			
+			System.out.println("기존 어트랙션 이미지 삭제 완료");
+			
+			if (result == 0) {
+				
+				resp.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('어트랙션 이미지 삭제에 실패했습니다.');history.back();</script>");
+				writer.close();
+				
+			}
+			
+		}
+		
+		//Step 3-1. 위치정보번호 > 0번으로 변경(위치 0: 운영종료)
+		//Step 3-2. 테스트채택 'n'으로 변경
+		//Step 3-3. 기존 어트랙션명 + (운영종료) 텍스트 추가
+		
+		result = dao.delAttraction(seq);
+		
+		if (result == 1) { //어트랙션 삭제(정보 변경) 성공
+			
+			//**최종 삭제 성공!!!!!**
 			resp.sendRedirect("/ddstudio/activity/attraction.do");
-		} else { //삭제 실패 시, 경고창 띄우고 이전 페이지로 이동
+			
+		} else { //어트랙션 삭제(정보 변경) 실패
+			
+			resp.setContentType("text/html; charset=UTF-8");
 			
 			PrintWriter writer = resp.getWriter();
-			writer.print("<script>alert('failed');history.back();</script>");
-			
+			writer.print("<script>alert('어트랙션 테이블에서 삭제 실패했습니다.');history.back();</script>");
 			writer.close();
-		}*/
-	
-	
+			
+		}
+		
 	}
 }

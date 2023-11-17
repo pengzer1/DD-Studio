@@ -10,6 +10,11 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			
+			#review > h1 {
+				font-family: 'SUIT-Regular';
+			}
+			
 			#sort {
 				width: 80%;
 				font-size: 1.1rem;
