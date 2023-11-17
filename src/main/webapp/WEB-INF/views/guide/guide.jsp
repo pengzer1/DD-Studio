@@ -8,6 +8,10 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+#title {
+   margin-top: 123px;
+   background-image: url('/ddstudio/asset/image/chihiro043.jpg');
+}
 #convenient-map{
 	display: flex;
 	flex-direction: column;
@@ -327,6 +331,10 @@ table td {
 	padding: 5px;
 	margin: 5px 10px;
 }
+#content_box:hover{
+	background-color: #CCC;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -336,17 +344,17 @@ table td {
 	<main id="main">
 
 		<div id="title" style="margin-top: 123px;">
-			<h2>코스 이미지</h2>
+			<h2 style="color:white;">가이드맵</h2>
 		</div>
 
 		<div class="form-group">
-			<ul class="tab tab_red" style="width: 300px;">
+			<ul class="tab tab_red" style="width: 250px; padding:0; margin-left:20px;">
 				<li id="sel01" class="two on"><a href="#tab01" id="selTab01">어트랙션</a></li>
 				<li id="sel02" class="two"><a href="#tab02" id="selTab02">편의시설</a></li>
 			</ul>
 			<div id="tab01" style="display: none;">
 				<div id="main_box">
-					<p style="text-align: center;">현재 등록되어 있는 어트랙션입니다.</p>
+					<p style="text-align: center; font-weight:bold; margin-top:20px;">현재 등록되어 있는 어트랙션입니다.</p>
 					<hr>
 					<div
 						style="display: flex; flex-wrap: wrap; align-items: center; margin-left: 10px; justify-content: center;">
@@ -360,7 +368,7 @@ table td {
 			</div>
 			<div id="tab02" style="display: none;">
 				<div id="main_box">
-					<p style="text-align: center;">현재 등록되어 있는 편의시설입니다.</p>
+					<p style="text-align: center; font-weight:bold; margin-top:20px;">현재 등록되어 있는 편의시설입니다.</p>
 					<hr>
 					<div
 						style="display: flex; flex-wrap: wrap; align-items: center; margin-left: 10px; justify-content: center;">
