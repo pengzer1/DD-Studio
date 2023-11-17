@@ -8,9 +8,31 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-	#photozone {
+	#main {
 		text-align: center;
 		margin-top: 150px;
+	}
+	
+	#title > h2 {
+		color: #FFF;
+	}
+	
+	#title > h2 > a {
+		color: #FFF;
+		font-family: 'SUIT-Regular';
+	}
+	
+	#title > p {
+		color: #000;
+	}
+	 
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
+	 
+	#title {
+	 	background-image: url('/ddstudio/asset/image/photozone/Ghibli_photozone_half_trans.png');
 	}
 	
 	#background {
@@ -25,6 +47,7 @@
 	
 	#admin-btn {
 		text-align: right;
+		margin-top: -60px;
 	}
 	
 	#admin-btn button {
@@ -33,7 +56,7 @@
 		border-radius: 10px;
 		padding: 10px 10px;
 		color: #222;
-		background-color: #E6AAAE;
+		background-color: #FFF;
 	}
 	
 	#admin-btn button:last-child {
@@ -90,6 +113,7 @@
 		font-weight: bold;
 		font-size: 1.5rem;
 		margin: 20px 10px;
+		color: #000;
 	}
 	
 	.value {
@@ -214,9 +238,12 @@
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	
 	<!-- main -->
-	<main id="photozone">
-		<h1><c:out value="${dto.name}"/></h1>
-
+	<main id="main">
+		
+		<div id="title">	
+			<h2><c:out value="${dto.name}"/></h2>
+		</div>
+	
 		<!-- 관리자용 수정/삭제 버튼 -->
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
@@ -226,16 +253,6 @@
 		</c:if>
 		
 		<hr id="detail-line"/>
-		
-		<!-- 포토존 해시태그 -->
-		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
-		<div id="hashtag">
-			<i class="fa-solid fa-tag fa-rotate-90"></i>
-			<c:forEach items="${hashtagList}" var="dto">
-				<div><c:out value="${dto.hashtag_name}" /></div>
-			</c:forEach>
-		</div>
-		
 		
 		<!-- 포토존 이미지 슬라이더 -->
 		<!-- Slideshow container -->
@@ -296,21 +313,29 @@
 	    
 	    const options = { //지도를 생성할 때 필요한 기본 옵션
 	       center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-	       level : 10 //지도의 레벨(확대, 축소 정도)
+	       level : 10, //지도의 레벨(확대, 축소 정도)
+	       draggable : false, // 이동 금지
+		   disableDoubleClick : true, // 더블클릭 확대 금지
+		   scrollwheel : false // 휠 확대/축소 금지
 	    };
 	
 	    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
-	    //마커 출력
+	  	//마커 출력
+	    let imageSrc = '/ddstudio/asset/image/marker/photo_marker3.png'; // 마커이미지의 주소
+	    const imageSize = new kakao.maps.Size(40,40);
+	    const option = {};
+	    
+	    //마커 설정
+	    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+	    
 	    const m1 = new kakao.maps.Marker({
-			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng})
+			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}),
+			image: markerImg
 		});
 	    
+	  	//마커 지도에 출력
 	    m1.setMap(map);
-	    
-	    //확대/축소, 드래그 제어
-		map.setZoomable(false);
-	    map.setDraggable(false);
 	    
 	    /* 이미지 슬라이더용 */
 	    let slideIndex = 1;

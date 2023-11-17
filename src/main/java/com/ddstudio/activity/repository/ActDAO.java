@@ -883,8 +883,6 @@ return 0;
 						dto.setInfo(rs.getString("info"));
 						dto.setLocation_seq(rs.getString("location_seq"));
 						dto.setImg(rs.getString("img"));
-						dto.setLat(rs.getString("lat"));
-						dto.setLng(rs.getString("lng"));
 						
 						return dto;
 					}
@@ -903,10 +901,7 @@ return 0;
 
 		try {
 					
-					String sql = "SELECT *\r\n"
-							+ "  FROM tblPhotozone a\r\n"
-							+ " INNER JOIN tblLocation b\r\n"
-							+ "    ON b.location_seq = a.location_seq where photozone_seq = ?";
+					String sql = "SELECT * FROM tblPhotozone a INNER JOIN tblLocation b ON b.location_seq = a.location_seq where photozone_seq = ?";
 					
 					pstat = conn.prepareStatement(sql);
 					pstat.setString(1, seq);
@@ -1649,13 +1644,12 @@ return 0;
 		
 		try {
 
-			String sql = "INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)\r\n"
-					+ "VALUES (seqtblPhotoZone.NEXTVAL, ?, '10:00 - 22:00', ?, ?);";
+			String sql = "INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq) VALUES (seqtblPhotoZone.NEXTVAL, ?, '10:00 - 22:00', ?, ?)";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getName());
-			pstat.setString(3, dto.getInfo());
-			pstat.setString(6, dto.getLocation_seq());
+			pstat.setString(2, dto.getInfo());
+			pstat.setString(3, dto.getLocation_seq());
 
 			return pstat.executeUpdate();
 
@@ -2100,7 +2094,7 @@ return 0;
 
 		try {
 
-			String sql = "update tblPhotozone set name = name || '(운영중단)', location_seq = 0 where photozone_seq = ?";
+			String sql = "update tblPhotozone set location_seq = 0, name = name || '(운영종료)' where photozone_seq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);

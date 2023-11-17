@@ -82,6 +82,10 @@ public class PhotoZoneAdd extends HttpServlet {
 			
 				System.out.println("dao.addPhotozone 결과: " + ((result == 1)? "성공" : "실패"));
 				
+				System.out.println(dto.getLocation_seq());
+				System.out.println(dto.getName());
+				System.out.println(dto.getInfo());
+				
 				if (result == 1) { //포토존 테이블 추가 성공
 					
 					photozone_seq = dao.getPhotozoneSeq();
