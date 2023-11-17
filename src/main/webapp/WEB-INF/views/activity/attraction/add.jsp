@@ -39,8 +39,8 @@
 	
 	/* Tagify 사용 시도 */
 	.tagify{
-		width: 500px;
-		max-width: 500px;
+		width: 550px;
+		max-width: 550px;
 	}
 	
 	.tagify--outside{
@@ -147,7 +147,7 @@
 						</tr>
 						<!-- 고객 맞춤형 추천 목록 사용 여부 필드 -->
 						<tr>
-							<th>Test 사용 여부</th>
+							<th class="required">Test 사용 여부</th>
 							<td>
 								<div>
 									<input type="radio" name="is_test" value="Y" id="test_y"/><label for="test_y">사용</label>
@@ -170,18 +170,18 @@
 						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
+								<textarea name='tags' placeholder='반드시 태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
 						</tr>
 						<!-- 이미지 필드 -->
 						<tr>
-	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images">
-			                    </td>
+	                    	<th> </th>
+		                	<td>
+		                    	<input type="file" name="images1" class="images">
+		                    </td>
 		                </tr>
 		                <tr>
-		                	<th> </th>
+		                	<th>이미지</th>
 		                    <td>
 		                    	<input type="file" name="images2" class="images">
 		                    </td>

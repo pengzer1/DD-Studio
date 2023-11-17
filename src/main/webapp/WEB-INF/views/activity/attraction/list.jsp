@@ -27,7 +27,6 @@
 	}
 	 
 	#title {
-	 	/* background-image: url('/ddstudio/asset/image/detail_background_half_trans.png'); */
 	 	background-image: url('/ddstudio/asset/image/attraction/detail_background_resizing.png');
 	}
 	 
@@ -56,6 +55,7 @@
 		color: #222;
 		background-color: #E6AAAE;
 		float: right;
+		margin-top: 20px;
 	}
 	
 	form {
@@ -83,6 +83,10 @@
 		padding: 20px;
 	}
 	
+	.condition-btn {
+		width: 100px;
+	}
+	
 	.condition-btn > button {
 		margin: 3px;
 		border: 0;
@@ -95,7 +99,7 @@
 	#delBtn {
 		font-size: 50px;
 		top: -10px;
-		right: 10px;
+		right: 20px;
 		color: #FFF;
 	}
 	
@@ -107,12 +111,20 @@
 		padding: 30px
 	}
 	
+	#close-select {
+		border-radius: 5px;
+		height: 30px;
+		padding: 5px;
+		width: 100px;
+	}
+	
 </style>
 </head>
 <body>
 	<!-- /activity/attraction/list.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
+
 	<!-- Header -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<main id="main">
 
@@ -139,7 +151,7 @@
 							<h4><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h4>
 							<div class="block-bubbling">
 								<div class="condition-container">
-									<div>운휴일정</div>
+									<div style="width: 100px; font-size: 20px; font-weight: bold;">운휴일정</div>
 									<select name="close" id="close-select" class="selectbox">
 										<option value="open">정상운영</option>
 										<option value="close">운휴</option>

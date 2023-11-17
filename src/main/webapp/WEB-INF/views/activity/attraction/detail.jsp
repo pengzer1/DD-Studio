@@ -8,9 +8,31 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
-	#attraction {
+	#main {
 		text-align: center;
 		margin-top: 150px;
+	}
+	
+	#title > h2 {
+		/* margin-top: 70px; */
+		color: #FFF;
+	}
+	
+	#title > h2 > a {
+		color: #FFF;
+	}
+	
+	#title > p {
+		color: #000;
+	}
+	 
+	#main > #title {
+	 	background-color: transparent;
+	 	background-repeat: no-repeat;
+	}
+	 
+	#title {
+	 	background-image: url('/ddstudio/asset/image/attraction/detail_background_resizing.png');
 	}
 	
 	#background {
@@ -23,6 +45,7 @@
 	
 	#admin-btn {
 		text-align: right;
+		margin-top: -60px;
 	}
 	
 	#admin-btn button {
@@ -31,7 +54,7 @@
 		border-radius: 10px;
 		padding: 10px 10px;
 		color: #222;
-		background-color: #E6AAAE;
+		background-color: #FFF;
 	}
 	
 	#admin-btn button:last-child {
@@ -45,6 +68,8 @@
 		color: #222;
 		background-color: #E6AAAE;
 		font-size: 1.3rem;
+		font-family: 'SUIT-Regular';
+		font-weight: 800;
 	}
 	
 	#hashtag {
@@ -68,10 +93,6 @@
 		padding: 7px 10px;
 	}
 
-	#detail-line {
-		color: #777;
-	}
-	
 	.result-container {
 		display: flex;
 		flex-direction: row;
@@ -89,7 +110,7 @@
 		padding: 30px;
 		margin: 30px;
 		/* background-color: #FFFBD0; */
-		background-color: #FFFFFF;
+		background-color: #FFF;
 		border-radius: 5px;
 	}
 	
@@ -97,6 +118,7 @@
 		font-weight: bold;
 		font-size: 1.5rem;
 		margin: 20px 10px;
+		color: #000;
 	}
 	
 	.value {
@@ -132,7 +154,7 @@
 	}
 	
 	.close-item {
-		width: 1277px;
+		width: 1000px;
 		/* border: 1px solid #999; */
 		border-radius: 5px;
 		background-color: #FFFFFF;
@@ -229,7 +251,22 @@
 	.fade:not(.show) {
 		opacity: 1;
 	}
+	
+	.sub-title {
+		font-size: 26px;
+		color: #000;
+		text-align: center;
+		margin-bottom: 30px;
+		border: 0;
+		font-weight: bold;
+	}
   	
+  	@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+	}
     
 </style>
 </head>
@@ -239,22 +276,23 @@
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	
-	<!-- main -->
-	<main id="attraction">
-		<h1><c:out value="${dto.name}"/></h1>
-
+	<!-- Main -->
+	<main id="main">
+	
+		<!-- Title -->
+		<div id="title">	
+			<h2><c:out value="${dto.name}"/></h2>
+		</div>
+		
 		<!-- 관리자용 수정/삭제 버튼 -->
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
-			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/attractiondel.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-trash"></i>삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i>수정</button>
+			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/attractiondel.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-trash"></i> 삭제</button>
+			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/attractionedit.do?seq=${dto.attraction_seq}'"><i class="fa-solid fa-pen-to-square"></i> 수정</button>
 		</div>
 		</c:if>
 		
-		<hr id="detail-line"/>
-		
 		<!-- 어트랙션 해시태그 -->
-		<!-- 해시태그 dao, dto에서 가져와서 하기 -->
 		<div id="hashtag">
 			<c:if test="${not empty hashtagList}">
 				<i class="fa-solid fa-tag fa-rotate-90"></i>
@@ -263,7 +301,6 @@
 				<div><c:out value="${dto.hashtag_name}" /></div>
 			</c:forEach>
 		</div>
-		
 		
 		<!-- 어트랙션 이미지 슬라이더 -->
 		<!-- Slideshow container -->
@@ -291,7 +328,7 @@
 	    </div>
 		
 		<!-- 어트랙션 정보 -->
-		<!-- 운휴일정, 운영시간, 탑승인원, 이용정보, 테마, 위치, 예약 순 -->
+		<!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
 		<div id="background">
 			<div class="close-container">
 				<div class="close-item">
@@ -338,7 +375,7 @@
 			</div>
 		</div>
 		
-		
+		<!-- 위치 정보 -->
 		<div class="location">
 			<div class="label">위치 정보</div>
 			<div class="value location">
@@ -352,8 +389,8 @@
 		</div>
 	</main>
 	
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 	<script>
@@ -361,21 +398,29 @@
 	    
 	    const options = { //지도를 생성할 때 필요한 기본 옵션
 	       center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-	       level : 10 //지도의 레벨(확대, 축소 정도)
+	       level : 10, //지도의 레벨(확대, 축소 정도)
+	       draggable : false, // 이동 금지
+		   disableDoubleClick : true, // 더블클릭 확대 금지
+		   scrollwheel : false // 휠 확대/축소 금지
 	    };
 	
 	    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
-	    //마커 출력
+	  	//마커 출력
+	    let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	    const imageSize = new kakao.maps.Size(40,40);
+	    const option = {};
+	    
+	    //마커 설정
+	    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+	    
 	    const m1 = new kakao.maps.Marker({
-			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng})
+			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}),
+			image: markerImg
 		});
 	    
+	  	//마커 지도에 출력
 	    m1.setMap(map);
-	    
-	    //확대/축소, 드래그 제어
-		map.setZoomable(false);
-	    map.setDraggable(false);
 	    
 	    /* 이미지 슬라이더용 */
 	    let slideIndex = 1;

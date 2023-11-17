@@ -40,8 +40,9 @@
 	}
 	
 	#admin-btn {
-		margin-top: 60px;
 		text-align: center;
+		margin-top: 0;
+		margin-bottom: 70px
 	}
 	
 	#admin-btn button {
@@ -50,7 +51,7 @@
 		border-radius: 10px;
 		padding: 10px 10px;
 		color: #222;
-		background-color: #E6AAAE;
+		background-color: #FFF;
 	}
 	
 	.block-bubbling {
@@ -68,7 +69,7 @@
 	}
 	
 	#content .munti-content-container {
-		margin-top: 30px;
+		margin-top: 100px;
 	}
 	
 </style>

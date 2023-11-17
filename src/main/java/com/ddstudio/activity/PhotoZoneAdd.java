@@ -31,7 +31,6 @@ public class PhotoZoneAdd extends HttpServlet {
 		//PhotoZoneAdd.java
 		//- 해시태그 X
 		//- 위치 테이블, 포토존 테이블, 포토존 이미지 테이블
-		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/photozone/add.jsp");
 		dispatcher.forward(req, resp);
@@ -41,6 +40,11 @@ public class PhotoZoneAdd extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		//포토존 추가 처리
+		//- 이미지는 이미지 DB에 넣어주기
+		//- 위치는 위치 DB에 넣어주기
+		//- 나머지는 포토존 DB에 넣어주기
+		
 		ActDAO dao = new ActDAO();
 		PhotoZoneDTO dto = new PhotoZoneDTO();
 		ArrayList<String> fileList = new ArrayList<String>();
@@ -63,21 +67,27 @@ public class PhotoZoneAdd extends HttpServlet {
 			dto.setLat(lat);
 			dto.setLng(lng);
 			
-			//1. 동일한 위치 탐색 후 위치 테이블 추가
-			dao.addLocation(dto);
+			//1. 동일한 위치 탐색하여 없으면 위치 테이블에 추가
+			int result = dao.addLocation(lat, lng);
 			
-			String location_seq = dao.getLocationSeq(dto);
-			
-			if (location_seq != null) {
+			if (result == 1) { //위치 추가 성공
+				
+				String location_seq = dao.getLocationSeq(lat, lng);
 				dto.setLocation_seq(location_seq);
 				
-				int result = dao.addPhotozone(dto);
+				System.out.println("location_seq: " + location_seq);
 				
-				if (result == 1) {
+				//2. 포토존 테이블에 추가
+				result = dao.addPhotozone(dto);
+			
+				System.out.println("dao.addPhotozone 결과: " + ((result == 1)? "성공" : "실패"));
+				
+				if (result == 1) { //포토존 테이블 추가 성공
 					
 					photozone_seq = dao.getPhotozoneSeq();
 					System.out.println("photozone_seq: " + photozone_seq);
-					
+
+					//3. 포토존 이미지 테이블에 추가
 					Enumeration<?> files = multi.getFileNames();
 					while (files.hasMoreElements()) {
 					    String fname = (String) files.nextElement();
@@ -86,48 +96,56 @@ public class PhotoZoneAdd extends HttpServlet {
 					    // filename을 리스트에 추가하거나, DB에 저장하거나, 다른 작업 수행 가능
 					    fileList.add(filename);
 					}
-				
-					System.out.println("fileList: " + fileList.toString());
+			
 					result = dao.addPhotozoneImg(fileList, photozone_seq);
-				
-					if (result > 0) {
-						
-							PrintWriter writer = resp.getWriter();
-							writer.print("<script>alert('Successfully added!'); location.href='/ddstudio/activity/photozone.do';</script>");
-							writer.close();
+					
+					System.out.println("fileList: " + fileList.toString());
+					System.out.println("dao.addPhotozoneImg 결과: " + ((result > 0)? "성공" : "실패"));
+					
+					if (result > 0) { //포토존 이미지 추가 성공
 							
-							//resp.sendRedirect("/ddstudio/activity/festival.do");
-					} else {
+						//**최종 등록 성공!!!!!**
+						resp.sendRedirect("/ddstudio/activity/photozone.do");
+					
+					} else { //포토존 이미지 추가 실패
+					
+						resp.setContentType("text/html; charset=UTF-8");
 						
 						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('Add PhotozoneImg failed'); history.back();</script>");
+						writer.print("<script>alert('포토존 이미지 추가에 실패했습니다.');history.back();</script>");
 						writer.close();
 						
 					}
-				
-				} else {
+					
+				} else { //포토존 테이블 추가 실패
+					
+					resp.setContentType("text/html; charset=UTF-8");
 					
 					PrintWriter writer = resp.getWriter();
-					writer.print("<script>alert('Add Photozone failed'); history.back();</script>");
+					writer.print("<script>alert('포토존 테이블 등록에 실패했습니다.');history.back();</script>");
 					writer.close();
+					
 				}
+			
+			
+			} else { //위치 추가 실패
 				
-			} else {
+				resp.setContentType("text/html; charset=UTF-8");
 				
 				PrintWriter writer = resp.getWriter();
-				writer.print("<script>alert('location failed'); history.back();</script>");
+				writer.print("<script>alert('동일한 위치에 장소가 존재합니다. 다른 위치를 선택해주세요.');history.back();</script>");
 				writer.close();
 				
 			}
 			
 		} catch (Exception e) {
-			System.out.println("at PhotoZoneAdd.doPost");
+			System.out.println("at FestivalAdd.doPost");
 			e.printStackTrace();
 		}
 	
-	
-	
-	
-	
+		PrintWriter writer = resp.getWriter();
+		writer.print("<script>alert('failed'); history.back();</script>");
+		writer.close();
+			
 	}
 }

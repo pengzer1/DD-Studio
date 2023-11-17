@@ -178,15 +178,15 @@
 						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
+								<textarea name='tags' placeholder='반드시 태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
 						</tr>
 						<!-- 이미지 필드 -->
 						<tr>
 	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images">
-			                    </td>
+		                	<td>
+		                    	<input type="file" name="images1" class="images">
+		                    </td>
 		                </tr>
 		                <tr>
 		                	<th> </th>
@@ -224,33 +224,8 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
-		    
-		
-		/*
-		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
-		    inputs.forEach(input => {
-		        input.addEventListener('input', function() {
-		            let allFilled = true;
-		            inputs.forEach(requiredInput => {
-		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
-		                if (requiredInput.value === '') {
-		                    allFilled = false;
-		                }
-		            });
-	
-		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const submitButton = document.getElementById('submit');
-		            if (allFilled) {
-		                submitButton.disabled = false;
-		            } else {
-		                submitButton.disabled = true;
-		            }
-		        });
-		    });
-		    */
 		    
 		    const container = document.getElementById('map');
 			const options = {

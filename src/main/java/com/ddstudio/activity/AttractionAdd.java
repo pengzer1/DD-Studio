@@ -33,7 +33,7 @@ public class AttractionAdd extends HttpServlet {
 
 		//AttractionAdd.java
 		
-		//해시태그 리스트 전달하기
+		//해시태그 리스트 전달하기 > whitelist용
 		ActDAO dao = new ActDAO();
 		
 		ArrayList<HashTagDTO> list = dao.getHashtagList();
@@ -86,8 +86,8 @@ public class AttractionAdd extends HttpServlet {
 			String capacity = multi.getParameter("capacity");
 			String restriction = multi.getParameter("restriction");
 			String is_test = multi.getParameter("is_test");
-			String lng = multi.getParameter("lng");
 			String lat = multi.getParameter("lat");
+			String lng = multi.getParameter("lng");
 			String tags = multi.getParameter("tags");
 			String images1 = multi.getParameter("images1");
 			String images2 = multi.getParameter("images2");
@@ -102,8 +102,8 @@ public class AttractionAdd extends HttpServlet {
 			dto.setCapacity(capacity);
 			dto.setRestriction(restriction);
 			dto.setIs_test(is_test);
-			dto.setLng(lng);
 			dto.setLat(lat);
+			dto.setLng(lng);
 			
 			//** tags로 받은 JSON 형식 ArrayList<String>으로 변환
 			JSONParser parser = new JSONParser();
@@ -112,31 +112,31 @@ public class AttractionAdd extends HttpServlet {
 			ArrayList<String> taglist = new ArrayList<String>(); 
 			
 			for (Object obj : arr) {
-				//System.out.println(((JSONObject)obj).get("value"));
-				//taglist.add((String)(JSONObject)obj).get("value"));
-				
 				taglist.add(((JSONObject)obj).get("value").toString());
-				
 			}
 			
 		
 			//1. 동일한 위치 탐색하여 없으면 위치 테이블에 추가
-			dao.addLocation(dto);
+			int result = dao.addLocation(lat, lng);
 			
-			String location_seq = dao.getLocationSeq(dto);
-			System.out.println("location_seq: " + location_seq);
-			
-			//2. 어트랙션 테이블에 추가
-			if (location_seq != null) {
+			if (result == 1) { //위치 추가 성공
+				
+				String location_seq = dao.getLocationSeq(lat, lng);
 				dto.setLocation_seq(location_seq);
 				
-				int result = dao.addAttraction(dto);
-				System.out.println("dao.addAttraction 결과: " + result);
+				System.out.println("location_seq: " + location_seq);
 				
-				if(result == 1) {
+				//2. 어트랙션 테이블에 추가
+				result = dao.addAttraction(dto);
+				
+				System.out.println("dao.addAttraction 결과: " + ((result == 1)? "성공" : "실패"));
+				
+				if (result == 1) { //어트랙션 테이블 추가 성공
+					
 					attraction_seq = dao.getAttractionSeq();
 					System.out.println("attraction_seq: " + attraction_seq);
-					
+
+					//3. 어트랙션 이미지 테이블에 추가
 					Enumeration<?> files = multi.getFileNames();
 					while (files.hasMoreElements()) {
 					    String fname = (String) files.nextElement();
@@ -146,57 +146,78 @@ public class AttractionAdd extends HttpServlet {
 					    fileList.add(filename);
 					}
 					
-					System.out.println("fileList: " + fileList.toString());
 					result = dao.addAttractionImg(fileList, attraction_seq);
 					
-					if (result > 0) {
+					System.out.println("fileList: " + fileList.toString());
+					System.out.println("dao.addAttractionImg 결과: " + ((result > 0)? "성공" : "실패"));
+					
+					if (result > 0) { //어트랙션 이미지 추가 성공
 						
-						System.out.println(taglist.toString());
-						ArrayList<AttractionHashtagDTO> seqlist = dao.getHashtagSeq(taglist);
+						//4. 어트랙션 해시태그 테이블에 추가
+						System.out.println("입력 받은 해시 태그: " + taglist.toString());
+						ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
 						
 						result = dao.addAttractionHashtag(seqlist, attraction_seq);
-						System.out.println(seqlist.toString());
-						System.out.println("addAttractionHashtag 결과: " + result);
 						
-						if (result > 0) {
+						System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
+						System.out.println("addAttractionHashtag 결과: " + ((result > 0)? "성공" : "실패"));
+						
+						if (result > 0) { //어트랙션 해시태그 추가 성공
 							
+							//**최종 등록 성공!!!!!**
 							resp.sendRedirect("/ddstudio/activity/attraction.do");
-
-						} else {
+						
+						} else { //어트랙션 해시태그 추가 실패
+							
+							resp.setContentType("text/html; charset=UTF-8");
 							
 							PrintWriter writer = resp.getWriter();
-							writer.print("<script>alert('Add AttractionHashtag failed'); history.back();</script>");
+							writer.print("<script>alert('어트랙션 해시태그 추가에 실패했습니다.');history.back();</script>");
 							writer.close();
 							
 						}
+					
+					} else { //어트랙션 이미지 추가 실패
+					
+						resp.setContentType("text/html; charset=UTF-8");
 						
-						
-					} else {
 						PrintWriter writer = resp.getWriter();
-						writer.print("<script>alert('Add Attraction Img failed'); history.back();</script>");
+						writer.print("<script>alert('어트랙션 이미지 추가에 실패했습니다.');history.back();</script>");
 						writer.close();
+						
 					}
 					
-				} else {
+				} else { //어트랙션 테이블 추가 실패
+					
+					resp.setContentType("text/html; charset=UTF-8");
+					
 					PrintWriter writer = resp.getWriter();
-					writer.print("<script>alert('Add Attraction failed'); history.back();</script>");
+					writer.print("<script>alert('어트랙션 테이블 등록에 실패했습니다.');history.back();</script>");
 					writer.close();
+					
 				}
-				 
 				
-			} else {
+				
+			} else { //위치 추가 실패
+				
+				resp.setContentType("text/html; charset=UTF-8");
+				
 				PrintWriter writer = resp.getWriter();
-				writer.print("<script>alert('location failed'); history.back();</script>");
+				writer.print("<script>alert('동일한 위치에 장소가 존재합니다. 다른 위치를 선택해주세요.');history.back();</script>");
 				writer.close();
+				
 			}
-			
 			
 		} catch (Exception e) {
 			System.out.println("at AttractionAdd.doPost");
 			e.printStackTrace();
 		}
-		
 	
-	
+		PrintWriter writer = resp.getWriter();
+		writer.print("<script>alert('failed'); history.back();</script>");
+		writer.close();
+
 	}
+	
 }
+	
