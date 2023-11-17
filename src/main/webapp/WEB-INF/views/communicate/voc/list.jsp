@@ -76,7 +76,7 @@
 				color: #333;
 			}
 			#no-answer {
-				background-color: #EEFAF0;
+				background-color: #D5F1EA;
 			}
 			#page-bar {
 				display: flex;

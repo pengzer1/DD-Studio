@@ -64,10 +64,11 @@
 				color: #333;
 			}
 			#fixed {
-				background-color: #EEFAF0;
+				background-color: #D5F1EA;
 			}
 			#fix-icon {
-				color: #F00;
+				color: #FF0076;
+				margin-top: 7px;
 			}
 			#page-bar {
 				display: flex;

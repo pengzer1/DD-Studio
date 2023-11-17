@@ -80,11 +80,9 @@ tr:nth-child(odd) {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/ponyo013.jpg');">
 			<h2>예매 확인/취소</h2>
 		</div>
-
-		<hr>
 
 		<div id="content">
 

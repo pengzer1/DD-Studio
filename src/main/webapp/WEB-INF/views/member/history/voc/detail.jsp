@@ -104,7 +104,7 @@ h2, h3 {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro015.jpg');">
 			<h2>문의 내역</h2>
 			<br>
 		</div>
@@ -114,7 +114,7 @@ h2, h3 {
 			<h2 style="text-align: center;">칭찬/불편/건의 상세내역</h2>
 			
 			<div class="question-section">
-                <h3>Q 질문</h3>
+                <h3>Q. 질문</h3>
                 <hr>
                 <p><strong>제목:</strong> ${dto.subject}</p>
                 <p><strong>내용:</strong> ${dto.content}</p>
@@ -122,7 +122,7 @@ h2, h3 {
             </div>
 
             <div class="answer-section">
-                <h3>A 답변</h3>
+                <h3>A. 답변</h3>
                 <hr>
                 <p><strong>답변 내용:</strong> ${dto.answer}</p>
             </div>

@@ -259,6 +259,89 @@ public class BenefitDAO {
 
         return null;
     }
+
+    public ArrayList<BenefitDTO> nomalList() {
+
+        ArrayList<BenefitDTO> list = new ArrayList<>();
+
+
+        try {
+
+            String sql = "SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT where TYPE='일반'order by BENEFIT_SEQ desc  ";
+
+            stat = conn.createStatement();
+
+            rs = stat.executeQuery(sql);
+
+            //rs == 메모 목록
+
+            //rs를  list로 옮기기
+            while (rs.next()) {
+
+                //레코드 1줄 > MemoDTO 1개
+                BenefitDTO dto = new BenefitDTO();
+                dto.setBenefit_seq(rs.getString("benefit_seq"));
+                dto.setName(rs.getString("name"));
+                dto.setType(rs.getString("type"));
+                dto.setStart_date(rs.getString("start_date"));
+                dto.setEnd_date(rs.getString("end_date"));
+                dto.setDiscount_rate(rs.getString("discount_rate"));
+                dto.setImg(rs.getString("img"));
+
+
+                list.add(dto);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+
+    }
+
+    public ArrayList<BenefitDTO> cardList() {
+
+        ArrayList<BenefitDTO> list = new ArrayList<>();
+
+
+        try {
+
+            String sql = "SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT where TYPE='카드/통신사'order by BENEFIT_SEQ desc  ";
+
+            stat = conn.createStatement();
+
+            rs = stat.executeQuery(sql);
+
+            //rs == 메모 목록
+
+            //rs를  list로 옮기기
+            while (rs.next()) {
+
+                //레코드 1줄 > MemoDTO 1개
+                BenefitDTO dto = new BenefitDTO();
+                dto.setBenefit_seq(rs.getString("benefit_seq"));
+                dto.setName(rs.getString("name"));
+                dto.setType(rs.getString("type"));
+                dto.setStart_date(rs.getString("start_date"));
+                dto.setEnd_date(rs.getString("end_date"));
+                dto.setDiscount_rate(rs.getString("discount_rate"));
+                dto.setImg(rs.getString("img"));
+
+
+                list.add(dto);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+
+    }
 }
 
 
