@@ -1,9 +1,9 @@
 /********** Template CSS **********/
-:root { -
-	-primary: #FB5B21; -
-	-secondary: #BDBDBF; -
-	-light: #F4F5F8; -
-	-dark: #222429;
+:root { 
+	--primary: #FB5B21; 
+	--secondary: #BDBDBF; 
+	--light: #F4F5F8; 
+	--dark: #222429;
 }
 
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after,

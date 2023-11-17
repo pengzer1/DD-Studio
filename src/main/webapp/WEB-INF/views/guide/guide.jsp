@@ -64,6 +64,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
+	
 }
 
 .address-group input[type="text"] {
@@ -335,12 +336,12 @@ table td {
 
 	<main id="main">
 
-		<div id="title" style="margin-top: 123px;">
+		<div id="title" style="margin-top: 123px; background-image: url('/ddstudio/asset/image/ponyo013.jpg');">
 			<h2>코스 이미지</h2>
 		</div>
 
 		<div class="form-group">
-			<ul class="tab tab_red" style="width: 300px;">
+			<ul class="tab tab_red" style="margin-top:100px; margin-bottom:100px; width:100%;">
 				<li id="sel01" class="two on"><a href="#tab01" id="selTab01">어트랙션</a></li>
 				<li id="sel02" class="two"><a href="#tab02" id="selTab02">편의시설</a></li>
 			</ul>
