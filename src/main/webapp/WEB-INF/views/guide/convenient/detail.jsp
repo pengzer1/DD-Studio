@@ -14,6 +14,10 @@
 		align-items: center;
 		padding-top:15px;
 	}
+	#title {
+   margin-top: 123px;
+   background-image: url('/ddstudio/asset/image/background-9.jpg');
+	}
 </style>
 </head>
 <body>
@@ -79,42 +83,10 @@
        position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng})
     });
     
-    //markers.push(marker); // 마커를 배열에 추가
-      
     m${status.count}.setImage(markerImg);
-    m${status.count}.setMap(map);
+    m${status.count}.setMap(map); 
     
-    <%--m${status.count}.seq = ${dto.location_seq};  //클릭이벤트를 했을때 연결해주는 seq
-    
-    /*
-     kakao.maps.event.addListener(m${status.count}, 'click', function (evt) {
-    	 // 이미지를 클릭하면 해당 마커에 효과주기
-    	 
-    	 selPlace(this.seq);
-    	 $('#map > div > div > div > div > div > img').css('opacity', '.3');
-    	 $(event.target).css('opacity', '1');
-     });
-    
-     markers.push({
-    	 
-   	  seq: ${dto.seq},
-   	  lat: ${dto.lat},
-   	  lng: ${dto.lng}
-   	  
-     });
-     */
-      --%>
-    </c:forEach>
-  
-     /*
-    function selPlace(seq) {
-  	  
-  	  $('#content .item').css('background-color', 'transparent');
-  	  $('#content #item' + seq).css('background-color', 'gold');
-  	  
-    }
-     */
-		
+    </c:forEach>	
 	</script>
 </body>
 </html>
