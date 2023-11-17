@@ -45,7 +45,7 @@
 				border: 0;
 			}
 			#type a:hover, #type a.selected {
-			    color: #29D6AB;
+			    color: #FF0076;
 			}
 			.faq-list {
 			  	width: 80%;
@@ -76,7 +76,7 @@
 			}
 			.question i {
 				font-size: 1.6rem;
-				color: #FFD46F;
+				color: #F70020;
 				margin-right: 30px;
 			}
 			.answer {

@@ -82,6 +82,26 @@ p {
 #default-searchbar {
 	padding: 30px
 }
+
+#overlay-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    opacity: 0.65; /* 투명도 조절 */
+    z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+}
+
+#title h2, #title p {
+	z-index: 2;
+}
+
+#condition {
+	position: relative;
+	z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -92,9 +112,10 @@ p {
 
 		<div id="title"
 			style="margin-top: 123px; background-image: url('/ddstudio/asset/image/background-5.jpg');">
-			<h2>기프트샵</h2>
-			<br>
-			<p>사랑 가득, 추억 듬뿍! 기프트샵에서 귀여운 상품들을 만나보세요.</p>
+				<div id="overlay-div"></div>
+				<h2>기프트샵</h2>
+				<br>
+				<p>사랑 가득, 추억 듬뿍! 기프트샵에서 귀여운 상품들을 만나보세요.</p>
 		</div>
 
 		<div id="content">
@@ -147,7 +168,7 @@ p {
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="detail(${dto.shop_seq})">
 						<div
-							style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+							style="background-image: url('/ddstudio/asset/image/giftshop/${dto.img}');"></div>
 						<div>
 							<p class="item-name">${dto.name}</p>
 						</div>

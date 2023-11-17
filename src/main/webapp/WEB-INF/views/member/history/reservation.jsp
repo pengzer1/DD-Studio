@@ -80,6 +80,10 @@ tr:nth-child(odd) {
 .wide-item>div:nth-child(2){
 	height: auto;
 }
+
+#title h2 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -89,11 +93,9 @@ tr:nth-child(odd) {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro041.jpg');">
 			<h2>어트랙션 예약 확인/취소</h2>
 		</div>
-
-		<hr>
 
 		<div id="content">
 

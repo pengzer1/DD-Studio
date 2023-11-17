@@ -146,8 +146,6 @@ try {
 				dto.setLng(rs.getString("lng"));
 				dto.setCategory(rs.getString("category"));
 				dto.setImg(rs.getString("img"));
-				dto.setStart_date(rs.getString("start_date"));
-				dto.setEnd_date(rs.getString("end_date"));
 				
 				return dto;
 			}

@@ -89,10 +89,9 @@
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/chihiro043.jpg');">
 			<h2>회원정보 수정</h2>
 			<br>
-			<p></p>
 		</div>
 
 		<div id="content">

@@ -19,12 +19,10 @@
 	text-align: left;
 	justify-content: left;
 	align-items: normal;
-	margin: 8px;
 }
 
 .item {
 	border: 1px solid #AAAAAA;
-	transition: transform 0.5s;
 }
 
 .item:hover div:nth-child(2) {
@@ -151,7 +149,7 @@
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="detail(${dto.restaurant_seq})">
 						<div
-							style="background-image: url('/ddstudio/asset/image/${dto.img}');"></div>
+							style="background-image: url('/ddstudio/asset/image/restaurant/${dto.img}');"></div>
 						<div>
 							<p>${dto.category}</p>
 							<p class="item-name">${dto.name}</p>

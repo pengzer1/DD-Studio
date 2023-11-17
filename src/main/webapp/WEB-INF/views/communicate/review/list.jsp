@@ -31,7 +31,7 @@
 				margin-right: 20px;
 			}
 			#sort a:hover, #sort a.selected {
-			    color: #29D6AB;
+			    color: #FF0076;
 			}
 			#sort i {
 				margin-right: 7px;
@@ -45,9 +45,8 @@
 			}
 			.item {
 		  		width: 70%;
-		  		height: 400px;
+		  		height: 330px;
 		  		color: #444;
-		  		background-color: transparent;
 		  		margin-bottom: 40px;
 		  		box-sizing: border-box;
 		  		transition: transform 0.3s ease;
@@ -55,21 +54,20 @@
 			.item:hover {
 			    transform: scale(1.1);
 			}
-			.item div {
-				background-color: #FFF07C;
-			}
 			.item div:nth-child(2) {
 				height: 60px;
 				font-size: 1.1rem;
 				font-weight: bold;
+				background-color: #FFF07C;
 				padding-top: 20px;
 			}
 			.item div:nth-child(3) {
 				font-size: 0.8rem;
+				background-color: #FFF07C;
 				padding: 10px;
 			}
 			.item div:nth-child(3) span:nth-child(1) {
-				margin-right: 70px;
+				margin-right: 60px;
 			}
 			.item div:nth-child(3) i {
 				margin-right: 5px;

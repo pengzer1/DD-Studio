@@ -49,8 +49,14 @@ h2 small {
 	margin-top: 0;
 }
 
+.button, .round-button {
+	background-color: rgba(200, 229, 229, 0.6);
+}
+
 .sub-title > p {
-	margin-bottom: 0;
+	margin-bottom: 0;    
+	font-size: 20px;
+    font-weight: 800;
 }
 
 #title {
@@ -126,6 +132,11 @@ h2 small {
 					<input type="hidden" name="email" value="hwnag@kakao.com">
 					<input type="hidden" name="pw" value="hwang1111!">
 					<button type="submit" class="login button">황주원</button>
+				</form>
+				<form method="POST" action="/ddstudio/user/login.do">
+					<input type="hidden" name="email" value="kim@kakao.com">
+					<input type="hidden" name="pw" value="kim1111!">
+					<button type="submit" class="login button">김형우</button>
 				</form>
 				<form method="POST" action="/ddstudio/user/login.do">
 					<input type="hidden" name="email" value="cha@daum.net">

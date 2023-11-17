@@ -291,6 +291,7 @@ text-align: center;
     border-right: 0 none;
     box-sizing: border-box;
     font-size: 18px;
+    font-weight: 400;
 }
 
 .res_benefit li .tit .tit_rt {
@@ -302,6 +303,7 @@ text-align: center;
     background: #eee;
     font-size: 18px;
     text-align: right;
+    font-weight: 400;
 }
 
 .res_benefit li .cont {
@@ -344,6 +346,7 @@ text-align: center;
     float: left;
     width: 55%;
     padding: 0 5%;
+    font-size: 17px;
 }
 
 .option {
@@ -356,6 +359,24 @@ text-align: center;
 
 .option p {
 	margin-left: 15px;
+}
+
+.benefit-button {
+	background-color: #007bcc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.benefit-button:disabled {
+	background-color: #003456;
 }
 </style>
 </head>
@@ -451,10 +472,10 @@ text-align: center;
 									</div>
 									<div class="cont">
 									 	<div class="img">
-									 		<p class="img_box"><img src="/ddstudio/asset/image/${dto.img}" style="width: 100%; height: 100%;"></p>
+									 		<p class="img_box"><img src="/ddstudio/asset/image/benefit/${dto.img}" style="width: 100%; height: 100%;"></p>
 									 	</div>
 									 	<div class="txt">
-									 		${dto.start_date} ~ ${dto.end_date}
+									 		${dto.start_date}<br>~<br>${dto.end_date}
 									 	</div>
 									</div>
 									<div class="it">
@@ -481,10 +502,10 @@ text-align: center;
 									</div>
 									<div class="cont">
 									 	<div class="img">
-									 		<p class="img_box"><img src="/ddstudio/asset/image/${dto.img}" style="width: 100%; height: 100%;"></p>
+									 		<p class="img_box"><img src="/ddstudio/asset/image/benefit/${dto.img}" style="width: 100%; height: 100%;"></p>
 									 	</div>
 									 	<div class="txt">
-									 		${dto.start_date} ~ ${dto.end_date}
+									 		${dto.start_date}<br>~<br>${dto.end_date}
 									 	</div>
 									</div>
 									<div class="it">
@@ -580,10 +601,12 @@ text-align: center;
 	    	
 	    	benefitButtons.forEach(btn => {
 	            btn.disabled = false;
+	            btn.innerText = "선택";
 	        });
 
 	        // 현재 클릭한 버튼만 비활성화
 	        button.disabled = true;
+	        button.innerText = "적용";
 	    }
 	    
 	    const inputs = document.querySelectorAll('input[required]');

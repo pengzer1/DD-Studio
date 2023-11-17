@@ -50,6 +50,34 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
 }
+
+.tit_lt {
+	position: relative;
+    float: left;
+    width: 20%;
+    height: 51px;
+    line-height: 51px;
+    padding-left: 2%;
+    border-right: 0 none;
+    box-sizing: border-box;
+    font-size: 30px;
+}
+
+.tit_rt {
+    float: left;
+    width: 38%;
+    height: 51px;
+    line-height: 51px;
+    padding-right: 2%;
+    font-size: 25px;
+    margin: 0;
+    text-align: left;
+    font-weight: 700;
+}
+
+.ex {
+	font-size: 16px;
+}
 </style>
 </head>
 <body>
@@ -67,16 +95,27 @@ button:hover {
 		<div id="content">
 		<div class="wide-content-container">
             <div class="wide-item">
-               <div><i class="fa-solid fa-user" style="font-size: 30px;"></i></div>
-               <div><button type="button" class="ticket-button" onclick="location.href='/ddstudio/ticket/single-reservation.do'">
-				개인 예매
+               <div><i class="fa-solid fa-user tit_lt"></i><p class="tit_rt">개인 예매</p></div>
+               <div>
+               <div class="ex">
+               <p>1Day 티켓부터 After4 티켓까지</p>
+               <p>다양한 혜택과 함께 누려보세요!</p>
+               </div>
+               <button type="button" class="ticket-button" onclick="location.href='/ddstudio/ticket/single-reservation.do'">
+				예매하기
 				</button></div>
             </div>
             <div class="wide-item">
-               <div><i class="fa-solid fa-users" style="font-size: 30px;"></i></div>
-               <div><button type="button" class="ticket-button" onclick="location.href='/ddstudio/ticket/group-reservation.do'">
-				단체 예매
-				</button></div>
+               <div><i class="fa-solid fa-users tit_lt"></i><p class="tit_rt">단체 예매</p></div>
+               <div>
+               <div class="ex">
+               <p>최대 100명까지 예약할 수 있는</p>
+               <p>DD Studio의 특별한 모험을 떠나보세요!</p>
+               </div>
+               <button type="button" class="ticket-button" onclick="location.href='/ddstudio/ticket/group-reservation.do'">
+				예매하기
+				</button>
+				</div>
             </div>
          </div>
 		</div>

@@ -158,7 +158,7 @@ button:hover {
       
       
       <div id="sub-title">
-         <p style="font-size: 25px">${name}님 안녕하세요!</p>
+         <p style="font-size: 25px"><strong>${name}</strong>님 안녕하세요!</p>
       </div>
 
       <div id="content">
