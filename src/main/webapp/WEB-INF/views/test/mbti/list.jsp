@@ -19,7 +19,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #007bcc;
+	background-color: #009aff;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 20px;
@@ -33,7 +33,7 @@
 
 .item:hover {
 	transform: scale(1.05);
-	background-color: #0056b3;
+	background-color: #007bcc;
 }
 
 .item h3 {
