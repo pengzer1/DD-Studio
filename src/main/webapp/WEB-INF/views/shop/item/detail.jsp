@@ -264,7 +264,7 @@ ul {
 									<span>수량</span>
 								</p>
 								<p class="txt2">
-									<select name="number" class="personnel">
+									<select name="num" class="personnel">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -308,7 +308,7 @@ ul {
 
 	<script>
 		$('#cart').click(function() {
-			let num = $('input[name="num"]').val(); // 입력 필드에서 값을 가져옴
+			let num = $('select[name="num"]').val(); // 입력 필드에서 값을 가져옴
 			let item_seq = '${dto.item_seq}';
 			$.ajax({
 				type : 'POST',
