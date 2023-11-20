@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
 #cancel {
-	margin-right: 35px;
+	margin-right: 25px;
 }
 
 select {
@@ -27,6 +27,14 @@ select {
 	margin-left: 20px;
 }
 
+.button {
+	font-size: 16px;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 #mbti-container {
 	display: flex;
 	margin-left: 25px;
@@ -37,8 +45,8 @@ select {
 }
 
 #mbti {
-	width: 200px;
-	border-bottom: 1.5px solid #eeeeee;
+	width: 198px;
+	height: 43px;
 }
 
 select option:checked {
