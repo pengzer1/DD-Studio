@@ -149,7 +149,6 @@ body {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	border-bottom: 1px solid #AAAAAA;
 }
 
 .item>div:nth-child(2) {
@@ -159,7 +158,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 8px;
-	background-color: #F8F8FF;
 }
 
 .wide-item {
