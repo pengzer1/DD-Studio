@@ -32,12 +32,11 @@
 	}
 	 
 	#title {
-	 	/* background-image: url('/ddstudio/asset/image/festival/festival_page_background.png'); */
-	 	background-image: url('/ddstudio/asset/image/festival/festival_background.jpg');
+	 	background-image: url('/ddstudio/asset/image/movie/moive_background.jpg');
 	}
 	
 	#background {
-		background-image: url('/ddstudio/asset/image/festival/festival_page_background.png');
+		background-image: url('/ddstudio/asset/image/movie/movie_detail_background.jpg');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -143,79 +142,6 @@
 		margin: 20px 10px;
 	}
 
-    /* Slideshow container */
-    .slideshow-container {
-        width: 1000px;
-        height: 650px;
-        overflow: hideen;
-        position: relative;
-        margin: 0 auto;
-    }
-
-    /* Hide the images by default */
-    .mySlides {
-    	display: none;
-    	min-width: 1000px;
-    	height: 650px;
-    }
-
-    .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Next & previous buttons */
-    .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    }
-
-	/* 왼쪽/오른쪽 버튼 */
-    .prev {
-    	left: 0;
-   		border-radius: 3px 0 0 3px;
-    }
-
-    .next {
-     right: 0;
-     border-radius: 3px 0 0 3px;
-    }
-    
-    .prev:hover, .next:hover {
-    	/* color: rgba(0,0,0,0.8); */
-    	background-color: rgba(0,0,0,0.8);
-    	color: #FFF;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-    }
-
-    /* Fading animation */
-    .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-    }
-
     @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
@@ -234,6 +160,12 @@
 		font-weight: bold;
 	}
 	
+	.poster > img {
+		width: 700px;
+		height: 1000px;
+		margin-bottom: 100px; 
+	}
+	
     
 </style>
 </head>
@@ -248,18 +180,18 @@
 		
 		<!-- Title -->
 		<div id="title">
-			<h2><c:out value="${dto.name}"/></h2>
+			<h2><c:out value="${dto.movie_name}"/></h2>
 		</div>
 	
 		<!-- 관리자용 수정/삭제 버튼 -->
 		<c:if test="${not empty email && lv == 2}">
 		<div id="admin-btn">
-			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/festivaldel.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-trash"></i> 삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/festivaledit.do?seq=${dto.festival_seq}'"><i class="fa-solid fa-pen-to-square"></i> 수정</button>
+			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/moviedel.do?seq=${dto.movie_seq}'"><i class="fa-solid fa-trash"></i> 삭제</button>
+			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/movieedit.do?seq=${dto.movie_seq}'"><i class="fa-solid fa-pen-to-square"></i> 수정</button>
 		</div>
 		</c:if>
 		
-		<!-- 페스티벌 해시태그 -->
+		<!-- 영화 해시태그 -->
 		<div id="hashtag">
 			<c:if test="${not empty hashtagList}">
 				<i class="fa-solid fa-tag fa-rotate-90"></i>
@@ -270,49 +202,29 @@
 		</div>
 		
 		
-		<!-- 페스티벌 이미지 슬라이더 -->
-		<!-- Slideshow container -->
-	    <div class="slideshow-container">
-	
-	    <!-- Full-width images with number and caption text -->
-	    <c:forEach items="${imgList}" var="dto">
-		    <div class="mySlides fade">
-		      <img src="/ddstudio/asset/image/festival/${dto.img}">
-		    </div>
-	  	</c:forEach>
-  
-	    <!-- Next and previous buttons -->
-	    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-	    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-	    </div>
-	
-	    <br>
-	  
-	    <!-- The dots/circles -->
-	    <div style="text-align:center; margin-bottom: 20px;">
-	    <c:forEach items="${imgList}" var="dto" varStatus="status">
-		    <span class="dot" onclick="currentSlide(${status.count})"></span>
-	    </c:forEach>
-	    </div>
+		<!-- 영화 이미지 -->
+		<div class="poster">
+			<img src="/ddstudio/asset/image/movie/${dto.img}" alt="Image" />
+		</div>
 		
-		<!-- 페스티벌 정보 -->
+		<!-- 영화 정보 -->
 		<!-- 정보, 시간 시작일, 종료일, 위치 순 -->
 		<div id="background">
 			<div class="result-container">
 				<div class="result-item">
+					<img src="/ddstudio/asset/image/info_icon.png" alt="Image" class="icon"/>
+					<div class="label">상영 영화관</div>
+					<div class="value">${dto.theater_name}</div>
+				</div>
+				<div class="result-item">
 					<img src="/ddstudio/asset/image/time_icon.png" alt="Image" class="icon"/>
-					<div class="label">시간</div>
-					<div class="value">${dto.time}</div>
+					<div class="label">상영 시간</div>
+					<div class="value">${dto.start_time}</div>
 				</div>
 				<div class="result-item">
 					<img src="/ddstudio/asset/image/calendar_icon.png" alt="Image" class="icon"/>
-					<div class="label">기간</div>
+					<div class="label">상영 기간</div>
 					<div class="value">${dto.start_date}<br>~<br>${dto.end_date}</div>
-				</div>
-				<div class="result-item">
-					<img src="/ddstudio/asset/image/theme_icon.png" alt="Image" class="icon"/>
-					<div class="label">정보</div>
-					<div class="value">${dto.info}</div>
 				</div>
 			</div>
 		</div>
@@ -345,7 +257,7 @@
 	    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
 	  	//마커 출력
-	    let imageSrc = '/ddstudio/asset/image/marker/festival_marker3.png'; // 마커이미지의 주소
+	    let imageSrc = '/ddstudio/asset/image/marker/movie_marker.png'; // 마커이미지의 주소
 	    const imageSize = new kakao.maps.Size(40,40);
 	    const option = {};
 	    
@@ -353,42 +265,13 @@
 	    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 	    
 	    const m1 = new kakao.maps.Marker({
-			position: new kakao.maps.LatLng(${location_dto.lat}, ${location_dto.lng}),
+			position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
 			image: markerImg
 		});
 	    
 	  	//마커 지도에 출력
 	    m1.setMap(map);
 	    
-	    /* 이미지 슬라이더용 */
-	    let slideIndex = 1;
-	    showSlides(slideIndex);
-	
-	    // Next/previous controls
-	    function plusSlides(n) {
-	    showSlides(slideIndex += n);
-	    }
-	
-	    // Thumbnail image controls
-	    function currentSlide(n) {
-	    showSlides(slideIndex = n);
-	    }
-	
-	    function showSlides(n) {
-	    let i;
-	    let slides = document.getElementsByClassName("mySlides");
-	    let dots = document.getElementsByClassName("dot");
-	    if (n > slides.length) {slideIndex = 1}
-	    if (n < 1) {slideIndex = slides.length}
-	    for (i = 0; i < slides.length; i++) {
-	        slides[i].style.display = "none";
-	    }
-	    for (i = 0; i < dots.length; i++) {
-	        dots[i].className = dots[i].className.replace(" active", "");
-	    }
-	    slides[slideIndex-1].style.display = "block";
-	    dots[slideIndex-1].className += " active";
-	    }
         
 	</script>
 </body>

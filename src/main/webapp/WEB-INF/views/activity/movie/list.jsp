@@ -15,7 +15,7 @@
 	}
 	
 	#title > h2 > a {
-		color: #000;
+		color: #FFF;
 		font-family: 'SUIT-Regular';
 	}
 	
@@ -29,7 +29,7 @@
 	}
 	 
 	#title {
-	 	background-image: url('/ddstudio/asset/image/movie/festival_page_background.png');
+	 	background-image: url('/ddstudio/asset/image/movie/moive_background.jpg');
 	}
 	 
 	#condition:hover {
@@ -132,7 +132,7 @@
 		</div>
 
 		<div id="content">
-			<div id="condition"> -->
+			<div id="condition">
 			
 				<!-- 조건 검색 (click 전) -->
 				<div id="default-searchbar">
@@ -151,7 +151,6 @@
 										<input type="date" name="date" id="date"/>
 									<div class="condition-btn">
 										<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
-										<!-- <button type="button" onclick="location.href='/ddstudio/activity/festival.do';"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button> -->
 									</div>
 								</div>
 							</div>
@@ -176,7 +175,7 @@
 				<c:forEach items="${list}" var="dto">
 					<div class="item" onclick="location.href= '/ddstudio/activity/moviedetail.do?seq=' + ${dto.movie_seq};">
 					<div style="background-image: url('/ddstudio/asset/image/movie/${dto.img}');"></div>
-					<div>${dto.name}</div>
+					<div>${dto.movie_name}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -224,17 +223,14 @@
 		
 		
 		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
-		if (${not empty status}) {
+		if (${not empty date}) {
 			
 			$('#hidden-searchbar').css('display', 'block');
 			$('#condition').css('height', '200px');
 			$('#default-searchbar').css('display', 'none');
 	
-			if (${status == 'ing'}) {
-				$('#status-select').val("ing").prop("selected", true);
-			} else if (${status == 'will'}) {
-				$('#status-select').val("will").prop("selected", true);
-			}
+			$('#date').val('${date}');
+			
 		}
 		
 	

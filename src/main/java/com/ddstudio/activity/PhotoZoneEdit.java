@@ -66,7 +66,6 @@ public class PhotoZoneEdit extends HttpServlet {
 			
 			String seq = multi.getParameter("seq");
 			String name = multi.getParameter("name");
-			String time = multi.getParameter("time");
 			String info = multi.getParameter("info");
 			String lat = multi.getParameter("lat");
 			String lng = multi.getParameter("lng");
@@ -77,13 +76,24 @@ public class PhotoZoneEdit extends HttpServlet {
 			//0. dto에 담아주기
 			dto.setPhotozone_seq(seq);
 			dto.setName(name);
-			dto.setTime(time);
 			dto.setInfo(info);
 			dto.setLat(lat);
 			dto.setLng(lng);
 			
+			
+			System.out.println(seq);
+			System.out.println(name);
+			System.out.println(info);
+			System.out.println(lat);
+			System.out.println(lng);
+			
+			
 			//1. 기존 위치 번호 가져와서 위치 정보 수정하기
 			LocationDTO location_dto = dao.getPhotozoneLocation(seq);
+			
+			System.out.println(location_dto.getLat());
+			System.out.println(location_dto.getLng());
+			
 			
 			//NEW 위치로 덮어주기
 			location_dto.setLat(lat);
@@ -162,7 +172,7 @@ public class PhotoZoneEdit extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("at FestivalEdit.doPost");
+			System.out.println("at PhotoZoneEdit.doPost");
 			e.printStackTrace();
 		}
 		

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 
-@WebServlet("/activity/photozone/del.do")
+@WebServlet("/activity/photozonedel.do")
 public class PhotoZoneDel extends HttpServlet {
 
 	@Override
