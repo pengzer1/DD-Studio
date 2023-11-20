@@ -23,7 +23,7 @@ public class ConvenientDetail extends HttpServlet {
 		
 		req.setAttribute("list", list);
 		
-		System.out.println(list);
+		// System.out.println(list);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/convenient/detail.jsp");
 		dispatcher.forward(req, resp);
