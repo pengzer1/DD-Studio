@@ -88,7 +88,7 @@
 		<div id="del-content">
 			<form method="POST" action="/ddstudio/activity/theaterdel.do">
 				<div id="btn">
-					<button type="button" onclick="location.href= '/ddstudio/activity/movie.do';"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
+					<button type="button" onclick="location.href= '/ddstudio/activity/theater.do';"><i class="fa-solid fa-circle-arrow-left"></i>취소</button>
 					<button><i class="fa-solid fa-trash"></i>삭제</button>
 				</div>
 				<input type="hidden" name="seq" value="${seq}" />

@@ -167,9 +167,6 @@
 			<!-- 관리자용 추가 버튼 -->
 			<c:if test="${not empty email && lv == 2}">
 				<div id="admin-btn">
-					<!-- <button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theaterdel.do'"><i class="fa-solid fa-plus"></i>영화관 삭제</button>
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateredit.do'"><i class="fa-solid fa-plus"></i>영화관 수정</button>
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateradd.do'"><i class="fa-solid fa-plus"></i>영화관 등록</button> -->
 					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theater.do'"><i class="fa-solid fa-gear"></i> 영화관 관리</button>
 					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/movieadd.do'"><i class="fa-solid fa-plus"></i> 영화 등록</button>
 					
