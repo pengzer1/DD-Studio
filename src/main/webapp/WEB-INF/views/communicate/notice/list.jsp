@@ -10,6 +10,11 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			
+			#notice > h1 {
+				font-family: 'SUIT-Regular';
+			}
+			
 			#search-form {
 				margin-top: 50px;
 			}

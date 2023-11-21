@@ -15,7 +15,8 @@
 	}
 	
 	#title > h2 > a {
-		color: #000;
+		color: #FFF;
+		font-family: 'SUIT-Regular';
 	}
 	
 	#title > p {
@@ -28,7 +29,8 @@
 	}
 	 
 	#title {
-	 	background-image: url('/ddstudio/asset/image/festival/festival_page_background.png');
+	 	/* background-image: url('/ddstudio/asset/image/festival/festival_page_background.png'); */
+	 	background-image: url('/ddstudio/asset/image/festival/festival_background.jpg');
 	}
 	 
 	#condition:hover {
@@ -56,6 +58,7 @@
 		color: #222;
 		background-color: #E6AAAE;
 		float: right;
+		margin-top: 20px;
 	}
 	
 	form {
@@ -83,6 +86,10 @@
 		padding: 20px;
 	}
 	
+	.condition-btn {
+		width: 100px;
+	}
+	
 	.condition-btn > button {
 		margin: 3px;
 		border: 0;
@@ -105,6 +112,13 @@
 	
 	#default-searchbar {
 		padding: 30px
+	}
+	
+	#date {
+		border-radius: 5px;
+		height: 30px;
+		padding: 5px;
+		width: 130px;
 	}
 	
 </style>
@@ -138,11 +152,8 @@
 							<h4><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h4>
 							<div class="block-bubbling">
 								<div class="condition-container">
-									<div>진행 여부</div>
-									<select name="status" id="status-select" class="selectbox">
-										<option value="ing">진행중</option>
-										<option value="will">예정</option>
-									</select>
+									<div style="width: 100px; font-size: 20px; font-weight: bold;">공연일정</div>
+										<input type="date" name="date" id="date"/>
 									<div class="condition-btn">
 										<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
 										<!-- <button type="button" onclick="location.href='/ddstudio/activity/festival.do';"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button> -->
@@ -174,8 +185,9 @@
 			
 		</div>
 	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+
 	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
 	<script>
 		
@@ -215,17 +227,14 @@
 		
 		
 		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
-		if (${not empty status}) {
+		if (${not empty date}) {
 			
 			$('#hidden-searchbar').css('display', 'block');
 			$('#condition').css('height', '200px');
 			$('#default-searchbar').css('display', 'none');
 	
-			if (${status == 'ing'}) {
-				$('#status-select').val("ing").prop("selected", true);
-			} else if (${status == 'will'}) {
-				$('#status-select').val("will").prop("selected", true);
-			}
+			$('#date').val('${date}');
+			//alert('${date}');
 		}
 		
 	

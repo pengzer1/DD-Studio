@@ -24,7 +24,9 @@
 }
 
 .buttons-container {
+	margin-top: 20px;
 	position: relative;
+	text-align: center;
 }
 
 .button {
@@ -70,6 +72,25 @@ th {
 	background-color: #007bff;
 	color: #fff;
 }
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: black;
+	opacity: 0.4; /* 투명도 조절 */
+	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+}
+
+#title h2 {
+	color: #ddd;
+}
+
+#title h2, #title p {
+	z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -79,7 +100,8 @@ th {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style=" background-image: url('/ddstudio/asset/image/background-1.jpg');">
+		<div id="overlay-div"></div>
 			<h2>장바구니</h2>
 		</div>
 
@@ -109,7 +131,7 @@ th {
 								<td>${dto.ea}</td>
 								<td>${dto.total_price}</td>
 								<td class="checkbox-col"><input type="checkbox"
-									name="reservationCheckbox" value="${dto.user_cart_seq}"></td>
+									name="reservationCheckbox" class="cart-checkbox" value="${dto.user_cart_seq}"></td>
 							</tr>
 						</c:forEach>
 
@@ -118,7 +140,7 @@ th {
 				</table>
 				<c:if test="${not empty list}">
 				<div class="buttons-container">
-					<button type="submit" class="button">주문하기</button>
+					<button type="submit" id="orderButton" class="button" disabled>주문하기</button>
 				</div>
 				</c:if>
 			</form>

@@ -82,6 +82,9 @@ a:hover {
 #content {
 	margin-top: 100px;
 }
+#title h2 {
+	color:white;
+}
 </style>
 </head>
 <body>
@@ -91,12 +94,10 @@ a:hover {
 
 	<main id="main">
 
-		<div id="title">
+		<div id="title" style="background-image: url('/ddstudio/asset/image/kazetachinu042.jpg');">
 			<h2>리뷰</h2>
 			<p></p>
 		</div>
-
-		<hr>
 
 		<div id="content">
 			<div class="wide-multi-content-container">

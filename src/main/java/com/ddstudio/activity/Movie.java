@@ -20,9 +20,8 @@ public class Movie extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//Movie.java
-
-		//- 조건 검색: 날짜별 선택 > 일단 버려
-		req.removeAttribute("date");
+		//- 조건 검색: 날짜별 조회
+		
 		String date = req.getParameter("date");
 		
 		if (date == null || date.equalsIgnoreCase("")) {
@@ -30,13 +29,15 @@ public class Movie extends HttpServlet {
 		}
 		
 		//date = ""
-		//date = 각 날짜
+		//date = 날짜
 		
+		//영화 정보 가져오기
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<MovieDTO> list = dao.movieList();
+		ArrayList<MovieDTO> list = dao.movieList(date);
 		
 		req.setAttribute("list", list);
+		req.setAttribute("date", date);
 		
 		
 		

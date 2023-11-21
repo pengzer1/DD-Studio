@@ -16,6 +16,8 @@ public class TheaterDel extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//TheaterDel.java
+		
+		String seq = req.getParameter("seq");
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/movie/theaterdel.jsp");
 		dispatcher.forward(req, resp);

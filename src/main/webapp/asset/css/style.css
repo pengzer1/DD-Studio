@@ -1,8 +1,8 @@
 /********** Template CSS **********/
-:root {
+:root { 
 	--primary: #FB5B21;
-	--secondary: #BDBDBF;
-	--light: #F4F5F8;
+	--secondary: #BDBDBF; 
+	--light: #F4F5F8; 
 	--dark: #222429;
 }
 
@@ -13,11 +13,11 @@
 }
 
 body {
-    overflow-y: scroll;
-    background-color: #F8F8FF !important;
+	overflow-y: scroll;
+	background-color: #F8F8FF !important;
 }
 
-#main > #title {
+#main>#title {
 	text-align: center;
 	background-color: white;
 	height: 300px;
@@ -29,34 +29,39 @@ body {
 }
 
 #title {
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 0;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin-top: 0;
 }
 
 #title h2 {
     color: black;
-    /* font-family: 'JalnanGothic'; */
+    font-family: 'SUIT-Regular';
     font-size: calc(1.7rem + 1.5vw);
     letter-spacing: 2px;
     margin: 0;
+	color: black;
+	/* font-family: 'JalnanGothic'; */
+	font-size: calc(1.7rem + 1.5vw);
+	letter-spacing: 2px;
+	margin: 0;
 }
 
-#title > p {
-    shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
-    padding: 5px 20px;
-    color: #222222;
-    font-size: 17px;
-    background-color: rgba(255, 255, 255, 0.6);
-    display: inline-block;
-    border-radius: 50px;
+#title>p {
+	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+	padding: 5px 20px;
+	color: #222222;
+	font-size: 17px;
+	background-color: rgba(255, 255, 255, 0.6);
+	display: inline-block;
+	border-radius: 50px;
 }
 
-#main > .sub-title {
+#main>.sub-title {
 	text-align: center;
 	height: 100px;
 	display: flex;
@@ -66,19 +71,19 @@ body {
 }
 
 #content {
-    padding: 0 200px;
-    margin-top: -50px;
-    min-width: 450px;
-    box-sizing: border-box;
+	padding: 0 200px;
+	margin-top: -50px;
+	min-width: 450px;
+	box-sizing: border-box;
 }
 
 @media screen and (max-width: 768px) {
-    #content {
-        padding: 0;
-    }
+	#content {
+		padding: 0;
+	}
 }
 
-#content > #condition {
+#content>#condition {
 	box-shadow: 5px 10px 70px rgba(0, 0, 0, 0.4);
 	text-align: center;
 	background-color: rgba(200, 229, 229, 0.95);
@@ -135,17 +140,15 @@ body {
 
 .item:hover {
 	cursor: pointer;
-	    box-shadow: 3px 7px 30px rgba(0,0,0,0.25);
-	
+	box-shadow: 3px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .item>div:nth-child(1) {
 	height: 70%;
-	background-color: #CCC;
+	background-color: transparent;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	border-bottom: 1px solid #AAAAAA;
 }
 
 .item>div:nth-child(2) {
@@ -155,7 +158,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 8px;
-	background-color: #FFFFFA;
+	background-color: transparent;
 }
 
 .wide-item {
@@ -178,7 +181,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	line-height: 1;
-	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 .wide-item>div:nth-child(1) {
@@ -191,7 +193,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	line-height: 1;
-	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 .wide-item>div:nth-child(2) {
@@ -200,8 +201,6 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #CCC; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
-	border-top: 1px transparent; /* 컨텐츠 확인을 위한 border > 추후 삭제 */
 }
 
 #admin-btn {
@@ -224,8 +223,8 @@ body {
 #ddstudio-header {
 	margin: 0px;
 	position: fixed;
-	top:0;
-	z-index:999;
+	top: 0;
+	z-index: 999;
 	background-color: #FFF;
 	padding-bottom: 10px;
 }
@@ -426,3 +425,9 @@ h5, h6, .font-weight-medium {
 	}
 }
 
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+	}

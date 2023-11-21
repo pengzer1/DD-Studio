@@ -15,7 +15,8 @@
 	}
 	
 	#title > h2 > a {
-		color: #000;
+		color: #FFF;
+		font-family: 'SUIT-Regular';
 	}
 	
 	#title > p {
@@ -28,7 +29,7 @@
 	}
 	 
 	#title {
-	 	background-image: url('/ddstudio/asset/image/festival/festival_page_background.png');
+	 	background-image: url('/ddstudio/asset/image/movie/moive_background.jpg');
 	}
 	 
 	#condition:hover {
@@ -56,6 +57,11 @@
 		color: #222;
 		background-color: #E6AAAE;
 		float: right;
+		margin-top: 20px;
+	}
+	
+	#admin-btn button:last-child {
+		margin-right: 3px;
 	}
 	
 	form {
@@ -107,12 +113,20 @@
 		padding: 30px
 	}
 	
+	#date {
+		border-radius: 5px;
+		height: 30px;
+		padding: 5px;
+		width: 120px;
+	}
+	
+	
 </style>
 </head>
 <body>
 	<!-- /activity/movie/list.jsp -->
-	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 	<!-- Header -->
+	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<main id="main">
 
@@ -123,45 +137,41 @@
 		</div>
 
 		<div id="content">
-			<!-- <div id="condition"> -->
+			<div id="condition">
 			
 				<!-- 조건 검색 (click 전) -->
-				<!-- <div id="default-searchbar">
+				<div id="default-searchbar">
 					<h3><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h3>
-				</div> -->
+				</div>
 
 				<!-- 조건 검색 (click 후) -->
-				<!-- <form method="GET" action="/ddstudio/activity/festival.do">
+				<form method="GET" action="/ddstudio/activity/movie.do">
 					<div id="hidden-searchbar">
-						<span id="delBtn"style="position: absolute;"><a href="/ddstudio/activity/festival.do">&times;</a></span>
+						<span id="delBtn"style="position: absolute;"><a href="/ddstudio/activity/movie.do">&times;</a></span>
 						<div>
 							<h4><i class="fa-solid fa-magnifying-glass"></i> 조건 검색</h4>
 							<div class="block-bubbling">
 								<div class="condition-container">
-									<div>진행 여부</div>
-									<select name="status" id="status-select" class="selectbox">
-										<option value="ing">진행중</option>
-										<option value="will">예정</option>
-									</select>
+									<div style="width: 100px; font-size: 20px; font-weight: bold;">상영일정</div>
+										<input type="date" name="date" id="date"/>
 									<div class="condition-btn">
 										<button><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
-										<button type="button" onclick="location.href='/ddstudio/activity/festival.do';"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</form>
-			</div> -->
-			
+			</div>
 			
 			<!-- 관리자용 추가 버튼 -->
 			<c:if test="${not empty email && lv == 2}">
 				<div id="admin-btn">
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/movieadd.do'"><i class="fa-solid fa-plus"></i>영화 등록</button>
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateradd.do'"><i class="fa-solid fa-plus"></i>영화관 등록</button>
-					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theaterdel.do'"><i class="fa-solid fa-plus"></i>영화관 삭제</button>
+					<!-- <button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theaterdel.do'"><i class="fa-solid fa-plus"></i>영화관 삭제</button>
 					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateredit.do'"><i class="fa-solid fa-plus"></i>영화관 수정</button>
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateradd.do'"><i class="fa-solid fa-plus"></i>영화관 등록</button> -->
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theater.do'"><i class="fa-solid fa-gear"></i> 영화관 관리</button>
+					<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/movieadd.do'"><i class="fa-solid fa-plus"></i> 영화 등록</button>
 					
 				</div>
 			</c:if>
@@ -169,17 +179,17 @@
 			<!-- 영화 컨텐츠 이미지 -->
 			<div class="munti-content-container">
 				<c:forEach items="${list}" var="dto">
-					<div class="item" onclick="location.href= '/ddstudio/activity/moviedetail.do?seq=' + ${dto.festival_seq};">
+					<div class="item" onclick="location.href= '/ddstudio/activity/moviedetail.do?seq=' + ${dto.movie_seq};">
 					<div style="background-image: url('/ddstudio/asset/image/movie/${dto.img}');"></div>
-					<div>${dto.name}</div>
+					<div>${dto.movie_name}</div>
 					</div>
 				</c:forEach>
 			</div>
 			
 		</div>
 	</main>
-	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 	<!-- Footer -->
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
 	<script>
 		
@@ -219,17 +229,14 @@
 		
 		
 		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
-		if (${not empty status}) {
+		if (${not empty date}) {
 			
 			$('#hidden-searchbar').css('display', 'block');
 			$('#condition').css('height', '200px');
 			$('#default-searchbar').css('display', 'none');
 	
-			if (${status == 'ing'}) {
-				$('#status-select').val("ing").prop("selected", true);
-			} else if (${status == 'will'}) {
-				$('#status-select').val("will").prop("selected", true);
-			}
+			$('#date').val('${date}');
+			
 		}
 		
 	

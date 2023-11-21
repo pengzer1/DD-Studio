@@ -1,8 +1,8 @@
 package com.ddstudio.pb;
 
 
-import com.ddstudio.pb.model.BenefitDTO;
-import com.ddstudio.pb.repository.BenefitDAO;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
+
+import com.ddstudio.pb.model.BenefitDTO;
+import com.ddstudio.pb.repository.BenefitDAO;
 
 @WebServlet("/pb/benefit.do")
 public class Benefit extends HttpServlet {
@@ -25,10 +26,12 @@ public class Benefit extends HttpServlet {
 
         ArrayList<BenefitDTO> list = dao.list();
 
+        ArrayList<BenefitDTO> normalList = dao.nomalList();
+        ArrayList<BenefitDTO> cardList = dao.cardList();
 
 
-
-
+        req.setAttribute("cardList", cardList);
+        req.setAttribute("normalList",normalList);
         req.setAttribute("list", list);
 
         

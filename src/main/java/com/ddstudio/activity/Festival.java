@@ -20,29 +20,25 @@ public class Festival extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//Festival.java
+		//- 조건검색: 날짜별 조회
 		
-		//A. festival.do > 목록보기(조건: 페스티벌 기간 내 오늘 날짜 포함)
-		//- tblFestival > list 불러오기
-		//- 조건검색: 진행 여부별 조회
+		String date = req.getParameter("date");
 		
-		req.removeAttribute("status");
-		String status = req.getParameter("status");
-		
-		if (status == null || status.equals("")) {
-			status = "";
+		if (date == null || date.equalsIgnoreCase("")) {
+			date = "";
 		}
 		
-		//status = ""
-		//status = "ing"
-		//status = "will"
+		//date = ""
+		//date = 날짜
 		
+		//페스티벌 정보 가져오기
 		ActDAO dao = new ActDAO();
 		
-		ArrayList<FestivalDTO> list = dao.festivalList(status);
+		ArrayList<FestivalDTO> list = dao.festivalList(date);
 		
 		//데이터 전송
 		req.setAttribute("list", list);
-		req.setAttribute("status", status);
+		req.setAttribute("date", date);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/activity/festival/list.jsp");
 		dispatcher.forward(req, resp);

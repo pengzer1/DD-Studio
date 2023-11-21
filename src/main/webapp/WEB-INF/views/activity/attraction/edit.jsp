@@ -97,6 +97,13 @@
 		border-radius: 7px;
 		appearance: auto;
 	}
+	
+	table {
+	   	border-left: 2px solid #d1d1d1;
+	    border-right: 2px solid #d1d1d1;
+	    border-radius: 20px;
+	    border-collapse: separate;
+	}
     
 </style>
 </head>
@@ -147,7 +154,7 @@
 						</tr>
 						<!-- 고객 맞춤형 추천 목록 사용 여부 필드 -->
 						<tr>
-							<th>Test 사용 여부</th>
+							<th class="required">Test 사용 여부</th>
 							<td>
 								<div>
 									<c:if test="${dto.is_test == 'Y'}">
@@ -173,21 +180,21 @@
 							</td>
 						</tr>
 						<!-- 해시태그 필드 -->
-						<!-- <tr>
+						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
+								<textarea name='tags' placeholder='반드시 태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
-						</tr> -->
+						</tr>
 						<!-- 이미지 필드 -->
-						<!-- <tr>
-	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images" >
-			                    </td>
+						<tr>
+	                    	<th> </th>
+		                	<td>
+		                    	<input type="file" name="images1" class="images" >
+		                    </td>
 		                </tr>
 		                <tr>
-		                	<th> </th>
+		                	<th>이미지</th>
 		                    <td>
 		                    	<input type="file" name="images2" class="images">
 		                    </td>
@@ -197,7 +204,7 @@
 		                    <td>
 		                    	<input type="file" name="images3" class="images">
 		                    </td>
-		                </tr> -->
+		                </tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
@@ -223,58 +230,66 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
 		    
-		    const container = document.getElementById('map');
-			const options = {
-				center : new kakao.maps.LatLng(33.3808, 126.5450),
-				level : 10,
-				draggable : true, // 이동 금지
-				disableDoubleClick : true, // 더블클릭 확대 금지
-				scrollwheel : false
-			// 휠 확대/축소 금지
-			};
+	    const container = document.getElementById('map');
+		const options = {
+			center : new kakao.maps.LatLng(33.3808, 126.5450),
+			level : 10,
+			draggable : true, // 이동 금지
+			disableDoubleClick : true, // 더블클릭 확대 금지
+			scrollwheel : false // 휠 확대/축소 금지
+		};
 			
-			const map = new kakao.maps.Map(container, options);
-			
-			let m = null;
-			let lat = ${location_dto.lat};
-			let lng = ${location_dto.lng};
-			
-			m = new kakao.maps.Marker({
-	            position: new kakao.maps.LatLng(lat, lng)
-	        });
+		const map = new kakao.maps.Map(container, options);
+		
+		let m = null;
+		let lat = ${location_dto.lat};
+		let lng = ${location_dto.lng};
+		
+		//마커 출력
+	    let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	    const imageSize = new kakao.maps.Size(40,40);
+	    const option = {};
+	    
+	    //마커 설정
+	    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+		
+		
+		m = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(lat, lng),
+            image: markerImg
+        });
 
-	        m.setMap(map);
-			
-			 kakao.maps.event.addListener(map, 'click', function(evt) {
-			        lat = evt.latLng.getLat();
-			        lng = evt.latLng.getLng();
-	
-			        if (m != null) {
-			            // 기존 마커 제거
-			            m.setMap(null);
-			        }
-	
-			        m = new kakao.maps.Marker({
-			            position: new kakao.maps.LatLng(lat, lng)
-			        });
-	
-			        m.setMap(map);
-			        
-			        latInput.value = lat;
-			        lngInput.value = lng;
-			        
-			    });
-			 
+		//마커 지도에 출력
+        m.setMap(map);
+		
+		 kakao.maps.event.addListener(map, 'click', function(evt) {
+		        lat = evt.latLng.getLat();
+		        lng = evt.latLng.getLng();
+
+		        if (m != null) {
+		            // 기존 마커 제거
+		            m.setMap(null);
+		        }
+
+		        m = new kakao.maps.Marker({
+		            position: new kakao.maps.LatLng(lat, lng)
+		        });
+
+		        m.setMap(map);
+		        
+		        latInput.value = lat;
+		        lngInput.value = lng;
+		        
+	    });
+		 
 			 
 		 //Tagify whitelist용 변수 생성
-		 /* const taglist = ${taglist} */
-		 /* const valuelist = ${hashtag_list} */
+		 const taglist = ${taglist};
+		 const valuelist = ${valuelist};
 		 
-		 /*
 		 //Tagify 도전기
 		 var input = document.querySelector('textarea[name=tags]'),
 		 	tagify = new Tagify(input, {
@@ -283,6 +298,8 @@
  		    delimiters       : null,
  		    whitelist        : taglist
 		  });
+		 
+		 tagify.addTags(valuelist);
 		
 		 //tagify 해시태그 목록 드롭다운 메뉴 표출
 		 tagify.on('input', onInput)
@@ -291,7 +308,6 @@
 	        
 	        tagify.dropdown.show(e.detail.value); // 드롭다운 메뉴 보여주기
    		 }
-		 */
 		 
 		 
 	</script>

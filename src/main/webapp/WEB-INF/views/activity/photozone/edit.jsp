@@ -97,6 +97,13 @@
 		border-radius: 7px;
 		appearance: auto;
 	}
+	
+	table {
+	  	border-left: 2px solid #d1d1d1;
+	    border-right: 2px solid #d1d1d1;
+	    border-radius: 20px;
+	    border-collapse: separate;
+	}
     
 </style>
 </head>
@@ -141,7 +148,7 @@
 							<th class="required">이용 정보</th>
 							<td>
 								<div>
-									<input type="text" name="info" id="info" class="middle-flat" placeholder="페스티벌 소개를 입력해주세요." value="${dto.info}" required />
+									<input type="text" name="info" id="info" class="middle-flat" placeholder="포토존 소개를 입력해주세요." value="${dto.info}" required />
 								</div>
 							</td>
 						</tr>
@@ -164,7 +171,7 @@
 							</td>
 						</tr> -->
 						<!-- 이미지 필드 -->
-						<!-- <tr>
+						<tr>
 	                    	<th>이미지</th>
 			                	<td>
 			                    	<input type="file" name="images1" class="images">
@@ -181,13 +188,13 @@
 		                    <td>
 		                    	<input type="file" name="images3" class="images">
 		                    </td>
-		                </tr> -->
+		                </tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button id="submit" class="check button">추가</button>
+									<button id="submit" class="check button">수정</button>
 									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/photozone.do';">취소</button>
 								</div>
 							</td>
@@ -195,6 +202,7 @@
 					</table>
 					<input type="hidden" name="lat" id="lat">
 					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="seq" id="seq" value="${dto.photozone_seq}"/>
 				</form>
 			</div>
 		</div>
@@ -206,33 +214,8 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
-		    
-		
-		/*
-		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
-		    inputs.forEach(input => {
-		        input.addEventListener('input', function() {
-		            let allFilled = true;
-		            inputs.forEach(requiredInput => {
-		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
-		                if (requiredInput.value === '') {
-		                    allFilled = false;
-		                }
-		            });
-	
-		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const submitButton = document.getElementById('submit');
-		            if (allFilled) {
-		                submitButton.disabled = false;
-		            } else {
-		                submitButton.disabled = true;
-		            }
-		        });
-		    });
-		    */
 		    
 		    const container = document.getElementById('map');
 			const options = {
@@ -247,14 +230,25 @@
 			const map = new kakao.maps.Map(container, options);
 			
 			let m = null;
-			let lat = ${dto.lat};
-			let lng = ${dto.lng};
+			let lat = ${location_dto.lat};
+			let lng = ${location_dto.lng};
+			
+			//마커 출력
+		    let imageSrc = '/ddstudio/asset/image/marker/photo_marker3.png'; // 마커이미지의 주소
+		    const imageSize = new kakao.maps.Size(40,40);
+		    const option = {};
+		    
+		    //마커 설정
+		    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+			
 			
 			m = new kakao.maps.Marker({
-	            position: new kakao.maps.LatLng(lat, lng)
-	        });
-
-	        m.setMap(map);
+		        position: new kakao.maps.LatLng(lat, lng),
+		        image: markerImg
+		    });
+		
+			//마커 지도에 출력
+		    m.setMap(map);
 			
 			 kakao.maps.event.addListener(map, 'click', function(evt) {
 			        lat = evt.latLng.getLat();

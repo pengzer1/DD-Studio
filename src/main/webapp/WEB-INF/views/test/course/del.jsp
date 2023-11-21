@@ -26,6 +26,14 @@ select {
 	background-repeat: no-repeat;
 }
 
+.button {
+	font-size: 16px;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 select option:checked {
 	background-color: #ddd;
 }

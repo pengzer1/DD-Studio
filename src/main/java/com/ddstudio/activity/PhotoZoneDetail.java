@@ -32,12 +32,6 @@ public class PhotoZoneDetail extends HttpServlet {
 		
 		LocationDTO location_dto = dao.getPhotozoneLocation(seq);
 		
-		System.out.println(imgList.toString());
-		System.out.println(location_dto.toString());
-		System.out.println(dto.toString());
-		
-		
-		
 		req.setAttribute("imgList", imgList);
 		req.setAttribute("dto", dto);
 		req.setAttribute("location_dto", location_dto);

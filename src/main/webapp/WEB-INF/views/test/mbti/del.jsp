@@ -26,6 +26,14 @@ select {
 	margin-left: 20px;
 }
 
+.button {
+	font-size: 16px;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 #mbti-container {
 	display: flex;
 	margin-left: 25px;
@@ -61,8 +69,7 @@ select option:checked {
 							<td>
 								<div id="mbti-container">
 									<div>
-										<select name="selected-mbti" id="selected-mbti" required
-											class="middle-flat">
+										<select name="selected-mbti" id="selected-mbti" required class="middle-flat">
 										</select>
 									</div>
 								</div>
@@ -72,10 +79,8 @@ select option:checked {
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button type="button" id="delButton" class="check button"
-										onclick="delMBTI()">삭제</button>
-									<button type="button" id="cancel" class="button"
-										onclick="location.href='/ddstudio/test/mbti.do';">취소</button>
+									<button type="button" id="delButton" class="check button" onclick="delMBTI()">삭제</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/test/mbti.do';">취소</button>
 								</div>
 							</td>
 						</tr>

@@ -9,8 +9,56 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
-#cancel, #acceptok {
-	margin-right: 35px;
+#check #myid {
+	margin-right: 0 !important;
+}
+
+#cancel {
+	margin-right: 40px;
+}
+
+#acceptok {
+	margin-right: 25px;
+}
+
+#valid > tbody > tr:nth-child(5) > td > div > input {
+	margin-left: -12px;
+}
+
+.sub-title > p {
+	font-size: 20px;
+    font-weight: 800;
+}
+
+.button {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+/*
+table {
+	border-left: 2px solid #d1d1d1;
+    border-right: 2px solid #d1d1d1;
+    border-radius: 20px;
+    border-collapse: separate;
+	background: transparent;
+}
+*/
+
+table th {
+	padding: 0 10px;
+}
+
+td > div > input {
+	background: transparent;
+    border-bottom: 1.5px solid #cecece;
 }
 </style>
 </head>
@@ -86,7 +134,7 @@
 					<table id="check">
 						<!-- 본인 이메일 확인 필드 -->
 						<tr>
-							<th>이메일 (아이디)</th>
+							<th>이메일</th>
 							<td>
 								<div>
 									<input type="text" name="myid" id="myid" class="middle-flat" style="pointer-events: none;">

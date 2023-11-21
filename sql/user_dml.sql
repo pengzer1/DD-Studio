@@ -8,6 +8,9 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '황주원', 'hwnag@kakao.com', 'hwang1111!', '010-5341-3358', '50435 전북 99동 71층 571호', TO_DATE('19961221', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
+VALUES (seqtblUser.nextVal, '김형우', 'kim@kakao.com', 'kim1111!', '010-1532-3222', '23822 서울 81동 111층 216호', TO_DATE('19970904', 'yyyy-mm-dd'), '1', 'Y');
+
+INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '차민재', 'cha@daum.net', 'cha1111!', '010-3926-3102', '23822 부산 91동 88층 216호', TO_DATE('19980824', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)

@@ -19,21 +19,22 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: #FFD700;
+	color: white;
+	background-color: #007bff;
 	border-radius: 8px;
 	margin: 10px;
 	padding: 20px;
+	border: 0px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease-in-out;
 	cursor: pointer;
 	font-size: 40px;
 	font-weight: 600;
-	color: #333;
 }
 
 .item:hover {
 	transform: scale(1.05);
-	background-color: #FFA500;
+	background-color: #0056b3;
 }
 
 .item h3 {
@@ -50,6 +51,22 @@
 #content {
 	margin-top: 50px !important;
 }
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 400px;
+	background-color: black;
+	opacity: 0.45; /* 투명도 조절 */
+	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+}
+
+#title h2 {
+	color: #EEE;
+	z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -58,6 +75,7 @@
 
 	<main id="main">
 		<div id="title" title="senivpetro 출처 Freepik">
+		<div id="overlay-div"></div>
 			<h2>MBTI별 추천</h2>
 		</div>
 

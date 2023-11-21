@@ -13,7 +13,7 @@
 }
 
 #title > h2{
-	color: black;
+	color: white;
 }
 
 .container {
@@ -91,8 +91,8 @@ h2, h3 {
 
 	<main id="main">
 
-		<div id="title">
-			<h2>리뷰</h2>
+		<div id="title" style="background-image: url('/ddstudio/asset/image/marnie012.jpg');">
+			<h2 >리뷰</h2>
 			<br>
 		</div>
 	
@@ -105,6 +105,7 @@ h2, h3 {
                 <hr>
                 <p><strong>제목:</strong> ${dto.subject}</p>
                 <p><strong>내용:</strong> ${dto.content}</p>
+                <hr>
                 <p><strong>등록일:</strong> ${dto.regdate}</p>
                 <p><strong>조회수:</strong> ${dto.readcount}</p>
             </div>

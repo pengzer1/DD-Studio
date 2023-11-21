@@ -10,11 +10,47 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
 #cancel {
-	margin-right: 15px;
+	margin-right: 8px;
 }
 
 #duplicate-check {
 	padding: 0;
+}
+
+.sub-title > p {
+	font-size: 20px;
+    font-weight: 800;
+}
+
+.button {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+/*
+table {
+	border-left: 2px solid #d1d1d1;
+    border-right: 2px solid #d1d1d1;
+    border-radius: 20px;
+    border-collapse: separate;
+    background: transparent;
+}
+*/
+
+table th {
+	padding: 0 10px;
+}
+
+td > div > input {
+	background: transparent;
+    border-bottom: 1.5px solid #cecece;
 }
 </style>
 </head>

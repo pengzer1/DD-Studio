@@ -33,6 +33,32 @@ select {
 select option:checked {
    background-color: #ddd;
 }
+
+table {
+    background-color: rgba(43, 114, 201, 0.3);
+    border: 1px solid #aaaaaa;
+}
+
+.sub-title > p {
+	font-size: 20px;
+    font-weight: 800;
+}
+
+.button {
+	background-color: rgba(200, 229, 229, 0.6);
+}
+
+table {
+	border-left: 2px solid #d1d1d1;
+    border-right: 2px solid #d1d1d1;
+    border-radius: 20px;
+    border-collapse: separate;
+    background: #eeeef0;
+}
+
+table th {
+	padding: 0 10px;
+}
 </style>
 </head>
 <body>
@@ -43,7 +69,7 @@ select option:checked {
 		<h1>상품 추가</h1>
 
 		<div class="sub-title">
-			<p>상품정보입력</p>
+			<p></p>
 		</div>
 
 		<div id="content">
@@ -51,6 +77,9 @@ select option:checked {
 				<form method="POST" action="/ddstudio/shop/item/add.do" enctype="multipart/form-data">
 					<table>
 						<!-- 샵명 필드 -->
+						<tr>
+							<th colspan="2">상품 정보 입력</th>
+						</tr>
 						<tr>
 							<th class="required">상품명</th>
 							<td>
