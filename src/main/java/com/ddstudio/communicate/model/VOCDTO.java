@@ -2,6 +2,9 @@ package com.ddstudio.communicate.model;
 
 import lombok.Data;
 
+/**
+ * VOC(Voice of Customer) 데이터를 담는 DTO 클래스입니다.
+ */
 @Data
 public class VOCDTO {
 	

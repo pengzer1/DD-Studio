@@ -16,9 +16,22 @@ import javax.servlet.http.HttpSession;
 import com.ddstudio.communicate.model.InquiryDTO;
 import com.ddstudio.communicate.repository.CommuDAO;
 
+/**
+ * UsageInquiry 서블릿은 사용자 레벨에 따라 문의사항을 처리하는 기능을 담당합니다.
+ * 
+ * @version 1.0
+ */
 @WebServlet("/communicate/usageinquiry.do")
 public class UsageInquiry extends HttpServlet {
 
+	/**
+     * HTTP GET 요청을 처리하여 사용자 레벨에 따라 적절한 화면으로 이동합니다.
+     * 
+     * @param req  클라이언트의 HttpServletRequest 객체입니다.
+     * @param resp 클라이언트에게 응답을 보내기 위한 HttpServletResponse 객체입니다.
+     * @throws ServletException 서블릿 요청을 처리하는 동안 오류가 발생한 경우 예외가 발생합니다.
+     * @throws IOException      입력 또는 출력 예외가 발생한 경우 예외가 발생합니다.
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -10,6 +10,9 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			#delete-faq> h1 {
+				font-family: 'SUIT-Regular';
+			}
 			table {
 				width: 80%;
 				border-top: 2px solid #000;

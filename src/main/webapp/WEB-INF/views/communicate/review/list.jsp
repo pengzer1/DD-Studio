@@ -10,11 +10,9 @@
 				text-align: center;
 				margin-top: 180px;
 			}
-			
 			#review > h1 {
 				font-family: 'SUIT-Regular';
 			}
-			
 			#sort {
 				width: 80%;
 				font-size: 1.1rem;
@@ -50,9 +48,6 @@
 		  		margin-bottom: 40px;
 		  		box-sizing: border-box;
 		  		transition: transform 0.3s ease;
-			}
-			.item:hover {
-			    transform: scale(1.1);
 			}
 			.item div:nth-child(2) {
 				height: 60px;
