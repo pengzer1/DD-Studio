@@ -12,6 +12,9 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.model.MBTIDTO;
 
+/*
+ * 작성자: 이승원
+ */
 public class TestDAO {
 
 	private Connection conn;
@@ -152,7 +155,7 @@ public class TestDAO {
 	}
 
 	/**
-     * MBTI 목록 조회하
+     * MBTI 목록 조회
      *
      * @return MBTI 목록을 담은 ArrayList 객체
      */

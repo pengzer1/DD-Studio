@@ -7,8 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.user.model.SearchDTO;
 import com.ddstudio.user.model.UserDTO;
 
+/*
+ * 작성자: 이승원
+ */
 public class UserDAO {
 
 	private Connection conn;

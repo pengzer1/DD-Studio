@@ -17,9 +17,22 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.repository.TestDAO;
 
+/**
+ * MBTI와 연관된 코스 및 어트랙션 정보로 MBTI별 추천 정보를 JSON 형식으로 응답하는 서블릿 클래스입니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/test/mbtiobjectload.do")
 public class MBTIObjectLoad extends HttpServlet {
 
+	/**
+	 * MBTI와 연관된 코스 및 어트랙션 정보를 가져와 JSON 형식으로 응답하는 GET 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		TestDAO dao = new TestDAO();
@@ -58,5 +71,4 @@ public class MBTIObjectLoad extends HttpServlet {
 		writer.write(arr.toString());
 		writer.close();
 	}
-
 }

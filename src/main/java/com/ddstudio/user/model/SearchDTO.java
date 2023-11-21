@@ -1,5 +1,8 @@
-package com.ddstudio.user.repository;
+package com.ddstudio.user.model;
 
+/*
+ * 작성자: 이승원
+ */
 public class SearchDTO {
 	private String attractionName;
 	private String mbtiResult;

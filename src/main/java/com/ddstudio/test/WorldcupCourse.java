@@ -18,11 +18,26 @@ import org.json.simple.JSONObject;
 import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.repository.TestDAO;
 
+/**
+ * 월드컵 코스 페이지를 처리하는 서블릿 클래스입니다.
+ * 코스 리스트를 가져와 랜덤으로 두 개의 코스를 선택하여 사용자에게 제시합니다.
+ * 선택한 코스를 세션에 저장하고, 새로운 코스를 제시합니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/test/worldcup/course/detail.do")
 public class WorldcupCourse extends HttpServlet {
 
 	private ArrayList<CourseDTO> courseList;
 
+	/**
+	 * 월드컵 코스 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -58,33 +73,14 @@ public class WorldcupCourse extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
-	// 랜덤으로 두 코스를 선택하는 메서드
-	private ArrayList<CourseDTO> getRandomTwoCourses(ArrayList<CourseDTO> courses) {
-		ArrayList<CourseDTO> selectedTwoCourses = new ArrayList<>();
-
-		Random random = new Random();
-
-		// 코스 리스트가 있고, 크기가 1보다 큰 경우
-		if (courses != null && courses.size() > 1) {
-			int index1 = random.nextInt(courses.size());
-			int index2;
-
-			// index1과 다른 index2 선택 (중복 회피)
-			do {
-				index2 = random.nextInt(courses.size());
-			} while (index1 == index2);
-
-			// 두 개의 코스를 리스트에 추가
-			selectedTwoCourses.add(courses.get(index1));
-			selectedTwoCourses.add(courses.get(index2));
-		} else if (courses != null && courses.size() == 1) {
-			// 코스가 하나만 남았을 경우
-			selectedTwoCourses.add(courses.get(0));
-		}
-
-		return selectedTwoCourses;
-	}
-
+	/**
+	 * 선택한 코스를 세션에 저장하고 새로운 코스를 제시하는 POST 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String selectedCourseseq = req.getParameter("courseSeq"); // 선택한 코스 시퀀스
@@ -146,6 +142,38 @@ public class WorldcupCourse extends HttpServlet {
 			resp.getWriter().write(jsonResponse.toString());
 		}
 
+	}
+
+	/**
+	 * 랜덤으로 두 코스를 선택하는 메서드입니다.
+	 * 
+	 * @param courses 선택할 코스 리스트
+	 * @return 선택된 두 코스 리스트
+	 */
+	private ArrayList<CourseDTO> getRandomTwoCourses(ArrayList<CourseDTO> courses) {
+		ArrayList<CourseDTO> selectedTwoCourses = new ArrayList<>();
+
+		Random random = new Random();
+
+		// 코스 리스트가 있고, 크기가 1보다 큰 경우
+		if (courses != null && courses.size() > 1) {
+			int index1 = random.nextInt(courses.size());
+			int index2;
+
+			// index1과 다른 index2 선택 (중복 회피)
+			do {
+				index2 = random.nextInt(courses.size());
+			} while (index1 == index2);
+
+			// 두 개의 코스를 리스트에 추가
+			selectedTwoCourses.add(courses.get(index1));
+			selectedTwoCourses.add(courses.get(index2));
+		} else if (courses != null && courses.size() == 1) {
+			// 코스가 하나만 남았을 경우
+			selectedTwoCourses.add(courses.get(0));
+		}
+
+		return selectedTwoCourses;
 	}
 
 }
