@@ -118,7 +118,7 @@
 		border-radius: 5px;
 		height: 30px;
 		padding: 5px;
-		width: 120px;
+		width: 130px;
 	}
 	
 </style>
@@ -227,17 +227,14 @@
 		
 		
 		//조건 검색이 눌린 상태라면 hidden-searchbar가 내려오도록!
-		if (${not empty status}) {
+		if (${not empty date}) {
 			
 			$('#hidden-searchbar').css('display', 'block');
 			$('#condition').css('height', '200px');
 			$('#default-searchbar').css('display', 'none');
 	
-			if (${status == 'ing'}) {
-				$('#status-select').val("ing").prop("selected", true);
-			} else if (${status == 'will'}) {
-				$('#status-select').val("will").prop("selected", true);
-			}
+			$('#date').val('${date}');
+			//alert('${date}');
 		}
 		
 	

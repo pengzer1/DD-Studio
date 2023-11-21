@@ -171,7 +171,7 @@
 							</td>
 						</tr> -->
 						<!-- 이미지 필드 -->
-						<!-- <tr>
+						<tr>
 	                    	<th>이미지</th>
 			                	<td>
 			                    	<input type="file" name="images1" class="images">
@@ -188,13 +188,13 @@
 		                    <td>
 		                    	<input type="file" name="images3" class="images">
 		                    </td>
-		                </tr> -->
+		                </tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
-									<button id="submit" class="check button">추가</button>
+									<button id="submit" class="check button">수정</button>
 									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/photozone.do';">취소</button>
 								</div>
 							</td>
@@ -202,7 +202,7 @@
 					</table>
 					<input type="hidden" name="lat" id="lat">
 					<input type="hidden" name="lng" id="lng">
-					<input type="hidden" name="seq" id="seq" />
+					<input type="hidden" name="seq" id="seq" value="${dto.photozone_seq}"/>
 				</form>
 			</div>
 		</div>
@@ -230,8 +230,8 @@
 			const map = new kakao.maps.Map(container, options);
 			
 			let m = null;
-			let lat = ${dto.lat};
-			let lng = ${dto.lng};
+			let lat = ${location_dto.lat};
+			let lng = ${location_dto.lng};
 			
 			//마커 출력
 		    let imageSrc = '/ddstudio/asset/image/marker/photo_marker3.png'; // 마커이미지의 주소

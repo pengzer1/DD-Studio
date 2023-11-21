@@ -24,7 +24,7 @@ public class Festival extends HttpServlet {
 		
 		String date = req.getParameter("date");
 		
-		if (date == null || date.equals("")) {
+		if (date == null || date.equalsIgnoreCase("")) {
 			date = "";
 		}
 		
