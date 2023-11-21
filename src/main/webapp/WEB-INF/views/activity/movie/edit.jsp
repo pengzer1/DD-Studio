@@ -108,14 +108,14 @@
 </style>
 </head>
 <body>
-	<!-- /ddstudio/activity/movie/add.jsp -->
+	<!-- /ddstudio/activity/movie/edit.jsp -->
 	
 	<!-- Header -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp"%>
 
 	<!-- main -->
 	<main id="main">
-	<h1>영화 추가</h1>
+	<h1>영화 수정</h1>
 
 	<div class="sub-title">
 		<p>영화 정보 입력</p>
@@ -123,14 +123,14 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/festivaladd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/movieedit.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
 					<table>
 						<!-- 영화명 필드 -->
 						<tr>
 							<th class="required">영화명</th>
 							<td>
 								<div>
-									<input type="text" name="name" id="name" class="middle-flat" placeholder="페스티벌명을 입력해주세요." required>
+									<input type="text" name="name" id="name" class="middle-flat" placeholder="영화명을 입력해주세요." value="${dto.movie_name}" required>
 								</div>
 							</td>
 						</tr>
@@ -139,45 +139,47 @@
 							<th class="required">상영 시간</th>
 							<td>
 								<div>
-									<input type="text" name="time" id="time" class="middle-flat" placeholder="시간을 입력해주세요.(형식: HH:MM)" required>
+									<input type="text" name="time" id="time" class="middle-flat" placeholder="시간을 입력해주세요.(형식: HH:MM)" value="${dto.start_time}" required>
 								</div>
 							</td>
 						</tr>
 						<!-- 이용 정보 필드 -->
 						<tr>
-							<th class="required">이용 정보</th>
+							<th class="required">러닝 타임</th>
 							<td>
 								<div>
-									<input type="text" name="info" id="info" class="middle-flat" placeholder="페스티벌 소개를 입력해주세요." required />
+									<input type="text" name="runningtime" id="runningtime" class="middle-flat" placeholder="영화의 러닝타임(분)을 입력해주세요." value="${dto.runningtime}" required />
 								</div>
 							</td>
 						</tr>
 						<!-- 영화 상영기간 시작일 입력 필드 -->
 						<tr>
-							<th class="required">페스티벌 시작 날짜</th>
+							<th class="required">영화 상영 시작 날짜</th>
 							<td>
 								<div>
-									<input type="date" name="start_date" id="start_date" min="" />
+									<input type="date" name="start_date" id="start_date"/>
 								</div>
 							</td>
 						</tr>
 						<!-- 영화 상영기간 종료일 입력 필드 -->
 						<tr>
-							<th class="required">페스티벌 종료 날짜</th>
+							<th class="required">영화 상영 종료 날짜</th>
 							<td>
 								<div>
-									<input type="date" name="end_date" id="end_date" min=""/>
+									<input type="date" name="end_date" id="end_date"/>
 								</div>
 							</td>
 						</tr>
-						<!-- 위치 필드 -->
+						<!-- 상영 영화관 필드 -->
 						<tr>
-							<th class="required">위치</th>
+							<th class="required">상영 영화관</th>
 							<td>
-								<div id="total-map">
-									<div>
-										<div id="map" class="middle-flat" style="height: 380px;"></div>
-									</div>
+								<div>
+									<select name="theater" id="theater">
+										<c:forEach items="${theater_list}" var="dto">
+											<option value="${dto.theater_seq}">${dto.name}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</td>
 						</tr>
@@ -185,41 +187,37 @@
 						<tr>
 							<th class="required">해시태그</th>
 							<td>
-								<textarea name='tags' placeholder='태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
+								<textarea name='tags' placeholder='반드시 태그를 입력해주세요.(최대 5개 입력 가능)'></textarea>
 							</td>
 						</tr>
 						<!-- 이미지 필드 -->
-						<tr>
+						<!-- <tr>
 	                    	<th>이미지</th>
-			                	<td>
-			                    	<input type="file" name="images1" class="images">
-			                    </td>
-		                </tr>
-		                <tr>
-		                	<th> </th>
-		                    <td>
-		                    	<input type="file" name="images2" class="images">
+		                	<td>
+		                    	<input type="file" name="image" class="images">
 		                    </td>
-	                    </tr>
-		                <tr>
-		                	<th> </th>
-		                    <td>
-		                    	<input type="file" name="images3" class="images">
-		                    </td>
-		                </tr>
+		                </tr> -->
+		                <!-- 예고편 필드 -->
+						<tr>
+							<th>예고편</th>
+							<td>
+								<div>
+									<input type="text" name="preview" id="preview" class="middle-flat" placeholder="영화의 예고편 영상의 링크를 입력해주세요." />
+								</div>
+							</td>
+						</tr>
 		                <!-- 전달 부분 -->
 						<tr>
 							<th></th>
 							<td>
 								<div class="button-container">
 									<button id="submit" class="check button">추가</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/festival.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/movie.do';">취소</button>
 								</div>
 							</td>
 						</tr>
 					</table>
-					<input type="hidden" name="lat" id="lat">
-					<input type="hidden" name="lng" id="lng">
+					<input type="hidden" name="seq"	value="${dto.movie_seq}" />
 				</form>
 			</div>
 		</div>
@@ -231,33 +229,8 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
-		    
-		
-		/*
-		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
-		    inputs.forEach(input => {
-		        input.addEventListener('input', function() {
-		            let allFilled = true;
-		            inputs.forEach(requiredInput => {
-		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
-		                if (requiredInput.value === '') {
-		                    allFilled = false;
-		                }
-		            });
-	
-		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const submitButton = document.getElementById('submit');
-		            if (allFilled) {
-		                submitButton.disabled = false;
-		            } else {
-		                submitButton.disabled = true;
-		            }
-		        });
-		    });
-		    */
 		    
 		    const container = document.getElementById('map');
 			const options = {

@@ -1356,45 +1356,6 @@ return 0;
 		return result;
 	}
 
-//	public ArrayList<AttractionHashtagDTO> getHashtagSeq(ArrayList<String> taglist) {
-//	
-//		ArrayList<AttractionHashtagDTO> list = new ArrayList<AttractionHashtagDTO>();
-//		
-//		for (String tag : taglist) {
-//			
-//			try {
-//						
-//						String sql = "select hashtag_seq from tblHashtag where name = ?";
-//						
-//						pstat = conn.prepareStatement(sql);
-//						pstat.setString(1, tag);
-//						
-//						rs = pstat.executeQuery();
-//						
-//						
-//						while (rs.next()) {
-//							
-//							AttractionHashtagDTO dto = new AttractionHashtagDTO();
-//							
-//							dto.setHashtag_seq(rs.getString("hashtag_seq"));
-//							
-//							list.add(dto);
-//							
-//						}
-//						
-//						
-//					} catch (Exception e) {
-//						System.out.println("at ActDAO.getHashtagSeq");
-//						e.printStackTrace();
-//						return null;
-//					}
-//			
-//			
-//			
-//		}
-//		return list;
-//		
-//	}
 
 	public ArrayList<FestivalHashtagDTO> getHashtagSeq_festival(ArrayList<String> taglist) {
 		
@@ -2394,6 +2355,156 @@ return 0;
 		
 		
 		return result;
+	}
+
+	public int delTheater(String seq) {
+
+		try {
+
+			String sql = "update tblTheater set name = name || '(운영종료)', location_seq = 0 where theater_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delTheater");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public LocationDTO getTheaterLocation(String seq) {
+
+		try {
+					
+					String sql = "select * from tblTheater a inner join tblLocation b on b.location_seq = a.location_seq where theater_seq = ?";
+					
+					pstat = conn.prepareStatement(sql);
+					pstat.setString(1, seq);
+					
+					rs = pstat.executeQuery();
+					
+					if (rs.next()) {
+						
+						LocationDTO dto = new LocationDTO();
+						
+						dto.setLocation_seq(rs.getString("location_seq"));
+						dto.setLat(rs.getString("lat"));
+						dto.setLng(rs.getString("lng"));
+						
+						return dto;
+					}
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.getTheaterLocation");
+					e.printStackTrace();
+				}
+		
+		
+		return null;
+	}
+
+	public int editTheater(TheaterDTO dto) {
+
+		try {
+
+			String sql = "update tblTheater set name = ?, location_seq = ? where theater_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getLocation_seq());
+			pstat.setString(3, dto.getTheater_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.editTheater");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int delMoviePlay(String seq) {
+
+		try {
+
+			String sql = "delete from tblMoviePlay where movie_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delMoviePlay");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int delMovie(String seq) {
+
+		try {
+
+			String sql = "delete from tblMovie where movie_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delMovie");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int delMovieHashtag(String seq) {
+
+		try {
+
+			String sql = "delete from tblMovieHashtag where movie_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.delMovieHashtag");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public int countMovieHashtag(String seq) {
+
+		try {
+
+			String sql = "select count(*) from tblMovieHashtag where movie_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.countMovieHashtag");
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 
