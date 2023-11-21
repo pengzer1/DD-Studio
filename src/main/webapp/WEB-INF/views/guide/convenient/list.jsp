@@ -108,10 +108,9 @@ button:hover {
       
    </main>
    <%@ include file="/WEB-INF/views/inc/footer.jsp"%><!-- Footer -->
-
-   <script>
-      
-   </script>
+	<script>
+		
+	</script>
 </body>
 </html>
 
