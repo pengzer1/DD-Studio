@@ -210,58 +210,23 @@ public class ActDAO {
 	}
 
 	
-	//위치, 테마, 해시태그 가져오기 임시로 작성(나중에 병합 후에 해당 담당자가 구현한 메서드에서 가져와야 함!
-	
-	//이건잠시보류 로케이션 형태 바꿔서
-//	public ArrayList<LocationDTO> locationList() {
+//	public ArrayList<HashTagDTO> hashtagList() {
 //
 //		try {
 //					
-//					String sql = "select * from tblLocation";
+//					String sql = "select * from tblHashtag";
 //					
 //					stat = conn.createStatement();
 //					rs = stat.executeQuery(sql);
 //					
-//					ArrayList<LocationDTO> list = new ArrayList<LocationDTO>();
+//					ArrayList<HashTagDTO> list = new ArrayList<HashTagDTO>();
 //					while (rs.next()) {
 //						
-//						LocationDTO dto = new LocationDTO();
-//						
-//						dto.setLocation_seq(rs.getString("location_seq"));
-//						dto.setInfo(rs.getString("info"));
-//						
-//						list.add(dto);
-//						
-//					}
-//					
-//					return list;
-//					
-//				} catch (Exception e) {
-//					System.out.println("at ActDAO.locationList");
-//					e.printStackTrace();
-//				}
-//		
-//		return null;
-//	}
-
-//	public ArrayList<ThemeDTO> themeList() {
+//						HashTagDTO dto = new HashTagDTO();
 //
-//		try {
-//					
-//					String sql = "select * from tblTheme";
-//					
-//					stat = conn.createStatement();
-//					rs = stat.executeQuery(sql);
-//					
-//					ArrayList<ThemeDTO> list = new ArrayList<ThemeDTO>();
-//					while (rs.next()) {
-//						
-//						ThemeDTO dto = new ThemeDTO();
-//						
-//						dto.setTheme_seq(rs.getString("theme_seq"));
+//						dto.setHashtag_seq(rs.getString("hashtag_seq"));
 //						dto.setName(rs.getString("name"));
 //						
-//						
 //						list.add(dto);
 //						
 //					}
@@ -269,46 +234,13 @@ public class ActDAO {
 //					return list;
 //					
 //				} catch (Exception e) {
-//					System.out.println("at ActDAO.themeList");
+//					System.out.println("at ActDAO.hashtagList");
 //					e.printStackTrace();
 //				}
 //		
 //		
-//		
 //		return null;
 //	}
-
-	public ArrayList<HashTagDTO> hashtagList() {
-
-		try {
-					
-					String sql = "select * from tblHashtag";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-					ArrayList<HashTagDTO> list = new ArrayList<HashTagDTO>();
-					while (rs.next()) {
-						
-						HashTagDTO dto = new HashTagDTO();
-
-						dto.setHashtag_seq(rs.getString("hashtag_seq"));
-						dto.setName(rs.getString("name"));
-						
-						list.add(dto);
-						
-					}
-					
-					return list;
-					
-				} catch (Exception e) {
-					System.out.println("at ActDAO.hashtagList");
-					e.printStackTrace();
-				}
-		
-		
-		return null;
-	}
 
 	public ArrayList<FestivalDTO> festivalList(String date) {
 
@@ -364,81 +296,6 @@ public class ActDAO {
 		return null;
 	}
 
-	//어트랙션 삭제 > 어트랙션 이름 변경
-	private void changeAttractionName(String seq) {
-
-		try {
-
-			String sql = "update tblattraction set name = name || '(운영종료)' where attraction_seq = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.changeAttractionName");
-			e.printStackTrace();
-		}
-		
-		
-	}
-
-	//어트랙션 삭제 > 위치정보 변경
-	public void changeAttractionLocation(String seq) {
-
-		try {
-
-			String sql = "update tblAttraction set location_seq = 0 where attraction_seq = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.changeLocation");
-			e.printStackTrace();
-		}
-	}
-
-	//어트랙션 삭제 > 테마정보 변경
-//	public void changeTheme(String seq) {
-//
-//		try {
-//
-//			String sql = "update tblAttraction set theme_seq = 0 where attraction_seq = ?";
-//
-//			pstat = conn.prepareStatement(sql);
-//			pstat.setString(1, seq);
-//
-//			pstat.executeUpdate();
-//
-//		} catch (Exception e) {
-//			System.out.println("at ActDAO.changeTheme");
-//			e.printStackTrace();
-//		}
-//		
-//	}
-
-	//어트랙션 삭제 > 테스트 채택 변경 
-	public void changeIsTest(String seq) {
-
-		try {
-
-			String sql = "update tblAttraction set is_test = 'N' where attraction_seq = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
-
-			pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.changeIsTest");
-			e.printStackTrace();
-		}
-		
-	}
 
 	public ArrayList<AttractionHashtagDTO> attractionHashtagList(String seq) {
 
@@ -2501,6 +2358,79 @@ return 0;
 
 		} catch (Exception e) {
 			System.out.println("at ActDAO.countMovieHashtag");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int editMovie(MovieDTO dto) {
+
+		if (dto.getImg() == null) {
+			
+			try {
+				
+				String sql = "update tblMovie set name = ?, start_date = ?, end_date = ?, runningtime = ?, preview = ? where movie_seq = ?";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, dto.getMovie_name());
+				pstat.setString(2, dto.getStart_date());
+				pstat.setString(3, dto.getEnd_date());
+				pstat.setString(4, dto.getRunningtime());
+				pstat.setString(5, dto.getPreview());
+				pstat.setString(6, dto.getMovie_seq());
+				
+				return pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.editMovie");
+				e.printStackTrace();
+			}
+
+			
+		} else {
+			
+			try {
+				
+				String sql = "update tblMovie set name = ?, start_date = ?, end_date = ?, runningtime = ?, img = ?, preview = ? where movie_seq = ?";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, dto.getMovie_name());
+				pstat.setString(2, dto.getStart_date());
+				pstat.setString(3, dto.getEnd_date());
+				pstat.setString(4, dto.getRunningtime());
+				pstat.setString(5, dto.getImg());
+				pstat.setString(6, dto.getPreview());
+				pstat.setString(7, dto.getMovie_seq());
+				
+				return pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.editMovie");
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return 0;
+	}
+
+	public int editMoviePlay(MovieDTO dto) {
+
+		try {
+
+			String sql = "update tblMoviePlay set start_time = ?, theater_seq = ? where movie_seq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getStart_time());
+			pstat.setString(2, dto.getTheater_seq());
+			pstat.setString(3, dto.getMovie_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.editMoviePlay");
 			e.printStackTrace();
 		}
 		

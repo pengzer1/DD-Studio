@@ -15,8 +15,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.ddstudio.activity.model.FestivalDTO;
 import com.ddstudio.activity.model.MovieDTO;
 import com.ddstudio.activity.model.MovieHashtagDTO;
+import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -64,6 +66,16 @@ public class MovieEdit extends HttpServlet {
 		}
 		req.setAttribute("valuelist", temp);
 		
+		//날짜 유효성 검사용
+		ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
+		list.add(dto);
+		req.setAttribute("list", list);
+		
+		//영화관 목록 전달
+		ArrayList<TheaterDTO> theater_list = dao.theaterList();
+
+		
+		req.setAttribute("theater_list", theater_list);
 		req.setAttribute("seq", seq);
 		req.setAttribute("dto", dto);
 
@@ -72,114 +84,134 @@ public class MovieEdit extends HttpServlet {
 
 	}
 	
-//	@Override
-//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//		//영화 테이블 수정
-//		//영화 상영 테이블 수정
-//		//영화/해시태그 테이블 수정
-//		
-//		ActDAO dao = new ActDAO();
-//		MovieDTO dto = new MovieDTO();
-//
-//		
-//		try {
-//			
-//			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image/movie"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
-//			
-//			String seq = multi.getParameter("seq");
-//			String name = multi.getParameter("name"); //영화명(tblMovie)
-//			String time = multi.getParameter("time"); //상영시간(tblMoviePlay)
-//			String runningtime = multi.getParameter("runningtime"); //러닝타임(tblMovie)
-//			String start_date = multi.getParameter("start_date"); //상영시작일(tblMoviePlay)
-//			String end_date = multi.getParameter("end_date"); //상영종료일(tblMoviePlay)
-//			String theater_seq = multi.getParameter("theater"); //영화관번호(tblMoviePlay)
-//			String tags = multi.getParameter("tags"); //tblMovieHashtag
-//			String image = multi.getParameter("image"); //tblMovie
-//			String preview = multi.getParameter("preview"); //tblMovie
-//			
-//			
-//			dto.setMovie_seq(seq); //tblMovie
-//			dto.setMovie_name(name); //tblMovie
-//			dto.setStart_date(start_date); //tblMovie
-//			dto.setEnd_date(end_date); //tblMovie
-//			dto.setRunningtime(runningtime); //tblMovie
-//			dto.setImg(image); //tblMovie
-//			dto.setPreview(preview); //tblMovie
-//			
-//			dto.setStart_time(time); //tblMoviePlay
-//			dto.setTheater_seq(theater_seq); //tblMoviePlay
-//			
-//			JSONParser parser = new JSONParser();
-//			JSONArray arr =  (JSONArray)parser.parse(tags);
-//			
-//			ArrayList<String> taglist = new ArrayList<String>(); 
-//			
-//			for (Object obj : arr) {
-//				taglist.add(((JSONObject)obj).get("value").toString());
-//			}
-//			
-//			//1. 영화 테이블에 수정
-//			int result = dao.editMovie(dto);
-//		
-//			if (result == 1) { //영화 테이블 수정 성공
-//				
-//				//2. 영화상영 테이블에 수정
-//				result = dao.editMoviePlay(dto);
-//				
-//				if (result == 1) { //영화상영 테이블 수정 성공
-//					
-//					//3. 영화/해시태그 테이블 수정
-//					ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
-//					
-//					result = dao.addMovieHashtag(seqlist, movie_seq);
-//					
-//					if (result > 0) { //영화 해시태그 수정 성공
-//						
-//						//**최종 수정 성공!!!!!**
-//						resp.sendRedirect("/ddstudio/activity/movie.do?");
-//		
-//					} else { //영화 해시태그 추가 실패
-//						
-//						resp.setContentType("text/html; charset=UTF-8");
-//						
-//						PrintWriter writer = resp.getWriter();
-//						writer.print("<script>alert('영화 해시태그 추가에 실패했습니다.');history.back();</script>");
-//						writer.close();
-//						
-//					}
-//					
-//				} else { //영화상영 테이블 추가 실패
-//					
-//					resp.setContentType("text/html; charset=UTF-8");
-//					
-//					PrintWriter writer = resp.getWriter();
-//					writer.print("<script>alert('영화상영 테이블 추가에 실패했습니다.');history.back();</script>");
-//					writer.close();
-//					
-//				}
-//
-//			} else { //영화 테이블 추가 실패
-//			
-//				resp.setContentType("text/html; charset=UTF-8");
-//				
-//				PrintWriter writer = resp.getWriter();
-//				writer.print("<script>alert('영화 테이블 추가에 실패했습니다.');history.back();</script>");
-//				writer.close();
-//				
-//			}
-//				
-//		} catch (Exception e) {
-//			System.out.println("at MovieAdd.doPost");
-//			e.printStackTrace();
-//		}
-//	
-//		PrintWriter writer = resp.getWriter();
-//		writer.print("<script>alert('failed'); history.back();</script>");
-//		writer.close();
-//
-//		
-//		
-//	
-//	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		//영화 테이블 수정
+		//영화 상영 테이블 수정
+		//영화/해시태그 테이블 수정
+		
+		ActDAO dao = new ActDAO();
+		MovieDTO dto = new MovieDTO();
+
+		
+		try {
+			
+			MultipartRequest multi = new MultipartRequest(req, req.getRealPath("/asset/image/movie"), 1024 * 1024 * 10, "UTF-8", new DefaultFileRenamePolicy());
+			
+			String seq = multi.getParameter("seq");
+			String name = multi.getParameter("name"); //영화명(tblMovie)
+			String time = multi.getParameter("time"); //상영시간(tblMoviePlay)
+			String runningtime = multi.getParameter("runningtime"); //러닝타임(tblMovie)
+			String start_date = multi.getParameter("start_date"); //상영시작일(tblMoviePlay)
+			String end_date = multi.getParameter("end_date"); //상영종료일(tblMoviePlay)
+			String theater_seq = multi.getParameter("theater"); //영화관번호(tblMoviePlay)
+			String tags = multi.getParameter("tags"); //tblMovieHashtag
+			String image = multi.getParameter("image"); //tblMovie
+			String preview = multi.getParameter("preview"); //tblMovie
+			
+			
+			dto.setMovie_seq(seq); //tblMovie
+			dto.setMovie_name(name); //tblMovie
+			dto.setStart_date(start_date); //tblMovie
+			dto.setEnd_date(end_date); //tblMovie
+			dto.setRunningtime(runningtime); //tblMovie
+			dto.setImg(image); //tblMovie
+			dto.setPreview(preview); //tblMovie
+			
+			dto.setStart_time(time); //tblMoviePlay
+			dto.setTheater_seq(theater_seq); //tblMoviePlay
+			
+			JSONParser parser = new JSONParser();
+			JSONArray arr =  (JSONArray)parser.parse(tags);
+			
+			ArrayList<String> taglist = new ArrayList<String>(); 
+			
+			for (Object obj : arr) {
+				taglist.add(((JSONObject)obj).get("value").toString());
+			}
+			
+			//1. 영화 테이블에 수정
+			int result = dao.editMovie(dto);
+		
+			if (result == 1) { //영화 테이블 수정 성공
+				
+				//2. 영화상영 테이블에 수정
+				result = dao.editMoviePlay(dto);
+				
+				if (result == 1) { //영화상영 테이블 수정 성공
+					
+					//3-1. 영화/해시태그 테이블 기존 내용 삭제
+					//3-1-1. 영화해시태그가 기 존재하는지 확인(개수 확인)
+					int cnt = dao.countMovieHashtag(seq);
+					
+					if (cnt > 0) { //기 존재 해시태그 삭제
+						result = dao.delMovieHashtag(seq);
+						
+						if (result == 0) {
+							
+							resp.setContentType("text/html; charset=UTF-8");
+							
+							PrintWriter writer = resp.getWriter();
+							writer.print("<script>alert('영화 해시태그 삭제에 실패했습니다.');history.back();</script>");
+							writer.close();
+							
+						}
+						
+					}
+					//기 존재 해시태그 없는 경우 바로 다음~ 해시태그 테이블에 추가하기
+					//3-2. 영화 해시태그 테이블에 추가
+					
+					ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
+					
+					result = dao.addMovieHashtag(seqlist, seq);
+					
+					if (result > 0) { //영화 해시태그 수정 성공
+						
+						//**최종 수정 성공!!!!!**
+						resp.sendRedirect("/ddstudio/activity/moviedetail.do?seq=" + seq);
+		
+					} else { //영화 해시태그 수정 실패
+						
+						resp.setContentType("text/html; charset=UTF-8");
+						
+						PrintWriter writer = resp.getWriter();
+						writer.print("<script>alert('영화 해시태그 수정에 실패했습니다.');history.back();</script>");
+						writer.close();
+						
+					}
+					
+				} else { //영화상영 테이블 수정 실패
+					
+					resp.setContentType("text/html; charset=UTF-8");
+					
+					PrintWriter writer = resp.getWriter();
+					writer.print("<script>alert('영화상영 테이블 수정에 실패했습니다.');history.back();</script>");
+					writer.close();
+					
+				}
+
+			} else { //영화 테이블 수정 실패
+			
+				resp.setContentType("text/html; charset=UTF-8");
+				
+				PrintWriter writer = resp.getWriter();
+				writer.print("<script>alert('영화 테이블 수정에 실패했습니다.');history.back();</script>");
+				writer.close();
+				
+			}
+				
+		} catch (Exception e) {
+			System.out.println("at MovieEdit.doPost");
+			e.printStackTrace();
+		}
+	
+		PrintWriter writer = resp.getWriter();
+		writer.print("<script>alert('failed'); history.back();</script>");
+		writer.close();
+
+		
+		
+	
+	}
 }
