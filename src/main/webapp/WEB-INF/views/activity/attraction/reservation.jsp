@@ -69,6 +69,10 @@
 		text-align: center;
 	}
 	
+	div.value.select-time-container > button {
+		margin-right: 10px;
+	}
+	
 	/* 예약/취소 버튼 관련 CSS */
 	#reservation-content {
 		display: flex;
@@ -93,6 +97,15 @@
 		border: 2px solid black;
 		border-radius: 7px;
 		padding: 10px;
+	}
+		
+	#title {
+		margin-top: 123px;
+		background-image: url('/ddstudio/asset/image/attraction/detail_background.jpg');
+	}
+	
+	#title > h2 {
+		color: white;
 	}
 	
 </style>
