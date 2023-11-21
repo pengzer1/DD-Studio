@@ -124,17 +124,17 @@ public class AttractionAdd extends HttpServlet {
 				String location_seq = dao.getLocationSeq(lat, lng);
 				dto.setLocation_seq(location_seq);
 				
-				System.out.println("location_seq: " + location_seq);
+//				System.out.println("location_seq: " + location_seq);
 				
 				//2. 어트랙션 테이블에 추가
 				result = dao.addAttraction(dto);
 				
-				System.out.println("dao.addAttraction 결과: " + ((result == 1)? "성공" : "실패"));
+//				System.out.println("dao.addAttraction 결과: " + ((result == 1)? "성공" : "실패"));
 				
 				if (result == 1) { //어트랙션 테이블 추가 성공
 					
 					attraction_seq = dao.getAttractionSeq();
-					System.out.println("attraction_seq: " + attraction_seq);
+//					System.out.println("attraction_seq: " + attraction_seq);
 
 					//3. 어트랙션 이미지 테이블에 추가
 					Enumeration<?> files = multi.getFileNames();
@@ -148,19 +148,19 @@ public class AttractionAdd extends HttpServlet {
 					
 					result = dao.addAttractionImg(fileList, attraction_seq);
 					
-					System.out.println("fileList: " + fileList.toString());
-					System.out.println("dao.addAttractionImg 결과: " + ((result > 0)? "성공" : "실패"));
+//					System.out.println("fileList: " + fileList.toString());
+//					System.out.println("dao.addAttractionImg 결과: " + ((result > 0)? "성공" : "실패"));
 					
 					if (result > 0) { //어트랙션 이미지 추가 성공
 						
 						//4. 어트랙션 해시태그 테이블에 추가
-						System.out.println("입력 받은 해시 태그: " + taglist.toString());
+//						System.out.println("입력 받은 해시 태그: " + taglist.toString());
 						ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
 						
 						result = dao.addAttractionHashtag(seqlist, attraction_seq);
 						
-						System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
-						System.out.println("addAttractionHashtag 결과: " + ((result > 0)? "성공" : "실패"));
+//						System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
+//						System.out.println("addAttractionHashtag 결과: " + ((result > 0)? "성공" : "실패"));
 						
 						if (result > 0) { //어트랙션 해시태그 추가 성공
 							

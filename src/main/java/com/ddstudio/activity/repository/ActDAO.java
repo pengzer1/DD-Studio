@@ -318,7 +318,7 @@ public class ActDAO {
 					
 					//view에 start_date, end_date to_char 처리 해놓음!
 					if (date.equalsIgnoreCase("")) {
-						sql = "select * from vwFestival where name not like '%(공연중단)%' and to_char(sysdate, 'yyyy-mm-dd') <= end_date order by festival_seq ";
+						sql = "select * from vwFestival where name not like '%(공연중단)%' and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date order by festival_seq ";
 					} else {
 						sql = "select * from vwFestival where name not like '%(공연중단)%' and ? between start_date and end_date order by festival_seq";
 					}
@@ -1472,7 +1472,7 @@ return 0;
 			try {
 				
 				String sql = "INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)\r\n"
-						+ "VALUES (seqtblAttractionHashtag.NEXTVAL, ?, ?)";
+						+ "VALUES (seqtblFestivalHashtag.NEXTVAL, ?, ?)";
 				
 				pstat = conn.prepareStatement(sql);
 				pstat.setString(1, festival_seq);
@@ -2122,7 +2122,7 @@ return 0;
 			
 				//view에 start_date, end_date to_char 처리 해놓음!
 				if (date.equalsIgnoreCase("")) {
-					sql = "select * from vwMovie where to_char(sysdate, 'yyyy-mm-dd') <= end_date order by movie_seq";
+					sql = "select * from vwMovie where to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date order by movie_seq";
 				} else {
 					sql = "select * from vwMovie where ? between start_date and end_date order by movie_seq";
 				}
@@ -2242,6 +2242,158 @@ return 0;
 		}
 		
 		return null;
+	}
+
+	public int addTheater(TheaterDTO dto) {
+
+		try {
+
+			String sql = "INSERT INTO tblTheater (theater_seq, name, location_seq) VALUES (seqtblTheater.NEXTVAL, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getLocation_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addTheater");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public ArrayList<TheaterDTO> theaterList() {
+
+		try {
+					
+					String sql = "select * from tblTheater where name not like '%(운영종료)%'";
+					
+					stat = conn.createStatement();
+					rs = stat.executeQuery(sql);
+					
+					ArrayList<TheaterDTO> list = new ArrayList<TheaterDTO>();
+					while (rs.next()) {
+						
+						TheaterDTO dto = new TheaterDTO();
+						
+						dto.setTheater_seq(rs.getString("theater_seq"));
+						dto.setName(rs.getString("name"));
+						dto.setLocation_seq(rs.getString("location_seq"));
+						
+						list.add(dto);
+						
+					}
+					
+					return list;
+					
+				} catch (Exception e) {
+					System.out.println("at ActDAO.theaterList");
+					e.printStackTrace();
+				}
+		
+		return null;
+	}
+
+	public int addMovie(MovieDTO dto) {
+
+		try {
+
+			String sql = "INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview) VALUES (seqtblMovie.NEXTVAL, ?, TO_DATE(?, 'YYYY-MM-DD'), TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getMovie_name());
+			pstat.setString(2, dto.getStart_date());
+			pstat.setString(3, dto.getEnd_date());
+			pstat.setString(4, dto.getRunningtime());
+			
+			if (dto.getImg() == null) {
+				pstat.setString(5, "movie.png");
+			} else {
+				pstat.setString(5, dto.getImg());
+			}
+			
+			pstat.setString(6, dto.getPreview());
+			
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addMovie");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public String getMovieSeq() {
+
+		try {
+			
+			String sql = "select max(movie_seq) as movie_seq from tblMovie";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getString("movie_seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("at ActDAO.getMovieSeq");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addMoviePlay(MovieDTO dto) {
+
+		try {
+
+			String sql = "INSERT INTO tblMoviePlay (movie_play_seq, start_time, theater_seq, movie_seq) VALUES (seqtblMoviePlay.NEXTVAL, ?, ?, ?)";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getStart_time());
+			pstat.setString(2, dto.getTheater_seq());
+			pstat.setString(3, dto.getMovie_seq());
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("at ActDAO.addMoviePlay");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int addMovieHashtag(ArrayList<String> seqlist, String movie_seq) {
+
+		int result = 0;
+		
+		for (String tag : seqlist) {
+			
+			try {
+				
+				String sql = "INSERT INTO tblMovieHashtag (movie_hashtag_seq, movie_seq, hashtag_seq) VALUES (seqtblMovieHashtag.NEXTVAL, ?, ?)";
+				
+				pstat = conn.prepareStatement(sql);
+				pstat.setString(1, movie_seq);
+				pstat.setString(2, tag);
+				
+				result += pstat.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("at ActDAO.addMovieHashtag");
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+		return result;
 	}
 
 
