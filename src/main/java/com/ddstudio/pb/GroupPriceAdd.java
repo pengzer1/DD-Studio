@@ -14,9 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * GroupPriceAdd 클래스입니다.
+ * 단체 요금 추가 부분을 담당합니다.
+ * 
+ * 작성자: 김형우
+ */
 @WebServlet("/pb/group-priceadd.do")
 public class GroupPriceAdd extends HttpServlet {
-
+    /**
+     * 혜택 추가 페이지를 불러오는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -27,6 +39,13 @@ public class GroupPriceAdd extends HttpServlet {
 
     }
 
+    /**
+     * 내용을 받아 혜택을 추가하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

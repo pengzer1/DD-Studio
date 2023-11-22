@@ -1,6 +1,5 @@
 package com.ddstudio.pb;
 
-
 import com.ddstudio.pb.model.PriceDTO;
 import com.ddstudio.pb.repository.PriceDAO;
 
@@ -15,9 +14,22 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PriceEdit 클래스입니다.
+ * 요금 수정을 담당합니다.
+ * 
+ * 작성자: 김형우
+ */
 @WebServlet("/pb/priceedit.do")
 public class PriceEdit extends HttpServlet {
 
+    /**
+     * 수정할 요금 리스트를 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -34,7 +46,13 @@ public class PriceEdit extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pb/price/edit.jsp");
         dispatcher.forward(req, resp);
     }
-
+    /**
+     * 요금을 수정하고 결과값을 전달하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

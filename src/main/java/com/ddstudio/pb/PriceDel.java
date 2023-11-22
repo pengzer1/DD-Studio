@@ -14,9 +14,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * PriceDel 클래스입니다.
+ * 요금 삭제부분을 담당합니다.
+ * 
+ * 작성자: 김형우
+ */
 @WebServlet("/pb/pricedel.do")
 public class PriceDel extends HttpServlet {
 
+    /**
+     * 삭제할 요금 리스트를 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -38,6 +51,13 @@ public class PriceDel extends HttpServlet {
 
     }
 
+    /**
+     * 요금을 삭제해 결과를 전달하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

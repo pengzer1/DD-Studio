@@ -13,9 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * BenefitDel 클래스입니다.
+ * 혜택 삭제 부분을 담당합니다.
+ * 
+ * 작성자: 김형우
+ */
 @WebServlet("/pb/benefitdel.do")
 public class BenefitDel extends HttpServlet {
 
+    /**
+     * del.jsp 에 삭제할 객체를 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -36,6 +49,13 @@ public class BenefitDel extends HttpServlet {
 
     }
 
+    /**
+     * 삭제할 데이터를 입력받아 삭제하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

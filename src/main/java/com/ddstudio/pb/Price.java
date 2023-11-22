@@ -13,9 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Price 클래스입니다.
+ * 요금 부분을 제공합니다.
+ * 
+ * 작성자: 김형우
+ */
 @WebServlet("/pb/price.do")
 public class Price extends HttpServlet {
-
+    /**
+     * 혜택 리스트부분을 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
