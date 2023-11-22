@@ -19,7 +19,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * LostProperty 서블릿은 분실물 정보를 처리하는 기능을 제공합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/lostproperty.do")
 public class LostProperty extends HttpServlet {

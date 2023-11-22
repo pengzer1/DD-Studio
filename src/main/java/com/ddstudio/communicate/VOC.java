@@ -21,7 +21,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * VOC 서블릿은 사용자 레벨에 따라 VOC를 처리하는 기능을 담당합니다.
  *
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/voc.do")
 public class VOC extends HttpServlet {

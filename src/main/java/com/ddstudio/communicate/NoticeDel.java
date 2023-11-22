@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * NoticeDel 서블릿은 선택한 공지사항을 삭제하는 기능을 제공합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/noticedel.do")
 public class NoticeDel extends HttpServlet {

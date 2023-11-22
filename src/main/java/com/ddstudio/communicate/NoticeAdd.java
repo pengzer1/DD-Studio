@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * NoticeAdd 서블릿은 새로운 공지사항을 추가하는 기능을 제공합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/noticeadd.do")
 public class NoticeAdd extends HttpServlet {

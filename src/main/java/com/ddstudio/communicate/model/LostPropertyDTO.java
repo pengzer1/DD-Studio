@@ -3,7 +3,7 @@ package com.ddstudio.communicate.model;
 import lombok.Data;
 
 /**
- * 분실물에 대한 데이터를 담는 DTO 클래스입니다.
+ * 작성자: 차수민
  */
 @Data
 public class LostPropertyDTO {

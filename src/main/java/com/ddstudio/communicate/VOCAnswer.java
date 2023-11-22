@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * VOCAnswer 서블릿은 VOC에 대한 답변을 처리하는 기능을 담당합니다.
  *
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/vocanswer.do")
 public class VOCAnswer extends HttpServlet {

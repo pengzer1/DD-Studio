@@ -17,7 +17,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * FAQEdit 서블릿은 FAQ를 수정하는 기능을 처리합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/faqedit.do")
 public class FAQEdit extends HttpServlet {

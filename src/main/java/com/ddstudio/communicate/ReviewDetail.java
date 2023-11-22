@@ -18,7 +18,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * ReviewDetail 서블릿은 리뷰 상세 정보를 표시하는 기능을 담당합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/reviewdetail.do")
 public class ReviewDetail extends HttpServlet {

@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * UsageInquiryAnswer 서블릿은 사용자의 문의사항에 답변을 추가, 수정 또는 삭제하는 기능을 담당합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/usageinquiryanswer.do")
 public class UsageInquiryAnswer extends HttpServlet {

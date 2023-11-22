@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * NoticeEdit 서블릿은 선택한 공지사항의 수정 기능을 제공합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/noticeedit.do")
 public class NoticeEdit extends HttpServlet {

@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * VOCAdd 서블릿은 VOC를 등록하는 기능을 담당합니다.
  *
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/vocadd.do")
 public class VOCAdd extends HttpServlet {

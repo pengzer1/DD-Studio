@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * UsageInquiryAdd 서블릿은 사용자의 문의사항을 등록하는 기능을 담당합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/usageinquiryadd.do")
 public class UsageInquiryAdd extends HttpServlet {

@@ -16,7 +16,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * ReviewDel 서블릿은 리뷰 삭제를 처리하는 기능을 담당합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/reviewdel.do")
 public class ReviewDel extends HttpServlet {

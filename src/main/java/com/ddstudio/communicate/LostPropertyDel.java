@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * LostPropertyDel 서블릿은 분실물 정보를 삭제하는 기능을 제공합니다.
  * 
- * @version 1.0
+ * 작성자: 차수민
  */
 @WebServlet("/communicate/lostpropertydel.do")
 public class LostPropertyDel extends HttpServlet {
