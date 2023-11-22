@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * LostPropertyEdit 서블릿은 분실물 정보를 수정하는 기능을 제공합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/lostpropertyedit.do")
 public class LostPropertyEdit extends HttpServlet {

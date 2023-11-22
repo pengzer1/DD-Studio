@@ -16,7 +16,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * FAQDel 서블릿은 FAQ를 삭제하는 기능을 처리합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/faqdel.do")
 public class FAQDel extends HttpServlet {

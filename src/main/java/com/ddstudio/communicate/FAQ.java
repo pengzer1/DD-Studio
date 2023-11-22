@@ -18,7 +18,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
  * FAQ 서블릿은 자주 묻는 질문(FAQ)을 처리하는 서블릿입니다.
  * 사용자의 검색 쿼리 및 페이징을 관리하여 FAQ 목록을 제공합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/faq.do")
 public class FAQ extends HttpServlet {

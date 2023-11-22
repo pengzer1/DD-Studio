@@ -19,7 +19,7 @@ import com.ddstudio.communicate.model.VOCDTO;
 /**
  * CommuDAO는 커뮤니케이션과 관련된 데이터베이스 액세스를 담당하는 클래스입니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 public class CommuDAO {
 	

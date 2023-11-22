@@ -18,7 +18,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * Review 서블릿은 리뷰 목록을 제공하는 기능을 담당합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/review.do")
 public class Review extends HttpServlet {

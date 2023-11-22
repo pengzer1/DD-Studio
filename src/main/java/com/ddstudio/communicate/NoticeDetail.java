@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * NoticeDetail 서블릿은 선택한 공지사항의 상세 정보를 보여주는 기능을 제공합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/noticedetail.do")
 public class NoticeDetail extends HttpServlet {

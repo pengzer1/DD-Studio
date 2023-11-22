@@ -18,7 +18,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * ReviewEdit 서블릿은 리뷰를 수정하는 기능을 담당합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/reviewedit.do")
 public class ReviewEdit extends HttpServlet {

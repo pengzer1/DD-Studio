@@ -19,7 +19,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * UsageInquiry 서블릿은 사용자 레벨에 따라 문의사항을 처리하는 기능을 담당합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/usageinquiry.do")
 public class UsageInquiry extends HttpServlet {

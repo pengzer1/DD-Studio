@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * VOCDetail 서블릿은 VOC의 상세 정보를 조회하는 기능을 담당합니다.
  *
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/vocdetail.do")
 public class VOCDetail extends HttpServlet {

@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * VOCDel 서블릿은 VOC를 삭제하는 기능을 담당합니다.
  *
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/vocdel.do")
 public class VOCDel extends HttpServlet {

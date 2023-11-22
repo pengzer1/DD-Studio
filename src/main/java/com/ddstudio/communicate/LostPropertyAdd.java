@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 /**
  * LostPropertyAdd 서블릿은 분실물 정보를 추가하는 기능을 제공합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/lostpropertyadd.do")
 public class LostPropertyAdd extends HttpServlet {

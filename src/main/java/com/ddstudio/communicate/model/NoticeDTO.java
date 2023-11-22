@@ -3,7 +3,7 @@ package com.ddstudio.communicate.model;
 import lombok.Data;
 
 /**
- * 작성자: 차수민
+ * @author 차수민
  */
 @Data
 public class NoticeDTO {

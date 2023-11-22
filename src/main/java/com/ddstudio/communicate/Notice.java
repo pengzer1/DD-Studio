@@ -17,7 +17,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * Notice 서블릿은 공지사항 관련 기능을 제공합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/notice.do")
 public class Notice extends HttpServlet {

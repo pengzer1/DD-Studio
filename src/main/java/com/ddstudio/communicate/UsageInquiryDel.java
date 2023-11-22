@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * UsageInquiryDel 서블릿은 사용자의 문의사항을 삭제하는 기능을 담당합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/usageinquirydel.do")
 public class UsageInquiryDel extends HttpServlet {

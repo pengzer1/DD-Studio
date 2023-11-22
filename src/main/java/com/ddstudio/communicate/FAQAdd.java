@@ -17,7 +17,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * FAQAdd 서블릿은 새로운 FAQ를 추가하는 기능을 처리합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/faqadd.do")
 public class FAQAdd extends HttpServlet {

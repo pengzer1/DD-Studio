@@ -15,7 +15,7 @@ import com.ddstudio.communicate.repository.CommuDAO;
 /**
  * UsageInquiryDetail 서블릿은 사용자의 문의사항 상세 내용을 조회하는 기능을 담당합니다.
  * 
- * 작성자: 차수민
+ * @author 차수민
  */
 @WebServlet("/communicate/usageinquirydetail.do")
 public class UsageInquiryDetail extends HttpServlet {
