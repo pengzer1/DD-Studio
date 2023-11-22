@@ -14,6 +14,13 @@ import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 영화관을 수정하는 기능을 담당하는 서블릿 클래스입니다.
+ * 영화관 정보를 데이터베이스에 수정합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/theateredit.do")
 public class TheaterEdit extends HttpServlet {
 

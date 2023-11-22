@@ -18,6 +18,12 @@ import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 어트랙션 예약 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/attractionreservation.do")
 public class AttractionReservation extends HttpServlet {
 

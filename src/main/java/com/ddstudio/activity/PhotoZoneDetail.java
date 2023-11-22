@@ -15,6 +15,12 @@ import com.ddstudio.activity.model.PhotoZoneDTO;
 import com.ddstudio.activity.model.PhotoZoneImgDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 포토존의 상세 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/photozonedetail.do")
 public class PhotoZoneDetail extends HttpServlet {
 

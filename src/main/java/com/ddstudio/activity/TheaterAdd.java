@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 영화관을 추가하는 기능을 담당하는 서블릿 클래스입니다.
+ * 영화관 정보를 데이터베이스에 추가합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/theateradd.do")
 public class TheaterAdd extends HttpServlet {
 

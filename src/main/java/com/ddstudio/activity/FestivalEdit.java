@@ -25,6 +25,13 @@ import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 페스티벌을 수정하는 기능을 담당하는 서블릿 클래스입니다.
+ * 페스티벌 정보, 위치, 이미지, 페스티벌의 해시태그를 데이터베이스의 각 테이블에 업데이트합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/festivaledit.do")
 public class FestivalEdit extends HttpServlet {
 
