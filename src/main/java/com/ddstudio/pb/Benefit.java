@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Benefit 클래스 입니다.
  * 혜택 관련 부분의 모든 기능을 제공합니다.
  *
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/benefit.do")
 public class Benefit extends HttpServlet {

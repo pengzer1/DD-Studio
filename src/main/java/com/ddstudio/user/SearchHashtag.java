@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 해시태그 검색을 위한 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/searchhashtag.do")
 public class SearchHashtag extends HttpServlet {

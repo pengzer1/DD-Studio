@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * GroupPriceEdit 클래스입니다.
  * 단체 요금 수정을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/group-priceedit.do")
 public class GroupPriceEdit extends HttpServlet {

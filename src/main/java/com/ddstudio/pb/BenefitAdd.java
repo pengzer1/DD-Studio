@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  * BenefitAdd 클래스입니다.
  * 혜택 추가 기능을 담당합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/benefitadd.do")
 public class BenefitAdd extends HttpServlet {

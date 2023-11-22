@@ -4,7 +4,7 @@ package com.ddstudio.pb.model;
  * BenefitDTO 클래스입니다.
  * 데이터베이스의 Benefit테이블을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 public class BenefitDTO {
 //    BENEFIT_SEQ, NAME, TYPE, BENEFIT_DATE, DISCOUNT_RATE

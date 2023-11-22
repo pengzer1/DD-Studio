@@ -12,7 +12,7 @@ import java.io.IOException;
  * GroupPrice 클래스입니다.
  * 단체 요금을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 public class GroupPrice extends HttpServlet {
     /**

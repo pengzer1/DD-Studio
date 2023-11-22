@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * BenefitDetail 클래스입니다.
  * 요금 상세 페이지를 제공합니다
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/benefitdetail.do")
 public class BenefitDetail extends HttpServlet {

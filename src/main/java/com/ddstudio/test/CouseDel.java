@@ -20,7 +20,7 @@ import com.ddstudio.test.repository.TestDAO;
  * 코스 삭제 기능을 담당하는 서블릿 클래스입니다.
  * 코스 목록을 가져와 선택한 코스를 삭제합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 
 @WebServlet("/test/coursedel.do")

@@ -18,7 +18,7 @@ import java.io.PrintWriter;
  * GroupPriceAdd 클래스입니다.
  * 단체 요금 추가 부분을 담당합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/group-priceadd.do")
 public class GroupPriceAdd extends HttpServlet {

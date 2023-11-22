@@ -1,10 +1,10 @@
 package com.ddstudio.test.model;
 
-/*
+/**
  * 코스 정보를 담는 데이터 전송 객체(DTO)입니다.
  * 코스의 일련번호, 이름, 이미지 경로를 관리합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 public class CourseDTO {
 

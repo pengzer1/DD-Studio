@@ -1,10 +1,10 @@
 package com.ddstudio.test.model;
 
-/*
+/**
  * MBTI 정보를 담는 데이터 전송 객체(DTO)입니다.
  * MBTI의 일련번호, 결과, MBTI 유형, 코스 일련번호 및 정보, 어트랙션 일련번호 및 정보를 관리합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 public class MBTIDTO {
 

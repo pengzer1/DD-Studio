@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  * BenefitDel 클래스입니다.
  * 혜택 삭제 부분을 담당합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/benefitdel.do")
 public class BenefitDel extends HttpServlet {

@@ -1,14 +1,10 @@
 package com.ddstudio.user.model;
 
-//import lombok.Data;
-
-//@Data
-
-/*
+/**
  * 사용자 정보를 담는 데이터 전송 객체(DTO)입니다.
  * 사용자의 기본 정보 및 회원 가입/로그인과 관련된 속성들을 관리합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 public class UserDTO {
 	

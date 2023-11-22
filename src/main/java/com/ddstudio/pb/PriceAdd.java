@@ -4,7 +4,7 @@ package com.ddstudio.pb;
  * PriceAdd 클래스입니다.
  * 요금 추가부분을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 
 import com.ddstudio.pb.model.PriceDTO;

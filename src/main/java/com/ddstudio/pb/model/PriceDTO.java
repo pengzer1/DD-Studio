@@ -4,7 +4,7 @@ package com.ddstudio.pb.model;
  * PriceDTO 클래스입니다.
  * 데이터베이스 요금 테이블을 제공합니다.
  *
- * 작성자: 김형우
+ * @author 김형우
  */
 public class PriceDTO {
     private String ticket_seq;

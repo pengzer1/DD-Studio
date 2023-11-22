@@ -1,10 +1,10 @@
 package com.ddstudio.user.model;
 
-/*
+/**
  * 검색 조건을 담는 데이터 전송 객체(DTO)입니다.
  * 각 속성은 검색할 대상에 대한 조건을 나타냅니다. 값이 없거나 공백일 경우 " "로 초기화됩니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 public class SearchDTO {
 	

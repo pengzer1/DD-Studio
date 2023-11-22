@@ -18,7 +18,7 @@ import java.io.PrintWriter;
  * partnershipBenefitAdd 클래스입니다.
  * 카드/통신사 혜택 추가 부분을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/partnershipbenefitadd.do")
 public class PartnershipBenefitAdd extends HttpServlet {

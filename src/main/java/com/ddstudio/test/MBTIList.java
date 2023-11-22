@@ -20,7 +20,7 @@ import com.ddstudio.test.repository.TestDAO;
  * MBTI 정보를 가져와 JSON 형식으로 응답하는 서블릿 클래스입니다.
  * MBTI 테이블에 들어 있는 정보만을 가져옵니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/mbti/list.do")
 public class MBTIList extends HttpServlet {

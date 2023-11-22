@@ -18,7 +18,7 @@ import java.util.List;
  * PriceEdit 클래스입니다.
  * 요금 수정을 담당합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/priceedit.do")
 public class PriceEdit extends HttpServlet {

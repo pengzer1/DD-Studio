@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * BenefitDAO 입니다.
  * 데이터베이스와 상호 작용하여 혜택 정보를 처리하는 DAO 클래스로, 혜택의 조회, 추가, 수정, 삭제 등의 기능을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 public class BenefitDAO {
     private Connection conn;

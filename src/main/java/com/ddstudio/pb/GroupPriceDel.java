@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * GroupPriceDel 클래스입니다.
  * 단체 혜택 삭제부분을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/group-pricedel.do")
 public class GroupPriceDel extends HttpServlet {

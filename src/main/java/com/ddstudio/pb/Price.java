@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Price 클래스입니다.
  * 요금 부분을 제공합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/price.do")
 public class Price extends HttpServlet {

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * PriceDel 클래스입니다.
  * 요금 삭제부분을 담당합니다.
  * 
- * 작성자: 김형우
+ * @author 김형우
  */
 @WebServlet("/pb/pricedel.do")
 public class PriceDel extends HttpServlet {

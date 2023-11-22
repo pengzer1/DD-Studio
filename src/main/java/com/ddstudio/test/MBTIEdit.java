@@ -17,7 +17,7 @@ import com.ddstudio.test.repository.TestDAO;
  * MBTI별 추천 정보를 수정하는 기능을 담당하는 서블릿 클래스입니다.
  * 사용자에게 MBTI 정보를 전달하고 수정 페이지로 이동합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/mbtiedit.do")
 public class MBTIEdit extends HttpServlet {

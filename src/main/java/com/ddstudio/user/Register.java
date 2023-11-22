@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 회원가입을 처리하는 서블릿 클래스입니다.
  * 회원 정보를 입력받아 등록하고, 성공 시 회원가입 환영 페이지로 이동합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/register.do")
 public class Register extends HttpServlet {
