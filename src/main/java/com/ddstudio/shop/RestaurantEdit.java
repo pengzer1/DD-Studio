@@ -18,9 +18,23 @@ import com.ddstudio.shop.repository.ShopDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 레스토랑 수정 서블릿 입니다.
+ * 선택한 레스토랑을 수정 하는 기능을 처리합니다.
+ * @author pega0
+ *
+ */
 @WebServlet("/shop/restaurant/edit.do")
 public class RestaurantEdit extends HttpServlet {
 
+	/**
+	 * HTTP GET 요청을 처리합니다.
+     * 
+     * 레스토랑 수정 페이지로 포워딩합니다.
+     * 
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -45,6 +59,14 @@ public class RestaurantEdit extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * HTTP POST 요청을 처리합니다.
+     * 
+     * 클라이언트로부터 받은 레스토랑 정보 및 이미지를 처리하고, 결과에 따라 성공 또는 실패 메시지를 표시합니다.
+     * 
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

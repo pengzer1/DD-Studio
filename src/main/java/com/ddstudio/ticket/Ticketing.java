@@ -12,9 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.ticket.model.TicketDTO;
 import com.ddstudio.ticket.repository.TicketDAO;
 
+/**
+ * 개인 예매 등록 서블릿 입니다.
+ * 개인 예매 정보를 DB에 등록하는 기능을 처리합니다.
+ * @author pega0
+ *
+ */
 @WebServlet("/ticket/reservation-check.do")
 public class Ticketing extends HttpServlet {
 
+	/**
+	 * HTTP POST 요청을 처리합니다.
+     * 
+     * 클라이언트로부터 받은 개인 예매 정보를 처리하고, 결과에 따라 성공 또는 실패 메시지를 표시합니다.
+     * 
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
