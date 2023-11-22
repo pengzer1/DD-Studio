@@ -127,7 +127,7 @@
 							<td>
 								<div class="button-container">
 									<button id="submit" class="check button">추가</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/movie.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/theater.do';">취소</button>
 								</div>
 							</td>
 						</tr>

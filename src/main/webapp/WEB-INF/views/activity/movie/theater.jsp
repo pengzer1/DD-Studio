@@ -96,6 +96,16 @@
 		margin-bottom: 50px;
 	}
 	
+	#list-btn {
+		margin: 3px;
+		border: 0;
+		border-radius: 10px;
+		padding: 10px 10px;
+		color: #222;
+		background-color: #E6AAAE;
+		margin-top: 20px;
+	}
+	
 	#content {
 		margin-top: 0px;
 	}
@@ -122,9 +132,9 @@
 		<h1>영화관 관리</h1>
 
 		<div id="admin-btn">
-			<button type="button" id="del-btn" onclick="location.href='/ddstudio/activity/theaterdel.do?seq=' + sequence"><i class="fa-solid fa-plus"></i>영화관 삭제</button>
-			<button type="button" id="edit-btn" onclick="location.href='/ddstudio/activity/theateredit.do'"><i class="fa-solid fa-plus"></i>영화관 수정</button>
-			<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateradd.do'"><i class="fa-solid fa-plus"></i>영화관 등록</button>
+			<button type="button" id="del-btn"><i class="fa-solid fa-plus"></i>영화관 삭제</button>
+			<button type="button" id="edit-btn"><i class="fa-solid fa-plus"></i>영화관 수정</button>
+			<button type="button" id="add-btn" onclick="location.href='/ddstudio/activity/theateradd.do';"><i class="fa-solid fa-plus"></i>영화관 등록</button>
 		</div>
 
 		<div id="content">
@@ -139,7 +149,7 @@
 					<tr>
 						<td>
 							<div id="checkbox">
-								<input type="checkbox" name="seq" value="${dto.theater_seq}" onclick="checkOnlyOne(this)"/>
+								<input type="checkbox" name="seq" value="${dto.theater_seq}" data-seq="${dto.theater_seq}" onclick="checkOnlyOne(this)"/>
 							</div>
 						</td>
 						<td>
@@ -151,6 +161,7 @@
 					</tr>
 					</c:forEach>
 				</table>
+				<button id="list-btn" type="button" onclick="location.href='/ddstudio/activity/movie.do';">영화 목록</button>
 			</div>
 		</div>
 	</main>
@@ -175,13 +186,34 @@
 			  
 			  sequence = $(input).val
 		}
-		 
-		$('#edit-btn').click(function() {
+		
+		
+		$('#del-btn').click(function () {
 			
-			alert(document.querySelector('input[type=checkbox] [name=seq]:checked').value);
+			const seq = $('input[type="checkbox"]:checked').val();
+			
+			if (seq == undefined) {
+				alert('삭제할 영화관을 선택해주세요.');				
+			} else {
+				
+				location.href='/ddstudio/activity/theaterdel.do?seq=' + seq;
+			}		
 			
 		});
-		
+
+		$('#edit-btn').click(function () {
+			
+			const seq = $('input[type="checkbox"]:checked').val();
+			
+			if (seq == undefined) {
+				alert('수정할 영화관을 선택해주세요.');				
+			} else {
+				
+				location.href='/ddstudio/activity/theateredit.do?seq=' + seq;
+			}		
+			
+		});
+		 
 		
 	</script>
 </body>

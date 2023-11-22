@@ -3,6 +3,10 @@ package com.ddstudio.user.model;
 //import lombok.Data;
 
 //@Data
+
+/*
+ * 작성자: 이승원
+ */
 public class UserDTO {
 	
 	private String user_seq;
@@ -86,4 +90,5 @@ public class UserDTO {
 	public void setIng(String ing) {
 		this.ing = ing;
 	}
+	
 }

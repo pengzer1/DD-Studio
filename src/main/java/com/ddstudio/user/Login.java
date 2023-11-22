@@ -13,9 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
 
+/*
+ * 사용자 로그인을 처리하는 서블릿 클래스입니다.
+ * 사용자가 입력한 이메일과 비밀번호 정보를 확인하여 로그인 여부를 판단하고, 로그인에 성공하면 세션에 사용자 정보를 저장한 후 메인 페이지로 이동합니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/user/login.do")
 public class Login extends HttpServlet {
 
+	/**
+	 * 로그인 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 로그인 페이지 이동
@@ -23,6 +37,15 @@ public class Login extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * POST 메서드로 전송된 로그인 요청을 처리합니다.
+	 * 사용자가 입력한 이메일과 비밀번호를 확인하여 로그인 여부를 판단하고, 로그인에 성공하면 세션에 사용자 정보를 저장한 후 메인 페이지로 이동합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String email = req.getParameter("email"); // 이메일 (아이디)
@@ -39,7 +62,7 @@ public class Login extends HttpServlet {
 
 		if (result != null) {
 			// 로그인 성공
-			// 인증 티켓 발급 (세선에 정보 저장)
+			// 인증 티켓 발급 (세션에 정보 저장)
 			req.getSession().setAttribute("email", email);
 			req.getSession().setAttribute("seq", result.getUser_seq());
 			req.getSession().setAttribute("name", result.getName());

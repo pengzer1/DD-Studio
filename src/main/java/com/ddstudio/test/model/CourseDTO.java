@@ -1,5 +1,8 @@
 package com.ddstudio.test.model;
 
+/*
+ * 작성자: 이승원
+ */
 public class CourseDTO {
 
 	public String course_seq;

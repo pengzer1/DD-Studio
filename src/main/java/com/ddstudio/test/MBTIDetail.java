@@ -1,4 +1,3 @@
-// MBTIDetail.java
 package com.ddstudio.test;
 
 import java.io.IOException;
@@ -16,9 +15,23 @@ import org.json.simple.JSONObject;
 import com.ddstudio.test.model.MBTIDTO;
 import com.ddstudio.test.repository.TestDAO;
 
+/**
+ * MBTI별 추천 상세 정보를 처리하는 서블릿 클래스입니다.
+ * 사용자가 선택한 MBTI에 대한 상세 정보를 JSON 형식으로 응답합니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/test/mbtidetail.do")
 public class MBTIDetail extends HttpServlet {
 
+	/**
+	 * MBTI별 추천 상세 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// MBTI별 추천 상세 페이지 이동
@@ -26,6 +39,14 @@ public class MBTIDetail extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 	
+	/**
+	 * 선택한 MBTI에 대한 상세 정보를 응답하는 POST 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
