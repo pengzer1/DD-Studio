@@ -11,6 +11,8 @@ import com.ddstudio.user.model.SearchDTO;
 import com.ddstudio.user.model.UserDTO;
 
 /*
+ * 사용자 정보를 데이터베이스에서 조회 및 수정하는 클래스
+ * 
  * 작성자: 이승원
  */
 public class UserDAO {

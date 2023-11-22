@@ -13,6 +13,8 @@ import com.ddstudio.test.model.CourseDTO;
 import com.ddstudio.test.model.MBTIDTO;
 
 /*
+ * 추천(테스트) 관련 데이터베이스 작업을 수행하는 클래스
+ * 
  * 작성자: 이승원
  */
 public class TestDAO {
