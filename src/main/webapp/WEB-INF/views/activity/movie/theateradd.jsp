@@ -73,6 +73,13 @@
 		border-radius: 7px;
 		appearance: auto;
 	}
+	
+	table {
+	  	border-left: 2px solid #d1d1d1;
+	    border-right: 2px solid #d1d1d1;
+	    border-radius: 20px;
+	    border-collapse: separate;
+	}
     
 </style>
 </head>
@@ -92,7 +99,7 @@
 		
 	<div id="content">
 			<div class="wide-item">
-				<form method="POST" action="/ddstudio/activity/theateradd.do" enctype="multipart/form-data" onsubmit="return true;" id="form">
+				<form method="POST" action="/ddstudio/activity/theateradd.do" onsubmit="return true;" id="form">
 					<table>
 						<!-- 영화관명 필드 -->
 						<tr>
@@ -120,7 +127,7 @@
 							<td>
 								<div class="button-container">
 									<button id="submit" class="check button">추가</button>
-									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/movie.do';">취소</button>
+									<button type="button" id="cancel" class="button" onclick="location.href='/ddstudio/activity/theater.do';">취소</button>
 								</div>
 							</td>
 						</tr>
@@ -138,33 +145,8 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
 	<script>
-		const inputs = document.querySelectorAll('input[required]');
 		const latInput = document.getElementById('lat');
 		const lngInput = document.getElementById('lng');
-		    
-		
-		/*
-		    // 모든 입력 요소에 대한 이벤트 리스너를 추가합니다.
-		    inputs.forEach(input => {
-		        input.addEventListener('input', function() {
-		            let allFilled = true;
-		            inputs.forEach(requiredInput => {
-		                // 어느 하나의 input이 비어있다면 버튼을 비활성화합니다.
-		                if (requiredInput.value === '') {
-		                    allFilled = false;
-		                }
-		            });
-	
-		            // 모든 input이 채워졌다면 버튼을 활성화합니다.
-		            const submitButton = document.getElementById('submit');
-		            if (allFilled) {
-		                submitButton.disabled = false;
-		            } else {
-		                submitButton.disabled = true;
-		            }
-		        });
-		    });
-		    */
 		    
 		    const container = document.getElementById('map');
 			const options = {

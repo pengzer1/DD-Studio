@@ -11,9 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.user.repository.UserDAO;
 
+/*
+ * 해시태그 검색을 위한 서블릿 클래스입니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/user/searchhashtag.do")
 public class SearchHashtag extends HttpServlet {
 
+	/**
+	 * GET 메서드로 요청이 들어올 때 호출되는 메서드입니다.
+	 * 해시태그 목록을 클라이언트에 전송합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

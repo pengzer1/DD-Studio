@@ -185,13 +185,13 @@ public class FestivalEdit extends HttpServlet {
 					//기 존재 해시태그 없는 경우 바로 다음~ 해시태그 테이블에 추가하기
 					
 					//3-2. 페스티벌 해시태그 테이블에 추가
-					System.out.println("입력 받은 해시 태그: " + taglist.toString());
+//					System.out.println("입력 받은 해시 태그: " + taglist.toString());
 					ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
 					
 					result = dao.addFestivalHashtag(seqlist, seq);
 					
-					System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
-					System.out.println("addFestivalHashtag 결과: " + ((result > 0)? "성공" : "실패"));
+//					System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
+//					System.out.println("addFestivalHashtag 결과: " + ((result > 0)? "성공" : "실패"));
 					
 					if (result > 0) { //페스티벌 해시태그 추가 성공
 						

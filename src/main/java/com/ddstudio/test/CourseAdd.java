@@ -1,4 +1,5 @@
-      package com.ddstudio.test;
+package com.ddstudio.test;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,16 +15,38 @@ import com.ddstudio.test.repository.TestDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 코스를 추가하는 기능을 담당하는 서블릿 클래스입니다.
+ * 이미지 파일을 업로드하고, 코스 정보를 데이터베이스에 추가합니다.
+ * 
+ * 작성자: 이승원
+ */
 @WebServlet("/test/courseadd.do")
 public class CourseAdd extends HttpServlet {
 
+	/**
+	 * 코스 추가 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 코스 추가 페이지 이동
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/test/course/add.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+
+	/**
+	 * 코스 정보를 받아와 데이터베이스에 추가하는 POST 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

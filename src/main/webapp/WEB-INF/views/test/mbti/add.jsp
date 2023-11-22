@@ -10,7 +10,15 @@
 <link rel="stylesheet" href="/ddstudio/asset/css/user.css">
 <style>
 #cancel {
-	margin-right: 35px;
+	margin-right: 25px;
+}
+
+.button {
+	font-size: 16px;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 select {
