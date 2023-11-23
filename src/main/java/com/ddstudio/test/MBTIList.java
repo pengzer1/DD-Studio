@@ -16,9 +16,23 @@ import org.json.simple.JSONObject;
 import com.ddstudio.test.model.MBTIDTO;
 import com.ddstudio.test.repository.TestDAO;
 
+/**
+ * MBTI 정보를 가져와 JSON 형식으로 응답하는 서블릿 클래스입니다.
+ * MBTI 테이블에 들어 있는 정보만을 가져옵니다.
+ * 
+ * @author 이승원
+ */
 @WebServlet("/test/mbti/list.do")
 public class MBTIList extends HttpServlet {
 
+	/**
+	 * MBTI 정보를 가져와 JSON 형식으로 응답하는 GET 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -45,5 +59,4 @@ public class MBTIList extends HttpServlet {
 		writer.close();
 		
 	}
-
 }

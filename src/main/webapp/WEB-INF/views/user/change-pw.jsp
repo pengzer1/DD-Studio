@@ -46,6 +46,7 @@ td > div > input {
     transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
+/*
 table {
 	border-left: 2px solid #d1d1d1;
     border-right: 2px solid #d1d1d1;
@@ -53,6 +54,7 @@ table {
     border-collapse: separate;
     background: transparent;
 }
+*/
 
 table th {
 	padding: 0 0 0 10px;

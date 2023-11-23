@@ -10,11 +10,9 @@
 				text-align: center;
 				margin-top: 180px;
 			}
-			
 			#inquiry-detail > h1 {
 				font-family: 'SUIT-Regular';
 			}
-			
 			#regdate {
 				margin-top: 30px;
 			}
@@ -60,20 +58,20 @@
 			    margin-top: 50px;
 			    position: relative;
 			}
-			#add-form {
+			#answer-form {
 			    width: 80%;
-			    background-color: #EEFAF0;
+			    background-color: #D5F1EA;
 			    padding: 20px;
 			    border-radius: 15px;
 			    margin: 0 auto;
 			}
-			#add-form th {
+			#answer-form th {
 			    width: 30%;
 			    height: 200px;
 			    font-size: 1.2rem;
 			    color: #555;
 			}
-			#add-form textarea {
+			#answer-form textarea {
 			    width: 95%;
 			    height: 250px;
 			    padding: 10px;
@@ -85,7 +83,7 @@
 			    overflow-y: scroll;
 			    overflow: auto;
 			}
-			#add-form:before {
+			#answer-form:before {
 			    content: '';
 			    border-width: 15px;
 			    border-style: solid;
@@ -131,7 +129,7 @@
 		
 		<div id="answer">
 			<form method="POST" action="/ddstudio/communicate/usageinquiryanswer.do?seq=${dto.inquiry_seq}">
-				<table id="add-form">
+				<table id="answer-form">
 					<tr>
 						<th>답변</th>
 						<td><textarea name="answer">${dto.answer}</textarea></td>

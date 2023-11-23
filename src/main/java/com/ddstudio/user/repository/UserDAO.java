@@ -7,8 +7,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ddstudio.DBUtil;
+import com.ddstudio.user.model.SearchDTO;
 import com.ddstudio.user.model.UserDTO;
 
+/**
+ * 사용자 정보를 데이터베이스에서 조회 및 수정하는 클래스
+ * 
+ * @author 이승원
+ */
 public class UserDAO {
 
 	private Connection conn;

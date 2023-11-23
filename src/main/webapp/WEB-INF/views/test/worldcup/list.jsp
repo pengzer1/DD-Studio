@@ -8,6 +8,18 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+#content {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.munti-content-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
 button {
    background-color: #007bff; /* 배경색 */
    color: #fff; /* 텍스트 색상 */
@@ -42,14 +54,6 @@ button:hover {
    transition: all 0.3s ease-in-out;
 }
 
-.item:first-child {
-   left: -50px;
-}
-
-.item:nth-child(2) {
-   right: -50px;
-}
-
 .item>div:nth-child(1) {
 	background-color: transparent;
 }
@@ -72,21 +76,16 @@ button:hover {
    animation: jump 1s infinite ease-in-out;
 }
 
-@
-keyframes jump { 0%, 100% {
-   transform: translateY(0);
+@keyframes jump { 
+	0%, 100% {
+		transform: translateY(0);
+	}
+
+	50%{
+		transform:translateY(-20px);
+	}
 }
 
-50
-%
-{
-transform
-:
-translateY(
--20px
-);
-}
-}
 #title {
    margin-top: 123px;
    background-image: url('/ddstudio/asset/image/background-7.jpg');

@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 페스티벌을 삭제하는 기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/festivaldel.do")
 public class FestivalDel extends HttpServlet {
 
@@ -41,18 +47,18 @@ public class FestivalDel extends HttpServlet {
 		
 		String seq = req.getParameter("seq");
 		
-		System.out.println("Festival seq: " + seq);
+//		System.out.println("Festival seq: " + seq);
 		
 		//1. 페스티벌/해시태그 삭제
 		//- 페스티벌 해시태그가 기 존재하는지 확인(개수 확인)
 		int cnt = dao.countFestivalHashtag(seq);
 		
-		System.out.println((cnt > 0? "해시태그 존재" : "해시태그 존재X"));
+//		System.out.println((cnt > 0? "해시태그 존재" : "해시태그 존재X"));
 		
 		if (cnt > 0) { //기 존재 해시태그 삭제
 			result = dao.delFestivalHashtag(seq);
 			
-			System.out.println("기존 페스티벌 해시태그 삭제 완료");
+//			System.out.println("기존 페스티벌 해시태그 삭제 완료");
 			
 			if (result == 0) {
 				
@@ -70,13 +76,13 @@ public class FestivalDel extends HttpServlet {
 		//- 페스티벌 이미지가 기 존재하는지 확인(개수 확인)
 		cnt = dao.countFestivalImg(seq);
 		
-		System.out.println((cnt > 0 ? "이미지 존재" : "이미지 존재X"));
+//		System.out.println((cnt > 0 ? "이미지 존재" : "이미지 존재X"));
 		
 		if (cnt > 0) { //기 존재 이미지 삭제
 			
 			result = dao.delFestivalImg(seq);
 			
-			System.out.println("기존 페스티벌 이미지 삭제 완료");
+//			System.out.println("기존 페스티벌 이미지 삭제 완료");
 			
 			if (result == 0) {
 				

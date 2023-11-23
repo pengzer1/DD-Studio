@@ -16,6 +16,12 @@ import com.ddstudio.activity.model.FestivalImgDTO;
 import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 페스티벌의 상세 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/festivaldetail.do")
 public class FestivalDetail extends HttpServlet {
 

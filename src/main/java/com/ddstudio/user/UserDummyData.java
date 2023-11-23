@@ -12,6 +12,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * tblUser 테이블에 추가할 회원 더미데이터를 생성하는 클래스입니다.
+ * 
+ * @author 이승원
+ */
 public class UserDummyData {
 
 	private static Set<String> generatedTelephoneNumbers = new HashSet<>();

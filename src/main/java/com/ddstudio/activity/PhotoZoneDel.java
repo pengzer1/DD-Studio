@@ -12,7 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 
-@WebServlet("/activity/photozone/del.do")
+/**
+ * 포토존을 삭제하는 기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
+@WebServlet("/activity/photozonedel.do")
 public class PhotoZoneDel extends HttpServlet {
 
 	@Override

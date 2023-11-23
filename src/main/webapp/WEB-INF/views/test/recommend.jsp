@@ -8,6 +8,18 @@
 <%@ include file="/WEB-INF/views/inc/asset.jsp"%>
 <link rel="stylesheet" href="/ddstudio/asset/css/main.css">
 <style>
+#content {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.munti-content-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
 button {
     background-color: #007bff; /* 배경색 */
     color: #fff; /* 텍스트 색상 */
@@ -46,14 +58,6 @@ button:hover {
 
 #content .munti-content-container {
 	flex-wrap: nowrap;
-}
-
-.item:first-child {
-   left: -200px;
-}
-
-.item:nth-child(2) {
-   right: 50px;
 }
 
 .item>div:nth-child(1) {

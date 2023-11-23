@@ -16,9 +16,23 @@ import org.json.simple.JSONObject;
 import com.ddstudio.test.model.MBTIDTO;
 import com.ddstudio.test.repository.TestDAO;
 
+/**
+ * MBTI 정보를 가져와 JSON 형식으로 응답하는 서블릿 클래스입니다.
+ * MBTI와 연관이 있는 어트랙션과 코스 데이터를 함께 가져옵니다.
+ * 
+ * @author 이승원
+ */
 @WebServlet("/test/mbtilistload.do")
 public class MBTIListLoad extends HttpServlet {
 
+	/**
+	 * MBTI 정보를 가져와 JSON 형식으로 응답하는 GET 메서드입니다.
+	 * 
+	 * @param req  HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("UTF-8");
@@ -50,7 +64,7 @@ public class MBTIListLoad extends HttpServlet {
 				jsonArray.add(jsonObject);
 			}
 			
-			// JSON 배열을 문자열로 변환하여 전
+			// JSON 배열을 문자열로 변환하여 전송
 			writer.print(jsonArray.toJSONString());
 		} catch (Exception e) {
 			e.printStackTrace();

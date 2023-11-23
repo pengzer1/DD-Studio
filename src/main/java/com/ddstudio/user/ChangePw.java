@@ -13,9 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
 
+/**
+ * 비밀번호 변경 기능을 담당하는 서블릿 클래스입니다.
+ * 사용자가 입력한 이메일, 연락처, 비밀번호 정보를 처리하여 인증번호 확인 및 비밀번호 변경을 수행합니다.
+ * 
+ * @author 이승원
+ */
 @WebServlet("/user/changepw.do")
 public class ChangePw extends HttpServlet {
 
+	/**
+	 * 비밀번호 변경 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 비밀번호 변경 페이지 이동
@@ -23,6 +37,14 @@ public class ChangePw extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * POST 메서드로 전송된 요청을 처리하여 인증번호 확인 및 비밀번호 변경을 수행합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -14,12 +14,25 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.ddstudio.user.repository.SearchDTO;
+import com.ddstudio.user.model.SearchDTO;
 import com.ddstudio.user.repository.UserDAO;
 
+/**
+ * 검색 기능을 제공하는 서블릿 클래스입니다.
+ * 
+ * @author 이승원
+ */
 @WebServlet("/user/search.do")
 public class Search extends HttpServlet {
 
+	/**
+	 * 검색 페이지로 이동하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 검색 페이지 이동
@@ -27,6 +40,13 @@ public class Search extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 	
+	/**
+	 * 검색 기능을 수행하는 POST 메서드입니다.
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("UTF-8");

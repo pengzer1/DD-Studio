@@ -20,6 +20,12 @@ import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.HashTagDTO;
 
+/**
+ * 어트랙션의 상세 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/attractiondetail.do")
 public class AttractionDetail extends HttpServlet {
 

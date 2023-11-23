@@ -25,6 +25,13 @@ import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 페스티벌을 수정하는 기능을 담당하는 서블릿 클래스입니다.
+ * 페스티벌 정보, 위치, 이미지, 페스티벌의 해시태그를 데이터베이스의 각 테이블에 업데이트합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/festivaledit.do")
 public class FestivalEdit extends HttpServlet {
 
@@ -185,13 +192,13 @@ public class FestivalEdit extends HttpServlet {
 					//기 존재 해시태그 없는 경우 바로 다음~ 해시태그 테이블에 추가하기
 					
 					//3-2. 페스티벌 해시태그 테이블에 추가
-					System.out.println("입력 받은 해시 태그: " + taglist.toString());
+//					System.out.println("입력 받은 해시 태그: " + taglist.toString());
 					ArrayList<String> seqlist = dao.getHashtagSeq(taglist);
 					
 					result = dao.addFestivalHashtag(seqlist, seq);
 					
-					System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
-					System.out.println("addFestivalHashtag 결과: " + ((result > 0)? "성공" : "실패"));
+//					System.out.println("입력한 해시태그의 tblHashtag seq: " + seqlist.toString());
+//					System.out.println("addFestivalHashtag 결과: " + ((result > 0)? "성공" : "실패"));
 					
 					if (result > 0) { //페스티벌 해시태그 추가 성공
 						

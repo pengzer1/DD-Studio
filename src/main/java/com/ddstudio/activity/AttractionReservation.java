@@ -18,6 +18,12 @@ import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 어트랙션 예약 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/attractionreservation.do")
 public class AttractionReservation extends HttpServlet {
 
@@ -186,49 +192,6 @@ public class AttractionReservation extends HttpServlet {
 			
 		}
 		
-//		if (map.get("bookable") == null || Integer.parseInt(map.get("bookable").toString()) > Integer.parseInt(capacity) 
-//				|| Integer.parseInt(map.get("bookable").toString()) == Integer.parseInt(capacity)) {
-//			
-//			//예약 DB 추가
-//			int result = dao.reserveAttraction(seq, time, capacity, user_seq);
-//			
-//			//피드백
-//			if (result == 1) { //예약 성공 시, 예약 완료 팝업 및 어트랙션 상세페이지로 이동
-//				
-//				resp.setContentType("text/html; charset=UTF-8");
-//				
-//				PrintWriter writer = resp.getWriter();
-//				writer.print("<script>alert('예약 완료 뿌잉뿌잉');history.back();</script>");
-//				writer.close();
-//				return;
-//				
-//			} else { //예약 실패 시 경고창 띄우고 이전 페이지로 이동
-//				
-//				PrintWriter writer = resp.getWriter();
-//				writer.print("<script>alert('failed');history.back();</script>");
-//				
-//				writer.close();
-//				return;
-//			}
-//			
-//			
-//		} else {
-//			
-//			//예약 가능 인원보다 많은 인원이라 불가함을 안내
-//			resp.setContentType("text/html; charset=UTF-8");
-//			
-//			PrintWriter writer = resp.getWriter();
-//			writer.print("<script>alert('해당 시간대의 예약 가능 인원을 초과하여 예약이 불가합니다. 현재 예약 가능 인원은 " + map.get("bookable").toString() + "명 입니다.');history.back();</script>");
-//			writer.close();
-//			return;
-//			
-//			
-//		}
-//		
-		
-	
-	
-	
 	}
 	
 }

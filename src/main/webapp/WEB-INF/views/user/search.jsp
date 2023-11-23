@@ -311,7 +311,8 @@
 	                    benefitName: '혜택명',
 	                    benefitType: '혜택 유형',
 	                    faqCategory: 'FAQ 카테고리',
-	                    faqQuestion: 'FAQ 질문'
+	                    faqQuestion: 'FAQ 질문',
+	                    faqAnswer: 'FAQ 답변'
 	                };
 	
 	                // 결과 출력

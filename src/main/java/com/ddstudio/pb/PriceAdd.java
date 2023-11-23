@@ -1,5 +1,11 @@
 package com.ddstudio.pb;
 
+/**
+ * PriceAdd 클래스입니다.
+ * 요금 추가부분을 제공합니다.
+ * 
+ * @author 김형우
+ */
 
 import com.ddstudio.pb.model.PriceDTO;
 import com.ddstudio.pb.repository.PriceDAO;
@@ -14,7 +20,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet("/pb/priceadd.do")
 public class PriceAdd extends HttpServlet {
-
+    /**
+     * 요금 추가 부분페이지를 불러오는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -23,7 +35,13 @@ public class PriceAdd extends HttpServlet {
 
 
     }
-
+    /**
+     * 내용을 받아 요금을 추가해 결과를 전달하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //AddOk.java

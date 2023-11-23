@@ -32,7 +32,7 @@ public class Convenient extends HttpServlet {
 		req.setAttribute("routeList",routeList);
 		req.setAttribute("busList", busList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/convenient/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/bus/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
