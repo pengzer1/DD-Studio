@@ -13,6 +13,12 @@ import org.json.simple.JSONObject;
 
 import com.ddstudio.member.repository.UserBuyDAO;
 
+/**
+ * 구매취소를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/purchasedel.do")
 public class PurchaseDel extends HttpServlet {
 

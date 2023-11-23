@@ -13,9 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.member.model.MypageEditDTO;
 import com.ddstudio.member.repository.MypageEditDAO;
 
+/**
+ * 회원정보 수정을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/mypage/edit.do")
 public class MypageEdit extends HttpServlet {
 
+	/**
+	 * 회원정보를 출력하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -37,6 +51,14 @@ public class MypageEdit extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * POST 메서드로 전송된 요청을 처리하여 회원정보 수정을 수행합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

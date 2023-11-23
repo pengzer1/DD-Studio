@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.UserBuyDTO;
 
+/**
+ * 회원 구매정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class UserBuyDAO {
 
 	private Connection conn;
@@ -20,6 +26,12 @@ public class UserBuyDAO {
 		this.conn = DBUtil.open();
 	}
 
+	/**
+	 * 구매내역 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return 
+	 */
 	public ArrayList<UserBuyDTO> get(String email) {
 
 		try {
@@ -57,6 +69,12 @@ public class UserBuyDAO {
 		return null;
 	}
 
+	/**
+	 * 구매 취소
+	 * 
+	 * @param userBuySeq 회원구매번호
+	 * @return 구매취소실행
+	 */
 	public int del(String userBuySeq) {
 
 		int result = 0;
@@ -77,6 +95,12 @@ public class UserBuyDAO {
 		return result;
 	}
 
+	/**
+	 * 이전구매내역 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return
+	 */
 	public ArrayList<UserBuyDTO> pget(String email) {
 
 		try {

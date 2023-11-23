@@ -12,9 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.member.model.InquiryDTO;
 import com.ddstudio.member.repository.InquiryDAO;
 
+/**
+ * 문의내역 자세히보기를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/history/inquiry/detail.do")
 public class InquiryDetail extends HttpServlet {
 
+	/**
+	 * 문의내역 자세히보기를 출력하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

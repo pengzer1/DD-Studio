@@ -19,9 +19,23 @@ import com.ddstudio.member.model.VOCDTO;
 import com.ddstudio.member.repository.InquiryDAO;
 import com.ddstudio.member.repository.VOCDAO;
 
+/**
+ * 문의내역을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/history/inquiry/inquiry.do")
 public class InquiryHistory extends HttpServlet {
 
+	/**
+	 * 문의내역을 출력하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
