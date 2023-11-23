@@ -13,6 +13,12 @@ import javax.servlet.http.HttpSession;
 import com.ddstudio.member.model.UserBuyDTO;
 import com.ddstudio.member.repository.UserCartDAO;
 
+/**
+ * 결제를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/purchase/purchasing.do")
 public class Purchasing extends HttpServlet {
 

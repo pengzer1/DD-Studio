@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.BookUserDTO;
 
+/**
+ * 어트랙션 예약정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class BookUserDAO {
 
 	private Connection conn;
@@ -20,6 +26,12 @@ public class BookUserDAO {
 		this.conn = DBUtil.open();
 	}
 
+	/**
+	 * 어트랙션 예약 정보 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return 예약 정보 리스트
+	 */
 	public ArrayList<BookUserDTO> get(String email) {
 
 		try {
@@ -56,6 +68,11 @@ public class BookUserDAO {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return 이전 예약 정보 리스트
+	 */
 	public ArrayList<BookUserDTO> pget(String email) {
 		try {
 
@@ -90,6 +107,11 @@ public class BookUserDAO {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param bookUserSeq 예약회원번호
+	 * @return 선택한 예약 회원번호의 예약정보를 삭제
+	 */
 	public int del(String bookUserSeq) {
 		
 		int result = 0;

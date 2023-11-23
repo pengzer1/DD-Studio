@@ -12,6 +12,12 @@ import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.ReviewDTO;
 import com.ddstudio.member.model.ReviewImgDTO;
 
+/**
+ * 리뷰정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class ReviewDAO {
 	
 	private Connection conn;
@@ -23,6 +29,12 @@ public class ReviewDAO {
 		this.conn = DBUtil.open();
 	}
 
+	/**
+	 * 리뷰 작성
+	 * 
+	 * @param dto 리뷰정보를 담는 데이터 전송 객체
+	 * @return
+	 */
 	public int add(ReviewDTO dto) {
 		
 		try {
@@ -45,6 +57,12 @@ public class ReviewDAO {
 		return 0;
 	}
 
+	/**
+	 * 로그인한 회원의 리뷰 내역 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return
+	 */
 	public ArrayList<ReviewDTO> get(String email) {
 		
 		try {
@@ -81,6 +99,12 @@ public class ReviewDAO {
 		return null;
 	}
 
+	/**
+	 * 첨부파일 추가
+	 * 
+	 * @param idto 리뷰이미지 정보를 담는 데이터 전송 객체
+	 * @return
+	 */
 	public int addFile(ReviewImgDTO idto) {
 		
 		try {
@@ -102,6 +126,11 @@ public class ReviewDAO {
 		
 	}
 
+	/**
+	 * 리뷰의 마지막 seq를 가져옴
+	 * 
+	 * @return
+	 */
 	public String getReviewSeq() {
 		
 		try {
@@ -124,6 +153,12 @@ public class ReviewDAO {
 		return null;
 	}
 
+	/**
+	 * 리뷰 자세히보기 출력
+	 * 
+	 * @param seq 리뷰 번호
+	 * @return
+	 */
 	public ReviewDTO detail(String seq) {
 		
 		try {

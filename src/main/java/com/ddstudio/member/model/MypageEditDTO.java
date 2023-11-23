@@ -1,5 +1,12 @@
 package com.ddstudio.member.model;
 
+/**
+ * 회원정보 수정 정보를 담는 데이터 전송 객체(DTO)입니다.
+ * 
+ * 
+ * @author 황주원
+ *
+ */
 public class MypageEditDTO {
 
 	private String user_seq;

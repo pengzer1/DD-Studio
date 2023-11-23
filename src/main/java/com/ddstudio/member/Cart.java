@@ -19,9 +19,23 @@ import com.ddstudio.member.model.UserCartDTO;
 import com.ddstudio.member.repository.CartDAO;
 import com.ddstudio.member.repository.UserCartDAO;
 
+/**
+ * 장바구니를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/cart/list.do")
 public class Cart extends HttpServlet {
 
+	/**
+	 * 장바구니를 출력하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -37,6 +51,14 @@ public class Cart extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * POST 메서드로 전송된 요청을 처리하여 장바구니 추가를 수행합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -13,9 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.member.model.BookUserDTO;
 import com.ddstudio.member.repository.BookUserDAO;
 
+/**
+ * 어트랙션 예약 내역 조회기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/history/reservation.do")
 public class AttractionReservationHistory extends HttpServlet {
 
+	/**
+	 * 어트랙션 예약 내역을 조회하는 GET 메서드입니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

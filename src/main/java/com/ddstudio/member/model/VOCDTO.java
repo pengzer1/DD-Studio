@@ -2,7 +2,13 @@ package com.ddstudio.member.model;
 
 import lombok.Data;
 
-
+/**
+ * 칭찬/불편/건의 정보를 담는 데이터 전송 객체(DTO)입니다.
+ * 
+ * 
+ * @author 황주원
+ *
+ */
 public class VOCDTO {
 
 	private String voc_seq;

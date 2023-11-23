@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.UserBookDTO;
 
+/**
+ * 회원 예매정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class UserBookDAO {
 
 	private Connection conn;
@@ -20,6 +26,12 @@ public class UserBookDAO {
 		this.conn = DBUtil.open();
 	}
 
+	/**
+	 * 예매 내역 정보 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return 
+	 */
 	public ArrayList<UserBookDTO> get(String email) {
 
 		try {
@@ -61,6 +73,12 @@ public class UserBookDAO {
 		return null;
 	}
 
+	/**
+	 * 예매 내역 정보 삭제
+	 * 
+	 * @param userBookSeq 예약한 회원의 회원예매번호
+	 * @return 예매내역정보삭제 실행
+	 */
 	public int del(String userBookSeq) {
 
 		int result = 0;
@@ -81,6 +99,12 @@ public class UserBookDAO {
 		return result;
 	}
 
+	/**
+	 * 이전 예매 내역 정보 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return
+	 */
 	public ArrayList<UserBookDTO> pget(String email) {
 
 		try {

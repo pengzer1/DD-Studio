@@ -223,3 +223,43 @@ select * from vwcart where email = 'hwang@example.com';
 
 select * from tblticket;
 select * from tblticketbook;
+select * from tbluserbook;
+
+select * from tblticketbook;
+select * from tbluserbook;
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-17', 'YYYY-MM-DD'), TO_DATE('2023-11-18', 'YYYY-MM-DD'), 1, 10000, 3, 3);
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 2, 3);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 3);
+
+commit;
+
+select * from tblbookuser;
+
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-11-18', 'YYYY-MM-DD'), 3, 1, 2, 1);
+
+select * from vwBookUser where email = 'park@naver.com' and regdate >= sysdate;
+
+select * from tblbuy;
+
+INSERT INTO tblBuy (buy_seq, buy_date, ea, buy_option, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-10-29', 'YYYY-MM-DD'), 2, '옵션 1', 1);
+
+INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
+VALUES (seqtblUserBuy.NEXTVAL, 2, 4);
+
+commit;
+
+select * from tblreview;
+
+select * from tbluser;
+
+update tbluser set ing = 'Y' where user_seq =2;
+
+commit;
+up

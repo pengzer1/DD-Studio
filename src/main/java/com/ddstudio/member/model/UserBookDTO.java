@@ -2,6 +2,13 @@ package com.ddstudio.member.model;
 
 import lombok.Data;
 
+/**
+ * 회원 예매정보를 담는 데이터 전송 객체(DTO)입니다.
+ * 
+ * 
+ * @author 황주원
+ *
+ */
 @Data
 public class UserBookDTO {
 	

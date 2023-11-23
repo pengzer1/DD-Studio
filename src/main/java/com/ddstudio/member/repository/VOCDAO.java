@@ -10,6 +10,13 @@ import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.InquiryDTO;
 import com.ddstudio.member.model.VOCDTO;
 
+/**
+ * VOC(고객 문의) 정보에 관련된 데이터베이스 작업을 수행하는 클래스입니다.
+ * 
+ * 이 클래스는 DBUtil을 사용하여 데이터베이스 연결을 관리합니다.
+ * 
+ * 작성자: 황주원
+ */
 public class VOCDAO {
 
 	private Connection conn;
@@ -21,6 +28,12 @@ public class VOCDAO {
 		this.conn = DBUtil.open();
 	}
 
+	 /**
+     * 특정 이메일로 사용자의 VOC(고객 문의) 목록을 조회하는 메서드입니다.
+     * 
+     * @param email VOC 목록을 조회할 사용자의 이메일 주소
+     * @return      사용자의 VOC 목록을 담은 VOCDTO 객체들의 리스트
+     */
 	public ArrayList<VOCDTO> get(String email) {
 
 		try {
@@ -57,6 +70,12 @@ public class VOCDAO {
 		return null;
 	}
 
+	/**
+     * 특정 VOC(고객 문의) 번호에 해당하는 상세 정보를 조회하는 메서드입니다.
+     * 
+     * @param seq 조회할 VOC 번호
+     * @return    VOC 번호에 해당하는 상세 정보를 담은 VOCDTO 객체
+     */
 	public VOCDTO detail(String seq) {
 
 		try {

@@ -14,9 +14,23 @@ import javax.servlet.http.HttpSession;
 import com.ddstudio.member.model.UserCartDTO;
 import com.ddstudio.member.repository.UserCartDAO;
 
+/**
+ * 상품 구매를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/purchase/view.do")
 public class Purchase extends HttpServlet {
 
+	/**
+	 * POST 메서드로 전송된 요청을 처리하여 상품 구매를 수행합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
