@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * DD 월드컵 페이지로 이동하는 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/worldcup.do")
 public class Worldcup extends HttpServlet {

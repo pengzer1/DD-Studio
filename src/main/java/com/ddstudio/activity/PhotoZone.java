@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.activity.model.PhotoZoneDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 포토존 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/photozone.do")
 public class PhotoZone extends HttpServlet {
 

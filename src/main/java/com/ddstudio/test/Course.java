@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 코스 페이지로 이동하는 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/course.do")
 public class Course extends HttpServlet {

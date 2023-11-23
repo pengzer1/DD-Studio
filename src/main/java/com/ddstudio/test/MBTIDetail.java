@@ -19,7 +19,7 @@ import com.ddstudio.test.repository.TestDAO;
  * MBTI별 추천 상세 정보를 처리하는 서블릿 클래스입니다.
  * 사용자가 선택한 MBTI에 대한 상세 정보를 JSON 형식으로 응답합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/mbtidetail.do")
 public class MBTIDetail extends HttpServlet {

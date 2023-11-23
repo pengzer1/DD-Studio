@@ -19,7 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
  * 코스를 추가하는 기능을 담당하는 서블릿 클래스입니다.
  * 이미지 파일을 업로드하고, 코스 정보를 데이터베이스에 추가합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/courseadd.do")
 public class CourseAdd extends HttpServlet {

@@ -22,6 +22,13 @@ import com.ddstudio.activity.repository.ActDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 포토존을 수정하는 기능을 담당하는 서블릿 클래스입니다.
+ * 포토존 정보, 위치, 이미지를 데이터베이스의 각 테이블에 업데이트합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/photozoneedit.do")
 public class PhotoZoneEdit extends HttpServlet {
 

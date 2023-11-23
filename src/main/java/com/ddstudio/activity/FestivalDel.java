@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 페스티벌을 삭제하는 기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/festivaldel.do")
 public class FestivalDel extends HttpServlet {
 

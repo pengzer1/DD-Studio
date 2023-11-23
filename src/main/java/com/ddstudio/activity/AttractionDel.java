@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 어트랙션을 삭제하는 기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/attractiondel.do")
 public class AttractionDel extends HttpServlet {
 

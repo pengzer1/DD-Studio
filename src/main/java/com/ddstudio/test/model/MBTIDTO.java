@@ -1,19 +1,22 @@
 package com.ddstudio.test.model;
 
-/*
- * 작성자: 이승원
+/**
+ * MBTI 정보를 담는 데이터 전송 객체(DTO)입니다.
+ * MBTI의 일련번호, 결과, MBTI 유형, 코스 일련번호 및 정보, 어트랙션 일련번호 및 정보를 관리합니다.
+ * 
+ * @author 이승원
  */
 public class MBTIDTO {
 
-	private String mbti_seq;
-	private String result;
-	private String mbti;
-	private String course_seq;
-	private String course_name;
-	private String course_img;
-	private String attraction_seq;
-	private String attraction_name;
-	private String attraction_img;
+	private String mbti_seq; // MBTI 일련번호
+    private String result; // MBTI 결과
+    private String mbti; // MBTI 유형
+    private String course_seq; // 코스 일련번호
+    private String course_name; // 코스 이름
+    private String course_img; // 코스 이미지 경로
+    private String attraction_seq; // 어트랙션 일련번호
+    private String attraction_name; // 어트랙션 이름
+    private String attraction_img; // 어트랙션 이미지 경로
 	
 	public String getMbti_seq() {
 		return mbti_seq;

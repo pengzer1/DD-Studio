@@ -15,11 +15,11 @@ import org.json.simple.JSONObject;
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 아이디 찾기 기능을 담당하는 서블릿 클래스입니다.
  * 사용자가 입력한 이름과 전화번호 정보를 처리하여 해당 회원의 이메일을 찾아서 전달합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/findid.do")
 public class FindId extends HttpServlet {

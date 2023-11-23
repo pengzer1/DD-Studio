@@ -17,10 +17,10 @@ import org.json.simple.JSONObject;
 import com.ddstudio.user.model.SearchDTO;
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 검색 기능을 제공하는 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/search.do")
 public class Search extends HttpServlet {

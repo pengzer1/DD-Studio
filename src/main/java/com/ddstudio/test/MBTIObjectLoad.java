@@ -20,7 +20,7 @@ import com.ddstudio.test.repository.TestDAO;
 /**
  * MBTI와 연관된 코스 및 어트랙션 정보로 MBTI별 추천 정보를 JSON 형식으로 응답하는 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/mbtiobjectload.do")
 public class MBTIObjectLoad extends HttpServlet {

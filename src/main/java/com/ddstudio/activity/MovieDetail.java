@@ -14,6 +14,12 @@ import com.ddstudio.activity.model.MovieDTO;
 import com.ddstudio.activity.model.MovieHashtagDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 영화의 상세 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/moviedetail.do")
 public class MovieDetail extends HttpServlet {
 
