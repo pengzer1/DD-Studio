@@ -10,6 +10,9 @@
 				text-align: center;
 				margin-top: 180px;
 			}
+			#edit-lost-property > h1 {
+				font-family: 'SUIT-Regular';
+			}
 			#edit-form {
 				width: 80%;
 				border-top: 2px solid #000;

@@ -23,7 +23,7 @@ import com.ddstudio.test.repository.TestDAO;
  * 어트랙션 리스트를 가져와 랜덤으로 두 개의 어트랙션을 선택하여 사용자에게 제시합니다.
  * 선택한 어트랙션을 세션에 저장하고, 새로운 어트랙션을 제시합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/worldcup/attraction/detail.do")
 public class WorldcupAttraction extends HttpServlet {

@@ -2,6 +2,9 @@ package com.ddstudio.communicate.model;
 
 import lombok.Data;
 
+/**
+ * @author 차수민
+ */
 @Data
 public class ReviewImgDTO {
 

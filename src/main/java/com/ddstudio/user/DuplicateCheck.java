@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 이메일 중복 검사 기능을 수행하는 서블릿 클래스입니다.
  * 사용자가 입력한 이메일이 이미 등록되어 있는지 확인합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/duplicatecheck.do")
 public class DuplicateCheck extends HttpServlet {

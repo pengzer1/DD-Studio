@@ -15,6 +15,12 @@ import org.json.simple.JSONObject;
 import com.ddstudio.member.model.UserBookDTO;
 import com.ddstudio.member.repository.UserBookDAO;
 
+/**
+ * 예매 취소를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/ticketdel.do")
 public class TicketDel extends HttpServlet {
 

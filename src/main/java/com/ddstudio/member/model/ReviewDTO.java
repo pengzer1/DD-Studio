@@ -1,6 +1,12 @@
 package com.ddstudio.member.model;
 
-
+/**
+ * 리뷰정보를 담는 데이터 전송 객체(DTO)입니다.
+ * 
+ * 
+ * @author 황주원
+ *
+ */
 public class ReviewDTO {
 
 	private String review_seq;

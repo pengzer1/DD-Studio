@@ -8,6 +8,12 @@ import java.sql.Statement;
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.MypageEditDTO;
 
+/**
+ * 회원정보 수정 정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class MypageEditDAO {
 
 	private Connection conn;
@@ -19,7 +25,12 @@ public class MypageEditDAO {
 		this.conn = DBUtil.open();
 	}
 
-	
+	/**
+	 * 로그인한 회원의 정보 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return
+	 */
 	public MypageEditDTO get(String email) {
 		
 		try {
@@ -54,6 +65,12 @@ public class MypageEditDAO {
 	}
 
 
+	/**
+	 * 회원정보 수정
+	 * 
+	 * @param dto 회원정보 수정 정보를 담는 데이터 전송 객체
+	 * @return
+	 */
 	public int edit(MypageEditDTO dto) {
 		
 		System.out.println("test");

@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.user.model.UserDTO;
 import com.ddstudio.user.repository.UserDAO;
 
-/*
+/**
  * 사용자 로그인을 처리하는 서블릿 클래스입니다.
  * 사용자가 입력한 이메일과 비밀번호 정보를 확인하여 로그인 여부를 판단하고, 로그인에 성공하면 세션에 사용자 정보를 저장한 후 메인 페이지로 이동합니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/user/login.do")
 public class Login extends HttpServlet {

@@ -15,7 +15,7 @@ import com.ddstudio.test.repository.TestDAO;
 /**
  * MBTI별 추천 정보를 추가하는 서블릿 클래스입니다.
  * 
- * 작성자: 이승원
+ * @author 이승원
  */
 @WebServlet("/test/mbtiadd.do")
 public class MBTIAdd extends HttpServlet {

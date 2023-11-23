@@ -24,7 +24,13 @@ import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
+/**
+ * 어트랙션을 추가하는 기능을 담당하는 서블릿 클래스입니다.
+ * 어트랙션 정보, 위치, 이미지, 어트랙션의 해시태그를 데이터베이스의 각 테이블에 추가합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/attractionadd.do")
 public class AttractionAdd extends HttpServlet {
 

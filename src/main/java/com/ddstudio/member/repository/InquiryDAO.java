@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import com.ddstudio.DBUtil;
 import com.ddstudio.member.model.InquiryDTO;
 
+/**
+ * 문의내역 정보관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 황주원
+ *
+ */
 public class InquiryDAO {
 
 	private Connection conn;
@@ -16,10 +22,18 @@ public class InquiryDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
+	
 	public InquiryDAO() {
 		this.conn = DBUtil.open();
 	}
 
+	
+	/**
+	 * 문의 내역 정보 출력
+	 * 
+	 * @param email 로그인한 회원의 객체 정보
+	 * @return 문의 내역 정보 리스트 출력
+	 */
 	public ArrayList<InquiryDTO> get(String email) {
 		
 		try {
@@ -55,6 +69,13 @@ public class InquiryDAO {
 		return null;
 	}
 
+	
+	/**
+	 * 문의 내역 자세하기보기 출력 
+	 * 
+	 * @param seq 문의내역번호
+	 * @return 문의내역자세히보기 출력
+	 */
 	public InquiryDTO detail(String seq) {
 		
 		try {

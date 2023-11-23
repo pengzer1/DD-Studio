@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.member.model.UserBookDTO;
 import com.ddstudio.member.repository.UserBookDAO;
 
+/**
+ * 예매내역을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/history/ticket.do")
 public class TicketHistory extends HttpServlet {
 

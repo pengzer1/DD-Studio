@@ -15,6 +15,12 @@ import com.ddstudio.member.repository.ReviewDAO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 리뷰추가를 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/review/add.do")
 public class ReviewAdd extends HttpServlet {
 	

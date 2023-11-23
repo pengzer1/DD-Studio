@@ -16,6 +16,11 @@ import com.ddstudio.communicate.model.ReviewDTO;
 import com.ddstudio.communicate.model.ReviewImgDTO;
 import com.ddstudio.communicate.model.VOCDTO;
 
+/**
+ * CommuDAO는 커뮤니케이션과 관련된 데이터베이스 액세스를 담당하는 클래스입니다.
+ * 
+ * @author 차수민
+ */
 public class CommuDAO {
 	
 	private Connection conn;
@@ -23,6 +28,9 @@ public class CommuDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 	
+	/**
+     * CommuDAO의 생성자입니다. 데이터베이스 연결을 수행합니다.
+     */
 	public CommuDAO() {
 		
 		this.conn = DBUtil.open();
@@ -31,6 +39,12 @@ public class CommuDAO {
 	
 	/* 공지사항	*/
 	
+	/**
+     * 공지사항을 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 NoticeDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int addNotice(NoticeDTO dto) {
 		
 		try {
@@ -56,6 +70,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 공지사항 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 NoticeDTO 객체의 목록
+     */
 	public ArrayList<NoticeDTO> getNoticeList(HashMap<String, String> map) {
 
 		try {
@@ -103,6 +123,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 전체 공지사항 게시물 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 공지사항 게시물 수
+     */
 	public int getTotalPosts(HashMap<String, String> map) {
 
 		try {
@@ -141,6 +167,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 특정 공지사항의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 공지사항의 고유 번호
+     * @return 조회된 NoticeDTO 객체
+     */
 	public NoticeDTO getNotice(String seq) {
 
 		try {
@@ -178,6 +210,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 공지사항을 수정하는 메서드입니다.
+     *
+     * @param dto 수정할 NoticeDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int editNotice(NoticeDTO dto) {
 
 		try {
@@ -204,6 +242,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 공지사항을 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 공지사항의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteNotice(String seq) {
 
 		try {
@@ -228,6 +272,12 @@ public class CommuDAO {
 	
 	/* 이용문의 */
 
+	/**
+     * 이메일을 기반으로 사용자 정보를 조회하는 메서드입니다.
+     *
+     * @param email 조회할 사용자의 이메일
+     * @return 조회된 사용자 정보를 담은 InquiryDTO 객체, 실패 시 null 반환
+     */
 	public InquiryDTO getUserInfo(String email) {
 		
 		try {
@@ -245,7 +295,7 @@ public class CommuDAO {
 				InquiryDTO dto = new InquiryDTO();
 				
 				dto.setUser_seq(rs.getString("user_seq"));
-//				dto.setName(rs.getString("name"));
+				dto.setName(rs.getString("name"));
 				
 				return dto;
 				
@@ -261,6 +311,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 이용문의를 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 InquiryDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int addInquiry(InquiryDTO dto) {
 		
 		try {
@@ -287,6 +343,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 이용문의 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 InquiryDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<InquiryDTO> getInquiryList(HashMap<String, String> map) {
 
 		try {
@@ -338,6 +400,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 전체 이용문의 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 이용문의 수, 실패 시 0 반환
+     */
 	public int getTotalInquiries(HashMap<String, String> map) {
 
 		try {
@@ -376,6 +444,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 특정 이용문의의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 이용문의의 고유 번호
+     * @return 조회된 InquiryDTO 객체, 실패 시 null 반환
+     */
 	public InquiryDTO getInquiry(String seq) {
 
 		try {
@@ -415,6 +489,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 이용문의를 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 이용문의의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteInquiry(String seq) {
 
 		try {
@@ -437,6 +517,13 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 이용문의 답변을 업데이트하는 메서드입니다.
+     *
+     * @param action 답변 동작 (add, edit, delete)
+     * @param dto    업데이트할 InquiryDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int updateInquiryAnswer(String action, InquiryDTO dto) {
 
 		try {
@@ -471,6 +558,12 @@ public class CommuDAO {
 	
 	/* VOC */
 	
+	/**
+     * 이메일을 기반으로 사용자의 기본 정보를 조회하는 메서드입니다.
+     *
+     * @param email 조회할 사용자의 이메일
+     * @return 조회된 사용자 정보를 담은 VOCDTO 객체, 실패 시 null 반환
+     */
 	public VOCDTO getUserBasicInfo(String email) {
 		
 		try {
@@ -505,6 +598,13 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 개인 예약 정보를 조회하여 방문 날짜를 반환하는 메서드입니다.
+     *
+     * @param email     조회할 사용자의 이메일
+     * @param visitDate 방문 날짜를 담을 ArrayList
+     * @return 조회된 방문 날짜 목록, 실패 시 null 반환
+     */
 	public ArrayList<String> getIndividualBookingInfo(String email, ArrayList<String> visitDate) {
 		
 		try {
@@ -539,6 +639,13 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 단체 예약 정보를 조회하여 방문 날짜를 반환하는 메서드입니다.
+     *
+     * @param email     조회할 사용자의 이메일
+     * @param visitDate 방문 날짜를 담을 ArrayList
+     * @return 조회된 방문 날짜 목록, 실패 시 null 반환
+     */
 	public ArrayList<String> getGroupBookingInfo(String email, ArrayList<String> visitDate) {
 
 		try {
@@ -573,6 +680,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * VOC(고객 의견 및 불만)를 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 VOCDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int addVOC(VOCDTO dto) {
 
 		try {
@@ -601,6 +714,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * VOC 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 VOCDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<VOCDTO> getVOCList(HashMap<String, String> map) {
 
 		try {
@@ -655,6 +774,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 전체 VOC 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 VOC 수, 실패 시 0 반환
+     */
 	public int getTotalVOC(HashMap<String, String> map) {
 
 		try {
@@ -693,6 +818,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 특정 VOC의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 VOC의 고유 번호
+     * @return 조회된 VOCDTO 객체, 실패 시 null 반환
+     */
 	public VOCDTO getVOC(String seq) {
 
 		try {
@@ -734,6 +865,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * VOC를 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 VOC의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteVOC(String seq) {
 
 		try {
@@ -756,6 +893,13 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * VOC 답변을 업데이트하는 메서드입니다.
+     *
+     * @param action 답변 동작 (add, edit, delete)
+     * @param dto    업데이트할 VOCDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int updateVOCAnswer(String action, VOCDTO dto) {
 
 		try {
@@ -790,6 +934,12 @@ public class CommuDAO {
 	
 	/* LostProperty */
 	
+	/**
+     * 분실물을 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 LostPropertyDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int addLostProperty(LostPropertyDTO dto) {
 
 		try {
@@ -816,6 +966,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 분실물 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 LostPropertyDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<LostPropertyDTO> getLostPropertyList(HashMap<String, String> map) {
 
 		try {
@@ -880,6 +1036,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 전체 분실물 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 분실물 수, 실패 시 0 반환
+     */
 	public int getTotalLostProperty(HashMap<String, String> map) {
 
 		try {
@@ -942,6 +1104,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 특정 분실물의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 분실물의 고유 번호
+     * @return 조회된 LostPropertyDTO 객체, 실패 시 null 반환
+     */
 	public LostPropertyDTO getLostProperty(String seq) {
 
 		try {
@@ -980,6 +1148,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 분실물 정보를 수정하는 메서드입니다.
+     *
+     * @param dto 수정할 LostPropertyDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int editLostProperty(LostPropertyDTO dto) {
 
 		try {
@@ -1008,6 +1182,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 분실물을 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 분실물의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteLostProperty(String seq) {
 
 		try {
@@ -1032,6 +1212,12 @@ public class CommuDAO {
 	
 	/* FAQ */
 	
+	/**
+     * FAQ를 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 FAQDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int addFAQ(FAQDTO dto) {
 
 		try {
@@ -1056,6 +1242,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * FAQ 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 FAQDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<FAQDTO> getFAQList(HashMap<String, String> map) {
 
 		try {
@@ -1101,6 +1293,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 전체 FAQ 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 FAQ 수, 실패 시 0 반환
+     */
 	public int getTotalFAQ(HashMap<String, String> map) {
 
 		try {
@@ -1139,6 +1337,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 특정 FAQ의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 FAQ의 고유 번호
+     * @return 조회된 FAQDTO 객체, 실패 시 null 반환
+     */
 	public FAQDTO getFAQ(String seq) {
 
 		try {
@@ -1174,6 +1378,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * FAQ 정보를 수정하는 메서드입니다.
+     *
+     * @param dto 수정할 FAQDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int editFAQ(FAQDTO dto) {
 
 		try {
@@ -1199,6 +1409,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * FAQ를 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 FAQ의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteFAQ(String seq) {
 
 		try {
@@ -1223,6 +1439,12 @@ public class CommuDAO {
 	
 	/* Review */
 
+	/**
+     * Review 목록을 조회하는 메서드입니다.
+     *
+     * @param map 조회 조건을 담고 있는 HashMap
+     * @return 조회된 ReviewDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<ReviewDTO> getReviewList(HashMap<String, String> map) {
 
 		try {
@@ -1276,6 +1498,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 전체 Review 수를 반환하는 메서드입니다.
+     *
+     * @param map 검색 조건을 담고 있는 HashMap
+     * @return 전체 Review 수, 실패 시 0 반환
+     */
 	public int getTotalReviews(HashMap<String, String> map) {
 
 		try {
@@ -1302,6 +1530,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 특정 Review의 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 Review의 고유 번호
+     * @return 조회된 ReviewDTO 객체, 실패 시 null 반환
+     */
 	public ReviewDTO getReview(String seq) {
 
 		try {
@@ -1340,6 +1574,12 @@ public class CommuDAO {
 		
 	}
 	
+	/**
+     * 특정 Review에 속한 이미지 목록을 조회하는 메서드입니다.
+     *
+     * @param seq Review의 고유 번호
+     * @return 조회된 ReviewImgDTO 객체의 목록, 실패 시 null 반환
+     */
 	public ArrayList<ReviewImgDTO> getReviewImgList(String seq) {
 
 		try {
@@ -1378,6 +1618,11 @@ public class CommuDAO {
 
 	}
 
+	/**
+     * 특정 Review의 조회수를 증가시키는 메서드입니다.
+     *
+     * @param seq 조회수를 증가시킬 Review의 고유 번호
+     */
 	public void updateReadcount(String seq) {
 
 		try {
@@ -1398,6 +1643,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * Review를 수정하는 메서드입니다.
+     *
+     * @param dto 수정할 ReviewDTO 객체
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int editReview(ReviewDTO dto) {
 
 		try {
@@ -1422,6 +1673,11 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * 특정 Review에 속한 이미지 목록을 삭제하는 메서드입니다.
+     *
+     * @param seq Review의 고유 번호
+     */
 	public void deleteReviewImgList(String seq) {
 
 		try {
@@ -1442,6 +1698,12 @@ public class CommuDAO {
 		
 	}
 
+	/**
+     * Review를 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 Review의 고유 번호
+     * @return 성공 시 1, 실패 시 0을 반환
+     */
 	public int deleteReview(String seq) {
 
 		try {

@@ -16,9 +16,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * BenefitEdit 클래스입니다.
+ * 혜택 수정부분을 제공합니다.
+ * 
+ * @author 김형우
+ */
 @WebServlet("/pb/benefitedit.do")
 public class BenefitEdit extends HttpServlet {
 
+    /**
+     * 수정할 내용을 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -40,6 +53,13 @@ public class BenefitEdit extends HttpServlet {
 
     }
 
+    /**
+     * 내용을 입력받아 수정하는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.member.model.UserBuyDTO;
 import com.ddstudio.member.repository.UserBuyDAO;
 
+/**
+ * 구매내역을 담당하는 서블릿 클래스입니다.
+ * 
+ * @author 황주원
+ *
+ */
 @WebServlet("/member/purchase/history.do")
 public class PurchaseHistory extends HttpServlet {
 

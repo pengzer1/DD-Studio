@@ -1,7 +1,5 @@
 package com.ddstudio.pb;
 
-
-
 import com.ddstudio.pb.model.BenefitDTO;
 import com.ddstudio.pb.repository.BenefitDAO;
 import com.oreilly.servlet.MultipartRequest;
@@ -16,9 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * partnershipBenefitAdd 클래스입니다.
+ * 카드/통신사 혜택 추가 부분을 제공합니다.
+ * 
+ * @author 김형우
+ */
 @WebServlet("/pb/partnershipbenefitadd.do")
 public class PartnershipBenefitAdd extends HttpServlet {
-
+    /**
+     * 카드/통신사 혜택 추가 페이지를 불러오는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -27,6 +37,13 @@ public class PartnershipBenefitAdd extends HttpServlet {
 
     }
 
+    /**
+     * 카드/통신사 혜택을 추가해 결과를 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

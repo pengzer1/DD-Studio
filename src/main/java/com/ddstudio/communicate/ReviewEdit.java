@@ -15,9 +15,22 @@ import com.ddstudio.communicate.model.ReviewDTO;
 import com.ddstudio.communicate.model.ReviewImgDTO;
 import com.ddstudio.communicate.repository.CommuDAO;
 
+/**
+ * ReviewEdit 서블릿은 리뷰를 수정하는 기능을 담당합니다.
+ * 
+ * @author 차수민
+ */
 @WebServlet("/communicate/reviewedit.do")
 public class ReviewEdit extends HttpServlet {
 
+	/**
+     * HTTP GET 요청을 처리하여 리뷰 수정 페이지로 이동합니다.
+     * 
+     * @param req  클라이언트의 HttpServletRequest 객체입니다.
+     * @param resp 클라이언트에게 응답을 보내기 위한 HttpServletResponse 객체입니다.
+     * @throws ServletException 서블릿 요청을 처리하는 동안 오류가 발생한 경우 예외가 발생합니다.
+     * @throws IOException      입력 또는 출력 예외가 발생한 경우 예외가 발생합니다.
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -41,6 +54,14 @@ public class ReviewEdit extends HttpServlet {
 
 	}
 	
+	/**
+     * HTTP POST 요청을 처리하여 리뷰를 수정합니다.
+     * 
+     * @param req  클라이언트의 HttpServletRequest 객체입니다.
+     * @param resp 클라이언트에게 응답을 보내기 위한 HttpServletResponse 객체입니다.
+     * @throws ServletException 서블릿 요청을 처리하는 동안 오류가 발생한 경우 예외가 발생합니다.
+     * @throws IOException      입력 또는 출력 예외가 발생한 경우 예외가 발생합니다.
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

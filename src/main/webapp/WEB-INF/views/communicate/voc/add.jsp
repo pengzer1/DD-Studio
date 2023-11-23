@@ -6,9 +6,12 @@
 		<meta charset="UTF-8">
 		<%@include file="/WEB-INF/views/inc/asset.jsp"%>
 		<style>
-			#inquiry {
+			#voc {
 				text-align: center;
 				margin-top: 180px;
+			}
+			#voc > h1 {
+				font-family: 'SUIT-Regular';
 			}
 			#add-form {
 				width: 80%;
@@ -90,7 +93,7 @@
 	<body>
 		<%@include file="/WEB-INF/views/inc/header.jsp"%>
 		
-		<main id="inquiry">
+		<main id="voc">
 			<h1>칭찬/불편/건의</h1>
 			
 			<form method="POST" action="/ddstudio/communicate/vocadd.do?seq=${seq}" enctype="multipart/form-data">

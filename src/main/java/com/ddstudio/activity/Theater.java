@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 영화관 관리 페이지로 이동하는 서블릿 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/theater.do")
 public class Theater extends HttpServlet {
 

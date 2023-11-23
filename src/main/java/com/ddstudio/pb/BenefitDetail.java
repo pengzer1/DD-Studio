@@ -15,9 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * BenefitDetail 클래스입니다.
+ * 요금 상세 페이지를 제공합니다
+ * 
+ * @author 김형우
+ */
 @WebServlet("/pb/benefitdetail.do")
 public class BenefitDetail extends HttpServlet {
 
+    /**
+     * 혜택 상세페이지에 혜택을목록을 넘겨주는 메서드입니다.
+     * @param req HttpServletRequest 객체입니다.
+     * @param resp HttpServletResponse 객체입니다.
+     * @throws ServletException 예외 처리입니다.
+     * @throws IOException   예외 처리입니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int seq = Integer.parseInt(req.getParameter("seq"));
@@ -33,14 +46,6 @@ public class BenefitDetail extends HttpServlet {
         String name = dao.getName(String.valueOf(seq));
 
         ArrayList<PriceDTO> groupList = dao.groupTypeList();
-
-
-
-
-
-
-
-
         // 할인율 적용 로직
         System.out.println(seq);
 

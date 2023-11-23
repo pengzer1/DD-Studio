@@ -14,9 +14,23 @@ import org.json.simple.JSONObject;
 
 import com.ddstudio.member.repository.BookUserDAO;
 
+/**
+ * 어트랙션 예약 취소 기능을 담당하는 서블릿 클래스입니다.
+ * 
+ * 
+ * @author 황주원
+ */
 @WebServlet("/member/attractionreservationdel.do")
 public class AttractionReservationDel extends HttpServlet {
 
+	/**
+	 * POST 메서드로 전송된 요청을 처리하여 어트랙션 예약 취소를 수행합니다.
+	 * 
+	 * @param req HttpServletRequest 객체
+	 * @param resp HttpServletResponse 객체
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

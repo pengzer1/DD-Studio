@@ -23,6 +23,13 @@ import com.ddstudio.admin.model.HashTagDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+/**
+ * 영화를 추가하는 기능을 담당하는 서블릿 클래스입니다.
+ * 영화 정보, 영화 상영 정보, 영화의 해시태그를 데이터베이스의 각 테이블에 추가합니다.
+ * 
+ * @author 박나래
+ *
+ */
 @WebServlet("/activity/movieadd.do")
 public class MovieAdd extends HttpServlet {
 

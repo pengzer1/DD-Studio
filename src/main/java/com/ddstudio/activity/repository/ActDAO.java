@@ -25,7 +25,12 @@ import com.ddstudio.activity.model.TheaterDTO;
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.shop.model.RestaurantDTO;
 
-
+/**
+ * 액티비티 관련 데이터베이스 작업을 수행하는 클래스
+ * 
+ * @author 박나래
+ *
+ */
 public class ActDAO {
 
 	private Connection conn;
@@ -37,6 +42,12 @@ public class ActDAO {
 		this.conn = DBUtil.open();
 	}
 	
+	/**
+	 * 운영 종료 어트랙션을 제외한 어트랙션 목록을 조회하는 메서드
+	 * 
+	 * @param close 정상운영/운휴 조건이 담긴 변수
+	 * @return 어트랙션 목록을 담은 ArrayList 객체
+	 */
 	//목록보기용(운영종료 어트랙션 제외) + 조건 포함
 	public ArrayList<AttractionDTO> attractionList(String close) {
 
@@ -92,6 +103,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션을 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 어트랙션 정보를 담은 AttractionDTO 객체
+	 */
 	//운영종료된 어트랙션까지 seq 입력하면 해당 정보 가져오기
 	public AttractionDTO getAttraction(String seq) {
 
@@ -133,6 +150,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션의 이미지들을 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 특정 어트랙션의 이미지 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<AttractionImgDTO> attractionImgList(String seq) {
 
 		try {
@@ -173,6 +196,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션의 당일(시스템 날짜 기준) 운휴 여부를 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 특정 어트랙션의 당일(시스템 날짜 기준) 운휴 정보를 담은 AttractionCloseDTO 객체
+	 */
 	public AttractionCloseDTO getAttractionClose(String seq) {
 
 		try {
@@ -210,38 +239,12 @@ public class ActDAO {
 	}
 
 	
-//	public ArrayList<HashTagDTO> hashtagList() {
-//
-//		try {
-//					
-//					String sql = "select * from tblHashtag";
-//					
-//					stat = conn.createStatement();
-//					rs = stat.executeQuery(sql);
-//					
-//					ArrayList<HashTagDTO> list = new ArrayList<HashTagDTO>();
-//					while (rs.next()) {
-//						
-//						HashTagDTO dto = new HashTagDTO();
-//
-//						dto.setHashtag_seq(rs.getString("hashtag_seq"));
-//						dto.setName(rs.getString("name"));
-//						
-//						list.add(dto);
-//						
-//					}
-//					
-//					return list;
-//					
-//				} catch (Exception e) {
-//					System.out.println("at ActDAO.hashtagList");
-//					e.printStackTrace();
-//				}
-//		
-//		
-//		return null;
-//	}
-
+	/**
+	 * 공연 중단 페스티벌을 제외한 페스티벌 목록을 조회하는 메서드
+	 * 
+	 * @param date 특정 날짜 또는 당일(시스템 날짜 기준) 날짜가 담긴 변수
+	 * @return 페스티벌 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<FestivalDTO> festivalList(String date) {
 
 		try {
@@ -297,6 +300,12 @@ public class ActDAO {
 	}
 
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션의 해시태그들을 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 어트랙션 해시태그 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<AttractionHashtagDTO> attractionHashtagList(String seq) {
 
 		try {
@@ -333,6 +342,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션의 위치 정보를 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 특정 어트랙션의 위치 정보를 담은 LocationDTO 객체
+	 */
 	public LocationDTO getAttractionLocation(String seq) {
 
 		try {
@@ -366,6 +381,11 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 운영 종료 포토존을 제외한 포토존 목록을 조회하는 메서드
+	 * 
+	 * @return 포토존 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<PhotoZoneDTO> photozoneList() {
 
 		try {
@@ -401,6 +421,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌의 위치 정보를 조회하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 특정 페스티벌의 위치 정보를 담은 LocationDTO 객체
+	 */
 	public LocationDTO getFestivalLocation(String seq) {
 
 		try {
@@ -437,6 +463,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌을 조회하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 페스티벌 정보를 담은 FestivalDTO 객체
+	 */
 	public FestivalDTO getFestival(String seq) {
 
 		try {
@@ -473,6 +505,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌의 해시태그들을 조회하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 페스티벌 해시태그 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<FestivalHashtagDTO> festivalHashtagList(String seq) {
 
 		try {
@@ -509,6 +547,12 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌의 이미지들을 조회하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 특정 페스티벌의 이미지 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<FestivalImgDTO> festivalImgList(String seq) {
 
 		try {
@@ -544,6 +588,13 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 당일 특정 어트랙션의 시간대별 예약 가능 인원을 조회하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @param time 예약 시간 번호
+	 * @return
+	 */
 	public HashMap<String, String> checkReservation(String seq, String time) {
 
 		try {
@@ -581,6 +632,15 @@ public class ActDAO {
 		return null;
 	}
 
+	/**
+	 * 어트랙션을 예약하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @param time 예약할 시간
+	 * @param capacity 예약 인원
+	 * @param user_seq 유저 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int reserveAttraction(String seq, String time, String capacity, String user_seq) {
 
 		try {
@@ -605,6 +665,12 @@ public class ActDAO {
 	}
 
 
+	/**
+	 * 
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public int attcloseadd(AttractionCloseDTO dto) {
         try {
            String sql = "insert into tblattractionclose(attraction_close_seq, start_date, end_date, attraction_seq) values (seqtblAttractionClose.nextVal, ?, ?, ?)";
@@ -622,6 +688,12 @@ public class ActDAO {
         return 0;
      }
 
+	/**
+	 * 
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public int attcloseedit(AttractionCloseDTO dto) {
 		try {
 			String sql = "update tblattractionclose set start_date=?, end_date=? where attraction_close_seq=?";
@@ -640,6 +712,11 @@ public class ActDAO {
 		return 0;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public ArrayList<AttractionCloseDTO> closeattractionList() {  //운휴정보를 가진 어트랙션 목록들(name 포함해서)만 보여주기
 		try {
         
@@ -674,6 +751,12 @@ public class ActDAO {
      return null;
   }
 
+	/**
+	 * 
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public int del(AttractionCloseDTO dto) {
 		try {
 			String sql = "delete from tblAttractionClose where attraction_close_seq=?";
@@ -686,6 +769,12 @@ public class ActDAO {
 		}
 return 0;
 }
+	/**
+	 * 포토존 번호(seq)를 입력받아 해당하는 포토존의 이미지들을 조회하는 메서드
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 특정 포토존의 이미지 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<PhotoZoneImgDTO> photozoneImgList(String seq) {
 
 		try {
@@ -722,6 +811,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 포토존 번호(seq)를 입력받아 해당하는 포토존을 조회하는 메서드
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 포토존 정보를 담은 PhotoZoneDTO 객체
+	 */
 	public PhotoZoneDTO getPhotozone(String seq) {
 
 		try {
@@ -757,6 +852,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 포토존의 위치 정보를 조회하는 메서드
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 위치 정보를 담은 LocationDTO 객체
+	 */
 	public LocationDTO getPhotozoneLocation(String seq) {
 
 		try {
@@ -789,6 +890,11 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 전체 해시태그 목록을 가져오는 메서드
+	 * 
+	 * @return 해시태그 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<HashTagDTO> getHashtagList() {
 
 		try {
@@ -821,192 +927,13 @@ return 0;
 		return null;
 	}
 
-	//액티비티 추가용 method overloading
-	//- addLocation(dto)
-	public int addLocation(AttractionDTO dto) {
-		
-		try {
 
-			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("ActDAO.addLocation()");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-	
-	public int addLocation(FestivalDTO dto) {
-		
-		try {
-			
-			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
-			
-			return pstat.executeUpdate();
-			
-		} catch (Exception e) {
-			System.out.println("ActDAO.addLocation()");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-
-	public int addLocation(TheaterDTO dto) {
-		
-		try {
-			
-			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
-			
-			/*
-			 * pstat = conn.prepareStatement(sql); pstat.setString(1, dto.getLat());
-			 * pstat.setString(2, dto.getLng()); pstat.setString(3, dto.getLat());
-			 * pstat.setString(4, dto.getLng());
-			 */
-			
-			return pstat.executeUpdate();
-			
-		} catch (Exception e) {
-			System.out.println("ActDAO.addLocation()");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-	public int addLocation(PhotoZoneDTO dto) {
-		
-		try {
-			
-			String sql = "insert into tbllocation (location_seq, lat, lng) select seqtblLocation.nextVal, ?, ? from dual where not exists (select 1 from tbllocation where lat = ? and lng = ?)";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			pstat.setString(3, dto.getLat());
-			pstat.setString(4, dto.getLng());
-			
-			return pstat.executeUpdate();
-			
-		} catch (Exception e) {
-			System.out.println("ActDAO.addLocation()");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-
-	//getLocationSeq(dto)
-	public String getLocationSeq(AttractionDTO dto) {
-
-		try {
-
-			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-
-			rs = pstat.executeQuery();
-
-			if (rs.next()) {
-				return rs.getString("location_seq");
-			}
-
-		} catch (Exception e) {
-			System.out.println("ActDAO.getLocationSeq()");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
-	public String getLocationSeq(FestivalDTO dto) {
-		
-		try {
-
-			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-
-			rs = pstat.executeQuery();
-
-			if (rs.next()) {
-				return rs.getString("location_seq");
-			}
-
-		} catch (Exception e) {
-			System.out.println("ActDAO.getLocationSeq()");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
-	public String getLocationSeq(TheaterDTO dto) {
-		
-		try {
-			
-			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			
-			rs = pstat.executeQuery();
-			
-			if (rs.next()) {
-				return rs.getString("location_seq");
-			}
-			
-		} catch (Exception e) {
-			System.out.println("ActDAO.getLocationSeq()");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
-	public String getLocationSeq(PhotoZoneDTO dto) {
-		
-		try {
-			
-			String sql = "select location_seq from tbllocation where lat = ? and lng = ?";
-			
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, dto.getLat());
-			pstat.setString(2, dto.getLng());
-			
-			rs = pstat.executeQuery();
-			
-			if (rs.next()) {
-				return rs.getString("location_seq");
-			}
-			
-		} catch (Exception e) {
-			System.out.println("ActDAO.getLocationSeq()");
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-
+	/**
+	 * 어트랙션을 추가하는 메서드
+	 * 
+	 * @param dto 어트랙션의 정보를 담은 AttractionDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addAttraction(AttractionDTO dto) {
 	
 		try {
@@ -1032,6 +959,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 페스티벌을 추가하는 메서드
+	 * 
+	 * @param dto 페스티벌 정보를 담은 FestivalDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addFestival(FestivalDTO dto) {
 
 		try {
@@ -1056,6 +989,11 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 가장 최근에 추가한 어트랙션 테이블의 어트랙션 번호를 가져오는 메서드
+	 * 
+	 * @return 어트랙션 번호
+	 */
 	public String getAttractionSeq() {
 	
 		try {
@@ -1078,6 +1016,11 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 가장 최근에 추가한 페스티벌 테이블의 페스티벌 번호를 가져오는 메서드
+	 * 
+	 * @return 페스티벌 번호
+	 */
 	public String getFestivalSeq() {
 
 		try {
@@ -1098,6 +1041,13 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 어트랙션 이미지를 추가하는 메서드
+	 * 
+	 * @param fileList 이미지 파일 이름의 목록을 담은 ArrayList 객체
+	 * @param attraction_seq 어트랙션 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addAttractionImg(ArrayList<String> fileList, String attraction_seq) {
 	
 		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
@@ -1155,6 +1105,13 @@ return 0;
 		return result;
 	}
 
+	/**
+	 * 페스티벌 이미지를 추가하는 메서드
+	 * 
+	 * @param fileList 이미지 파일 이름의 목록을 담은 ArrayList 객체
+	 * @param festival_seq 페스티벌 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addFestivalImg(ArrayList<String> fileList, String festival_seq) {
 
 		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
@@ -1214,46 +1171,13 @@ return 0;
 	}
 
 
-	public ArrayList<FestivalHashtagDTO> getHashtagSeq_festival(ArrayList<String> taglist) {
-		
-		ArrayList<FestivalHashtagDTO> list = new ArrayList<FestivalHashtagDTO>();
-		
-		for (String tag : taglist) {
-			
-			try {
-				
-				String sql = "select hashtag_seq from tblHashtag where name = ?";
-				
-				pstat = conn.prepareStatement(sql);
-				pstat.setString(1, tag);
-				
-				rs = pstat.executeQuery();
-				
-				
-				while (rs.next()) {
-					
-					FestivalHashtagDTO dto = new FestivalHashtagDTO();
-					
-					dto.setHashtag_seq(rs.getString("hashtag_seq"));
-					
-					list.add(dto);
-					
-				}
-				
-				
-			} catch (Exception e) {
-				System.out.println("at ActDAO.getHashtagSeq");
-				e.printStackTrace();
-				return null;
-			}
-			
-			
-			
-		}
-		return list;
-		
-	}
-
+	/**
+	 * 어트랙션 해시태그를 추가하는 메서드
+	 * 
+	 * @param seqlist 추가할 해시태그의 번호들이 담긴 ArrayList 객체
+	 * @param attraction_seq 어트랙션 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addAttractionHashtag(ArrayList<String> seqlist, String attraction_seq) {
 	
 		int result = 0;
@@ -1281,6 +1205,13 @@ return 0;
 		return result;
 	}
 
+	/**
+	 * 페스티벌 해시태그를 추가하는 메서드
+	 * 
+	 * @param seqlist 추가할 해시태그의 번호들이 담긴 ArrayList 객체
+	 * @param festival_seq 페스티벌 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addFestivalHashtag(ArrayList<String> seqlist, String festival_seq) {
 
 		int result = 0;
@@ -1309,6 +1240,12 @@ return 0;
 		return result;
 	}
 
+	/**
+	 * 페스티벌을 삭제하는 메서드(업데이트 처리)
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int delFestival(String seq) {
 
 		try {
@@ -1329,31 +1266,13 @@ return 0;
 		return 0;
 	}
 
-	public int changeFestivalLocation(String seq) {
 
-		try {
-
-			String sql = "update tblFestival set location_seq = 0 where festival_seq = ?";
-
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, seq);
-			
-			FestivalDTO dto = new FestivalDTO();
-			dto.setLat("0");
-			dto.setLng("0");
-
-			return pstat.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("at ActDAO.changeFestivalLocation");
-			e.printStackTrace();
-		}
-		
-		
-		
-		return 0;
-	}
-
+	/**
+	 * 페스티벌 이미지를 삭제하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delFestivalImg(String seq) {
 
 		
@@ -1375,6 +1294,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 페스티벌 해시태그를 삭제하는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delFestivalHashtag(String seq) {
 
 		try {
@@ -1395,6 +1320,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화관 번호(seq)를 입력받아 해당하는 영화관의 정보를 조회하는 메서드
+	 * 
+	 * @param seq 영화관 번호
+	 * @return 영화관 정보를 담은 TheaterDTO 객체
+	 */
 	public TheaterDTO getTheater(String seq) {
 
 		try {
@@ -1427,42 +1358,13 @@ return 0;
 		return null;
 	}
 
-	public ArrayList<MovieDTO> movieList() {
-	//오늘 날짜(sysdate)기준 상영하는 영화 가져오기
-		try {
-					
-					String sql = "SELECT * FROM vwMovie WHERE TO_CHAR(sysdate, 'YYYY-MM-DD') between TO_CHAR(start_date,'YYYY-MM-DD') and TO_CHAR(end_date,'YYYY-MM-DD')) order by movie_seq";
-					
-					stat = conn.createStatement();
-					rs = stat.executeQuery(sql);
-					
-					ArrayList<MovieDTO> list = new ArrayList<MovieDTO>();
-					while (rs.next()) {
-						
-						MovieDTO dto = new MovieDTO();
-						
-						dto.setMovie_seq(rs.getString("movie_seq"));
-						dto.setMovie_name(rs.getString("movie_name"));
-						dto.setStart_date(rs.getString("start_date"));
-						dto.setEnd_date(rs.getString("end_date"));
-						dto.setRunningtime(rs.getString("runningtime"));
-						dto.setImg(rs.getString("img"));
-						dto.setPreview(rs.getString("preview"));
-						
-						list.add(dto);
-						
-					}
-					
-					return list;
-					
-				} catch (Exception e) {
-					System.out.println("at ActDAO.movieList");
-					e.printStackTrace();
-				}
-		
-		return null;
-	}
 
+	/**
+	 * 포토존을 추가하는 메서드
+	 * 
+	 * @param dto 포토존 정보를 담은 PhotoZoneDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addPhotozone(PhotoZoneDTO dto) {
 		
 		try {
@@ -1484,6 +1386,11 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 가장 최근에 추가한 포토존 테이블의 포토존 번호를 가져오는 메서드
+	 * 
+	 * @return 포토존 번호
+	 */
 	public String getPhotozoneSeq() {
 
 		try {
@@ -1504,6 +1411,13 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 포토존 이미지를 추가하는 메서드
+	 * 
+	 * @param fileList 이미지 파일 이름의 목록을 담은 ArrayList 객체
+	 * @param photozone_seq 포토존 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addPhotozoneImg(ArrayList<String> fileList, String photozone_seq) {
 
 		//ArrayList를 탐색하며 null개수 count > null이 3개면 > default 로 insert
@@ -1561,6 +1475,12 @@ return 0;
 		return result;
 	}
 
+	/**
+	 * 어트랙션을 수정하는 메서드
+	 * 
+	 * @param dto 어트랙션 정보를 담은 AttractionDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int editAttraction(AttractionDTO dto) {
 
 		try {
@@ -1586,6 +1506,13 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 위치 정보를 추가하는 메서드
+	 * 
+	 * @param lat 위도
+	 * @param lng 경도
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	//String lat, String lng 입력받아 tblLocation에 추가하기(성공: 1, 실패: 0)
 	public int addLocation(String lat, String lng) {
 
@@ -1610,6 +1537,13 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 위치번호를 찾는 메서드
+	 * 
+	 * @param lat 위도
+	 * @param lng 경도
+	 * @return 위치 번호
+	 */
 	//String lat, String lng 입력받아 location_seq 얻기
 	public String getLocationSeq(String lat, String lng) {
 
@@ -1635,6 +1569,12 @@ return 0;
 		return null;
 	}	
 	
+	/**
+	 * 해시태그 이름으로 해당 해시태그의 번호를 찾는 메서드
+	 * 
+	 * @param taglist 해시태그 이름들이 담긴 ArrayList 객체
+	 * @return 해시태그의 번호가 담긴 ArrayList 객체
+	 */
 	//ArrayList<String> 태그 list로 Hashtag 테이블의 seq 얻기
 	public ArrayList<String> getHashtagSeq(ArrayList<String> taglist) {
 		
@@ -1667,7 +1607,12 @@ return 0;
 		return list;
 	}
 
-	
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션 해시태그의 개수를 세는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 해당하는 어트랙션 해시태그의 개수
+	 */
 	//seq로 조회하여 해당 어트랙션의 해시태그 개수 찾기
 	public int countAttractionHashtag(String seq) {
 		
@@ -1688,6 +1633,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 어트랙션 해시태그를 삭제하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	//seq로 조회하여 해당 어트랙션 해시태그 제거하기
 	public int delAttractionHashtag(String seq) {
 
@@ -1708,6 +1659,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 위지 정보를 수정하는 메서드
+	 * 
+	 * @param location_dto 위치정보를 담은 LocationDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	//location_dto 안의 seq와 일치하는 레코드의 lat, lng 수정하기
 	public int updateLocation(LocationDTO location_dto) {
 		
@@ -1730,6 +1687,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 어트랙션 이미지를 삭제하는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	//Attraction_seq 입력받아 어트랙션 이미지 삭제하기
 	public int delAttractionImg(String seq) {
 
@@ -1750,6 +1713,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 어트랙션을 삭제하는 메서드(업데이트 처리)
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	//seq 입력받아 어트랙션 삭제 > 위치, 테스트여부, 이름 변경
 	public int delAttraction(String seq) {
 
@@ -1770,6 +1739,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 어트랙션 번호(seq)를 입력받아 해당하는 어트랙션 이미지의 개수를 세는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 해당하는 어트랙션 이미지의 개수
+	 */
 	//seq 입력받아 존재하는 어트랙션 이미지 개수 확인
 	public int countAttractionImg(String seq) {
 
@@ -1790,6 +1765,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 페스티벌을 수정하는 메서드
+	 * 
+	 * @param dto 페스티벌 정보를 담은 FestivalDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	//dto 받아서 페스티벌 수정
 	public int editFestival(FestivalDTO dto) {
 		
@@ -1815,6 +1796,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌 해시태그의 개수를 세는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 해당하는 페스티벌 해시태그의 개수
+	 */
 	//seq로 조회하여 해당 페스티벌의 해시태그 개수 찾기
 	public int countFestivalHashtag(String seq) {
 
@@ -1835,6 +1822,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 페스티벌 번호(seq)를 입력받아 해당하는 페스티벌 이미지의 개수를 세는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 해당하는 페스티벌 이미지의 개수
+	 */
 	//seq 입력받아 존재하는 페스티벌 이미지 개수 확인
 	public int countFestivalImg(String seq) {
 
@@ -1854,6 +1847,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 포토존을 수정하는 메서드
+	 * 
+	 * @param dto 포토존 정보를 담은 PhotoZoneDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int editPhotozone(PhotoZoneDTO dto) {
 
 		try {
@@ -1875,6 +1874,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 포토존 번호(seq)를 입력받아 해당하는 포토존 이미지의 개수를 세는 메서드
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 해당하는 포토존 이미지의 개수
+	 */
 	public int countPhotozoneImg(String seq) {
 
 		try {
@@ -1894,6 +1899,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 포토존 이미지를 삭제하는 메서드
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delPhotozoneImg(String seq) {
 
 		try {
@@ -1913,6 +1924,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 포토존을 삭제하는 메서드(업데이트 처리)
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int delPhotozone(String seq) {
 
 		try {
@@ -1932,6 +1949,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 선택한 날짜에 상영중인 영화의 목록을 조회하는 메서드
+	 * 
+	 * @param date 특정 날짜 또는 당일(시스템 날짜 기준) 날짜가 담긴 변수
+	 * @return 영화 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<MovieDTO> movieList(String date) {
 
 		try {
@@ -1985,6 +2008,12 @@ return 0;
 			return null;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화를 조회하는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 영화 정보를 담은 MovieDTO 객체
+	 */
 	public MovieDTO getMovie(String seq) {
 
 		try {
@@ -2027,6 +2056,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화의 해시태그들을 조회하는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 영화 해시태그 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<MovieHashtagDTO> movieHashtagList(String seq) {
 
 		try {
@@ -2062,6 +2097,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 영화관을 추가하는 메서드
+	 * 
+	 * @param dto 영화관 정보를 담은 TheaterDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addTheater(TheaterDTO dto) {
 
 		try {
@@ -2082,6 +2123,11 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 운영 종료 영화관을 제외한 영화관 목록을 조회하는 메서드
+	 * 
+	 * @return 영화관 목록을 담은 ArrayList 객체
+	 */
 	public ArrayList<TheaterDTO> theaterList() {
 
 		try {
@@ -2114,6 +2160,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 영화를 추가하는 메서드
+	 * 
+	 * @param dto 영화 정보를 담은 MovieDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addMovie(MovieDTO dto) {
 
 		try {
@@ -2145,6 +2197,11 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 가장 최근에 추가한 영화 테이블의 영화 번호를 가져오는 메서드
+	 * 
+	 * @return 영화 번호
+	 */
 	public String getMovieSeq() {
 
 		try {
@@ -2166,6 +2223,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 영화 상영 정보를 추가하는 메서드
+	 * 
+	 * @param dto 영화 정보를 담은 MovieDTO 객체
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addMoviePlay(MovieDTO dto) {
 
 		try {
@@ -2187,6 +2250,13 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 해시태그를 추가하는 메서드
+	 * 
+	 * @param seqlist 추가할 해시태그의 번호들이 담긴 ArrayList 객체
+	 * @param movie_seq 영화 번호
+	 * @return 데이터베이스에 추가된 행의 수
+	 */
 	public int addMovieHashtag(ArrayList<String> seqlist, String movie_seq) {
 
 		int result = 0;
@@ -2214,6 +2284,12 @@ return 0;
 		return result;
 	}
 
+	/**
+	 * 영화관 정보를 삭제하는 메서드
+	 * 
+	 * @param seq 영화관 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delTheater(String seq) {
 
 		try {
@@ -2234,6 +2310,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화관 번호(seq)를 입력받아 해당하는 영화관의 위치 정보를 조회하는 메서드
+	 * 
+	 * @param seq 영화관 번호
+	 * @return 특정 영화관의 위치 정보를 담은 LocationDTO 객체
+	 */
 	public LocationDTO getTheaterLocation(String seq) {
 
 		try {
@@ -2265,6 +2347,12 @@ return 0;
 		return null;
 	}
 
+	/**
+	 * 영화관 정보를 수정하는 메서드
+	 * 
+	 * @param dto 영화관 정보를 담은 TheaterDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int editTheater(TheaterDTO dto) {
 
 		try {
@@ -2286,6 +2374,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화 상영 정보를 삭제하는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delMoviePlay(String seq) {
 
 		try {
@@ -2305,6 +2399,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화를 삭제하는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delMovie(String seq) {
 
 		try {
@@ -2325,6 +2425,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화 해시태그를 삭제하는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 데이터베이스에 삭제된 행의 수
+	 */
 	public int delMovieHashtag(String seq) {
 
 		try {
@@ -2345,6 +2451,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 번호(seq)를 입력받아 해당하는 영화 해시태그의 개수를 세는 메서드
+	 * 
+	 * @param seq 영화 번호
+	 * @return 해당하는 영화 해시태그의 개수
+	 */
 	public int countMovieHashtag(String seq) {
 
 		try {
@@ -2364,6 +2476,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 정보를 수정하는 메서드
+	 * 
+	 * @param dto 영화 정보를 담은 MovieDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int editMovie(MovieDTO dto) {
 
 		if (dto.getImg() == null) {
@@ -2416,6 +2534,12 @@ return 0;
 		return 0;
 	}
 
+	/**
+	 * 영화 상영 정보를 수정하는 메서드
+	 * 
+	 * @param dto 영화 정보를 담은 MovieDTO 객체
+	 * @return 데이터베이스에 업데이트된 행의 수
+	 */
 	public int editMoviePlay(MovieDTO dto) {
 
 		try {
@@ -2436,8 +2560,6 @@ return 0;
 		
 		return 0;
 	}
-
-
 
 		
 }
