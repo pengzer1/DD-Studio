@@ -16,7 +16,12 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.admin.model.CategoryDTO;
 import com.ddstudio.admin.repository.CategoryDAO;
-
+/**
+ * 
+ * 어트랙션 운휴를 수정하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/attractioncloseedit.do")
 public class AttractionCloseEdit extends HttpServlet {
 	@Override

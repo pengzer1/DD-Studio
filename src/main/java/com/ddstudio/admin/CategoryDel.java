@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.admin.model.CategoryDTO;
 import com.ddstudio.admin.repository.CategoryDAO;
-
+/**
+ * 관리자가 카테고리를 삭제하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/categorydel.do")
 public class CategoryDel extends HttpServlet {
 	@Override

@@ -11,17 +11,27 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.model.LocationDTO;
 import com.ddstudio.admin.model.CategoryDTO;
 import com.ddstudio.guide.model.ConvenientDTO;
-
+/**
+ * 편의시설 DAO클래스입니다.
+ * 클래스는 데이터베이스와 상호 작용하여 편의시설 정보를 처리하는 DAO 클래스로, 편의시설의 조회 기능을 제공
+ * @author leeje
+ *
+ */
 public class ConvenientDAO {
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
-	
+	/**
+	 * DB와 연결하는 클래스
+	 */
 	public ConvenientDAO() {
 		this.conn=DBUtil.open();
 	}
-
+	/**
+	 * 편의시설 리스트를 조회하는 클래스
+	 * @return 조회된 리스트를 반환합니다.
+	 */
 	public ArrayList<ConvenientDTO> list() {
 		try {
 			String sql = "select *\r\n"
@@ -54,7 +64,10 @@ public class ConvenientDAO {
 		}
 		return null;
 	}
-
+	/**
+	 * 운영 중인 어트랙션의 리스트를 조회하는 클래스
+	 * @return : 운영 중인 어트랙션의 리스트를 반환합니다.
+	 */
 	public ArrayList<AttractionDTO> attractionList() {
 		try {
 			String sql = "SELECT * \r\n"

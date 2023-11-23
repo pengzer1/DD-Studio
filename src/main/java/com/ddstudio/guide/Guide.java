@@ -14,7 +14,11 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.repository.ActDAO;
 import com.ddstudio.guide.model.ConvenientDTO;
 import com.ddstudio.guide.repository.ConvenientDAO;
-
+/**
+ * 놀이공원의 전체적인 가이드맵을 보여주는 페이지로 이동하는 클래스입니다.
+ * @author leeje
+ *
+ */
 @WebServlet("/guide/guide.do")
 public class Guide extends HttpServlet {
 	@Override

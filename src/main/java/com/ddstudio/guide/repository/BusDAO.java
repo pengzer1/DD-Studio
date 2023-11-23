@@ -11,6 +11,10 @@ import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.guide.model.BusDTO;
 import com.ddstudio.pb.model.PriceDTO;
 
+/**
+ * BusDAO 클래스입니다.
+ * 클래스는 데이터베이스와 상호 작용하여 버스 정보를 처리하는 DAO 클래스로, 버스의 조회, 추가, 수정, 삭제 등의 기능을 제공합니다.
+ */
 public class BusDAO {
 	private Connection conn;
 	private Statement stat;
@@ -21,7 +25,11 @@ public class BusDAO {
 		this.conn=DBUtil.open();
 	}
 
-
+	/**
+	 * 어트랙션 리스트를 불러옵니다.
+	 * @param close 어트랙션 운행 여부를 받습니다.
+	 * @return	운행중인 어트랙션의 리스트를 반환합니다.
+	 */
 	public ArrayList<AttractionDTO> attractionList(String close) {
 
 
@@ -77,6 +85,10 @@ public class BusDAO {
 			return null;
 	}
 
+	/**
+	 * 버스 리스트를 불러옵니다.
+	 * @return 버스 리스트를 반환합니다.
+	 */
 	public ArrayList<BusDTO> busList() {
 
 
@@ -118,6 +130,10 @@ public class BusDAO {
 
 	}
 
+	/**
+	 * 버스 정보의 리스트를 불러옵니다.
+	 * @return 버스 정보의 리스트를 리턴합니다.
+	 */
 	public ArrayList<BusDTO> getBusInfo() {
 
 
@@ -155,6 +171,11 @@ public class BusDAO {
 		return null;
 	}
 
+	/**
+	 * 버스 노선을 추가합니다.
+	 * @param dto 추가할 버스 노선 객체를 받습니다.
+	 * @return 버스 노선이 추가되면 1을 ,실패시 0을 반환합니다.
+	 */
 	public int add(BusDTO dto) {
 
 
@@ -181,6 +202,11 @@ public class BusDAO {
 
 	}
 
+	/**
+	 * 시작 어트랙션 번호를 가져옵니다.
+	 * @param name 가져올 어트랙션의 이름을 받습니다.
+	 * @return 매개변수로 입력받은 어트랙션의 시작번호를 반환합니다.
+	 */
 	public String startNum(String name) {  // 시작 어트랙션번호가져오기
 
 
@@ -206,6 +232,11 @@ public class BusDAO {
 return null;
 	}
 
+	/**
+	 * 도착 어트랙션의 번호를 가져옵니다.
+	 * @param endName 도착 어트랙션의 이름을 받습니다.
+	 * @return	 해당어트랙션의 번호를 반환합니다.
+	 */
 	public String endNum(String endName) { // 도착 어트랙션 번호 가져오기
 
 		try {
@@ -229,6 +260,10 @@ return null;
 		return null;
 	}
 
+	/**
+	 * 버스 노선의 리스트를 가져옵니다.
+	 * @return 버스 노선의 리스트를 반환합니다.
+	 */
 	public ArrayList<BusDTO> routeList() {
 
 

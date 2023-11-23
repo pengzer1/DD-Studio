@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//편의시설
+/**
+ * 편의시설과 셔틀버스를 선택할 수 있는 페이지를 보여주는 클래스입니다.
+ * @author leeje
+ *
+ */
 
 @WebServlet("/guide/convenient.do")
 public class Convenient extends HttpServlet {

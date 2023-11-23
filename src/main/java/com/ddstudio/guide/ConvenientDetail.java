@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.guide.model.ConvenientDTO;
 import com.ddstudio.guide.repository.ConvenientDAO;
-
+/**
+ * 가이드/편의시설의 상세를 보여주는 클래스입니다.
+ * @author leeje
+ *
+ */
 @WebServlet("/guide/convenientdetail.do")
 public class ConvenientDetail extends HttpServlet {
 	@Override

@@ -1,5 +1,9 @@
 package com.ddstudio.guide.model;
 
+/**
+ * BusDTO 클래스입니다.
+ * BusDTO는 버스 관련 정보를 담는 데이터 전송 객체 입니다.
+ */
 
 public class BusDTO {
 	private String bus_seq;

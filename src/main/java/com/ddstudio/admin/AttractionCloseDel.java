@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.repository.ActDAO;
-
+/**
+ * 어트랙션 운휴를 삭제하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/attractionclosedel.do")
 public class AttractionCloseDel extends HttpServlet {
 	@Override

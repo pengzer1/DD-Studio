@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Bus 클래스입니다.
+ * 버스 리스트를 불러옵니다.
+ */
 @WebServlet("/guide/bus.do")
 public class Bus extends HttpServlet {
 	@Override

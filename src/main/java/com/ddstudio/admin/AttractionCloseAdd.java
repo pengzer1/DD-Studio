@@ -15,6 +15,11 @@ import com.ddstudio.activity.model.AttractionCloseDTO;
 import com.ddstudio.activity.model.AttractionDTO;
 import com.ddstudio.activity.repository.ActDAO;
 
+/**
+ * 어트랙션 운휴를 추가하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/attractioncloseadd.do")
 public class AttractionCloseAdd extends HttpServlet {
 	@Override

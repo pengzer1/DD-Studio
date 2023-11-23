@@ -13,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.repository.HashTagDAO;
-
+/**
+ * 관리자가 해시태그를 삭제하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/hashtagdel.do")
 public class HashTagDel extends HttpServlet {
 	@Override

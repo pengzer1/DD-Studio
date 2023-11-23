@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ddstudio.admin.model.HashTagDTO;
 import com.ddstudio.admin.repository.HashTagDAO;
-
+/**
+ * 관리자가 해시태그를 추가하는 클래스
+ * @author leeje
+ *
+ */
 @WebServlet("/admin/hashtagadd.do")
 public class HashTagAdd extends HttpServlet {
 	@Override
