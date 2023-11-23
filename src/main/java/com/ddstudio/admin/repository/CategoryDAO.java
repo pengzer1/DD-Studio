@@ -23,7 +23,7 @@ public class CategoryDAO {
 	private ResultSet rs;
 	
 	/**
-	 * DB와 연결하는 클래스입니다.
+	 * DB와 연결하는 메서드
 	 */
 	public CategoryDAO() {
 		this.conn=DBUtil.open();
@@ -60,7 +60,7 @@ public class CategoryDAO {
 		return null;
 	}
 	/**
-	 * 카테고리를 추가하는 클래스
+	 * 카테고리를 추가하는 메서드
 	 * @param dto : 추가할 카테고리 객체를 받습니다.
 	 * @return : 카테고리가 추가되면 1, 실패하면 0을 반환
 	 */
@@ -80,7 +80,7 @@ public class CategoryDAO {
 		return 0;
 	}
 	/**
-	 * 카테고리를 수정하는 클래스
+	 * 카테고리를 수정하는 메서드
 	 * @param dto : 수정할 카테고리 객체를 받습니다.
 	 * @param aftername : 수정할 이름도 같이 받아오기.
 	 * @return 수정 성공하면 1, 실패하면 0을 반환.
@@ -103,7 +103,7 @@ public class CategoryDAO {
 		return 0;
 	}
 	/**
-	 * 카테고리를 삭제하는 클래스
+	 * 카테고리를 삭제하는 메서드
 	 * @param dto : 삭제할 카테고리 객체를 받아오기
 	 * @return 삭제 성공하면 1, 실패하면 0을 반환.
 	 */

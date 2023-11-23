@@ -666,10 +666,10 @@ public class ActDAO {
 
 
 	/**
+	 * 어트랙션의 운휴를 추가하는 메서드
 	 * 
-	 * 
-	 * @param dto
-	 * @return
+	 * @param dto 어트랙션의 운휴 정보 객체
+	 * @return 추가할 어트랙션의 운휴 정보, 성공하면 1 실패하면 0을 반환
 	 */
 	public int attcloseadd(AttractionCloseDTO dto) {
         try {
@@ -689,10 +689,10 @@ public class ActDAO {
      }
 
 	/**
+	 * 어트랙션 운휴를 수정하는 메서드
 	 * 
-	 * 
-	 * @param dto
-	 * @return
+	 * @param dto 어트랙션의 운휴 정보 객체
+	 * @return 수정할 어트랙션의 운휴 정보, 성공하면 1 실패하면 0을 반환
 	 */
 	public int attcloseedit(AttractionCloseDTO dto) {
 		try {
@@ -713,9 +713,9 @@ public class ActDAO {
 	}
 
 	/**
+	 * 현재 운휴 중인 어트랙션 리스트를 조회하는 메서드
 	 * 
-	 * 
-	 * @return
+	 * @return 운휴 중인 리스트를 반환
 	 */
 	public ArrayList<AttractionCloseDTO> closeattractionList() {  //운휴정보를 가진 어트랙션 목록들(name 포함해서)만 보여주기
 		try {
@@ -752,23 +752,23 @@ public class ActDAO {
   }
 
 	/**
+	 * 어트랙션의 운휴 정보를 삭제하는 메서드
 	 * 
-	 * 
-	 * @param dto
-	 * @return
+	 * @param dto 어트랙션의 운휴 정보를 담고 있는 객체
+	 * @return 
 	 */
 	public int del(AttractionCloseDTO dto) {
 		try {
 			String sql = "delete from tblAttractionClose where attraction_close_seq=?";
 
-         pstat = conn.prepareStatement(sql);
-         pstat.setString(1, dto.getAttraction_close_seq());
-      } catch (Exception e) {
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getAttraction_close_seq());
+		} catch (Exception e) {
 			System.out.println("at ActDAO.del");
 			e.printStackTrace();
 		}
-return 0;
-}
+		return 0;
+	}
 	/**
 	 * 포토존 번호(seq)를 입력받아 해당하는 포토존의 이미지들을 조회하는 메서드
 	 * 

@@ -23,13 +23,13 @@ public class ConvenientDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 	/**
-	 * DB와 연결하는 클래스
+	 * DB와 연결하는 메서드
 	 */
 	public ConvenientDAO() {
 		this.conn=DBUtil.open();
 	}
 	/**
-	 * 편의시설 리스트를 조회하는 클래스
+	 * 편의시설 리스트를 조회하는 메서드
 	 * @return 조회된 리스트를 반환합니다.
 	 */
 	public ArrayList<ConvenientDTO> list() {
@@ -65,7 +65,7 @@ public class ConvenientDAO {
 		return null;
 	}
 	/**
-	 * 운영 중인 어트랙션의 리스트를 조회하는 클래스
+	 * 운영 중인 어트랙션의 리스트를 조회하는 메서드
 	 * @return : 운영 중인 어트랙션의 리스트를 반환합니다.
 	 */
 	public ArrayList<AttractionDTO> attractionList() {
