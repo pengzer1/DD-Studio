@@ -11,6 +11,12 @@ import com.ddstudio.ticket.model.BenefitDTO;
 import com.ddstudio.ticket.model.GroupBookDTO;
 import com.ddstudio.ticket.model.TicketDTO;
 
+/**
+ * 데이터베이스와 상호 작용하여 예매 정보를 처리하는 DAO 클래스입니다.
+ * 
+ * @author pega0
+ *
+ */
 public class TicketDAO {
 
 	private Connection conn;
@@ -18,12 +24,20 @@ public class TicketDAO {
 	private PreparedStatement pstat;
 	private ResultSet rs;
 
+	/**
+	 * TicketDAO 클래스의 생성자입니다. 데이터베이스 연결을 수행합니다.
+	 */
 	public TicketDAO() {
 
 		this.conn = DBUtil.open();
 
 	}
 
+	/**
+	 * 단체 예매를 추가합니다.
+	 * @param dto 단체 예매 정보를 담고 있는 DTO
+	 * @return 추가 확인 정수
+	 */
 	public int addGroupReservation(GroupBookDTO dto) {
 
 		try {
@@ -48,6 +62,10 @@ public class TicketDAO {
 		return 0;
 	}
 
+	/**
+	 * 예매한 단체 예매 일련번호를 조회합니다.
+	 * @return 단체 예매 일련번호
+	 */
 	public String getGroupBookSeq() {
 
 		try {
@@ -69,6 +87,12 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 유저 단체 예매를 추가합니다.
+	 * @param user_seq 로그인한 유저 일련번호
+	 * @param group_book_seq 단체 예매 일련번호
+	 * @return 추가 확인 정수
+	 */
 	public int addUserGroupReservation(String user_seq, String group_book_seq) {
 
 		try {
@@ -89,6 +113,10 @@ public class TicketDAO {
 		return 0;
 	}
 
+	/**
+	 * 혜택 정보를 조회합니다.
+	 * @return 혜택 정보가 들어 있는 List
+	 */
 	public ArrayList<BenefitDTO> getBenefit() {
 
 		try {
@@ -125,6 +153,10 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 카드통신사 혜택을 조회합니다.
+	 * @return 카드통신사 혜택이 들어 있는 List
+	 */
 	public ArrayList<BenefitDTO> getCardBenefit() {
 
 		try {
@@ -161,6 +193,11 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 개인 성인 금액을 조회합니다.
+	 * @param type 티켓 타입
+	 * @return 개인 성인 금액
+	 */
 	public TicketDTO getAdultPrice(String type) {
 
 		try {
@@ -190,6 +227,11 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 개인 청소년 금액을 조회합니다.
+	 * @param type 티켓 타입
+	 * @return 개인 청소년 금액
+	 */
 	public TicketDTO getTeenagerPrice(String type) {
 
 		try {
@@ -219,6 +261,11 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 개인 어린이 금액을 조회합니다.
+	 * @param type 티켓 타입
+	 * @return 개인 어린이 금액
+	 */
 	public TicketDTO getChildPrice(String type) {
 
 		try {
@@ -248,6 +295,11 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 개인 성인 예매를 추가합니다.
+	 * @param adultDTO 개인 성인 예매 정보가 들어있는 DTO
+	 * @return 추가 확인 정수
+	 */
 	public int addAdultReservation(TicketDTO adultDTO) {
 
 		if (!adultDTO.getEa().equals("0")) {
@@ -277,6 +329,10 @@ public class TicketDAO {
 		return -1;
 	}
 
+	/**
+	 * 방금 예매한 일련번호를 조회합니다.
+	 * @return 티켓 예매 일련번호
+	 */
 	public String getTicketBookSeq() {
 
 		try {
@@ -298,6 +354,12 @@ public class TicketDAO {
 		return null;
 	}
 
+	/**
+	 * 유저 예매를 추가합니다.
+	 * @param user_seq 로그인한 유저 일련번호
+	 * @param ticket_book_seq 예매 일련번호
+	 * @return 추가 확인 정수
+	 */
 	public int addUserBook(String user_seq, String ticket_book_seq) {
 
 		try {
@@ -318,6 +380,11 @@ public class TicketDAO {
 		return 0;
 	}
 
+	/**
+	 * 개인 청소년 예매를 추가합니다.
+	 * @param teenagerDTO 개인 청소년 예매 정보가 들어있는 DTO
+	 * @return 추가 확인 정수
+	 */
 	public int addTeenagerReservation(TicketDTO teenagerDTO) {
 
 		if (!teenagerDTO.getEa().equals("0")) {
@@ -348,6 +415,11 @@ public class TicketDAO {
 
 	}
 
+	/**
+	 * 개인 어린이 예매를 추가합니다.
+	 * @param childDTO 개인 어린이 예매 정보가 들어있는 DTO
+	 * @return 추가 확인 정수
+	 */
 	public int addChildReservation(TicketDTO childDTO) {
 		if (!childDTO.getEa().equals("0")) {
 

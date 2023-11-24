@@ -1,6 +1,10 @@
 package com.ddstudio.ticket.model;
 
-
+/**
+ * 단체 예매 데이터 전송 객체입니다.
+ * @author pega0
+ *
+ */
 public class GroupBookDTO {
 	private String user_group_book_seq;
 	private String user_seq;

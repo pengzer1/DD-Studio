@@ -15,9 +15,23 @@ import com.ddstudio.shop.model.ItemDTO;
 import com.ddstudio.shop.model.ItemImgDTO;
 import com.ddstudio.shop.repository.ShopDAO;
 
+/**
+ * 아이템 서블릿입니다.
+ * 선택한 아이템의 상세 정보를 보여주는 기능을 처리합니다.
+ * @author pega0
+ *
+ */
 @WebServlet("/shop/item/detail.do")
 public class Item extends HttpServlet {
 
+	/**
+	 * HTTP GET 요청을 처리합니다.
+	 * 
+	 * 아이템 상세 정보를 가져오고, 요청과 응답 객체에 필요한 속성을 설정한 후 JSP 페이지로 포워딩합니다.
+     * 
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
