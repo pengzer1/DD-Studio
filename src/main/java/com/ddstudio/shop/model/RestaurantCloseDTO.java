@@ -1,5 +1,10 @@
 package com.ddstudio.shop.model;
 
+/**
+ * 레스토랑 운영/운휴 데이터 전송 객체입니다.
+ * @author pega0
+ *
+ */
 public class RestaurantCloseDTO {
 	private String restaurant_close_seq;
 	private String start_date;

@@ -16,9 +16,23 @@ import com.ddstudio.shop.model.GiftShopImgDTO;
 import com.ddstudio.shop.model.ItemDTO;
 import com.ddstudio.shop.repository.ShopDAO;
 
+/**
+ * 기프트샵 상세 서블릿 입니다.
+ * 선택한 기프트샵의 상세 정보를 보여주는 기능을 처리합니다.
+ * @author pega0
+ *
+ */
 @WebServlet("/shop/giftshop/detail.do")
 public class GiftshopDetail extends HttpServlet {
 
+	/**
+	 * HTTP GET 요청을 처리합니다.
+	 * 
+	 * 기프트샵 상세 정보를 가져오고, 요청과 응답 객체에 필요한 속성을 설정한 후 JSP 페이지로 포워딩합니다.
+     * 
+     * @param req  HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
