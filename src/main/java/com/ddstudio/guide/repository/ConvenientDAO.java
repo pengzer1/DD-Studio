@@ -34,8 +34,7 @@ public class ConvenientDAO {
 	 */
 	public ArrayList<ConvenientDTO> list() {
 		try {
-			String sql = "select *\r\n"
-					+ "from tblconvenient c inner join tbllocation l on c.location_seq=l.location_seq";
+			String sql = "select * from tblconvenient c inner join tbllocation l on c.location_seq=l.location_seq";
 			
 			stat = conn.createStatement();
 			rs=stat.executeQuery(sql);

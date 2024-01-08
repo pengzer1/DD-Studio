@@ -335,6 +335,10 @@ table td {
 	background-color: #CCC;
 	cursor: pointer;
 }
+
+#content_box:not(.selected-box):hover {
+      background-color: #CCC !important; /* 선택되지 않은 상자 hover 시 배경색 변경 */
+    }
 </style>
 </head>
 <body>
@@ -538,6 +542,45 @@ table td {
     	    }
     	  }
     	}
+    	
+    	
+    	document.addEventListener('DOMContentLoaded', function () {
+    	      const contentBoxes = document.querySelectorAll('#content_box');
+
+    	      contentBoxes.forEach((box, index) => {
+    	        box.addEventListener('click', function (event) {
+    	          const itemId = this.id;
+
+    	          contentBoxes.forEach((box) => {
+    	            box.classList.remove('selected-box');
+    	          });
+    	          this.classList.add('selected-box');
+
+    	          setMarkersOpacity(index, 1);
+    	        });
+    	      });
+    	    });
+
+    	    function setMarkersOpacity(clickedIndex, opacity) {
+    	      alist.forEach((marker) => {
+    	        marker.setOpacity(0.3);
+    	      });
+
+    	      clist.forEach((marker) => {
+    	        marker.setOpacity(0.3);
+    	      });
+
+    	      if (document.getElementById('sel01').classList.contains('on')) {
+    	        if (alist[clickedIndex]) {
+    	          alist[clickedIndex].setOpacity(opacity);
+    	        }
+    	      } else if (document.getElementById('sel02').classList.contains('on')) {
+    	        clickedIndex -= alist.length;
+    	        if (clist[clickedIndex]) {
+    	          clist[clickedIndex].setOpacity(opacity);
+    	        }
+    	      }
+    	    }
 		
 	</script>
 </body>

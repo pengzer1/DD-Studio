@@ -22,12 +22,12 @@ public class ConvenientDetail extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ConvenientDAO dao = new ConvenientDAO();
-		
+	
 		ArrayList<ConvenientDTO> list = dao.list();
 		
-		req.setAttribute("list", list);
+		//System.out.println(list);
 		
-		// System.out.println(list);
+		req.setAttribute("list", list);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/guide/convenient/detail.jsp");
 		dispatcher.forward(req, resp);
