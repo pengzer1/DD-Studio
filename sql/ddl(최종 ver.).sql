@@ -9,7 +9,6 @@ DELETE FROM tblUserCart;
 DELETE FROM tblCart;
 DELETE FROM tblItemImg;
 DELETE FROM tblItem;
-DELETE FROM tblReviewCmt;
 DELETE FROM tblReviewImg;
 DELETE FROM tblReview;
 DELETE FROM tblUserGroupBook;
@@ -63,7 +62,6 @@ DROP TABLE tblUserCart;
 DROP TABLE tblCart;
 DROP TABLE tblItemImg;
 DROP TABLE tblItem;
-DROP TABLE tblReviewCmt;
 DROP TABLE tblReviewImg;
 DROP TABLE tblReview;
 DROP TABLE tblUserGroupBook;
@@ -154,7 +152,6 @@ DROP SEQUENCE seqtblUserBook;
 DROP SEQUENCE seqUserGroupBook;
 DROP SEQUENCE seqtblReview;
 DROP SEQUENCE seqtblReviewImg;
-DROP SEQUENCE seqtblReviewCmt;
 DROP SEQUENCE seqtblItem;
 DROP SEQUENCE seqtblItemImg;
 DROP SEQUENCE seqtblCart;
@@ -193,7 +190,7 @@ CREATE TABLE tblLocation (
 /* 카테고리 */
 CREATE TABLE tblCategory (
    category_seq NUMBER PRIMARY KEY, /* 카테고리번호 */
-   name VARCHAR2(500) NOT NULL UNIQUE /* 카테고리명 */
+   name VARCHAR2(500) NOT NULL /* 카테고리명 */
 );
 
 /* 식당 */
@@ -469,11 +466,11 @@ CREATE TABLE tblNotice (
 
 /* 분실물센터 */
 CREATE TABLE tblLostProperty (
-   lost_center_seq NUMBER PRIMARY KEY, /* 분실물번호 */
+   lost_property_seq NUMBER PRIMARY KEY, /* 분실물번호 */
    type VARCHAR2(500) NOT NULL, /* 분류 */
    name VARCHAR2(500) NOT NULL, /* 습득물명 */
    location VARCHAR2(500) NOT NULL, /* 습득장소 */
-   lost_center_date DATE NOT NULL, /* 습득일 */
+   lost_property_date DATE NOT NULL, /* 습득일 */
    img VARCHAR2(500), /* 분실물이미지 */
    result VARCHAR2(500) NOT NULL /* 처리결과 */
 );
@@ -550,15 +547,6 @@ CREATE TABLE tblReviewImg (
    review_img_seq NUMBER primary key, /* 리뷰이미지번호 */
    img VARCHAR2(500) DEFAULT 'reviewimg.png' NOT NULL, /* 리뷰이미지 */
    review_seq NUMBER references tblreview(review_seq) NOT NULL /* 리뷰번호 */
-);
-
-/* 리뷰 댓글 */
-CREATE TABLE tblReviewCmt (
-   review_cmt_seq NUMBER PRIMARY KEY, /* 리뷰번호 */
-   user_seq NUMBER REFERENCES tblUser(user_seq) NOT NULL, /* 유저번호 */
-   regdate DATE DEFAULT sysdate NOT NULL, /* 등록일 */
-   content VARCHAR(2000) NOT NULL, /* 댓글내용 */
-   review_seq NUMBER REFERENCES tblReview(review_seq) NOT NULL /* 리뷰번호 */
 );
 
 /* 아이템 */
@@ -652,7 +640,6 @@ CREATE SEQUENCE seqtblUserBook;
 CREATE SEQUENCE seqUserGroupBook;
 CREATE SEQUENCE seqtblReview;
 CREATE SEQUENCE seqtblReviewImg;
-CREATE SEQUENCE seqtblReviewCmt;
 CREATE SEQUENCE seqtblItem;
 CREATE SEQUENCE seqtblItemImg;
 CREATE SEQUENCE seqtblCart;
@@ -668,13 +655,14 @@ SELECT
     UB.user_book_seq,
     UB.user_seq,
     TB.ticket_book_seq,
-    TB.book_date,
-    TB.visit_date,
+    TO_CHAR(TB.book_date,'YYYY-MM-DD') as book_date,
+    TO_CHAR(TB.visit_date,'YYYY-MM-DD') as visit_date,
     TB.ea,
     TB.ticket_seq,
     TB.benefit_seq,
     B.discount_rate,
-    T.price
+    T.price,
+    TB.price as total_price
 FROM tblUserBook UB
 JOIN tblTicketBook TB ON UB.ticket_book_seq = TB.ticket_book_seq
 JOIN tblUser U ON UB.user_seq = U.user_seq
@@ -687,8 +675,9 @@ SELECT
     A.name,
     ab.attraction_book_seq,
     ab.book_time,
-    bu.regdate,
-    bu.capacity
+    To_char(bu.regdate, 'YYYY-MM-DD') as regdate,
+    bu.capacity,
+    bu.book_user_seq
 FROM tblBookUser BU
 JOIN tblAttractionBook AB ON AB.attraction_book_seq = BU.attraction_book_seq
 JOIN tblAttraction A on a.attraction_seq = BU.attraction_seq
@@ -702,7 +691,8 @@ SELECT
     B.ea,
     I.price,
     B.buy_seq,
-    B.buy_date
+    To_char(B.buy_date, 'yyyy-mm-dd') as buy_date,
+    UB.user_buy_seq
 from tblUserBuy UB
 join tblUser U on U.user_seq = UB.user_seq
 join tblBuy B on B.buy_seq = UB.buy_seq

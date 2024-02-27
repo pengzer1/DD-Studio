@@ -21,6 +21,9 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '이승원', 'lee@naver.com', 'lee1111!', '010-7548-4860', '08998 경북 54동 23층 545호', TO_DATE('20000203', 'yyyy-mm-dd'), '1', 'N');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
+VALUES (seqtblUser.nextVal, '김형우', 'kim@kakao.com', 'kim1111!', '010-1532-3222', '23822 서울 81동 111층 216호', TO_DATE('19970904', 'yyyy-mm-dd'), '1', 'Y');
+
+INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '윤준민', 'mmvph@kakao.com', '=p8-hm9vm', '010-9629-9841', '04080 전남 39동 41층 276호', TO_DATE('19980915', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
@@ -3000,16 +3003,52 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '정민지도도리', 'soejf@gmail.com', '6e+j-o0sMfO3w', '010-7148-0267', '34177 강원 95동 67층 327호', TO_DATE('20030514', 'yyyy-mm-dd'), '1', 'Y');
 
 /* 해시태그 */
-INSERT INTO tblHashtag (hashtag_seq, name)
-VALUES (seqtblHashtag.nextVal, '해시태그1');
+SELECT * FROM tblHashtag;
 
 INSERT INTO tblHashtag (hashtag_seq, name)
-VALUES (seqtblHashtag.nextVal, '해시태그2');
+VALUES (seqtblHashtag.nextVal, '어트랙션');
 
 INSERT INTO tblHashtag (hashtag_seq, name)
-VALUES (seqtblHashtag.nextVal, '해시태그3');
+VALUES (seqtblHashtag.nextVal, '페스티벌');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '영화');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '신나는');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스릴');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스윙');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '짜릿함');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '연인');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '데이트');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '가족');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '어린이');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '익사이팅');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '스트레스');
+
+INSERT INTO tblHashtag (hashtag_seq, name)
+VALUES (seqtblHashtag.nextVal, '동심');
 
 /* 위치정보 */
+INSERT INTO tblLocation (location_seq, lat, lng) VALUES (0, 0, 0);
 --어트랙션(30개)
 INSERT INTO tblLocation (location_seq, lat, lng)
 VALUES (seqtblLocation.nextVal, 33.361488, 126.529212);
@@ -3306,6 +3345,8 @@ INSERT INTO tblLocation (location_seq, lat, lng)
 VALUES (seqtblLocation.nextVal, 33.548522, 126.726314);
 
 /* 카테고리 */
+INSERT INTO tblCategory (category_seq, name) VALUES (0, 0);
+
 INSERT INTO tblCategory (category_seq, name)
 VALUES (seqtblCategory.nextVal, '카테고리1');
 
@@ -3316,86 +3357,137 @@ INSERT INTO tblCategory (category_seq, name)
 VALUES (seqtblCategory.nextVal, '카테고리3');
 
 /* 식당 */
-INSERT INTO tblRestaurant (restaurant_seq, name, menu, time, capacity, tel, location_seq, category_seq)
-VALUES (seqtblRestaurant.nextVal, '식당1', '메뉴1', '9:00 AM - 10:00 PM', 100, '123-456-7890', 1, 1);
-
-INSERT INTO tblRestaurant (restaurant_seq, name, menu, time, capacity, tel, location_seq, category_seq)
-VALUES (seqtblRestaurant.nextVal, '식당2', '메뉴2', '10:00 AM - 11:00 PM', 80, '987-654-3210', 2, 2);
-
-INSERT INTO tblRestaurant (restaurant_seq, name, menu, time, capacity, tel, location_seq, category_seq)
-VALUES (seqtblRestaurant.nextVal, '식당3', '메뉴3', '8:00 AM - 9:00 PM', 120, '111-222-3333', 3, 3);
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '크리스탈팰리스', '잭다니엘 스테이크, 케이준 후라이드치킨 샐러드', '10:30 - 21:00', '40', '070-4238-1121', '74', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '팝콘팩토리', '팝콘', '10:30 - 21:10', '10', '070-4238-1122', '75', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '더 쓰리위시스', '한식, 중식, 분식, 디저트', '10:30 - 22:00', '10', '070-4238-1123', '76', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '델키스 케밥', '치킨케밥, 콤보케밥, 피타롤, 델키쿨', '10:30 - 21:00', '10', '070-4238-1124', '77', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '석촌 보돌미역', '가자미 미역국, 활전복 가자미 미역국', '11:30 - 20:30', '10', '070-4238-1125', '78', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '뉴욕핫도그', '뉴욕칠리핫도그, 소불고기핫도그, 에이드', '11:00 - 21:00', '10', '070-4238-1126', '79', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '엠테이블', '자장면, 돈카츠, 로코모코', '10:30 - 21:00', '10', '070-4238-1127', '80', '1');
+INSERT INTO tblRestaurant VALUES (seqtblrestaurant.nextVal, '상하이 꽁시면관', '자장면, 짬뽕, 해물볶음밥, 탕수육', '10:30 - 21:30', '10', '070-4238-1128', '81', '1');
 
 /* 식당이미지 */
-INSERT INTO tblRestaurantImg (restaurant_img_seq, img, restaurant_seq)
-VALUES (seqtblRestaurantImg.nextVal, 'restaurant1.png', 1);
-
-INSERT INTO tblRestaurantImg (restaurant_img_seq, img, restaurant_seq)
-VALUES (seqtblRestaurantImg.nextVal, 'restaurant2.png', 2);
-
-INSERT INTO tblRestaurantImg (restaurant_img_seq, img, restaurant_seq)
-VALUES (seqtblRestaurantImg.nextVal, 'restaurant3.png', 3);
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant1.jpg', '1');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant2.jpg', '2');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant3.jpg', '3');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant4.jpg', '4');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant5.jpg', '5');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant6.jpg', '6');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant7.jpg', '7');
+INSERT INTO tblRestaurantImg VALUES (seqtblrestaurantimg.nextVal, 'restaurant8.jpg', '8');
 
 /* 식당/운휴 */
-INSERT INTO tblRestaurantClose (restaurant_close_seq, start_date, end_date, restaurant_seq)
-VALUES (seqtblRestaurantClose.NEXTVAL, TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-05', 'YYYY-MM-DD'), 1);
-
-INSERT INTO tblRestaurantClose (restaurant_close_seq, start_date, end_date, restaurant_seq)
-VALUES (seqtblRestaurantClose.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 2);
-
-INSERT INTO tblRestaurantClose (restaurant_close_seq, start_date, end_date, restaurant_seq)
-VALUES (seqtblRestaurantClose.NEXTVAL, TO_DATE('2023-11-20', 'YYYY-MM-DD'), TO_DATE('2023-11-25', 'YYYY-MM-DD'), 3);
+INSERT INTO tblRestaurantClose VALUES (seqtblrestaurantclose.nextval, '2023-11-15', '2023-11-18', '2');
+INSERT INTO tblRestaurantClose VALUES (seqtblrestaurantclose.nextval, '2023-11-15', '2023-11-18', '5');
 
 /* 편의시설 */
 INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
-VALUES (seqtblConvenient.NEXTVAL, '편의점 A', '09:00 - 21:00', '123-456-7890', 'convenient.png', 1);
+VALUES (seqtblConvenient.NEXTVAL, '손님상담실 A', '10:00 - 22:00', '123-456-7890', '상담실1.jpg', 49);
 
 INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
-VALUES (seqtblConvenient.NEXTVAL, '편의점 B', '08:00 - 22:00', '987-654-3210', 'convenient.png', 2);
+VALUES (seqtblConvenient.NEXTVAL, '유모차 대여소 A', '10:00 - 22:00', '123-456-7891', '유모차대여소1.jpg', 50);
 
 INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
-VALUES (seqtblConvenient.NEXTVAL, '편의점 C', '10:00 - 20:00', '555-123-7777', 'convenient.png', 3);
+VALUES (seqtblConvenient.NEXTVAL, '휠체어 대여소 A', '10:00 - 22:00', '123-456-7892', '휠체어대여소1.jpg', 51);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '의무실 A', '10:00 - 22:00', '123-456-7893', '의무실1.jpg', 52);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '흡연실 A', '10:00 - 22:00', '123-456-7894', '흡연실1.jpg', 53);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '유아휴게실 A', '10:00 - 22:00', '123-456-7895', '유아휴게실1.jpg', 54);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '미아보호소 A', '10:00 - 22:00', '123-456-7896', '미아보호소1.jpg', 55);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '현금지급기 A', '10:00 - 22:00', '123-456-7897', '현금지급기1.jpg', 56);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '분실물센터 A', '10:00 - 22:00', '123-456-7898', '분실물센터1.jpg', 57);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '물품보관함 A', '10:00 - 22:00', '123-456-7899', '물품보관함1.jpg', 58);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '보조배터리 대여장소 A', '10:00 - 22:00', '223-456-7890', '보조배터리대여장소1.jpg', 59);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '편의점 A', '10:00 - 22:00', '323-456-7890', '편의점1.jpg', 60);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '손님상담실 B', '10:00 - 22:00', '423-456-7890', '상담실2.jpg', 61);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '유모차 대여소 B', '10:00 - 22:00', '523-456-7890', '유모차대여소2.jpg', 62);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '휠체어 대여소 B', '10:00 - 22:00', '623-456-7890', '휠체어대여소2.jpg', 63);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '의무실 B', '10:00 - 22:00', '723-456-7890', '의무실2.jpg', 64);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '흡연실 B', '10:00 - 22:00', '823-456-7890', '흡연실2.jpg', 65);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '유아휴게실 B', '10:00 - 22:00', '923-456-7890', '유아휴게실2.jpg', 66);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '미아보호소 B', '10:00 - 22:00', '223-456-7891', '미아보호소2.jpg', 67);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '현금지급기 B', '10:00 - 22:00', '223-456-7892', '현금지급기2.jpg', 68);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '분실물센터 B', '10:00 - 22:00', '223-456-7893', '분실물센터2.jpg', 69);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '물품보관함 B', '10:00 - 22:00', '223-456-7894', '물품보관함2.jpg', 70);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '보조배터리 대여장소 B', '10:00 - 22:00', '223-456-7895', '보조배터리대여장소2.jpg', 71);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '편의점 B', '10:00 - 22:00', '223-456-7896', '편의점2.jpg', 72);
+
+INSERT INTO tblConvenient (convenient_seq, name, time, tel, img, location_seq)
+VALUES (seqtblConvenient.NEXTVAL, '편의점 C', '10:00 - 22:00', '223-456-7897', '편의점3.jpg', 73);
 
 /* 기프트샵 */
 insert into tblshop values (0, 0, 0, 0, 0, 0);
 
-INSERT INTO tblShop (shop_seq, name, time, info, tel, location_seq)
-VALUES (seqtblShop.NEXTVAL, '기프트샵 X', '09:30 - 18:00', '최고의 선물을 찾아보세요.', '111-222-3333', 1);
-
-INSERT INTO tblShop (shop_seq, name, time, info, tel, location_seq)
-VALUES (seqtblShop.NEXTVAL, '기프트샵 Y', '10:00 - 19:30', '다양한 기념품을 판매합니다.', '444-555-6666', 2);
-
-INSERT INTO tblShop (shop_seq, name, time, info, tel, location_seq)
-VALUES (seqtblShop.NEXTVAL, '기프트샵 Z', '11:00 - 17:45', '추억을 채워가는 곳.', '777-888-9999', 3);
+INSERT INTO tblShop VALUES (seqtblshop.nextVal, '샤론캣 드레스', '09:30 - 21:00', '꿈꾸던 동화 속 한 페이지를 만들어주는 공주,왕자 변신을 샤론캣 드레스에서 체험하세요!', '070-4238-1211', '89');
+INSERT INTO tblShop VALUES (seqtblshop.nextVal, '감성교복', '09:00 - 21:00', '오늘 여기오길 잘했다. 이렇게 예쁜 교복을 만날 줄이야.', '070-4238-1212', '90');
+INSERT INTO tblShop VALUES (seqtblshop.nextVal, 'GIFT SHOP(헬로키티)', '10:30 - 20:00', '블링블링 헬로키티 상품들을 만나보세요', '070-4238-1213', '91');
+INSERT INTO tblShop VALUES (seqtblshop.nextVal, '크로미샵', '10:00 - 22:00', '해맑은 크로미 상품들을 만나보세요!', '070-4238-1214', '92');
 
 /* 기프트샵/운휴 */
-INSERT INTO tblShopClose (shop_close_seq, start_date, end_date, shop_seq)
-VALUES (seqtblShopClose.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-04', 'YYYY-MM-DD'), 1);
-
-INSERT INTO tblShopClose (shop_close_seq, start_date, end_date, shop_seq)
-VALUES (seqtblShopClose.NEXTVAL, TO_DATE('2023-11-12', 'YYYY-MM-DD'), TO_DATE('2023-11-14', 'YYYY-MM-DD'), 2);
-
-INSERT INTO tblShopClose (shop_close_seq, start_date, end_date, shop_seq)
-VALUES (seqtblShopClose.NEXTVAL, TO_DATE('2023-11-22', 'YYYY-MM-DD'), TO_DATE('2023-11-24', 'YYYY-MM-DD'), 3);
+insert into tblshopclose values (seqtblshopclose.nextval, '2023-11-14', '2023-11-19', '1');
 
 /* 기프트샵이미지 */
-INSERT INTO tblShopImg (shop_img_seq, img, shop_seq)
-VALUES (seqtblShopImg.NEXTVAL, 'shop1.png', 1);
-
-INSERT INTO tblShopImg (shop_img_seq, img, shop_seq)
-VALUES (seqtblShopImg.NEXTVAL, 'shop2.png', 2);
-
-INSERT INTO tblShopImg (shop_img_seq, img, shop_seq)
-VALUES (seqtblShopImg.NEXTVAL, 'shop3.png', 3);
+INSERT INTO tblShopImg VALUES (seqtblshopimg.nextval, 'giftshop1.jpg', '1');
+INSERT INTO tblShopImg VALUES (seqtblshopimg.nextval, 'giftshop2.jpg', '2');
+INSERT INTO tblShopImg VALUES (seqtblshopimg.nextval, 'giftshop3.jpg', '3');
+INSERT INTO tblShopImg VALUES (seqtblshopimg.nextval, 'giftshop4.jpg', '4');
 
 /* 영화관 */
 INSERT INTO tblTheater (theater_seq, name, location_seq)
-VALUES (seqtblTheater.NEXTVAL, '영화관 A', 1);
+VALUES (seqtblTheater.NEXTVAL, '제주 영화관', 31);
 
 INSERT INTO tblTheater (theater_seq, name, location_seq)
-VALUES (seqtblTheater.NEXTVAL, '영화관 B', 2);
+VALUES (seqtblTheater.NEXTVAL, '우도 영화관', 32);
 
 INSERT INTO tblTheater (theater_seq, name, location_seq)
-VALUES (seqtblTheater.NEXTVAL, '영화관 C', 3);
+VALUES (seqtblTheater.NEXTVAL, '서귀포 영화관', 33);
+
+INSERT INTO tblTheater (theater_seq, name, location_seq)
+VALUES (seqtblTheater.NEXTVAL, '애월 영화관', 34);
+
+INSERT INTO tblTheater (theater_seq, name, location_seq)
+VALUES (seqtblTheater.NEXTVAL, '성산 영화관', 35);
 
 /* 영화관/운휴 */
 INSERT INTO tblTheaterClose (theater_close_seq, start_date, end_date, theater_seq)
@@ -3409,13 +3501,22 @@ VALUES (seqtblTheaterClose.NEXTVAL, TO_DATE('2023-11-22', 'YYYY-MM-DD'), TO_DATE
 
 /* 영화 */
 INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '영화 1', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-10', 'YYYY-MM-DD'), 120, 'movie1.png', 'preview1.mp4');
+VALUES (seqtblMovie.NEXTVAL, '천공의 성 라퓨타', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-10', 'YYYY-MM-DD'), 120, '천공의성라퓨타_poster.jpg', 'preview1.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '영화 2', TO_DATE('2023-11-05', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 105, 'movie2.png', 'preview2.mp4');
+VALUES (seqtblMovie.NEXTVAL, '마녀배달부 키키', TO_DATE('2023-11-05', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 105, '마녀배달부키키_poster.jpg', 'preview2.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '영화 3', TO_DATE('2023-11-12', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 130, 'movie3.png', 'preview3.mp4');
+VALUES (seqtblMovie.NEXTVAL, '하울의 움직이는 성', TO_DATE('2023-11-12', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 130, '하울의움직이는성_poster.jpg', 'preview3.mp4');
+
+INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
+VALUES (seqtblMovie.NEXTVAL, '벼랑위의 포뇨', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-10', 'YYYY-MM-DD'), 120, '벼랑위의포뇨_poster.jpg', 'preview1.mp4');
+
+INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
+VALUES (seqtblMovie.NEXTVAL, '고양이의 보은', TO_DATE('2023-11-05', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 105, '고양이의보은_poster.jpg', 'preview2.mp4');
+
+INSERT INTO tblMovie (movie_seq, name, start_date, end_date, runningtime, img, preview)
+VALUES (seqtblMovie.NEXTVAL, '이웃집 토토로', TO_DATE('2023-11-12', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 130, '이웃집토토로_poster.jpg', 'preview3.mp4');
 
 /* 영화상영 */
 INSERT INTO tblMoviePlay (movie_play_seq, start_time, theater_seq, movie_seq)
@@ -3438,25 +3539,70 @@ INSERT INTO tblMovieHashtag (movie_hashtag_seq, movie_seq, hashtag_seq)
 VALUES (seqtblMovieHashtag.NEXTVAL, 3, 3);
 
 /* 포토존 */
-INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
-VALUES (seqtblPhotoZone.NEXTVAL, '포토존 X', '09:00 - 20:00', '아름다운 풍경을 담아보세요.', 1);
+SELECT * FROM tblPhotozone;
 
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
-VALUES (seqtblPhotoZone.NEXTVAL, '포토존 Y', '10:00 - 18:30', '자연의 아름다움을 담다.', 2);
+VALUES (seqtblPhotoZone.NEXTVAL, '토토로 마을', '10:00 - 22:00', '이웃집 토토로와 함께 추억을 남겨보세요.', 36);
 
 INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
-VALUES (seqtblPhotoZone.NEXTVAL, '포토존 Z', '08:30 - 19:00', '추억을 남기는 곳.', 3);
+VALUES (seqtblPhotoZone.NEXTVAL, '하울의 성', '10:00 - 22:00', '하울의 움직이는 성 내부가 궁금했다면, 바로 이 곳! 하울의 성 포토존으로 오세요!', 37);
 
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '센과 치히로의 온천', '10:00 - 22:00', '센과 치히로의 온천에서 즐거운 추억을 남겨보세요.', 38);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '늑대 마을', '10:00 - 22:00', '모노노케히메와 함께 늑대 마을을 둘러보면 어떨까요?', 39);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '포뇨의 바다', '10:00 - 22:00', '귀여운 포뇨가 이끄는 바닷속에서 아름다운 풍경을 담아보세요!', 40);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '천공의 성', '10:00 - 22:00', '천공의 성 라퓨타! 지금, 바로 여기!', 41);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '마녀 배달부 키키의 하늘', '10:00 - 22:00', '마녀 배달부 키키의 바다가 보이는 마을에서 아름다운 풍경을 담아보세요.', 42);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '고양이 동네', '10:00 - 22:00', '고양이의 보은을 받고싶다면? 고양이 동네로 오세요!', 43);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '코쿠리코 언덕', '10:00 - 22:00', '코쿠리코 언덕에서 저와 함께 사진 찍으실래요?', 44);
+
+INSERT INTO tblPhotoZone (photozone_seq, name, time, info, location_seq)
+VALUES (seqtblPhotoZone.NEXTVAL, '마루 밑', '10:00 - 22:00', '마루 밑 아리에티가 있던 곳에서 아름다운 추억을 남겨보세요.', 45);
 
 /* 포토존이미지 */
-INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
-VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone1.png', 1);
+SELECT * FROM tblPhotozoneImg;
 
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
-VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone2.png', 2);
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '토토로포토존.jpeg', 1);
 
 INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
-VALUES (seqtblPhotoZoneImg.NEXTVAL, 'photozone3.png', 3);
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '하울의 움직이는 성.png', 2);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '센과 치히로의 행방불명.jpg', 3);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '늑대 체험.jpg', 4);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '벼랑 위의 포뇨.jpg', 5);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '천공의 성 라퓨타.jpg', 6);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '마녀배달부 키키의 하늘.jpeg', 7);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '고양이의 보은.jpg', 8);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '코쿠리코 언덕.jpg', 9);
+
+INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+VALUES (seqtblPhotoZoneImg.NEXTVAL, '마루 밑 아리에티.png', 10);
 
 /* 페스티벌 */
 INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, location_seq) VALUES (seqtblFestival.NEXTVAL, '지브리 페스티벌', '11:00', '지브리의 모든 캐릭터들을 만나보세요!',TO_DATE('2023.10.01', 'YYYY-MM-DD'), TO_DATE('2024.10.31', 'YYYY-MM-DD'), 1);
@@ -3465,13 +3611,13 @@ INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date, l
 
 /* 페스티벌이미지 */
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
-VALUES (seqtblFestivalImg.NEXTVAL, 'festival1.png', 1);
+VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample1.png', 1);
 
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
-VALUES (seqtblFestivalImg.NEXTVAL, 'festival2.png', 2);
+VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample2.png', 2);
 
 INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
-VALUES (seqtblFestivalImg.NEXTVAL, 'festival3.png', 3);
+VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample3.png', 3);
 
 /* 페스티벌/해시태그 */
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
@@ -3483,7 +3629,10 @@ VALUES (seqtblFestivalHashtag.NEXTVAL, 2, 2);
 INSERT INTO tblFestivalHashtag (festival_hashtag_seq, festival_seq, hashtag_seq)
 VALUES (seqtblFestivalHashtag.NEXTVAL, 3, 3);
 
+--어트랙션(tblAttraction): 30개(위치번호: 1~30)
 /* 어트랙션 */
+SELECT * FROM tblAttraction;
+
 INSERT INTO tblAttraction (attraction_seq, name, capacity, location_seq, time, restriction, is_test)
 VALUES (seqtblAttraction.NEXTVAL, '지브리특급', 120, 3, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'Y');
 
@@ -3586,13 +3735,37 @@ VALUES (seqtblAttractionClose.NEXTVAL, TO_DATE('2023-11-22', 'YYYY-MM-DD'), TO_D
 
 /* 어트랙션 예약 */
 INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
-VALUES (seqtblAttractionBook.NEXTVAL, '2023-11-01 14:00', 4);
+VALUES (seqtblAttractionBook.NEXTVAL, '10:00', 10);
 
 INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
-VALUES (seqtblAttractionBook.NEXTVAL, '2023-11-10 10:30', 3);
+VALUES (seqtblAttractionBook.NEXTVAL, '11:00', 10);
 
 INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
-VALUES (seqtblAttractionBook.NEXTVAL, '2023-11-20 15:45', 5);
+VALUES (seqtblAttractionBook.NEXTVAL, '12:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '13:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '14:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '15:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '16:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '17:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '18:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '19:00', 10);
+
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '20:00', 10);
 
 /* 어트랙션이미지 */
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
@@ -3617,7 +3790,7 @@ INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '센과 치히로의 동굴 탐험.jpeg', 5);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
-VALUES (seqtblAttractionImg.NEXTVAL, '늑대체험.jpg', 6);
+VALUES (seqtblAttractionImg.NEXTVAL, '늑대 체험.jpg', 6);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '우리는 빙글빙글1.jpeg', 7);
@@ -3635,7 +3808,7 @@ INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '즐거움은 방울방울2.jpeg', 9);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
-VALUES (seqtblAttractionImg.NEXTVAL, '마녀배달부 디디.jpeg', 10);
+VALUES (seqtblAttractionImg.NEXTVAL, '마녀 배달부 디디.jpeg', 10);
 
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '빗자루여행.jpg', 11);
@@ -3704,6 +3877,8 @@ INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '귀를 기울이면.jpeg', 30);
 
 /* 어트/해시태그 */
+select * from tblattractionhashtag;
+
 INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
 VALUES (seqtblAttractionHashtag.NEXTVAL, 1, 1);
 
@@ -3712,6 +3887,87 @@ VALUES (seqtblAttractionHashtag.NEXTVAL, 2, 2);
 
 INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
 VALUES (seqtblAttractionHashtag.NEXTVAL, 3, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 4, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 5, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 6, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 7, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 8, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 9, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 10, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 11, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 12, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 13, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 14, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 15, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 16, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 17, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 18, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 19, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 20, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 21, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 22, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 23, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 24, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 25, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 26, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 27, 3);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 28, 1);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 29, 2);
+
+INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
+VALUES (seqtblAttractionHashtag.NEXTVAL, 30, 3);
 
 /* 예약/회원 */
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
@@ -3838,34 +4094,166 @@ INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, an
 VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', '답변 내용 3', 3);
 
 /* FAQ */
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
-VALUES (seqtblFAQ.NEXTVAL, '이용정보', '질문1', '답변 1');
+VALUES (seqtblFAQ.nextVal, '이용정보', '홈페이지 로그인이 되지 않아요.',
+		'1. 로그인이 되지 않을 때 쿠키설정을 확인해주시기 바랍니다.
+		인터넷 익스플로러 브라우저 사용 시 ''쿠키 처리 방식''이 ''허용''으로 되어 있어야 로그인이 가능합니다.
+		※ 확인 방법 : 인터넷 옵션 → 개인정보 → 고급 → 현재 사이트의 쿠키/링크된 사이트의 쿠키 설정 ''허용''
 
+		2. 팝업 차단이 되어 있을 경우 로그인창이 뜨지 않을 수 있습니다.
+		팝업 설정을 ''허용''으로 변경해주시기 바랍니다.
+		※ 확인 방법 : 인터넷 옵션 → 개인정보 → ''팝업 차단 사용'' 체크박스 해지');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '개명에 따른 이름변경을 하려면 어떻게 해야하죠?', '개명신청으로 이름이 변경되셨을 경우 고객센터(1899-8900)로 연락 주시면 정보 변경이 가능합니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '고객을 위한 어떤 편의시설을 갖추고 있나요?', '안내데스크, 물품보관함, 유아휴게실, 의무실, 휴대폰 충전소, 피크닉 라운지 등 많은 시설들이 손님분들의 즐거운 시간을 위해 준비되어 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
-VALUES (seqtblFAQ.NEXTVAL, '액티비티', '질문2', '답변 2');
-
+VALUES (seqtblFAQ.nextVal, '이용정보', '물건을 잃어버렸는데 어떻게 해야 할까요?',
+		'홈페이지 고객센터의 분실물센터 혹은 서울랜드 중앙안내실로 확인부탁드립니다. (중앙안내실 02-509-6501)
+		공원안에서 발견된 분실물들은 분실물센터로 모아지며, 회수된 물품은 분실물 접수건과 대조해서 해당고객에게 연락을 드립니다.');
+		INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '어린이는 몇살부터 몇살까지인가요?', '어린이 요금은 36개월 이상의 어린이부터 초등학생까지, 청소년 요금은 중.고등학생에 한해 적용됩니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
-VALUES (seqtblFAQ.NEXTVAL, '액티비티', '질문3', '답변 3');
+VALUES (seqtblFAQ.nextVal, '이용정보', '애완동물을 데리고 입장할 수 있나요?',
+		'소형견에 한하여 동반입장이 가능합니다. 다만 아래의 주의사항을 꼭 따라주시길 부탁드립니다.
+		- 목줄 착용 후 안거나, 애견전용 유모차 및 케이지로 이동 
+		- 실내시설(음식점.상점.공연장)에 입장 및 놀이시설 이용 불가
+		- 배변봉투 및 휴지 필수지참, 배변 처리 필수');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '키를 잴 때 신발을 신고 재나요?', '모든 놀이시설 이용을 위한 신장 측정시 신발을 신고 측정합니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 이용제한은 어디서 확인할 수 있나요?', '홈페이지 내 어트랙션 카테고리에서 확인 가능합니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 운영은 날씨와 관계없이 가능한가요?', '내리는 비, 눈의 양, 바람, 온도, 습도 등 기상 상황에 따라 놀이시설 운영이 제한될 수 있습니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '액티비티', '36개월 미만 어린이가 이용할 수 있는 놀이시설은 무엇인가요?',
+		'DD Studio 놀이시설은 고객님의 안전한 이용을 위해 이용제한이 마련되어 있습니다.
+		이용제한의 경우 연령제한이 아닌 신장제한으로 운영되고 있으니
+		놀이시설 마다의 탑승 가능 신장을 확인하시어 이용해주시기 바랍니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드가 여러 장 있습니다. 티켓을 여러 장 구입할 수 있나요?',
+		'가능합니다.
+		다만, 같은 카드로 결제하실 경우 카드마다 이용횟수가 제한되어 있기때문에 구매가 제한될 수 있습니다.
+		자세한 내용은 카드사에 문의 부탁드립니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '혜택', '부모님 제휴카드로 제가 할인을 받을 수 있나요?',
+		'카드는 본인사용을 원칙으로하지만
+		부모님의 카드를 양도받으실 경우 카드 소유주의 신분증(또는 사본)을 지참하신다면 카드 사용이 가능합니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '혜택', 'KT/SKT 멤버십 포인트 부족 시 할인이 불가능한가요?',
+		'KT/SKT 등 멤버십 혜택의 경우 일정한 포인트 차감 후 티켓 할인이 되기때문에
+		포인트가 부족할 경우 티켓 할인이 불가할 수 있습니다.
+		
+		기타 포인트 차감 및 자세한 문의는 소지하신 카드 뒷면 고객센터로 문의하여 주시기 바랍니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드 결제가 되지 않습니다.',
+		'제휴카드 결제가 되지 않는 경우는 아래와 같을수 있습니다.
+		1. DD Studio 제휴카드가 아닌경우
+		2. 카드사 제한이 걸려 있는경우 예) 통합한도, 실적 등
+		3. 기타 인터넷, 네트워크 등 장애로 인한 경우');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '예매', '직접 방문하지 않아도 온라인으로 티켓을 구입할 수 있나요?',
+		'롯데월드 어드벤처는 더 빠르고 편리한 이용을 위해 온라인 예매 서비스를 시행하고 있습니다.
+		이용권의 종류, 사용일, 결제종류 등을 선택하셔서 미리 예매하시면 받으시는 분의 휴대폰으로 모바일 티켓이 전송됩니다.
+		앱을 사용해 마이티켓에 들어가시면 현재 사용할 수 있는 티켓을 바로 찾으실 수 있습니다.
+		단, 2G 폰을 사용중인 손님분들은 앱을 이용한 모바일 티켓을 사용하실 수 없습니다. 
+		현장에서 티켓을 별도로 구매해 주시기 바랍니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '예매', '온라인 예매 시작 화면이 하얗게 나오는데 어떻게 하나요?',
+		'온라인 예매 시작 전에 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
+		온라인 예매 시작 전에 ActiveX설치를 위한 PC 환경을 확인해주세요.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '예매', '예매 결제 단계에서 ''결제''버튼을 눌렀는데 아무런 반응이 없어요.',
+		'결제수단에 대한 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
+		ActiveX 설치를 위한 PC 환경을 다시 한 번 확인해주세요.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '예매', '''이 웹 사이트의 추가 기능을 실행하지 못했습니다.''라는 문구가 떠요.',
+		'Internet Explorer를 관리자 권한으로 실행해주세요.
+		Internet Explorer 아이콘 위에서 마우스 오른쪽 버튼 클릭– 관리자 권한으로 실행 선택');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '예매', '예매 후 티켓은 어디서 받는 건가요?',
+		'모바일/온라인 예매를 하셨다면 앱 안에 티켓이 생성되며, 별도의 지류티켓 발권 없이 바로 앱 화면을 통해 게이트로 입장하실 수 있습니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '기타', '회원가입, 탈퇴는 어떻게 하나요?', '회원가입과 탈퇴는 롯데월드 어드벤처 홈페이지에서 로그인창에서 가입과 탈퇴를 할수 있습니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer)
+VALUES (seqtblFAQ.nextVal, '기타', 'DD Studio 캐스트에 지원하려면 어떻게 해야 하나요?',
+		'DD Studio는 즐겁게 일하고 손님에게 최선의 서비스를 제공할 준비가 되어 있는 지원자를 찾고 있습니다.
+		DD Studio는 다양한 지원자 분들의 편의와 효율적인 채용관리를 위해 인재채용 홈페이지를 운영해 채용공고를 게시하고 있습니다.');
 
 /* 공지사항 */
-INSERT INTO tblNotice (notice_seq, subject, content, attach, fix)
-VALUES (seqtblNotice.NEXTVAL, '공지사항 1', '이번 주 행사 안내입니다.', 'attach1.pdf', 'y');
-
-INSERT INTO tblNotice (notice_seq, subject, content, attach, fix)
-VALUES (seqtblNotice.NEXTVAL, '공지사항 2', '주차장 공사로 인한 영향 안내', NULL, 'n');
-
-INSERT INTO tblNotice (notice_seq, subject, content, attach, fix)
-VALUES (seqtblNotice.NEXTVAL, '공지사항 3', '휴업일 변경 공지', 'attach3.doc', 'y');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix)
+VALUES (seqtblNotice.nextVal, '반려견 동반 출입 안내 ''댕댕이 어서오시개''',
+        '안녕하세요. 행복을 드리는 DD Studio입니다.
+        DD Studio는 반려견 동반 출입이 가능합니다.
+        아래 내용을 확인하셔서 반려견과 함께 즐거운 여행 되세요!
+        
+        <DD Studio 반려견 동반 출입 안내>
+		1. 몸무게 : 소형견(10kg 미만)
+        2. 이동방법 : 리드줄(목줄) 착용 후 안거나 케이지에 넣어 이동
+        3. 기타 확인사항
+        ① 반려견과 함께 놀이시설 및 실내 매장 이용이 불가합니다.
+        ② 공원 내에서는 반려견이 걸어다닐 수 없습니다.',
+        TO_CHAR(DATE '2023-10-01', 'YYYY-MM-DD'), NULL, 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '애니멀킹덤 드래곤의 역습', NULL, TO_CHAR(DATE '2023-10-01', 'YYYY-MM-DD'), 'notice2.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '2023 옥토버 페스티벌', NULL, TO_CHAR(DATE '2023-10-04', 'YYYY-MM-DD'), 'notice3.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '어린이를 위한 YES! 키즈코스', NULL, TO_CHAR(DATE '2023-10-10', 'YYYY-MM-DD'), 'notice4.jpg', 'y');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '동화 속 신비한 모험의 세계 ''앨리스 원더하우스''', NULL, TO_CHAR(DATE '2023-10-13', 'YYYY-MM-DD'), 'notice5.png', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '2023 오덕 페스티벌', NULL, TO_CHAR(DATE '2023-10-16', 'YYYY-MM-DD'), 'notice6.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '국내 최대규모!! 슈퍼미러볼', NULL, TO_CHAR(DATE '2023-10-18', 'YYYY-MM-DD'), 'notice7.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '주차시스템 개선 안내', NULL, TO_CHAR(DATE '2023-10-20', 'YYYY-MM-DD'), 'notice8.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '날씨별 운휴시설 안내', NULL, TO_CHAR(DATE '2023-10-21', 'YYYY-MM-DD'), 'notice9.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '빼빼로데이X스카이엑스', NULL, TO_CHAR(DATE '2023-10-23', 'YYYY-MM-DD'), 'notice10.jpg', 'y');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '장애인 탑승예약제 시행 안내', NULL, TO_CHAR(DATE '2023-10-26', 'YYYY-MM-DD'), 'notice11.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '풍선비행 탑승예약제 안내', NULL, TO_CHAR(DATE '2023-10-26', 'YYYY-MM-DD'), 'notice12.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '채팅상담 이용 안내', NULL, TO_CHAR(DATE '2023-10-30', 'YYYY-MM-DD'), 'notice13.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '제품 리콜 안내', NULL, TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'notice14.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '나에게 딱! 맞는 DD Studio 겨울 코스는?', NULL, TO_CHAR(DATE '2023-11-13', 'YYYY-MM-DD'), 'notice15.jpg', 'n');
 
 /* 분실물센터 */
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.NEXTVAL, '분류1', '습득물 1', '로비', TO_DATE('2023-10-15', 'YYYY-MM-DD'), 'lost1.jpg', '처리 완료');
-
+VALUES (seqtblLostProperty.nextVal, '기타', '담요', '토토로스핀', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost1.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.NEXTVAL, '분류2', '습득물 2', '2층 로비', TO_DATE('2023-11-02', 'YYYY-MM-DD'), 'lost2.jpg', '미처리');
-
+VALUES (seqtblLostProperty.nextVal, '기타', '손수건', '회전목마', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost2.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.NEXTVAL, '분류1', '습득물 3', '1층 대문 앞', TO_DATE('2023-11-10', 'YYYY-MM-DD'), 'lost3.jpg', '처리 완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '3단 우산', '만남의 광장', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost3.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '니모 이야기', TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'lost4.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '벼랑 기차', TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'lost5.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '지브리의 보은', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost6.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '목도리', '뛰뛰빵빵', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost7.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '우산', '니모 이야기', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost8.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '유니콘 열쇠고리', '회전목마', TO_CHAR(DATE '2023-11-04', 'YYYY-MM-DD'), 'lost9.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '의류', '검정색 조끼', '후룸라이드', TO_CHAR(DATE '2023-11-04', 'YYYY-MM-DD'), 'lost10.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '의류', '네이비색 가디건', '토토로스윙', TO_CHAR(DATE '2023-11-05', 'YYYY-MM-DD'), 'lost11.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '무선 충전기', '환타지드림', TO_CHAR(DATE '2023-11-05', 'YYYY-MM-DD'), 'lost12.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '가방', '흰색 에코백', '지트란티스', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost13.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '털실 목도리', '마녀 배달부 디디', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost14.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '넥타이', '빗자루 여행', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost15.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '방석', '너구리 대작전', TO_CHAR(DATE '2023-11-07', 'YYYY-MM-DD'), 'lost16.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '축구공', '만남의 광장', TO_CHAR(DATE '2023-11-07', 'YYYY-MM-DD'), 'lost17.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '텀블러', '회전목마', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost18.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '지브리의 보은', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost19.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '카메라', '카메라 렌즈 뚜껑', '토토로스핀', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost20.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '강아지 인형', '니모 이야기', TO_CHAR(DATE '2023-11-09', 'YYYY-MM-DD'), 'lost21.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '황야의 무법자', TO_CHAR(DATE '2023-11-10', 'YYYY-MM-DD'), 'lost22.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '우산', '뛰뛰빵빵', TO_CHAR(DATE '2023-11-10', 'YYYY-MM-DD'), 'lost23.jpg', '보관중');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '환타지드림', TO_CHAR(DATE '2023-11-11', 'YYYY-MM-DD'), 'lost24.jpg', '수령완료');
+INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '후룸라이드', TO_CHAR(DATE '2023-11-14', 'YYYY-MM-DD'), 'lost25.jpg', '보관중');
 
 /* 티켓 */
 INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
@@ -3905,6 +4293,12 @@ INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 2, 10000, 1, 1);
 
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-16', 'YYYY-MM-DD'), 2, 10000, 1, 1);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-17', 'YYYY-MM-DD'), 2, 10000, 1, 1);
+
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 1, 1);
@@ -3936,24 +4330,44 @@ INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
 VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg3.png', 3);
 
 /* 아이템 */
-INSERT INTO tblItem (item_seq, name, info, price, shop_seq)
-VALUES (seqtblItem.NEXTVAL, '아이템 1', '테마파크 기념품', 5000, 1);
+select * from tblitem;
 
-INSERT INTO tblItem (item_seq, name, info, price, shop_seq)
-VALUES (seqtblItem.NEXTVAL, '아이템 2', '추억의 아이템', 10000, 2);
-
-INSERT INTO tblItem (item_seq, name, info, price, shop_seq)
-VALUES (seqtblItem.NEXTVAL, '아이템 3', '영화 아이템', 8000, 3);
+INSERT INTO tblitem VALUES (seqtblitem.nextval, 'White 드레스', '하얀 공주님 드레스', '200000', '1');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, 'Blue 드레스', '파랑 공주님 드레스', '180000', '1');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, 'Pink 드레스', '핑크핑크 공주님 드레스', '240000', '1');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, 'Red 드레스', '정열의 공주님 드레스', '250000', '1');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '교복 세트1', '파란색 마이의 교복 세트', '50000', '2');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '교복 세트2', '노란 리복 포인트 교복 세트', '50000', '2');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '하복 세트1', '스트레이트 넥타이 하복 세트', '30000', '2');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '교복 세트2', '단정한 느낌 교복 세트', '28000', '2');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '지갑', '키링형 동전 지갑', '9000', '3');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '커튼', '아기방 키티커튼', '32800', '3');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '우산', '자외선 차단 3단 우산', '14000', '3');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '크로스백', '실리콘 크로스백', '13000', '3');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '차크로미', 'CHA 후드티', '25000', '4');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '이크로미', 'LEE 후드티', '25000', '4');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '스티커', '크로미 스티커', '2000', '4');
+INSERT INTO tblitem VALUES (seqtblitem.nextval, '인형', '크로미 인형', '13000', '4');
 
 /* 아이템이미지 */
-INSERT INTO tblItemImg (item_img_seq, img, item_seq)
-VALUES (seqtblItemImg.NEXTVAL, 'itemimg1.png', 1);
+select * from tblitemimg;
 
-INSERT INTO tblItemImg (item_img_seq, img, item_seq)
-VALUES (seqtblItemImg.NEXTVAL, 'itemimg2.png', 2);
-
-INSERT INTO tblItemImg (item_img_seq, img, item_seq)
-VALUES (seqtblItemImg.NEXTVAL, 'itemimg3.png', 3);
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'a1.jpeg', '1');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'a2.jpeg', '2');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'a3.jpeg', '3');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'a4.jpeg', '4');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'b1.jpeg', '5');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'b2.jpeg', '6');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'b3.jpeg', '7');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'b4.jpeg', '8');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'c1.jpeg', '9');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'c2.jpeg', '10');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'c3.jpeg', '11');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'c4.jpeg', '12');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'd1.jpg', '13');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'd2.jpg', '14');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'd3.png', '15');
+INSERT INTO tblitemimg VALUES (seqtblitemimg.nextval, 'd4.png', '16');
 
 /* 장바구니 */
 INSERT INTO tblCart (cart_seq, ea, item_seq)
